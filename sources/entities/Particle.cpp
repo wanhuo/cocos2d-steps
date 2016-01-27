@@ -45,34 +45,6 @@ Particle::~Particle()
 void Particle::onCreate()
 {
   Cube::onCreate();
-
-  this->setScale(0);
-  this->runAction(
-    Spawn::create(
-      Sequence::create(
-        EaseSineInOut::create(
-          ScaleTo::create(random(0.1, 0.5), random(0.1, 0.5))
-        ),
-        EaseSineInOut::create(
-          ScaleTo::create(random(0.1, 0.5), 0.0)
-        ),
-        CallFunc::create([=] () {
-          this->_destroy(true);
-        }),
-        nullptr
-      ),
-      Sequence::create(
-        EaseSineInOut::create(
-          MoveBy::create(random(0.1, 0.5), Vec3(0, 0.5, 0))
-        ),
-        EaseSineInOut::create(
-          MoveBy::create(random(0.1, 0.5), Vec3(0, -1.0, 0))
-        ),
-        nullptr
-      ),
-      nullptr
-    )
-  );
 }
 
 void Particle::onDestroy(bool action)

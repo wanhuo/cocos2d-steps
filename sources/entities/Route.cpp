@@ -118,7 +118,7 @@ void Route::spawn(Route* route)
 
     if(this->environment->plates->count <= 1)
     {
-      plate->setColor(Color3B(33, 104, 193));
+      plate->setTexture("plate-texture-2.png");
     }
 
     //this->y += 0.5f;

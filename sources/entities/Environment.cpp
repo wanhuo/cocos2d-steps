@@ -51,7 +51,7 @@ void Environment::create()
   this->water = new Entity3D("water.obj", this->plane, true);
   this->water->setRotation3D(Vec3(0, 0, 0));
   this->water->setPosition3D(Vec3(0, 0, 0));
-  this->water->setColor(Color3B(128, 218, 189));
+  this->water->setColor(Color3B(84, 205, 240));
   this->water->setOpacity(220);
 
   this->dusts = new Pool(new Dust, this);
@@ -98,15 +98,15 @@ Node* Environment::createRipple(float x, float z, float scale)
 
 Node* Environment::createParticle(float x, float y, float z)
 {
-  auto particle = this->particles->_create();
+  /*auto particle = this->particles->_create();
 
-  particle->setPositionX(x + random(-1.0, 1.0));
-  particle->setPositionY(y - 0.45);
-  particle->setPositionZ(z + random(-1.0, 1.0));
+  particle->setPositionX(x + random(-1.5, 1.5));
+  particle->setPositionY(y - random(0.0, 0.45));
+  particle->setPositionZ(z + random(-1.5, 1.5));
 
   particle->setColor(Color3B(128, 218, 189));
 
-  return particle;
+  return particle;*/
 }
 
 /**

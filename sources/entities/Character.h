@@ -41,6 +41,7 @@ class Character : public Cube
   private:
   const static int TURN_LEFT = 1;
   const static int TURN_RIGHT = 2;
+
   const static int PARTICLES_COUNT = 10;
 
   Environment* environment;

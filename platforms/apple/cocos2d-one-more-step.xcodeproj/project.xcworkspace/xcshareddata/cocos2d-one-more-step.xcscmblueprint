@@ -1,0 +1,44 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9182A332E54E480DD7337084CF997B5274DE2934",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4ED8BB3D12A803EAEA7D347C6F0A1EAC517748B3" : 0,
+    "9182A332E54E480DD7337084CF997B5274DE2934" : 0,
+    "852ED3691A47A99B0D19C820A500AE9772B2A44E" : 0,
+    "1BBA9D5B07DFE06B55383FF7E11710171EEB5A8D" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7EDB48A8-FC4F-4B36-BB42-8F26BFA2E0DC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4ED8BB3D12A803EAEA7D347C6F0A1EAC517748B3" : "cocos2d-apple-library\/",
+    "9182A332E54E480DD7337084CF997B5274DE2934" : "cocos2d-one-more-step\/",
+    "852ED3691A47A99B0D19C820A500AE9772B2A44E" : "cocos2d\/",
+    "1BBA9D5B07DFE06B55383FF7E11710171EEB5A8D" : "cocos2d-tooflya-sdk\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "cocos2d-one-more-step",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "platforms\/apple\/cocos2d-one-more-step.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/IgorMats\/cocos2d-tooflya-sdk.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1BBA9D5B07DFE06B55383FF7E11710171EEB5A8D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/IgorMats\/cocos2d-apple-library.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4ED8BB3D12A803EAEA7D347C6F0A1EAC517748B3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/IgorMats\/cocos2d-x.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "852ED3691A47A99B0D19C820A500AE9772B2A44E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/IgorMats\/cocos2d-one-more-step.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9182A332E54E480DD7337084CF997B5274DE2934"
+    }
+  ]
+}

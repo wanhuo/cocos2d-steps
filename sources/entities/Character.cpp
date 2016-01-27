@@ -37,6 +37,8 @@ Character::Character(Environment* environment)
   this->plane->setPosition3D(Vec3(0, 0, 0));
   this->plane->setRotation3D(Vec3(0, 0, 0));
 
+  this->setTexture("cube-texture.png");
+
   this->setScheduleUpdate(true);
 }
 
@@ -69,10 +71,8 @@ void Character::onCreate()
   this->plates.current = nullptr;
   this->plates.previous = nullptr;
 
-  this->setColor(Color3B(33, 104, 193));
-
   this->setPosition3D(Vec3(0, -4.1, 0));
-  this->setRotation3D(Vec3(0, -90, 0));
+  this->setRotation3D(Vec3(0, 0, 0));
 
   this->setOpacity(0);
 
@@ -179,17 +179,41 @@ void Character::onTurnUpdate(int index, Plate* custom)
 
   if(plate)
   {
-    plate->runAction(
-      EaseSineInOut::create(
-        TintTo::create(0.2, Color3B(33, 104, 193))
-      )
-    );
+    plate->setTexture("plate-texture-2.png");
 
     Application->counter->onCount();
 
     for(int i = 0; i < PARTICLES_COUNT; i++)
     {
-      auto particle = this->environment->createParticle(x, y, z);
+      auto particle = static_cast<Entity3D*>(this->environment->particles->_create());
+
+      particle->setTexture("cube-texture.png");
+
+      particle->setScale(random(0.5, 1.0));
+      particle->setPositionX(x);
+      particle->setPositionY(y - 0.5);
+      particle->setPositionZ(z);
+
+      particle->runAction(
+        Spawn::create(
+          Sequence::create(
+            EaseSineOut::create(
+              ScaleTo::create(random(0.2, 0.5), 0.0)
+            ),
+            CallFunc::create([=] () {
+              particle->_destroy(true);
+            }),
+            nullptr
+          ),
+          Sequence::create(
+            EaseSineOut::create(
+              MoveBy::create(random(0.2, 0.5), Vec3((random(0.5, 1.5) * (probably(50) ? 1 : -1)), random(0.5, 0.7), (random(0.5, 1.5) * (probably(50) ? 1 : -1))))
+            ),
+            nullptr
+          ),
+          nullptr
+        )
+      );
 
       if(plate->decoration)
       {
@@ -344,7 +368,7 @@ void Character::onCrash()
   auto y = this->getPositionY();
   auto z = this->getPositionZ();
 
-  this->setColor(Color3B(255, 0, 0));
+  //this->setColor(Color3B(255, 0, 0));
 
   for(int i = 0; i < PARTICLES_COUNT * 2; i++)
   {
@@ -385,14 +409,14 @@ void Character::onHit()
   auto y = this->getPositionY();
   auto z = this->getPositionZ();
 
-  this->setColor(Color3B(255, 0, 0));
+  //this->setColor(Color3B(255, 0, 0));
 
   for(int i = 0; i < PARTICLES_COUNT * 2; i++)
   {
     this->environment->createParticle(x, y, z)->setColor(this->getColor());
   }
 
-  this->runAction(
+  /*this->runAction(
     Sequence::create(
       DelayTime::create(0.5),
       TintTo::create(0.1, Color3B(33, 104, 193)),
@@ -401,7 +425,7 @@ void Character::onHit()
       }),
       nullptr
     )
-  );
+  );*/
 
   Sound->play("character-hit");
 }

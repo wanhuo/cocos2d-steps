@@ -51,8 +51,9 @@ void Plate::onCreate()
    *
    *
    */
+  this->setTexture("plate-texture.png");
+
   this->setType(TYPE_NORMAL);
-  this->setColor(Color3B(255, 132, 42));
 
   this->runAction(
     RepeatForever::create(
