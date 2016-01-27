@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>71AB998C-794F-4C0C-A3DC-3F193C682BD0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>overroad</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1BBA9D5B07DFE06B55383FF7E11710171EEB5A8D</key>
+		<string>github.com:IgorMats/cocos2d-tooflya-sdk.git</string>
+		<key>CB86DDF63EC355DD865CF25AC22E6E5AF7CF577B</key>
+		<string>github.com:IgorMats/cocos2d-over-road.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>js-bindings/runtime-src/proj.ios_mac/overroad.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1BBA9D5B07DFE06B55383FF7E11710171EEB5A8D</key>
+		<string>../../../../..</string>
+		<key>CB86DDF63EC355DD865CF25AC22E6E5AF7CF577B</key>
+		<string>../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:IgorMats/cocos2d-tooflya-sdk.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1BBA9D5B07DFE06B55383FF7E11710171EEB5A8D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CB86DDF63EC355DD865CF25AC22E6E5AF7CF577B</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1BBA9D5B07DFE06B55383FF7E11710171EEB5A8D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>frameworks</string>
+		</dict>
+	</array>
+</dict>
+</plist>

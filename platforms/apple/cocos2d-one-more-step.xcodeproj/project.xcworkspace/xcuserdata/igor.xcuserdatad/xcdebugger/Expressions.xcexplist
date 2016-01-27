@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Environment::updateFishes(float):Environment.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Energy::onPickup()::$_0::operator()() const:Energy.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Character::onTurn(int):Character.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "x">
+            </PersistentString>
+            <PersistentString
+               value = "z">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

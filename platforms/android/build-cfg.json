@@ -1,0 +1,37 @@
+{
+  "ndk_module_path" :[
+    "../../../cocos2d", 
+    "../../../cocos2d/cocos", 
+    "../../../cocos2d/external"
+  ],
+  "copy_resources": [
+    {
+      "from": "../../resource/Fonts",
+      "to": "Fonts"
+    },
+    {
+      "from": "../../resource/Graphics",
+      "to": "Graphics"
+    },
+    {
+      "from": "../../resource/Json",
+      "to": "Json"
+    },
+    {
+      "from": "../../resource/Music",
+      "to": "Music"
+    },
+    {
+      "from": "../../resource/Sound",
+      "to": "Sound"
+    },
+    {
+      "from": "../../resource/Config/android",
+      "to": "Config"
+    },
+    {
+      "from": "../../resource/Services/android",
+      "to": "Services"
+    }
+  ]
+}

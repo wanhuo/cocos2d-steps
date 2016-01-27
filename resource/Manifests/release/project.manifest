@@ -1,0 +1,12 @@
+{
+  "packageUrl": "http://www.tooflya.com/games/wrong-way/updates/release/",
+  "remoteManifestUrl": "http://www.tooflya.com/games/wrong-way/updates/release/project.manifest",
+  "remoteVersionUrl": "http://www.tooflya.com/games/wrong-way/updates/release/version.manifest",
+  "version": "1.0.0",
+  "engineVersion": "3.9",
+  "assets": {
+  },
+
+  "searchPaths": [
+  ]
+}
