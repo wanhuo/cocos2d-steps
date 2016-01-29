@@ -76,6 +76,9 @@ void Route::spawn(Route* route)
     plate->setPositionY(this->y - 5);
     plate->setPositionZ(this->z);
 
+    plate->startPositionX = this->x;
+    plate->startPositionZ = this->z;
+
     plate->setOpacity(0);
 
     plate->runAction(
@@ -90,9 +93,32 @@ void Route::spawn(Route* route)
 
     if(this->environment->plates->count >= 5)
     {
-      if(probably(10))
+      if(this->s2 < 1 && probably(10))
       {
         plate->setType(Plate::TYPE_SPIKES);
+        this->s1 = 2;
+      }
+      else if((this->length - this->counter) > 1 && this->s1 < 1 && this->direction && probably(10))
+      {
+        plate->setType(Plate::TYPE_MOVED_1);
+        this->length++;
+        this->s2 = 2;
+      }
+      else if((this->length - this->counter) > 1 && this->s1 < 1 && !this->direction && probably(10))
+      {
+        plate->setType(Plate::TYPE_MOVED_2);
+        this->length++;
+        this->s2 = 2;
+      }
+      else if(this->counter >= this->length && this->s1 < 1 && this->direction && probably(10))
+      {
+        plate->setType(Plate::TYPE_MOVED_3);
+        this->s2 = 2;
+      }
+      else if(this->counter >= this->length && this->s1 < 1 && !this->direction && probably(10))
+      {
+        plate->setType(Plate::TYPE_MOVED_4);
+        this->s2 = 2;
       }
       else if(probably(2))
       {
@@ -102,7 +128,7 @@ void Route::spawn(Route* route)
       {
         plate->setType(Plate::TYPE_CRYSTAL);
       }
-      else if(probably(2))
+      else if(probably(20))
       {
         plate->setType(Plate::TYPE_ENERGY);
       }
@@ -112,9 +138,12 @@ void Route::spawn(Route* route)
       }
       else if(probably(2))
       {
-        plate->setType(Plate::TYPE_HEART);
+        //plate->setType(Plate::TYPE_HEART);
       }
     }
+
+    this->s1--;
+    this->s2--;
 
     if(this->environment->plates->count <= 1)
     {
@@ -160,7 +189,7 @@ void Route::spawn(Route* route)
   if(this->counter > this->length)
   {
     this->counter = 0;
-    this->length = random(2, 5);
+    this->length = random(2, 10);
 
     this->direction = !this->direction;
     //plates->last()->setColor(Color3B(0, 0, 255));

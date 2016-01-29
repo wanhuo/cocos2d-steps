@@ -55,8 +55,8 @@
 #include "Whale.h"
 #include "Particle.h"
 #include "Fish.h"
+#include "Leaf.h"
 #include "Ripple.h"
-#include "Ship.h"
 
 #include "Counter.h"
 
@@ -84,10 +84,6 @@ class Game : public Screen
   private:
   static Game* instance;
 
-  float startCameraX;
-  float startCameraY;
-  float startCameraZ;
-
   struct Cameras {
     Camera* d;
     Camera* s;
@@ -113,7 +109,7 @@ class Game : public Screen
   Game();
  ~Game();
 
-  const static int SCALE_FACTOR = 50;
+  const static int SCALE_FACTOR = 60;
 
   const static int NEAR = 1;
   const static int FAR = 100;
@@ -122,6 +118,10 @@ class Game : public Screen
   const static int STATE_MENU = 1;
   const static int STATE_GAME = 3;
   const static int STATE_LOSE = 4;
+
+  float startCameraX;
+  float startCameraY;
+  float startCameraZ;
 
   Environment* environment;
   Cameras cameras;

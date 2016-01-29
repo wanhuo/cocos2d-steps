@@ -75,6 +75,9 @@ class Route : public Ref
   int counter = 0;
   int length = 5;
 
+  int s1 = 0;
+  int s2 = 0;
+
   bool direction = true;
 
   virtual void spawn(Route* route = nullptr);

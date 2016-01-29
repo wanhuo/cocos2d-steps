@@ -61,6 +61,15 @@ class Plate : public Cube
   const static int TYPE_STAR = 5;
   const static int TYPE_HEART = 6;
 
+  const static int TYPE_MOVED_1 = 20;
+  const static int TYPE_MOVED_2 = 21;
+
+  const static int TYPE_MOVED_3 = 22;
+  const static int TYPE_MOVED_4 = 23;
+
+  const static int TYPE_MOVED_5 = 24;
+  const static int TYPE_MOVED_6 = 25;
+
   Plate();
  ~Plate();
 
@@ -69,7 +78,15 @@ class Plate : public Cube
   bool LEFT;
   bool RIGHT;
 
+  bool moved;
+  bool position;
+
+  float startPositionX = 0;
+  float startPositionY = 0;
+  float startPositionZ = 0;
+
   Decoration* decoration = nullptr;
+  Entity3D* special;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);

@@ -128,6 +128,10 @@ class Character : public Cube
 
   virtual Plate* getPlateLeft(Plate* current = nullptr);
   virtual Plate* getPlateRight(Plate* current = nullptr);
+
+  virtual Plate* getPlateLeftWithDefaults(Plate* current = nullptr);
+  virtual Plate* getPlateRightWithDefaults(Plate* current = nullptr);
+
   virtual NearPlates getPlatesNear(Plate* current = nullptr);
 
   virtual void changeState(int state);

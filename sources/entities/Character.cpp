@@ -129,7 +129,7 @@ void Character::onTurnLeft()
 
     this->runAction(
       Sequence::create(
-        MoveBy::create(0.05, Vec3(0, 0.3, -0.75)),
+        MoveBy::create(0.05, Vec3(0, 0.5, -0.75)),
         MoveTo::create(0.05, Vec3(x, y, z)),
         CallFunc::create([=] () {
         this->changeState(STATE_NORMAL);
@@ -154,7 +154,7 @@ void Character::onTurnRight()
 
     this->runAction(
       Sequence::create(
-        MoveBy::create(0.05, Vec3(0.75, 0.3, 0)),
+        MoveBy::create(0.05, Vec3(0.75, 0.5, 0)),
         MoveTo::create(0.05, Vec3(x, y, z)),
         CallFunc::create([=] () {
         this->changeState(STATE_NORMAL);
@@ -177,7 +177,7 @@ void Character::onTurnUpdate(int index, Plate* custom)
 
   auto plate = custom ? custom : this->plates.current;
 
-  if(plate)
+  if(plate && (custom || plate->getNumberOfRunningActions() < 3))
   {
     plate->setTexture("plate-texture-2.png");
 
@@ -356,6 +356,8 @@ void Character::onNormal()
 
 void Character::onJump()
 {
+  this->plates.current = nullptr;
+  this->stopAllActions();
 }
 
 void Character::onFall()
@@ -459,7 +461,7 @@ Plate* Character::getPlateRight(Plate* current)
     }
   }
 
-  return nullptr;
+  return this->getPlateRightWithDefaults(current);
 }
 
 Plate* Character::getPlateLeft(Plate* current)
@@ -472,6 +474,60 @@ Plate* Character::getPlateLeft(Plate* current)
   {
     auto plate = static_cast<Plate*>(Application->environment->plates->element(i));
     auto position = plate->getPosition3D();
+
+    int px = position.x / 1.5;
+    int py = position.y / 1.5;
+    int pz = position.z / 1.5;
+
+    if(px == x + 1 && pz == z && !(px == x && pz == z))
+    {
+      plate->LEFT = false;
+      plate->RIGHT = true;
+
+      return plate;
+    }
+  }
+
+  return this->getPlateLeftWithDefaults(current);
+}
+
+Plate* Character::getPlateRightWithDefaults(Plate* current)
+{
+  int x = (current ? current->startPositionX : this->plates.current->startPositionX) / 1.5;
+  int y = (current ? current->startPositionY : this->plates.current->startPositionY) / 1.5;
+  int z = (current ? current->startPositionZ : this->plates.current->startPositionZ) / 1.5;
+
+  for(int i = 0; i < Application->environment->plates->count; i++)
+  {
+    auto plate = static_cast<Plate*>(Application->environment->plates->element(i));
+    auto position = Vec3(plate->startPositionX, plate->startPositionY, plate->startPositionZ);
+
+    int px = position.x / 1.5;
+    int py = position.y / 1.5;
+    int pz = position.z / 1.5;
+
+    if(px == x && pz == z - 1 && !(px == x && pz == z))
+    {
+      plate->LEFT = true;
+      plate->RIGHT = false;
+
+      return plate;
+    }
+  }
+
+  return nullptr;
+}
+
+Plate* Character::getPlateLeftWithDefaults(Plate* current)
+{
+  int x = (current ? current->startPositionX : this->plates.current->startPositionX) / 1.5;
+  int y = (current ? current->startPositionY : this->plates.current->startPositionY) / 1.5;
+  int z = (current ? current->startPositionZ : this->plates.current->startPositionZ) / 1.5;
+
+  for(int i = 0; i < Application->environment->plates->count; i++)
+  {
+    auto plate = static_cast<Plate*>(Application->environment->plates->element(i));
+    auto position = Vec3(plate->startPositionX, plate->startPositionY, plate->startPositionZ);
 
     int px = position.x / 1.5;
     int py = position.y / 1.5;
@@ -620,7 +676,7 @@ void Character::update(float time)
 
     if(this->time >= Whale::TIME && Application->counter->value > 0)
     {
-      Application->environment->whale->changeState(Whale::STATE_NORMAL);
+      //Application->environment->whale->changeState(Whale::STATE_NORMAL);
     }
   }
 }

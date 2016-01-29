@@ -67,7 +67,7 @@ void Environment::create()
   this->particles = new Pool(new Particle, this->plane);
   this->fishes = new Pool(new Fish, this->plane);
   this->ripples = new Pool(new Ripple, this->plane);
-  this->ships = new Pool(new Ship, this->plane);
+  this->leafs = new Pool(new Leaf, this->plane);
 
   this->character = new Character(this);
   this->whale = new Whale(this);
@@ -154,6 +154,7 @@ void Environment::onGame()
 
   this->plates->clear();
   this->ripples->clear();
+  this->leafs->clear();
 
   this->runAction(
     Repeat::create(
@@ -212,17 +213,6 @@ void Environment::updateFishes(float time)
   }
 }
 
-void Environment::updateShips(float time)
-{
-  if(this->ships->count < MAX_SHIP_COUNT)
-  {
-    if(probably(1))
-    {
-      //this->ships->_create();
-    }
-  }
-}
-
 /**
  *
  *
@@ -262,5 +252,4 @@ void Environment::update(float time)
 
   this->updateDusts(time);
   this->updateFishes(time);
-  this->updateShips(time);
 }

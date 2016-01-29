@@ -55,59 +55,73 @@ void Energy::onPickup()
   this->action = CallFunc::create([=] () {
     auto next = Application->environment->character->getPlatesNear().next();
 
-    float x;
-    float z;
-
-    if(next->LEFT)
+    if(next)
     {
-      x = 0.0;
-      z = -1.5;
+      if(next->position)
+      {
+        float x;
+        float z;
 
-      Application->environment->character->onMoveLeft();
+        if(next->LEFT)
+        {
+          x = 0.0;
+          z = -1.5;
+
+          Application->environment->character->onMoveLeft();
+        }
+
+        if(next->RIGHT)
+        {
+          x = 1.5;
+          z = 0.0;
+
+          Application->environment->character->onMoveRight();
+        }
+
+        Application->environment->character->plates.current = next;
+
+        Application->environment->character->runAction(
+          Sequence::create(
+            MoveBy::create(0.1f, Vec3(x, 0, z)),
+            CallFunc::create([=] () {
+              if(++this->count < COUNT || next->moved)
+              {
+                Application->environment->character->runAction(this->action);
+              }
+              else
+              {
+                this->onClear();
+
+                Application->environment->character->runAction(
+                  Sequence::create(
+                    DelayTime::create(0.1f),
+                    CallFunc::create([=] () {
+                      Application->environment->character->manual = true;
+                    }),
+                    nullptr
+                  )
+                );
+              }
+
+              Application->environment->character->onTurnUpdate(-1, next);
+            }),
+            nullptr
+          )
+        );
+      }
+      else
+      {
+        Application->environment->character->manual = true;  
+      }
     }
-
-    if(next->RIGHT)
+    else
     {
-      x = 1.5;
-      z = 0.0;
-
-      Application->environment->character->onMoveRight();
+      Application->environment->character->manual = true;
     }
-
-    Application->environment->character->plates.current = next;
-
-    Application->environment->character->runAction(
-      Sequence::create(
-        MoveBy::create(0.1f, Vec3(x, 0, z)),
-        CallFunc::create([=] () {
-          if(++this->count < COUNT)
-          {
-            Application->environment->character->runAction(this->action);
-          }
-          else
-          {
-            this->onClear();
-
-            Application->environment->character->runAction(
-              Sequence::create(
-                DelayTime::create(0.1f),
-                CallFunc::create([=] () {
-                  Application->environment->character->manual = true;
-                }),
-                nullptr
-              )
-            );
-          }
-
-          Application->environment->character->onTurnUpdate(-1, next);
-        }),
-        nullptr
-      )
-    );
   });
 
   this->action->retain();
- 
+
   Application->environment->character->runAction(this->action);
 
   Sound->play("pickup-energy");

@@ -27,54 +27,44 @@
  *
  */
 
-#ifndef _FISH_H_
-#define _FISH_H_
-
-#include "Cube.h"
+#include "Game.h"
 
 /**
  *
  *
  *
  */
-class Fish : public Cube
+Leaf::Leaf()
+: Entity3D("leaf.obj")
 {
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  Entity3D* collider;
+  this->setTexture("leaf.png");
+}
 
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  Vec3 speed;
-  Vec3 vector;
+Leaf::~Leaf()
+{
+}
 
-  bool ripple1;
-  bool ripple2;
+/**
+ *
+ *
+ *
+ */
+void Leaf::onCreate()
+{
+  Entity3D::onCreate();
+}
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Fish(const char* file, Node* parent);
-  Fish();
- ~Fish();
+void Leaf::onDestroy(bool action)
+{
+  Entity3D::onDestroy(action);
+}
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
-
-  virtual void update(float time);
-
-  Fish* deepCopy();
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+Leaf* Leaf::deepCopy()
+{
+  return new Leaf;
+}

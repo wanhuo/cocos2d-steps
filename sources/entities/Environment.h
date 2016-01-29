@@ -92,8 +92,8 @@ class Environment : public Background
   Pool* plates;
   Pool* particles;
   Pool* fishes;
+  Pool* leafs;
   Pool* ripples;
-  Pool* ships;
 
   Entity3D* plane;
   Entity3D* water;
@@ -114,7 +114,6 @@ class Environment : public Background
 
   virtual void updateDusts(float time);
   virtual void updateFishes(float time);
-  virtual void updateShips(float time);
 
   virtual void updateMenu(float time);
   virtual void updateGame(float time);

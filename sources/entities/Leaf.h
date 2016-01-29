@@ -27,17 +27,17 @@
  *
  */
 
-#ifndef _SHIP_H_
-#define _SHIP_H_
+#ifndef _LEAF_H_
+#define _LEAF_H_
 
-#include "Cube.h"
+#include "Entity3D.h"
 
 /**
  *
  *
  *
  */
-class Ship : public Cube
+class Leaf : public Entity3D
 {
   /**
    *
@@ -45,8 +45,13 @@ class Ship : public Cube
    *
    */
   protected:
-  Vec3 speed;
-  Vec3 vector;
+
+  /**
+   *
+   *
+   *
+   */
+  protected:
 
   /**
    *
@@ -54,31 +59,13 @@ class Ship : public Cube
    *
    */
   public:
-  const static int STATE_NONE = 0;
-  const static int STATE_NORMAL = 1;
-  const static int STATE_CRASH = 2;
-
-  Ship();
- ~Ship();
-
-  int state;
+  Leaf();
+ ~Leaf();
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
-  virtual void onNormal();
-  virtual void onCrash();
-
-  virtual void changeState(int state);
-
-  virtual void updateNormal(float time);
-  virtual void updateCrash(float time);
-
-  virtual void updateStates(float time);
-
-  virtual void update(float time);
-
-  Ship* deepCopy();
+  Leaf* deepCopy();
 };
 
 #endif

@@ -51,6 +51,9 @@ void Plate::onCreate()
    *
    *
    */
+  this->position = true;
+  this->moved = false;
+
   this->setTexture("plate-texture.png");
 
   this->setType(TYPE_NORMAL);
@@ -78,6 +81,11 @@ void Plate::onDestroy(bool action)
    *
    */
   this->clearDecoration(true);
+
+  if(this->special)
+  {
+    this->special->_destroy();
+  }
 }
 
 /**
@@ -94,6 +102,9 @@ void Plate::setType(int type, bool animated)
     case TYPE_SPIKES:
     this->decoration = static_cast<Decoration*>(Application->environment->spikes->_create());
     this->decoration->setPlate(this, animated);
+
+    this->setOpacity(0);
+    this->special = new Entity3D("", Application->environment->plane, true);
     break;
     case TYPE_DIAMOND:
     this->decoration = static_cast<Decoration*>(Application->environment->diamonds->_create());
@@ -114,6 +125,328 @@ void Plate::setType(int type, bool animated)
     case TYPE_HEART:
     this->decoration = static_cast<Decoration*>(Application->environment->hearts->_create());
     this->decoration->setPlate(this, animated);
+    break;
+
+    /**
+     *
+     * Complex types.
+     *
+     */
+    case TYPE_MOVED_1:
+    this->moved = true;
+    this->runAction(
+      RepeatForever::create(
+        Sequence::create(
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.05, Vec3(0, 0, -1.5))
+            );
+
+            this->runAction(action->clone());this->position=false;
+
+            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.6),
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.05, Vec3(0, 0, 1.5))
+            );
+
+            this->runAction(action->clone());
+            this->runAction(
+              Sequence::create(
+                DelayTime::create(0.05),
+                CallFunc::create([=] () {
+                  this->position = true;
+                }),
+                nullptr
+              )
+            );
+
+            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.6),
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.05, Vec3(0, 0, 1.5))
+            );
+
+            this->runAction(action->clone());this->position = false;
+
+            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.6),
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.05, Vec3(0, 0, -1.5))
+            );
+
+            this->runAction(action->clone());
+            this->runAction(
+              Sequence::create(
+                DelayTime::create(0.05),
+                CallFunc::create([=] () {
+                  this->position = true;
+                }),
+                nullptr
+              )
+            );
+
+            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.6),
+          nullptr
+        )
+      )
+    );
+    break;
+
+
+    case TYPE_MOVED_2:
+    this->moved = true;
+    this->runAction(
+      RepeatForever::create(
+        Sequence::create(
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.05, Vec3(-1.5, 0, 0))
+            );
+
+            this->runAction(action->clone());this->position = false;
+
+            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.6),
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.05, Vec3(1.5, 0, 0))
+            );
+
+            this->runAction(action->clone());
+            this->runAction(
+              Sequence::create(
+                DelayTime::create(0.05),
+                CallFunc::create([=] () {
+                  this->position = true;
+                }),
+                nullptr
+              )
+            );
+
+            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.6),
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.05, Vec3(1.5, 0, 0))
+            );
+
+            this->runAction(action->clone());this->position=false;
+
+            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.6),
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.05, Vec3(-1.5, 0, 0))
+            );
+
+            this->runAction(action->clone());
+            this->runAction(
+              Sequence::create(
+                DelayTime::create(0.05),
+                CallFunc::create([=] () {
+                  this->position = true;
+                }),
+                nullptr
+              )
+            );
+
+            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.6),
+          nullptr
+        )
+      )
+    );
+    break;
+
+
+    case TYPE_MOVED_3:
+    this->moved = true;
+    this->runAction(
+      RepeatForever::create(
+        Sequence::create(
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.05, Vec3(0, 0, 1.5))
+            );
+
+            this->runAction(action->clone());this->position = false;
+
+            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.6),
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.05, Vec3(0, 0, -1.5))
+            );
+
+            this->runAction(action->clone());
+            this->runAction(
+              Sequence::create(
+                DelayTime::create(0.05),
+                CallFunc::create([=] () {
+                  this->position = true;
+                }),
+                nullptr
+              )
+            );
+
+            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.6),
+          nullptr
+        )
+      )
+    );
+    break;
+
+
+    case TYPE_MOVED_4:
+    this->moved = true;
+    this->runAction(
+      RepeatForever::create(
+        Sequence::create(
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.05, Vec3(-1.5, 0, 0))
+            );
+
+            this->runAction(action->clone());this->position=false;
+
+            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.6),
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.05, Vec3(1.5, 0, 0))
+            );
+
+            this->runAction(action->clone());
+            this->runAction(
+              Sequence::create(
+                DelayTime::create(0.05),
+                CallFunc::create([=] () {
+                  this->position = true;
+                }),
+                nullptr
+              )
+            );
+
+            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.6),
+          nullptr
+        )
+      )
+    );
     break;
   }
 }

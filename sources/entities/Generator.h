@@ -47,7 +47,7 @@ class Generator : public Ref
    *
    */
   private:
-  const static int MAX_ROUTES_COUNT = 5;
+  const static int MAX_ROUTES_COUNT = 1;
   const static int MAX_FREE_PLATES = 4;
   const static int ROUTE_PROBABILITY = 20;
 
