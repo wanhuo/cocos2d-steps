@@ -103,8 +103,10 @@ void Plate::setType(int type, bool animated)
     this->decoration = static_cast<Decoration*>(Application->environment->spikes->_create());
     this->decoration->setPlate(this, animated);
 
-    this->setOpacity(0);
-    this->special = new Entity3D("", Application->environment->plane, true);
+    this->setVisible(false);
+    this->special = new Entity3D("spike-plate.obj", Application->environment->plane, true);
+    this->special->setTexture("spike-plate-texture.png");
+    this->special->setPosition3D(Vec3(this->startPositionX, 0, startPositionZ));
     break;
     case TYPE_DIAMOND:
     this->decoration = static_cast<Decoration*>(Application->environment->diamonds->_create());

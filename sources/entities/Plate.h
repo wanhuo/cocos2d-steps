@@ -86,7 +86,7 @@ class Plate : public Cube
   float startPositionZ = 0;
 
   Decoration* decoration = nullptr;
-  Entity3D* special;
+  Entity3D* special = nullptr;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
