@@ -85,6 +85,72 @@ void Plate::onDestroy(bool action)
   if(this->special)
   {
     this->special->_destroy();
+    this->special = nullptr;
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Plate::setOpacity(GLubyte opacity)
+{
+  Cube::setOpacity(opacity);
+
+  if(this->special)
+  {
+    this->special->setOpacity(opacity);
+  }
+}
+
+void Plate::setPositionX(float x)
+{
+  Cube::setPositionX(x);
+
+  if(this->special)
+  {
+    this->special->setPositionX(x);
+  }
+}
+
+void Plate::setPositionY(float y)
+{
+  Cube::setPositionY(y);
+
+  if(this->special)
+  {
+    this->special->setPositionY(y);
+  }
+}
+
+void Plate::setPositionZ(float z)
+{
+  Cube::setPositionZ(z);
+
+  if(this->special)
+  {
+    this->special->setPositionZ(z);
+  }
+}
+
+void Plate::setPosition3D(Vec3 position)
+{
+  Cube::setPosition3D(position);
+
+  if(this->special)
+  {
+    this->special->setPosition3D(position);
+  }
+}
+
+Action* Plate::runAction(Action* action)
+{
+  Cube::runAction(action);
+
+  if(this->special)
+  {
+    this->special->runAction(action->clone());
   }
 }
 
@@ -104,9 +170,9 @@ void Plate::setType(int type, bool animated)
     this->decoration->setPlate(this, animated);
 
     this->setVisible(false);
-    this->special = new Entity3D("spike-plate.obj", Application->environment->plane, true);
+
+    this->special = static_cast<Entity3D*>(Application->environment->plates_spikes->_create());
     this->special->setTexture("spike-plate-texture.png");
-    this->special->setPosition3D(Vec3(this->startPositionX, 0, startPositionZ));
     break;
     case TYPE_DIAMOND:
     this->decoration = static_cast<Decoration*>(Application->environment->diamonds->_create());

@@ -90,6 +90,7 @@ class Environment : public Background
   Pool* hearts;
 
   Pool* plates;
+  Pool* plates_spikes;
   Pool* particles;
   Pool* fishes;
   Pool* leafs;

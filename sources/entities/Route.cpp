@@ -76,21 +76,6 @@ void Route::spawn(Route* route)
     plate->setPositionY(this->y - 5);
     plate->setPositionZ(this->z);
 
-    plate->startPositionX = this->x;
-    plate->startPositionZ = this->z;
-
-    plate->setOpacity(0);
-
-    plate->runAction(
-      Spawn::create(
-        EaseSineOut::create(
-          MoveBy::create(0.5, Vec3(0, 5, 0))
-        ),
-        FadeTo::create(0.5, 255),
-        nullptr
-      )
-    );
-
     if(this->environment->plates->count >= 5)
     {
       if(this->s2 < 1 && probably(10))
@@ -141,6 +126,26 @@ void Route::spawn(Route* route)
         //plate->setType(Plate::TYPE_HEART);
       }
     }
+
+    plate->setPositionX(this->x);
+    plate->setPositionY(this->y - 5);
+    plate->setPositionZ(this->z);
+
+    plate->startPositionX = this->x;
+    plate->startPositionY = this->y;
+    plate->startPositionZ = this->z;
+
+    plate->setOpacity(0);
+
+    plate->runAction(
+      Spawn::create(
+        EaseSineOut::create(
+          MoveBy::create(0.5, Vec3(0, 5, 0))
+        ),
+        FadeTo::create(0.5, 255),
+        nullptr
+      )
+    );
 
     this->s1--;
     this->s2--;

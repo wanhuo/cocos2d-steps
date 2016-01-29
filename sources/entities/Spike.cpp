@@ -32,6 +32,7 @@ Spike::Spike()
 : Decoration("spike-test.obj")
 {
   this->setTexture("spike-texture.png");
+
   this->removable = false;
 }
 

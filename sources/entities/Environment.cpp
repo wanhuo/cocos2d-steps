@@ -69,6 +69,8 @@ void Environment::create()
   this->ripples = new Pool(new Ripple, this->plane);
   this->leafs = new Pool(new Leaf, this->plane);
 
+  this->plates_spikes = new Pool(new Entity3D("spike-plate.obj"), this->plane);
+
   this->character = new Character(this);
   this->whale = new Whale(this);
 
