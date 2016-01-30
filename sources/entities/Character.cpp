@@ -179,7 +179,7 @@ void Character::onTurnUpdate(int index, Plate* custom)
 
   if(plate && (custom || plate->getNumberOfRunningActions() < 3))
   {
-    plate->setTexture("plate-texture-2.png");
+    plate->onCount();
 
     Application->counter->onCount();
 

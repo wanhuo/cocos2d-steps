@@ -42,6 +42,18 @@ Environment::~Environment()
  *
  *
  */
+void Environment::onAccelerate(Acceleration* acceleration, Event* e)
+{
+  this->accelerometerX = acceleration->x * ACCELEROMETER_FACTOR;
+  this->accelerometerY = acceleration->y * ACCELEROMETER_FACTOR;
+  this->accelerometerZ = acceleration->z * ACCELEROMETER_FACTOR;
+}
+
+/**
+ *
+ *
+ *
+ */
 void Environment::create()
 {
   this->plane = new Entity3D(this, true);
@@ -237,6 +249,41 @@ void Environment::updateLose(float time)
  *
  *
  */
+void Environment::updateCamera(float time)
+{
+  auto position = Application->cameras.d->getPosition3D();
+  auto rotation = Application->cameras.d->getRotation3D();
+
+  auto ax = 0.0;
+  auto ay = 0.0;
+  auto az = 0.0;
+
+  ax = ACCELEROMETER_FACTOR / ACCELERATION_FACTOR * time * abs(this->accelerationX - this->accelerometerX);
+  ay = ACCELEROMETER_FACTOR / ACCELERATION_FACTOR * time * abs(this->accelerationY - this->accelerometerY);
+  az = ACCELEROMETER_FACTOR / ACCELERATION_FACTOR * time * abs(this->accelerationZ - this->accelerometerZ);
+
+  ax = ax * (this->accelerationX < this->accelerometerX ? 1 : -1);
+  ay = ay * (this->accelerationY < this->accelerometerY ? 1 : -1);
+  az = az * (this->accelerationZ < this->accelerometerZ ? 1 : -1);
+
+  this->accelerationX += ax;
+  this->accelerationZ += az;
+
+  position.x += ax;
+  position.z += az;
+
+  rotation.x += az;
+  rotation.y += ax;
+
+  Application->cameras.d->setPosition3D(Vec3(position.x, position.y, position.z));
+  Application->cameras.d->setRotation3D(Vec3(rotation.x, rotation.y, rotation.z));
+}
+
+/**
+ *
+ *
+ *
+ */
 void Environment::update(float time)
 {
   switch(Application->state)
@@ -254,4 +301,6 @@ void Environment::update(float time)
 
   this->updateDusts(time);
   this->updateFishes(time);
+
+  this->updateCamera(time);
 }

@@ -41,13 +41,22 @@ class Whale;
  */
 class Environment : public Background
 {
-
   /**
    *
    *
    *
    */
   private:
+  const static int ACCELEROMETER_FACTOR = 10;
+  const static int ACCELERATION_FACTOR = 10;
+
+  float accelerometerX = 0;
+  float accelerometerY = 0;
+  float accelerometerZ = 0;
+
+  float accelerationX = 0;
+  float accelerationY = 0;
+  float accelerationZ = 0;
 
   /**
    *
@@ -99,6 +108,8 @@ class Environment : public Background
   Entity3D* plane;
   Entity3D* water;
 
+  virtual void onAccelerate(Acceleration* acceleration, Event* e);
+
   virtual void create();
 
   virtual Node* createRipple(float x, float z, float scale = 1.0);
@@ -115,6 +126,8 @@ class Environment : public Background
 
   virtual void updateDusts(float time);
   virtual void updateFishes(float time);
+
+  virtual void updateCamera(float time);
 
   virtual void updateMenu(float time);
   virtual void updateGame(float time);

@@ -31,7 +31,7 @@
 Energy::Energy()
 : Pickup("energy.obj")
 {
-  this->setColor(Color3B(237, 234, 0));
+  this->setTexture("energy-texture.png");
 }
 
 Energy::~Energy()

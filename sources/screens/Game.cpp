@@ -79,6 +79,10 @@ Game::Game()
   this->startCameraY = y;
   this->startCameraZ = z;
 
+  this->startCameraRotationX = rx;
+  this->startCameraRotationY = ry;
+  this->startCameraRotationZ = rz;
+
   this->cameras.d->setPosition3D(Vec3(x, y, z));
   this->cameras.d->setRotation3D(Vec3(rx, ry, rz));
 
@@ -90,6 +94,12 @@ Game::Game()
   this->environment = new Environment(this);
 
   this->environment->create();
+
+  this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(EventListenerAcceleration::create([=] (Acceleration* acceleration, Event* e) {
+    this->environment->onAccelerate(acceleration, e);
+  }), this);
+
+  Device::setAccelerometerEnabled(true);
 
   this->changeState(STATE_MENU);
 }
@@ -323,6 +333,8 @@ void Game::onGame()
   this->cameras.d->setPositionX(this->startCameraX);
   this->cameras.d->setPositionY(this->startCameraY);
   this->cameras.d->setPositionZ(this->startCameraZ);
+
+  this->cameras.d->setRotation3D(Vec3(this->startCameraRotationX, this->startCameraRotationY, this->startCameraRotationZ));
 
   this->counter->reset();
 }

@@ -94,6 +94,26 @@ void Plate::onDestroy(bool action)
  *
  *
  */
+void Plate::onCount()
+{
+  this->setTexture("plate-texture-2.png");
+
+  if(this->special)
+  {
+    switch(this->type)
+    {
+      case TYPE_SPIKES:
+      this->special->setTexture("spike-plate-texture-2.png");
+      break;
+    }
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
 void Plate::setOpacity(GLubyte opacity)
 {
   Cube::setOpacity(opacity);

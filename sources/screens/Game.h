@@ -118,10 +118,14 @@ class Game : public Screen
   const static int STATE_MENU = 1;
   const static int STATE_GAME = 3;
   const static int STATE_LOSE = 4;
-
+  
   float startCameraX;
   float startCameraY;
   float startCameraZ;
+
+  float startCameraRotationX;
+  float startCameraRotationY;
+  float startCameraRotationZ;
 
   Environment* environment;
   Cameras cameras;

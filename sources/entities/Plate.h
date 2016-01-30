@@ -91,11 +91,15 @@ class Plate : public Cube
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
+  virtual void onCount();
+
   virtual void setOpacity(GLubyte opacity);
+
   virtual void setPositionX(float x);
   virtual void setPositionY(float y);
   virtual void setPositionZ(float z);
   virtual void setPosition3D(Vec3 position);
+
   virtual Action* runAction(Action* action);
 
   virtual void setType(int type, bool animated = true);
