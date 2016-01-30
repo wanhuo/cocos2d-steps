@@ -78,29 +78,29 @@ void Route::spawn(Route* route)
 
     if(this->environment->plates->count >= 5)
     {
-      if(this->s2 < 1 && probably(10))
+      if(this->s2 < 1 && probably(2))
       {
         plate->setType(Plate::TYPE_SPIKES);
         this->s1 = 2;
       }
-      else if((this->length - this->counter) > 1 && this->s1 < 1 && this->direction && probably(10))
+      else if((this->length - this->counter) > 1 && this->s1 < 1 && this->direction && probably(2))
       {
         plate->setType(Plate::TYPE_MOVED_1);
         this->length++;
         this->s2 = 2;
       }
-      else if((this->length - this->counter) > 1 && this->s1 < 1 && !this->direction && probably(10))
+      else if((this->length - this->counter) > 1 && this->s1 < 1 && !this->direction && probably(2))
       {
         plate->setType(Plate::TYPE_MOVED_2);
         this->length++;
         this->s2 = 2;
       }
-      else if(this->counter >= this->length && this->s1 < 1 && this->direction && probably(10))
+      else if(this->counter >= this->length && this->s1 < 1 && this->direction && probably(2))
       {
         plate->setType(Plate::TYPE_MOVED_3);
         this->s2 = 2;
       }
-      else if(this->counter >= this->length && this->s1 < 1 && !this->direction && probably(10))
+      else if(this->counter >= this->length && this->s1 < 1 && !this->direction && probably(2))
       {
         plate->setType(Plate::TYPE_MOVED_4);
         this->s2 = 2;
@@ -113,7 +113,7 @@ void Route::spawn(Route* route)
       {
         plate->setType(Plate::TYPE_CRYSTAL);
       }
-      else if(probably(20))
+      else if(probably(2))
       {
         plate->setType(Plate::TYPE_ENERGY);
       }
@@ -124,6 +124,55 @@ void Route::spawn(Route* route)
       else if(probably(2))
       {
         //plate->setType(Plate::TYPE_HEART);
+      }
+      else if(this->counter > 1 && probably(20))
+      {
+        this->length++;
+        this->length++;
+
+        auto p = static_cast<Plate*>(this->environment->plates->_create());
+        auto c = static_cast<Plate*>(this->environment->cannons->_create());
+
+        if(this->direction)
+        {
+          p->setPositionX(this->x);
+          p->setPositionY(this->y - 5);
+          p->setPositionZ(this->z + (3.0 * (probably(50) ? 1 : -1)));
+          c->setPositionX(this->x);
+          c->setPositionY(this->y - 5);
+          c->setPositionZ(this->z + (3.0 * (probably(50) ? 1 : -1)));
+        }
+        else
+        {
+          p->setPositionX(this->x + (3.0 * (probably(50) ? 1 : -1)));
+          p->setPositionY(this->y - 5);
+          p->setPositionZ(this->z);
+          c->setPositionX(this->x + (3.0 * (probably(50) ? 1 : -1)));
+          c->setPositionY(this->y - 5);
+          c->setPositionZ(this->z);
+        }
+    p->setOpacity(0);
+    c->setOpacity(0);
+
+    p->runAction(
+      Spawn::create(
+        EaseSineOut::create(
+          MoveBy::create(0.5, Vec3(0, 5, 0))
+        ),
+        FadeTo::create(0.5, 255),
+        nullptr
+      )
+    );
+
+    c->runAction(
+      Spawn::create(
+        EaseSineOut::create(
+          MoveBy::create(0.5, Vec3(0, 5, 0))
+        ),
+        FadeTo::create(0.5, 255),
+        nullptr
+      )
+    );
       }
     }
 

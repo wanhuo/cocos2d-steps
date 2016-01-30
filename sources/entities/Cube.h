@@ -45,7 +45,7 @@ class Cube : public Entity3D
    *
    */
   private:
-  const static int DEPTH = 25;
+  const static int DEPTH = 50;
   const static int SHADOW_SIZE = 2;
 
   /**

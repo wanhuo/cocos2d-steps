@@ -40,7 +40,7 @@ Fish::Fish()
   this->collider = new Entity3D("cube.obj", Application->environment->plane);
   this->shadow = new Entity3D("fish-shadow.obj", Application->environment->plane);
 
-  this->setColor(Color3B(128, 218, 189));
+  this->setTexture("fish-texture-3.png");
   this->setScheduleUpdate(true);
 }
 
@@ -180,7 +180,7 @@ void Fish::update(float time)
       {
   Sound->play("water-splash-" + patch::to_string(random(1, 7)));
         this->ripple1 = true;
-        Application->environment->createRipple(x, z);
+        Application->environment->createRipple(x, z, 0.5);
 
         for(int i = 0; i < 5; i++)
         {
@@ -199,7 +199,7 @@ void Fish::update(float time)
         
   Sound->play("water-splash-" + patch::to_string(random(1, 7)));
         this->ripple2 = true;
-        Application->environment->createRipple(x, z);
+        Application->environment->createRipple(x, z, 0.5);
 
         for(int i = 0; i < 5; i++)
         {
