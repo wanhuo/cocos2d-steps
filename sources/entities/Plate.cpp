@@ -54,7 +54,7 @@ void Plate::onCreate()
   this->position = true;
   this->moved = false;
 
-  this->setTexture("plate-texture.png");
+  this->setTexture("plate-texture-state-1.png");
 
   this->setType(TYPE_NORMAL);
 

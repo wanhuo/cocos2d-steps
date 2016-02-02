@@ -58,7 +58,7 @@ void Generator::create()
         plate->setType(Plate::TYPE_SPIKES);
         this->s1 = 2;
       }
-      else if((this->length - this->count) > 1 && this->s1 < 1 && this->direction && probably(2))
+      else if((this->length - this->count) > 1 && this->s1 < 1 && this->direction && probably(50))
       {
         plate->setType(Plate::TYPE_MOVED_1);
         this->length++;
@@ -176,7 +176,7 @@ void Generator::create()
 
     if(Application->environment->plates->count <= 1)
     {
-      plate->setTexture("plate-texture-2.png");
+      plate->setTexture("plate-texture-state-2.png");
     }
 
     //this->y += 0.5f;
@@ -190,7 +190,7 @@ void Generator::create()
       this->z -= 1.5f;
     }
 
-    if(++this->count >= this->length)
+    if(++this->count > this->length)
     {
       this->direction = !this->direction;
       this->count = 0;
