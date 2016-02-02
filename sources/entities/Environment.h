@@ -113,13 +113,13 @@ class Environment : public Background
 
   virtual void create();
 
-  virtual Node* createRipple(float x, float z, float scale = 1.0);
-  virtual Node* createParticle(float x, float y, float z);
+  virtual Entity3D* createRipple(float x, float z, float scale = 1.0);
+  virtual Entity3D* createParticle(float x, float y, float z);
 
   virtual Vec3 position();
 
-  virtual void onTurnLeft();
-  virtual void onTurnRight();
+  virtual void onTurnLeft(bool action = true);
+  virtual void onTurnRight(bool action = true);
 
   virtual void onMenu();
   virtual void onGame();

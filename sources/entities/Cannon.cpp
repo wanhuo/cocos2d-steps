@@ -31,6 +31,7 @@
 Cannon::Cannon()
 : Cube("cannon.obj")
 {
+  this->setTexture("cannon-texture.png");
 }
 
 Cannon::~Cannon()

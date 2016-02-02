@@ -36,7 +36,6 @@
 #include "Pool.h"
 
 #include "Generator.h"
-#include "Route.h"
 
 #include "Dust.h"
 
@@ -50,7 +49,7 @@
 #include "Star.h"
 #include "Heart.h"
 #include "Cube.h"
-#include "Plate.h""
+#include "Plate.h"
 #include "Cannon.h"
 #include "Character.h"
 #include "Whale.h"
@@ -87,17 +86,55 @@ class Game : public Screen
 
   struct Cameras {
     Camera* d;
+    Camera* c;
     Camera* s;
     Camera* e;
   };
 
-  struct Buttons {
+  const static int SCALE_FACTOR = 60;
+
+  const static int NEAR = 1;
+  const static int FAR = 100;
+
+  /**
+   *
+   *
+   *
+   */
+  public:
+  enum State {
+    MENU,
+    GAME,
+    LOSE
   };
 
-  struct Parameters {
-    bool ad = Storage::get("state.ad.disabled");
-    bool tutorial = Storage::get("state.tutorial.disabled");
-  };
+  /**
+   *
+   *
+   *
+   */
+  private:
+  float startCameraX;
+  float startCameraY;
+  float startCameraZ;
+
+  float startCameraRotationX;
+  float startCameraRotationY;
+  float startCameraRotationZ;
+
+  /**
+   *
+   *
+   *
+   */
+  protected:
+
+  /**
+   *
+   *
+   *
+   */
+  public:
 
   /**
    *
@@ -110,34 +147,12 @@ class Game : public Screen
   Game();
  ~Game();
 
-  const static int SCALE_FACTOR = 60;
-
-  const static int NEAR = 1;
-  const static int FAR = 100;
-
-  const static int STATE_NONE = 0;
-  const static int STATE_MENU = 1;
-  const static int STATE_GAME = 3;
-  const static int STATE_LOSE = 4;
-  
-  float startCameraX;
-  float startCameraY;
-  float startCameraZ;
-
-  float startCameraRotationX;
-  float startCameraRotationY;
-  float startCameraRotationZ;
-
   Environment* environment;
   Cameras cameras;
 
   Counter* counter;
 
-  int state = 0;
-
-  Parameters parameters;
-
-  Buttons buttons;
+  State state;
 
   virtual void onTouchStart(cocos2d::Touch* touch, Event* event);
 
@@ -149,38 +164,31 @@ class Game : public Screen
 
   virtual void onBack();
 
-  virtual void onPlay();
+  virtual void onLeaderboards();
+  virtual void onAchievements();
   virtual void onRate();
   virtual void onLike();
   virtual void onShare();
-  virtual void onScores();
-  virtual void onAchievements();
-  virtual void onSound();
-  virtual void onStore();
-  virtual void onMissions();
-  virtual void onTutorial();
-  virtual void onCredits();
-  virtual void onNoad();
-  virtual void onNoadAction();
   virtual void onTwitter();
   virtual void onFacebook();
   virtual void onMail();
   virtual void onRestorePurchases();
+  virtual void onSound();
 
   virtual void onMenu();
   virtual void onGame();
   virtual void onLose();
 
-  virtual void changeState(int state);
+  virtual void changeState(State state);
 
   virtual void updateSoundState();
-  virtual void updateState();
 
   virtual void updateMenu(float time);
   virtual void updateGame(float time);
   virtual void updateLose(float time);
 
   virtual void updateStates(float time);
+
   virtual void update(float time);
 };
 

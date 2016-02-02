@@ -133,3 +133,13 @@ bool Decoration::status()
 {
   return false;
 }
+
+/**
+ *
+ *
+ *
+ */
+const char* Decoration::getParticleTexture()
+{
+  return "";
+}

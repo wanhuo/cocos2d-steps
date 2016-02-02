@@ -82,7 +82,7 @@ void Energy::onPickup()
 
         Application->environment->character->runAction(
           Sequence::create(
-            MoveBy::create(0.1f, Vec3(x, 0, z)),
+            MoveBy::create(0.1, Vec3(x, 0, z)),
             CallFunc::create([=] () {
               if(++this->count < COUNT || next->moved)
               {
@@ -94,7 +94,7 @@ void Energy::onPickup()
 
                 Application->environment->character->runAction(
                   Sequence::create(
-                    DelayTime::create(0.1f),
+                    DelayTime::create(0.1),
                     CallFunc::create([=] () {
                       Application->environment->character->manual = true;
                     }),
@@ -103,7 +103,7 @@ void Energy::onPickup()
                 );
               }
 
-              Application->environment->character->onTurnUpdate(-1, next);
+              Application->environment->character->onTurnUpdate(next);
             }),
             nullptr
           )
@@ -134,6 +134,16 @@ void Energy::onClear()
     this->action->release();
     this->action = nullptr;
   }
+}
+
+/**
+ *
+ *
+ *
+ */
+const char* Energy::getParticleTexture()
+{
+  return "particle-energy-texture.png";
 }
 
 /**

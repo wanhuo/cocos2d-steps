@@ -84,10 +84,10 @@ void Environment::create()
 
   this->plates_spikes = new Pool(new Entity3D("spike-plate.obj"), this->plane);
 
-  this->character = new Character(this);
+  this->character = new Character;
   this->whale = new Whale(this);
 
-  this->generator = new Generator(this);
+  this->generator = new Generator;
 
   this->onGame();
 }
@@ -97,9 +97,9 @@ void Environment::create()
  *
  *
  */
-Node* Environment::createRipple(float x, float z, float scale)
+Entity3D* Environment::createRipple(float x, float z, float scale)
 {
-  auto ripple = this->ripples->_create();
+  auto ripple = static_cast<Entity3D*>(this->ripples->_create());
 
   ripple->setPositionX(x);
   ripple->setPositionY(0);
@@ -111,17 +111,38 @@ Node* Environment::createRipple(float x, float z, float scale)
   return ripple;
 }
 
-Node* Environment::createParticle(float x, float y, float z)
+Entity3D* Environment::createParticle(float x, float y, float z)
 {
-  /*auto particle = this->particles->_create();
+  auto particle = static_cast<Entity3D*>(this->particles->_create());
 
-  particle->setPositionX(x + random(-1.5, 1.5));
-  particle->setPositionY(y - random(0.0, 0.45));
-  particle->setPositionZ(z + random(-1.5, 1.5));
+  particle->setScale(random(0.5, 1.0));
 
-  particle->setColor(Color3B(128, 218, 189));
+  particle->setPositionX(x);
+  particle->setPositionY(y);
+  particle->setPositionZ(z);
 
-  return particle;*/
+  particle->runAction(
+    Spawn::create(
+      Sequence::create(
+        EaseSineOut::create(
+          ScaleTo::create(random(0.2, 0.5), 0.0)
+        ),
+        CallFunc::create([=] () {
+          particle->_destroy(true);
+        }),
+        nullptr
+      ),
+      Sequence::create(
+        EaseSineOut::create(
+          MoveBy::create(random(0.2, 0.5), Vec3((random(0.5, 1.5) * (probably(50) ? 1 : -1)), random(0.5, 0.7), (random(0.5, 1.5) * (probably(50) ? 1 : -1))))
+        ),
+        nullptr
+      ),
+      nullptr
+    )
+  );
+
+  return particle;
 }
 
 /**
@@ -143,14 +164,14 @@ Vec3 Environment::position()
  *
  *
  */
-void Environment::onTurnLeft()
+void Environment::onTurnLeft(bool action)
 {
-  this->character->onTurnLeft();
+  this->character->onTurnLeft(action);
 }
 
-void Environment::onTurnRight()
+void Environment::onTurnRight(bool action)
 {
-  this->character->onTurnRight();
+  this->character->onTurnRight(action);
 }
 
 /**
@@ -164,24 +185,11 @@ void Environment::onMenu()
 
 void Environment::onGame()
 {
-  this->generator->release();
-  this->generator = new Generator(this);
-
   this->plates->clear();
+
   this->ripples->clear();
   this->leafs->clear();
-
-  this->runAction(
-    Repeat::create(
-      Sequence::create(
-        CallFunc::create([=] () {
-          this->generator->spawn();
-        }),
-        DelayTime::create(0.0),
-        nullptr
-      ), 20
-    )
-  );
+  this->generator->clear();
 
   this->character->_create();
 
@@ -289,19 +297,19 @@ void Environment::update(float time)
 {
   switch(Application->state)
   {
-    case Game::STATE_MENU:
+    case Game::MENU:
     this->updateMenu(time);
     break;
-    case Game::STATE_GAME:
+    case Game::GAME:
     this->updateGame(time);
     break;
-    case Game::STATE_LOSE:
+    case Game::LOSE:
     this->updateLose(time);
     break;
   }
 
   this->updateDusts(time);
-  this->updateFishes(time);
+  //this->updateFishes(time);
 
   this->updateCamera(time);
 }

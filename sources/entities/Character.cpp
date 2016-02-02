@@ -28,16 +28,10 @@
  *
  *
  */
-Character::Character(Environment* environment)
-: Cube("cube.obj", environment->plane)
+Character::Character()
+: Cube("cube.obj", Application->environment->plane)
 {
-  this->environment = environment;
-
-  this->plane = new Entity3D(this, true);
-  this->plane->setPosition3D(Vec3(0, 0, 0));
-  this->plane->setRotation3D(Vec3(0, 0, 0));
-
-  this->setTexture("cube-texture.png");
+  this->setTexture("character-texture.png");
 
   this->setScheduleUpdate(true);
 }
@@ -60,7 +54,10 @@ void Character::onCreate()
    *
    *
    */
-  this->changeState(STATE_NORMAL);
+  this->changeState(NORMAL);
+
+  this->autoTurnLeft = false;
+  this->autoTurnRight = false;
 
   this->manual = true;
 
@@ -99,12 +96,12 @@ void Character::onDestroy(bool action)
  */
 bool Character::onTouch()
 {
-  if(this->numberOfRunningActions() < 1 && this->manual)
+  if(this->manual)
   {
     switch(this->state)
     {
-      case STATE_NORMAL:
-      this->changeState(STATE_JUMP);
+      case NORMAL:
+      this->changeState(JUMP);
 
       return true;
       break;
@@ -119,180 +116,121 @@ bool Character::onTouch()
  *
  *
  */
-void Character::onTurnLeft()
+void Character::onTurnLeft(bool action)
 {
-  if(this->onTouch())
+  if(action)
   {
-    auto x = this->getPositionX();
-    auto y = this->getPositionY();
-    auto z = this->getPositionZ() - 1.5;
+    this->autoTurnLeft = true;
 
-    this->runAction(
-      Sequence::create(
-        MoveBy::create(0.05, Vec3(0, 0.5, -0.75)),
-        MoveTo::create(0.05, Vec3(x, y, z)),
-        CallFunc::create([=] () {
-        this->changeState(STATE_NORMAL);
+    if(this->onTouch())
+    {
+      this->runAction(
+        Sequence::create(
+          MoveBy::create(0.05, Vec3(0.0, 0.25, -0.75)),
+          MoveBy::create(0.05, Vec3(0.0, -0.25, -0.75)),
+          CallFunc::create([=] () {
+            this->changeState(NORMAL);
 
-        this->onTurn(TURN_LEFT);
-        }),
-        nullptr
-      )
-    );
+            this->onTurn(LEFT);
+          }),
 
-    this->onMoveLeft();
+          /**
+           *
+           * @Optional.
+           * Uncomment this to enable auto turning.
+           *
+           *
+          DelayTime::create(0.05),
+          CallFunc::create([=] () {
+            if(this->autoTurnLeft)
+            {
+              this->onTurnLeft();
+            }
+          }),
+           */
+          nullptr
+        )
+      );
+
+      this->onMoveLeft();
+    }
+  }
+  else
+  {
+    this->autoTurnLeft = false;
   }
 }
 
-void Character::onTurnRight()
+void Character::onTurnRight(bool action)
 {
-  if(this->onTouch())
+  if(action)
   {
-    auto x = this->getPositionX() + 1.5;
-    auto y = this->getPositionY();
-    auto z = this->getPositionZ();
+    this->autoTurnRight = true;
 
-    this->runAction(
-      Sequence::create(
-        MoveBy::create(0.05, Vec3(0.75, 0.5, 0)),
-        MoveTo::create(0.05, Vec3(x, y, z)),
-        CallFunc::create([=] () {
-        this->changeState(STATE_NORMAL);
+    if(this->onTouch())
+    {
+      this->runAction(
+        Sequence::create(
+          MoveBy::create(0.05, Vec3(0.75, 0.25, 0)),
+          MoveBy::create(0.05, Vec3(0.75, -0.25, 0)),
+          CallFunc::create([=] () {
+            this->changeState(NORMAL);
 
-        this->onTurn(TURN_RIGHT);
-        }),
-        nullptr
-      )
-    );
+            this->onTurn(RIGHT);
+          }),
 
-    this->onMoveRight();
+          /**
+           *
+           * @Optional.
+           * Uncomment this to enable auto turning.
+           *
+           *
+          DelayTime::create(0.05),
+          CallFunc::create([=] () {
+            if(this->autoTurnRight)
+            {
+              this->onTurnRight();
+            }
+          }),
+           */
+          nullptr
+        )
+      );
+
+      this->onMoveRight();
+    }
+  }
+  else
+  {
+    this->autoTurnRight = false;
   }
 }
 
-void Character::onTurnUpdate(int index, Plate* custom)
+/**
+ *
+ *
+ *
+ */
+void Character::onTurnUpdate(Plate* custom)
 {
-  auto x = this->getPositionX();
-  auto y = this->getPositionY();
-  auto z = this->getPositionZ();
+  this->onTurnUpdate(NONE, custom);
+}
 
+void Character::onTurnUpdate(Turn turn, Plate* custom)
+{
   auto plate = custom ? custom : this->plates.current;
 
   if(plate && (custom || plate->getNumberOfRunningActions() < 3))
   {
-    plate->onCount();
-
-    Application->counter->onCount();
-
-    for(int i = 0; i < PARTICLES_COUNT; i++)
-    {
-      auto particle = static_cast<Entity3D*>(this->environment->particles->_create());
-
-      particle->setTexture("cube-texture.png");
-
-      particle->setScale(random(0.5, 1.0));
-      particle->setPositionX(x);
-      particle->setPositionY(y - 0.5);
-      particle->setPositionZ(z);
-
-      particle->runAction(
-        Spawn::create(
-          Sequence::create(
-            EaseSineOut::create(
-              ScaleTo::create(random(0.2, 0.5), 0.0)
-            ),
-            CallFunc::create([=] () {
-              particle->_destroy(true);
-            }),
-            nullptr
-          ),
-          Sequence::create(
-            EaseSineOut::create(
-              MoveBy::create(random(0.2, 0.5), Vec3((random(0.5, 1.5) * (probably(50) ? 1 : -1)), random(0.5, 0.7), (random(0.5, 1.5) * (probably(50) ? 1 : -1))))
-            ),
-            nullptr
-          ),
-          nullptr
-        )
-      );
-
-      if(plate->decoration)
-      {
-        if(plate->decoration->removable)
-        {
-          particle->setColor(plate->decoration->getColor());
-        }
-        else
-        {
-          particle->setColor(this->getColor());
-        }
-      }
-      else
-      {
-        particle->setColor(this->getColor());
-      }
-    }
-
-    if(plate->decoration)
-    {
-      plate->decoration->onPickup();
-      plate->clearDecoration(!this->manual);
-    }
-
-    this->environment->generator->spawn();
-
-    Sound->play("character-jump", this->sound);
-
-    this->sound += 0.01f;
+    this->onLandSuccessful(turn, plate);
   }
   else
   {
-    this->changeState(STATE_FALL);
-
-    Application->environment->createRipple(x, z, 2);
-
-    switch(index)
-    {
-      case TURN_LEFT:
-      this->runAction(
-        Spawn::create(
-          MoveBy::create(0.5, Vec3(0, -10, -1.5)),
-          RotateBy::create(0.5, Vec3(-125, 0, 0)),
-          Sequence::create(
-            DelayTime::create(0.2),
-            FadeOut::create(0.3),
-            CallFunc::create([=] () {
-            Application->changeState(Game::STATE_LOSE);
-            }),
-            nullptr
-          ),
-          nullptr
-        )
-      );
-      break;
-      case TURN_RIGHT:
-      this->runAction(
-        Spawn::create(
-          MoveBy::create(0.5, Vec3(1.5, -10, 0)),
-          RotateBy::create(0.5, Vec3(0, 0, 125)),
-          Sequence::create(
-            DelayTime::create(0.2),
-            FadeOut::create(0.3),
-            CallFunc::create([=] () {
-            Application->changeState(Game::STATE_LOSE);
-            }),
-            nullptr
-          ),
-          nullptr
-        )
-      );
-      break;
-    }
-
-    Sound->play("water");
+    this->onLandFail(turn);
   }
 }
 
-void Character::onTurn(int index)
+void Character::onTurn(Turn turn)
 {
   this->time = 0;
 
@@ -301,9 +239,9 @@ void Character::onTurn(int index)
 
   this->plates.current = nullptr;
 
-  for(int i = 0; i < this->environment->plates->count; i++)
+  for(int i = 0; i < Application->environment->plates->count; i++)
   {
-    auto plate = static_cast<Plate*>(this->environment->plates->element(i));
+    auto plate = static_cast<Plate*>(Application->environment->plates->element(i));
 
     int px = plate->getPositionX() / 1.5;
     int pz = plate->getPositionZ() / 1.5;
@@ -315,7 +253,107 @@ void Character::onTurn(int index)
     }
   }
 
-  this->onTurnUpdate(index);
+  this->onTurnUpdate(turn);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Character::onLandSuccessful(Turn turn, Plate* plate)
+{
+  auto x = this->getPositionX();
+  auto y = this->getPositionY();
+  auto z = this->getPositionZ();
+
+  plate->onCount();
+
+  Application->counter->onCount();
+
+  for(int i = 0; i < 10; i++)
+  {
+    auto particle = Application->environment->createParticle(x, y - 0.5, z);
+
+    if(plate->decoration)
+    {
+      if(plate->decoration->removable)
+      {
+        particle->setTexture(plate->decoration->getParticleTexture());
+      }
+      else
+      {
+        particle->setTexture("particle-character-texture.png");
+      }
+    }
+    else
+    {
+      particle->setTexture("particle-character-texture.png");
+    }
+  }
+
+  if(plate->decoration)
+  {
+    plate->decoration->onPickup();
+    plate->clearDecoration(!this->manual);
+  }
+
+  Application->environment->generator->create();
+
+  Sound->play("character-jump", this->sound);
+
+  this->sound += 0.01f;
+}
+
+void Character::onLandFail(Turn turn)
+{
+  auto x = this->getPositionX();
+  auto y = this->getPositionY();
+  auto z = this->getPositionZ();
+
+  this->changeState(FALL);
+
+  Application->environment->createRipple(x, z, 2);
+
+  switch(turn)
+  {
+    case LEFT:
+    this->runAction(
+      Spawn::create(
+        MoveBy::create(0.5, Vec3(0, -10, -1.5)),
+        RotateBy::create(0.5, Vec3(-125, 0, 0)),
+        Sequence::create(
+          DelayTime::create(0.2),
+          FadeOut::create(0.3),
+          CallFunc::create([=] () {
+          Application->changeState(Game::LOSE);
+          }),
+          nullptr
+        ),
+        nullptr
+      )
+    );
+    break;
+    case RIGHT:
+    this->runAction(
+      Spawn::create(
+        MoveBy::create(0.5, Vec3(1.5, -10, 0)),
+        RotateBy::create(0.5, Vec3(0, 0, 125)),
+        Sequence::create(
+          DelayTime::create(0.2),
+          FadeOut::create(0.3),
+          CallFunc::create([=] () {
+          Application->changeState(Game::LOSE);
+          }),
+          nullptr
+        ),
+        nullptr
+      )
+    );
+    break;
+  }
+
+  Sound->play("water");
 }
 
 /**
@@ -372,9 +410,9 @@ void Character::onCrash()
 
   //this->setColor(Color3B(255, 0, 0));
 
-  for(int i = 0; i < PARTICLES_COUNT * 2; i++)
+  for(int i = 0; i < 10 * 2; i++)
   {
-    //this->environment->createParticle(x, y, z)->setColor(this->getColor());
+    //Application->environment->createParticle(x, y, z)->setColor(this->getColor());
   }
 
   this->runAction(
@@ -392,7 +430,7 @@ void Character::onCrash()
       Sequence::create(
         DelayTime::create(1.0),
         CallFunc::create([=] () {
-        Application->changeState(Game::STATE_LOSE);
+        Application->changeState(Game::LOSE);
         }),
         nullptr
       ),
@@ -413,9 +451,9 @@ void Character::onHit()
 
   //this->setColor(Color3B(255, 0, 0));
 
-  for(int i = 0; i < PARTICLES_COUNT * 2; i++)
+  for(int i = 0; i < 10 * 2; i++)
   {
-    this->environment->createParticle(x, y, z)->setColor(this->getColor());
+    Application->environment->createParticle(x, y, z)->setColor(this->getColor());
   }
 
   /*this->runAction(
@@ -560,7 +598,7 @@ Character::NearPlates Character::getPlatesNear(Plate* current)
  *
  *
  */
-void Character::changeState(int state)
+void Character::changeState(State state)
 {
   if(this->state != state)
   {
@@ -568,19 +606,19 @@ void Character::changeState(int state)
 
     switch(this->state)
     {
-      case STATE_NORMAL:
+      case NORMAL:
       this->onNormal();
       break;
-      case STATE_JUMP:
+      case JUMP:
       this->onJump();
       break;
-      case STATE_FALL:
+      case FALL:
       this->onFall();
       break;
-      case STATE_CRASH:
+      case CRASH:
       this->onCrash();
       break;
-      case STATE_HIT:
+      case HIT:
       this->onHit();
       break;
     }
@@ -602,11 +640,11 @@ void Character::updateNormal(float time)
       {
         if(--this->lives < 0)
         {
-          this->changeState(STATE_CRASH);
+          this->changeState(CRASH);
         }
         else
         {
-          this->changeState(STATE_HIT);
+          this->changeState(HIT);
         }
       } 
     }
@@ -638,19 +676,19 @@ void Character::updateStates(float time)
 {
   switch(this->state)
   {
-    case STATE_NORMAL:
+    case NORMAL:
     this->updateNormal(time);
     break;
-    case STATE_JUMP:
+    case JUMP:
     this->updateJump(time);
     break;
-    case STATE_FALL:
+    case FALL:
     this->updateFall(time);
     break;
-    case STATE_CRASH:
+    case CRASH:
     this->updateCrash(time);
     break;
-    case STATE_HIT:
+    case HIT:
     this->updateHit(time);
     break;
   }
@@ -676,7 +714,7 @@ void Character::update(float time)
 
     if(this->time >= Whale::TIME && Application->counter->value > 0)
     {
-      Application->environment->whale->changeState(Whale::STATE_NORMAL);
+      //Application->environment->whale->changeState(Whale::STATE_NORMAL);
     }
   }
 }

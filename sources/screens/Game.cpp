@@ -49,21 +49,24 @@ Game::Game()
 {
   instance = this;
 
-  /**
-   *
-   *
-   *
-   *
-   */
+  this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(EventListenerAcceleration::create([=] (Acceleration* acceleration, Event* e) {
+    this->environment->onAccelerate(acceleration, e);
+  }), this);
+
+  Device::setAccelerometerEnabled(true);
+
   this->cameras.d = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
+  this->cameras.c = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
   this->cameras.s = Camera::create();
   this->cameras.e = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
 
   this->cameras.d->setCameraFlag(CameraFlag::DEFAULT);
-  this->cameras.s->setCameraFlag(CameraFlag::USER1);
-  this->cameras.e->setCameraFlag(CameraFlag::USER2);
+  this->cameras.c->setCameraFlag(CameraFlag::USER1);
+  this->cameras.s->setCameraFlag(CameraFlag::USER2);
+  this->cameras.e->setCameraFlag(CameraFlag::USER3);
 
   this->cameras.d->setDepth(1);
+  this->cameras.c->setDepth(0);
   this->cameras.s->setDepth(0);
   this->cameras.e->setDepth(0);
 
@@ -86,22 +89,20 @@ Game::Game()
   this->cameras.d->setPosition3D(Vec3(x, y, z));
   this->cameras.d->setRotation3D(Vec3(rx, ry, rz));
 
+  this->cameras.c->setPosition3D(Vec3(x, y, z));
+  this->cameras.c->setRotation3D(Vec3(rx, ry, rz));
+
   this->addChild(this->cameras.d);
+  this->addChild(this->cameras.c);
   this->addChild(this->cameras.s);
   this->addChild(this->cameras.e);
 
-  this->counter = new Counter;
+  this->counter = new Counter(this);
   this->environment = new Environment(this);
 
   this->environment->create();
 
-  this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(EventListenerAcceleration::create([=] (Acceleration* acceleration, Event* e) {
-    this->environment->onAccelerate(acceleration, e);
-  }), this);
-
-  Device::setAccelerometerEnabled(true);
-
-  this->changeState(STATE_MENU);
+  this->changeState(MENU);
 }
 
 Game::~Game()
@@ -119,13 +120,13 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
   {
     switch(this->state)
     {
-      case STATE_MENU:
-      this->changeState(STATE_GAME);
+      case MENU:
+      this->changeState(GAME);
       break;
-      case STATE_LOSE:
-      this->changeState(STATE_GAME);
+      case LOSE:
+      this->changeState(GAME);
       break;
-      case STATE_GAME:
+      case GAME:
       if(touch->getLocation().x < this->getWidth() / 2)
       {
         this->environment->onTurnLeft();
@@ -150,7 +151,7 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
   {
     switch(this->state)
     {
-      case STATE_GAME:
+      case GAME:
       switch(key)
       {
         case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
@@ -169,6 +170,17 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
 
 void Game::onKeyReleased(cocos2d::EventKeyboard::KeyCode key, Event *event)
 {
+  switch(key)
+  {
+    case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+    case cocos2d::EventKeyboard::KeyCode::KEY_A:
+    this->environment->onTurnLeft(false);
+    break;
+    case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+    case cocos2d::EventKeyboard::KeyCode::KEY_D:
+    this->environment->onTurnRight(false);
+    break;
+  }
 }
 
 /**
@@ -180,6 +192,11 @@ void Game::onEnter()
 {
   Screen::onEnter();
 
+  /**
+   *
+   *
+   *
+   */
   Internal::onStart();
 
   /**
@@ -188,7 +205,6 @@ void Game::onEnter()
    *
    */
   this->updateSoundState();
-  this->updateState();
 
   /**
    *
@@ -217,8 +233,14 @@ void Game::onBack()
  *
  *
  */
-void Game::onPlay()
+void Game::onLeaderboards()
 {
+  Events::onLeaderboards();
+}
+
+void Game::onAchievements()
+{
+  Events::onAchievements();
 }
 
 void Game::onRate()
@@ -234,64 +256,6 @@ void Game::onLike()
 void Game::onShare()
 {
   Events::onShare();
-}
-
-void Game::onScores()
-{
-  Events::onScores();
-}
-
-void Game::onAchievements()
-{
-  Events::onAchievements();
-}
-
-void Game::onSound()
-{
-  Events::onSound();
-
-  /**
-   *
-   *
-   *
-   */
-  this->updateSoundState();
-}
-
-void Game::onStore()
-{
-}
-
-void Game::onMissions()
-{
-}
-
-void Game::onTutorial()
-{
-}
-
-void Game::onCredits()
-{
-}
-
-void Game::onNoad()
-{
-  Purchase::purchaseItem("com.ketchapp.exodus.remove.ads", [=] (bool status) {
-    if(status)
-    {
-      this->onNoadAction();
-    }
-  });
-}
-
-void Game::onNoadAction()
-{
-  if(!this->parameters.ad)
-  {
-    this->parameters.ad = true;
-
-    Storage::set("state.ad.disabled", true);
-  }
 }
 
 void Game::onTwitter()
@@ -312,6 +276,18 @@ void Game::onMail()
 void Game::onRestorePurchases()
 {
   Events::onRestorePurchases();
+}
+
+void Game::onSound()
+{
+  Events::onSound();
+
+  /**
+   *
+   *
+   *
+   */
+  this->updateSoundState();
 }
 
 /**
@@ -353,7 +329,7 @@ void Game::onLose()
  *
  *
  */
-void Game::changeState(int state)
+void Game::changeState(State state)
 {
   if(this->state != state)
   {
@@ -361,13 +337,13 @@ void Game::changeState(int state)
 
     switch(this->state)
     {
-      case STATE_MENU:
+      case MENU:
       this->onMenu();
       break;
-      case STATE_GAME:
+      case GAME:
       this->onGame();
       break;
-      case STATE_LOSE:
+      case LOSE:
       this->onLose();
       break;
     }
@@ -380,15 +356,6 @@ void Game::changeState(int state)
  *
  */
 void Game::updateSoundState()
-{
-}
-
-/**
- *
- *
- *
- */
-void Game::updateState()
 {
 }
 
@@ -418,13 +385,13 @@ void Game::updateStates(float time)
 {
   switch(this->state)
   {
-    case STATE_MENU:
+    case MENU:
     this->updateMenu(time);
     break;
-    case STATE_GAME:
+    case GAME:
     this->updateGame(time);
     break;
-    case STATE_LOSE:
+    case LOSE:
     this->updateLose(time);
     break;
   }

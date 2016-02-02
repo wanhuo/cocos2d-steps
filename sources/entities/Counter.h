@@ -31,7 +31,7 @@
  *
  *
  */
-class Counter : public Ref
+class Counter : public Entity3D
 {
   /**
    *
@@ -53,10 +53,13 @@ class Counter : public Ref
    *
    */
   public:
-  Counter();
+  Counter(Node* parent);
  ~Counter();
 
   int value;
+
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
   virtual void onCount();
 

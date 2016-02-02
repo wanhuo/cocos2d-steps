@@ -31,14 +31,6 @@
  *
  *
  */
-class Environment;
-class Route;
-
-/**
- *
- *
- *
- */
 class Generator : public Ref
 {
   /**
@@ -47,9 +39,8 @@ class Generator : public Ref
    *
    */
   private:
-  const static int MAX_ROUTES_COUNT = 1;
+  const static int MAX_PLATES = 10;
   const static int MAX_FREE_PLATES = 4;
-  const static int ROUTE_PROBABILITY = 20;
 
   /**
    *
@@ -57,7 +48,17 @@ class Generator : public Ref
    *
    */
   protected:
-  Environment* environment;
+  float x;
+  float y;
+  float z;
+
+  int count;
+  int length;
+
+  int s1;
+  int s2;
+
+  bool direction;
 
   /**
    *
@@ -65,16 +66,13 @@ class Generator : public Ref
    *
    */
   public:
-  Generator(Environment* environment);
+  Generator();
  ~Generator();
 
-  vector<Route*> routes;
-  vector<Route*> temp;
+  virtual void create();
+  virtual void destroy();
 
-  virtual void onCreateRoute(Route* route = nullptr);
-  virtual void onDestroyRoute(Route* route = nullptr);
-
-  virtual void spawn();
+  virtual void clear();
 };
 
 #endif

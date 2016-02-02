@@ -58,6 +58,8 @@ class Crystal : public Pickup
 
   virtual void onPickup();
 
+  virtual const char* getParticleTexture();
+
   Crystal* deepCopy();
 };
 

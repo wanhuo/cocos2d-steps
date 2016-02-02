@@ -153,7 +153,7 @@ void Whale::updateNormal(float time)
   if(this->getAABB().intersects(Application->environment->character->getAABB()))
   {
     Application->environment->character->_destroy(true);
-    Application->changeState(Game::STATE_LOSE);
+    Application->changeState(Game::LOSE);
   }
 }
 

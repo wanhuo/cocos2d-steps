@@ -75,9 +75,9 @@ void Events::onResume()
  *
  *
  */
-void Events::onScores()
+void Events::onLeaderboards()
 {
-  Analytics::sendEvent("Application", "application.events.onScores", "Application onScores event");
+  Analytics::sendEvent("Application", "application.events.onLeaderboards", "Application onLeaderboards event");
 
   Modal::show();
   Services::showLeaderboards();

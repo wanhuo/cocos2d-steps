@@ -58,6 +58,8 @@ class Diamond : public Pickup
 
   virtual void onPickup();
 
+  virtual const char* getParticleTexture();
+
   Diamond* deepCopy();
 };
 

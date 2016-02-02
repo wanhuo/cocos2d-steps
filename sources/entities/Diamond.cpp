@@ -31,7 +31,7 @@
 Diamond::Diamond()
 : Pickup("diamond.obj")
 {
-  this->setColor(Color3B(11, 174, 62));
+  this->setTexture("diamond-texture.png");
 }
 
 Diamond::~Diamond()
@@ -46,6 +46,16 @@ Diamond::~Diamond()
 void Diamond::onPickup()
 {
   Sound->play("pickup-diamond");
+}
+
+/**
+ *
+ *
+ *
+ */
+const char* Diamond::getParticleTexture()
+{
+  return "particle-diamond-texture.png";
 }
 
 /**

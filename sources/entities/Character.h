@@ -38,26 +38,36 @@ class Character : public Cube
    *
    *
    */
-  private:
-  const static int TURN_LEFT = 1;
-  const static int TURN_RIGHT = 2;
-
-  const static int PARTICLES_COUNT = 10;
-
-  Environment* environment;
-
-  /**
-   *
-   *
-   *
-   */
   protected:
+  bool autoTurnLeft;
+  bool autoTurnRight;
+
   float sound;
   float time;
 
   Entity3D* plane;
 
   Pool* numbers;
+
+  /**
+   *
+   *
+   *
+   */
+  public:
+  enum State {
+    NORMAL,
+    JUMP,
+    FALL,
+    CRASH,
+    HIT
+  };
+
+  enum Turn {
+    NONE,
+    LEFT,
+    RIGHT
+  };
 
   /**
    *
@@ -90,17 +100,10 @@ class Character : public Cube
     Plate* previous;
   };
 
-  const static int STATE_NONE = 0;
-  const static int STATE_NORMAL = 1;
-  const static int STATE_JUMP = 2;
-  const static int STATE_FALL = 3;
-  const static int STATE_CRASH = 4;
-  const static int STATE_HIT = 5;
-
-  Character(Environment* environment);
+  Character();
  ~Character();
 
-  int state;
+  State state;
   int lives;
 
   bool manual;
@@ -118,10 +121,15 @@ class Character : public Cube
 
   virtual bool onTouch();
 
-  virtual void onTurnLeft();
-  virtual void onTurnRight();
-  virtual void onTurnUpdate(int index, Plate* custom = nullptr);
-  virtual void onTurn(int index);
+  virtual void onTurnLeft(bool action = true);
+  virtual void onTurnRight(bool action = true);
+
+  virtual void onTurnUpdate(Plate* custom = nullptr);
+  virtual void onTurnUpdate(Turn index, Plate* custom = nullptr);
+  virtual void onTurn(Turn index);
+
+  virtual void onLandSuccessful(Turn turn, Plate* plate);
+  virtual void onLandFail(Turn turn);
 
   virtual void onMoveLeft();
   virtual void onMoveRight();
@@ -134,7 +142,7 @@ class Character : public Cube
 
   virtual NearPlates getPlatesNear(Plate* current = nullptr);
 
-  virtual void changeState(int state);
+  virtual void changeState(State state);
 
   virtual void updateNormal(float time);
   virtual void updateJump(float time);

@@ -28,13 +28,44 @@
  *
  *
  */
-Counter::Counter()
+Counter::Counter(Node* parent)
+: Entity3D("cube.obj", parent, true)
 {
+  this->setScale(2);
+
+  this->setPosition3D(Vec3(0, 15, 0));
+  this->setRotation3D(Vec3(45, 0, 0));
+
+  this->setTexture("character-texture.png");
+
+  this->setCameraMask(2);
+
   this->reset();
 }
 
 Counter::~Counter()
 {
+}
+
+/**
+ *
+ *
+ *
+ */
+void Counter::onCreate()
+{
+  Entity3D::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+}
+
+void Counter::onDestroy(bool action)
+{
+  Entity3D::onDestroy(action);
 }
 
 /**

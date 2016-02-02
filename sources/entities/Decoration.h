@@ -75,6 +75,8 @@ class Decoration : public Entity3D
   virtual void remove(bool force = false);
 
   virtual bool status();
+
+  virtual const char* getParticleTexture();
 };
 
 #endif

@@ -221,6 +221,7 @@ void Plate::setType(int type, bool animated)
      *
      */
     case TYPE_MOVED_1:
+    this->setTexture("plate-texture-state-1-moved-1.png");
     this->moved = true;
     this->runAction(
       RepeatForever::create(

@@ -31,7 +31,7 @@
 Crystal::Crystal()
 : Pickup("diamond.obj")
 {
-  this->setColor(Color3B(239, 89, 123));
+  this->setTexture("crystal-texture.png");
 }
 
 Crystal::~Crystal()
@@ -76,6 +76,16 @@ void Crystal::onPickup()
       return;
     }
   }
+}
+
+/**
+ *
+ *
+ *
+ */
+const char* Crystal::getParticleTexture()
+{
+  return "particle-crystal-texture.png";
 }
 
 /**

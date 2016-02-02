@@ -37,7 +37,7 @@
 Dust::Dust()
 : Entity("dust.png")
 {
-  this->setCameraMask(2);
+  this->setCameraMask(3);
   this->setScheduleUpdate(true);
 }
 

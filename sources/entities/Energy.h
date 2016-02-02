@@ -63,6 +63,8 @@ class Energy : public Pickup
   virtual void onPickup();
   virtual void onClear();
 
+  virtual const char* getParticleTexture();
+
   Energy* deepCopy();
 };
 

@@ -168,8 +168,6 @@
 		78E33FD01C4A84080021272D /* Plate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FCC1C4A84080021272D /* Plate.cpp */; };
 		78E33FD11C4A84080021272D /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FCE1C4A84080021272D /* Particle.cpp */; };
 		78E33FD21C4A84080021272D /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FCE1C4A84080021272D /* Particle.cpp */; };
-		78E33FD71C4AA4440021272D /* Route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FD41C4AA4440021272D /* Route.cpp */; };
-		78E33FD81C4AA4440021272D /* Route.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FD41C4AA4440021272D /* Route.cpp */; };
 		78E33FD91C4AA4440021272D /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FD61C4AA4440021272D /* Generator.cpp */; };
 		78E33FDA1C4AA4440021272D /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FD61C4AA4440021272D /* Generator.cpp */; };
 		78E807C61C596FD300880329 /* Leaf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E807C51C596FD300880329 /* Leaf.cpp */; };
@@ -388,8 +386,6 @@
 		78E33FCC1C4A84080021272D /* Plate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plate.cpp; sourceTree = "<group>"; };
 		78E33FCD1C4A84080021272D /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		78E33FCE1C4A84080021272D /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
-		78E33FD31C4AA4440021272D /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
-		78E33FD41C4AA4440021272D /* Route.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Route.cpp; sourceTree = "<group>"; };
 		78E33FD51C4AA4440021272D /* Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Generator.h; sourceTree = "<group>"; };
 		78E33FD61C4AA4440021272D /* Generator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Generator.cpp; sourceTree = "<group>"; };
 		78E807C41C596FD300880329 /* Leaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leaf.h; sourceTree = "<group>"; };
@@ -871,8 +867,6 @@
 				78CA6D071C20645200BF8416 /* Environment.h */,
 				78E33FD61C4AA4440021272D /* Generator.cpp */,
 				78E33FD51C4AA4440021272D /* Generator.h */,
-				78E33FD41C4AA4440021272D /* Route.cpp */,
-				78E33FD31C4AA4440021272D /* Route.h */,
 				786696C91C4A47FF00A256FC /* Cube.cpp */,
 				786696C81C4A47FF00A256FC /* Cube.h */,
 				78B36A771C5D039400F8A30C /* Cannon.cpp */,
@@ -1232,7 +1226,6 @@
 				78DE4C931C4FC2230080F105 /* Fish.cpp in Sources */,
 				78A6588A1C524D82001B887B /* Whale.cpp in Sources */,
 				78A658841C515F14001B887B /* Heart.cpp in Sources */,
-				78E33FD81C4AA4440021272D /* Route.cpp in Sources */,
 				78E807C71C596FD300880329 /* Leaf.cpp in Sources */,
 				78E33FD21C4A84080021272D /* Particle.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
@@ -1263,7 +1256,6 @@
 				78DE4C8E1C4DA6AC0080F105 /* Spike.cpp in Sources */,
 				78DE4C8A1C4DA0990080F105 /* Decoration.cpp in Sources */,
 				780436C91C53D28C00642F8D /* Crystal.cpp in Sources */,
-				78E33FD71C4AA4440021272D /* Route.cpp in Sources */,
 				7847CDF91AB184820014E3F3 /* RootViewController.mm in Sources */,
 				78A658831C515F14001B887B /* Heart.cpp in Sources */,
 				78DE4C861C4D9F060080F105 /* Diamond.cpp in Sources */,
