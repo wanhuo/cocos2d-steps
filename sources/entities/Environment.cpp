@@ -189,6 +189,8 @@ void Environment::onGame()
 
   this->ripples->clear();
   this->leafs->clear();
+  this->cannons->clear();
+
   this->generator->clear();
 
   this->character->_create();
