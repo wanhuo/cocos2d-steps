@@ -58,13 +58,13 @@ void Generator::create()
         plate->setType(Plate::TYPE_SPIKES);
         this->s1 = 2;
       }
-      else if((this->length - this->count) > 1 && this->s1 < 1 && this->direction && probably(50))
+      else if((this->length - this->count) > 1 && this->s1 < 1 && this->direction && probably(2))
       {
         plate->setType(Plate::TYPE_MOVED_1);
         this->length++;
         this->s2 = 2;
       }
-      else if((this->length - this->count) > 1 && this->s1 < 1 && !this->direction && probably(2))
+      else if((this->length - this->count) > 1 && this->s1 < 1 && !this->direction && probably(50))
       {
         plate->setType(Plate::TYPE_MOVED_2);
         this->length++;
@@ -192,9 +192,31 @@ void Generator::create()
 
     if(++this->count > this->length)
     {
-      this->direction = !this->direction;
       this->count = 0;
       this->length = random(2, 10);
+
+      this->direction = !this->direction;
+      //plates->last()->setColor(Color3B(0, 0, 255));
+      
+      if(this->direction)
+      {
+        this->z += 1.5f;
+      }
+      else
+      {
+        this->x -= 1.5f;
+      }
+      this->y -= 0.5f;
+      
+      this->y += 0.5f;
+      if(this->direction)
+      {
+        this->x += 1.5f;
+      }
+      else
+      {
+        this->z -= 1.5f;
+      }
     }
 }
 
