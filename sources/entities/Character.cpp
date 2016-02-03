@@ -96,7 +96,7 @@ void Character::onDestroy(bool action)
  */
 bool Character::onTouch()
 {
-  if(this->manual)
+  if(this->numberOfRunningActions() < 1 && this->manual)
   {
     switch(this->state)
     {

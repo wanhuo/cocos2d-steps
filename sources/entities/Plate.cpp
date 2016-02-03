@@ -96,8 +96,6 @@ void Plate::onDestroy(bool action)
  */
 void Plate::onCount()
 {
-  this->setTexture("plate-texture-2.png");
-
   if(this->special)
   {
     switch(this->type)
@@ -106,6 +104,19 @@ void Plate::onCount()
       this->special->setTexture("spike-plate-texture-2.png");
       break;
     }
+  }
+
+  switch(this->type)
+  {
+    default:
+    this->setTexture("plate-texture-state-2.png");
+    break;
+    case TYPE_MOVED_1:
+    this->setTexture("plate-texture-state-2-moved-1.png");
+    break;
+    case TYPE_MOVED_2:
+    this->setTexture("plate-texture-state-2-moved-2.png");
+    break;
   }
 }
 
@@ -221,6 +232,7 @@ void Plate::setType(int type, bool animated)
      *
      */
     case TYPE_MOVED_1:
+    this->stopAllActions();
     this->setTexture("plate-texture-state-1-moved-1.png");
     this->moved = true;
     this->runAction(
@@ -228,7 +240,7 @@ void Plate::setType(int type, bool animated)
         Sequence::create(
           CallFunc::create([=] () {
             auto action = EaseSineInOut::create(
-              MoveBy::create(0.05, Vec3(0, 0, -1.5))
+              MoveBy::create(0.15, Vec3(0, 0, -1.5))
             );
 
             this->runAction(action->clone());this->position=false;
@@ -246,13 +258,13 @@ void Plate::setType(int type, bool animated)
           DelayTime::create(0.6),
           CallFunc::create([=] () {
             auto action = EaseSineInOut::create(
-              MoveBy::create(0.05, Vec3(0, 0, 1.5))
+              MoveBy::create(0.15, Vec3(0, 0, 1.5))
             );
 
             this->runAction(action->clone());
             this->runAction(
               Sequence::create(
-                DelayTime::create(0.05),
+                DelayTime::create(0.15),
                 CallFunc::create([=] () {
                   this->position = true;
                 }),
@@ -273,7 +285,7 @@ void Plate::setType(int type, bool animated)
           DelayTime::create(0.6),
           CallFunc::create([=] () {
             auto action = EaseSineInOut::create(
-              MoveBy::create(0.05, Vec3(0, 0, 1.5))
+              MoveBy::create(0.15, Vec3(0, 0, 1.5))
             );
 
             this->runAction(action->clone());this->position = false;
@@ -291,13 +303,13 @@ void Plate::setType(int type, bool animated)
           DelayTime::create(0.6),
           CallFunc::create([=] () {
             auto action = EaseSineInOut::create(
-              MoveBy::create(0.05, Vec3(0, 0, -1.5))
+              MoveBy::create(0.15, Vec3(0, 0, -1.5))
             );
 
             this->runAction(action->clone());
             this->runAction(
               Sequence::create(
-                DelayTime::create(0.05),
+                DelayTime::create(0.15),
                 CallFunc::create([=] () {
                   this->position = true;
                 }),
@@ -324,13 +336,15 @@ void Plate::setType(int type, bool animated)
 
 
     case TYPE_MOVED_2:
+    this->stopAllActions();
+    this->setTexture("plate-texture-state-1-moved-2.png");
     this->moved = true;
     this->runAction(
       RepeatForever::create(
         Sequence::create(
           CallFunc::create([=] () {
             auto action = EaseSineInOut::create(
-              MoveBy::create(0.05, Vec3(-1.5, 0, 0))
+              MoveBy::create(0.15, Vec3(-1.5, 0, 0))
             );
 
             this->runAction(action->clone());this->position = false;
@@ -348,13 +362,13 @@ void Plate::setType(int type, bool animated)
           DelayTime::create(0.6),
           CallFunc::create([=] () {
             auto action = EaseSineInOut::create(
-              MoveBy::create(0.05, Vec3(1.5, 0, 0))
+              MoveBy::create(0.15, Vec3(1.5, 0, 0))
             );
 
             this->runAction(action->clone());
             this->runAction(
               Sequence::create(
-                DelayTime::create(0.05),
+                DelayTime::create(0.15),
                 CallFunc::create([=] () {
                   this->position = true;
                 }),
@@ -375,7 +389,7 @@ void Plate::setType(int type, bool animated)
           DelayTime::create(0.6),
           CallFunc::create([=] () {
             auto action = EaseSineInOut::create(
-              MoveBy::create(0.05, Vec3(1.5, 0, 0))
+              MoveBy::create(0.15, Vec3(1.5, 0, 0))
             );
 
             this->runAction(action->clone());this->position=false;
@@ -393,13 +407,13 @@ void Plate::setType(int type, bool animated)
           DelayTime::create(0.6),
           CallFunc::create([=] () {
             auto action = EaseSineInOut::create(
-              MoveBy::create(0.05, Vec3(-1.5, 0, 0))
+              MoveBy::create(0.15, Vec3(-1.5, 0, 0))
             );
 
             this->runAction(action->clone());
             this->runAction(
               Sequence::create(
-                DelayTime::create(0.05),
+                DelayTime::create(0.15),
                 CallFunc::create([=] () {
                   this->position = true;
                 }),
