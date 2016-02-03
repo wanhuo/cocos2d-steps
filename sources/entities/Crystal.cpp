@@ -56,9 +56,9 @@ void Crystal::onPickup()
 
     if(next)
     {
-      if(next->decoration)
+      if(next->decoration || next->moved)
       {
-        return;
+        continue;
       }
       else
       {
