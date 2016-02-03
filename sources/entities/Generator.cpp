@@ -64,13 +64,13 @@ void Generator::create()
         this->length++;
         this->s2 = 2;
       }
-      else if((this->length - this->count) > 1 && this->s1 < 1 && !this->direction && probably(50))
+      else if((this->length - this->count) > 1 && this->s1 < 1 && !this->direction && probably(2))
       {
         plate->setType(Plate::TYPE_MOVED_2);
         this->length++;
         this->s2 = 2;
       }
-      else if(this->count >= this->length && this->s1 < 1 && this->direction && probably(2))
+      else if(this->count >= this->length && this->s1 < 1 && this->direction && probably(200))
       {
         plate->setType(Plate::TYPE_MOVED_3);
         this->s2 = 2;

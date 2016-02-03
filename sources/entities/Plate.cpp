@@ -105,20 +105,18 @@ void Plate::onCount()
       break;
     }
   }
-  else
+
+  switch(this->type)
   {
-    switch(this->type)
-    {
-      default:
-      this->setTexture("plate-texture-state-2.png");
-      break;
-      case TYPE_MOVED_1:
-      this->setTexture("plate-texture-state-2-moved-1.png");
-      break;
-      case TYPE_MOVED_2:
-      this->setTexture("plate-texture-state-2-moved-2.png");
-      break;
-    }
+    default:
+    this->setTexture("plate-texture-state-2.png");
+    break;
+    case TYPE_MOVED_1:
+    this->setTexture("plate-texture-state-2-moved-1.png");
+    break;
+    case TYPE_MOVED_2:
+    this->setTexture("plate-texture-state-2-moved-2.png");
+    break;
   }
 }
 
