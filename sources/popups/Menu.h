@@ -21,66 +21,76 @@
  *
  */
 
-#include "Game.h"
+#ifndef _MENU_H_
+#define _MENU_H_
+
+#include "Popup.h"
 
 /**
  *
  *
  *
  */
-Finish* Finish::instance;
-
-/**
- *
- *
- *
- */
-Finish* Finish::getInstance()
+class Menu : public Popup
 {
-  return instance;
-}
+  /**
+   *
+   *
+   *
+   */
+  private:
+  static Menu* instance;
 
-/**
- *
- *
- *
- */
-Finish::Finish()
-: Popup()
-{
-  instance = this;
-}
+  struct Buttons {
+    Button* play;
+    Button* like;
+    Button* rate;
+    Button* share;
+    Button* leaderboards;
+    Button* achievements;
+    Button* sound;
+    Button* store;
+    Button* noad;
+    Button* tutorial;
+    Button* missions;
+    Button* about;
+  };
 
-Finish::~Finish()
-{
-}
+  struct Backgrounds {
+    Entity* top;
+    Entity* bottom;
+  };
 
-/**
- *
- *
- *
- */
-void Finish::onShow()
-{
-  Application->addChild(this);
-}
+  /**
+   *
+   *
+   *
+   */
+  protected:
+  Buttons buttons;
+  Backgrounds backgrounds;
 
-void Finish::onHide()
-{
-  Application->removeChild(this);
-}
 
-/**
- *
- *
- *
- */
-void Finish::show()
-{
-  this->onShow();
-}
+  /**
+   *
+   *
+   *
+   */
+  public:
+  static Menu* getInstance();
 
-void Finish::hide()
-{
-  this->onHide();
-}
+  Menu();
+ ~Menu();
+
+  virtual void onShow();
+  virtual void onHide(Callback callback = NULL);
+
+  virtual void onSound();
+
+  virtual void show();
+  virtual void hide(Callback callback = NULL);
+
+  virtual void updateSoundState();
+};
+
+#endif

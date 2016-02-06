@@ -61,7 +61,10 @@
 
 #include "Counter.h"
 
-#include "Finish.h"
+#include "Menu.h"
+#include "Store.h"
+#include "Missions.h"
+#include "About.h"
 
 /**
  *
@@ -104,6 +107,7 @@ class Game : public Screen
    */
   public:
   enum State {
+    NONE,
     MENU,
     GAME,
     LOSE
@@ -153,7 +157,7 @@ class Game : public Screen
 
   Counter* counter;
 
-  State state;
+  State state = NONE;
 
   virtual void onTouchStart(cocos2d::Touch* touch, Event* event);
 
@@ -174,15 +178,14 @@ class Game : public Screen
   virtual void onFacebook();
   virtual void onMail();
   virtual void onRestorePurchases();
-  virtual void onSound();
 
   virtual void onMenu();
   virtual void onGame();
   virtual void onLose();
 
-  virtual void changeState(State state);
+  virtual void onNoad();
 
-  virtual void updateSoundState();
+  virtual void changeState(State state);
 
   virtual void updateMenu(float time);
   virtual void updateGame(float time);

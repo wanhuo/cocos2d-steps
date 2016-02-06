@@ -21,17 +21,19 @@
  *
  */
 
-#ifndef _FINISH_H_
-#define _FINISH_H_
+#ifndef _STORE_H_
+#define _STORE_H_
 
 #include "Popup.h"
+
+#include "ui/CocosGUI.h"
 
 /**
  *
  *
  *
  */
-class Finish : public Popup
+class Store : public Popup
 {
   /**
    *
@@ -39,20 +41,26 @@ class Finish : public Popup
    *
    */
   private:
-  static Finish* instance;
+  static Store* instance;
+
+  struct Parameters {
+    float time = 0.6;
+    float height = 930;
+    float opacity = 200;
+    float padding = 200;
+  };
 
   struct Buttons {
-    Button* play;
-    Button* like;
-    Button* rate;
-    Button* share;
-    Button* leaderboards;
-    Button* achievements;
-    Button* sound;
-    Button* store;
-    Button* noad;
-    Button* tutorial;
-    Button* missions;
+    Button* close;
+    Button* facebook;
+    Button* twitter;
+    Button* mail;
+    Button* restore;
+  };
+
+  struct Texts
+  {
+    Text* title[23];
   };
 
   /**
@@ -60,19 +68,45 @@ class Finish : public Popup
    *
    *
    */
-  public:
-  static Finish* getInstance();
-
-  Finish();
- ~Finish();
-
+  protected:
   Buttons buttons;
 
+  Entity* background;
+  cocos2d::ui::ScrollView* scroll;
+
+  Background* holder;
+  Background* decorations;
+
+  Entity* decoration1;
+  Entity* decoration2;
+  Entity* decoration3;
+
+  Entity* powered1;
+  Entity* powered2;
+
+  Parameters parameters;
+  Texts texts;
+
+  float size;
+
+  /**
+   *
+   *
+   *
+   */
+  public:
+  static Store* getInstance();
+
+  Store();
+ ~Store();
+
   virtual void onShow();
-  virtual void onHide();
+  virtual void onHide(Callback callback = NULL);
 
   virtual void show();
-  virtual void hide();
+  virtual void hide(Callback callback = NULL);
+
+  virtual void update(float time);
 };
 
 #endif

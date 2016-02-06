@@ -21,24 +21,19 @@
  *
  */
 
-#ifndef _POPUP_H_
-#define _POPUP_H_
+#ifndef _MISSIONS_H_
+#define _MISSIONS_H_
 
-#include "Background.h"
+#include "Popup.h"
 
-/**
- *
- *
- *
- */
-#define Callback const std::function<void()>
+#include "ui/CocosGUI.h"
 
 /**
  *
  *
  *
  */
-class Popup : public Background
+class Missions : public Popup
 {
   /**
    *
@@ -46,6 +41,53 @@ class Popup : public Background
    *
    */
   private:
+  static Missions* instance;
+
+  struct Parameters {
+    float time = 0.6;
+    float height = 930;
+    float opacity = 200;
+    float padding = 200;
+  };
+
+  struct Buttons {
+    Button* close;
+    Button* facebook;
+    Button* twitter;
+    Button* mail;
+    Button* restore;
+  };
+
+  struct Texts
+  {
+    Text* title[23];
+  };
+
+  /**
+   *
+   *
+   *
+   */
+  protected:
+  Buttons buttons;
+
+  Entity* background;
+  cocos2d::ui::ScrollView* scroll;
+
+  Background* holder;
+  Background* decorations;
+
+  Entity* decoration1;
+  Entity* decoration2;
+  Entity* decoration3;
+
+  Entity* powered1;
+  Entity* powered2;
+
+  Parameters parameters;
+  Texts texts;
+
+  float size;
 
   /**
    *
@@ -53,8 +95,10 @@ class Popup : public Background
    *
    */
   public:
-  Popup();
- ~Popup();
+  static Missions* getInstance();
+
+  Missions();
+ ~Missions();
 
   virtual void onShow();
   virtual void onHide(Callback callback = NULL);
@@ -62,7 +106,7 @@ class Popup : public Background
   virtual void show();
   virtual void hide(Callback callback = NULL);
 
-  virtual bool containsTouchLocation(cocos2d::Touch* touch);
+  virtual void update(float time);
 };
 
 #endif

@@ -28,6 +28,672 @@
         "size": 16
       }
     ],
+    "credits-title-1": [
+      {
+        "title": "Thanks for playing!",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Спасибо за игру!",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Obrigado por jogar!",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Merci d'avoir joué !",
+        "font": "Impact",
+        "size": 52
+      }
+    ],
+    "credits-title-2": [
+      {
+        "title": "Product Name:",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Название:",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Product Name:",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Product Name:",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "credits-title-3": [
+      {
+        "title": "Version:",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Версия:",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Version:",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Version:",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "credits-title-4": [
+      {
+        "title": "Build:",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Сборка:",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Build:",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Build:",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "credits-title-5": [
+      {
+        "title": "Support",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Поддержка",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Suporte",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Support",
+        "font": "Impact",
+        "size": 52
+      }
+    ],
+    "credits-title-6": [
+      {
+        "title": "You can get support on social\nnetworks or send us an email.",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Вы можете получить поддержку в социальных\nсетях или написав нам письмо.",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Pode pedir suporte nas redes\nsociais ou enviando-nos um email.",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Vous pouvez contacter le support\nvia les réseaux sociaux ou par mail.",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "credits-title-7": [
+      {
+        "title": "Support code:",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Код поддержки:",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Support code:",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Support code:",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "credits-title-8": [
+      {
+        "title": "Developed by",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Разработка",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Desenvolvido por",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Développer par",
+        "font": "Impact",
+        "size": 52
+      }
+    ],
+    "credits-title-9": [
+      {
+        "title": "Programmers",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "Программисты",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "Programadores",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "Programmeurs",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      }
+    ],
+    "credits-title-10": [
+      {
+        "title": "Igor Mats",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Игорь Мац",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Igor Mats",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Igor Mats",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "credits-title-11": [
+      {
+        "title": "Designers",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "Дизайнеры",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "Designers",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "Designers",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      }
+    ],
+    "credits-title-12": [
+      {
+        "title": "Dmitry Shane",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Дмитрий Шейн",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Dmitry Shane",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Dmitry Shane",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "credits-title-13": [
+      {
+        "title": "PR",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "Маркетинг",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "PR",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "PR",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      }
+    ],
+    "credits-title-14": [
+      {
+        "title": "Aleksandr Lysenko",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Александр Лысенко",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Aleksandr Lysenko",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Aleksandr Lysenko",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "credits-title-15": [
+      {
+        "title": "Special Thanks",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Огромное спасибо",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Agradecimentos Especiais",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Remerciement",
+        "font": "Impact",
+        "size": 52
+      }
+    ],
+    "credits-title-16": [
+      {
+        "title": "Tooflya Inc. Director",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      }
+    ],
+    "credits-title-17": [
+      {
+        "title": "Yaroslav Markevich",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Ярослав Маркевич",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Yaroslav Markevich",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Yaroslav Markevich",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "credits-title-18": [
+      {
+        "title": "Powered by",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Разработано с помощью",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Powered by",
+        "font": "Impact",
+        "size": 52
+      },
+      {
+        "title": "Powered by",
+        "font": "Impact",
+        "size": 52
+      }
+    ],
+    "credits-title-19": [
+      {
+        "title": "One More Step",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "One More Step",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "One More Step",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "One More Step",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      }
+    ],
+    "credits-title-20": [
+      {
+        "title": "$1",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "$1",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "$1",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "$1",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      }
+    ],
+    "credits-title-21": [
+      {
+        "title": "$1",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "$1",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "$1",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "$1",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      }
+    ],
+    "credits-title-22": [
+      {
+        "title": "$1",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "$1",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "$1",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      },
+      {
+        "title": "$1",
+        "font": "Impact",
+        "size": 32,
+        "color": [
+          203,
+          104,
+          181
+        ]
+      }
+    ],
+    "credits-title-23": [
+      {
+        "title": "Restore purchases",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Восстановление покупок",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Recuperar compras",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Restaurer les achats",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
     "vote-title": [
       {
         "title": "Please rate us",
@@ -228,22 +894,22 @@
     ],
     "share-message": [
       {
-        "title": "OMG! I scored $1 points in #MemoryTrip! Can you beat my score? ",
+        "title": "OMG! I scored $1 points in #OneMoreStep! Can you beat my score? ",
         "font": "Impact",
         "size": 0
       },
       {
-        "title": "ОГО! Я набрал $1 очков в игре #MemoryTrip! Можешь побить мой рекорд? ",
+        "title": "ОГО! Я набрал $1 очков в игре #OneMoreStep! Можешь побить мой рекорд? ",
         "font": "Impact",
         "size": 0
       },
       {
-        "title": "OMG! I consegui $1 pontos no #MemoryTrip! Consegues bater o meu recorde? ",
+        "title": "OMG! I consegui $1 pontos no #OneMoreStep! Consegues bater o meu recorde? ",
         "font": "Impact",
         "size": 0
       },
       {
-        "title": "OMG! J'ai obtenu $1 points pour avoir joué MemoryTrip! ",
+        "title": "OMG! J'ai obtenu $1 points pour avoir joué #OneMoreStep! ",
         "font": "Impact",
         "size": 0
       }

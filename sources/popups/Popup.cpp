@@ -21,7 +21,7 @@
  *
  */
 
-#include "Popup.h"
+#include "Game.h"
 
 /**
  *
@@ -50,8 +50,14 @@ void Popup::onShow()
 {
 }
 
-void Popup::onHide()
+void Popup::onHide(Callback callback)
 {
+  Application->removeChild(this);
+
+  if(callback)
+  {
+    callback();
+  }
 }
 
 /**
@@ -61,9 +67,11 @@ void Popup::onHide()
  */
 void Popup::show()
 {
+  Application->addChild(this);
+  this->setCameraMask(4);
 }
 
-void Popup::hide()
+void Popup::hide(Callback callback)
 {
 }
 
