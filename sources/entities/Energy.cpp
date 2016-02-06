@@ -50,7 +50,7 @@ void Energy::onPickup()
   this->count = 0;
 
   Application->environment->character->stopAllActions();
-  Application->environment->character->manual = false;
+  Application->environment->character->setManual(false);
 
   this->action = CallFunc::create([=] () {
     auto next = Application->environment->character->getPlatesNear().next();
@@ -84,7 +84,7 @@ void Energy::onPickup()
           Sequence::create(
             MoveBy::create(0.1, Vec3(x, 0, z)),
             CallFunc::create([=] () {
-              if(++this->count < COUNT || next->moved)
+              if(++this->count < COUNT || next->behavior == Plate::DYNAMIC)
               {
                 Application->environment->character->runAction(this->action);
               }
@@ -96,7 +96,7 @@ void Energy::onPickup()
                   Sequence::create(
                     DelayTime::create(0.1),
                     CallFunc::create([=] () {
-                      Application->environment->character->manual = true;
+                      Application->environment->character->setManual(true);
                     }),
                     nullptr
                   )
@@ -111,12 +111,12 @@ void Energy::onPickup()
       }
       else
       {
-        Application->environment->character->manual = true;  
+        Application->environment->character->setManual(true);
       }
     }
     else
     {
-      Application->environment->character->manual = true;
+      Application->environment->character->setManual(true);
     }
   });
 

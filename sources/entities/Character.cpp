@@ -211,6 +211,42 @@ void Character::onTurnRight(bool action)
  *
  *
  */
+bool Character::getManual()
+{
+  return this->manual;
+}
+
+bool Character::setManual(bool manual)
+{
+  this->manual = manual;
+
+  return this->manual;
+}
+
+/**
+ *
+ *
+ *
+ */
+int Character::addLive(int count)
+{
+  this->lives += count;
+
+  return this->lives;
+}
+
+int Character::removeLive(int count)
+{
+  this->lives -= count;
+
+  return this->lives;
+}
+
+/**
+ *
+ *
+ *
+ */
 void Character::onTurnUpdate(Plate* custom)
 {
   this->onTurnUpdate(NONE, custom);
@@ -492,8 +528,8 @@ Plate* Character::getPlateRight(Plate* current)
 
     if(px == x && pz == z - 1 && !(px == x && pz == z))
     {
-      plate->LEFT = true;
-      plate->RIGHT = false;
+      plate->position[Plate::LEFT] = true;
+      plate->position[Plate::RIGHT] = false;
 
       return plate;
     }
@@ -519,8 +555,8 @@ Plate* Character::getPlateLeft(Plate* current)
 
     if(px == x + 1 && pz == z && !(px == x && pz == z))
     {
-      plate->LEFT = false;
-      plate->RIGHT = true;
+      plate->position[Plate::LEFT] = false;
+      plate->position[Plate::RIGHT] = true;
 
       return plate;
     }
@@ -531,14 +567,14 @@ Plate* Character::getPlateLeft(Plate* current)
 
 Plate* Character::getPlateRightWithDefaults(Plate* current)
 {
-  int x = (current ? current->startPositionX : this->plates.current->startPositionX) / 1.5;
-  int y = (current ? current->startPositionY : this->plates.current->startPositionY) / 1.5;
-  int z = (current ? current->startPositionZ : this->plates.current->startPositionZ) / 1.5;
+  int x = (current ? current->getStartPositionX() : this->plates.current->getStartPositionX()) / 1.5;
+  int y = (current ? current->getStartPositionY() : this->plates.current->getStartPositionY()) / 1.5;
+  int z = (current ? current->getStartPositionZ() : this->plates.current->getStartPositionZ()) / 1.5;
 
   for(int i = 0; i < Application->environment->plates->count; i++)
   {
     auto plate = static_cast<Plate*>(Application->environment->plates->element(i));
-    auto position = Vec3(plate->startPositionX, plate->startPositionY, plate->startPositionZ);
+    auto position = Vec3(plate->getStartPositionX(), plate->getStartPositionY(), plate->getStartPositionZ());
 
     int px = position.x / 1.5;
     int py = position.y / 1.5;
@@ -546,8 +582,8 @@ Plate* Character::getPlateRightWithDefaults(Plate* current)
 
     if(px == x && pz == z - 1 && !(px == x && pz == z))
     {
-      plate->LEFT = true;
-      plate->RIGHT = false;
+      plate->position[Plate::LEFT] = true;
+      plate->position[Plate::RIGHT] = false;
 
       return plate;
     }
@@ -558,14 +594,14 @@ Plate* Character::getPlateRightWithDefaults(Plate* current)
 
 Plate* Character::getPlateLeftWithDefaults(Plate* current)
 {
-  int x = (current ? current->startPositionX : this->plates.current->startPositionX) / 1.5;
-  int y = (current ? current->startPositionY : this->plates.current->startPositionY) / 1.5;
-  int z = (current ? current->startPositionZ : this->plates.current->startPositionZ) / 1.5;
+  int x = (current ? current->getStartPositionX() : this->plates.current->getStartPositionX()) / 1.5;
+  int y = (current ? current->getStartPositionY() : this->plates.current->getStartPositionY()) / 1.5;
+  int z = (current ? current->getStartPositionZ() : this->plates.current->getStartPositionZ()) / 1.5;
 
   for(int i = 0; i < Application->environment->plates->count; i++)
   {
     auto plate = static_cast<Plate*>(Application->environment->plates->element(i));
-    auto position = Vec3(plate->startPositionX, plate->startPositionY, plate->startPositionZ);
+    auto position = Vec3(plate->getStartPositionX(), plate->getStartPositionY(), plate->getStartPositionZ());
 
     int px = position.x / 1.5;
     int py = position.y / 1.5;
@@ -573,8 +609,8 @@ Plate* Character::getPlateLeftWithDefaults(Plate* current)
 
     if(px == x + 1 && pz == z && !(px == x && pz == z))
     {
-      plate->LEFT = false;
-      plate->RIGHT = true;
+      plate->position[Plate::LEFT] = false;
+      plate->position[Plate::RIGHT] = true;
 
       return plate;
     }
@@ -583,14 +619,14 @@ Plate* Character::getPlateLeftWithDefaults(Plate* current)
   return nullptr;
 }
 
-Character::NearPlates Character::getPlatesNear(Plate* current)
+Character::Nears Character::getPlatesNear(Plate* current)
 {
-  Character::NearPlates plates;
+  Nears nears;
 
-  plates.LEFT = this->getPlateLeft(current);
-  plates.RIGHT = this->getPlateRight(current);
+  nears.plates[Plate::LEFT] = this->getPlateLeft(current);
+  nears.plates[Plate::RIGHT] = this->getPlateRight(current);
 
-  return plates;
+  return nears;
 }
 
 /**

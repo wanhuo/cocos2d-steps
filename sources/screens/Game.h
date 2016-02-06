@@ -49,6 +49,7 @@
 #include "Star.h"
 #include "Heart.h"
 #include "Cube.h"
+#include "Replace.h"
 #include "Plate.h"
 #include "Cannon.h"
 #include "Character.h"

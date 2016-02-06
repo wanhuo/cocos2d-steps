@@ -56,13 +56,13 @@ void Crystal::onPickup()
 
     if(next)
     {
-      if(next->decoration || next->moved)
+      if(next->decoration || next->behavior == Plate::DYNAMIC)
       {
         continue;
       }
       else
       {
-        next->setType(Plate::TYPE_DIAMOND, false);
+        next->setType(Plate::DIAMOND, false);
 
         next->decoration->setOpacity(255);
         next->decoration->setPosition3D(current->getPosition3D());

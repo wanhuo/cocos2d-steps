@@ -55,42 +55,42 @@ void Generator::create()
     {
       if(this->s2 < 1 && probably(10))
       {
-        plate->setType(Plate::TYPE_SPIKES);
+        plate->setType(Plate::SPIKES);
         this->s1 = 2;
       }
       else if((this->length - this->count) > 1 && this->s1 < 1 && this->direction && probably(10))
       {
-        plate->setType(Plate::TYPE_MOVED_1);
+        plate->setType(Plate::MOVED1);
         this->length++;
         this->s2 = 2;
       }
       else if((this->length - this->count) > 1 && this->s1 < 1 && !this->direction && probably(10))
       {
-        plate->setType(Plate::TYPE_MOVED_2);
+        plate->setType(Plate::MOVED2);
         this->length++;
         this->s2 = 2;
       }
       else if(this->count >= this->length && this->s1 < 1 && this->direction && probably(10))
       {
-        plate->setType(Plate::TYPE_MOVED_3);
+        plate->setType(Plate::MOVED3);
         this->s2 = 2;
       }
       else if(this->count >= this->length && this->s1 < 1 && !this->direction && probably(10))
       {
-        plate->setType(Plate::TYPE_MOVED_4);
+        plate->setType(Plate::MOVED4);
         this->s2 = 2;
       }
       else if(probably(2))
       {
-        plate->setType(Plate::TYPE_DIAMOND);
+        plate->setType(Plate::DIAMOND);
       }
       else if(probably(2))
       {
-        plate->setType(Plate::TYPE_CRYSTAL);
+        plate->setType(Plate::CRYSTAL);
       }
       else if(probably(2))
       {
-        plate->setType(Plate::TYPE_ENERGY);
+        plate->setType(Plate::ENERGY);
       }
       else if(probably(2))
       {
@@ -151,9 +151,9 @@ void Generator::create()
     plate->setPositionY(this->y - 5);
     plate->setPositionZ(this->z);
 
-    plate->startPositionX = this->x;
-    plate->startPositionY = this->y;
-    plate->startPositionZ = this->z;
+    plate->setStartPositionX(this->x);
+    plate->setStartPositionY(this->y);
+    plate->setStartPositionZ(this->z);
 
     plate->setOpacity(0);
 

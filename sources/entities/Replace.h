@@ -21,6 +21,9 @@
  *
  */
 
+#ifndef _REPLACE_H_
+#define _REPLACE_H_
+
 #include "Game.h"
 
 /**
@@ -28,34 +31,37 @@
  *
  *
  */
-Heart::Heart()
-: Pickup("heart.obj")
+class Replace : public Cube
 {
-  this->setColor(Color3B(255, 0, 0));
-}
+  /**
+   *
+   *
+   *
+   */
+  protected:
+  Entity3D* special = nullptr;
 
-Heart::~Heart()
-{
-}
+  /**
+   *
+   *
+   *
+   */
+  public:
+  Replace(const char* file);
+ ~Replace();
 
-/**
- *
- *
- *
- */
-void Heart::onPickup()
-{
-  Sound->play("pickup-diamond");
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
-  Application->environment->character->addLive();
-}
+  virtual void setOpacity(GLubyte opacity);
 
-/**
- *
- *
- *
- */
-Heart* Heart::deepCopy()
-{
-  return new Heart;
-}
+  virtual void setPositionX(float x);
+  virtual void setPositionY(float y);
+  virtual void setPositionZ(float z);
+
+  virtual void setPosition3D(Vec3 position);
+
+  virtual Action* runAction(Action* action);
+};
+
+#endif

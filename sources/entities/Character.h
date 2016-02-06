@@ -41,13 +41,12 @@ class Character : public Cube
   protected:
   bool autoTurnLeft;
   bool autoTurnRight;
+  bool manual;
 
   float sound;
   float time;
 
-  Entity3D* plane;
-
-  Pool* numbers;
+  int lives;
 
   /**
    *
@@ -69,44 +68,39 @@ class Character : public Cube
     RIGHT
   };
 
+  struct Plates {
+    Plate* current;
+    Plate* previous;
+  };
+
+  struct Nears {
+    Plate* plates[2];
+
+    /**
+     *
+     *
+     *
+     */
+    Plate* next() {
+      if(this->plates[0] && this->plates[1]) {
+        return probably(50) ? this->plates[0] : this->plates[1];
+      } else {
+        if(this->plates[0]) return this->plates[0];
+        if(this->plates[1]) return this->plates[1];
+      }
+    }
+  };
+
   /**
    *
    *
    *
    */
   public:
-  struct NearPlates
-  {
-    Plate* LEFT = nullptr;
-    Plate* RIGHT = nullptr;
-
-    Plate* next()
-    {
-      if(LEFT && RIGHT)
-      {
-        return probably(50) ? LEFT : RIGHT;
-      }
-      else
-      {
-        if(LEFT) return LEFT;
-        if(RIGHT) return RIGHT;
-      }
-    }
-  };
-
-  struct Plates
-  {
-    Plate* current;
-    Plate* previous;
-  };
-
   Character();
  ~Character();
 
   State state;
-  int lives;
-
-  bool manual;
 
   Plates plates;
 
@@ -134,13 +128,19 @@ class Character : public Cube
   virtual void onMoveLeft();
   virtual void onMoveRight();
 
+  virtual bool getManual();
+  virtual bool setManual(bool manual);
+
+  virtual int addLive(int count = 1);
+  virtual int removeLive(int count = 1);
+
   virtual Plate* getPlateLeft(Plate* current = nullptr);
   virtual Plate* getPlateRight(Plate* current = nullptr);
 
   virtual Plate* getPlateLeftWithDefaults(Plate* current = nullptr);
   virtual Plate* getPlateRightWithDefaults(Plate* current = nullptr);
 
-  virtual NearPlates getPlatesNear(Plate* current = nullptr);
+  virtual Nears getPlatesNear(Plate* current = nullptr);
 
   virtual void changeState(State state);
 

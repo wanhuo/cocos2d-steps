@@ -29,7 +29,7 @@
  *
  */
 Plate::Plate()
-: Cube("plate.obj")
+: Replace("plate.obj")
 {
 }
 
@@ -44,19 +44,19 @@ Plate::~Plate()
  */
 void Plate::onCreate()
 {
-  Cube::onCreate();
+  Replace::onCreate();
 
   /**
    *
    *
    *
    */
-  this->position = true;
-  this->moved = false;
+  //this->position = true;
+  this->behavior = STATIC;
 
   this->setTexture("plate-texture-state-1.png");
 
-  this->setType(TYPE_NORMAL);
+  this->setType(NORMAL);
 
   this->runAction(
     RepeatForever::create(
@@ -73,7 +73,7 @@ void Plate::onCreate()
 
 void Plate::onDestroy(bool action)
 {
-  Cube::onDestroy(action);
+  Replace::onDestroy(action);
 
   /**
    *
@@ -81,12 +81,6 @@ void Plate::onDestroy(bool action)
    *
    */
   this->clearDecoration(true);
-
-  if(this->special)
-  {
-    this->special->_destroy();
-    this->special = nullptr;
-  }
 }
 
 /**
@@ -100,7 +94,7 @@ void Plate::onCount()
   {
     switch(this->type)
     {
-      case TYPE_SPIKES:
+      case SPIKES:
       this->special->setTexture("spike-plate-texture-2.png");
       break;
     }
@@ -111,16 +105,16 @@ void Plate::onCount()
     default:
     this->setTexture("plate-texture-state-2.png");
     break;
-    case TYPE_MOVED_1:
+    case MOVED1:
     this->setTexture("plate-texture-state-2-moved-1.png");
     break;
-    case TYPE_MOVED_2:
+    case MOVED2:
     this->setTexture("plate-texture-state-2-moved-2.png");
     break;
-    case TYPE_MOVED_3:
+    case MOVED3:
     this->setTexture("plate-texture-state-2-moved-3.png");
     break;
-    case TYPE_MOVED_4:
+    case MOVED4:
     this->setTexture("plate-texture-state-2-moved-4.png");
     break;
   }
@@ -131,64 +125,34 @@ void Plate::onCount()
  *
  *
  */
-void Plate::setOpacity(GLubyte opacity)
+float Plate::getStartPositionX()
 {
-  Cube::setOpacity(opacity);
-
-  if(this->special)
-  {
-    this->special->setOpacity(opacity);
-  }
+  return this->startPositionX;
 }
 
-void Plate::setPositionX(float x)
+float Plate::getStartPositionY()
 {
-  Cube::setPositionX(x);
-
-  if(this->special)
-  {
-    this->special->setPositionX(x);
-  }
+  return this->startPositionY;
 }
 
-void Plate::setPositionY(float y)
+float Plate::getStartPositionZ()
 {
-  Cube::setPositionY(y);
-
-  if(this->special)
-  {
-    this->special->setPositionY(y);
-  }
+  return this->startPositionZ;
 }
 
-void Plate::setPositionZ(float z)
+void Plate::setStartPositionX(float x)
 {
-  Cube::setPositionZ(z);
-
-  if(this->special)
-  {
-    this->special->setPositionZ(z);
-  }
+  this->startPositionX = x;
 }
 
-void Plate::setPosition3D(Vec3 position)
+void Plate::setStartPositionY(float y)
 {
-  Cube::setPosition3D(position);
-
-  if(this->special)
-  {
-    this->special->setPosition3D(position);
-  }
+  this->startPositionY = y;
 }
 
-Action* Plate::runAction(Action* action)
+void Plate::setStartPositionZ(float z)
 {
-  Cube::runAction(action);
-
-  if(this->special)
-  {
-    this->special->runAction(action->clone());
-  }
+  this->startPositionZ = z;
 }
 
 /**
@@ -196,13 +160,13 @@ Action* Plate::runAction(Action* action)
  *
  *
  */
-void Plate::setType(int type, bool animated)
+void Plate::setType(Type type, bool animated)
 {
   this->type = type;
 
   switch(this->type)
   {
-    case TYPE_SPIKES:
+    case SPIKES:
     this->decoration = static_cast<Decoration*>(Application->environment->spikes->_create());
     this->decoration->setPlate(this, animated);
 
@@ -211,23 +175,23 @@ void Plate::setType(int type, bool animated)
     this->special = static_cast<Entity3D*>(Application->environment->plates_spikes->_create());
     this->special->setTexture("spike-plate-texture.png");
     break;
-    case TYPE_DIAMOND:
+    case DIAMOND:
     this->decoration = static_cast<Decoration*>(Application->environment->diamonds->_create());
     this->decoration->setPlate(this, animated);
     break;
-    case TYPE_CRYSTAL:
+    case CRYSTAL:
     this->decoration = static_cast<Decoration*>(Application->environment->crystals->_create());
     this->decoration->setPlate(this, animated);
     break;
-    case TYPE_ENERGY:
+    case ENERGY:
     this->decoration = static_cast<Decoration*>(Application->environment->energies->_create());
     this->decoration->setPlate(this, animated);
     break;
-    case TYPE_STAR:
+    case STAR:
     this->decoration = static_cast<Decoration*>(Application->environment->stars->_create());
     this->decoration->setPlate(this, animated);
     break;
-    case TYPE_HEART:
+    case HEART:
     this->decoration = static_cast<Decoration*>(Application->environment->hearts->_create());
     this->decoration->setPlate(this, animated);
     break;
@@ -237,10 +201,10 @@ void Plate::setType(int type, bool animated)
      * Complex types.
      *
      */
-    case TYPE_MOVED_1:
+    case MOVED1:
     this->stopAllActions();
     this->setTexture("plate-texture-state-1-moved-1.png");
-    this->moved = true;
+    this->behavior = DYNAMIC;
     this->runAction(
       RepeatForever::create(
         Sequence::create(
@@ -249,7 +213,8 @@ void Plate::setType(int type, bool animated)
               MoveBy::create(0.15, Vec3(0, 0, -1.5))
             );
 
-            this->runAction(action->clone());this->position=false;
+            this->runAction(action->clone());
+          //this->position=false;
 
             if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
             {
@@ -272,7 +237,7 @@ void Plate::setType(int type, bool animated)
               Sequence::create(
                 DelayTime::create(0.15),
                 CallFunc::create([=] () {
-                  this->position = true;
+                  //this->position = true;
                 }),
                 nullptr
               )
@@ -294,7 +259,8 @@ void Plate::setType(int type, bool animated)
               MoveBy::create(0.15, Vec3(0, 0, 1.5))
             );
 
-            this->runAction(action->clone());this->position = false;
+            this->runAction(action->clone());
+          //this->position = false;
 
             if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
             {
@@ -317,7 +283,7 @@ void Plate::setType(int type, bool animated)
               Sequence::create(
                 DelayTime::create(0.15),
                 CallFunc::create([=] () {
-                  this->position = true;
+                  //this->position = true;
                 }),
                 nullptr
               )
@@ -341,10 +307,10 @@ void Plate::setType(int type, bool animated)
     break;
 
 
-    case TYPE_MOVED_2:
+    case MOVED2:
     this->stopAllActions();
     this->setTexture("plate-texture-state-1-moved-2.png");
-    this->moved = true;
+    this->behavior = DYNAMIC;
     this->runAction(
       RepeatForever::create(
         Sequence::create(
@@ -353,7 +319,8 @@ void Plate::setType(int type, bool animated)
               MoveBy::create(0.15, Vec3(-1.5, 0, 0))
             );
 
-            this->runAction(action->clone());this->position = false;
+            this->runAction(action->clone());
+          //this->position = false;
 
             if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
             {
@@ -376,7 +343,7 @@ void Plate::setType(int type, bool animated)
               Sequence::create(
                 DelayTime::create(0.15),
                 CallFunc::create([=] () {
-                  this->position = true;
+                  //this->position = true;
                 }),
                 nullptr
               )
@@ -398,7 +365,8 @@ void Plate::setType(int type, bool animated)
               MoveBy::create(0.15, Vec3(1.5, 0, 0))
             );
 
-            this->runAction(action->clone());this->position=false;
+            this->runAction(action->clone());
+          //this->position=false;
 
             if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
             {
@@ -421,7 +389,7 @@ void Plate::setType(int type, bool animated)
               Sequence::create(
                 DelayTime::create(0.15),
                 CallFunc::create([=] () {
-                  this->position = true;
+                  //this->position = true;
                 }),
                 nullptr
               )
@@ -445,10 +413,10 @@ void Plate::setType(int type, bool animated)
     break;
 
 
-    case TYPE_MOVED_3:
+    case MOVED3:
     this->stopAllActions();
     this->setTexture("plate-texture-state-1-moved-3.png");
-    this->moved = true;
+    this->behavior = DYNAMIC;
     this->runAction(
       RepeatForever::create(
         Sequence::create(
@@ -457,7 +425,8 @@ void Plate::setType(int type, bool animated)
               MoveBy::create(0.15, Vec3(0, 0, 1.5))
             );
 
-            this->runAction(action->clone());this->position = false;
+            this->runAction(action->clone());
+          //this->position = false;
 
             if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
             {
@@ -480,7 +449,7 @@ void Plate::setType(int type, bool animated)
               Sequence::create(
                 DelayTime::create(0.15),
                 CallFunc::create([=] () {
-                  this->position = true;
+                  //this->position = true;
                 }),
                 nullptr
               )
@@ -504,10 +473,10 @@ void Plate::setType(int type, bool animated)
     break;
 
 
-    case TYPE_MOVED_4:
+    case MOVED4:
     this->stopAllActions();
     this->setTexture("plate-texture-state-1-moved-4.png");
-    this->moved = true;
+    this->behavior = DYNAMIC;
     this->runAction(
       RepeatForever::create(
         Sequence::create(
@@ -516,7 +485,8 @@ void Plate::setType(int type, bool animated)
               MoveBy::create(0.15, Vec3(-1.5, 0, 0))
             );
 
-            this->runAction(action->clone());this->position=false;
+            this->runAction(action->clone());
+          //this->position=false;
 
             if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
             {
@@ -539,7 +509,7 @@ void Plate::setType(int type, bool animated)
               Sequence::create(
                 DelayTime::create(0.15),
                 CallFunc::create([=] () {
-                  this->position = true;
+                  //this->position = true;
                 }),
                 nullptr
               )
@@ -579,16 +549,6 @@ void Plate::clearDecoration(bool force, bool animated)
       this->decoration = nullptr;
     }
   }
-}
-
-/**
- *
- *
- *
- */
-void Plate::update(float time)
-{
-  Cube::update(time);
 }
 
 /**

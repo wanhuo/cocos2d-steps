@@ -31,21 +31,17 @@
  *
  *
  */
-class Plate : public Cube
+class Plate : public Replace
 {
   /**
    *
    *
    *
    */
-  private:
-
-  /**
-   *
-   *
-   *
-   */
   protected:
+  float startPositionX;
+  float startPositionY;
+  float startPositionZ;
 
   /**
    *
@@ -53,60 +49,62 @@ class Plate : public Cube
    *
    */
   public:
-  const static int TYPE_NORMAL = 0;
-  const static int TYPE_SPIKES = 1;
-  const static int TYPE_DIAMOND = 2;
-  const static int TYPE_CRYSTAL = 3;
-  const static int TYPE_ENERGY = 4;
-  const static int TYPE_STAR = 5;
-  const static int TYPE_HEART = 6;
+  enum Type {
+    NORMAL,
+    SPIKES,
+    DIAMOND,
+    CRYSTAL,
+    ENERGY,
+    STAR,
+    HEART,
+    MOVED1,
+    MOVED2,
+    MOVED3,
+    MOVED4
+  };
 
-  const static int TYPE_MOVED_1 = 20;
-  const static int TYPE_MOVED_2 = 21;
+  enum Side {
+    LEFT,
+    RIGHT
+  };
 
-  const static int TYPE_MOVED_3 = 22;
-  const static int TYPE_MOVED_4 = 23;
+  enum Behavior {
+    STATIC,
+    DYNAMIC
+  };
 
-  const static int TYPE_MOVED_5 = 24;
-  const static int TYPE_MOVED_6 = 25;
-
+  /**
+   *
+   *
+   *
+   */
+  public:
   Plate();
  ~Plate();
 
-  int type;
+  Type type;
+  Behavior behavior;
 
-  bool LEFT;
-  bool RIGHT;
-
-  bool moved;
-  bool position;
-
-  float startPositionX = 0;
-  float startPositionY = 0;
-  float startPositionZ = 0;
+  bool position[2];
 
   Decoration* decoration = nullptr;
-  Entity3D* special = nullptr;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
   virtual void onCount();
 
-  virtual void setOpacity(GLubyte opacity);
+  virtual float getStartPositionX();
+  virtual float getStartPositionY();
+  virtual float getStartPositionZ();
 
-  virtual void setPositionX(float x);
-  virtual void setPositionY(float y);
-  virtual void setPositionZ(float z);
-  virtual void setPosition3D(Vec3 position);
+  virtual void setStartPositionX(float x);
+  virtual void setStartPositionY(float y);
+  virtual void setStartPositionZ(float z);
 
-  virtual Action* runAction(Action* action);
-
-  virtual void setType(int type, bool animated = true);
+  virtual void setType(Type type, bool animated = true);
 
   virtual void clearDecoration(bool force = false, bool animated = false);
-
-  virtual void update(float time);
 
   Plate* deepCopy();
 };
