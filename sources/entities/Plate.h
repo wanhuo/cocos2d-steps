@@ -86,6 +86,7 @@ class Plate : public Replace
   Behavior behavior;
 
   bool position[2];
+  //bool
 
   Decoration* decoration = nullptr;
 

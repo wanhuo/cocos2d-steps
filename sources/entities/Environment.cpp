@@ -311,7 +311,7 @@ void Environment::update(float time)
   }
 
   this->updateDusts(time);
-  //this->updateFishes(time);
+  this->updateFishes(time);
 
   this->updateCamera(time);
 }

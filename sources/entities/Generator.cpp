@@ -100,7 +100,7 @@ void Generator::create()
       {
         //plate->setType(Plate::TYPE_HEART);
       }
-      else if(this->count > 1 && probably(20) && true)
+      else if(this->count > 1 && probably(20))
       {
         this->length++;
         this->length++;

@@ -62,7 +62,7 @@ void Energy::onPickup()
         float x;
         float z;
 
-        if(next->LEFT)
+        if(next->position[Plate::LEFT])
         {
           x = 0.0;
           z = -1.5;
@@ -70,7 +70,7 @@ void Energy::onPickup()
           Application->environment->character->onMoveLeft();
         }
 
-        if(next->RIGHT)
+        if(next->position[Plate::RIGHT])
         {
           x = 1.5;
           z = 0.0;
