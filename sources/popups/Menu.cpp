@@ -52,21 +52,21 @@ Menu::Menu()
 
   this->texts.tap = new Text("menu-tap", this, true);
 
-  this->buttons.rate = new Button("rate-button.png", 1, 2, this, std::bind(&Game::onRate, Application), true);
-  this->buttons.leaderboards = new Button("leaderboard-button.png", 1, 2, this, std::bind(&Game::onLeaderboards, Application), true);
+  this->buttons.rate = new Button("rate-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
+  this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application), true);
   this->buttons.sound = new Button("sound-button.png", 2, 2, this, std::bind(&Menu::onSound, this), true);
-  this->buttons.store = new Button("store-button.png", 1, 2, this, std::bind([=] () {
+  this->buttons.store = new Button("store-button.png", 2, 1, this, std::bind([=] () {
     this->hide([=] () {
       Store::getInstance()->show();
     });
   }), true);
 
-  this->texts.tap->setPosition(Application->getCenter().x, 300);
+  this->texts.tap->setPosition(Application->getCenter().x, 230);
 
-  this->buttons.store->setPosition(Application->getCenter().x - 200, 200);
-  this->buttons.rate->setPosition(Application->getCenter().x - 100, 200);
-  this->buttons.sound->setPosition(Application->getCenter().x + 100, 200);
-  this->buttons.leaderboards->setPosition(Application->getCenter().x + 200, 200);
+  this->buttons.store->setPosition(Application->getCenter().x - 250, 100);
+  this->buttons.rate->setPosition(Application->getCenter().x - 85, 100);
+  this->buttons.sound->setPosition(Application->getCenter().x + 85, 100);
+  this->buttons.leaderboards->setPosition(Application->getCenter().x + 250, 100);
 }
 
 Menu::~Menu()

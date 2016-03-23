@@ -188,33 +188,13 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>../Graphics/ui/about-button.png</filename>
-            <filename>../Graphics/ui/achievements-button.png</filename>
-            <filename>../Graphics/ui/close-button.png</filename>
             <filename>../Graphics/ui/leaderboard-button.png</filename>
             <filename>../Graphics/ui/like-button.png</filename>
-            <filename>../Graphics/ui/missions-button.png</filename>
             <filename>../Graphics/ui/noad-button.png</filename>
-            <filename>../Graphics/ui/notification.png</filename>
-            <filename>../Graphics/ui/play-button.png</filename>
             <filename>../Graphics/ui/rate-button.png</filename>
             <filename>../Graphics/ui/share-button.png</filename>
             <filename>../Graphics/ui/sound-button.png</filename>
             <filename>../Graphics/ui/store-button.png</filename>
-            <filename>../Graphics/ui/tutorial-button.png</filename>
-            <filename>../Graphics/ui/menu-background-1.png</filename>
-            <filename>../Graphics/ui/menu-background-2.png</filename>
-            <filename>../Graphics/ui/about-background.png</filename>
-            <filename>../Graphics/ui/twitter-button.png</filename>
-            <filename>../Graphics/ui/facebook-button.png</filename>
-            <filename>../Graphics/ui/freepick.png</filename>
-            <filename>../Graphics/ui/cocos2dx.png</filename>
-            <filename>../Graphics/ui/credits-button.png</filename>
-            <filename>../Graphics/ui/credits-decoration-1.png</filename>
-            <filename>../Graphics/ui/credits-decoration-2.png</filename>
-            <filename>../Graphics/ui/credits-decoration-3.png</filename>
-            <filename>../Graphics/ui/restore-purchases-button.png</filename>
-            <filename>../Graphics/ui/mail-button.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
