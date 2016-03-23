@@ -87,14 +87,10 @@
 		7847CDF91AB184820014E3F3 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7847CDEB1AB184820014E3F3 /* RootViewController.mm */; };
 		7847CDFA1AB184820014E3F3 /* NSServices.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7847CDED1AB184820014E3F3 /* NSServices.mm */; };
 		7847CDFB1AB184820014E3F3 /* NSSocial.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7847CDEF1AB184820014E3F3 /* NSSocial.mm */; };
-		7857E2B81C65733F0020AAEA /* About.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2B41C65733F0020AAEA /* About.cpp */; };
 		7857E2B91C65733F0020AAEA /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2B61C65733F0020AAEA /* Menu.cpp */; };
 		7857E2BA1C6573F70020AAEA /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2B61C65733F0020AAEA /* Menu.cpp */; };
-		7857E2BB1C6573FE0020AAEA /* About.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2B41C65733F0020AAEA /* About.cpp */; };
-		7857E2C01C65B9D80020AAEA /* Missions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2BC1C65B9D80020AAEA /* Missions.cpp */; };
 		7857E2C11C65B9D80020AAEA /* Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2BE1C65B9D80020AAEA /* Store.cpp */; };
 		7857E2C21C65BA940020AAEA /* Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2BE1C65B9D80020AAEA /* Store.cpp */; };
-		7857E2C31C65BA960020AAEA /* Missions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2BC1C65B9D80020AAEA /* Missions.cpp */; };
 		786696CA1C4A47FF00A256FC /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786696C91C4A47FF00A256FC /* Cube.cpp */; };
 		786696CB1C4A47FF00A256FC /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786696C91C4A47FF00A256FC /* Cube.cpp */; };
 		78809FA71B11D36B002397E7 /* NSHeyzap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78809FA61B11D36B002397E7 /* NSHeyzap.mm */; };
@@ -320,12 +316,8 @@
 		7847CDEB1AB184820014E3F3 /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = "<group>"; };
 		7847CDED1AB184820014E3F3 /* NSServices.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSServices.mm; sourceTree = "<group>"; };
 		7847CDEF1AB184820014E3F3 /* NSSocial.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSSocial.mm; sourceTree = "<group>"; };
-		7857E2B41C65733F0020AAEA /* About.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = About.cpp; sourceTree = "<group>"; };
-		7857E2B51C65733F0020AAEA /* About.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = About.h; sourceTree = "<group>"; };
 		7857E2B61C65733F0020AAEA /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
 		7857E2B71C65733F0020AAEA /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
-		7857E2BC1C65B9D80020AAEA /* Missions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Missions.cpp; sourceTree = "<group>"; };
-		7857E2BD1C65B9D80020AAEA /* Missions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missions.h; sourceTree = "<group>"; };
 		7857E2BE1C65B9D80020AAEA /* Store.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Store.cpp; sourceTree = "<group>"; };
 		7857E2BF1C65B9D80020AAEA /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
 		786696C81C4A47FF00A256FC /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
@@ -935,10 +927,6 @@
 				7857E2B71C65733F0020AAEA /* Menu.h */,
 				7857E2BE1C65B9D80020AAEA /* Store.cpp */,
 				7857E2BF1C65B9D80020AAEA /* Store.h */,
-				7857E2BC1C65B9D80020AAEA /* Missions.cpp */,
-				7857E2BD1C65B9D80020AAEA /* Missions.h */,
-				7857E2B41C65733F0020AAEA /* About.cpp */,
-				7857E2B51C65733F0020AAEA /* About.h */,
 			);
 			name = popups;
 			path = ../../sources/popups;
@@ -1244,7 +1232,6 @@
 			files = (
 				7857E2BA1C6573F70020AAEA /* Menu.cpp in Sources */,
 				7825DD441C5484CC00708016 /* Popup.cpp in Sources */,
-				7857E2C31C65BA960020AAEA /* Missions.cpp in Sources */,
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
 				78DE4C8F1C4DA6AC0080F105 /* Spike.cpp in Sources */,
 				78A658821C515F14001B887B /* Pickup.cpp in Sources */,
@@ -1256,7 +1243,6 @@
 				78E33FD21C4A84080021272D /* Particle.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
 				78B36A7A1C5D039400F8A30C /* Cannon.cpp in Sources */,
-				7857E2BB1C6573FE0020AAEA /* About.cpp in Sources */,
 				7857E2C21C65BA940020AAEA /* Store.cpp in Sources */,
 				786696CB1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				78DE4C871C4D9F060080F105 /* Diamond.cpp in Sources */,
@@ -1307,7 +1293,6 @@
 				78A658891C524D82001B887B /* Whale.cpp in Sources */,
 				7847CDF61AB184820014E3F3 /* AppController.mm in Sources */,
 				78382F811C2469B90001B3F1 /* NSVote.mm in Sources */,
-				7857E2B81C65733F0020AAEA /* About.cpp in Sources */,
 				78E33FCF1C4A84080021272D /* Plate.cpp in Sources */,
 				78A6587F1C515F14001B887B /* Star.cpp in Sources */,
 				78EC8D6D1BBAF0B900CC5785 /* NSModal.mm in Sources */,
@@ -1318,7 +1303,6 @@
 				786696CA1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				7847CDF51AB184820014E3F3 /* NSAnalytics.mm in Sources */,
 				78809FA71B11D36B002397E7 /* NSHeyzap.mm in Sources */,
-				7857E2C01C65B9D80020AAEA /* Missions.cpp in Sources */,
 				78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */,
 				78DE4C821C4D6C120080F105 /* Counter.cpp in Sources */,
 				7847CDFA1AB184820014E3F3 /* NSServices.mm in Sources */,

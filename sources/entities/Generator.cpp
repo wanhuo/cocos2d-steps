@@ -122,6 +122,7 @@ void Generator::create()
           p->setPositionZ(this->z);
           c->setPosition3D(p->getPosition3D());
         }
+
     p->setOpacity(0);
     c->setOpacity(0);
 

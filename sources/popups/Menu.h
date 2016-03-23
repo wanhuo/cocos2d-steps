@@ -42,23 +42,14 @@ class Menu : public Popup
   static Menu* instance;
 
   struct Buttons {
-    Button* play;
-    Button* like;
-    Button* rate;
-    Button* share;
-    Button* leaderboards;
-    Button* achievements;
-    Button* sound;
     Button* store;
-    Button* noad;
-    Button* tutorial;
-    Button* missions;
-    Button* about;
+    Button* rate;
+    Button* sound;
+    Button* leaderboards;
   };
 
-  struct Backgrounds {
-    Entity* top;
-    Entity* bottom;
+  struct Texts {
+    Text* tap;
   };
 
   /**
@@ -67,9 +58,8 @@ class Menu : public Popup
    *
    */
   protected:
+  Texts texts;
   Buttons buttons;
-  Backgrounds backgrounds;
-
 
   /**
    *

@@ -29,43 +29,20 @@
  *
  */
 Counter::Counter(Node* parent)
-: Entity3D("cube.obj", parent, true)
+: Background(parent)
 {
-  this->setScale(2);
+  this->texts.score = new Text("counter", this, true);
+  this->texts.coins = new Text("counter", this, true);
 
-  this->setPosition3D(Vec3(0, 15, 0));
-  this->setRotation3D(Vec3(45, 0, 0));
+  this->texts.score->setPosition(Application->getCenter().x, Application->getHeight() - 200);
+  this->texts.coins->setPosition(Application->getWidth() - 100, Application->getHeight() - 40);
 
-  this->setTexture("character-texture.png");
-
-  this->setCameraMask(2);
-
+  this->setCameraMask(4);
   this->reset();
 }
 
 Counter::~Counter()
 {
-}
-
-/**
- *
- *
- *
- */
-void Counter::onCreate()
-{
-  Entity3D::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-}
-
-void Counter::onDestroy(bool action)
-{
-  Entity3D::onDestroy(action);
 }
 
 /**

@@ -23,9 +23,16 @@
   "languages": {
     "counter": [
       {
-        "title": "$1",
+        "title": "10",
         "font": "Impact",
-        "size": 16
+        "size": 72
+      }
+    ],
+    "menu-tap": [
+      {
+        "title": "TAP TO PLAY",
+        "font": "Impact",
+        "size": 54
       }
     ],
     "credits-title-1": [

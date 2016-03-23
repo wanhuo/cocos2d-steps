@@ -31,7 +31,7 @@
  *
  *
  */
-class Counter : public Entity3D
+class Counter : public Background
 {
   /**
    *
@@ -39,6 +39,10 @@ class Counter : public Entity3D
    *
    */
   private:
+  struct Texts {
+    Text* score;
+    Text* coins;
+  };
 
   /**
    *
@@ -46,6 +50,7 @@ class Counter : public Entity3D
    *
    */
   protected:
+  Texts texts;
 
   /**
    *
@@ -57,9 +62,6 @@ class Counter : public Entity3D
  ~Counter();
 
   int value;
-
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
 
   virtual void onCount();
 
