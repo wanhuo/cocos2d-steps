@@ -28,14 +28,14 @@
  *
  *
  */
-Menu* Menu::instance;
+Finish* Finish::instance;
 
 /**
  *
  *
  *
  */
-Menu* Menu::getInstance()
+Finish* Finish::getInstance()
 {
   return instance;
 }
@@ -45,31 +45,31 @@ Menu* Menu::getInstance()
  *
  *
  */
-Menu::Menu()
+Finish::Finish()
 : Popup()
 {
   instance = this;
 
-  this->texts.tap = new Text("menu-tap", this, true);
+  this->texts.tap = new Text("finish-tap", this, true);
 
-  this->buttons.rate = new Button("rate-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
-  this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application), true);
-  this->buttons.sound = new Button("sound-button.png", 2, 2, this, std::bind(&Menu::onSound, this), true);
-  this->buttons.store = new Button("store-button.png", 2, 1, this, std::bind([=] () {
+  this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
+  this->buttons.noad = new Button("noad-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
+  this->buttons.share = new Button("share-button.png", 2, 1, this, std::bind([=] () {
     this->hide([=] () {
       Store::getInstance()->show();
     });
   }), true);
+  this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application), true);
 
   this->texts.tap->setPosition(Application->getCenter().x, 230);
 
-  this->buttons.store->setPosition(Application->getCenter().x - 250, 100);
-  this->buttons.rate->setPosition(Application->getCenter().x - 85, 100);
-  this->buttons.sound->setPosition(Application->getCenter().x + 85, 100);
+  this->buttons.like->setPosition(Application->getCenter().x - 250, 100);
+  this->buttons.noad->setPosition(Application->getCenter().x - 85, 100);
+  this->buttons.share->setPosition(Application->getCenter().x + 85, 100);
   this->buttons.leaderboards->setPosition(Application->getCenter().x + 250, 100);
 }
 
-Menu::~Menu()
+Finish::~Finish()
 {
 }
 
@@ -78,16 +78,14 @@ Menu::~Menu()
  *
  *
  */
-void Menu::onShow()
+void Finish::onShow()
 {
   Popup::onShow();
 
-  this->updateSoundState();
-
-  Events::onScreenChanged("Menu");
+  Events::onScreenChanged("Finish");
 }
 
-void Menu::onHide(Callback callback)
+void Finish::onHide(Callback callback)
 {
   Popup::onHide(callback);
 }
@@ -97,27 +95,10 @@ void Menu::onHide(Callback callback)
  *
  *
  */
-void Menu::onSound()
-{
-  Events::onSound();
-
-  /**
-   *
-   *
-   *
-   */
-  this->updateSoundState();
-}
-
-/**
- *
- *
- *
- */
-void Menu::onTouch(cocos2d::Touch* touch, cocos2d::Event* e)
+void Finish::onTouch(cocos2d::Touch* touch, cocos2d::Event* e)
 {
   this->hide([=] () {
-    Application->changeState(Game::GAME);
+    Application->changeState(Game::MENU);
   });
 }
 
@@ -126,35 +107,12 @@ void Menu::onTouch(cocos2d::Touch* touch, cocos2d::Event* e)
  *
  *
  */
-void Menu::show()
+void Finish::show()
 {
   Popup::show();
 }
 
-void Menu::hide(Callback callback)
+void Finish::hide(Callback callback)
 {
   Popup::hide(callback);
-}
-
-/**
- *
- *
- *
- */
-void Menu::updateSoundState()
-{
-  if(!Music->enabled || !Sound->enabled)
-  {
-    Music->changeState(false);
-    Sound->changeState(false);
-
-    this->buttons.sound->setCurrentFrameIndex(0);
-  }
-  else
-  {
-    Music->changeState(true);
-    Sound->changeState(true);
-
-    this->buttons.sound->setCurrentFrameIndex(2);
-  }
 }

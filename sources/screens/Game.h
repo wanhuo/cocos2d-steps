@@ -62,6 +62,7 @@
 #include "Counter.h"
 
 #include "Menu.h"
+#include "Finish.h"
 #include "Store.h"
 
 /**

@@ -24,14 +24,21 @@
     "counter": [
       {
         "title": "10",
-        "font": "Impact",
+        "font": "Consolas",
         "size": 72
       }
     ],
     "menu-tap": [
       {
         "title": "TAP TO PLAY",
-        "font": "Impact",
+        "font": "Consolas",
+        "size": 54
+      }
+    ],
+    "finish-tap": [
+      {
+        "title": "TAP TO RESTART",
+        "font": "Consolas",
         "size": 54
       }
     ],

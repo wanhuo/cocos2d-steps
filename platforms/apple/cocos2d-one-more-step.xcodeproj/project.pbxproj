@@ -95,6 +95,8 @@
 		786696CB1C4A47FF00A256FC /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786696C91C4A47FF00A256FC /* Cube.cpp */; };
 		78809FA71B11D36B002397E7 /* NSHeyzap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78809FA61B11D36B002397E7 /* NSHeyzap.mm */; };
 		78817A761BBDAFD3008BA961 /* Icon-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 78817A751BBDAFD3008BA961 /* Icon-512.png */; };
+		788F17C81CA308B000F4E5D6 /* Finish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17C61CA308B000F4E5D6 /* Finish.cpp */; };
+		788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17C61CA308B000F4E5D6 /* Finish.cpp */; };
 		7894C0011BC919D400363FC9 /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7883470A1BC917A700DBA14E /* libcocos2d Mac.a */; };
 		7894C01A1BC9245800363FC9 /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0191BC9245800363FC9 /* Events.cpp */; };
 		7894C01B1BC9245800363FC9 /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0191BC9245800363FC9 /* Events.cpp */; };
@@ -324,6 +326,8 @@
 		786696C91C4A47FF00A256FC /* Cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cube.cpp; sourceTree = "<group>"; };
 		78809FA61B11D36B002397E7 /* NSHeyzap.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSHeyzap.mm; sourceTree = "<group>"; };
 		78817A751BBDAFD3008BA961 /* Icon-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-512.png"; sourceTree = "<group>"; };
+		788F17C61CA308B000F4E5D6 /* Finish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Finish.cpp; sourceTree = "<group>"; };
+		788F17C71CA308B000F4E5D6 /* Finish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Finish.h; sourceTree = "<group>"; };
 		7894C0191BC9245800363FC9 /* Events.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Events.cpp; sourceTree = "<group>"; };
 		7894C01C1BC9258B00363FC9 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = ../../resource/Fonts; sourceTree = "<group>"; };
 		7894C01D1BC9258B00363FC9 /* Graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Graphics; path = ../../resource/Graphics; sourceTree = "<group>"; };
@@ -925,6 +929,8 @@
 				7825DD411C5484CC00708016 /* Popup.h */,
 				7857E2B61C65733F0020AAEA /* Menu.cpp */,
 				7857E2B71C65733F0020AAEA /* Menu.h */,
+				788F17C61CA308B000F4E5D6 /* Finish.cpp */,
+				788F17C71CA308B000F4E5D6 /* Finish.h */,
 				7857E2BE1C65B9D80020AAEA /* Store.cpp */,
 				7857E2BF1C65B9D80020AAEA /* Store.h */,
 			);
@@ -1236,6 +1242,7 @@
 				78DE4C8F1C4DA6AC0080F105 /* Spike.cpp in Sources */,
 				78A658821C515F14001B887B /* Pickup.cpp in Sources */,
 				78DE4C971C500D2A0080F105 /* Ripple.cpp in Sources */,
+				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78DE4C931C4FC2230080F105 /* Fish.cpp in Sources */,
 				78A6588A1C524D82001B887B /* Whale.cpp in Sources */,
 				78A658841C515F14001B887B /* Heart.cpp in Sources */,
@@ -1277,6 +1284,7 @@
 				78DE4C961C500D2A0080F105 /* Ripple.cpp in Sources */,
 				78AB04461C62298800A8FCB4 /* Replace.cpp in Sources */,
 				7843AC9F1C2242AA0011F47C /* AdWebViewController.m in Sources */,
+				788F17C81CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78CA6D0A1C20645200BF8416 /* Character.cpp in Sources */,
 				7843ACA41C2242AA0011F47C /* Interstitiel.m in Sources */,
 				7894C0331BC9282F00363FC9 /* Game.cpp in Sources */,

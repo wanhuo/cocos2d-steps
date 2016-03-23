@@ -21,69 +21,64 @@
  *
  */
 
-#include "Game.h"
+#ifndef _FINISH_H_
+#define _FINISH_H_
+
+#include "Popup.h"
 
 /**
  *
  *
  *
  */
-Popup::Popup()
+class Finish : public Popup
 {
-  this->retain();
+  /**
+   *
+   *
+   *
+   */
+  private:
+  static Finish* instance;
 
-  this->bind(true);
+  struct Buttons {
+    Button* like;
+    Button* noad;
+    Button* share;
+    Button* leaderboards;
+  };
 
-  this->state->create = true;
-}
+  struct Texts {
+    Text* tap;
+  };
 
-Popup::~Popup()
-{
-}
+  /**
+   *
+   *
+   *
+   */
+  protected:
+  Texts texts;
+  Buttons buttons;
 
-/**
- *
- *
- *
- */
-void Popup::onShow()
-{
-}
+  /**
+   *
+   *
+   *
+   */
+  public:
+  static Finish* getInstance();
 
-void Popup::onHide(Callback callback)
-{
-  Application->removeChild(this);
+  Finish();
+ ~Finish();
 
-  if(callback)
-  {
-    callback();
-  }
-}
+  virtual void onShow();
+  virtual void onHide(Callback callback = NULL);
 
-/**
- *
- *
- *
- */
-void Popup::show()
-{
-  Application->addChild(this);
-  this->setCameraMask(4);
+  virtual void onTouch(cocos2d::Touch* touch, cocos2d::Event* e);
 
-  this->onShow();
-}
+  virtual void show();
+  virtual void hide(Callback callback = NULL);
+};
 
-void Popup::hide(Callback callback)
-{
-  this->onHide(callback);
-}
-
-/**
- *
- *
- *
- */
-bool Popup::containsTouchLocation(cocos2d::Touch* touch)
-{
-  return true;
-}
+#endif

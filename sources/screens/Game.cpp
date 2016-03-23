@@ -294,7 +294,7 @@ void Game::onGame()
 
 void Game::onLose()
 {
-  Menu::getInstance()->show();
+  Finish::getInstance()->show();
 
   this->environment->onLose();
 
