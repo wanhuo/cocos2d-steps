@@ -282,7 +282,7 @@ void Character::onTurn(Turn turn)
     int px = plate->getPositionX() / 1.5;
     int pz = plate->getPositionZ() / 1.5;
 
-    if(px == x && pz == z)
+    if(px == x && pz == z && !plate->moved)
     {
       this->plates.current = plate;
       break;

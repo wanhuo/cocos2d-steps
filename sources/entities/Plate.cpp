@@ -52,6 +52,7 @@ void Plate::onCreate()
    *
    */
   this->behavior = STATIC;
+  this->moved = false;
 
   this->setTexture("plate-texture-state-1.png");
 
@@ -105,8 +106,6 @@ void Plate::onRemove()
 
 void Plate::onCount()
 {
-  //this->setColor(Color3B::WHITE);
-
   if(this->special)
   {
     switch(this->type)
@@ -120,7 +119,7 @@ void Plate::onCount()
   switch(this->type)
   {
     default:
-    //this->setTexture("plate-texture-state-2.png");
+    this->setTexture("plate-texture-state-2.png");
     break;
     /*case MOVED1:
     this->setTexture("plate-texture-state-2-moved-1.png");
@@ -241,7 +240,7 @@ void Plate::setType(Type type, bool animated)
             );
 
             this->runAction(action->clone());
-          //this->position=false;
+            this->moved = true;
 
             if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
             {
@@ -264,7 +263,7 @@ void Plate::setType(Type type, bool animated)
               Sequence::create(
                 DelayTime::create(0.15),
                 CallFunc::create([=] () {
-                  //this->position = true;
+                  this->moved = false;
                 }),
                 nullptr
               )
@@ -287,7 +286,7 @@ void Plate::setType(Type type, bool animated)
             );
 
             this->runAction(action->clone());
-          //this->position = false;
+            this->moved = true;
 
             if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
             {
@@ -310,7 +309,7 @@ void Plate::setType(Type type, bool animated)
               Sequence::create(
                 DelayTime::create(0.15),
                 CallFunc::create([=] () {
-                  //this->position = true;
+                  this->moved = false;
                 }),
                 nullptr
               )
@@ -347,7 +346,7 @@ void Plate::setType(Type type, bool animated)
             );
 
             this->runAction(action->clone());
-          //this->position = false;
+            this->moved = true;
 
             if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
             {
@@ -370,7 +369,7 @@ void Plate::setType(Type type, bool animated)
               Sequence::create(
                 DelayTime::create(0.15),
                 CallFunc::create([=] () {
-                  //this->position = true;
+                  this->moved = false;
                 }),
                 nullptr
               )
@@ -393,7 +392,7 @@ void Plate::setType(Type type, bool animated)
             );
 
             this->runAction(action->clone());
-          //this->position=false;
+            this->moved = true;
 
             if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
             {
@@ -416,7 +415,7 @@ void Plate::setType(Type type, bool animated)
               Sequence::create(
                 DelayTime::create(0.15),
                 CallFunc::create([=] () {
-                  //this->position = true;
+                  this->moved = false;
                 }),
                 nullptr
               )
@@ -453,7 +452,7 @@ void Plate::setType(Type type, bool animated)
             );
 
             this->runAction(action->clone());
-          //this->position = false;
+            this->moved = true;
 
             if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
             {
@@ -476,7 +475,7 @@ void Plate::setType(Type type, bool animated)
               Sequence::create(
                 DelayTime::create(0.15),
                 CallFunc::create([=] () {
-                  //this->position = true;
+                  this->moved = false;
                 }),
                 nullptr
               )
@@ -513,7 +512,7 @@ void Plate::setType(Type type, bool animated)
             );
 
             this->runAction(action->clone());
-          //this->position=false;
+            this->moved = true;
 
             if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
             {
@@ -536,7 +535,7 @@ void Plate::setType(Type type, bool animated)
               Sequence::create(
                 DelayTime::create(0.15),
                 CallFunc::create([=] () {
-                  //this->position = true;
+                  this->moved = false;
                 }),
                 nullptr
               )

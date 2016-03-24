@@ -57,7 +57,7 @@ void Energy::onPickup()
 
     if(next)
     {
-      if(next->position)
+      if(!next->moved)
       {
         float x;
         float z;
