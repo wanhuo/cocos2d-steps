@@ -99,6 +99,8 @@
 		788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17C61CA308B000F4E5D6 /* Finish.cpp */; };
 		788F17CE1CA405B100F4E5D6 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17CC1CA405B100F4E5D6 /* Color.cpp */; };
 		788F17CF1CA405B100F4E5D6 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17CC1CA405B100F4E5D6 /* Color.cpp */; };
+		788F17D31CA4399200F4E5D6 /* Up.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17D11CA4399200F4E5D6 /* Up.cpp */; };
+		788F17D41CA4399200F4E5D6 /* Up.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17D11CA4399200F4E5D6 /* Up.cpp */; };
 		7894C0011BC919D400363FC9 /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7883470A1BC917A700DBA14E /* libcocos2d Mac.a */; };
 		7894C01A1BC9245800363FC9 /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0191BC9245800363FC9 /* Events.cpp */; };
 		7894C01B1BC9245800363FC9 /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0191BC9245800363FC9 /* Events.cpp */; };
@@ -330,6 +332,8 @@
 		788F17C71CA308B000F4E5D6 /* Finish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Finish.h; sourceTree = "<group>"; };
 		788F17CC1CA405B100F4E5D6 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
 		788F17CD1CA405B100F4E5D6 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
+		788F17D11CA4399200F4E5D6 /* Up.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Up.cpp; sourceTree = "<group>"; };
+		788F17D21CA4399200F4E5D6 /* Up.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Up.h; sourceTree = "<group>"; };
 		7894C0191BC9245800363FC9 /* Events.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Events.cpp; sourceTree = "<group>"; };
 		7894C01C1BC9258B00363FC9 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = ../../resource/Fonts; sourceTree = "<group>"; };
 		7894C01D1BC9258B00363FC9 /* Graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Graphics; path = ../../resource/Graphics; sourceTree = "<group>"; };
@@ -903,6 +907,8 @@
 				780436C71C53D28C00642F8D /* Crystal.h */,
 				78DE4C8D1C4DA6AC0080F105 /* Spike.cpp */,
 				78DE4C8C1C4DA6AC0080F105 /* Spike.h */,
+				788F17D11CA4399200F4E5D6 /* Up.cpp */,
+				788F17D21CA4399200F4E5D6 /* Up.h */,
 				78DE4C911C4FC2230080F105 /* Fish.cpp */,
 				78DE4C901C4FC2230080F105 /* Fish.h */,
 				78E807C51C596FD300880329 /* Leaf.cpp */,
@@ -1246,6 +1252,7 @@
 				78DE4C931C4FC2230080F105 /* Fish.cpp in Sources */,
 				78A658841C515F14001B887B /* Heart.cpp in Sources */,
 				78E807C71C596FD300880329 /* Leaf.cpp in Sources */,
+				788F17D41CA4399200F4E5D6 /* Up.cpp in Sources */,
 				788F17CF1CA405B100F4E5D6 /* Color.cpp in Sources */,
 				78E33FD21C4A84080021272D /* Particle.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
@@ -1312,6 +1319,7 @@
 				7847CDF51AB184820014E3F3 /* NSAnalytics.mm in Sources */,
 				78809FA71B11D36B002397E7 /* NSHeyzap.mm in Sources */,
 				78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */,
+				788F17D31CA4399200F4E5D6 /* Up.cpp in Sources */,
 				78DE4C821C4D6C120080F105 /* Counter.cpp in Sources */,
 				7847CDFA1AB184820014E3F3 /* NSServices.mm in Sources */,
 				7825DD431C5484CC00708016 /* Popup.cpp in Sources */,

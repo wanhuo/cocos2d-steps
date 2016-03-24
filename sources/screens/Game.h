@@ -43,6 +43,7 @@
 #include "Decoration.h"
 #include "Pickup.h"
 #include "Spike.h"
+#include "Up.h"
 #include "Diamond.h"
 #include "Crystal.h"
 #include "Energy.h"

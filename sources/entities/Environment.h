@@ -91,6 +91,7 @@ class Environment : public Background
   Pool* dusts;
 
   Pool* spikes;
+  Pool* ups;
   Pool* diamonds;
   Pool* crystals;
   Pool* energies;
@@ -99,10 +100,10 @@ class Environment : public Background
 
   Pool* plates;
   Pool* plates_spikes;
+  Pool* plates_up;
   Pool* cannons;
   Pool* particles;
   Pool* fishes;
-  Pool* leafs;
   Pool* ripples;
 
   Entity3D* plane;

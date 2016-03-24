@@ -33,6 +33,11 @@ Decoration::Decoration(const char* file)
 {
 }
 
+Decoration::Decoration()
+: Entity3D()
+{
+}
+
 Decoration::~Decoration()
 {
 }

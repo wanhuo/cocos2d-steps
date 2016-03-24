@@ -29,7 +29,7 @@
  *
  */
 Spike::Spike()
-: Decoration("spike-test.obj")
+: Decoration("spike.obj")
 {
   this->setTexture("spike-texture.png");
 

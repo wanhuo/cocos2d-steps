@@ -69,6 +69,7 @@ void Environment::create()
   this->dusts = new Pool(new Dust, this);
 
   this->spikes = new Pool(new Spike, this->plane);
+  this->ups = new Pool(new Up, this->plane);
   this->diamonds = new Pool(new Diamond, this->plane);
   this->crystals = new Pool(new Crystal, this->plane);
   this->energies = new Pool(new Energy, this->plane);
@@ -80,9 +81,9 @@ void Environment::create()
   this->particles = new Pool(new Particle, this->plane);
   this->fishes = new Pool(new Fish, this->plane);
   this->ripples = new Pool(new Ripple, this->plane);
-  this->leafs = new Pool(new Leaf, this->plane);
 
-  this->plates_spikes = new Pool(new Entity3D("spike-plate.obj"), this->plane);
+  this->plates_spikes = new Pool(new Entity3D("plate-type-spike.obj"), this->plane);
+  this->plates_up = new Pool(new Entity3D("plate-type-up.obj"), this->plane);
 
   this->character = new Character;
 
@@ -183,9 +184,13 @@ void Environment::onTurnRight(bool action)
 void Environment::onMenu()
 {
   this->plates->clear();
+  this->plates_spikes->clear();
+  this->plates_up->clear();
+
+  this->spikes->clear();
+  this->ups->clear();
 
   this->ripples->clear();
-  this->leafs->clear();
   this->cannons->clear();
 
   this->generator->clear();

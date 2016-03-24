@@ -54,6 +54,7 @@ class Plate : public Replace
   enum Type {
     NORMAL,
     SPIKES,
+    UP,
     DIAMOND,
     CRYSTAL,
     ENERGY,

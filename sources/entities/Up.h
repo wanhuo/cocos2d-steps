@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _DECORATION_H_
-#define _DECORATION_H_
+#ifndef _UP_H_
+#define _UP_H_
 
 #include "Game.h"
 
@@ -31,14 +31,7 @@
  *
  *
  */
-class Plate;
-
-/**
- *
- *
- *
- */
-class Decoration : public Entity3D
+class Up : public Decoration
 {
   /**
    *
@@ -60,24 +53,15 @@ class Decoration : public Entity3D
    *
    */
   public:
-  Decoration(const char* file);
-  Decoration();
- ~Decoration();
-
-  bool removable;
+  Up();
+ ~Up();
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
   virtual void onPickup();
 
-  virtual void setPlate(Plate* plate, bool animated = true);
-
-  virtual void remove(bool force = false);
-
-  virtual bool status();
-
-  virtual const char* getParticleTexture();
+  Up* deepCopy();
 };
 
 #endif

@@ -111,7 +111,10 @@ void Plate::onCount()
     switch(this->type)
     {
       case SPIKES:
-      this->special->setTexture("spike-plate-texture-2.png");
+      this->special->setTexture("plate-texture-state-2-spike.png");
+      break;
+      case UP:
+      this->special->setTexture("plate-texture-state-2-up.png");
       break;
     }
   }
@@ -199,7 +202,16 @@ void Plate::setType(Type type, bool animated)
     this->setVisible(false);
 
     this->special = static_cast<Entity3D*>(Application->environment->plates_spikes->_create());
-    this->special->setTexture("spike-plate-texture.png");
+    this->special->setTexture("plate-texture-state-1-spike.png");
+    break;
+    case UP:
+    this->decoration = static_cast<Decoration*>(Application->environment->ups->_create());
+    this->decoration->setPlate(this, animated);
+
+    this->setVisible(false);
+
+    this->special = static_cast<Entity3D*>(Application->environment->plates_up->_create());
+    this->special->setTexture("plate-texture-state-1-up.png");
     break;
     case DIAMOND:
     this->decoration = static_cast<Decoration*>(Application->environment->diamonds->_create());

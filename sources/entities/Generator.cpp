@@ -59,6 +59,12 @@ void Generator::create()
         this->s1 = 2;
         this->s2 = 2;
       }
+      if(this->s2 < 1 && probably(10))
+      {
+        plate->setType(Plate::UP);
+        this->s1 = 2;
+        this->s2 = 2;
+      }
       else if((this->length - this->count) > 1 && this->s1 < 1 && this->direction && probably(10))
       {
         plate->setType(Plate::MOVED1);
@@ -169,7 +175,7 @@ void Generator::create()
 
     if(Application->environment->plates->count <= 1)
     {
-      plate->setTexture("plate-texture-state-2.png");
+      plate->setTexture("plate-texture-state-1-start.png");
     }
 
     //this->y += 0.5f;
