@@ -28,6 +28,11 @@
  *
  *
  */
+Decoration::Decoration(const char* file, Node* parent)
+: Entity3D(file, parent)
+{
+}
+
 Decoration::Decoration(const char* file)
 : Entity3D(file)
 {
@@ -50,13 +55,6 @@ Decoration::~Decoration()
 void Decoration::onCreate()
 {
   Entity3D::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setOpacity(0);
 }
 
 void Decoration::onDestroy(bool action)
@@ -86,10 +84,9 @@ void Decoration::setPlate(Plate* plate, bool animated)
   {
     this->runAction(
       Spawn::create(
-        EaseSineOut::create(
+        EaseBounceOut::create(
           MoveBy::create(0.5, Vec3(0, 1, 0))
         ),
-        FadeTo::create(0.5, 255),
         nullptr
       )
     );

@@ -59,7 +59,8 @@ class Decoration : public Entity3D
    *
    *
    */
-  public:
+public:
+  Decoration(const char* file, Node* parent);
   Decoration(const char* file);
   Decoration();
  ~Decoration();

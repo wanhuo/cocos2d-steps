@@ -64,7 +64,6 @@ void Crystal::onPickup()
       {
         next->setType(Plate::DIAMOND, false);
 
-        next->decoration->setOpacity(255);
         next->decoration->setPosition3D(current->getPosition3D());
         next->decoration->runAction(
           MoveTo::create(0.05 * (i + 1), next->getPosition3D())

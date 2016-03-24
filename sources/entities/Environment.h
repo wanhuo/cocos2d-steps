@@ -31,6 +31,7 @@
  *
  *
  */
+class Decoration;
 class Character;
 class Color;
 
@@ -109,8 +110,9 @@ class Environment : public Background
   Entity3D* plane;
   Entity3D* water;
 
+  Decoration* start;
+
   Color* color;
-  Color* color2;
 
   virtual void onAccelerate(Acceleration* acceleration, Event* e);
 

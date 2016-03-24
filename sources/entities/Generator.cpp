@@ -175,7 +175,11 @@ void Generator::create()
 
     if(Application->environment->plates->count <= 1)
     {
-      plate->setTexture("plate-texture-state-1-start.png");
+      plate->setTexture("plate-texture-state-2.png");
+
+      plate->decoration = static_cast<Decoration*>(Application->environment->start->_create());
+      plate->decoration->setTexture("start-texture.png");
+      plate->decoration->setPlate(plate, true);
     }
 
     //this->y += 0.5f;

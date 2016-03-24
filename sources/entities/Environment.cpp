@@ -68,6 +68,8 @@ void Environment::create()
 
   this->dusts = new Pool(new Dust, this);
 
+  this->start = new Decoration("start.obj", this->plane);
+
   this->spikes = new Pool(new Spike, this->plane);
   this->ups = new Pool(new Up, this->plane);
   this->diamonds = new Pool(new Diamond, this->plane);
