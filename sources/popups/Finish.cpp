@@ -62,11 +62,6 @@ Finish::Finish()
   this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application), true);
 
   this->texts.tap->setPosition(Application->getCenter().x, 230);
-
-  this->buttons.like->setPosition(Application->getCenter().x - 250, 100);
-  this->buttons.noad->setPosition(Application->getCenter().x - 85, 100);
-  this->buttons.share->setPosition(Application->getCenter().x + 85, 100);
-  this->buttons.leaderboards->setPosition(Application->getCenter().x + 250, 100);
 }
 
 Finish::~Finish()
@@ -83,6 +78,11 @@ void Finish::onShow()
   Popup::onShow();
 
   Events::onScreenChanged("Finish");
+
+  this->buttons.like->setPosition(Application->getCenter().x - 250, -100);
+  this->buttons.noad->setPosition(Application->getCenter().x - 85, -100);
+  this->buttons.share->setPosition(Application->getCenter().x + 85, -100);
+  this->buttons.leaderboards->setPosition(Application->getCenter().x + 250, -100);
 }
 
 void Finish::onHide(Callback callback)
@@ -95,7 +95,7 @@ void Finish::onHide(Callback callback)
  *
  *
  */
-void Finish::onTouch(cocos2d::Touch* touch, cocos2d::Event* e)
+void Finish::onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e)
 {
   this->hide([=] () {
     Application->changeState(Game::MENU);
@@ -110,9 +110,80 @@ void Finish::onTouch(cocos2d::Touch* touch, cocos2d::Event* e)
 void Finish::show()
 {
   Popup::show();
+
+  this->setOpacity(255);
+
+  this->buttons.leaderboards->runAction(
+    Sequence::create(
+      DelayTime::create(0),
+      EaseSineOut::create(
+        MoveBy::create(0.2, Vec2(0, 200))
+      ),
+      nullptr
+    )
+  );
+  this->buttons.share->runAction(
+    Sequence::create(
+      DelayTime::create(0.1),
+      EaseSineOut::create(
+        MoveBy::create(0.2, Vec2(0, 200))
+      ),
+      nullptr
+    )
+  );
+  this->buttons.noad->runAction(
+    Sequence::create(
+      DelayTime::create(0.2),
+      EaseSineOut::create(
+        MoveBy::create(0.2, Vec2(0, 200))
+      ),
+      nullptr
+    )
+  );
+  this->buttons.like->runAction(
+    Sequence::create(
+      DelayTime::create(0.3),
+      EaseSineOut::create(
+        MoveBy::create(0.2, Vec2(0, 200))
+      ),
+      nullptr
+    )
+  );
+
+  this->texts.tap->setOpacity(0);
+  this->texts.tap->runAction(
+    Sequence::create(
+      DelayTime::create(0.5),
+      FadeIn::create(0.5),
+      CallFunc::create([=] () {
+        this->texts.tap->runAction(
+          RepeatForever::create(
+            Sequence::create(
+              FadeOut::create(0.5),
+              FadeIn::create(0.5),
+              DelayTime::create(0.2),
+              nullptr
+            )
+          )
+        );
+      }),
+      nullptr
+    )
+  );
+
 }
 
 void Finish::hide(Callback callback)
 {
-  Popup::hide(callback);
+  this->texts.tap->stopAllActions();
+
+  this->runAction(
+    Sequence::create(
+      FadeOut::create(0.2),
+      CallFunc::create([=] () {
+        Popup::hide(callback);
+      }),
+      nullptr
+    )
+  );
 }

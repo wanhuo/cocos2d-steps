@@ -75,7 +75,7 @@ class Finish : public Popup
   virtual void onShow();
   virtual void onHide(Callback callback = NULL);
 
-  virtual void onTouch(cocos2d::Touch* touch, cocos2d::Event* e);
+  virtual void onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e);
 
   virtual void show();
   virtual void hide(Callback callback = NULL);

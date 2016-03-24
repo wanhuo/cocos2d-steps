@@ -85,7 +85,6 @@ void Environment::create()
   this->plates_spikes = new Pool(new Entity3D("spike-plate.obj"), this->plane);
 
   this->character = new Character;
-  this->whale = new Whale(this);
 
   this->generator = new Generator;
 
@@ -181,10 +180,6 @@ void Environment::onTurnRight(bool action)
  */
 void Environment::onMenu()
 {
-}
-
-void Environment::onGame()
-{
   this->plates->clear();
 
   this->ripples->clear();
@@ -199,9 +194,23 @@ void Environment::onGame()
   this->water->setPosition3D(Vec3(0, 0, 0));
 }
 
+void Environment::onGame()
+{
+  this->onTurnRight(true);
+}
+
 void Environment::onLose()
 {
+  this->stopAllActions();
   this->character->_destroy(true);
+  this->water->runAction(
+                         RepeatForever::create(
+                                               Sequence::create(
+                                                                TintTo::create(1.0, random(0, 255), random(0, 255), random(0, 255)),
+                                                                nullptr
+                                                                )
+                                               )
+                         );
 }
 
 /**
@@ -311,7 +320,7 @@ void Environment::update(float time)
   }
 
   this->updateDusts(time);
-  this->updateFishes(time);
+  //this->updateFishes(time);
 
-  this->updateCamera(time);
+  //this->updateCamera(time);
 }

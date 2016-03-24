@@ -53,7 +53,6 @@
 #include "Plate.h"
 #include "Cannon.h"
 #include "Character.h"
-#include "Whale.h"
 #include "Particle.h"
 #include "Fish.h"
 #include "Leaf.h"

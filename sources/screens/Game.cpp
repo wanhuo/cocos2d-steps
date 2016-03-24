@@ -116,21 +116,18 @@ Game::~Game()
  */
 void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
 {
-  if(!this->environment->whale->Node::state->create)
+  switch(this->state)
   {
-    switch(this->state)
+    case GAME:
+    if(touch->getLocation().x < this->getWidth() / 2)
     {
-      case GAME:
-      if(touch->getLocation().x < this->getWidth() / 2)
-      {
-        this->environment->onTurnLeft();
-      }
-      else
-      {
-        this->environment->onTurnRight();
-      }
-      break;
+      this->environment->onTurnLeft();
     }
+    else
+    {
+      this->environment->onTurnRight();
+    }
+    break;
   }
 }
 
@@ -141,24 +138,30 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
  */
 void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
 {
-  if(!this->environment->whale->Node::state->create)
+  switch(this->state)
   {
-    switch(this->state)
+    case LOSE:
+    Finish::getInstance()->hide([=] () {
+      this->changeState(MENU);
+    });
+    break;
+    case MENU:
+    Menu::getInstance()->hide([=] () {
+      this->changeState(GAME);
+    });
+    case GAME:
+    switch(key)
     {
-      case GAME:
-      switch(key)
-      {
-        case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-        case cocos2d::EventKeyboard::KeyCode::KEY_A:
-        this->environment->onTurnLeft();
-        break;
-        case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-        case cocos2d::EventKeyboard::KeyCode::KEY_D:
-        this->environment->onTurnRight();
-        break;
-      }
+      case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+      case cocos2d::EventKeyboard::KeyCode::KEY_A:
+      this->environment->onTurnLeft();
+      break;
+      case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+      case cocos2d::EventKeyboard::KeyCode::KEY_D:
+      this->environment->onTurnRight();
       break;
     }
+    break;
   }
 }
 
@@ -274,29 +277,32 @@ void Game::onRestorePurchases()
  */
 void Game::onMenu()
 {
-  Menu::getInstance()->show();
-
   this->environment->onMenu();
-}
+  this->counter->onMenu();
 
-void Game::onGame()
-{
-  this->environment->onGame();
+  Menu::getInstance()->show();
 
   this->cameras.d->setPositionX(this->startCameraX);
   this->cameras.d->setPositionY(this->startCameraY);
   this->cameras.d->setPositionZ(this->startCameraZ);
 
   this->cameras.d->setRotation3D(Vec3(this->startCameraRotationX, this->startCameraRotationY, this->startCameraRotationZ));
+}
+
+void Game::onGame()
+{
+  this->environment->onGame();
+  this->counter->onGame();
 
   this->counter->reset();
 }
 
 void Game::onLose()
 {
-  Finish::getInstance()->show();
-
   this->environment->onLose();
+  this->counter->onLose();
+
+  Finish::getInstance()->show();
 
   this->counter->save();
 }

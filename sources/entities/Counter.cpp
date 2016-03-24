@@ -31,14 +31,25 @@
 Counter::Counter(Node* parent)
 : Background(parent)
 {
-  this->texts.score = new Text("counter", this, true);
-  this->texts.coins = new Text("counter", this, true);
+  this->icon = new Entity("coins-icon.png", this, true);
 
-  this->texts.score->setPosition(Application->getCenter().x, Application->getHeight() - 200);
-  this->texts.coins->setPosition(Application->getWidth() - 100, Application->getHeight() - 40);
+  this->texts.name = new Text("name", this, true);
+  this->texts.score = new Text("counter-score", this, true);
+  this->texts.coins = new Text("counter-coins", this, true);
+  this->texts.best1 = new Text("counter-best", this, true);
+  this->texts.best2 = new Text("counter-new-best", this, true);
+
+  this->texts.best1->setPosition(Application->getCenter().x, Application->getHeight() - 300);
+  this->texts.best2->setPosition(Application->getCenter().x, Application->getHeight() - 300);
+
+  this->texts.score->setOpacity(0);
+  this->texts.best1->setOpacity(0);
+  this->texts.best2->setOpacity(0);
 
   this->setCameraMask(4);
+
   this->reset();
+  this->update();
 }
 
 Counter::~Counter()
@@ -50,9 +61,63 @@ Counter::~Counter()
  *
  *
  */
+void Counter::onMenu()
+{
+  this->texts.name->runAction(
+    FadeTo::create(0.2, 255)
+  );
+
+  this->texts.score->runAction(
+    FadeTo::create(0.2, 0)
+  );
+
+  this->texts.best1->runAction(
+    FadeTo::create(0.2, 0)
+  );
+  this->texts.best2->runAction(
+    FadeTo::create(0.2, 0)
+  );
+}
+
+void Counter::onGame()
+{
+  this->texts.name->runAction(
+    FadeTo::create(0.2, 0)
+  );
+}
+
+void Counter::onLose()
+{
+  this->texts.score->runAction(
+    FadeTo::create(0.2, 255)
+  );
+
+  if(true)
+  {
+    this->onBest();
+  }
+  else
+  {
+    this->onRegular();
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
 void Counter::onCount()
 {
+  if(this->value < 1) {
+    this->texts.score->runAction(
+      FadeTo::create(0.2, 255)
+    );
+  }
+
   this->value++;
+
+  this->update();
 }
 
 /**
@@ -62,6 +127,9 @@ void Counter::onCount()
  */
 void Counter::onBest()
 {
+  this->texts.best1->runAction(
+    FadeTo::create(0.2, 255)
+  );
 }
 
 void Counter::onRegular()
@@ -80,4 +148,20 @@ void Counter::reset()
 
 void Counter::save()
 {
+}
+
+/**
+ *
+ *
+ *
+ */
+void Counter::update()
+{
+  this->texts.score->data(this->value);
+
+  this->texts.name->setPosition(Application->getCenter().x, Application->getHeight() - 300);
+  this->texts.score->setPosition(Application->getCenter().x, Application->getHeight() - 200);
+  this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() - 60, Application->getHeight() - 60);
+
+  this->icon->setPosition(this->texts.coins->getPositionX() + this->texts.coins->getWidth() / 2 + 30, Application->getHeight() - 50);
 }

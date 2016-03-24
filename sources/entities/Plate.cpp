@@ -88,6 +88,22 @@ void Plate::onDestroy(bool action)
  *
  *
  */
+void Plate::onRemove()
+{
+  auto character = Application->environment->character;
+
+  if(character->plates.current)
+  {
+    if(character->plates.current->getIndex() == this->getIndex())
+    {
+      Application->environment->character->changeState(Character::CRASH);
+    }
+  }
+
+  this->setIndex(10000);
+  this->stopAllActions();
+}
+
 void Plate::onCount()
 {
   if(this->special)
@@ -105,7 +121,7 @@ void Plate::onCount()
     default:
     this->setTexture("plate-texture-state-2.png");
     break;
-    case MOVED1:
+    /*case MOVED1:
     this->setTexture("plate-texture-state-2-moved-1.png");
     break;
     case MOVED2:
@@ -116,7 +132,7 @@ void Plate::onCount()
     break;
     case MOVED4:
     this->setTexture("plate-texture-state-2-moved-4.png");
-    break;
+    break;*/
   }
 }
 
@@ -125,6 +141,11 @@ void Plate::onCount()
  *
  *
  */
+int Plate::getIndex()
+{
+  return this->index;
+}
+
 float Plate::getStartPositionX()
 {
   return this->startPositionX;
@@ -138,6 +159,11 @@ float Plate::getStartPositionY()
 float Plate::getStartPositionZ()
 {
   return this->startPositionZ;
+}
+
+void Plate::setIndex(int index)
+{
+  this->index = index;
 }
 
 void Plate::setStartPositionX(float x)
@@ -203,7 +229,7 @@ void Plate::setType(Type type, bool animated)
      */
     case MOVED1:
     this->stopAllActions();
-    this->setTexture("plate-texture-state-1-moved-1.png");
+    //this->setTexture("plate-texture-state-1-moved-1.png");
     this->behavior = DYNAMIC;
     this->runAction(
       RepeatForever::create(
@@ -309,7 +335,7 @@ void Plate::setType(Type type, bool animated)
 
     case MOVED2:
     this->stopAllActions();
-    this->setTexture("plate-texture-state-1-moved-2.png");
+    //this->setTexture("plate-texture-state-1-moved-2.png");
     this->behavior = DYNAMIC;
     this->runAction(
       RepeatForever::create(
@@ -415,7 +441,7 @@ void Plate::setType(Type type, bool animated)
 
     case MOVED3:
     this->stopAllActions();
-    this->setTexture("plate-texture-state-1-moved-3.png");
+    //this->setTexture("plate-texture-state-1-moved-3.png");
     this->behavior = DYNAMIC;
     this->runAction(
       RepeatForever::create(
@@ -475,7 +501,7 @@ void Plate::setType(Type type, bool animated)
 
     case MOVED4:
     this->stopAllActions();
-    this->setTexture("plate-texture-state-1-moved-4.png");
+    //this->setTexture("plate-texture-state-1-moved-4.png");
     this->behavior = DYNAMIC;
     this->runAction(
       RepeatForever::create(
@@ -531,6 +557,39 @@ void Plate::setType(Type type, bool animated)
       )
     );
     break;
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Plate::remove()
+{
+  this->onRemove();
+
+  this->runAction(
+    Sequence::create(
+      EaseBounceOut::create(
+        MoveBy::create(0.5, Vec3(0, -1, 0))
+      ),
+      CallFunc::create(CC_CALLBACK_0(Node::_destroy, this, true)),
+      nullptr
+    )
+  );
+
+  if(this->decoration)
+  {
+    this->decoration->runAction(
+      Sequence::create(
+        EaseBounceOut::create(
+          MoveBy::create(0.5, Vec3(0, -1, 0))
+        ),
+        CallFunc::create(CC_CALLBACK_0(Node::_destroy, this->decoration, true)),
+        nullptr
+      )
+    );
   }
 }
 

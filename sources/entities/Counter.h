@@ -40,8 +40,11 @@ class Counter : public Background
    */
   private:
   struct Texts {
+    Text* name;
     Text* score;
     Text* coins;
+    Text* best1;
+    Text* best2;
   };
 
   /**
@@ -51,6 +54,8 @@ class Counter : public Background
    */
   protected:
   Texts texts;
+
+  Entity* icon;
 
   /**
    *
@@ -63,6 +68,10 @@ class Counter : public Background
 
   int value;
 
+  virtual void onMenu();
+  virtual void onGame();
+  virtual void onLose();
+
   virtual void onCount();
 
   virtual void onBest();
@@ -70,6 +79,8 @@ class Counter : public Background
 
   virtual void reset();
   virtual void save();
+
+  virtual void update();
 };
 
 #endif

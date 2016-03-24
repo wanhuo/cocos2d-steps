@@ -82,7 +82,7 @@ void Decoration::setPlate(Plate* plate, bool animated)
     this->runAction(
       Spawn::create(
         EaseSineOut::create(
-          MoveBy::create(0.5, Vec3(0, 5, 0))
+          MoveBy::create(0.5, Vec3(0, 1, 0))
         ),
         FadeTo::create(0.5, 255),
         nullptr

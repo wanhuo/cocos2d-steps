@@ -738,19 +738,4 @@ void Character::updateStates(float time)
 void Character::update(float time)
 {
   this->updateStates(time);
-
-  /**
-   *
-   *
-   *
-   */
-  if(this->manual)
-  {
-    this->time += time;
-
-    if(this->time >= Whale::TIME && Application->counter->value > 0)
-    {
-      Application->environment->whale->changeState(Whale::STATE_NORMAL);
-    }
-  }
 }

@@ -43,13 +43,13 @@ Generator::~Generator()
  */
 void Generator::create()
 {
-    bool n = false;
-
     auto plate = static_cast<Plate*>(Application->environment->plates->_create());
 
     plate->setPositionX(this->x);
-    plate->setPositionY(this->y - 5);
+    plate->setPositionY(this->y - 1);
     plate->setPositionZ(this->z);
+
+    plate->setIndex(this->index);
 
     if(Application->environment->plates->count >= 5)
     {
@@ -57,6 +57,7 @@ void Generator::create()
       {
         plate->setType(Plate::SPIKES);
         this->s1 = 2;
+        this->s2 = 2;
       }
       else if((this->length - this->count) > 1 && this->s1 < 1 && this->direction && probably(10))
       {
@@ -100,7 +101,7 @@ void Generator::create()
       {
         //plate->setType(Plate::TYPE_HEART);
       }
-      else if(this->count > 1 && probably(20))
+      else if(this->count > 1 && probably(20) && false)
       {
         this->length++;
         this->length++;
@@ -123,15 +124,12 @@ void Generator::create()
           c->setPosition3D(p->getPosition3D());
         }
 
-    p->setOpacity(0);
-    c->setOpacity(0);
 
     p->runAction(
       Spawn::create(
         EaseSineOut::create(
-          MoveBy::create(0.5, Vec3(0, 5, 0))
+          MoveBy::create(0.5, Vec3(0, 1, 0))
         ),
-        FadeTo::create(0.5, 255),
         nullptr
       )
     );
@@ -139,9 +137,8 @@ void Generator::create()
     c->runAction(
       Spawn::create(
         EaseSineOut::create(
-          MoveBy::create(0.5, Vec3(0, 5, 0))
+          MoveBy::create(0.5, Vec3(0, 1, 0))
         ),
-        FadeTo::create(0.5, 255),
         nullptr
       )
     );
@@ -149,24 +146,23 @@ void Generator::create()
     }
 
     plate->setPositionX(this->x);
-    plate->setPositionY(this->y - 5);
+    plate->setPositionY(this->y - 1);
     plate->setPositionZ(this->z);
 
     plate->setStartPositionX(this->x);
     plate->setStartPositionY(this->y);
     plate->setStartPositionZ(this->z);
 
-    plate->setOpacity(0);
-
     plate->runAction(
       Spawn::create(
-        EaseSineOut::create(
-          MoveBy::create(0.5, Vec3(0, 5, 0))
+        EaseBounceOut::create(
+          MoveBy::create(0.5, Vec3(0, 1, 0))
         ),
-        FadeTo::create(0.5, 255),
         nullptr
       )
     );
+
+    this->index++;
 
     this->s1--;
     this->s2--;
@@ -190,11 +186,11 @@ void Generator::create()
     if(++this->count > this->length)
     {
       this->count = 0;
-      this->length = random(2, 10);
+      this->length = random(ROUTE_LENGTH_MIN, ROUTE_LENGTH_MAX);
 
       this->direction = !this->direction;
       //plates->last()->setColor(Color3B(0, 0, 255));
-      
+
       if(this->direction)
       {
         this->z += 1.5f;
@@ -215,41 +211,60 @@ void Generator::create()
         this->z -= 1.5f;
       }
     }
+
+    this->destroy(true);
 }
 
-void Generator::destroy()
+void Generator::destroy(bool manual)
 {
-  for(int i = 0; i < Application->environment->plates->count; i++)
+  switch(Application->state)
   {
-    auto plate = static_cast<Plate*>(Application->environment->plates->element(i));
-
-    if(plate->getPositionZ() - Application->environment->character->getPositionZ() > MAX_FREE_PLATES || Application->environment->character->getPositionX() - plate->getPositionX() > MAX_FREE_PLATES)
+    case Game::GAME:
+    if(manual)
     {
-      plate->runAction(
-        Spawn::create(
-          Sequence::create(
-            EaseSineInOut::create(
-              MoveBy::create(0.2, Vec3(0, 1.0, 0))
-            ),
-            EaseSineInOut::create(
-              MoveBy::create(0.4, Vec3(0, -6.0, 0))
-            ),
-            CallFunc::create([=] () {
-              plate->_destroy(true);
-            }),
-            nullptr
-          ),
-          Sequence::create(
-            DelayTime::create(0.3),
-            FadeOut::create(0.1),
-            nullptr
-          ),
-          nullptr
-        )
-      );
+      if(Application->environment->character->plates.current)
+      {
+        for(int i = 0; i < Application->environment->plates->count; i++)
+        {
+          Plate* element = static_cast<Plate*>(Application->environment->plates->element(i));
 
-      plate->clearDecoration(false, true);
+          if(element->getIndex() < Application->environment->character->plates.current->getIndex() - 5)
+          {
+            element->remove();
+          }
+        }
+      }
     }
+    else
+    {
+      if(Application->counter->value >= PLATES_MAX_SAVE)
+      {
+        Plate* plate = nullptr;
+
+        for(int i = 0; i < Application->environment->plates->count; i++)
+        {
+          Plate* element = static_cast<Plate*>(Application->environment->plates->element(i));
+
+          if(!plate)
+          {
+            plate = element;
+          }
+          else
+          {
+            if(element->getIndex() < plate->getIndex())
+            {
+              plate = element;
+            }
+          }
+        }
+
+        if(plate)
+        {
+          plate->remove();
+        }
+      }
+    }
+    break;
   }
 }
 
@@ -264,6 +279,7 @@ void Generator::clear()
   this->y = 0;
   this->z = 0;
 
+  this->index = 0;
   this->count = 0;
   this->length = 5;
 
@@ -272,11 +288,21 @@ void Generator::clear()
 
   this->direction = true;
 
+  Application->environment->stopAllActions();
   Application->environment->runAction(
     Repeat::create(
       CallFunc::create([=] () {
       this->create();
-      }), MAX_PLATES
+      }), PLATES_MAX
+    )
+  );
+  Application->environment->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        DelayTime::create(0.5),
+        CallFunc::create(CC_CALLBACK_0(Generator::destroy, this, false)),
+        nullptr
+      )
     )
   );
 }

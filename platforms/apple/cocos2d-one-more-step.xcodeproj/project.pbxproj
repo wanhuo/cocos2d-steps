@@ -126,8 +126,6 @@
 		78A658841C515F14001B887B /* Heart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A6587C1C515F14001B887B /* Heart.cpp */; };
 		78A658851C515F14001B887B /* Energy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A6587E1C515F14001B887B /* Energy.cpp */; };
 		78A658861C515F14001B887B /* Energy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A6587E1C515F14001B887B /* Energy.cpp */; };
-		78A658891C524D82001B887B /* Whale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A658881C524D82001B887B /* Whale.cpp */; };
-		78A6588A1C524D82001B887B /* Whale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A658881C524D82001B887B /* Whale.cpp */; };
 		78AB04461C62298800A8FCB4 /* Replace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78AB04441C62298800A8FCB4 /* Replace.cpp */; };
 		78AB04471C62298800A8FCB4 /* Replace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78AB04441C62298800A8FCB4 /* Replace.cpp */; };
 		78B36A791C5D039400F8A30C /* Cannon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B36A771C5D039400F8A30C /* Cannon.cpp */; };
@@ -347,8 +345,6 @@
 		78A6587C1C515F14001B887B /* Heart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Heart.cpp; sourceTree = "<group>"; };
 		78A6587D1C515F14001B887B /* Energy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Energy.h; sourceTree = "<group>"; };
 		78A6587E1C515F14001B887B /* Energy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Energy.cpp; sourceTree = "<group>"; };
-		78A658871C524D82001B887B /* Whale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Whale.h; sourceTree = "<group>"; };
-		78A658881C524D82001B887B /* Whale.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Whale.cpp; sourceTree = "<group>"; };
 		78AB04441C62298800A8FCB4 /* Replace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Replace.cpp; sourceTree = "<group>"; };
 		78AB04451C62298800A8FCB4 /* Replace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Replace.h; sourceTree = "<group>"; };
 		78B36A771C5D039400F8A30C /* Cannon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cannon.cpp; sourceTree = "<group>"; };
@@ -889,8 +885,6 @@
 				78B36A781C5D039400F8A30C /* Cannon.h */,
 				78CA6D041C20645200BF8416 /* Character.cpp */,
 				78CA6D051C20645200BF8416 /* Character.h */,
-				78A658881C524D82001B887B /* Whale.cpp */,
-				78A658871C524D82001B887B /* Whale.h */,
 				78AB04441C62298800A8FCB4 /* Replace.cpp */,
 				78E33FCD1C4A84080021272D /* Particle.h */,
 				78DE4C811C4D6C120080F105 /* Counter.cpp */,
@@ -1244,7 +1238,6 @@
 				78DE4C971C500D2A0080F105 /* Ripple.cpp in Sources */,
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78DE4C931C4FC2230080F105 /* Fish.cpp in Sources */,
-				78A6588A1C524D82001B887B /* Whale.cpp in Sources */,
 				78A658841C515F14001B887B /* Heart.cpp in Sources */,
 				78E807C71C596FD300880329 /* Leaf.cpp in Sources */,
 				78E33FD21C4A84080021272D /* Particle.cpp in Sources */,
@@ -1298,7 +1291,6 @@
 				7847CDF81AB184820014E3F3 /* NSMedia.mm in Sources */,
 				78DE4C921C4FC2230080F105 /* Fish.cpp in Sources */,
 				78A658851C515F14001B887B /* Energy.cpp in Sources */,
-				78A658891C524D82001B887B /* Whale.cpp in Sources */,
 				7847CDF61AB184820014E3F3 /* AppController.mm in Sources */,
 				78382F811C2469B90001B3F1 /* NSVote.mm in Sources */,
 				78E33FCF1C4A84080021272D /* Plate.cpp in Sources */,

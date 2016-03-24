@@ -21,9 +21,37 @@
     0
   ],
   "languages": {
-    "counter": [
+    "name": [
       {
-        "title": "10",
+        "title": "STEPS",
+        "font": "Consolasb",
+        "size": 200
+      }
+    ],
+    "counter-score": [
+      {
+        "title": "$1",
+        "font": "Consolas",
+        "size": 120
+      }
+    ],
+    "counter-coins": [
+      {
+        "title": "0",
+        "font": "Consolas",
+        "size": 60
+      }
+    ],
+    "counter-best": [
+      {
+        "title": "BEST $1",
+        "font": "Consolas",
+        "size": 80
+      }
+    ],
+    "counter-new-best": [
+      {
+        "title": "NEW BEST",
         "font": "Consolas",
         "size": 72
       }
@@ -32,14 +60,14 @@
       {
         "title": "TAP TO PLAY",
         "font": "Consolas",
-        "size": 54
+        "size": 40
       }
     ],
     "finish-tap": [
       {
         "title": "TAP TO RESTART",
         "font": "Consolas",
-        "size": 54
+        "size": 40
       }
     ],
     "credits-title-1": [

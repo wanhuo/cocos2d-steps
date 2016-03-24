@@ -39,6 +39,8 @@ class Plate : public Replace
    *
    */
   protected:
+  int index;
+
   float startPositionX;
   float startPositionY;
   float startPositionZ;
@@ -86,24 +88,30 @@ class Plate : public Replace
   Behavior behavior;
 
   bool position[2];
-  //bool
 
   Decoration* decoration = nullptr;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
+  virtual void onRemove();
   virtual void onCount();
+
+  virtual int getIndex();
 
   virtual float getStartPositionX();
   virtual float getStartPositionY();
   virtual float getStartPositionZ();
+
+  virtual void setIndex(int index);
 
   virtual void setStartPositionX(float x);
   virtual void setStartPositionY(float y);
   virtual void setStartPositionZ(float z);
 
   virtual void setType(Type type, bool animated = true);
+
+  virtual void remove();
 
   virtual void clearDecoration(bool force = false, bool animated = false);
 

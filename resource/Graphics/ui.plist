@@ -4,6 +4,19 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>coins-icon.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{585,305},{45,61}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{45,61}}</string>
+                <key>sourceSize</key>
+                <string>{45,61}</string>
+            </dict>
             <key>leaderboard-button.png</key>
             <dict>
                 <key>frame</key>
@@ -105,7 +118,7 @@
             <key>size</key>
             <string>{870,450}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9010f033188e8f1e1aa7fc64ee378e4f:e3b400a9dd219128cb6be0de3f43ff34:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
+            <string>$TexturePacker:SmartUpdate:47cc4575f92adcbd4b16af65331ba7e4:9228e4acd1df9a1b3f4340af546594a6:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
             <key>textureFileName</key>
             <string>ui.png</string>
         </dict>
