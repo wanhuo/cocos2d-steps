@@ -97,6 +97,8 @@
 		78817A761BBDAFD3008BA961 /* Icon-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 78817A751BBDAFD3008BA961 /* Icon-512.png */; };
 		788F17C81CA308B000F4E5D6 /* Finish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17C61CA308B000F4E5D6 /* Finish.cpp */; };
 		788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17C61CA308B000F4E5D6 /* Finish.cpp */; };
+		788F17CE1CA405B100F4E5D6 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17CC1CA405B100F4E5D6 /* Color.cpp */; };
+		788F17CF1CA405B100F4E5D6 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17CC1CA405B100F4E5D6 /* Color.cpp */; };
 		7894C0011BC919D400363FC9 /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7883470A1BC917A700DBA14E /* libcocos2d Mac.a */; };
 		7894C01A1BC9245800363FC9 /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0191BC9245800363FC9 /* Events.cpp */; };
 		7894C01B1BC9245800363FC9 /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0191BC9245800363FC9 /* Events.cpp */; };
@@ -326,6 +328,8 @@
 		78817A751BBDAFD3008BA961 /* Icon-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-512.png"; sourceTree = "<group>"; };
 		788F17C61CA308B000F4E5D6 /* Finish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Finish.cpp; sourceTree = "<group>"; };
 		788F17C71CA308B000F4E5D6 /* Finish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Finish.h; sourceTree = "<group>"; };
+		788F17CC1CA405B100F4E5D6 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
+		788F17CD1CA405B100F4E5D6 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		7894C0191BC9245800363FC9 /* Events.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Events.cpp; sourceTree = "<group>"; };
 		7894C01C1BC9258B00363FC9 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = ../../resource/Fonts; sourceTree = "<group>"; };
 		7894C01D1BC9258B00363FC9 /* Graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Graphics; path = ../../resource/Graphics; sourceTree = "<group>"; };
@@ -869,6 +873,8 @@
 		7894C02E1BC9282F00363FC9 /* entities */ = {
 			isa = PBXGroup;
 			children = (
+				788F17CC1CA405B100F4E5D6 /* Color.cpp */,
+				788F17CD1CA405B100F4E5D6 /* Color.h */,
 				7825DD3E1C5479BE00708016 /* Dust.cpp */,
 				7825DD3D1C5479BE00708016 /* Dust.h */,
 				78CA6D061C20645200BF8416 /* Environment.cpp */,
@@ -1240,6 +1246,7 @@
 				78DE4C931C4FC2230080F105 /* Fish.cpp in Sources */,
 				78A658841C515F14001B887B /* Heart.cpp in Sources */,
 				78E807C71C596FD300880329 /* Leaf.cpp in Sources */,
+				788F17CF1CA405B100F4E5D6 /* Color.cpp in Sources */,
 				78E33FD21C4A84080021272D /* Particle.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
 				78B36A7A1C5D039400F8A30C /* Cannon.cpp in Sources */,
@@ -1270,6 +1277,7 @@
 				78DE4C8E1C4DA6AC0080F105 /* Spike.cpp in Sources */,
 				78DE4C8A1C4DA0990080F105 /* Decoration.cpp in Sources */,
 				780436C91C53D28C00642F8D /* Crystal.cpp in Sources */,
+				788F17CE1CA405B100F4E5D6 /* Color.cpp in Sources */,
 				7847CDF91AB184820014E3F3 /* RootViewController.mm in Sources */,
 				78A658831C515F14001B887B /* Heart.cpp in Sources */,
 				78DE4C861C4D9F060080F105 /* Diamond.cpp in Sources */,
