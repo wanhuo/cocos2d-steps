@@ -89,6 +89,8 @@ void Environment::create()
   this->generator = new Generator;
 
   this->onGame();
+
+  this->color = new Color(255, 84, 205, 250);
 }
 
 /**
@@ -203,14 +205,6 @@ void Environment::onLose()
 {
   this->stopAllActions();
   this->character->_destroy(true);
-  this->water->runAction(
-                         RepeatForever::create(
-                                               Sequence::create(
-                                                                TintTo::create(1.0, random(0, 255), random(0, 255), random(0, 255)),
-                                                                nullptr
-                                                                )
-                                               )
-                         );
 }
 
 /**
@@ -323,4 +317,5 @@ void Environment::update(float time)
   //this->updateFishes(time);
 
   //this->updateCamera(time);
+
 }

@@ -32,7 +32,7 @@
  *
  */
 class Character;
-class Whale;
+class Color;
 
 /**
  *
@@ -85,7 +85,6 @@ class Environment : public Background
  ~Environment();
 
   Character* character;
-  Whale* whale;
 
   Generator* generator;
 
@@ -108,6 +107,9 @@ class Environment : public Background
 
   Entity3D* plane;
   Entity3D* water;
+
+  Color* color;
+  Color* color2;
 
   virtual void onAccelerate(Acceleration* acceleration, Event* e);
 

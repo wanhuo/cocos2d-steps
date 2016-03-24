@@ -118,6 +118,9 @@ void Counter::onCount()
   this->value++;
 
   this->update();
+
+
+  Application->environment->water->setColor(Application->environment->color->get());
 }
 
 /**

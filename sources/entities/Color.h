@@ -39,6 +39,7 @@ class Color
    *
    */
   private:
+  int index;
 
   /**
    *
@@ -53,8 +54,18 @@ class Color
    *
    */
   public:
-  Color();
+  Color(int index, int r = 0, int g = 0, int b = 0);
  ~Color();
+
+  int* currentColor = new int[3];
+  int* targetColor = new int[3];
+  int* distance = new int[3];
+  int* increment = new int[3];
+
+  int* generateRGB(int min = 0, int max = 255);
+  int* calculateDistance(int* colorArray1, int* colorArray2);
+  int* calculateIncrement(int* distanceArray);
+  Color3B get();
 };
 
 #endif

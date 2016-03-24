@@ -51,10 +51,9 @@ void Plate::onCreate()
    *
    *
    */
-  //this->position = true;
   this->behavior = STATIC;
 
-  this->setTexture("plate-texture-state-1.png");this->setColor(Color3B(random(0, 255), random(0, 255), random(0, 255)));
+  this->setTexture("plate-texture-state-1.png");
 
   this->setType(NORMAL);
 
@@ -105,7 +104,9 @@ void Plate::onRemove()
 }
 
 void Plate::onCount()
-{this->setColor(Color3B::WHITE);
+{
+  //this->setColor(Color3B::WHITE);
+
   if(this->special)
   {
     switch(this->type)
@@ -119,7 +120,7 @@ void Plate::onCount()
   switch(this->type)
   {
     default:
-    this->setTexture("plate-texture-state-2.png");
+    //this->setTexture("plate-texture-state-2.png");
     break;
     /*case MOVED1:
     this->setTexture("plate-texture-state-2-moved-1.png");
