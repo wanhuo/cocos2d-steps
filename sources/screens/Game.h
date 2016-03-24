@@ -64,6 +64,8 @@
 #include "Finish.h"
 #include "Store.h"
 
+#include "Color.h"
+
 /**
  *
  *
