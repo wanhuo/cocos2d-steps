@@ -91,17 +91,14 @@ void Down::onCreate()
         this->runAction(
           RepeatForever::create(
             Sequence::create(
-              CallFunc::create([=] () {
-                this->enable = true;
-              }),
-              EaseBounceOut::create(
-                MoveBy::create(0.6, Vec3(0, -2.0, 0))
-              ),
               DelayTime::create(0.6),
               CallFunc::create([=] () {
-                this->enable = false;
+            Application->environment->runAction(
+              Shake::create(0.2, 0.2)
+            );
               }),
-              MoveBy::create(0.2, Vec3(0, 2.0, 0)),
+              DelayTime::create(0.6),
+              DelayTime::create(0.2),
               DelayTime::create(0.6),
               nullptr
             )
