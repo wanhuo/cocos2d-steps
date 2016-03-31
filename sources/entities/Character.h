@@ -39,7 +39,6 @@ class Character : public Cube
    *
    */
   private:
-  Entity3D* plane;
 
   /**
    *
@@ -62,6 +61,8 @@ class Character : public Cube
    *
    */
   public:
+  Entity3D* plane;
+
   enum State {
     NORMAL,
     JUMP,

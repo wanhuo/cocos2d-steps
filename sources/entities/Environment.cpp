@@ -97,8 +97,8 @@ void Environment::create()
   this->color = new Color(255, 84, 205, 250);
 
   this->light.natural = AmbientLight::create(Color3B(150, 150, 150));
-  this->light.environment = DirectionLight::create(Vec3(0.5, -1.0, 0.0), Color3B(100, 100, 100));
-  this->light.character = SpotLight::create(Vec3(0, 0, 0), Vec3(0, 0, 0), Color3B(255, 255, 255), 320.0f, 0.0f, 22.0f);
+  this->light.environment = DirectionLight::create(Vec3(0.5, -1.0, 0.0), Color3B(120, 120, 120));
+  this->light.character = SpotLight::create(Vec3(0, 0, 0), Vec3(0, 0, 0), Color3B(255, 255, 255), 320.0f, 0.0f, 20.0f);
 
   this->plane->addChild(this->light.environment);
   this->plane->addChild(this->light.natural);

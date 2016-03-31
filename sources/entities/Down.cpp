@@ -60,8 +60,6 @@ void Down::onCreate()
     Sequence::create(
       MoveBy::create(0.5, Vec3(0, 2.8, 0)),
       CallFunc::create([=] () {
-        auto time = random(0.2, 0.5);
-
         this->runAction(
           RepeatForever::create(
             Sequence::create(
@@ -71,12 +69,40 @@ void Down::onCreate()
               EaseBounceOut::create(
                 MoveBy::create(0.6, Vec3(0, -2.0, 0))
               ),
-              DelayTime::create(time),
+              DelayTime::create(0.6),
               CallFunc::create([=] () {
                 this->enable = false;
               }),
               MoveBy::create(0.2, Vec3(0, 2.0, 0)),
-              DelayTime::create(time),
+              DelayTime::create(0.6),
+              nullptr
+            )
+          )
+        );
+      }),
+      nullptr
+    )
+  );
+
+  this->runAction(
+    Sequence::create(
+      DelayTime::create(0.5),
+      CallFunc::create([=] () {
+        this->runAction(
+          RepeatForever::create(
+            Sequence::create(
+              CallFunc::create([=] () {
+                this->enable = true;
+              }),
+              EaseBounceOut::create(
+                MoveBy::create(0.6, Vec3(0, -2.0, 0))
+              ),
+              DelayTime::create(0.6),
+              CallFunc::create([=] () {
+                this->enable = false;
+              }),
+              MoveBy::create(0.2, Vec3(0, 2.0, 0)),
+              DelayTime::create(0.6),
               nullptr
             )
           )

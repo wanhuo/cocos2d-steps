@@ -103,12 +103,19 @@ void Up::onPickup()
   }
 
   Application->environment->character->setManual(false);
+  Application->environment->character->plane->runAction(
+    Sequence::create(
+      ScaleTo::create(time / 2, 0.8, 1.4, 0.8),
+      ScaleTo::create(time / 2, 1.0, 1.0, 1.0),
+      nullptr
+    )
+  );
   Application->environment->character->runAction(
     Spawn::create(
       Sequence::create(
         CallFunc::create([=] () {
-          Application->environment->plane->stopAllActions();
-          Application->environment->plane->runAction(
+           Application->environment->plane->stopAllActions();
+           Application->environment->plane->runAction(
             EaseSineIn::create(
               MoveBy::create(time / 2, Vec3(-0.75 * l, 0, 0.75 * r))
             )
@@ -142,7 +149,10 @@ void Up::onPickup()
         }),
         nullptr
       ),
-      RotateGlobalBy::create(time, Vec3(0, 180 * (probably(50) ? 1 : -1), 0)),
+      Sequence::create(
+        RotateGlobalBy::create(time, Vec3(0, 180 * (probably(50) ? 1 : -1), 0)),
+        nullptr
+      ),
       nullptr
     )
   );

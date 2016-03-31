@@ -76,7 +76,7 @@ Game::Game()
   float y = -(this->getHeight() / SCALE_FACTOR) / 2 + 55;
   float z = 45;
 
-  float rx = -38;
+  float rx = -40;
   float ry = -40;
   float rz = 0;
 
@@ -163,14 +163,14 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
   switch(this->state)
   {
     case LOSE:
-    Finish::getInstance()->hide([=] () {
-      this->changeState(MENU);
-    });
+    Finish::getInstance()->hide();
+
+    this->changeState(MENU);
     break;
     case MENU:
-    Menu::getInstance()->hide([=] () {
-      this->changeState(GAME);
-    });
+    Menu::getInstance()->hide();
+
+    this->changeState(GAME);
     break;
     case GAME:
     switch(key)

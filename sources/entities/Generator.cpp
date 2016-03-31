@@ -69,7 +69,7 @@ Plate* Generator::create()
         this->s1 = 2;
         this->s2 = 2;
       }
-      else if(this->s2 < 1 && probably(10) && false)
+      else if(this->s2 < 1 && probably(10))
       {
         plate->setType(Plate::DOWN);
         this->s1 = 2;
