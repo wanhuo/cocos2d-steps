@@ -53,6 +53,7 @@ void Plate::onCreate()
    */
   this->behavior = STATIC;
   this->moved = false;
+  this->blocked = false;
 
   this->setRotation3D(Vec3(0, 0, 0));
   this->setTexture("plate-texture-state-1.png");

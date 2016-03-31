@@ -29,7 +29,7 @@
  *
  */
 Character::Character()
-: Cube("cube2.obj")
+: Cube("cube.obj")
 {
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
@@ -155,7 +155,7 @@ void Character::onTurnLeft(bool action, bool set)
       this->autoTurnLeft = true;
     }
 
-    if(this->onTouch())
+    if(!this->isPlateRightBlocked() && this->onTouch())
     {
       this->runAction(
         Spawn::create(
@@ -219,7 +219,7 @@ void Character::onTurnRight(bool action, bool set)
       this->autoTurnRight = true;
     }
 
-    if(this->onTouch())
+    if(!this->isPlateLeftBlocked() && this->onTouch())
     {
       this->runAction(
         Spawn::create(
@@ -308,6 +308,31 @@ int Character::removeLive(int count)
   this->lives -= count;
 
   return this->lives;
+}
+
+/**
+ *
+ *
+ *
+ */
+bool Character::isPlateLeftBlocked()
+{
+  if(this->getPlateLeft())
+  {
+    return this->getPlateLeft()->blocked;
+  }
+
+  return false;
+}
+
+bool Character::isPlateRightBlocked()
+{
+  if(this->getPlateRight())
+  {
+    return this->getPlateRight()->blocked;
+  }
+
+  return false;
 }
 
 /**
@@ -510,23 +535,28 @@ void Character::onFall()
 {
 }
 
-void Character::onCrash()
+void Character::onCrash(Crash crash)
 {
   this->plane->stopAllActions();
 
-  this->runAction(
-    Sequence::create(
-      ScaleTo::create(0.1, 1.2),
-      EaseSineIn::create(
-        ScaleTo::create(0.3, 1.0)
-      ),
-      CallFunc::create([=] () {
-        Application->changeState(Game::LOSE);
-      }),
-      MoveBy::create(2.0, Vec3(0, -0.8, 0)),
-      nullptr
-    )
-  );
+  switch(crash)
+  {
+    case SPIKES:
+    this->runAction(
+      Sequence::create(
+        ScaleTo::create(0.1, 1.2),
+        EaseSineIn::create(
+          ScaleTo::create(0.3, 1.0)
+        ),
+        CallFunc::create([=] () {
+          Application->changeState(Game::LOSE);
+        }),
+        MoveBy::create(2.0, Vec3(0, -0.8, 0)),
+        nullptr
+      )
+    );
+    break;
+  }
 
   Sound->play("character-hit");
 }
@@ -567,6 +597,14 @@ void Character::onHit()
  */
 Plate* Character::getPlateRight(Plate* current)
 {
+  if(!this->plates.current)
+  {
+    if(!current)
+    {
+      return nullptr;
+    }
+  }
+
   int x = (current ? current->getPositionX() : this->plates.current->getPositionX()) / 1.5;
   int y = (current ? current->getPositionY() : this->plates.current->getPositionY()) / 1.5;
   int z = (current ? current->getPositionZ() : this->plates.current->getPositionZ()) / 1.5;
@@ -594,6 +632,14 @@ Plate* Character::getPlateRight(Plate* current)
 
 Plate* Character::getPlateLeft(Plate* current)
 {
+  if(!this->plates.current)
+  {
+    if(!current)
+    {
+      return nullptr;
+    }
+  }
+
   int x = (current ? current->getPositionX() : this->plates.current->getPositionX()) / 1.5;
   int y = (current ? current->getPositionY() : this->plates.current->getPositionY()) / 1.5;
   int z = (current ? current->getPositionZ() : this->plates.current->getPositionZ()) / 1.5;
@@ -698,7 +744,7 @@ Character::Nears Character::getPlatesNearWithDefaults(Plate* current)
  *
  *
  */
-void Character::changeState(State state)
+void Character::changeState(State state, Crash crash)
 {
   if(this->state != state)
   {
@@ -716,7 +762,7 @@ void Character::changeState(State state)
       this->onFall();
       break;
       case CRASH:
-      this->onCrash();
+      this->onCrash(crash);
       break;
       case HIT:
       this->onHit();
@@ -738,11 +784,14 @@ void Character::updateNormal(float time)
     {   
       if(this->plates.current->decoration->status())
       {
-        this->plates.current->decoration->stopAllActions();
+        if(this->plates.current->decoration->stopable)
+        {
+          this->plates.current->decoration->stopAllActions();
+        }
 
         if(--this->lives < 0)
         {
-          this->changeState(CRASH);
+          this->changeState(CRASH, this->plates.current->decoration->status());
         }
         else
         {

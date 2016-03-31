@@ -24,7 +24,7 @@
 #ifndef _CHARACTER_H_
 #define _CHARACTER_H_
 
-#include "Game.h"
+#include "Cube.h"
 
 /**
  *
@@ -69,6 +69,13 @@ class Character : public Cube
     FALL,
     CRASH,
     HIT
+  };
+
+  enum Crash {
+    UNDEFINED,
+    CATCH,
+    SPIKES,
+    DOWN
   };
 
   enum Turn {
@@ -122,7 +129,7 @@ class Character : public Cube
   virtual void onNormal();
   virtual void onJump();
   virtual void onFall();
-  virtual void onCrash();
+  virtual void onCrash(Crash crash = UNDEFINED);
   virtual void onHit();
 
   virtual bool onTouch();
@@ -146,6 +153,9 @@ class Character : public Cube
   virtual int addLive(int count = 1);
   virtual int removeLive(int count = 1);
 
+  virtual bool isPlateLeftBlocked();
+  virtual bool isPlateRightBlocked();
+
   virtual Plate* getPlateLeft(Plate* current = nullptr);
   virtual Plate* getPlateRight(Plate* current = nullptr);
 
@@ -155,7 +165,7 @@ class Character : public Cube
   virtual Nears getPlatesNear(Plate* current = nullptr);
   virtual Nears getPlatesNearWithDefaults(Plate* current = nullptr);
 
-  virtual void changeState(State state);
+  virtual void changeState(State state, Crash crash = UNDEFINED);
 
   virtual void updateNormal(float time);
   virtual void updateJump(float time);

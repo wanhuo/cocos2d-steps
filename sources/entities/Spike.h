@@ -26,6 +26,8 @@
 
 #include "Game.h"
 
+#include "Character.h"
+
 /**
  *
  *
@@ -62,7 +64,7 @@ class Spike : public Decoration
 
   virtual void setPlate(Plate* plate);
 
-  virtual bool status();
+  virtual Character::Crash status();
 
   Spike* deepCopy();
 };
