@@ -57,10 +57,10 @@ void Environment::onAccelerate(Acceleration* acceleration, Event* e)
 void Environment::create()
 {
   this->plane = new Entity3D(this, true);
-  this->plane->setRotation3D(Vec3(0, 45, 0));
+  this->plane->setRotation3D(Vec3(0, 0, 0));
   this->plane->setPosition3D(Vec3(0, 0, 0));
 
-  this->water = new Entity3D("water.obj", this->plane, true);
+  this->water = new Entity3D("water.obj", this, true);
   this->water->setRotation3D(Vec3(0, 0, 0));
   this->water->setPosition3D(Vec3(0, 0, 0));
   this->water->setColor(Color3B(84, 205, 240));
@@ -72,6 +72,7 @@ void Environment::create()
 
   this->spikes = new Pool(new Spike, this->plane);
   this->ups = new Pool(new Up, this->plane);
+  this->downs = new Pool(new Down, this->plane);
   this->diamonds = new Pool(new Diamond, this->plane);
   this->crystals = new Pool(new Crystal, this->plane);
   this->energies = new Pool(new Energy, this->plane);
@@ -84,8 +85,8 @@ void Environment::create()
   this->fishes = new Pool(new Fish, this->plane);
   this->ripples = new Pool(new Ripple, this->plane);
 
-  this->plates_spikes = new Pool(new Entity3D("plate-type-spike.obj"), this->plane);
-  this->plates_up = new Pool(new Entity3D("plate-type-up.obj"), this->plane);
+  this->plates_spikes = new Pool(new Decoration("plate-type-spike.obj"), this->plane);
+  this->plates_up = new Pool(new Decoration("plate-type-up.obj"), this->plane);
 
   this->character = new Character;
 
@@ -94,6 +95,14 @@ void Environment::create()
   this->onGame();
 
   this->color = new Color(255, 84, 205, 250);
+
+  this->light.natural = AmbientLight::create(Color3B(150, 150, 150));
+  this->light.environment = DirectionLight::create(Vec3(0.5, -1.0, 0.0), Color3B(100, 100, 100));
+  this->light.character = SpotLight::create(Vec3(0, 0, 0), Vec3(0, 0, 0), Color3B(255, 255, 255), 320.0f, 0.0f, 22.0f);
+
+  this->plane->addChild(this->light.environment);
+  this->plane->addChild(this->light.natural);
+  this->plane->addChild(this->light.character);
 }
 
 /**
@@ -119,7 +128,9 @@ Entity3D* Environment::createParticle(float x, float y, float z)
 {
   auto particle = static_cast<Entity3D*>(this->particles->_create());
 
-  particle->setScale(random(0.5, 1.0));
+  particle->setScaleX(random(0.5, 1.5));
+  particle->setScaleY(0.0);
+  particle->setScaleZ(random(0.5, 1.5));
 
   particle->setPositionX(x);
   particle->setPositionY(y);
@@ -128,6 +139,9 @@ Entity3D* Environment::createParticle(float x, float y, float z)
   particle->runAction(
     Spawn::create(
       Sequence::create(
+        EaseSineOut::create(
+          ScaleTo::create(random(0.2, 0.5), particle->getScaleX(), 1.0, particle->getScaleZ())
+        ),
         EaseSineOut::create(
           ScaleTo::create(random(0.2, 0.5), 0.0)
         ),
@@ -138,7 +152,7 @@ Entity3D* Environment::createParticle(float x, float y, float z)
       ),
       Sequence::create(
         EaseSineOut::create(
-          MoveBy::create(random(0.2, 0.5), Vec3((random(0.5, 1.5) * (probably(50) ? 1 : -1)), random(0.5, 0.7), (random(0.5, 1.5) * (probably(50) ? 1 : -1))))
+          MoveBy::create(random(0.2, 0.5), Vec3(random(0.5, 1.2) * (probably(50) ? 1 : -1), 0.0, random(0.5, 1.2) * (probably(50) ? 1 : -1)))
         ),
         nullptr
       ),
@@ -156,9 +170,9 @@ Entity3D* Environment::createParticle(float x, float y, float z)
  */
 Vec3 Environment::position()
 {
-  auto x = this->character->getPositionX() + random(-10.0, 10.0);
+  auto x = this->character->getPositionX() + random(-5.0, 5.0);
   auto y = 0;
-  auto z = this->character->getPositionZ() + random(-10.0, 10.0);
+  auto z = this->character->getPositionZ() + random(-5.0, 5.0);
 
   return Vec3(x, y, z);
 }
@@ -191,6 +205,7 @@ void Environment::onMenu()
 
   this->spikes->clear();
   this->ups->clear();
+  this->downs->clear();
 
   this->ripples->clear();
   this->cannons->clear();
@@ -198,20 +213,21 @@ void Environment::onMenu()
   this->generator->clear();
 
   this->character->_create();
+  this->character->reset();
 
+  this->plane->setPosition3D(Vec3(0, 0, 0));
   this->water->setRotation3D(Vec3(0, 0, 0));
   this->water->setPosition3D(Vec3(0, 0, 0));
 }
 
 void Environment::onGame()
 {
-  this->onTurnRight(true);
+  this->onTurnRight();
 }
 
 void Environment::onLose()
 {
   this->stopAllActions();
-  this->character->_destroy(true);
 }
 
 /**
@@ -219,6 +235,15 @@ void Environment::onLose()
  *
  *
  */
+void Environment::updateLight(float time)
+{
+  auto x = this->character->getPositionX();
+  auto y = 20.0f;
+  auto z = this->character->getPositionZ();
+
+  this->light.character->setPosition3D(Vec3(x, y, z));
+}
+
 void Environment::updateDusts(float time)
 {
   if(this->dusts->count < DUSTS_COUNT)
@@ -321,6 +346,7 @@ void Environment::update(float time)
   }
 
   this->updateDusts(time);
+  this->updateLight(time);
   //this->updateFishes(time);
 
   //this->updateCamera(time);

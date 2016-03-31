@@ -109,13 +109,13 @@ void Counter::onLose()
  */
 void Counter::onCount()
 {
-  if(this->value < 1) {
+  if(this->values.current < 1) {
     this->texts.score->runAction(
       FadeTo::create(0.2, 255)
     );
   }
 
-  this->value++;
+  this->values.current++;
 
   this->update();
 
@@ -146,7 +146,8 @@ void Counter::onRegular()
  */
 void Counter::reset()
 {
-  this->value = 0;
+  this->values.current = 0;
+  this->values.best = 15;
 }
 
 void Counter::save()
@@ -160,11 +161,19 @@ void Counter::save()
  */
 void Counter::update()
 {
-  this->texts.score->data(this->value);
+  this->texts.score->data(this->values.current);
+  this->texts.best1->data(this->values.best);
+  //this->texts.best2->data(this->values.best);
+  this->texts.coins->data(this->values.coins);
 
   this->texts.name->setPosition(Application->getCenter().x, Application->getHeight() - 300);
   this->texts.score->setPosition(Application->getCenter().x, Application->getHeight() - 200);
   this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() - 60, Application->getHeight() - 60);
 
   this->icon->setPosition(this->texts.coins->getPositionX() + this->texts.coins->getWidth() / 2 + 30, Application->getHeight() - 50);
+
+  if(this->values.current > this->values.best)
+  {
+    //this->on???;
+  }
 }

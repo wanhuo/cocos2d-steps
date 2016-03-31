@@ -122,7 +122,6 @@ void Decoration::remove(bool force)
         ),
         Sequence::create(
           DelayTime::create(0.3),
-          FadeOut::create(0.1),
           nullptr
         ),
         nullptr
@@ -144,4 +143,14 @@ bool Decoration::status()
 const char* Decoration::getParticleTexture()
 {
   return "";
+}
+
+/**
+ *
+ *
+ *
+ */
+Decoration* Decoration::deepCopy()
+{
+  return new Decoration(this->textureFileName);
 }

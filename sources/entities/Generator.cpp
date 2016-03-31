@@ -41,7 +41,7 @@ Generator::~Generator()
  *
  *
  */
-void Generator::create()
+Plate* Generator::create()
 {
     auto plate = static_cast<Plate*>(Application->environment->plates->_create());
 
@@ -51,17 +51,27 @@ void Generator::create()
 
     plate->setIndex(this->index);
 
-    if(Application->environment->plates->count >= 5)
+    if(this->index >= PLATES_START)
     {
-      if(this->s2 < 1 && probably(10))
+      if(this->index == Application->counter->values.best)
+      {
+        plate->setType(Plate::BEST);
+      }
+      else if(this->s2 < 1 && probably(10))
       {
         plate->setType(Plate::SPIKES);
         this->s1 = 2;
         this->s2 = 2;
       }
-      if(this->s2 < 1 && probably(10))
+      else if(this->s2 < 1 && probably(10))
       {
         plate->setType(Plate::UP);
+        this->s1 = 2;
+        this->s2 = 2;
+      }
+      else if(this->s2 < 1 && probably(10) && false)
+      {
+        plate->setType(Plate::DOWN);
         this->s1 = 2;
         this->s2 = 2;
       }
@@ -180,9 +190,8 @@ void Generator::create()
       plate->decoration = static_cast<Decoration*>(Application->environment->start->_create());
       plate->decoration->setTexture("start-texture.png");
       plate->decoration->setPlate(plate, true);
+      plate->decoration->setRotation3D(Vec3(0, 0, 0));
     }
-
-    //this->y += 0.5f;
 
     if(this->direction)
     {
@@ -199,7 +208,6 @@ void Generator::create()
       this->length = random(ROUTE_LENGTH_MIN, ROUTE_LENGTH_MAX);
 
       this->direction = !this->direction;
-      //plates->last()->setColor(Color3B(0, 0, 255));
 
       if(this->direction)
       {
@@ -209,9 +217,7 @@ void Generator::create()
       {
         this->x -= 1.5f;
       }
-      this->y -= 0.5f;
-      
-      this->y += 0.5f;
+
       if(this->direction)
       {
         this->x += 1.5f;
@@ -222,7 +228,11 @@ void Generator::create()
       }
     }
 
+    plate->direction = this->direction;
+
     this->destroy(true);
+
+    return plate;
 }
 
 void Generator::destroy(bool manual)
@@ -247,7 +257,7 @@ void Generator::destroy(bool manual)
     }
     else
     {
-      if(Application->counter->value >= PLATES_MAX_SAVE)
+      if(Application->counter->values.current >= PLATES_SAVE)
       {
         Plate* plate = nullptr;
 
@@ -291,7 +301,7 @@ void Generator::clear()
 
   this->index = 0;
   this->count = 0;
-  this->length = 5;
+  this->length = random(3, PLATES_START);
 
   this->s1 = 0;
   this->s2 = 0;
@@ -303,7 +313,7 @@ void Generator::clear()
     Repeat::create(
       CallFunc::create([=] () {
       this->create();
-      }), PLATES_MAX
+      }), PLATES_START
     )
   );
   Application->environment->runAction(

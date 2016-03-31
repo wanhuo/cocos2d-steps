@@ -72,12 +72,12 @@ Game::Game()
   this->cameras.s->setDepth(3);
   //this->cameras.e->setDepth(3);
 
-  float x = -(this->getWidth() / SCALE_FACTOR) / 2;
-  float y = -(this->getHeight() / SCALE_FACTOR) / 2 + 40;
+  float x = -(this->getWidth() / SCALE_FACTOR) / 2 - 40;
+  float y = -(this->getHeight() / SCALE_FACTOR) / 2 + 55;
   float z = 45;
 
-  float rx = -40;
-  float ry = 0;
+  float rx = -38;
+  float ry = -40;
   float rz = 0;
 
   this->startCameraX = x;
@@ -118,16 +118,38 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
 {
   switch(this->state)
   {
-    case GAME:
-    if(touch->getLocation().x < this->getWidth() / 2)
-    {
-      this->environment->onTurnLeft();
-    }
-    else
-    {
-      this->environment->onTurnRight();
-    }
+    case MENU:
+    Menu::getInstance()->hide();
+
+    this->changeState(GAME);
     break;
+    case GAME:
+      if(touch->getLocation().x < this->getWidth() / 2)
+      {
+        this->environment->onTurnLeft();
+      }
+      else
+      {
+        this->environment->onTurnRight();
+      }
+      break;
+  }
+}
+
+void Game::onTouchFinish(cocos2d::Touch* touch, Event* event)
+{
+  switch(this->state)
+  {
+    default:
+      if(touch->getLocation().x < this->getWidth() / 2)
+      {
+        this->environment->onTurnLeft(false);
+      }
+      else
+      {
+        this->environment->onTurnRight(false);
+      }
+      break;
   }
 }
 
@@ -149,6 +171,7 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
     Menu::getInstance()->hide([=] () {
       this->changeState(GAME);
     });
+    break;
     case GAME:
     switch(key)
     {
@@ -281,12 +304,6 @@ void Game::onMenu()
   this->counter->onMenu();
 
   Menu::getInstance()->show();
-
-  this->cameras.d->setPositionX(this->startCameraX);
-  this->cameras.d->setPositionY(this->startCameraY);
-  this->cameras.d->setPositionZ(this->startCameraZ);
-
-  this->cameras.d->setRotation3D(Vec3(this->startCameraRotationX, this->startCameraRotationY, this->startCameraRotationZ));
 }
 
 void Game::onGame()

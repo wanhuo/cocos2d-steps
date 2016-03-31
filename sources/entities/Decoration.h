@@ -79,6 +79,8 @@ public:
   virtual bool status();
 
   virtual const char* getParticleTexture();
+
+  virtual Decoration* deepCopy();
 };
 
 #endif

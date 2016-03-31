@@ -54,6 +54,7 @@ void Plate::onCreate()
   this->behavior = STATIC;
   this->moved = false;
 
+  this->setRotation3D(Vec3(0, 0, 0));
   this->setTexture("plate-texture-state-1.png");
 
   this->setType(NORMAL);
@@ -123,6 +124,9 @@ void Plate::onCount()
   {
     default:
     this->setTexture("plate-texture-state-2.png");
+    break;
+    case BEST:
+    this->setTexture("plate-texture-state-2-best.png");
     break;
     /*case MOVED1:
     this->setTexture("plate-texture-state-2-moved-1.png");
@@ -195,6 +199,9 @@ void Plate::setType(Type type, bool animated)
 
   switch(this->type)
   {
+    case BEST:
+    this->setTexture("plate-texture-state-1-best.png");
+    break;
     case SPIKES:
     this->decoration = static_cast<Decoration*>(Application->environment->spikes->_create());
     this->decoration->setPlate(this, animated);
@@ -212,6 +219,10 @@ void Plate::setType(Type type, bool animated)
 
     this->special = static_cast<Entity3D*>(Application->environment->plates_up->_create());
     this->special->setTexture("plate-texture-state-1-up.png");
+    break;
+    case DOWN:
+    this->decoration = static_cast<Decoration*>(Application->environment->downs->_create());
+    this->decoration->setPlate(this, animated);
     break;
     case DIAMOND:
     this->decoration = static_cast<Decoration*>(Application->environment->diamonds->_create());
@@ -360,7 +371,7 @@ void Plate::setType(Type type, bool animated)
             this->runAction(action->clone());
             this->moved = true;
 
-            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            if(Application->environment->character->plates.current == this)
             {
               Application->environment->character->runAction(action->clone());
             }
@@ -387,7 +398,7 @@ void Plate::setType(Type type, bool animated)
               )
             );
 
-            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            if(Application->environment->character->plates.current == this)
             {
               Application->environment->character->runAction(action->clone());
             }
@@ -406,7 +417,7 @@ void Plate::setType(Type type, bool animated)
             this->runAction(action->clone());
             this->moved = true;
 
-            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            if(Application->environment->character->plates.current == this)
             {
               Application->environment->character->runAction(action->clone());
             }
@@ -433,7 +444,7 @@ void Plate::setType(Type type, bool animated)
               )
             );
 
-            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            if(Application->environment->character->plates.current == this)
             {
               Application->environment->character->runAction(action->clone());
             }
@@ -466,7 +477,7 @@ void Plate::setType(Type type, bool animated)
             this->runAction(action->clone());
             this->moved = true;
 
-            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            if(Application->environment->character->plates.current == this)
             {
               Application->environment->character->runAction(action->clone());
             }
@@ -493,7 +504,7 @@ void Plate::setType(Type type, bool animated)
               )
             );
 
-            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            if(Application->environment->character->plates.current == this)
             {
               Application->environment->character->runAction(action->clone());
             }
@@ -526,7 +537,7 @@ void Plate::setType(Type type, bool animated)
             this->runAction(action->clone());
             this->moved = true;
 
-            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            if(Application->environment->character->plates.current == this)
             {
               Application->environment->character->runAction(action->clone());
             }
@@ -553,7 +564,7 @@ void Plate::setType(Type type, bool animated)
               )
             );
 
-            if(Application->environment->character->plates.current == this && Application->environment->character->numberOfRunningActions() < 1)
+            if(Application->environment->character->plates.current == this)
             {
               Application->environment->character->runAction(action->clone());
             }
@@ -570,6 +581,16 @@ void Plate::setType(Type type, bool animated)
     );
     break;
   }
+
+  if(this->decoration)
+  {
+    this->decoration->setRotation3D(Vec3(0, 0, 0));
+  }
+
+  if(this->special)
+  {
+    this->special->setRotation3D(Vec3(0, 0, 0));
+  }
 }
 
 /**
@@ -582,11 +603,15 @@ void Plate::remove()
   this->onRemove();
 
   this->runAction(
-    Sequence::create(
-      EaseBounceOut::create(
-        MoveBy::create(0.5, Vec3(0, -1, 0))
+    Spawn::create(
+      RotateBy::create(0.3, Vec3((this->direction ? 0 : 20), 0, (this->direction ? -20 : 0))),
+      Sequence::create(
+        EaseSineOut::create(
+          MoveBy::create(0.5, Vec3(0, -1, 0))
+        ),
+        CallFunc::create(CC_CALLBACK_0(Node::_destroy, this, true)),
+        nullptr
       ),
-      CallFunc::create(CC_CALLBACK_0(Node::_destroy, this, true)),
       nullptr
     )
   );
@@ -594,12 +619,15 @@ void Plate::remove()
   if(this->decoration)
   {
     this->decoration->runAction(
+    Spawn::create(
+      RotateBy::create(0.3, Vec3((this->direction ? 0 : 20), 0, (this->direction ? -20 : 0))),
       Sequence::create(
-        EaseBounceOut::create(
+        EaseSineOut::create(
           MoveBy::create(0.5, Vec3(0, -1, 0))
         ),
-        CallFunc::create(CC_CALLBACK_0(Node::_destroy, this->decoration, true)),
         nullptr
+      ),
+      nullptr
       )
     );
   }

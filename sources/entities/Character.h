@@ -38,6 +38,14 @@ class Character : public Cube
    *
    *
    */
+  private:
+  Entity3D* plane;
+
+  /**
+   *
+   *
+   *
+   */
   protected:
   bool autoTurnLeft;
   bool autoTurnRight;
@@ -69,8 +77,8 @@ class Character : public Cube
   };
 
   struct Plates {
-    Plate* current;
-    Plate* previous;
+    Plate* current = nullptr;
+    Plate* previous = nullptr;
   };
 
   struct Nears {
@@ -88,6 +96,8 @@ class Character : public Cube
         if(this->plates[0]) return this->plates[0];
         if(this->plates[1]) return this->plates[1];
       }
+
+      return nullptr;
     }
   };
 
@@ -101,8 +111,9 @@ class Character : public Cube
  ~Character();
 
   State state;
-
   Plates plates;
+
+  virtual void reset();
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
@@ -115,14 +126,14 @@ class Character : public Cube
 
   virtual bool onTouch();
 
-  virtual void onTurnLeft(bool action = true);
-  virtual void onTurnRight(bool action = true);
+  virtual void onTurnLeft(bool action = true, bool set = true);
+  virtual void onTurnRight(bool action = true, bool set = true);
 
   virtual void onTurnUpdate(Plate* custom = nullptr);
   virtual void onTurnUpdate(Turn index, Plate* custom = nullptr);
   virtual void onTurn(Turn index);
 
-  virtual void onLandSuccessful(Turn turn, Plate* plate);
+  virtual void onLandSuccessful(Turn turn, Plate* plate, bool proceed = true);
   virtual void onLandFail(Turn turn);
 
   virtual void onMoveLeft();
@@ -141,6 +152,7 @@ class Character : public Cube
   virtual Plate* getPlateRightWithDefaults(Plate* current = nullptr);
 
   virtual Nears getPlatesNear(Plate* current = nullptr);
+  virtual Nears getPlatesNearWithDefaults(Plate* current = nullptr);
 
   virtual void changeState(State state);
 
@@ -153,6 +165,22 @@ class Character : public Cube
   virtual void updateStates(float time);
 
   virtual void update(float time);
+
+  /**
+   *
+   *
+   *
+   */
+  public:
+  virtual void setPosition3D(const Vec3& position);
+  virtual void setPositionX(float x);
+  virtual void setPositionY(float y);
+  virtual void setPositionZ(float z);
+
+  virtual Vec3 getPosition3D() const;
+  virtual float getPositionX();
+  virtual float getPositionY();
+  virtual float getPositionZ();
 };
 
 #endif

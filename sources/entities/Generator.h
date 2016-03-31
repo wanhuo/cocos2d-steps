@@ -31,6 +31,13 @@
  *
  *
  */
+class Plate;
+
+/**
+ *
+ *
+ *
+ */
 class Generator : public Ref
 {
   /**
@@ -39,8 +46,8 @@ class Generator : public Ref
    *
    */
   private:
-  const static int PLATES_MAX = 8;
-  const static int PLATES_MAX_SAVE = 5;
+  const static int PLATES_START = 8;
+  const static int PLATES_SAVE = 5;
 
   const static int ROUTE_LENGTH_MAX = 3;
   const static int ROUTE_LENGTH_MIN = 0;
@@ -73,7 +80,7 @@ class Generator : public Ref
   Generator();
  ~Generator();
 
-  virtual void create();
+  virtual Plate* create();
   virtual void destroy(bool manual = false);
 
   virtual void clear();

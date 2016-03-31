@@ -44,6 +44,7 @@
 #include "Pickup.h"
 #include "Spike.h"
 #include "Up.h"
+#include "Down.h"
 #include "Diamond.h"
 #include "Crystal.h"
 #include "Energy.h"
@@ -56,7 +57,6 @@
 #include "Character.h"
 #include "Particle.h"
 #include "Fish.h"
-#include "Leaf.h"
 #include "Ripple.h"
 
 #include "Counter.h"
@@ -66,6 +66,9 @@
 #include "Store.h"
 
 #include "Color.h"
+
+#include "RotateGlobalBy.h"
+#include "Shake.h"
 
 /**
  *
@@ -161,6 +164,7 @@ class Game : public Screen
   State state = NONE;
 
   virtual void onTouchStart(cocos2d::Touch* touch, Event* event);
+  virtual void onTouchFinish(cocos2d::Touch* touch, Event* event);
 
   virtual void onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event);
   virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode key, Event *event);

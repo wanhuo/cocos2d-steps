@@ -64,6 +64,8 @@ Menu::Menu()
   this->texts.tap->setPosition(Application->getCenter().x, 230);
 
   this->setCascadeOpacityEnabled(true);
+
+  this->bind(false);
 }
 
 Menu::~Menu()
@@ -109,18 +111,6 @@ void Menu::onSound()
    *
    */
   this->updateSoundState();
-}
-
-/**
- *
- *
- *
- */
-void Menu::onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e)
-{
-  this->hide([=] () {
-    Application->changeState(Game::GAME);
-  });
 }
 
 /**

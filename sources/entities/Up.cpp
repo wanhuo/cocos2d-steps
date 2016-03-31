@@ -31,8 +31,6 @@
 Up::Up()
 : Decoration()
 {
-  //this->setTexture("spike-texture.png");
-
   this->removable = false;
 }
 
@@ -72,12 +70,14 @@ void Up::onPickup()
 
   int l = 0;
   int r = 0;
-  float count = 5.0;
+  int count = 5;
+  int remove = 1;
+
   float time = 0.5;
 
   for(int i = 0; i < count; i++)
   {
-    auto plates = Application->environment->character->getPlatesNear(element);
+    auto plates = Application->environment->character->getPlatesNearWithDefaults(element);
 
     if(plates.plates[Plate::LEFT])
     {
@@ -89,48 +89,60 @@ void Up::onPickup()
       r++;
       element = plates.plates[Plate::RIGHT];
     }
+
+    if(i == count - 1)
+    {
+      if(!element || element->behavior == Plate::DYNAMIC || element->type == Plate::SPIKES)
+      {
+        Application->environment->generator->create();
+
+        count++;
+        remove++;
+      }
+    }
   }
 
+  Application->environment->character->setManual(false);
   Application->environment->character->runAction(
-    Sequence::create(
-      CallFunc::create([=] () {
-        Application->environment->character->setManual(false);
-      }),
-      CallFunc::create([=] () {
-        Application->cameras.d->runAction(
-          EaseSineIn::create(
-            MoveBy::create(time / 2, Vec3(-sqrt(pow(0.75, 2) / 2) * r, 0.0, -sqrt(pow(0.75, 2) / 2) * r))
-          )
-        );
-        Application->cameras.d->runAction(
-          EaseSineIn::create(
-            MoveBy::create(time / 2, Vec3(sqrt(pow(0.75, 2) / 2) * l, 0.0, -sqrt(pow(0.75, 2) / 2) * l))
-          )
-        );
-      }),
-      EaseSineIn::create(
-        MoveBy::create(time / 2, Vec3(0.75 * l, 1.0, -0.75 * r))
+    Spawn::create(
+      Sequence::create(
+        CallFunc::create([=] () {
+          Application->environment->plane->stopAllActions();
+          Application->environment->plane->runAction(
+            EaseSineIn::create(
+              MoveBy::create(time / 2, Vec3(-0.75 * l, 0, 0.75 * r))
+            )
+          );
+        }),
+        EaseSineIn::create(
+          MoveBy::create(time / 2, Vec3(0.75 * l, 1.0, -0.75 * r))
+        ),
+        CallFunc::create([=] () {
+          Application->environment->plane->stopAllActions();
+          Application->environment->plane->runAction(
+            EaseSineIn::create(
+              MoveBy::create(time / 2, Vec3(-0.75 * l, 0, 0.75 * r))
+            )
+          );
+        }),
+        EaseSineIn::create(
+          MoveBy::create(time / 2, Vec3(0.75 * l, -1.0, -0.75 * r))
+        ),
+        CallFunc::create([=] () {
+          Application->environment->character->setManual(true);
+          Application->environment->character->plates.current = element;
+          Application->environment->character->onLandSuccessful(Character::NONE, element);
+
+          if(Application->environment->numberOfRunningActions() < 2)
+          {
+            Application->environment->runAction(
+              Shake::create(0.2, 0.2)
+            );
+          }
+        }),
+        nullptr
       ),
-      CallFunc::create([=] () {
-        Application->cameras.d->runAction(
-          EaseSineIn::create(
-            MoveBy::create(time / 2, Vec3(-sqrt(pow(0.75, 2) / 2) * r, 0.0, -sqrt(pow(0.75, 2) / 2) * r))
-          )
-        );
-        Application->cameras.d->runAction(
-          EaseSineIn::create(
-            MoveBy::create(time / 2, Vec3(sqrt(pow(0.75, 2) / 2) * l, 0.0, -sqrt(pow(0.75, 2) / 2) * l))
-          )
-        );
-      }),
-      EaseSineIn::create(
-        MoveBy::create(time / 2, Vec3(0.75 * l, -1.0, -0.75 * r))
-      ),
-      CallFunc::create([=] () {
-        Application->environment->character->plates.current = element;
-        Application->environment->character->setManual(true);
-        Application->environment->character->onLandSuccessful(Character::NONE, element);
-      }),
+      RotateGlobalBy::create(time, Vec3(0, 180 * (probably(50) ? 1 : -1), 0)),
       nullptr
     )
   );
@@ -142,7 +154,7 @@ void Up::onPickup()
           Application->environment->generator->create();
         }),
         nullptr
-      ), count
+      ), count - remove
     )
   );
 

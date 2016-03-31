@@ -43,51 +43,12 @@ class Store : public Popup
   private:
   static Store* instance;
 
-  struct Parameters {
-    float time = 0.6;
-    float height = 930;
-    float opacity = 200;
-    float padding = 200;
-  };
-
-  struct Buttons {
-    Button* close;
-    Button* facebook;
-    Button* twitter;
-    Button* mail;
-    Button* restore;
-  };
-
-  struct Texts
-  {
-    Text* title[23];
-  };
-
   /**
    *
    *
    *
    */
   protected:
-  Buttons buttons;
-
-  Entity* background;
-  cocos2d::ui::ScrollView* scroll;
-
-  Background* holder;
-  Background* decorations;
-
-  Entity* decoration1;
-  Entity* decoration2;
-  Entity* decoration3;
-
-  Entity* powered1;
-  Entity* powered2;
-
-  Parameters parameters;
-  Texts texts;
-
-  float size;
 
   /**
    *
@@ -105,8 +66,6 @@ class Store : public Popup
 
   virtual void show();
   virtual void hide(Callback callback = NULL);
-
-  virtual void update(float time);
 };
 
 #endif

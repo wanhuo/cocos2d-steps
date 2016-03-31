@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _COUNTER_H_
-#define _COUNTER_H_
+#ifndef _DOWN_H_
+#define _DOWN_H_
 
 #include "Game.h"
 
@@ -31,7 +31,7 @@
  *
  *
  */
-class Counter : public Background
+class Down : public Decoration
 {
   /**
    *
@@ -39,13 +39,6 @@ class Counter : public Background
    *
    */
   private:
-  struct Texts {
-    Text* name;
-    Text* score;
-    Text* coins;
-    Text* best1;
-    Text* best2;
-  };
 
   /**
    *
@@ -53,16 +46,7 @@ class Counter : public Background
    *
    */
   protected:
-  Texts texts;
-
-  Entity* icon;
-
-  struct Values {
-    int current = 0;
-    int best = 0;
-
-    int coins = 0;
-  };
+  bool enable;
 
   /**
    *
@@ -70,24 +54,17 @@ class Counter : public Background
    *
    */
   public:
-  Counter(Node* parent);
- ~Counter();
+  Down();
+ ~Down();
 
-  Values values;
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
-  virtual void onMenu();
-  virtual void onGame();
-  virtual void onLose();
+  virtual void setPlate(Plate* plate);
 
-  virtual void onCount();
+  virtual bool status();
 
-  virtual void onBest();
-  virtual void onRegular();
-
-  virtual void reset();
-  virtual void save();
-
-  virtual void update();
+  Down* deepCopy();
 };
 
 #endif

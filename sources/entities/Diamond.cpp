@@ -55,7 +55,7 @@ void Diamond::onPickup()
  */
 const char* Diamond::getParticleTexture()
 {
-  return "particle-diamond-texture.png";
+  return "diamond-texture.png";
 }
 
 /**

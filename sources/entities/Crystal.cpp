@@ -66,7 +66,7 @@ void Crystal::onPickup()
 
         next->decoration->setPosition3D(current->getPosition3D());
         next->decoration->runAction(
-          MoveTo::create(0.05 * (i + 1), next->getPosition3D())
+          MoveTo::create(0.05 * (i + 1), Vec3(next->getPositionX(), 0, next->getPositionZ()))
         );
       }
     }
@@ -84,7 +84,7 @@ void Crystal::onPickup()
  */
 const char* Crystal::getParticleTexture()
 {
-  return "particle-crystal-texture.png";
+  return "crystal-texture.png";
 }
 
 /**

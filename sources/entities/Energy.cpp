@@ -84,7 +84,7 @@ void Energy::onPickup()
           Sequence::create(
             MoveBy::create(0.1, Vec3(x, 0, z)),
             CallFunc::create([=] () {
-              if(++this->count < COUNT || next->behavior == Plate::DYNAMIC)
+              if((++this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::UP)
               {
                 Application->environment->character->runAction(this->action);
               }
@@ -96,7 +96,10 @@ void Energy::onPickup()
                   Sequence::create(
                     DelayTime::create(0.1),
                     CallFunc::create([=] () {
+                    if(next->type != Plate::UP)
+                    {
                       Application->environment->character->setManual(true);
+                    }
                     }),
                     nullptr
                   )
@@ -143,7 +146,7 @@ void Energy::onClear()
  */
 const char* Energy::getParticleTexture()
 {
-  return "particle-energy-texture.png";
+  return "energy-texture.png";
 }
 
 /**

@@ -53,8 +53,10 @@ class Plate : public Replace
   public:
   enum Type {
     NORMAL,
+    BEST,
     SPIKES,
     UP,
+    DOWN,
     DIAMOND,
     CRYSTAL,
     ENERGY,
@@ -88,6 +90,7 @@ class Plate : public Replace
   Type type;
   Behavior behavior;
 
+  bool direction;
   bool position[2];
   bool moved;
 

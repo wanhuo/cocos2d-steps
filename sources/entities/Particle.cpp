@@ -29,7 +29,7 @@
  *
  */
 Particle::Particle()
-: Cube("cube.obj")
+: Cube("particle.obj")
 {
 }
 

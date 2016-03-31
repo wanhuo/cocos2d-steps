@@ -18,6 +18,8 @@
 		7825DD441C5484CC00708016 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7825DD421C5484CC00708016 /* Popup.cpp */; };
 		7828A0AF1A1F87BA0079492B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7828A0A71A1F87BA0079492B /* main.cpp */; };
 		782C44961BD2495E00A7DD46 /* NSInternal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 782C44951BD2495E00A7DD46 /* NSInternal.mm */; };
+		78357A151CA6F00300F86325 /* Down.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78357A131CA6F00300F86325 /* Down.cpp */; };
+		78357A161CA6F00300F86325 /* Down.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78357A131CA6F00300F86325 /* Down.cpp */; };
 		78382F811C2469B90001B3F1 /* NSVote.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78382F801C2469B90001B3F1 /* NSVote.mm */; };
 		7843AC481C22401B0011F47C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC471C22401B0011F47C /* AudioToolbox.framework */; };
 		7843AC4A1C2240360011F47C /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC491C2240360011F47C /* libz.1.dylib */; };
@@ -178,8 +180,6 @@
 		78E33FD21C4A84080021272D /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FCE1C4A84080021272D /* Particle.cpp */; };
 		78E33FD91C4AA4440021272D /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FD61C4AA4440021272D /* Generator.cpp */; };
 		78E33FDA1C4AA4440021272D /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FD61C4AA4440021272D /* Generator.cpp */; };
-		78E807C61C596FD300880329 /* Leaf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E807C51C596FD300880329 /* Leaf.cpp */; };
-		78E807C71C596FD300880329 /* Leaf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E807C51C596FD300880329 /* Leaf.cpp */; };
 		78EC8D6D1BBAF0B900CC5785 /* NSModal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78EC8D6C1BBAF0B900CC5785 /* NSModal.mm */; };
 /* End PBXBuildFile section */
 
@@ -236,6 +236,8 @@
 		7828A0A71A1F87BA0079492B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		782C44941BD2495E00A7DD46 /* NSInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSInternal.h; sourceTree = "<group>"; };
 		782C44951BD2495E00A7DD46 /* NSInternal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSInternal.mm; sourceTree = "<group>"; };
+		78357A131CA6F00300F86325 /* Down.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Down.cpp; sourceTree = "<group>"; };
+		78357A141CA6F00300F86325 /* Down.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Down.h; sourceTree = "<group>"; };
 		78382F7F1C2469B90001B3F1 /* NSVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSVote.h; sourceTree = "<group>"; };
 		78382F801C2469B90001B3F1 /* NSVote.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSVote.mm; sourceTree = "<group>"; };
 		7843AC471C22401B0011F47C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
@@ -404,8 +406,6 @@
 		78E33FCE1C4A84080021272D /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
 		78E33FD51C4AA4440021272D /* Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Generator.h; sourceTree = "<group>"; };
 		78E33FD61C4AA4440021272D /* Generator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Generator.cpp; sourceTree = "<group>"; };
-		78E807C41C596FD300880329 /* Leaf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Leaf.h; sourceTree = "<group>"; };
-		78E807C51C596FD300880329 /* Leaf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Leaf.cpp; sourceTree = "<group>"; };
 		78EC8D6B1BBAF0B900CC5785 /* NSModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSModal.h; sourceTree = "<group>"; };
 		78EC8D6C1BBAF0B900CC5785 /* NSModal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSModal.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -888,6 +888,7 @@
 				786696C91C4A47FF00A256FC /* Cube.cpp */,
 				786696C81C4A47FF00A256FC /* Cube.h */,
 				78E33FCE1C4A84080021272D /* Particle.cpp */,
+				78E33FCD1C4A84080021272D /* Particle.h */,
 				78AB04451C62298800A8FCB4 /* Replace.h */,
 				78E33FCC1C4A84080021272D /* Plate.cpp */,
 				78E33FCB1C4A84080021272D /* Plate.h */,
@@ -896,7 +897,6 @@
 				78CA6D041C20645200BF8416 /* Character.cpp */,
 				78CA6D051C20645200BF8416 /* Character.h */,
 				78AB04441C62298800A8FCB4 /* Replace.cpp */,
-				78E33FCD1C4A84080021272D /* Particle.h */,
 				78DE4C811C4D6C120080F105 /* Counter.cpp */,
 				78DE4C801C4D6C120080F105 /* Counter.h */,
 				78DE4C891C4DA0990080F105 /* Decoration.cpp */,
@@ -909,10 +909,10 @@
 				78DE4C8C1C4DA6AC0080F105 /* Spike.h */,
 				788F17D11CA4399200F4E5D6 /* Up.cpp */,
 				788F17D21CA4399200F4E5D6 /* Up.h */,
+				78357A131CA6F00300F86325 /* Down.cpp */,
+				78357A141CA6F00300F86325 /* Down.h */,
 				78DE4C911C4FC2230080F105 /* Fish.cpp */,
 				78DE4C901C4FC2230080F105 /* Fish.h */,
-				78E807C51C596FD300880329 /* Leaf.cpp */,
-				78E807C41C596FD300880329 /* Leaf.h */,
 				78DE4C951C500D2A0080F105 /* Ripple.cpp */,
 				78DE4C941C500D2A0080F105 /* Ripple.h */,
 				78A6587A1C515F14001B887B /* Pickup.cpp */,
@@ -1251,7 +1251,6 @@
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78DE4C931C4FC2230080F105 /* Fish.cpp in Sources */,
 				78A658841C515F14001B887B /* Heart.cpp in Sources */,
-				78E807C71C596FD300880329 /* Leaf.cpp in Sources */,
 				788F17D41CA4399200F4E5D6 /* Up.cpp in Sources */,
 				788F17CF1CA405B100F4E5D6 /* Color.cpp in Sources */,
 				78E33FD21C4A84080021272D /* Particle.cpp in Sources */,
@@ -1259,6 +1258,7 @@
 				78B36A7A1C5D039400F8A30C /* Cannon.cpp in Sources */,
 				7857E2C21C65BA940020AAEA /* Store.cpp in Sources */,
 				786696CB1C4A47FF00A256FC /* Cube.cpp in Sources */,
+				78357A161CA6F00300F86325 /* Down.cpp in Sources */,
 				78DE4C871C4D9F060080F105 /* Diamond.cpp in Sources */,
 				7825DD401C5479BE00708016 /* Dust.cpp in Sources */,
 				78A658801C515F14001B887B /* Star.cpp in Sources */,
@@ -1311,8 +1311,8 @@
 				78E33FCF1C4A84080021272D /* Plate.cpp in Sources */,
 				78A6587F1C515F14001B887B /* Star.cpp in Sources */,
 				78EC8D6D1BBAF0B900CC5785 /* NSModal.mm in Sources */,
+				78357A151CA6F00300F86325 /* Down.cpp in Sources */,
 				78DF453F1BBAA54F004E4570 /* NSPurchase.mm in Sources */,
-				78E807C61C596FD300880329 /* Leaf.cpp in Sources */,
 				7857E2B91C65733F0020AAEA /* Menu.cpp in Sources */,
 				7843ACA51C2242AA0011F47C /* Reachability.m in Sources */,
 				786696CA1C4A47FF00A256FC /* Cube.cpp in Sources */,
@@ -1486,7 +1486,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/GoogleAnalytics";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tooflya.onemorestep;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tooflya.steps;
 				PRODUCT_NAME = application;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1502,8 +1502,8 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1532,7 +1532,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/GoogleAnalytics";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tooflya.onemorestep;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tooflya.steps;
 				PRODUCT_NAME = application;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;

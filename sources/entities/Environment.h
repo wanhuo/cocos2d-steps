@@ -59,6 +59,12 @@ class Environment : public Background
   float accelerationY = 0;
   float accelerationZ = 0;
 
+  struct Light {
+    BaseLight* environment;
+    BaseLight* natural;
+    BaseLight* character;
+  };
+
   /**
    *
    *
@@ -75,6 +81,7 @@ class Environment : public Background
    */
   public:
   const static int DUSTS_COUNT = 50;
+  const static int SLIDES_COUNT = 50;
 
   const static int MAX_FISH_COUNT = 5;
   const static int MAX_SHIP_COUNT = 2;
@@ -85,6 +92,8 @@ class Environment : public Background
   Environment(Node* parent);
  ~Environment();
 
+  Light light;
+
   Character* character;
 
   Generator* generator;
@@ -93,6 +102,7 @@ class Environment : public Background
 
   Pool* spikes;
   Pool* ups;
+  Pool* downs;
   Pool* diamonds;
   Pool* crystals;
   Pool* energies;
@@ -130,6 +140,7 @@ class Environment : public Background
   virtual void onGame();
   virtual void onLose();
 
+  virtual void updateLight(float time);
   virtual void updateDusts(float time);
   virtual void updateFishes(float time);
 
