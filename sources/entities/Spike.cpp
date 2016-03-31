@@ -108,7 +108,7 @@ void Spike::setPlate(Plate* plate)
  */
 Character::Crash Spike::status()
 {
-  return Character::Crash::UNDEFINED;
+  return this->enable ? Character::Crash::SPIKES : Character::Crash::UNDEFINED;
 }
 
 /**

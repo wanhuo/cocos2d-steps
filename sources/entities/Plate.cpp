@@ -98,7 +98,7 @@ void Plate::onRemove()
   {
     if(character->plates.current->getIndex() == this->getIndex())
     {
-      Application->environment->character->changeState(Character::CRASH);
+      Application->environment->character->changeState(Character::CRASH, Character::Crash::CATCH);
     }
   }
 

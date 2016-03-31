@@ -29,7 +29,7 @@
  *
  */
 Character::Character()
-: Cube("cube.obj")
+: Cube("cube3.obj")
 {
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
@@ -552,6 +552,23 @@ void Character::onCrash(Crash crash)
           Application->changeState(Game::LOSE);
         }),
         MoveBy::create(2.0, Vec3(0, -0.8, 0)),
+        nullptr
+      )
+    );
+    break;
+    case CATCH:
+    this->runAction(
+      Spawn::create(
+        RotateBy::create(0.3, Vec3((this->plates.current->direction ? 0 : 20), 0, (this->plates.current->direction ? -20 : 0))),
+        Sequence::create(
+          EaseSineOut::create(
+            MoveBy::create(0.5, Vec3(0, -1, 0))
+          ),
+          CallFunc::create([=] () {
+            Application->changeState(Game::LOSE);
+          }),
+          nullptr
+        ),
         nullptr
       )
     );
