@@ -173,7 +173,7 @@ void Down::setPlate(Plate* plate)
  */
 Character::Crash Down::status()
 {
-  return Character::Crash::UNDEFINED;
+  return this->enable ? Character::Crash::DOWN : Character::Crash::UNDEFINED;
 }
 
 /**

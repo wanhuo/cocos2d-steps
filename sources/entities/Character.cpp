@@ -556,6 +556,17 @@ void Character::onCrash(Crash crash)
       )
     );
     break;
+    case DOWN:
+    this->runAction(
+      Sequence::create(
+        MoveBy::create(0.2, Vec3(0.0, -0.9, 0.0)),
+        CallFunc::create([=] () {
+          Application->changeState(Game::LOSE);
+        }),
+        nullptr
+      )
+    );
+    break;
     case CATCH:
     this->runAction(
       Spawn::create(
