@@ -29,8 +29,12 @@
  *
  */
 Down::Down()
-: Decoration("plate.obj")
+: Decoration("plate-down.obj")
 {
+  this->shadow = new Entity3D("plate-down-shadow.obj", Application->environment->plane);
+  this->shadow->setColor(Color3B(0, 0, 0));
+  this->shadow->setOpacity(30);
+
   this->setTexture("plate-texture-state-1.png");
 
   this->removable = false;
@@ -58,13 +62,20 @@ void Down::onCreate()
 
   this->runAction(
     Sequence::create(
-      MoveBy::create(0.5, Vec3(0, 2.8, 0)),
+      MoveBy::create(0.5, Vec3(0, 2.4, 0)),
       CallFunc::create([=] () {
+        float x = this->getPositionX();
+        float y = 0.01;
+        float z = this->getPositionZ();
+
+        this->shadow->setPosition3D(Vec3(x, y, z));
+
         this->runAction(
           RepeatForever::create(
             Sequence::create(
               CallFunc::create([=] () {
                 this->enable = true;
+                this->plate->blocked = true;
               }),
               EaseBounceOut::create(
                 MoveBy::create(0.6, Vec3(0, -2.0, 0))
@@ -72,6 +83,7 @@ void Down::onCreate()
               DelayTime::create(0.6),
               CallFunc::create([=] () {
                 this->enable = false;
+                this->plate->blocked = false;
               }),
               MoveBy::create(0.2, Vec3(0, 2.0, 0)),
               DelayTime::create(0.6),
@@ -91,14 +103,34 @@ void Down::onCreate()
         this->runAction(
           RepeatForever::create(
             Sequence::create(
-              DelayTime::create(0.6),
+              DelayTime::create(0.3),
               CallFunc::create([=] () {
-            Application->environment->runAction(
-              Shake::create(0.2, 0.2)
-            );
+                Application->environment->runAction(
+                  Shake::create(0.1, 0.05)
+                );
               }),
+              DelayTime::create(1.7),
+              nullptr
+            )
+          )
+        );
+      }),
+      nullptr
+    )
+  );
+
+  this->shadow->runAction(
+    Sequence::create(
+      DelayTime::create(0.5),
+      CallFunc::create([=] () {
+        this->shadow->runAction(
+          RepeatForever::create(
+            Sequence::create(
+              EaseBounceOut::create(
+                ScaleTo::create(0.6, 1.0, 1.0, 1.0)
+              ),
               DelayTime::create(0.6),
-              DelayTime::create(0.2),
+              ScaleTo::create(0.2, 0.6, 1.0, 0.6),
               DelayTime::create(0.6),
               nullptr
             )
@@ -108,11 +140,20 @@ void Down::onCreate()
       nullptr
     )
   );
+
+  this->shadow->_create();
 }
 
 void Down::onDestroy(bool action)
 {
   Decoration::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  this->shadow->_destroy();
 }
 
 /**
@@ -130,9 +171,9 @@ void Down::setPlate(Plate* plate)
  *
  *
  */
-bool Down::status()
+Character::Crash Down::status()
 {
-  return this->enable;
+  return this->enable ? Character::Crash::DOWN : Character::Crash::UNDEFINED;
 }
 
 /**

@@ -78,6 +78,8 @@ void Decoration::onPickup()
  */
 void Decoration::setPlate(Plate* plate, bool animated)
 {
+  this->plate = plate;
+
   this->setPosition3D(plate->getPosition3D());
 
   if(animated)
@@ -130,9 +132,9 @@ void Decoration::remove(bool force)
   }
 }
 
-bool Decoration::status()
+Character::Crash Decoration::status()
 {
-  return false;
+  return Character::Crash::UNDEFINED;
 }
 
 /**

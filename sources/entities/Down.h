@@ -39,6 +39,7 @@ class Down : public Decoration
    *
    */
   private:
+  Entity3D* shadow;
 
   /**
    *
@@ -62,7 +63,7 @@ class Down : public Decoration
 
   virtual void setPlate(Plate* plate);
 
-  virtual bool status();
+  virtual Character::Crash status();
 
   Down* deepCopy();
 };

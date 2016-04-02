@@ -25,6 +25,7 @@
 #define _DECORATION_H_
 
 #include "Game.h"
+#include "Character.h"
 
 /**
  *
@@ -53,19 +54,21 @@ class Decoration : public Entity3D
    *
    */
   protected:
+  Plate* plate;
 
   /**
    *
    *
    *
    */
-public:
+  public:
   Decoration(const char* file, Node* parent);
   Decoration(const char* file);
   Decoration();
  ~Decoration();
 
-  bool removable;
+  bool removable = false;
+  bool stopable = false;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
@@ -76,7 +79,7 @@ public:
 
   virtual void remove(bool force = false);
 
-  virtual bool status();
+  virtual Character::Crash status();
 
   virtual const char* getParticleTexture();
 

@@ -93,6 +93,7 @@ class Plate : public Replace
   bool direction;
   bool position[2];
   bool moved;
+  bool blocked;
 
   Decoration* decoration = nullptr;
 

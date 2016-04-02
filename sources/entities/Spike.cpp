@@ -34,6 +34,7 @@ Spike::Spike()
   this->setTexture("spike-texture.png");
 
   this->removable = false;
+  this->stopable = true;
 }
 
 Spike::~Spike()
@@ -105,9 +106,9 @@ void Spike::setPlate(Plate* plate)
  *
  *
  */
-bool Spike::status()
+Character::Crash Spike::status()
 {
-  return this->enable;
+  return this->enable ? Character::Crash::SPIKES : Character::Crash::UNDEFINED;
 }
 
 /**
