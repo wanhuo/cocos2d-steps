@@ -50,8 +50,6 @@ Finish::Finish()
 {
   instance = this;
 
-  this->texts.tap = new Text("finish-tap", this, true);
-
   this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
   this->buttons.noad = new Button("noad-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
   this->buttons.share = new Button("share-button.png", 2, 1, this, std::bind([=] () {
@@ -60,8 +58,15 @@ Finish::Finish()
     });
   }), true);
   this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application), true);
+  this->buttons.video = new Button("video-button.png", 1, 2, this, std::bind(&Game::onLeaderboards, Application), true);
+
+  this->texts.tap = new Text("finish-tap", this, true);
+  this->texts.video = new Text("video", this->buttons.video, true);
+
+  this->buttons.video->setPosition(Application->getCenter().x, 350);
 
   this->texts.tap->setPosition(Application->getCenter().x, 230);
+  this->texts.video->setPosition(this->buttons.video->getWidth() / 2 + this->texts.video->getWidth(), this->buttons.video->getHeight() / 2);
 }
 
 Finish::~Finish()

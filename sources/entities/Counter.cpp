@@ -50,6 +50,9 @@ Counter::Counter(Node* parent)
 
   this->reset();
   this->update();
+
+  this->icon->setGlobalZOrder(100);
+  this->texts.coins->setGlobalZOrder(100);
 }
 
 Counter::~Counter()

@@ -37,6 +37,11 @@
 Item::Item(Node* parent)
 : Entity("store-item.png", parent, true)
 {
+  this->text = new Text("item-name", this, true);
+  this->lock = new Entity("store-lock-icon.png", this);
+
+  this->text->setPosition(this->getWidth() / 2, 20);
+  this->lock->setPosition(this->getWidth() / 2, this->getHeight() / 2 + 20);
 }
 
 Item::~Item()
@@ -68,4 +73,42 @@ void Item::onDestroy(bool action)
    *
    *
    */
+}
+
+/**
+ *
+ *
+ *
+ */
+void Item::onEnter()
+{
+  Entity::onEnter();
+
+  /**
+   *
+   *
+   *
+   */
+  if(probably(50))
+  {
+    this->lock->_create();
+
+    this->bind(false);
+  }
+  else
+  {
+    this->bind(true, false);
+  }
+}
+
+void Item::onExit()
+{
+  Entity::onExit();
+
+  /**
+   *
+   *
+   *
+   */
+  this->lock->_destroy();
 }

@@ -46,10 +46,12 @@ class Finish : public Popup
     Button* noad;
     Button* share;
     Button* leaderboards;
+    Button* video;
   };
 
   struct Texts {
     Text* tap;
+    Text* video;
   };
 
   /**

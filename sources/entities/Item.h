@@ -45,6 +45,9 @@ class Item : public Entity
    *
    */
   private:
+  Text* text;
+
+  Entity* lock;
 
   /**
    *
@@ -64,6 +67,9 @@ class Item : public Entity
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
+
+  virtual void onEnter();
+  virtual void onExit();
 };
 
 #endif

@@ -70,6 +70,20 @@
         "size": 40
       }
     ],
+    "item-name": [
+      {
+        "title": "100 монет",
+        "font": "Consolasb",
+        "size": 24
+      }
+    ],
+    "video": [
+      {
+        "title": "+20",
+        "font": "Consolasb",
+        "size": 120
+      }
+    ],
     "credits-title-1": [
       {
         "title": "Thanks for playing!",

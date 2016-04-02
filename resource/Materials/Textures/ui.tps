@@ -200,6 +200,7 @@
             <filename>../Graphics/ui/back-button.png</filename>
             <filename>../Graphics/ui/store-item.png</filename>
             <filename>../Graphics/ui/store-lock-icon.png</filename>
+            <filename>../Graphics/ui/video-button.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
