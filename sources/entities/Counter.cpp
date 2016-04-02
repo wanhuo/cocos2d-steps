@@ -117,6 +117,11 @@ void Counter::onCount()
 
   this->values.current++;
 
+  if(this->values.current > this->values.best)
+  {
+    this->values.best = this->values.current;
+  }
+
   this->update();
 
   Application->environment->water->setColor(Application->environment->color->get());
@@ -153,11 +158,12 @@ void Counter::onRegular()
 void Counter::reset()
 {
   this->values.current = 0;
-  this->values.best = 15;
+  this->values.best = Storage::get("application.score.best");
 }
 
 void Counter::save()
 {
+  Storage::set("application.score.best", this->values.best);
 }
 
 /**

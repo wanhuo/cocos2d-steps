@@ -4,33 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>coins-icon.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{585,305},{45,61}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{45,61}}</string>
-                <key>sourceSize</key>
-                <string>{45,61}</string>
-            </dict>
-            <key>leaderboard-button.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{5,295},{280,140}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{280,140}}</string>
-                <key>sourceSize</key>
-                <string>{280,140}</string>
-            </dict>
-            <key>like-button.png</key>
+            <key>back-button.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{295,5},{280,140}}</string>
@@ -43,20 +17,20 @@
                 <key>sourceSize</key>
                 <string>{280,140}</string>
             </dict>
-            <key>noad-button.png</key>
+            <key>coins-icon.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{585,5},{280,140}}</string>
+                <string>{{1455,5},{45,61}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{280,140}}</string>
+                <string>{{0,0},{45,61}}</string>
                 <key>sourceSize</key>
-                <string>{280,140}</string>
+                <string>{45,61}</string>
             </dict>
-            <key>rate-button.png</key>
+            <key>leaderboard-button.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{295,155},{280,140}}</string>
@@ -69,10 +43,62 @@
                 <key>sourceSize</key>
                 <string>{280,140}</string>
             </dict>
-            <key>share-button.png</key>
+            <key>like-button.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{585,5},{280,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{280,140}}</string>
+                <key>sourceSize</key>
+                <string>{280,140}</string>
+            </dict>
+            <key>noad-button.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{585,155},{280,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{280,140}}</string>
+                <key>sourceSize</key>
+                <string>{280,140}</string>
+            </dict>
+            <key>rate-button.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{875,5},{280,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{280,140}}</string>
+                <key>sourceSize</key>
+                <string>{280,140}</string>
+            </dict>
+            <key>restore-button.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{875,155},{280,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{280,140}}</string>
+                <key>sourceSize</key>
+                <string>{280,140}</string>
+            </dict>
+            <key>share-button.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1165,5},{280,140}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +124,7 @@
             <key>store-button.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{295,305},{280,140}}</string>
+                <string>{{1165,155},{280,140}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -116,9 +142,9 @@
             <key>realTextureFileName</key>
             <string>ui.png</string>
             <key>size</key>
-            <string>{870,450}</string>
+            <string>{1505,300}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:47cc4575f92adcbd4b16af65331ba7e4:9228e4acd1df9a1b3f4340af546594a6:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
+            <string>$TexturePacker:SmartUpdate:d2d1f6ffdcdc843a16d8f1e3defec25f:4906758a6fc1c948c673ca37f6f361d0:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
             <key>textureFileName</key>
             <string>ui.png</string>
         </dict>

@@ -49,6 +49,16 @@ Store::Store()
 : Popup()
 {
   instance = this;
+
+  this->buttons.restore = new Button("restore-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
+  this->buttons.back = new Button("back-button.png", 2, 1, this, std::bind([=] () {
+    this->hide([=] () {
+      Menu::getInstance()->show();
+    });
+  }), true);
+
+  this->buttons.restore->setPosition(Application->getCenter().x + 150, 200);
+  this->buttons.back->setPosition(Application->getCenter().x - 150, 200);
 }
 
 Store::~Store()
@@ -82,4 +92,5 @@ void Store::show()
 
 void Store::hide(Callback callback)
 {
+  Popup::hide(callback);
 }

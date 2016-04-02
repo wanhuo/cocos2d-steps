@@ -114,7 +114,8 @@ class Game : public Screen
     NONE,
     MENU,
     GAME,
-    LOSE
+    LOSE,
+    STORE
   };
 
   /**
@@ -187,6 +188,7 @@ class Game : public Screen
   virtual void onMenu();
   virtual void onGame();
   virtual void onLose();
+  virtual void onStore();
 
   virtual void onNoad();
 
@@ -195,6 +197,7 @@ class Game : public Screen
   virtual void updateMenu(float time);
   virtual void updateGame(float time);
   virtual void updateLose(float time);
+  virtual void updateStore(float time);
 
   virtual void updateStates(float time);
 

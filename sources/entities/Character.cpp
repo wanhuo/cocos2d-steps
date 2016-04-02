@@ -29,7 +29,7 @@
  *
  */
 Character::Character()
-: Cube("cube4.obj")
+: Cube("cube5.obj")
 {
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);

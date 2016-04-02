@@ -324,6 +324,11 @@ void Game::onLose()
   this->counter->save();
 }
 
+void Game::onStore()
+{
+  Store::getInstance()->show();
+}
+
 /**
  *
  *
@@ -355,6 +360,9 @@ void Game::changeState(State state)
       case LOSE:
       this->onLose();
       break;
+      case STORE:
+      this->onStore();
+      break;
     }
   }
 }
@@ -376,6 +384,10 @@ void Game::updateLose(float time)
 {
 }
 
+void Game::updateStore(float time)
+{
+}
+
 /**
  *
  *
@@ -393,6 +405,9 @@ void Game::updateStates(float time)
     break;
     case LOSE:
     this->updateLose(time);
+    break;
+    case STORE:
+    this->updateStore(time);
     break;
   }
 

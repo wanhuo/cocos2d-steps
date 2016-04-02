@@ -57,7 +57,7 @@ Menu::Menu()
   this->buttons.sound = new Button("sound-button.png", 2, 2, this, std::bind(&Menu::onSound, this), true);
   this->buttons.store = new Button("store-button.png", 2, 1, this, std::bind([=] () {
     this->hide([=] () {
-      Store::getInstance()->show();
+      Application->changeState(Game::STORE);
     });
   }), true);
 

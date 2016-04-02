@@ -194,8 +194,10 @@
             <filename>../Graphics/ui/rate-button.png</filename>
             <filename>../Graphics/ui/share-button.png</filename>
             <filename>../Graphics/ui/sound-button.png</filename>
-            <filename>../Graphics/ui/store-button.png</filename>
             <filename>../Graphics/ui/coins-icon.png</filename>
+            <filename>../Graphics/ui/store-button.png</filename>
+            <filename>../Graphics/ui/restore-button.png</filename>
+            <filename>../Graphics/ui/back-button.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

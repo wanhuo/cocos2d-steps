@@ -43,12 +43,18 @@ class Store : public Popup
   private:
   static Store* instance;
 
+  struct Buttons {
+    Button* back;
+    Button* restore;
+  };
+
   /**
    *
    *
    *
    */
   protected:
+  Buttons buttons;
 
   /**
    *
