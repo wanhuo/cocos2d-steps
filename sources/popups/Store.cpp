@@ -68,15 +68,20 @@ Store::Store()
   this->buttons.restore->setPosition(Application->getCenter().x + 150, 200);
   this->buttons.back->setPosition(Application->getCenter().x - 150, 200);
 
+  float x = 0;
+  float y = 0;
+
   for(int i = 0; i < 5; i++)
   {
     for(int j = 0; j < 2; j++)
     {
       auto item = new Item(this->scroll);
-      item->setPosition(Application->getCenter().x - 200 * (j == 0 ? 1 : -1), 0);
+      item->setPosition(Application->getCenter().x - 150 * (j == 0 ? 1 : -1), y);
 
       this->items.push_back(item);
     }
+
+    y += 300;
   }
 
   this->updateListHeight();
@@ -157,9 +162,9 @@ void Store::updateListHeight()
 {
   int counter = 0;
 
-  int size = 0;//this->missions.size() - 1;
+  int size = this->items.size() - 1;
 
-  this->size = 200 * 2 + size * 220;
+  this->size = size * 300 / 2 + 200;
 
   this->scroll->setInnerContainerSize(
     Size(
