@@ -68,6 +68,17 @@ Store::Store()
   this->buttons.restore->setPosition(Application->getCenter().x + 150, 200);
   this->buttons.back->setPosition(Application->getCenter().x - 150, 200);
 
+  for(int i = 0; i < 5; i++)
+  {
+    for(int j = 0; j < 2; j++)
+    {
+      auto item = new Item(this->scroll);
+      item->setPosition(Application->getCenter().x - 200 * (j == 0 ? 1 : -1), 0);
+
+      this->items.push_back(item);
+    }
+  }
+
   this->updateListHeight();
 }
 

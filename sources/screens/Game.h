@@ -70,6 +70,8 @@
 #include "RotateGlobalBy.h"
 #include "Shake.h"
 
+#include "Item.h"
+
 /**
  *
  *

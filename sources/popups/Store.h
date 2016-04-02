@@ -33,6 +33,13 @@
  *
  *
  */
+class Item;
+
+/**
+ *
+ *
+ *
+ */
 class Store : public Popup
 {
   /**
@@ -72,7 +79,7 @@ class Store : public Popup
 
   BackgroundScroll* scroll;
 
-  //vector<Item*> items;
+  vector<Item*> items;
 
   virtual void onShow();
   virtual void onHide(Callback callback = NULL);
