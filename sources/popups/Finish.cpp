@@ -66,7 +66,7 @@ Finish::Finish()
   this->buttons.video->setPosition(Application->getCenter().x, 350);
 
   this->texts.tap->setPosition(Application->getCenter().x, 230);
-  this->texts.video->setPosition(this->buttons.video->getWidth() / 2 + this->texts.video->getWidth(), this->buttons.video->getHeight() / 2);
+  this->texts.video->setPosition(this->buttons.video->getWidth() / 2 + 70, this->buttons.video->getHeight() / 2 - 15);
 }
 
 Finish::~Finish()
