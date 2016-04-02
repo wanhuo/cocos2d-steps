@@ -142,7 +142,7 @@ class Character : public Cube
   virtual void onTurn(Turn index);
 
   virtual void onLandSuccessful(Turn turn, Plate* plate, bool proceed = true);
-  virtual void onLandFail(Turn turn);
+  virtual void onLandFail(Turn turn, Plate* plate);
 
   virtual void onMoveLeft();
   virtual void onMoveRight();

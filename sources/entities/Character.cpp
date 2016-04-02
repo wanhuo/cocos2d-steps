@@ -29,7 +29,7 @@
  *
  */
 Character::Character()
-: Cube("cube.obj")
+: Cube("cube2.obj")
 {
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
@@ -78,7 +78,7 @@ void Character::reset()
     )
   );
 
-  this->plane->runAction(
+  /*this->plane->runAction(
     RepeatForever::create(
       Sequence::create(
         ScaleTo::create(0.2, 1.0, 1.2, 1.0),
@@ -86,7 +86,7 @@ void Character::reset()
         nullptr
       )
     )
-  );
+  );*/
 }
 
 /**
@@ -173,6 +173,11 @@ void Character::onTurnLeft(bool action, bool set)
             MoveBy::create(0.05, Vec3(0.0, 0.2, -0.75)),
             MoveBy::create(0.05, Vec3(0.0, -0.2 - (this->getPositionY() - 0.9), -0.75)),
             CallFunc::create([=] () {
+              if(next)
+              {
+                next->resumeSchedulerAndActions();
+              }
+
               this->changeState(NORMAL);
 
               this->onTurn(LEFT);
@@ -246,6 +251,11 @@ void Character::onTurnRight(bool action, bool set)
             MoveBy::create(0.05, Vec3(0.75, 0.2, 0)),
             MoveBy::create(0.05, Vec3(0.75, -0.2 - (this->getPositionY() - 0.9), 0)),
             CallFunc::create([=] () {
+              if(next)
+              {
+                next->resumeSchedulerAndActions();
+              }
+
               this->changeState(NORMAL);
 
               this->onTurn(RIGHT);
@@ -373,7 +383,7 @@ void Character::onTurnUpdate(Turn turn, Plate* custom)
   }
   else
   {
-    this->onLandFail(turn);
+    this->onLandFail(turn, plate);
   }
 }
 
@@ -414,15 +424,14 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   auto y = this->getPositionY();
   auto z = this->getPositionZ();
 
-  if(this->plates.current->behavior == Plate::DYNAMIC)
+  if(plate->behavior == Plate::DYNAMIC)
   {
-    if(this->plates.current->numberOfRunningActions() > 1)
+    if(plate->numberOfRunningActions() > 1)
     {
-      return this->onLandFail(turn);
+      return this->onLandFail(turn, plate);
     }
   }
 
-  plate->resumeSchedulerAndActions();
   plate->onCount();
 
   Application->counter->onCount();
@@ -464,7 +473,7 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   this->sound += 0.01f;
 }
 
-void Character::onLandFail(Turn turn)
+void Character::onLandFail(Turn turn, Plate* plate)
 {
   auto x = this->getPositionX();
   auto y = this->getPositionY();

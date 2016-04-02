@@ -57,7 +57,7 @@ void Energy::onPickup()
 
     if(next)
     {
-      if(!next->moved && next->type != Plate::DOWN)
+      if(!next->moved && !next->blocked && next->type != Plate::DOWN)
       {
         float x;
         float z;
@@ -81,33 +81,37 @@ void Energy::onPickup()
         Application->environment->character->plates.current = next;
 
         Application->environment->character->runAction(
-          Sequence::create(
-            MoveBy::create(0.1, Vec3(x, 0, z)),
-            CallFunc::create([=] () {
-              if((++this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::UP)
-              {
-                Application->environment->character->runAction(this->action);
-              }
-              else
-              {
-                this->onClear();
+          Spawn::create(
+            RotateGlobalBy::create(0.1, Vec3(60 * z, 0, -60 * x)),
+            Sequence::create(
+              MoveBy::create(0.1, Vec3(x, (Application->environment->character->getPositionY() - 0.9), z)),
+              CallFunc::create([=] () {
+                if((++this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::UP)
+                {
+                  Application->environment->character->runAction(this->action);
+                }
+                else
+                {
+                  this->onClear();
 
-                Application->environment->character->runAction(
-                  Sequence::create(
-                    DelayTime::create(0.1),
-                    CallFunc::create([=] () {
-                    if(next->type != Plate::UP)
-                    {
-                      Application->environment->character->setManual(true);
-                    }
-                    }),
-                    nullptr
-                  )
-                );
-              }
+                  Application->environment->character->runAction(
+                    Sequence::create(
+                      DelayTime::create(0.1),
+                      CallFunc::create([=] () {
+                      if(next->type != Plate::UP)
+                      {
+                        Application->environment->character->setManual(true);
+                      }
+                      }),
+                      nullptr
+                    )
+                  );
+                }
 
-              Application->environment->character->onTurnUpdate(next);
-            }),
+                Application->environment->character->onTurnUpdate(next);
+              }),
+              nullptr
+            ),
             nullptr
           )
         );
