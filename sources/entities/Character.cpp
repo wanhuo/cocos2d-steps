@@ -88,7 +88,7 @@ void Character::reset()
     )
   );
 
-  /*this->plane->runAction(
+  this->plane->runAction(
     Sequence::create(
       MoveBy::create(1.0, Vec3(0, 3, 0)),
       CallFunc::create([=] () {
@@ -103,7 +103,7 @@ void Character::reset()
       }),
       nullptr
     )
-  );*/
+  );
 }
 
 /**
