@@ -45,6 +45,8 @@ Diamond::~Diamond()
  */
 void Diamond::onPickup()
 {
+  Application->counter->onCoins();
+
   Sound->play("pickup-diamond");
 }
 

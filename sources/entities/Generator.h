@@ -68,6 +68,7 @@ class Generator : public Ref
 
   int s1;
   int s2;
+  int s3;
 
   bool direction;
 

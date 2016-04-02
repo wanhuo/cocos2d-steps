@@ -122,8 +122,10 @@ Plate* Generator::create()
       {
         //plate->setType(Plate::TYPE_HEART);
       }
-      else if(this->count > 1 && probably(50))
+      else if(this->count > 1 && this->s3 < 0 && probably(50) && false)
       {
+        this->s3 = 10;
+
         this->length++;
         this->length++;
 
@@ -134,11 +136,11 @@ Plate* Generator::create()
         {
           p->setPositionX(this->x);
           p->setPositionY(this->y - 1);
-          p->setPositionZ(this->z + (3.0 * (probably(50) ? 1 : -1)));
+          p->setPositionZ(this->z - 3.0);
         }
         else
         {
-          p->setPositionX(this->x + (3.0 * (probably(50) ? 1 : -1)));
+          p->setPositionX(this->x + 3.0);
           p->setPositionY(this->y - 1);
           p->setPositionZ(this->z);
         }
@@ -153,6 +155,15 @@ Plate* Generator::create()
             nullptr
           )
         );
+
+        if(this->direction)
+        {
+          p->decoration->setRotation3D(Vec3(0, -90, 0));
+        }
+        else
+        {
+          p->decoration->setRotation3D(Vec3(0, 180, 0));
+        }
       }
     }
 
@@ -177,6 +188,7 @@ Plate* Generator::create()
 
     this->s1--;
     this->s2--;
+    this->s3--;
 
     if(Application->environment->plates->count <= 1)
     {

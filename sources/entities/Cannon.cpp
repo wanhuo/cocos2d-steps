@@ -52,24 +52,16 @@ void Cannon::onCreate()
    *
    *
    */
-  this->setRotation3D(Vec3(0, random(0.0, 360.0), 0));
-
-  this->runAction(
-    RepeatForever::create(
-      EaseSineInOut::create(
-        RotateBy::create(10.0, Vec3(0.0, 360.0, 0.0))
-      )
-    )
-  );
+  this->weapon->setScaleX(0);
 
   this->weapon->runAction(
     RepeatForever::create(
       Sequence::create(
         EaseSineInOut::create(
-          ScaleTo::create(5.0, 20.0, 1.0, 1.0)
+          ScaleTo::create(1.0, 14.0, 1.0, 1.0)
         ),
         EaseSineInOut::create(
-          ScaleTo::create(5.0, 0.0, 1.0, 1.0)
+          ScaleTo::create(1.0, 2.0, 1.0, 1.0)
         ),
         nullptr
       )

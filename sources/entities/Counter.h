@@ -80,6 +80,7 @@ class Counter : public Background
   virtual void onLose();
 
   virtual void onCount();
+  virtual void onCoins();
 
   virtual void onBest();
   virtual void onRegular();
