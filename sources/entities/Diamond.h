@@ -46,6 +46,8 @@ class Diamond : public Pickup
    *
    */
   protected:
+  Entity3D* test;
+  Entity3D* test2;
 
   /**
    *
