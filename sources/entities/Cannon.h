@@ -31,7 +31,7 @@
  *
  *
  */
-class Cannon : public Cube
+class Cannon : public Decoration
 {
   /**
    *
@@ -55,6 +55,8 @@ class Cannon : public Cube
   public:
   Cannon();
  ~Cannon();
+
+  Entity3D* weapon;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);

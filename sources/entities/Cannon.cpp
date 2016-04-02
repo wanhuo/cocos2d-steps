@@ -29,9 +29,9 @@
  *
  */
 Cannon::Cannon()
-: Cube("cannon.obj")
+: Decoration("cannon.obj")
 {
-  this->setTexture("cannon-texture.png");
+  this->weapon = new Entity3D("cannon-weapon.obj", this, true);
 }
 
 Cannon::~Cannon()
@@ -45,12 +45,19 @@ Cannon::~Cannon()
  */
 void Cannon::onCreate()
 {
-  Cube::onCreate();
+  Decoration::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  this->weapon->setScaleX(20);
 }
 
 void Cannon::onDestroy(bool action)
 {
-  Cube::onDestroy(action);
+  Decoration::onDestroy(action);
 }
 
 /**

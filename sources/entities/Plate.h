@@ -57,6 +57,7 @@ class Plate : public Replace
     SPIKES,
     UP,
     DOWN,
+    CANNON,
     DIAMOND,
     CRYSTAL,
     ENERGY,
