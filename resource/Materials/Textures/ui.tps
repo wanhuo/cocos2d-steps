@@ -198,6 +198,8 @@
             <filename>../Graphics/ui/store-button.png</filename>
             <filename>../Graphics/ui/restore-button.png</filename>
             <filename>../Graphics/ui/back-button.png</filename>
+            <filename>../Graphics/ui/store-item.png</filename>
+            <filename>../Graphics/ui/store-lock-icon.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

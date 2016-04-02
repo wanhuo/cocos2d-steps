@@ -102,6 +102,13 @@ void Counter::onLose()
   }
 }
 
+void Counter::onStore()
+{
+  this->texts.name->runAction(
+    FadeTo::create(0.2, 0)
+  );
+}
+
 /**
  *
  *

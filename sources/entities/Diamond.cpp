@@ -35,8 +35,6 @@ Diamond::Diamond()
 
   this->test = new Entity3D("diamond-circle.obj", this, true);
 
-  this->setScale(1.2);
-
   this->test->runAction(
     RepeatForever::create(
       RotateBy::create(1.0, Vec3(0, 360, 0))

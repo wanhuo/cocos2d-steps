@@ -59,8 +59,6 @@ class Store : public Popup
 
   BackgroundColor* background;
 
-  Entity* coinsBackground;
-
   /**
    *
    *
@@ -74,6 +72,8 @@ class Store : public Popup
 
   BackgroundScroll* scroll;
 
+  //vector<Item*> items;
+
   virtual void onShow();
   virtual void onHide(Callback callback = NULL);
 
@@ -84,7 +84,6 @@ class Store : public Popup
   virtual void onExit();
 
   virtual void updateListHeight();
-  virtual void updateTextData();
 };
 
 #endif

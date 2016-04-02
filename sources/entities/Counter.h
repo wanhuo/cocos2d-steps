@@ -78,6 +78,7 @@ class Counter : public Background
   virtual void onMenu();
   virtual void onGame();
   virtual void onLose();
+  virtual void onStore();
 
   virtual void onCount();
   virtual void onCoins();

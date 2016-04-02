@@ -326,6 +326,8 @@ void Game::onLose()
 
 void Game::onStore()
 {
+  this->counter->onStore();
+
   Store::getInstance()->show();
 }
 
