@@ -53,6 +53,7 @@ void Plate::onCreate()
    */
   this->behavior = STATIC;
   this->moved = false;
+  this->avoid = false;
   this->blocked = false;
 
   this->setRotation3D(Vec3(0, 0, 0));
@@ -581,6 +582,76 @@ void Plate::setType(Type type, bool animated)
       )
     );
     break;
+
+
+    case MOVED5:
+    this->stopAllActions();
+
+    this->behavior = DYNAMIC;
+    this->avoid = true;
+
+    this->runAction(
+      RepeatForever::create(
+        Sequence::create(
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.15, Vec3(0, 0.8, 0))
+            );
+
+            this->runAction(action->clone());
+            this->moved = true;
+            this->blocked = true;
+
+            if(Application->environment->character->plates.current == this)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.2),
+          CallFunc::create([=] () {
+            this->moved = false;
+          }),
+          DelayTime::create(0.4),
+          CallFunc::create([=] () {
+            auto action = EaseSineInOut::create(
+              MoveBy::create(0.15, Vec3(0, -0.8, 0))
+            );
+
+            this->moved = true;
+
+            this->runAction(action->clone());
+            this->runAction(
+              Sequence::create(
+                DelayTime::create(0.15),
+                CallFunc::create([=] () {
+                  this->moved = false;
+                  this->blocked = false;
+                }),
+                nullptr
+              )
+            );
+
+            if(Application->environment->character->plates.current == this)
+            {
+              Application->environment->character->runAction(action->clone());
+            }
+
+            if(this->decoration)
+            {
+              this->decoration->runAction(action->clone());
+            }
+          }),
+          DelayTime::create(0.6),
+          nullptr
+        )
+      )
+    );
+    break;
   }
 
   if(this->decoration)
@@ -619,6 +690,11 @@ void Plate::remove()
 
   if(this->decoration)
   {
+    if(this->decoration->shadow)
+    {
+      this->decoration->shadow->_destroy();
+    }
+
     this->decoration->runAction(
     Spawn::create(
       RotateBy::create(0.3, Vec3((this->direction ? 0 : 20), 0, (this->direction ? -20 : 0))),

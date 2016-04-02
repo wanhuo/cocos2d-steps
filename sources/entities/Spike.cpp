@@ -61,21 +61,38 @@ void Spike::onCreate()
     Sequence::create(
       DelayTime::create(0.5),
       CallFunc::create([=] () {
-        auto time = random(0.2, 0.5);
-
         this->runAction(
           RepeatForever::create(
             Sequence::create(
+              MoveBy::create(0.2, Vec3(0, 0.8, 0)),
+              DelayTime::create(0.2),
+              MoveBy::create(0.2, Vec3(0, -0.8, 0)),
+              DelayTime::create(0.2),
+              nullptr
+            )
+          )
+        );
+      }),
+      nullptr
+    )
+  );
+
+  this->runAction(
+    Sequence::create(
+      DelayTime::create(0.5),
+      CallFunc::create([=] () {
+        this->runAction(
+          RepeatForever::create(
+            Sequence::create(
+              DelayTime::create(0.1),
               CallFunc::create([=] () {
                 this->enable = true;
               }),
-              MoveBy::create(0.2, Vec3(0, 0.8, 0)),
-              DelayTime::create(time),
-              MoveBy::create(0.2, Vec3(0, -0.8, 0)),
+              DelayTime::create(0.5),
               CallFunc::create([=] () {
                 this->enable = false;
               }),
-              DelayTime::create(time),
+              DelayTime::create(0.2),
               nullptr
             )
           )

@@ -67,6 +67,8 @@ class Decoration : public Entity3D
   Decoration();
  ~Decoration();
 
+  Entity3D* shadow = nullptr;
+
   bool removable = false;
   bool stopable = false;
 

@@ -29,7 +29,7 @@
  *
  */
 Character::Character()
-: Cube("cube3.obj")
+: Cube("cube.obj")
 {
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
@@ -118,11 +118,11 @@ void Character::onDestroy(bool action)
  */
 bool Character::onTouch()
 {
-  if(this->numberOfRunningActions() < 1 && this->manual)
+  if(this->numberOfRunningActions() < 2 && this->manual)
   {
     if(this->plates.current)
     {
-      if(this->plates.current->moved)
+      if(this->plates.current->moved && !this->plates.current->avoid)
       {
         return false;
       }
@@ -155,14 +155,23 @@ void Character::onTurnLeft(bool action, bool set)
       this->autoTurnLeft = true;
     }
 
+    auto previous = this->plates.current;
+
     if(!this->isPlateRightBlocked() && this->onTouch())
     {
+      auto next = this->getPlateRight(previous);
+
+      if(next)
+      {
+        next->pauseSchedulerAndActions();
+      }
+
       this->runAction(
         Spawn::create(
           RotateGlobalBy::create(0.1, Vec3(-90, 0, 0)),
           Sequence::create(
             MoveBy::create(0.05, Vec3(0.0, 0.2, -0.75)),
-            MoveBy::create(0.05, Vec3(0.0, -0.2, -0.75)),
+            MoveBy::create(0.05, Vec3(0.0, -0.2 - (this->getPositionY() - 0.9), -0.75)),
             CallFunc::create([=] () {
               this->changeState(NORMAL);
 
@@ -174,7 +183,7 @@ void Character::onTurnLeft(bool action, bool set)
              * @Optional.
              * Uncomment this to enable auto turning.
              *
-             */
+             *
             CallFunc::create([=] () {
               this->updateNormal(0);
 
@@ -182,7 +191,7 @@ void Character::onTurnLeft(bool action, bool set)
               {
                 this->runAction(
                   Sequence::create(
-                    DelayTime::create(0.05),
+                    //DelayTime::create(0.05),
                     CallFunc::create([=] () {
                       if(this->autoTurnLeft && this->state == NORMAL && this->manual)
                       {
@@ -194,7 +203,7 @@ void Character::onTurnLeft(bool action, bool set)
                   )
                 );
               }
-            }),
+            }),*/
             nullptr
           ),
           nullptr
@@ -219,14 +228,23 @@ void Character::onTurnRight(bool action, bool set)
       this->autoTurnRight = true;
     }
 
+    auto previous = this->plates.current;
+
     if(!this->isPlateLeftBlocked() && this->onTouch())
     {
+      auto next = this->getPlateLeft(previous);
+
+      if(next)
+      {
+        next->pauseSchedulerAndActions();
+      }
+
       this->runAction(
         Spawn::create(
           RotateGlobalBy::create(0.1, Vec3(0, 0, -90)),
           Sequence::create(
             MoveBy::create(0.05, Vec3(0.75, 0.2, 0)),
-            MoveBy::create(0.05, Vec3(0.75, -0.2, 0)),
+            MoveBy::create(0.05, Vec3(0.75, -0.2 - (this->getPositionY() - 0.9), 0)),
             CallFunc::create([=] () {
               this->changeState(NORMAL);
 
@@ -238,7 +256,7 @@ void Character::onTurnRight(bool action, bool set)
              * @Optional.
              * Uncomment this to enable auto turning.
              *
-             */
+             *
             CallFunc::create([=] () {
               this->updateNormal(0);
 
@@ -246,7 +264,7 @@ void Character::onTurnRight(bool action, bool set)
               {
                 this->runAction(
                   Sequence::create(
-                    DelayTime::create(0.05),
+                    //DelayTime::create(0.05),
                     CallFunc::create([=] () {
                       if(this->autoTurnRight && this->state == NORMAL && this->manual)
                       {
@@ -258,7 +276,7 @@ void Character::onTurnRight(bool action, bool set)
                   )
                 );
               }
-            }),
+            }),*/
             nullptr
           ),
           nullptr
@@ -349,7 +367,7 @@ void Character::onTurnUpdate(Turn turn, Plate* custom)
 {
   auto plate = custom ? custom : this->plates.current;
 
-  if(plate && (custom || plate->getNumberOfRunningActions() < 3))
+  if(plate)
   {
     this->onLandSuccessful(turn, plate);
   }
@@ -400,11 +418,11 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   {
     if(this->plates.current->numberOfRunningActions() > 1)
     {
-      log("???????????????");
       return this->onLandFail(turn);
     }
   }
 
+  plate->resumeSchedulerAndActions();
   plate->onCount();
 
   Application->counter->onCount();
@@ -559,7 +577,7 @@ void Character::onCrash(Crash crash)
     case DOWN:
     this->runAction(
       Sequence::create(
-        MoveBy::create(0.2, Vec3(0.0, -0.9, 0.0)),
+        MoveBy::create(0.15, Vec3(0.0, -0.9, 0.0)),
         CallFunc::create([=] () {
           Application->changeState(Game::LOSE);
         }),
@@ -570,12 +588,13 @@ void Character::onCrash(Crash crash)
     case CATCH:
     this->runAction(
       Spawn::create(
-        RotateBy::create(0.3, Vec3((this->plates.current->direction ? 0 : 20), 0, (this->plates.current->direction ? -20 : 0))),
+        RotateGlobalBy::create(0.3, Vec3((this->plates.current->direction ? 0 : 20), 0, (this->plates.current->direction ? -20 : 0))),
         Sequence::create(
           EaseSineOut::create(
             MoveBy::create(0.5, Vec3(0, -1, 0))
           ),
           CallFunc::create([=] () {
+            this->_destroy();
             Application->changeState(Game::LOSE);
           }),
           nullptr

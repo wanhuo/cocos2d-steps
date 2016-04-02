@@ -62,29 +62,45 @@ void Down::onCreate()
 
   this->runAction(
     Sequence::create(
-      MoveBy::create(0.5, Vec3(0, 2.4, 0)),
+      DelayTime::create(0.1),
       CallFunc::create([=] () {
         float x = this->getPositionX();
         float y = 0.01;
         float z = this->getPositionZ();
 
+        this->shadow->_create();
         this->shadow->setPosition3D(Vec3(x, y, z));
-
+        this->shadow->runAction(
+          Sequence::create(
+            DelayTime::create(0.5),
+            CallFunc::create([=] () {
+              this->shadow->runAction(
+                RepeatForever::create(
+                  Sequence::create(
+                    EaseBounceOut::create(
+                      ScaleTo::create(0.6, 1.0, 1.0, 1.0)
+                    ),
+                    DelayTime::create(0.6),
+                    ScaleTo::create(0.2, 0.6, 1.0, 0.6),
+                    DelayTime::create(0.6),
+                    nullptr
+                  )
+                )
+              );
+            }),
+            nullptr
+          )
+        );
+      }),
+      MoveBy::create(0.5, Vec3(0, 2.4, 0)),
+      CallFunc::create([=] () {
         this->runAction(
           RepeatForever::create(
             Sequence::create(
-              CallFunc::create([=] () {
-                this->enable = true;
-                this->plate->blocked = true;
-              }),
               EaseBounceOut::create(
                 MoveBy::create(0.6, Vec3(0, -2.0, 0))
               ),
               DelayTime::create(0.6),
-              CallFunc::create([=] () {
-                this->enable = false;
-                this->plate->blocked = false;
-              }),
               MoveBy::create(0.2, Vec3(0, 2.0, 0)),
               DelayTime::create(0.6),
               nullptr
@@ -98,7 +114,38 @@ void Down::onCreate()
 
   this->runAction(
     Sequence::create(
-      DelayTime::create(0.5),
+      DelayTime::create(0.6),
+      CallFunc::create([=] () {
+        this->runAction(
+          RepeatForever::create(
+            Sequence::create(
+              DelayTime::create(0.1),
+              CallFunc::create([=] () {
+                this->enable = true;
+                this->plate->moved = true;
+                this->plate->blocked = true;
+              }),
+              DelayTime::create(0.5),
+              DelayTime::create(0.6),
+              CallFunc::create([=] () {
+                this->enable = false;
+                this->plate->moved = false;
+                this->plate->blocked = false;
+              }),
+              DelayTime::create(0.2),
+              DelayTime::create(0.6),
+              nullptr
+            )
+          )
+        );
+      }),
+      nullptr
+    )
+  );
+
+  this->runAction(
+    Sequence::create(
+      DelayTime::create(0.6),
       CallFunc::create([=] () {
         this->runAction(
           RepeatForever::create(
@@ -118,30 +165,6 @@ void Down::onCreate()
       nullptr
     )
   );
-
-  this->shadow->runAction(
-    Sequence::create(
-      DelayTime::create(0.5),
-      CallFunc::create([=] () {
-        this->shadow->runAction(
-          RepeatForever::create(
-            Sequence::create(
-              EaseBounceOut::create(
-                ScaleTo::create(0.6, 1.0, 1.0, 1.0)
-              ),
-              DelayTime::create(0.6),
-              ScaleTo::create(0.2, 0.6, 1.0, 0.6),
-              DelayTime::create(0.6),
-              nullptr
-            )
-          )
-        );
-      }),
-      nullptr
-    )
-  );
-
-  this->shadow->_create();
 }
 
 void Down::onDestroy(bool action)

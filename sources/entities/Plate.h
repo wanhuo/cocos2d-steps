@@ -65,7 +65,8 @@ class Plate : public Replace
     MOVED1,
     MOVED2,
     MOVED3,
-    MOVED4
+    MOVED4,
+    MOVED5
   };
 
   enum Side {
@@ -93,6 +94,7 @@ class Plate : public Replace
   bool direction;
   bool position[2];
   bool moved;
+  bool avoid;
   bool blocked;
 
   Decoration* decoration = nullptr;

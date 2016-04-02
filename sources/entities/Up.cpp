@@ -92,7 +92,7 @@ void Up::onPickup()
 
     if(i == count - 1)
     {
-      if(!element || element->behavior == Plate::DYNAMIC || element->type == Plate::SPIKES || element->type == Plate::UP)
+      if(!element || element->behavior == Plate::DYNAMIC || element->type == Plate::SPIKES || element->type == Plate::DOWN)
       {
         Application->environment->generator->create();
 

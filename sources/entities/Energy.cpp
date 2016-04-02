@@ -57,7 +57,7 @@ void Energy::onPickup()
 
     if(next)
     {
-      if(!next->moved)
+      if(!next->moved && next->type != Plate::DOWN)
       {
         float x;
         float z;
@@ -84,7 +84,7 @@ void Energy::onPickup()
           Sequence::create(
             MoveBy::create(0.1, Vec3(x, 0, z)),
             CallFunc::create([=] () {
-              if((++this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::UP && next->type != Plate::DOWN)
+              if((++this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::UP)
               {
                 Application->environment->character->runAction(this->action);
               }

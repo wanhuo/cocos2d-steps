@@ -39,7 +39,6 @@ class Down : public Decoration
    *
    */
   private:
-  Entity3D* shadow;
 
   /**
    *

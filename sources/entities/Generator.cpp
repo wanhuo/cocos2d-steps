@@ -97,6 +97,11 @@ Plate* Generator::create()
         plate->setType(Plate::MOVED4);
         this->s2 = 2;
       }
+      else if(this->s1 < 1 && probably(10))
+      {
+        plate->setType(Plate::MOVED5);
+        this->s2 = 2;
+      }
       else if(probably(2))
       {
         plate->setType(Plate::DIAMOND);
@@ -316,7 +321,7 @@ void Generator::clear()
       }), PLATES_START
     )
   );
-  Application->environment->runAction(
+  /*Application->environment->runAction(
     RepeatForever::create(
       Sequence::create(
         DelayTime::create(0.5),
@@ -324,5 +329,5 @@ void Generator::clear()
         nullptr
       )
     )
-  );
+  );*/
 }

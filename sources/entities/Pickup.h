@@ -46,7 +46,6 @@ class Pickup : public Decoration
    *
    */
   protected:
-  Entity3D* shadow;
 
   /**
    *
