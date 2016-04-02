@@ -29,7 +29,7 @@
  *
  */
 Character::Character()
-: Cube("cube3.obj")
+: Cube("cube4.obj")
 {
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
@@ -88,7 +88,7 @@ void Character::reset()
     )
   );
 
-  this->plane->runAction(
+  /*this->plane->runAction(
     Sequence::create(
       MoveBy::create(1.0, Vec3(0, 3, 0)),
       CallFunc::create([=] () {
@@ -103,7 +103,7 @@ void Character::reset()
       }),
       nullptr
     )
-  );
+  );*/
 }
 
 /**

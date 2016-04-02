@@ -119,11 +119,10 @@ void Counter::onCount()
 
   this->update();
 
-
   Application->environment->water->setColor(Application->environment->color->get());
 }
 
-void Counter::onCoin()
+void Counter::onCoins()
 {
   this->values.coins++;
 
