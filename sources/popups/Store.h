@@ -26,7 +26,7 @@
 
 #include "Popup.h"
 
-#include "ui/CocosGUI.h"
+#include "BackgroundScroll.h"
 
 /**
  *
@@ -55,6 +55,11 @@ class Store : public Popup
    */
   protected:
   Buttons buttons;
+  float size;
+
+  BackgroundColor* background;
+
+  Entity* coinsBackground;
 
   /**
    *
@@ -67,11 +72,19 @@ class Store : public Popup
   Store();
  ~Store();
 
+  BackgroundScroll* scroll;
+
   virtual void onShow();
   virtual void onHide(Callback callback = NULL);
 
   virtual void show();
   virtual void hide(Callback callback = NULL);
+
+  virtual void onEnter();
+  virtual void onExit();
+
+  virtual void updateListHeight();
+  virtual void updateTextData();
 };
 
 #endif

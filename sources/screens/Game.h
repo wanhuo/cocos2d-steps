@@ -99,7 +99,7 @@ class Game : public Screen
     Camera* e;
   };
 
-  const static int SCALE_FACTOR = 60;
+  const static int SCALE_FACTOR = 70;
 
   const static int NEAR = 1;
   const static int FAR = 100;
