@@ -122,7 +122,7 @@ Plate* Generator::create()
       {
         //plate->setType(Plate::TYPE_HEART);
       }
-      else if(this->count > 1 && probably(20) && false)
+      else if(this->count > 1 && probably(20))
       {
         this->length++;
         this->length++;
@@ -133,14 +133,14 @@ Plate* Generator::create()
         if(this->direction)
         {
           p->setPositionX(this->x);
-          p->setPositionY(this->y - 5);
+          p->setPositionY(this->y);
           p->setPositionZ(this->z + (3.0 * (probably(50) ? 1 : -1)));
           c->setPosition3D(p->getPosition3D());
         }
         else
         {
           p->setPositionX(this->x + (3.0 * (probably(50) ? 1 : -1)));
-          p->setPositionY(this->y - 5);
+          p->setPositionY(this->y);
           p->setPositionZ(this->z);
           c->setPosition3D(p->getPosition3D());
         }
