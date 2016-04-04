@@ -57,7 +57,7 @@ Store::Store()
   this->scroll->setBounceEnabled(true);
   this->scroll->setContentSize(Size(Application->getWidth(), Application->getHeight() - 400));
   this->scroll->setPositionY(Application->getHeight() - (Application->getHeight() - 400) - 100);
-  this->scroll->setScrollBarColor(Color3B::WHITE);
+  this->scroll->setScrollBarEnabled(false);
 
   this->buttons.restore = new Button("restore-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
   this->buttons.back = new Button("back-button.png", 2, 1, this, std::bind([=] () {
@@ -69,15 +69,19 @@ Store::Store()
   this->buttons.restore->setPosition(Application->getCenter().x + 150, 200);
   this->buttons.back->setPosition(Application->getCenter().x - 150, 200);
 
-  float x = 0;
-  float y = 150;
+  auto x = 150.0;
+  auto y = 150.0;
+
+  auto index = 0;
 
   for(int i = 0; i < 5; i++)
   {
     for(int j = 0; j < 2; j++)
     {
-      auto item = new Item(this->scroll);
-      item->setPosition(Application->getCenter().x - 150 * (j == 0 ? 1 : -1), y);
+      index++;
+
+      auto item = new Item(index, this->scroll);
+      item->setPosition(Application->getCenter().x - x * (j == 0 ? 1 : -1), y);
 
       this->items.push_back(item);
     }

@@ -20,15 +20,15 @@
             <key>coins-icon.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1301,305},{45,61}}</string>
+                <string>{{1301,305},{35,47}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{45,61}}</string>
+                <string>{{0,0},{35,47}}</string>
                 <key>sourceSize</key>
-                <string>{45,61}</string>
+                <string>{35,47}</string>
             </dict>
             <key>leaderboard-button.png</key>
             <dict>
@@ -183,7 +183,7 @@
             <key>size</key>
             <string>{1521,481}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d13137e4811bc9b56f781345fccd453f:3ad863fcccdcdda6410077bab774343f:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
+            <string>$TexturePacker:SmartUpdate:6b6509e88f572fd0cf04ec7101c461d8:59a6ea5a67e59574ae81d9b102b5fe07:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
             <key>textureFileName</key>
             <string>ui.png</string>
         </dict>

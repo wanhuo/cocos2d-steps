@@ -62,7 +62,7 @@ class Item : public Entity
    *
    */
   public:
-  Item(Node* parent = nullptr);
+  Item(int index, Node* parent = nullptr);
  ~Item();
 
   virtual void onCreate();

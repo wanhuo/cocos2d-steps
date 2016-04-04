@@ -212,6 +212,8 @@ void Environment::onMenu()
 
   this->generator->clear();
 
+  this->character = new Character;
+
   this->character->_create();
   this->character->reset();
 

@@ -31,17 +31,7 @@
 Diamond::Diamond()
 : Pickup("diamond.obj")
 {
-  this->setTexture("crystal-texture.png");
-
-  this->test = new Entity3D("diamond-circle.obj", this, true);
-
-  this->test->runAction(
-    RepeatForever::create(
-      RotateBy::create(1.0, Vec3(0, 360, 0))
-    )
-  );
-
-  this->test->setTexture("crystal-circle-texture.png");
+  this->setTexture("diamond-texture.png");
 }
 
 Diamond::~Diamond()

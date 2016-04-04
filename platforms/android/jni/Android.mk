@@ -9,6 +9,7 @@ LOCAL_MODULE_FILENAME := libcore
 LOCAL_SRC_FILES := application.cpp \
                    ../../../../cocos2d-tooflya-sdk/AppDelegate.cpp \
                    ../../../../cocos2d-tooflya-sdk/actions/Shake.cpp \
+                   ../../../../cocos2d-tooflya-sdk/actions/RotateGlobalBy.cpp \
                    ../../../../cocos2d-tooflya-sdk/audio/Music.cpp \
                    ../../../../cocos2d-tooflya-sdk/audio/Sound.cpp \
                    ../../../../cocos2d-tooflya-sdk/backgrounds/Background.cpp \
@@ -46,23 +47,36 @@ LOCAL_SRC_FILES := application.cpp \
                    ../../../../cocos2d-tooflya-sdk/platform/android/social/Social.cpp \
                    ../../../../cocos2d-tooflya-sdk/platform/include/vote/Vote.cpp \
                    ../../../../cocos2d-tooflya-sdk/platform/android/vote/Vote.cpp \
+                   ../../../sources/entities/Item.cpp \
+                   ../../../sources/entities/Color.cpp \
+                   ../../../sources/entities/Dust.cpp \
                    ../../../sources/entities/Environment.cpp \
                    ../../../sources/entities/Generator.cpp \
-                   ../../../sources/entities/Route.cpp \
                    ../../../sources/entities/Cube.cpp \
+                   ../../../sources/entities/Replace.cpp \
                    ../../../sources/entities/Character.cpp \
                    ../../../sources/entities/Plate.cpp \
+                   ../../../sources/entities/Cannon.cpp \
+                   ../../../sources/entities/Crystal.cpp \
+                   ../../../sources/entities/Up.cpp \
+                   ../../../sources/entities/Down.cpp \
                    ../../../sources/entities/Particle.cpp \
-                   ../../../sources/entities/Number.cpp \
                    ../../../sources/entities/Counter.cpp \
                    ../../../sources/entities/Decoration.cpp \
                    ../../../sources/entities/Diamond.cpp \
                    ../../../sources/entities/Spike.cpp \
                    ../../../sources/entities/Fish.cpp \
                    ../../../sources/entities/Ripple.cpp \
-                   ../../../sources/entities/Ship.cpp \
+                   ../../../sources/entities/Pickup.cpp \
+                   ../../../sources/entities/Star.cpp \
+                   ../../../sources/entities/Heart.cpp \
+                   ../../../sources/entities/Energy.cpp \
                    ../../../sources/support/Events.cpp \
                    ../../../sources/screens/Game.cpp \
+                   ../../../sources/popups/Popup.cpp \
+                   ../../../sources/popups/Menu.cpp \
+                   ../../../sources/popups/Finish.cpp \
+                   ../../../sources/popups/Store.cpp \
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../cocos2d/cocos/audio/include \
                     $(LOCAL_PATH)/../../../../cocos2d-tooflya-sdk \

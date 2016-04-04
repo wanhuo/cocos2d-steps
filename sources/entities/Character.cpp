@@ -29,7 +29,7 @@
  *
  */
 Character::Character()
-: Cube("cube10.obj")
+: Cube((patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
 {
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);

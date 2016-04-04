@@ -34,7 +34,7 @@
  *
  *
  */
-Item::Item(Node* parent)
+Item::Item(int index, Node* parent)
 : Entity("store-item.png", parent, true)
 {
   this->text = new Text("item-name", this, true);
@@ -42,6 +42,8 @@ Item::Item(Node* parent)
 
   this->text->setPosition(this->getWidth() / 2, 20);
   this->lock->setPosition(this->getWidth() / 2, this->getHeight() / 2 + 20);
+
+  this->text->data(index);
 }
 
 Item::~Item()
