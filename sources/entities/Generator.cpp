@@ -43,8 +43,36 @@ Generator::~Generator()
  */
 Plate* Generator::create()
 {
+    if(++this->count > this->length)
+    {
+      this->count = 0;
+      this->length = random(ROUTE_LENGTH_MIN, ROUTE_LENGTH_MAX);
+
+      this->direction = !this->direction;
+
+      if(this->direction)
+      {
+        this->z += 1.5f;
+      }
+      else
+      {
+        this->x -= 1.5f;
+      }
+
+      if(this->direction)
+      {
+        this->x += 1.5f;
+      }
+      else
+      {
+        this->z -= 1.5f;
+      }
+    }
+
     auto plate = static_cast<Plate*>(Application->environment->plates->_create());
 
+    plate->direction = this->direction;
+   
     plate->setPositionX(this->x);
     plate->setPositionY(this->y - 1);
     plate->setPositionZ(this->z);
@@ -97,7 +125,7 @@ Plate* Generator::create()
         plate->setType(Plate::MOVED4);
         this->s2 = 2;
       }
-      else if(this->s1 < 1 && probably(10))
+      else if(this->count > 0 && this->count < this->length && this->s1 < 1 && probably(100))
       {
         plate->setType(Plate::MOVED5);
         this->s2 = 2;
@@ -208,34 +236,6 @@ Plate* Generator::create()
     {
       this->z -= 1.5f;
     }
-
-    if(++this->count > this->length)
-    {
-      this->count = 0;
-      this->length = random(ROUTE_LENGTH_MIN, ROUTE_LENGTH_MAX);
-
-      this->direction = !this->direction;
-
-      if(this->direction)
-      {
-        this->z += 1.5f;
-      }
-      else
-      {
-        this->x -= 1.5f;
-      }
-
-      if(this->direction)
-      {
-        this->x += 1.5f;
-      }
-      else
-      {
-        this->z -= 1.5f;
-      }
-    }
-
-    plate->direction = this->direction;
 
     this->destroy(true);
 

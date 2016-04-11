@@ -589,6 +589,15 @@ void Plate::setType(Type type, bool animated)
 
 
     case MOVED5:
+    auto test = new Entity3D(this->getParent(), true);
+    test->setRotation3D(Vec3(0, (this->direction ? 2 : 90), 0));
+    test->setPosition3D(this->getPosition3D());
+
+    this->decoration = new Decoration("plate-up.obj", test);
+    this->decoration->setPlate(this, animated);
+    this->decoration->_create()->setColor(Color3B(255.0, 60.0, 60.0));
+    this->decoration->setPosition3D(Vec3(0, 0, 0));
+
     this->stopAllActions();
 
     this->behavior = DYNAMIC;
@@ -615,6 +624,12 @@ void Plate::setType(Type type, bool animated)
             {
               this->decoration->runAction(action->clone());
             }
+
+            this->decoration->runAction(
+              EaseSineInOut::create(
+                RotateBy::create(0.3, Vec3(0, 0,  90))
+              )
+            );
           }),
           DelayTime::create(0.2),
           CallFunc::create([=] () {
@@ -649,6 +664,12 @@ void Plate::setType(Type type, bool animated)
             {
               this->decoration->runAction(action->clone());
             }
+
+            this->decoration->runAction(
+              EaseSineInOut::create(
+                RotateBy::create(0.3, Vec3(0, 0,  -90))
+              )
+            );
           }),
           DelayTime::create(0.6),
           nullptr
