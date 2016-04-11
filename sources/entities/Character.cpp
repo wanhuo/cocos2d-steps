@@ -34,8 +34,6 @@ Character::Character()
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
 
-  this->streaks = new Pool(new Entity3D("character-streak.obj"), this->plane);
-
   this->setTexture("cube12-texture.png");
 
   this->setScheduleUpdate(true);
@@ -143,9 +141,9 @@ void Character::onSound()
 {
   Sound->play("character-jump", this->sound);
 
-  this->sound += 0.05f;
   this->soundTimeElapsed = 0;
 
+  this->sound += 0.05f;
   this->steps++;
 }
 
@@ -527,24 +525,6 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   Application->environment->generator->create();
 
   this->onSound();
-
-  if(this->steps >= 0)
-  {
-    for(int i = 0; i < this->steps; i++)
-    {
-      auto streak = this->streaks->_create();
-
-      streak->setScale(0);
-
-      streak->runAction(
-        Sequence::create(
-          DelayTime::create(0.05 * i),
-          ScaleTo::create(0.1, 2.0),
-          nullptr
-        )
-      );
-    }
-  }
 }
 
 void Character::onLandFail(Turn turn, Plate* plate)

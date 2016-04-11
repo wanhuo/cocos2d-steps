@@ -67,8 +67,6 @@ class Character : public Cube
   public:
   Entity3D* plane;
 
-  Pool* streaks;
-
   enum State {
     NORMAL,
     JUMP,

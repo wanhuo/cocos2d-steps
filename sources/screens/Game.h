@@ -54,6 +54,7 @@
 #include "Replace.h"
 #include "Plate.h"
 #include "Cannon.h"
+#include "Saw.h"
 #include "Character.h"
 #include "Particle.h"
 #include "Fish.h"

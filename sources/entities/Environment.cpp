@@ -81,6 +81,7 @@ void Environment::create()
 
   this->plates = new Pool(new Plate, this->plane);
   this->cannons = new Pool(new Cannon, this->plane);
+  this->saws = new Pool(new Saw, this->plane);
   this->particles = new Pool(new Particle, this->plane);
   this->fishes = new Pool(new Fish, this->plane);
   this->ripples = new Pool(new Ripple, this->plane);

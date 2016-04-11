@@ -230,6 +230,10 @@ void Plate::setType(Type type, bool animated)
     this->decoration = static_cast<Decoration*>(Application->environment->cannons->_create());
     this->decoration->setPlate(this, animated);
     break;
+    case SAW:
+    this->decoration = static_cast<Decoration*>(Application->environment->saws->_create());
+    this->decoration->setPlate(this, animated);
+    break;
     case DIAMOND:
     this->decoration = static_cast<Decoration*>(Application->environment->diamonds->_create());
     this->decoration->setPlate(this, animated);

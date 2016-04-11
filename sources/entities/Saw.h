@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _PLATE_H_
-#define _PLATE_H_
+#ifndef _SAW_H_
+#define _SAW_H_
 
 #include "Game.h"
 
@@ -31,19 +31,22 @@
  *
  *
  */
-class Plate : public Replace
+class Saw : public Decoration
 {
   /**
    *
    *
    *
    */
+  private:
+
+  /**
+   *
+   *
+   *
+   */
   protected:
-  int index;
-
-  float startPositionX;
-  float startPositionY;
-  float startPositionZ;
+  bool enable;
 
   /**
    *
@@ -51,81 +54,17 @@ class Plate : public Replace
    *
    */
   public:
-  enum Type {
-    NORMAL,
-    BEST,
-    SPIKES,
-    UP,
-    DOWN,
-    CANNON,
-    SAW,
-    DIAMOND,
-    CRYSTAL,
-    ENERGY,
-    STAR,
-    HEART,
-    MOVED1,
-    MOVED2,
-    MOVED3,
-    MOVED4,
-    MOVED5
-  };
-
-  enum Side {
-    LEFT,
-    RIGHT
-  };
-
-  enum Behavior {
-    STATIC,
-    DYNAMIC
-  };
-
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Plate();
- ~Plate();
-
-  Type type;
-  Behavior behavior;
-
-  bool direction;
-  bool position[2];
-  bool moved;
-  bool avoid;
-  bool blocked;
-
-  Decoration* decoration = nullptr;
+  Saw();
+ ~Saw();
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
-  virtual void onRemove();
-  virtual void onCount();
+  virtual void setPlate(Plate* plate);
 
-  virtual int getIndex();
+  virtual Character::Crash status();
 
-  virtual float getStartPositionX();
-  virtual float getStartPositionY();
-  virtual float getStartPositionZ();
-
-  virtual void setIndex(int index);
-
-  virtual void setStartPositionX(float x);
-  virtual void setStartPositionY(float y);
-  virtual void setStartPositionZ(float z);
-
-  virtual void setType(Type type, bool animated = true);
-
-  virtual void remove();
-
-  virtual void clearDecoration(bool force = false, bool animated = false);
-
-  Plate* deepCopy();
+  Saw* deepCopy();
 };
 
 #endif
