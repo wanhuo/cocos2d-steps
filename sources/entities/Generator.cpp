@@ -125,12 +125,12 @@ Plate* Generator::create()
         plate->setType(Plate::MOVED4);
         this->s2 = 2;
       }
-      else if(this->count > 0 && this->count < this->length && this->s1 < 1 && probably(100))
+      else if(this->count > 0 && this->count < this->length && this->s1 < 1 && probably(10))
       {
         plate->setType(Plate::MOVED5);
         this->s2 = 2;
       }
-      else if(probably(2))
+      else if(probably(200))
       {
         plate->setType(Plate::DIAMOND);
       }

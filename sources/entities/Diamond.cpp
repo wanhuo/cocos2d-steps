@@ -32,6 +32,11 @@ Diamond::Diamond()
 : Pickup("diamond.obj")
 {
   this->setTexture("diamond-texture.png");
+  auto bill = BillBoard::create();
+    bill->setPosition(0, 0);
+    Application->addChild(bill);
+
+    auto a = new Entity("plate-texture-state-2-spike.png", bill, true);
 }
 
 Diamond::~Diamond()
