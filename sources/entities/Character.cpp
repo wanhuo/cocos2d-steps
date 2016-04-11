@@ -34,7 +34,8 @@ Character::Character()
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
 
-  this->setTexture("character-texture.png");
+  //this->setTexture("character-texture.png");
+  this->setTexture("cube11-texture.png");
 
   this->setScheduleUpdate(true);
 }
