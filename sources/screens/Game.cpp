@@ -124,15 +124,8 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
     this->changeState(GAME);
     break;
     case GAME:
-      if(touch->getLocation().x < this->getWidth() / 2)
-      {
-        this->environment->onTurnLeft();
-      }
-      else
-      {
-        this->environment->onTurnRight();
-      }
-      break;
+    this->environment->onTurn();
+    break;
   }
 }
 
@@ -141,15 +134,8 @@ void Game::onTouchFinish(cocos2d::Touch* touch, Event* event)
   switch(this->state)
   {
     default:
-      if(touch->getLocation().x < this->getWidth() / 2)
-      {
-        this->environment->onTurnLeft(false);
-      }
-      else
-      {
-        this->environment->onTurnRight(false);
-      }
-      break;
+    this->environment->onTurn();
+    break;
   }
 }
 
@@ -173,34 +159,14 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
     this->changeState(GAME);
     break;
     case GAME:
-    switch(key)
-    {
-      case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-      case cocos2d::EventKeyboard::KeyCode::KEY_A:
-      this->environment->onTurnLeft();
-      break;
-      case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-      case cocos2d::EventKeyboard::KeyCode::KEY_D:
-      this->environment->onTurnRight();
-      break;
-    }
+    this->environment->onTurn();
     break;
   }
 }
 
 void Game::onKeyReleased(cocos2d::EventKeyboard::KeyCode key, Event *event)
 {
-  switch(key)
-  {
-    case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-    case cocos2d::EventKeyboard::KeyCode::KEY_A:
-    this->environment->onTurnLeft(false);
-    break;
-    case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-    case cocos2d::EventKeyboard::KeyCode::KEY_D:
-    this->environment->onTurnRight(false);
-    break;
-  }
+  this->environment->onTurn(false);
 }
 
 /**

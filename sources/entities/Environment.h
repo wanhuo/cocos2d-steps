@@ -133,8 +133,7 @@ class Environment : public Background
 
   virtual Vec3 position();
 
-  virtual void onTurnLeft(bool action = true);
-  virtual void onTurnRight(bool action = true);
+  virtual void onTurn(bool action = true);
 
   virtual void onMenu();
   virtual void onGame();

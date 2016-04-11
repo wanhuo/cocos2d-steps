@@ -163,6 +163,28 @@ bool Character::onTouch()
  *
  *
  */
+void Character::onTurn(bool action, bool set)
+{
+  if(action)
+  {
+    auto environment = this->getPlatesNear();
+
+    if(environment.plates[Plate::RIGHT])
+    {
+      this->onTurnLeft(action, set);
+    }
+    else
+    {
+      this->onTurnRight(action, set);
+    }
+  }
+  else
+  {
+    //this->onTurnLeft();
+    //this->onTurnRight();
+  }
+}
+
 void Character::onTurnLeft(bool action, bool set)
 {
   if(action)

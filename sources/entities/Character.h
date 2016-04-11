@@ -134,6 +134,7 @@ class Character : public Cube
 
   virtual bool onTouch();
 
+  virtual void onTurn(bool action = true, bool set = true);
   virtual void onTurnLeft(bool action = true, bool set = true);
   virtual void onTurnRight(bool action = true, bool set = true);
 

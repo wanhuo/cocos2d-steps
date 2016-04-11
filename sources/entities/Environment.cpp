@@ -182,14 +182,9 @@ Vec3 Environment::position()
  *
  *
  */
-void Environment::onTurnLeft(bool action)
+void Environment::onTurn(bool action)
 {
-  this->character->onTurnLeft(action);
-}
-
-void Environment::onTurnRight(bool action)
-{
-  this->character->onTurnRight(action);
+  this->character->onTurn(action);
 }
 
 /**
@@ -212,6 +207,7 @@ void Environment::onMenu()
 
   this->generator->clear();
 
+  this->character->_destroy();
   this->character = new Character;
 
   this->character->_create();
@@ -224,7 +220,7 @@ void Environment::onMenu()
 
 void Environment::onGame()
 {
-  this->onTurnRight();
+  this->onTurn();
 }
 
 void Environment::onLose()
