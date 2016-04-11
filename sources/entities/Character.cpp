@@ -29,13 +29,14 @@
  *
  */
 Character::Character()
-: Cube("cube11.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
+: Cube("cube12.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
 {
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
 
-  //this->setTexture("character-texture.png");
-  this->setTexture("cube11-texture.png");
+  this->streaks = new Pool(new Entity3D("character-streak.obj"), this->plane);
+
+  this->setTexture("cube12-texture.png");
 
   this->setScheduleUpdate(true);
 }
@@ -60,6 +61,7 @@ void Character::reset()
 
   this->time = 0;
   this->lives = 0;
+  this->steps = 0;
   this->sound = 1;
 
   this->soundTime = 0.5;
@@ -143,6 +145,8 @@ void Character::onSound()
 
   this->sound += 0.05f;
   this->soundTimeElapsed = 0;
+
+  this->steps++;
 }
 
 /**
@@ -523,6 +527,24 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   Application->environment->generator->create();
 
   this->onSound();
+
+  if(this->steps >= 0)
+  {
+    for(int i = 0; i < this->steps; i++)
+    {
+      auto streak = this->streaks->_create();
+
+      streak->setScale(0);
+
+      streak->runAction(
+        Sequence::create(
+          DelayTime::create(0.05 * i),
+          ScaleTo::create(0.1, 2.0),
+          nullptr
+        )
+      );
+    }
+  }
 }
 
 void Character::onLandFail(Turn turn, Plate* plate)
@@ -987,6 +1009,7 @@ void Character::update(float time)
 
   if(this->soundTimeElapsed >= this->soundTime)
   {
+    this->steps = 0;
     this->sound = 1;
   }
 }

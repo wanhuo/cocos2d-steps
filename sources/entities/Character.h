@@ -57,6 +57,7 @@ class Character : public Cube
   float time;
 
   int lives;
+  int steps;
 
   /**
    *
@@ -65,6 +66,8 @@ class Character : public Cube
    */
   public:
   Entity3D* plane;
+
+  Pool* streaks;
 
   enum State {
     NORMAL,
