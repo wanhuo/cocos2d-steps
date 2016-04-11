@@ -130,7 +130,7 @@ Plate* Generator::create()
         plate->setType(Plate::MOVED5);
         this->s2 = 2;
       }
-      else if(probably(200))
+      else if(probably(2))
       {
         plate->setType(Plate::DIAMOND);
       }

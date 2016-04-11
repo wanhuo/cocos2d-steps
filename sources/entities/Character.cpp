@@ -29,13 +29,13 @@
  *
  */
 Character::Character()
-: Cube("cube12.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
+: Cube("cube11.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
 {
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
 
   //this->setTexture("character-texture.png");
-  this->setTexture("cube12-texture.png");
+  this->setTexture("cube11-texture.png");
 
   this->setScheduleUpdate(true);
 }
@@ -61,6 +61,9 @@ void Character::reset()
   this->time = 0;
   this->lives = 0;
   this->sound = 1;
+
+  this->soundTime = 0.5;
+  this->soundTimeElapsed = 0;
 
   this->plates.current = nullptr;
   this->plates.previous = nullptr;
@@ -127,6 +130,19 @@ void Character::onCreate()
 void Character::onDestroy(bool action)
 {
   Cube::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Character::onSound()
+{
+  Sound->play("character-jump", this->sound);
+
+  this->sound += 0.05f;
+  this->soundTimeElapsed = 0;
 }
 
 /**
@@ -506,9 +522,7 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
 
   Application->environment->generator->create();
 
-  Sound->play("character-jump", this->sound);
-
-  this->sound += 0.01f;
+  this->onSound();
 }
 
 void Character::onLandFail(Turn turn, Plate* plate)
@@ -963,6 +977,18 @@ void Character::updateStates(float time)
 void Character::update(float time)
 {
   this->updateStates(time);
+
+  /**
+   *
+   *
+   *
+   */
+  this->soundTimeElapsed += time;
+
+  if(this->soundTimeElapsed >= this->soundTime)
+  {
+    this->sound = 1;
+  }
 }
 
 /**

@@ -32,11 +32,16 @@ Diamond::Diamond()
 : Pickup("diamond.obj")
 {
   this->setTexture("diamond-texture.png");
-  auto bill = BillBoard::create();
-    bill->setPosition(0, 0);
-    Application->addChild(bill);
 
-    auto a = new Entity("plate-texture-state-2-spike.png", bill, true);
+  auto billboard = BillBoard::create();
+  billboard->setPosition(0, 1);
+
+  this->addChild(billboard);
+
+  auto glow = new Entity("glow.png", billboard, true);
+
+  glow->setScale(0.008);
+  glow->setColor(Color3B(187.0, 237.0, 255.0));
 }
 
 Diamond::~Diamond()

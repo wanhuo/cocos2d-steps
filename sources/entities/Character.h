@@ -50,6 +50,9 @@ class Character : public Cube
   bool autoTurnRight;
   bool manual;
 
+  float soundTime;
+  float soundTimeElapsed;
+
   float sound;
   float time;
 
@@ -125,6 +128,8 @@ class Character : public Cube
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
+
+  virtual void onSound();
 
   virtual void onNormal();
   virtual void onJump();

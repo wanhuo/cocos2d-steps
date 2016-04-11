@@ -100,6 +100,16 @@ void Up::onPickup()
         remove++;
       }
     }
+
+    element->runAction(
+      Sequence::create(
+        DelayTime::create(0.1 * i),
+        CallFunc::create(CC_CALLBACK_0(Plate::onCount, element)),
+        CallFunc::create(CC_CALLBACK_0(Character::onSound, Application->environment->character)),
+        CallFunc::create(CC_CALLBACK_0(Counter::onCount, Application->counter)),
+        nullptr
+      )
+    );
   }
 
   Application->environment->character->setManual(false);
