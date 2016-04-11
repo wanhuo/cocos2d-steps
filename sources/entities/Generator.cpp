@@ -150,6 +150,10 @@ Plate* Generator::create()
       {
         //plate->setType(Plate::TYPE_HEART);
       }
+      else if(probably(2))
+      {
+        // ??
+      }
       else if(this->count > 1 && this->s3 < 0 && probably(50) && false)
       {
         this->s3 = 10;

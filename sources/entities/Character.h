@@ -57,6 +57,7 @@ class Character : public Cube
   float time;
 
   int lives;
+  int steps;
 
   /**
    *

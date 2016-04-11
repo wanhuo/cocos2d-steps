@@ -29,13 +29,12 @@
  *
  */
 Character::Character()
-: Cube("cube11.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
+: Cube("cube12.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
 {
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
 
-  //this->setTexture("character-texture.png");
-  this->setTexture("cube11-texture.png");
+  this->setTexture("cube12-texture.png");
 
   this->setScheduleUpdate(true);
 }
@@ -60,6 +59,7 @@ void Character::reset()
 
   this->time = 0;
   this->lives = 0;
+  this->steps = 0;
   this->sound = 1;
 
   this->soundTime = 0.5;
@@ -141,8 +141,10 @@ void Character::onSound()
 {
   Sound->play("character-jump", this->sound);
 
-  this->sound += 0.05f;
   this->soundTimeElapsed = 0;
+
+  this->sound += 0.05f;
+  this->steps++;
 }
 
 /**
@@ -987,6 +989,7 @@ void Character::update(float time)
 
   if(this->soundTimeElapsed >= this->soundTime)
   {
+    this->steps = 0;
     this->sound = 1;
   }
 }
