@@ -29,13 +29,13 @@
  *
  */
 Character::Character()
-: Cube("cube11.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
+: Cube("cube12.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
 {
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
 
   //this->setTexture("character-texture.png");
-  this->setTexture("cube11-texture.png");
+  this->setTexture("cube12-texture.png");
 
   this->setScheduleUpdate(true);
 }
