@@ -29,7 +29,7 @@
  *
  */
 Character::Character()
-: Cube((patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
+: Cube("cube11.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
 {
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
@@ -167,9 +167,7 @@ void Character::onTurn(bool action, bool set)
 {
   if(action)
   {
-    auto environment = this->getPlatesNear();
-
-    if(environment.plates[Plate::RIGHT])
+    if(this->getPlatesNearWithDefaults().plates[Plate::RIGHT])
     {
       this->onTurnLeft(action, set);
     }
@@ -180,8 +178,8 @@ void Character::onTurn(bool action, bool set)
   }
   else
   {
-    //this->onTurnLeft();
-    //this->onTurnRight();
+    this->onTurnLeft(action, set);
+    this->onTurnRight(action, set);
   }
 }
 
@@ -762,6 +760,14 @@ Plate* Character::getPlateLeft(Plate* current)
 
 Plate* Character::getPlateRightWithDefaults(Plate* current)
 {
+  if(!this->plates.current)
+  {
+    if(!current)
+    {
+      return nullptr;
+    }
+  }
+
   int x = (current ? current->getStartPositionX() : this->plates.current->getStartPositionX()) / 1.5;
   int y = (current ? current->getStartPositionY() : this->plates.current->getStartPositionY()) / 1.5;
   int z = (current ? current->getStartPositionZ() : this->plates.current->getStartPositionZ()) / 1.5;
@@ -789,6 +795,14 @@ Plate* Character::getPlateRightWithDefaults(Plate* current)
 
 Plate* Character::getPlateLeftWithDefaults(Plate* current)
 {
+  if(!this->plates.current)
+  {
+    if(!current)
+    {
+      return nullptr;
+    }
+  }
+
   int x = (current ? current->getStartPositionX() : this->plates.current->getStartPositionX()) / 1.5;
   int y = (current ? current->getStartPositionY() : this->plates.current->getStartPositionY()) / 1.5;
   int z = (current ? current->getStartPositionZ() : this->plates.current->getStartPositionZ()) / 1.5;

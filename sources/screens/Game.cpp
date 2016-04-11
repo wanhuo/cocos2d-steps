@@ -134,7 +134,7 @@ void Game::onTouchFinish(cocos2d::Touch* touch, Event* event)
   switch(this->state)
   {
     default:
-    this->environment->onTurn();
+    this->environment->onTurn(false);
     break;
   }
 }
