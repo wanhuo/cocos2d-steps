@@ -58,6 +58,14 @@ class Generator : public Ref
    *
    */
   protected:
+  struct Conditions {
+    int s1;
+    int s2;
+    int s3;
+  };
+
+  Conditions conditions;
+
   float x;
   float y;
   float z;
@@ -65,10 +73,6 @@ class Generator : public Ref
   int index;
   int count;
   int length;
-
-  int s1;
-  int s2;
-  int s3;
 
   bool direction;
 

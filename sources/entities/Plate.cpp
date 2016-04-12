@@ -29,7 +29,7 @@
  *
  */
 Plate::Plate()
-: Replace("plate.obj")
+: Cube("plate.obj")
 {
 }
 
@@ -44,7 +44,7 @@ Plate::~Plate()
  */
 void Plate::onCreate()
 {
-  Replace::onCreate();
+  Cube::onCreate();
 
   /**
    *
@@ -62,6 +62,12 @@ void Plate::onCreate()
   this->setType(NORMAL);
 
   this->runAction(
+    EaseBounceOut::create(
+      MoveBy::create(0.5, Vec3(0, 1, 0))
+    )
+  );
+
+  this->runAction(
     RepeatForever::create(
       Sequence::create(
         DelayTime::create(random(1.0, 5.0)),
@@ -76,7 +82,7 @@ void Plate::onCreate()
 
 void Plate::onDestroy(bool action)
 {
-  Replace::onDestroy(action);
+  Cube::onDestroy(action);
 
   /**
    *
@@ -84,6 +90,7 @@ void Plate::onDestroy(bool action)
    *
    */
   this->clearDecoration(true);
+  this->clearSpecial();
 }
 
 /**
@@ -104,6 +111,7 @@ void Plate::onRemove()
   }
 
   this->setIndex(10000);
+
   this->stopAllActions();
 }
 
@@ -155,6 +163,11 @@ int Plate::getIndex()
   return this->index;
 }
 
+bool Plate::getDirection()
+{
+  return this->direction;
+}
+
 float Plate::getStartPositionX()
 {
   return this->startPositionX;
@@ -168,6 +181,11 @@ float Plate::getStartPositionY()
 float Plate::getStartPositionZ()
 {
   return this->startPositionZ;
+}
+
+void Plate::setDirection(bool direction)
+{
+  this->direction = direction;
 }
 
 void Plate::setIndex(int index)
@@ -201,6 +219,14 @@ void Plate::setType(Type type, bool animated)
 
   switch(this->type)
   {
+    case START:
+    this->setTexture("plate-texture-state-2.png");
+
+    this->decoration = static_cast<Decoration*>(Application->environment->start->_create());
+    this->decoration->setTexture("start-texture.png");
+    this->decoration->setPlate(this, animated);
+    this->decoration->setRotation3D(Vec3(0, 0, 0));
+    break;
     case BEST:
     this->setTexture("plate-texture-state-1-best.png");
     break;
@@ -210,7 +236,7 @@ void Plate::setType(Type type, bool animated)
 
     this->setVisible(false);
 
-    this->special = static_cast<Entity3D*>(Application->environment->plates_spikes->_create());
+    this->special = static_cast<Special*>(Application->environment->plates_spikes->_create());
     this->special->setTexture("plate-texture-state-1-spike.png");
     break;
     case UP:
@@ -219,15 +245,11 @@ void Plate::setType(Type type, bool animated)
 
     this->setVisible(false);
 
-    this->special = static_cast<Entity3D*>(Application->environment->plates_up->_create());
+    this->special = static_cast<Special*>(Application->environment->plates_up->_create());
     this->special->setTexture("plate-texture-state-1-up.png");
     break;
     case DOWN:
     this->decoration = static_cast<Decoration*>(Application->environment->downs->_create());
-    this->decoration->setPlate(this, animated);
-    break;
-    case CANNON:
-    this->decoration = static_cast<Decoration*>(Application->environment->cannons->_create());
     this->decoration->setPlate(this, animated);
     break;
     case SAW:
@@ -261,7 +283,7 @@ void Plate::setType(Type type, bool animated)
      *
      */
     case MOVED1:
-    this->stopAllActions();
+    //this->stopAllActions();
     //this->setTexture("plate-texture-state-1-moved-1.png");
     this->behavior = DYNAMIC;
     this->runAction(
@@ -367,7 +389,7 @@ void Plate::setType(Type type, bool animated)
 
 
     case MOVED2:
-    this->stopAllActions();
+    //this->stopAllActions();
     //this->setTexture("plate-texture-state-1-moved-2.png");
     this->behavior = DYNAMIC;
     this->runAction(
@@ -473,7 +495,7 @@ void Plate::setType(Type type, bool animated)
 
 
     case MOVED3:
-    this->stopAllActions();
+    //this->stopAllActions();
     //this->setTexture("plate-texture-state-1-moved-3.png");
     this->behavior = DYNAMIC;
     this->runAction(
@@ -533,7 +555,7 @@ void Plate::setType(Type type, bool animated)
 
 
     case MOVED4:
-    this->stopAllActions();
+    //this->stopAllActions();
     //this->setTexture("plate-texture-state-1-moved-4.png");
     this->behavior = DYNAMIC;
     this->runAction(
@@ -602,7 +624,7 @@ void Plate::setType(Type type, bool animated)
     this->decoration->_create()->setColor(Color3B(255.0, 60.0, 60.0));
     this->decoration->setPosition3D(Vec3(0, 0, 0));
 
-    this->stopAllActions();
+    //this->stopAllActions();
 
     this->behavior = DYNAMIC;
     this->avoid = true;
@@ -627,13 +649,12 @@ void Plate::setType(Type type, bool animated)
             if(this->decoration)
             {
               this->decoration->runAction(action->clone());
+              this->decoration->runAction(
+                EaseSineInOut::create(
+                  RotateBy::create(0.3, Vec3(0, 0,  90))
+                )
+              );
             }
-
-            this->decoration->runAction(
-              EaseSineInOut::create(
-                RotateBy::create(0.3, Vec3(0, 0,  90))
-              )
-            );
           }),
           DelayTime::create(0.2),
           CallFunc::create([=] () {
@@ -667,13 +688,12 @@ void Plate::setType(Type type, bool animated)
             if(this->decoration)
             {
               this->decoration->runAction(action->clone());
+              this->decoration->runAction(
+                EaseSineInOut::create(
+                  RotateBy::create(0.3, Vec3(0, 0,  -90))
+                )
+              );
             }
-
-            this->decoration->runAction(
-              EaseSineInOut::create(
-                RotateBy::create(0.3, Vec3(0, 0,  -90))
-              )
-            );
           }),
           DelayTime::create(0.6),
           nullptr
@@ -756,6 +776,15 @@ void Plate::clearDecoration(bool force, bool animated)
   }
 }
 
+void Plate::clearSpecial()
+{
+  if(this->special)
+  {
+    this->special->_destroy();
+    this->special = nullptr;
+  }
+}
+
 /**
  *
  *
@@ -764,4 +793,114 @@ void Plate::clearDecoration(bool force, bool animated)
 Plate* Plate::deepCopy()
 {
   return new Plate;
+}
+
+/**
+ *
+ *
+ *
+ */
+void Plate::setOpacity(GLubyte opacity)
+{
+  Cube::setOpacity(opacity);
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->special)
+  {
+    this->special->setOpacity(opacity);
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Plate::setPositionX(float x)
+{
+  Cube::setPositionX(x);
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->special)
+  {
+    this->special->setPositionX(x);
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Plate::setPositionY(float y)
+{
+  Cube::setPositionY(y);
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->special)
+  {
+    this->special->setPositionY(y);
+  }
+}
+
+void Plate::setPositionZ(float z)
+{
+  Cube::setPositionZ(z);
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->special)
+  {
+    this->special->setPositionZ(z);
+  }
+}
+
+void Plate::setPosition3D(Vec3 position)
+{
+  Cube::setPosition3D(position);
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->special)
+  {
+    this->special->setPosition3D(position);
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+Action* Plate::runAction(Action* action)
+{
+  Cube::runAction(action);
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->special)
+  {
+    this->special->runAction(action->clone());
+  }
 }

@@ -29,17 +29,17 @@
  *
  */
 Decoration::Decoration(const char* file, Node* parent)
-: Entity3D(file, parent)
+: Cube(file, parent)
 {
 }
 
 Decoration::Decoration(const char* file)
-: Entity3D(file)
+: Cube(file)
 {
 }
 
 Decoration::Decoration()
-: Entity3D()
+: Cube()
 {
 }
 
@@ -54,12 +54,12 @@ Decoration::~Decoration()
  */
 void Decoration::onCreate()
 {
-  Entity3D::onCreate();
+  Cube::onCreate();
 }
 
 void Decoration::onDestroy(bool action)
 {
-  Entity3D::onDestroy(action);
+  Cube::onDestroy(action);
 }
 
 /**

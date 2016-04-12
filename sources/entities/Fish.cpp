@@ -38,7 +38,7 @@ Fish::Fish()
 : Cube("fish.obj")
 {
   this->collider = new Entity3D("cube.obj", Application->environment->plane);
-  this->shadow = new Entity3D("fish-shadow.obj", Application->environment->plane);
+  this->shadow = new Shadow("fish-shadow.obj", Application->environment->plane);
 
   this->setTexture("fish-texture-3.png");
   this->setScheduleUpdate(true);

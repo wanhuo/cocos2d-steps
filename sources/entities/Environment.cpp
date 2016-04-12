@@ -80,14 +80,13 @@ void Environment::create()
   this->hearts = new Pool(new Heart, this->plane);
 
   this->plates = new Pool(new Plate, this->plane);
-  this->cannons = new Pool(new Cannon, this->plane);
   this->saws = new Pool(new Saw, this->plane);
   this->particles = new Pool(new Particle, this->plane);
   this->fishes = new Pool(new Fish, this->plane);
   this->ripples = new Pool(new Ripple, this->plane);
 
-  this->plates_spikes = new Pool(new Decoration("plate-type-spike.obj"), this->plane);
-  this->plates_up = new Pool(new Decoration("plate-type-up.obj"), this->plane);
+  this->plates_spikes = new Pool(new Special("plate-type-spike.obj"), this->plane);
+  this->plates_up = new Pool(new Special("plate-type-up.obj"), this->plane);
 
   this->character = new Character;
 
@@ -204,7 +203,6 @@ void Environment::onMenu()
   this->downs->clear();
 
   this->ripples->clear();
-  this->cannons->clear();
 
   this->generator->clear();
 

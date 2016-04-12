@@ -31,7 +31,7 @@
  *
  *
  */
-class Plate : public Replace
+class Plate : public Cube
 {
   /**
    *
@@ -40,6 +40,8 @@ class Plate : public Replace
    */
   protected:
   int index;
+
+  bool direction;
 
   float startPositionX;
   float startPositionY;
@@ -53,11 +55,11 @@ class Plate : public Replace
   public:
   enum Type {
     NORMAL,
+    START,
     BEST,
     SPIKES,
     UP,
     DOWN,
-    CANNON,
     SAW,
     DIAMOND,
     CRYSTAL,
@@ -93,13 +95,13 @@ class Plate : public Replace
   Type type;
   Behavior behavior;
 
-  bool direction;
   bool position[2];
   bool moved;
   bool avoid;
   bool blocked;
 
   Decoration* decoration = nullptr;
+  Special* special = nullptr;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
@@ -107,12 +109,14 @@ class Plate : public Replace
   virtual void onRemove();
   virtual void onCount();
 
+  virtual bool getDirection();
   virtual int getIndex();
 
   virtual float getStartPositionX();
   virtual float getStartPositionY();
   virtual float getStartPositionZ();
 
+  virtual void setDirection(bool direction);
   virtual void setIndex(int index);
 
   virtual void setStartPositionX(float x);
@@ -124,8 +128,24 @@ class Plate : public Replace
   virtual void remove();
 
   virtual void clearDecoration(bool force = false, bool animated = false);
+  virtual void clearSpecial();
 
   Plate* deepCopy();
+
+  /**
+   *
+   *
+   *
+   */
+  virtual void setOpacity(GLubyte opacity);
+
+  virtual void setPositionX(float x);
+  virtual void setPositionY(float y);
+  virtual void setPositionZ(float z);
+
+  virtual void setPosition3D(Vec3 position);
+
+  virtual Action* runAction(Action* action);
 };
 
 #endif

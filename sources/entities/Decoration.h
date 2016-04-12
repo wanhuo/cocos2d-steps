@@ -39,7 +39,7 @@ class Plate;
  *
  *
  */
-class Decoration : public Entity3D
+class Decoration : public Cube
 {
   /**
    *
@@ -66,8 +66,6 @@ class Decoration : public Entity3D
   Decoration(const char* file);
   Decoration();
  ~Decoration();
-
-  Entity3D* shadow = nullptr;
 
   bool removable = false;
   bool stopable = false;

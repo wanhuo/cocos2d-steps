@@ -39,6 +39,11 @@ Cube::Cube(const char* file, Node* parent)
 {
 }
 
+Cube::Cube()
+: Entity3D()
+{
+}
+
 Cube::~Cube()
 {
 }
@@ -82,7 +87,12 @@ void Cube::createShadow()
 {
   if(this->shadow)
   {
+    auto position = this->getPosition3D();
+
     this->shadow->_create();
+
+    this->shadow->setPositionX(position.x);
+    this->shadow->setPositionZ(position.z);
   }
 }
 
@@ -106,12 +116,11 @@ void Cube::update(float time)
   if(this->shadow)
   {
     this->shadow->setPositionX(position.x);
-    this->shadow->setPositionY(0);
     this->shadow->setPositionZ(position.z);
 
-    this->shadow->setScaleX(max(0.0f, position.y / SHADOW_SIZE));
-    this->shadow->setScaleZ(max(0.0f, position.y / SHADOW_SIZE));
+    this->shadow->setScaleX(max(0.0f, position.y));
+    this->shadow->setScaleZ(max(0.0f, position.y));
   }
 
-  this->setOpacity(position.y >= 0 ? 255 : max(0.0, 255.0 + (position.y * DEPTH)));
+  //this->setOpacity(position.y >= 0 ? 255 : max(0.0, 255.0 + (position.y * DEPTH)));
 }

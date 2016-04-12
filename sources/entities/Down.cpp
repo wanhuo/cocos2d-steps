@@ -31,9 +31,11 @@
 Down::Down()
 : Decoration("plate-down.obj")
 {
-  this->shadow = new Entity3D("plate-down-shadow.obj", Application->environment->plane);
+  this->shadow = new Shadow("plate-down-shadow.obj", Application->environment->plane);
   this->shadow->setColor(Color3B(0, 0, 0));
   this->shadow->setOpacity(30);
+
+  this->setScheduleUpdate(true);
 
   this->setTexture("plate-texture-state-1.png");
 
@@ -62,36 +64,6 @@ void Down::onCreate()
 
   this->runAction(
     Sequence::create(
-      DelayTime::create(0.1),
-      CallFunc::create([=] () {
-        float x = this->getPositionX();
-        float y = 0.01;
-        float z = this->getPositionZ();
-
-        this->shadow->_create();
-        this->shadow->setPosition3D(Vec3(x, y, z));
-        this->shadow->runAction(
-          Sequence::create(
-            DelayTime::create(0.5),
-            CallFunc::create([=] () {
-              this->shadow->runAction(
-                RepeatForever::create(
-                  Sequence::create(
-                    EaseBounceOut::create(
-                      ScaleTo::create(0.6, 1.0, 1.0, 1.0)
-                    ),
-                    DelayTime::create(0.6),
-                    ScaleTo::create(0.2, 0.6, 1.0, 0.6),
-                    DelayTime::create(0.6),
-                    nullptr
-                  )
-                )
-              );
-            }),
-            nullptr
-          )
-        );
-      }),
       MoveBy::create(0.5, Vec3(0, 2.4, 0)),
       CallFunc::create([=] () {
         this->runAction(
@@ -170,13 +142,6 @@ void Down::onCreate()
 void Down::onDestroy(bool action)
 {
   Decoration::onDestroy(action);
-
-  /**
-   *
-   *
-   *
-   */
-  this->shadow->_destroy();
 }
 
 /**

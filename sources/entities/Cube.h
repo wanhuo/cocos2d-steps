@@ -30,7 +30,14 @@
 #ifndef _CUBE_H_
 #define _CUBE_H_
 
-#include "Entity3D.h"
+#include "Game.h"
+
+/**
+ *
+ *
+ *
+ */
+class Shadow;
 
 /**
  *
@@ -46,7 +53,6 @@ class Cube : public Entity3D
    */
   private:
   const static int DEPTH = 50;
-  const static int SHADOW_SIZE = 2;
 
   /**
    *
@@ -54,7 +60,6 @@ class Cube : public Entity3D
    *
    */
   protected:
-  Entity3D* shadow = nullptr;
 
   /**
    *
@@ -63,7 +68,10 @@ class Cube : public Entity3D
    */
   public:
   Cube(const char* file, Node* parent = nullptr);
+  Cube();
  ~Cube();
+
+  Shadow* shadow = nullptr;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);

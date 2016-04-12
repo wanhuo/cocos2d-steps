@@ -480,13 +480,13 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   auto y = this->getPositionY();
   auto z = this->getPositionZ();
 
-  if(plate->behavior == Plate::DYNAMIC)
+  /*if(plate->behavior == Plate::DYNAMIC)
   {
     if(plate->numberOfRunningActions() > 1)
     {
       return this->onLandFail(turn, plate);
     }
-  }
+  }*/
 
   plate->onCount();
 
@@ -640,7 +640,7 @@ void Character::onCrash(Crash crash)
     case DOWN:
     this->runAction(
       Sequence::create(
-        MoveBy::create(0.15, Vec3(0.0, -0.9, 0.0)),
+        MoveBy::create(0.1f, Vec3(0.0, -0.9, 0.0)),
         CallFunc::create([=] () {
           Application->changeState(Game::LOSE);
         }),
@@ -651,7 +651,7 @@ void Character::onCrash(Crash crash)
     case CATCH:
     this->runAction(
       Spawn::create(
-        RotateGlobalBy::create(0.3, Vec3((this->plates.current->direction ? 0 : 20), 0, (this->plates.current->direction ? -20 : 0))),
+        RotateGlobalBy::create(0.3, Vec3((this->plates.current->getDirection() ? 0 : 20), 0, (this->plates.current->getDirection() ? 20 : 0))),
         Sequence::create(
           EaseSineOut::create(
             MoveBy::create(0.5, Vec3(0, -1, 0))
