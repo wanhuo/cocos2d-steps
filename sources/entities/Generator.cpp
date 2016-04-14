@@ -156,9 +156,15 @@ Plate* Generator::create()
     {
       //plate->setType(Plate::HEART);
     }
-    else if(probably(2))
+    else if(this->count > 0 && this->conditions.s1 < 1 && probably(20))
     {
-      // ??
+      plate->setType(Plate::SAW);
+
+      this->length++;
+      this->length++;
+
+      this->conditions.s1 = 2;
+      this->conditions.s2 = 2;
     }
   }
 

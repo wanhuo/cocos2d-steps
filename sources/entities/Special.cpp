@@ -61,6 +61,8 @@ void Special::onCreate()
    *
    *
    */
+  this->setRotation3D(Vec3(0, 0, 0));
+
   this->runAction(
     EaseBounceOut::create(
       MoveBy::create(0.5, Vec3(0, 1, 0))
@@ -71,6 +73,54 @@ void Special::onCreate()
 void Special::onDestroy(bool action)
 {
   Cube::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  this->clearDecorations(true, true, true);
+}
+
+/**
+ *
+ *
+ *
+ */
+vector<Decoration*> &Special::getDecorations()
+{
+  return this->decorations;
+}
+
+/**
+ *
+ *
+ *
+ */
+void Special::setPlate(Plate* plate)
+{
+  this->plate = plate;
+}
+
+/**
+ *
+ *
+ *
+ */
+void Special::clearDecorations(bool force, bool animated, bool total)
+{
+  for(auto decoration : this->getDecorations())
+  {
+    if((decoration->removable || force || animated) && (!decoration->unremovable || total))
+    {
+      decoration->remove(force);
+    }
+  }
+
+  if(force || animated)
+  {
+    this->getDecorations().clear();
+  }
 }
 
 /**

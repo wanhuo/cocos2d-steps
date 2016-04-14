@@ -31,6 +31,13 @@
  *
  *
  */
+class Plate;
+
+/**
+ *
+ *
+ *
+ */
 class Special : public Cube
 {
   /**
@@ -39,6 +46,7 @@ class Special : public Cube
    *
    */
   private:
+  vector<Decoration*> decorations;
 
   /**
    *
@@ -46,6 +54,7 @@ class Special : public Cube
    *
    */
   protected:
+  Plate* plate;
 
   /**
    *
@@ -60,6 +69,12 @@ class Special : public Cube
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
+
+  virtual vector<Decoration*> &getDecorations();
+
+  virtual void setPlate(Plate* plate);
+
+  virtual void clearDecorations(bool force = false, bool animated = false, bool total = false);
 
   virtual Special* deepCopy();
 };

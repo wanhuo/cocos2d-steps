@@ -51,10 +51,11 @@ void Plate::onCreate()
    *
    *
    */
-  this->behavior = STATIC;
   this->moved = false;
   this->avoid = false;
   this->blocked = false;
+
+  this->behavior = STATIC;
 
   this->setRotation3D(Vec3(0, 0, 0));
   this->setTexture("plate-texture-state-1.png");
@@ -89,7 +90,7 @@ void Plate::onDestroy(bool action)
    *
    *
    */
-  this->clearDecoration(true);
+  this->clearDecorations(true, true, true);
   this->clearSpecial();
 }
 
@@ -158,6 +159,19 @@ void Plate::onCount()
  *
  *
  */
+vector<Decoration*> &Plate::getDecorations()
+{
+  if(this->special)
+  {
+    if(this->special->getDecorations().size())
+    {
+      return this->special->getDecorations();
+    }
+  }
+
+  return this->decorations;
+}
+
 int Plate::getIndex()
 {
   return this->index;
@@ -220,61 +234,103 @@ void Plate::setType(Type type, bool animated)
   switch(this->type)
   {
     case START:
-    this->setTexture("plate-texture-state-2.png");
+    {
+      this->setTexture("plate-texture-state-2.png");
 
-    this->decoration = static_cast<Decoration*>(Application->environment->start->_create());
-    this->decoration->setTexture("start-texture.png");
-    this->decoration->setPlate(this, animated);
-    this->decoration->setRotation3D(Vec3(0, 0, 0));
+      auto decoration = static_cast<Decoration*>(Application->environment->start->_create());
+      decoration->setTexture("start-texture.png");
+      decoration->setPlate(this, animated);
+      decoration->setRotation3D(Vec3(0, 0, 0));
+
+      this->getDecorations().push_back(decoration);
+    }
     break;
     case BEST:
-    this->setTexture("plate-texture-state-1-best.png");
+    {
+      this->setTexture("plate-texture-state-1-best.png");
+    }
     break;
     case SPIKES:
-    this->decoration = static_cast<Decoration*>(Application->environment->spikes->_create());
-    this->decoration->setPlate(this, animated);
+    {
+      auto decoration = static_cast<Decoration*>(Application->environment->spikes->_create());
+      decoration->setPlate(this, animated);
 
-    this->setVisible(false);
+      this->getDecorations().push_back(decoration);
 
-    this->special = static_cast<Special*>(Application->environment->plates_spikes->_create());
-    this->special->setTexture("plate-texture-state-1-spike.png");
+      this->setVisible(false);
+
+      this->special = static_cast<Special*>(Application->environment->plates_spikes->_create());
+      this->special->setTexture("plate-texture-state-1-spike.png");
+    }
     break;
     case UP:
-    this->decoration = static_cast<Decoration*>(Application->environment->ups->_create());
-    this->decoration->setPlate(this, animated);
+    {
+      auto decoration = static_cast<Decoration*>(Application->environment->ups->_create());
+      decoration->setPlate(this, animated);
 
-    this->setVisible(false);
+      this->getDecorations().push_back(decoration);
 
-    this->special = static_cast<Special*>(Application->environment->plates_up->_create());
-    this->special->setTexture("plate-texture-state-1-up.png");
-    break;
-    case DOWN:
-    this->decoration = static_cast<Decoration*>(Application->environment->downs->_create());
-    this->decoration->setPlate(this, animated);
+      this->setVisible(false);
+
+      this->special = static_cast<Special*>(Application->environment->plates_up->_create());
+      this->special->setTexture("plate-texture-state-1-up.png");
+    }
     break;
     case SAW:
-    this->decoration = static_cast<Decoration*>(Application->environment->saws->_create());
-    this->decoration->setPlate(this, animated);
+    {
+      this->setVisible(false);
+
+      this->special = static_cast<TypeSaw*>(Application->environment->plates_saw->_create());
+      this->special->setPlate(this);
+    }
+    break;
+    case DOWN:
+    {
+      auto decoration = static_cast<Decoration*>(Application->environment->downs->_create());
+      decoration->setPlate(this, animated);
+
+      this->getDecorations().push_back(decoration);
+    }
     break;
     case DIAMOND:
-    this->decoration = static_cast<Decoration*>(Application->environment->diamonds->_create());
-    this->decoration->setPlate(this, animated);
+    {
+      auto decoration = static_cast<Decoration*>(Application->environment->diamonds->_create());
+      decoration->setPlate(this, animated);
+
+      this->getDecorations().push_back(decoration);
+    }
     break;
     case CRYSTAL:
-    this->decoration = static_cast<Decoration*>(Application->environment->crystals->_create());
-    this->decoration->setPlate(this, animated);
+    {
+      auto decoration = static_cast<Decoration*>(Application->environment->crystals->_create());
+      decoration->setPlate(this, animated);
+
+      this->getDecorations().push_back(decoration);
+    }
     break;
     case ENERGY:
-    this->decoration = static_cast<Decoration*>(Application->environment->energies->_create());
-    this->decoration->setPlate(this, animated);
+    {
+      auto decoration = static_cast<Decoration*>(Application->environment->energies->_create());
+      decoration->setPlate(this, animated);
+
+      this->getDecorations().push_back(decoration);
+    }
     break;
     case STAR:
-    this->decoration = static_cast<Decoration*>(Application->environment->stars->_create());
-    this->decoration->setPlate(this, animated);
+    {
+      auto decoration = static_cast<Decoration*>(Application->environment->stars->_create());
+      decoration->setPlate(this, animated);
+
+      this->getDecorations().push_back(decoration);
+    }
     break;
     case HEART:
-    this->decoration = static_cast<Decoration*>(Application->environment->hearts->_create());
-    this->decoration->setPlate(this, animated);
+    {
+      auto decoration = static_cast<Decoration*>(Application->environment->hearts->_create());
+      decoration->setPlate(this, animated);
+
+      this->getDecorations().push_back(decoration);
+    }
     break;
 
     /**
@@ -302,9 +358,9 @@ void Plate::setType(Type type, bool animated)
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
+              decoration->runAction(action->clone());
             }
           }),
           DelayTime::create(0.6),
@@ -329,9 +385,9 @@ void Plate::setType(Type type, bool animated)
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
+              decoration->runAction(action->clone());
             }
           }),
           DelayTime::create(0.6),
@@ -348,9 +404,9 @@ void Plate::setType(Type type, bool animated)
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
+              decoration->runAction(action->clone());
             }
           }),
           DelayTime::create(0.6),
@@ -375,9 +431,9 @@ void Plate::setType(Type type, bool animated)
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
+              decoration->runAction(action->clone());
             }
           }),
           DelayTime::create(0.6),
@@ -403,14 +459,14 @@ void Plate::setType(Type type, bool animated)
             this->runAction(action->clone());
             this->moved = true;
 
-            if(Application->environment->character->plates.current == this)
+            if(Application->environment->character->plates.current == this && Application->environment->character->getManual())
             {
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
+              decoration->runAction(action->clone());
             }
           }),
           DelayTime::create(0.6),
@@ -430,14 +486,14 @@ void Plate::setType(Type type, bool animated)
               )
             );
 
-            if(Application->environment->character->plates.current == this)
+            if(Application->environment->character->plates.current == this && Application->environment->character->getManual())
             {
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
+              decoration->runAction(action->clone());
             }
           }),
           DelayTime::create(0.6),
@@ -449,14 +505,14 @@ void Plate::setType(Type type, bool animated)
             this->runAction(action->clone());
             this->moved = true;
 
-            if(Application->environment->character->plates.current == this)
+            if(Application->environment->character->plates.current == this && Application->environment->character->getManual())
             {
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
+              decoration->runAction(action->clone());
             }
           }),
           DelayTime::create(0.6),
@@ -476,14 +532,14 @@ void Plate::setType(Type type, bool animated)
               )
             );
 
-            if(Application->environment->character->plates.current == this)
+            if(Application->environment->character->plates.current == this && Application->environment->character->getManual())
             {
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
+              decoration->runAction(action->clone());
             }
           }),
           DelayTime::create(0.6),
@@ -509,14 +565,14 @@ void Plate::setType(Type type, bool animated)
             this->runAction(action->clone());
             this->moved = true;
 
-            if(Application->environment->character->plates.current == this)
+            if(Application->environment->character->plates.current == this && Application->environment->character->getManual())
             {
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
+              decoration->runAction(action->clone());
             }
           }),
           DelayTime::create(0.6),
@@ -536,14 +592,14 @@ void Plate::setType(Type type, bool animated)
               )
             );
 
-            if(Application->environment->character->plates.current == this)
+            if(Application->environment->character->plates.current == this && Application->environment->character->getManual())
             {
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
+              decoration->runAction(action->clone());
             }
           }),
           DelayTime::create(0.6),
@@ -569,14 +625,14 @@ void Plate::setType(Type type, bool animated)
             this->runAction(action->clone());
             this->moved = true;
 
-            if(Application->environment->character->plates.current == this)
+            if(Application->environment->character->plates.current == this && Application->environment->character->getManual())
             {
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
+              decoration->runAction(action->clone());
             }
           }),
           DelayTime::create(0.6),
@@ -596,14 +652,14 @@ void Plate::setType(Type type, bool animated)
               )
             );
 
-            if(Application->environment->character->plates.current == this)
+            if(Application->environment->character->plates.current == this && Application->environment->character->getManual())
             {
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
+              decoration->runAction(action->clone());
             }
           }),
           DelayTime::create(0.6),
@@ -613,16 +669,17 @@ void Plate::setType(Type type, bool animated)
     );
     break;
 
-
     case MOVED5:
     auto test = new Entity3D(this->getParent(), true);
     test->setRotation3D(Vec3(0, (this->direction ? 2 : 90), 0));
     test->setPosition3D(this->getPosition3D());
 
-    this->decoration = new Decoration("plate-up.obj", test);
-    this->decoration->setPlate(this, animated);
-    this->decoration->_create()->setColor(Color3B(255.0, 60.0, 60.0));
-    this->decoration->setPosition3D(Vec3(0, 0, 0));
+    auto decoration = new Decoration("plate-up.obj", test);
+    decoration->setPlate(this, animated);
+    decoration->_create()->setColor(Color3B(255.0, 60.0, 60.0));
+    decoration->setPosition3D(Vec3(0, 0, 0));
+    decoration->unremovable = true;
+    this->getDecorations().push_back(decoration);
 
     //this->stopAllActions();
 
@@ -641,15 +698,15 @@ void Plate::setType(Type type, bool animated)
             this->moved = true;
             this->blocked = true;
 
-            if(Application->environment->character->plates.current == this)
+            if(Application->environment->character->plates.current == this && Application->environment->character->getManual())
             {
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
-              this->decoration->runAction(
+              decoration->runAction(action->clone());
+              decoration->runAction(
                 EaseSineInOut::create(
                   RotateBy::create(0.3, Vec3(0, 0,  90))
                 )
@@ -680,15 +737,15 @@ void Plate::setType(Type type, bool animated)
               )
             );
 
-            if(Application->environment->character->plates.current == this)
+            if(Application->environment->character->plates.current == this && Application->environment->character->getManual())
             {
               Application->environment->character->runAction(action->clone());
             }
 
-            if(this->decoration)
+            for(auto decoration : this->getDecorations())
             {
-              this->decoration->runAction(action->clone());
-              this->decoration->runAction(
+              decoration->runAction(action->clone());
+              decoration->runAction(
                 EaseSineInOut::create(
                   RotateBy::create(0.3, Vec3(0, 0,  -90))
                 )
@@ -703,14 +760,18 @@ void Plate::setType(Type type, bool animated)
     break;
   }
 
-  if(this->decoration)
+  switch(this->type)
   {
-    this->decoration->setRotation3D(Vec3(0, 0, 0));
-  }
-
-  if(this->special)
-  {
-    this->special->setRotation3D(Vec3(0, 0, 0));
+    case SAW:
+    if(this->getDirection())
+    {
+      this->special->setRotation3D(Vec3(0.0f, 0.0f, 0.0f));
+    }
+    else
+    {
+      this->special->setRotation3D(Vec3(0.0f, 90.0f, 0.0f));
+    }
+    break;
   }
 }
 
@@ -737,14 +798,14 @@ void Plate::remove()
     )
   );
 
-  if(this->decoration)
+  for(auto decoration : this->getDecorations())
   {
-    if(this->decoration->shadow)
+    if(decoration->shadow)
     {
-      this->decoration->shadow->_destroy();
+      decoration->shadow->_destroy();
     }
 
-    this->decoration->runAction(
+    decoration->runAction(
     Spawn::create(
       RotateBy::create(0.3, Vec3((this->direction ? 0 : 20), 0, (this->direction ? -20 : 0))),
       Sequence::create(
@@ -761,18 +822,27 @@ void Plate::remove()
 
 /**
  *
- *
+ * TODO: Decoration should be removed from vector inside corations loop.
  *
  */
-void Plate::clearDecoration(bool force, bool animated)
+void Plate::clearDecorations(bool force, bool animated, bool total)
 {
-  if(this->decoration)
+  if(this->special)
   {
-    if(this->decoration->removable || force || animated)
+    this->special->clearDecorations(force, animated, total);
+  }
+
+  for(auto decoration : this->getDecorations())
+  {
+    if((decoration->removable || force || animated) && (!decoration->unremovable || total))
     {
-      this->decoration->remove(force);
-      this->decoration = nullptr;
+      decoration->remove(force);
     }
+  }
+
+  if(force || animated)
+  {
+    this->getDecorations().clear();
   }
 }
 
@@ -780,7 +850,7 @@ void Plate::clearSpecial()
 {
   if(this->special)
   {
-    this->special->_destroy();
+    this->special->_destroy(true);
     this->special = nullptr;
   }
 }

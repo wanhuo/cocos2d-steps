@@ -48,7 +48,6 @@ class Spike : public Decoration
    *
    */
   protected:
-  bool enable;
 
   /**
    *

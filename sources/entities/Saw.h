@@ -46,7 +46,6 @@ class Saw : public Decoration
    *
    */
   protected:
-  bool enable;
 
   /**
    *

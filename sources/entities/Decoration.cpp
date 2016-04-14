@@ -55,6 +55,13 @@ Decoration::~Decoration()
 void Decoration::onCreate()
 {
   Cube::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  this->setRotation3D(Vec3(0, 0, 0));
 }
 
 void Decoration::onDestroy(bool action)

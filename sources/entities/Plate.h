@@ -38,6 +38,14 @@ class Plate : public Cube
    *
    *
    */
+  private:
+  vector<Decoration*> decorations;
+
+  /**
+   *
+   *
+   *
+   */
   protected:
   int index;
 
@@ -100,7 +108,6 @@ class Plate : public Cube
   bool avoid;
   bool blocked;
 
-  Decoration* decoration = nullptr;
   Special* special = nullptr;
 
   virtual void onCreate();
@@ -116,6 +123,8 @@ class Plate : public Cube
   virtual float getStartPositionY();
   virtual float getStartPositionZ();
 
+  virtual vector<Decoration*> &getDecorations();
+
   virtual void setDirection(bool direction);
   virtual void setIndex(int index);
 
@@ -127,7 +136,7 @@ class Plate : public Cube
 
   virtual void remove();
 
-  virtual void clearDecoration(bool force = false, bool animated = false);
+  virtual void clearDecorations(bool force = false, bool animated = false, bool total = false);
   virtual void clearSpecial();
 
   Plate* deepCopy();

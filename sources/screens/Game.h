@@ -60,6 +60,8 @@
 #include "Fish.h"
 #include "Ripple.h"
 
+#include "TypeSaw.h"
+
 #include "Counter.h"
 
 #include "Menu.h"

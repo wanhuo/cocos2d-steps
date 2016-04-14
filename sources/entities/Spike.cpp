@@ -55,8 +55,6 @@ void Spike::onCreate()
    *
    *
    */
-  this->enable = false;
-
   this->runAction(
     Sequence::create(
       DelayTime::create(0.5),

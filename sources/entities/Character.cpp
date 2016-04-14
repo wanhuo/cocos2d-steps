@@ -31,6 +31,10 @@
 Character::Character()
 : Cube("cube12.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
 {
+  this->shadow = new Shadow("plate-down-shadow.obj", Application->environment->plane);
+  this->shadow->setColor(Color3B(0, 0, 0));
+  this->shadow->setOpacity(30);
+
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
 
@@ -492,34 +496,27 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
 
   Application->counter->onCount();
 
-  for(int i = 0; i < 10; i++)
-  {
-    auto particle = Application->environment->createParticle(x, y - 0.5, z);
+  string texture = "character-texture.png";
 
-    if(plate->decoration)
+  for(Decoration* decoration : plate->getDecorations())
+  {
+    if(decoration->removable)
     {
-      if(plate->decoration->removable)
-      {
-        particle->setTexture(plate->decoration->getParticleTexture());
-      }
-      else
-      {
-        particle->setTexture("character-texture.png");
-      }
+      texture = decoration->getParticleTexture();
     }
-    else
+
+    if(proceed)
     {
-      particle->setTexture("character-texture.png");
+      decoration->onPickup();
+
+      plate->clearDecorations(!this->manual);
     }
   }
 
-  if(proceed)
+  for(int i = 0; i < 10; i++)
   {
-    if(plate->decoration)
-    {
-      plate->decoration->onPickup();
-      plate->clearDecoration(!this->manual);
-    }
+    auto particle = Application->environment->createParticle(x, y - 0.5, z);
+    particle->setTexture(texture);
   }
 
   Application->environment->generator->create();
@@ -673,7 +670,7 @@ void Character::onCrash(Crash crash)
 
 void Character::onHit()
 {
-  this->plates.current->clearDecoration(true);
+  this->plates.current->clearDecorations(true);
 
   auto x = this->getPositionX();
   auto y = this->getPositionY();
@@ -906,18 +903,18 @@ void Character::updateNormal(float time)
 {
   if(this->plates.current && this->manual)
   {
-    if(this->plates.current->decoration)
-    {   
-      if(this->plates.current->decoration->status())
+    for(auto decoration : this->plates.current->getDecorations())
+    {
+      if(decoration->status())
       {
-        if(this->plates.current->decoration->stopable)
+        if(decoration->stopable)
         {
-          this->plates.current->decoration->stopAllActions();
+          decoration->stopAllActions();
         }
-
+  
         if(--this->lives < 0)
         {
-          this->changeState(CRASH, this->plates.current->decoration->status());
+          this->changeState(CRASH, decoration->status());
         }
         else
         {
@@ -978,6 +975,13 @@ void Character::updateStates(float time)
  */
 void Character::update(float time)
 {
+  Cube::update(time);
+
+  /**
+   *
+   *
+   *
+   */
   this->updateStates(time);
 
   /**

@@ -86,7 +86,7 @@ void Pickup::onPickup()
  */
 void Pickup::setPlate(Plate* plate, bool animated)
 {
-  Decoration::setPlate(plate);
+  Decoration::setPlate(plate, animated);
 
   /**
    *

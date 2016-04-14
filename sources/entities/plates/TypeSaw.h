@@ -21,6 +21,9 @@
  *
  */
 
+#ifndef _TYPE_SAW_H_
+#define _TYPE_SAW_H_
+
 #include "Game.h"
 
 /**
@@ -28,60 +31,39 @@
  *
  *
  */
-Saw::Saw()
-: Decoration("saw.obj")
+class TypeSaw : public Special
 {
-  this->setColor(Color3B(255.0, 60.0, 60.0));
+  /**
+   *
+   *
+   *
+   */
+  private:
 
-  this->removable = false;
-  this->stopable = true;
-}
+  /**
+   *
+   *
+   *
+   */
+  protected:
 
-Saw::~Saw()
-{
-}
+  /**
+   *
+   *
+   *
+   */
+  public:
+  TypeSaw();
+ ~TypeSaw();
 
-/**
- *
- *
- *
- */
-void Saw::onCreate()
-{
-  Decoration::onCreate();
-}
+  Pool* saws;
 
-void Saw::onDestroy(bool action)
-{
-  Decoration::onDestroy(action);
-}
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
-/**
- *
- *
- *
- */
-void Saw::setPlate(Plate* plate)
-{
-  Decoration::setPlate(plate);
-}
+  virtual void setPlate(Plate* plate);
 
-/**
- *
- *
- *
- */
-Character::Crash Saw::status()
-{
-  return this->enable ? Character::Crash::SPIKES : Character::Crash::UNDEFINED;
-}
+  TypeSaw* deepCopy();
+};
 
-/**
- *
- *
- *
- */
-Saw* Saw::deepCopy()
-{
-  return new Saw;
-}
+#endif

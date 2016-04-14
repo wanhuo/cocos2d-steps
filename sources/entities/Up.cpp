@@ -73,7 +73,7 @@ void Up::onPickup()
   int count = 5;
   int remove = 1;
 
-  float time = 0.5;
+  float time = 0.1;
 
   for(int i = 0; i < count; i++)
   {
@@ -90,20 +90,17 @@ void Up::onPickup()
       element = plates.plates[Plate::RIGHT];
     }
 
-    if(i == count - 1)
+    if(!element || element == NULL || element->behavior == Plate::DYNAMIC || element->type == Plate::SPIKES || element->type == Plate::DOWN)
     {
-      if(!element || element->behavior == Plate::DYNAMIC || element->type == Plate::SPIKES || element->type == Plate::DOWN)
-      {
-        Application->environment->generator->create();
+      Application->environment->generator->create();
 
-        count++;
-        remove++;
-      }
+      count++;
+      remove++;
     }
 
     element->runAction(
       Sequence::create(
-        DelayTime::create(0.1 * i),
+        DelayTime::create(time * i),
         CallFunc::create(CC_CALLBACK_0(Plate::onCount, element)),
         CallFunc::create(CC_CALLBACK_0(Character::onSound, Application->environment->character)),
         CallFunc::create(CC_CALLBACK_0(Counter::onCount, Application->counter)),
@@ -115,8 +112,8 @@ void Up::onPickup()
   Application->environment->character->setManual(false);
   Application->environment->character->plane->runAction(
     Sequence::create(
-      ScaleTo::create(time / 2, 0.8, 1.4, 0.8),
-      ScaleTo::create(time / 2, 1.0, 1.0, 1.0),
+      ScaleTo::create(time * count / 2, 0.8, 1.4, 0.8),
+      ScaleTo::create(time * count / 2, 1.0, 1.0, 1.0),
       nullptr
     )
   );
@@ -124,26 +121,24 @@ void Up::onPickup()
     Spawn::create(
       Sequence::create(
         CallFunc::create([=] () {
-           Application->environment->plane->stopAllActions();
            Application->environment->plane->runAction(
             EaseSineIn::create(
-              MoveBy::create(time / 2, Vec3(-0.75 * l, 0, 0.75 * r))
+              MoveBy::create(time* count / 2, Vec3(-0.75 * l, 0, 0.75 * r))
             )
           );
         }),
         EaseSineIn::create(
-          MoveBy::create(time / 2, Vec3(0.75 * l, 1.0, -0.75 * r))
+          MoveBy::create(time * count / 2, Vec3(0.75 * l, 1.0 + 0.2 * remove, -0.75 * r))
         ),
         CallFunc::create([=] () {
-          Application->environment->plane->stopAllActions();
           Application->environment->plane->runAction(
             EaseSineIn::create(
-              MoveBy::create(time / 2, Vec3(-0.75 * l, 0, 0.75 * r))
+              MoveBy::create(time * count / 2, Vec3(-0.75 * l, 0, 0.75 * r))
             )
           );
         }),
         EaseSineIn::create(
-          MoveBy::create(time / 2, Vec3(0.75 * l, -1.0, -0.75 * r))
+          MoveBy::create(time * count / 2, Vec3(0.75 * l, -1.0 - 0.2 * remove, -0.75 * r))
         ),
         CallFunc::create([=] () {
           Application->environment->character->setManual(true);
@@ -160,7 +155,7 @@ void Up::onPickup()
         nullptr
       ),
       Sequence::create(
-        RotateGlobalBy::create(time, Vec3(0, 180 * (probably(50) ? 1 : -1), 0)),
+        RotateGlobalBy::create(time * count, Vec3(0, 90 * count * (probably(50) ? 1 : -1), 0)),
         nullptr
       ),
       nullptr
@@ -169,7 +164,7 @@ void Up::onPickup()
   Application->environment->character->runAction(
     Repeat::create(
       Sequence::create(
-        DelayTime::create(time / count),
+        DelayTime::create(time),
         CallFunc::create([=] () {
           Application->environment->generator->create();
         }),

@@ -65,7 +65,7 @@ void Crystal::onPickup()
 
     if(next)
     {
-      if(next->decoration || next->behavior == Plate::DYNAMIC)
+      if(next->getDecorations().size() || next->behavior == Plate::DYNAMIC)
       {
         continue;
       }
@@ -73,10 +73,13 @@ void Crystal::onPickup()
       {
         next->setType(Plate::DIAMOND, false);
 
-        next->decoration->setPosition3D(current->getPosition3D());
-        next->decoration->runAction(
-          MoveTo::create(0.05 * (i + 1), Vec3(next->getPositionX(), 0, next->getPositionZ()))
-        );
+        for(auto decoration : next->getDecorations())
+        {
+          decoration->setPosition3D(this->getPosition3D());
+          decoration->runAction(
+            MoveTo::create(0.05 * (i + 1), Vec3(next->getPositionX(), 1.2f, next->getPositionZ()))
+          );
+        }
       }
     }
     else

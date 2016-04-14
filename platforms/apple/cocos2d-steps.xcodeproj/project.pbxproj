@@ -140,6 +140,8 @@
 		78B4B6E31CBD817900F2D8A7 /* Shadow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6E01CBD817900F2D8A7 /* Shadow.cpp */; };
 		78B4B6E61CBD8EBD00F2D8A7 /* Special.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6E41CBD8EBD00F2D8A7 /* Special.cpp */; };
 		78B4B6E71CBD8EBD00F2D8A7 /* Special.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6E41CBD8EBD00F2D8A7 /* Special.cpp */; };
+		78B4B6EC1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6EA1CBDBD8800F2D8A7 /* TypeSaw.cpp */; };
+		78B4B6ED1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6EA1CBDBD8800F2D8A7 /* TypeSaw.cpp */; };
 		78CA6D0A1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78CA6D0B1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
@@ -367,6 +369,8 @@
 		78B4B6E11CBD817900F2D8A7 /* Shadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shadow.h; sourceTree = "<group>"; };
 		78B4B6E41CBD8EBD00F2D8A7 /* Special.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Special.cpp; sourceTree = "<group>"; };
 		78B4B6E51CBD8EBD00F2D8A7 /* Special.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Special.h; sourceTree = "<group>"; };
+		78B4B6EA1CBDBD8800F2D8A7 /* TypeSaw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeSaw.cpp; sourceTree = "<group>"; };
+		78B4B6EB1CBDBD8800F2D8A7 /* TypeSaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeSaw.h; sourceTree = "<group>"; };
 		78CA6D031C202CAB00BF8416 /* Purchases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchases.h; sourceTree = "<group>"; };
 		78CA6D041C20645200BF8416 /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
 		78CA6D051C20645200BF8416 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
@@ -995,6 +999,8 @@
 		78B4B6D31CBD751D00F2D8A7 /* plates */ = {
 			isa = PBXGroup;
 			children = (
+				78B4B6EA1CBDBD8800F2D8A7 /* TypeSaw.cpp */,
+				78B4B6EB1CBDBD8800F2D8A7 /* TypeSaw.h */,
 			);
 			path = plates;
 			sourceTree = "<group>";
@@ -1300,6 +1306,7 @@
 				78B4B6DB1CBD751D00F2D8A7 /* Heart.cpp in Sources */,
 				786696CB1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				78357A161CA6F00300F86325 /* Down.cpp in Sources */,
+				78B4B6ED1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */,
 				7825DD401C5479BE00708016 /* Dust.cpp in Sources */,
 				78B4B6E31CBD817900F2D8A7 /* Shadow.cpp in Sources */,
 				78E33FDA1C4AA4440021272D /* Generator.cpp in Sources */,
@@ -1342,6 +1349,7 @@
 				7847CDF61AB184820014E3F3 /* AppController.mm in Sources */,
 				78382F811C2469B90001B3F1 /* NSVote.mm in Sources */,
 				78E33FCF1C4A84080021272D /* Plate.cpp in Sources */,
+				78B4B6EC1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */,
 				78B4B6C31CBBFA9500F2D8A7 /* Saw.cpp in Sources */,
 				78EC8D6D1BBAF0B900CC5785 /* NSModal.mm in Sources */,
 				78B4B6E61CBD8EBD00F2D8A7 /* Special.cpp in Sources */,

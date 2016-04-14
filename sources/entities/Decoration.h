@@ -67,8 +67,10 @@ class Decoration : public Cube
   Decoration();
  ~Decoration();
 
+  bool unremovable = false;
   bool removable = false;
   bool stopable = false;
+  bool enable = false;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
