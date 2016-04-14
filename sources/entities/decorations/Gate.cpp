@@ -35,6 +35,7 @@ Gate::Gate(Node* parent)
 
   this->removable = false;
   this->stopable = true;
+  this->unremovable = true;
 }
 
 Gate::~Gate()

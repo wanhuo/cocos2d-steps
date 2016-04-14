@@ -195,17 +195,17 @@ void Environment::onTurn(bool action)
  */
 void Environment::onMenu()
 {
-  this->plates->clear();
-  this->plates_spikes->clear();
-  this->plates_up->clear();
-  this->plates_saw->clear();
-  this->plates_gate->clear();
+  this->plates->clear(true);
+  this->plates_spikes->clear(true);
+  this->plates_up->clear(true);
+  this->plates_saw->clear(true);
+  this->plates_gate->clear(true);
 
-  this->spikes->clear();
-  this->ups->clear();
-  this->downs->clear();
+  this->spikes->clear(true);
+  this->ups->clear(true);
+  this->downs->clear(true);
 
-  this->ripples->clear();
+  this->ripples->clear(true);
 
   this->generator->clear();
 

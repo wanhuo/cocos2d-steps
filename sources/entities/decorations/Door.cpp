@@ -35,6 +35,7 @@ Door::Door()
 
   this->removable = false;
   this->stopable = true;
+  this->unremovable = true;
 }
 
 Door::~Door()
