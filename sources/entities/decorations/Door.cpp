@@ -31,6 +31,9 @@
 Door::Door()
 : Decoration("door.obj")
 {
+  this->engine = new Entity3D("door-engine.obj", this);
+  this->engine->setColor(Color3B(255.0, 60.0, 60.0));
+
   this->setTexture("door-texture.png");
 
   this->removable = false;
@@ -56,11 +59,20 @@ void Door::onCreate()
    *
    *
    */
+  this->engine->_create();
 }
 
 void Door::onDestroy(bool action)
 {
   Decoration::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  this->engine->_destroy(action);
+
 }
 
 /**

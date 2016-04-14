@@ -56,6 +56,8 @@ class Door : public Decoration
   Door();
  ~Door();
 
+  Entity3D* engine;
+
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 

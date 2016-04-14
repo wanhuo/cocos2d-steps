@@ -60,7 +60,6 @@
 
 #include "Spike.h"
 #include "Saw.h"
-#include "Gate.h"
 #include "Door.h"
 #include "Copter.h"
 

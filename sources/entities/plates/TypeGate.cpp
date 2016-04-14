@@ -31,7 +31,6 @@
 TypeGate::TypeGate()
 : Special("plate.obj")
 {
-  this->gate = new Gate(this);
   this->decorations = new Pool(new Door, this);
 }
 
@@ -68,9 +67,6 @@ void TypeGate::setPlate(Plate* plate)
    *
    *
    */
-  this->gate->_create();
-  this->gate->setPosition3D(Vec3(0, 0, 0));
-
   auto decoration1 = static_cast<Decoration*>(this->decorations->_create());
   auto decoration2 = static_cast<Decoration*>(this->decorations->_create());
 
@@ -112,7 +108,6 @@ void TypeGate::setPlate(Plate* plate)
     )
   );
 
-  this->getDecorations().push_back(this->gate);
   this->getDecorations().push_back(decoration1);
   this->getDecorations().push_back(decoration2);
 

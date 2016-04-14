@@ -146,8 +146,6 @@
 		78B4B6F61CBF911800F2D8A7 /* Spike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6F11CBF911800F2D8A7 /* Spike.cpp */; };
 		78B4B6FB1CBF91E000F2D8A7 /* Door.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6F71CBF91E000F2D8A7 /* Door.cpp */; };
 		78B4B6FC1CBF91E000F2D8A7 /* Door.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6F71CBF91E000F2D8A7 /* Door.cpp */; };
-		78B4B6FD1CBF91E000F2D8A7 /* Gate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6F91CBF91E000F2D8A7 /* Gate.cpp */; };
-		78B4B6FE1CBF91E000F2D8A7 /* Gate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6F91CBF91E000F2D8A7 /* Gate.cpp */; };
 		78B4B7011CBF93C500F2D8A7 /* TypeGate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6FF1CBF93C500F2D8A7 /* TypeGate.cpp */; };
 		78B4B7021CBF93C500F2D8A7 /* TypeGate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6FF1CBF93C500F2D8A7 /* TypeGate.cpp */; };
 		78B4B7061CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B7041CBFB40700F2D8A7 /* TypeCopter.cpp */; };
@@ -385,8 +383,6 @@
 		78B4B6F21CBF911800F2D8A7 /* Spike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spike.h; sourceTree = "<group>"; };
 		78B4B6F71CBF91E000F2D8A7 /* Door.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Door.cpp; sourceTree = "<group>"; };
 		78B4B6F81CBF91E000F2D8A7 /* Door.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Door.h; sourceTree = "<group>"; };
-		78B4B6F91CBF91E000F2D8A7 /* Gate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gate.cpp; sourceTree = "<group>"; };
-		78B4B6FA1CBF91E000F2D8A7 /* Gate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gate.h; sourceTree = "<group>"; };
 		78B4B6FF1CBF93C500F2D8A7 /* TypeGate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeGate.cpp; sourceTree = "<group>"; };
 		78B4B7001CBF93C500F2D8A7 /* TypeGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeGate.h; sourceTree = "<group>"; };
 		78B4B7041CBFB40700F2D8A7 /* TypeCopter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeCopter.cpp; sourceTree = "<group>"; };
@@ -995,8 +991,6 @@
 				78B4B6F21CBF911800F2D8A7 /* Spike.h */,
 				78B4B6EF1CBF911800F2D8A7 /* Saw.cpp */,
 				78B4B6F01CBF911800F2D8A7 /* Saw.h */,
-				78B4B6F91CBF91E000F2D8A7 /* Gate.cpp */,
-				78B4B6FA1CBF91E000F2D8A7 /* Gate.h */,
 				78B4B6F71CBF91E000F2D8A7 /* Door.cpp */,
 				78B4B6F81CBF91E000F2D8A7 /* Door.h */,
 			);
@@ -1351,7 +1345,6 @@
 				78B4B6E71CBD8EBD00F2D8A7 /* Special.cpp in Sources */,
 				7828A0AF1A1F87BA0079492B /* main.cpp in Sources */,
 				78CA6D0B1C20645200BF8416 /* Character.cpp in Sources */,
-				78B4B6FE1CBF91E000F2D8A7 /* Gate.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1385,7 +1378,6 @@
 				7847CDF61AB184820014E3F3 /* AppController.mm in Sources */,
 				78382F811C2469B90001B3F1 /* NSVote.mm in Sources */,
 				78E33FCF1C4A84080021272D /* Plate.cpp in Sources */,
-				78B4B6FD1CBF91E000F2D8A7 /* Gate.cpp in Sources */,
 				78B4B7061CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */,
 				78B4B6EC1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */,
 				78EC8D6D1BBAF0B900CC5785 /* NSModal.mm in Sources */,

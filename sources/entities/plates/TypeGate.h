@@ -56,7 +56,6 @@ class TypeGate : public Special
   TypeGate();
  ~TypeGate();
 
-  Gate* gate;
   Pool* decorations;
 
   virtual void onCreate();
