@@ -118,6 +118,16 @@ void Plate::onRemove()
 
 void Plate::onCount()
 {
+  switch(this->type)
+  {
+    default:
+    this->setTexture("plate-texture-state-2.png");
+    break;
+    case BEST:
+    this->setTexture("plate-texture-state-2-best.png");
+    break;
+  }
+
   if(this->special)
   {
     switch(this->type)
@@ -128,29 +138,10 @@ void Plate::onCount()
       case UP:
       this->special->setTexture("plate-texture-state-2-up.png");
       break;
+      case SAW:
+      this->special->setTexture("plate-texture-state-2-saw.png");
+      break;
     }
-  }
-
-  switch(this->type)
-  {
-    default:
-    this->setTexture("plate-texture-state-2.png");
-    break;
-    case BEST:
-    this->setTexture("plate-texture-state-2-best.png");
-    break;
-    /*case MOVED1:
-    this->setTexture("plate-texture-state-2-moved-1.png");
-    break;
-    case MOVED2:
-    this->setTexture("plate-texture-state-2-moved-2.png");
-    break;
-    case MOVED3:
-    this->setTexture("plate-texture-state-2-moved-3.png");
-    break;
-    case MOVED4:
-    this->setTexture("plate-texture-state-2-moved-4.png");
-    break;*/
   }
 }
 
@@ -278,6 +269,8 @@ void Plate::setType(Type type, bool animated)
     break;
     case SAW:
     {
+      this->setTexture("plate-texture-state-2-saw.png");
+
       this->setVisible(false);
 
       this->special = static_cast<TypeSaw*>(Application->environment->plates_saw->_create());
