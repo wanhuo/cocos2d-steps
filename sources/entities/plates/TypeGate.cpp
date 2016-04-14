@@ -73,8 +73,11 @@ void TypeGate::setPlate(Plate* plate)
   decoration1->setPlate(this->plate, false);
   decoration2->setPlate(this->plate, false);
 
-  decoration1->setPosition3D(Vec3(0.0, 0, -0.75f));
-  decoration2->setPosition3D(Vec3(0.0, 0, +0.75f));
+  decoration1->setPosition3D(Vec3(0.0, 0, 0));
+  decoration2->setPosition3D(Vec3(0.0, 0, 0));
+
+  decoration1->setRotation3D(Vec3(0, 0, 0));
+  decoration2->setRotation3D(Vec3(0, 180, 0));
 
   decoration1->runAction(
     RepeatForever::create(
@@ -108,6 +111,7 @@ void TypeGate::setPlate(Plate* plate)
     )
   );
 
+
   this->getDecorations().push_back(decoration1);
   this->getDecorations().push_back(decoration2);
 
@@ -115,11 +119,11 @@ void TypeGate::setPlate(Plate* plate)
     RepeatForever::create(
       Sequence::create(
         CallFunc::create([=] () {
-          this->plate->blocked = false;
+          this->plate->blocked = true;
         }),
         DelayTime::create(1.0),
         CallFunc::create([=] () {
-          this->plate->blocked = true;
+          this->plate->blocked = false;
         }),
         DelayTime::create(1.0),
         nullptr

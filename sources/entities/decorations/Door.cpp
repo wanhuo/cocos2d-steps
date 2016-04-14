@@ -60,6 +60,22 @@ void Door::onCreate()
    *
    */
   this->engine->_create();
+
+  this->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        CallFunc::create([=] () {
+          this->enable = true;
+        }),
+        DelayTime::create(1.0),
+        CallFunc::create([=] () {
+          this->enable = false;
+        }),
+        DelayTime::create(1.0),
+        nullptr
+      )
+    )
+  );
 }
 
 void Door::onDestroy(bool action)
@@ -72,7 +88,6 @@ void Door::onDestroy(bool action)
    *
    */
   this->engine->_destroy(action);
-
 }
 
 /**
@@ -83,6 +98,16 @@ void Door::onDestroy(bool action)
 void Door::setPlate(Plate* plate)
 {
   Decoration::setPlate(plate);
+}
+
+/**
+ *
+ *
+ *
+ */
+Character::Crash Door::status()
+{
+  return this->enable ? Character::Crash::GATE : Character::Crash::UNDEFINED;
 }
 
 /**

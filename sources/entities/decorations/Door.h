@@ -63,6 +63,8 @@ class Door : public Decoration
 
   virtual void setPlate(Plate* plate);
 
+  virtual Character::Crash status();
+
   Door* deepCopy();
 };
 
