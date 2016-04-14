@@ -113,6 +113,7 @@ class Environment : public Background
   Pool* plates_spikes;
   Pool* plates_up;
   Pool* plates_saw;
+  Pool* plates_gate;
   Pool* particles;
   Pool* fishes;
   Pool* ripples;

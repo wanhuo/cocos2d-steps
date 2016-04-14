@@ -269,11 +269,15 @@ void Plate::setType(Type type, bool animated)
     break;
     case SAW:
     {
-      this->setTexture("plate-texture-state-2-saw.png");
-
       this->setVisible(false);
 
       this->special = static_cast<TypeSaw*>(Application->environment->plates_saw->_create());
+      this->special->setPlate(this);
+    }
+    break;
+    case GATE:
+    {
+      this->special = static_cast<TypeGate*>(Application->environment->plates_gate->_create());
       this->special->setPlate(this);
     }
     break;
@@ -756,6 +760,7 @@ void Plate::setType(Type type, bool animated)
   switch(this->type)
   {
     case SAW:
+    case GATE:
     if(this->getDirection())
     {
       this->special->setRotation3D(Vec3(0.0f, 0.0f, 0.0f));

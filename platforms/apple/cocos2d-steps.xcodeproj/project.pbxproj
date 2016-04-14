@@ -122,8 +122,6 @@
 		7894C0751BC98A6D00363FC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7894C0741BC98A6D00363FC9 /* Images.xcassets */; };
 		7899D44E1BF48194008080B5 /* services.json in Resources */ = {isa = PBXBuildFile; fileRef = 7899D44D1BF48194008080B5 /* services.json */; };
 		7899D44F1BF48194008080B5 /* services.json in Resources */ = {isa = PBXBuildFile; fileRef = 7899D44D1BF48194008080B5 /* services.json */; };
-		78B4B6C31CBBFA9500F2D8A7 /* Saw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C11CBBFA9500F2D8A7 /* Saw.cpp */; };
-		78B4B6C41CBBFA9500F2D8A7 /* Saw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C11CBBFA9500F2D8A7 /* Saw.cpp */; };
 		78B4B6D41CBD751D00F2D8A7 /* Crystal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */; };
 		78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */; };
 		78B4B6D61CBD751D00F2D8A7 /* Diamond.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C91CBD751D00F2D8A7 /* Diamond.cpp */; };
@@ -142,6 +140,16 @@
 		78B4B6E71CBD8EBD00F2D8A7 /* Special.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6E41CBD8EBD00F2D8A7 /* Special.cpp */; };
 		78B4B6EC1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6EA1CBDBD8800F2D8A7 /* TypeSaw.cpp */; };
 		78B4B6ED1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6EA1CBDBD8800F2D8A7 /* TypeSaw.cpp */; };
+		78B4B6F31CBF911800F2D8A7 /* Saw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6EF1CBF911800F2D8A7 /* Saw.cpp */; };
+		78B4B6F41CBF911800F2D8A7 /* Saw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6EF1CBF911800F2D8A7 /* Saw.cpp */; };
+		78B4B6F51CBF911800F2D8A7 /* Spike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6F11CBF911800F2D8A7 /* Spike.cpp */; };
+		78B4B6F61CBF911800F2D8A7 /* Spike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6F11CBF911800F2D8A7 /* Spike.cpp */; };
+		78B4B6FB1CBF91E000F2D8A7 /* Door.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6F71CBF91E000F2D8A7 /* Door.cpp */; };
+		78B4B6FC1CBF91E000F2D8A7 /* Door.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6F71CBF91E000F2D8A7 /* Door.cpp */; };
+		78B4B6FD1CBF91E000F2D8A7 /* Gate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6F91CBF91E000F2D8A7 /* Gate.cpp */; };
+		78B4B6FE1CBF91E000F2D8A7 /* Gate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6F91CBF91E000F2D8A7 /* Gate.cpp */; };
+		78B4B7011CBF93C500F2D8A7 /* TypeGate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6FF1CBF93C500F2D8A7 /* TypeGate.cpp */; };
+		78B4B7021CBF93C500F2D8A7 /* TypeGate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6FF1CBF93C500F2D8A7 /* TypeGate.cpp */; };
 		78CA6D0A1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78CA6D0B1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
@@ -152,8 +160,6 @@
 		78DE4C831C4D6C120080F105 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C811C4D6C120080F105 /* Counter.cpp */; };
 		78DE4C8A1C4DA0990080F105 /* Decoration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C891C4DA0990080F105 /* Decoration.cpp */; };
 		78DE4C8B1C4DA0990080F105 /* Decoration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C891C4DA0990080F105 /* Decoration.cpp */; };
-		78DE4C8E1C4DA6AC0080F105 /* Spike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C8D1C4DA6AC0080F105 /* Spike.cpp */; };
-		78DE4C8F1C4DA6AC0080F105 /* Spike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C8D1C4DA6AC0080F105 /* Spike.cpp */; };
 		78DE4C921C4FC2230080F105 /* Fish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C911C4FC2230080F105 /* Fish.cpp */; };
 		78DE4C931C4FC2230080F105 /* Fish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C911C4FC2230080F105 /* Fish.cpp */; };
 		78DE4C961C500D2A0080F105 /* Ripple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C951C500D2A0080F105 /* Ripple.cpp */; };
@@ -351,8 +357,6 @@
 		7894C0321BC9282F00363FC9 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		7894C0741BC98A6D00363FC9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ios/Images.xcassets; sourceTree = "<group>"; };
 		7899D44D1BF48194008080B5 /* services.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = services.json; path = apple/services.json; sourceTree = "<group>"; };
-		78B4B6C11CBBFA9500F2D8A7 /* Saw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Saw.cpp; sourceTree = "<group>"; };
-		78B4B6C21CBBFA9500F2D8A7 /* Saw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Saw.h; sourceTree = "<group>"; };
 		78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Crystal.cpp; sourceTree = "<group>"; };
 		78B4B6C81CBD751D00F2D8A7 /* Crystal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crystal.h; sourceTree = "<group>"; };
 		78B4B6C91CBD751D00F2D8A7 /* Diamond.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Diamond.cpp; sourceTree = "<group>"; };
@@ -371,6 +375,16 @@
 		78B4B6E51CBD8EBD00F2D8A7 /* Special.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Special.h; sourceTree = "<group>"; };
 		78B4B6EA1CBDBD8800F2D8A7 /* TypeSaw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeSaw.cpp; sourceTree = "<group>"; };
 		78B4B6EB1CBDBD8800F2D8A7 /* TypeSaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeSaw.h; sourceTree = "<group>"; };
+		78B4B6EF1CBF911800F2D8A7 /* Saw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Saw.cpp; sourceTree = "<group>"; };
+		78B4B6F01CBF911800F2D8A7 /* Saw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Saw.h; sourceTree = "<group>"; };
+		78B4B6F11CBF911800F2D8A7 /* Spike.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Spike.cpp; sourceTree = "<group>"; };
+		78B4B6F21CBF911800F2D8A7 /* Spike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spike.h; sourceTree = "<group>"; };
+		78B4B6F71CBF91E000F2D8A7 /* Door.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Door.cpp; sourceTree = "<group>"; };
+		78B4B6F81CBF91E000F2D8A7 /* Door.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Door.h; sourceTree = "<group>"; };
+		78B4B6F91CBF91E000F2D8A7 /* Gate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gate.cpp; sourceTree = "<group>"; };
+		78B4B6FA1CBF91E000F2D8A7 /* Gate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gate.h; sourceTree = "<group>"; };
+		78B4B6FF1CBF93C500F2D8A7 /* TypeGate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeGate.cpp; sourceTree = "<group>"; };
+		78B4B7001CBF93C500F2D8A7 /* TypeGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeGate.h; sourceTree = "<group>"; };
 		78CA6D031C202CAB00BF8416 /* Purchases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchases.h; sourceTree = "<group>"; };
 		78CA6D041C20645200BF8416 /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
 		78CA6D051C20645200BF8416 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
@@ -383,8 +397,6 @@
 		78DE4C811C4D6C120080F105 /* Counter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Counter.cpp; sourceTree = "<group>"; };
 		78DE4C881C4DA0990080F105 /* Decoration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoration.h; sourceTree = "<group>"; };
 		78DE4C891C4DA0990080F105 /* Decoration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Decoration.cpp; sourceTree = "<group>"; };
-		78DE4C8C1C4DA6AC0080F105 /* Spike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spike.h; sourceTree = "<group>"; };
-		78DE4C8D1C4DA6AC0080F105 /* Spike.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Spike.cpp; sourceTree = "<group>"; };
 		78DE4C901C4FC2230080F105 /* Fish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fish.h; sourceTree = "<group>"; };
 		78DE4C911C4FC2230080F105 /* Fish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fish.cpp; sourceTree = "<group>"; };
 		78DE4C941C500D2A0080F105 /* Ripple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ripple.h; sourceTree = "<group>"; };
@@ -918,10 +930,6 @@
 				78DE4C881C4DA0990080F105 /* Decoration.h */,
 				78B4B6E41CBD8EBD00F2D8A7 /* Special.cpp */,
 				78B4B6E51CBD8EBD00F2D8A7 /* Special.h */,
-				78DE4C8D1C4DA6AC0080F105 /* Spike.cpp */,
-				78DE4C8C1C4DA6AC0080F105 /* Spike.h */,
-				78B4B6C11CBBFA9500F2D8A7 /* Saw.cpp */,
-				78B4B6C21CBBFA9500F2D8A7 /* Saw.h */,
 				788F17D11CA4399200F4E5D6 /* Up.cpp */,
 				788F17D21CA4399200F4E5D6 /* Up.h */,
 				78357A131CA6F00300F86325 /* Down.cpp */,
@@ -973,6 +981,14 @@
 		78B4B6C51CBD751D00F2D8A7 /* decorations */ = {
 			isa = PBXGroup;
 			children = (
+				78B4B6F11CBF911800F2D8A7 /* Spike.cpp */,
+				78B4B6F21CBF911800F2D8A7 /* Spike.h */,
+				78B4B6EF1CBF911800F2D8A7 /* Saw.cpp */,
+				78B4B6F01CBF911800F2D8A7 /* Saw.h */,
+				78B4B6F91CBF91E000F2D8A7 /* Gate.cpp */,
+				78B4B6FA1CBF91E000F2D8A7 /* Gate.h */,
+				78B4B6F71CBF91E000F2D8A7 /* Door.cpp */,
+				78B4B6F81CBF91E000F2D8A7 /* Door.h */,
 			);
 			path = decorations;
 			sourceTree = "<group>";
@@ -999,6 +1015,8 @@
 		78B4B6D31CBD751D00F2D8A7 /* plates */ = {
 			isa = PBXGroup;
 			children = (
+				78B4B6FF1CBF93C500F2D8A7 /* TypeGate.cpp */,
+				78B4B7001CBF93C500F2D8A7 /* TypeGate.h */,
 				78B4B6EA1CBDBD8800F2D8A7 /* TypeSaw.cpp */,
 				78B4B6EB1CBDBD8800F2D8A7 /* TypeSaw.h */,
 			);
@@ -1284,13 +1302,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78B4B7021CBF93C500F2D8A7 /* TypeGate.cpp in Sources */,
 				7857E2BA1C6573F70020AAEA /* Menu.cpp in Sources */,
 				7825DD441C5484CC00708016 /* Popup.cpp in Sources */,
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
-				78B4B6C41CBBFA9500F2D8A7 /* Saw.cpp in Sources */,
+				78B4B6F41CBF911800F2D8A7 /* Saw.cpp in Sources */,
 				78B4B6D71CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
 				78B4B6D91CBD751D00F2D8A7 /* Energy.cpp in Sources */,
-				78DE4C8F1C4DA6AC0080F105 /* Spike.cpp in Sources */,
 				78DE4C971C500D2A0080F105 /* Ripple.cpp in Sources */,
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
@@ -1302,6 +1320,7 @@
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
 				7857E2C21C65BA940020AAEA /* Store.cpp in Sources */,
 				78B4B6DD1CBD751D00F2D8A7 /* Pickup.cpp in Sources */,
+				78B4B6F61CBF911800F2D8A7 /* Spike.cpp in Sources */,
 				78B4B6DF1CBD751D00F2D8A7 /* Star.cpp in Sources */,
 				78B4B6DB1CBD751D00F2D8A7 /* Heart.cpp in Sources */,
 				786696CB1C4A47FF00A256FC /* Cube.cpp in Sources */,
@@ -1311,12 +1330,14 @@
 				78B4B6E31CBD817900F2D8A7 /* Shadow.cpp in Sources */,
 				78E33FDA1C4AA4440021272D /* Generator.cpp in Sources */,
 				78CA6D0D1C20645200BF8416 /* Environment.cpp in Sources */,
+				78B4B6FC1CBF91E000F2D8A7 /* Door.cpp in Sources */,
 				78DE4C8B1C4DA0990080F105 /* Decoration.cpp in Sources */,
 				78DE4C831C4D6C120080F105 /* Counter.cpp in Sources */,
 				78E33FD01C4A84080021272D /* Plate.cpp in Sources */,
 				78B4B6E71CBD8EBD00F2D8A7 /* Special.cpp in Sources */,
 				7828A0AF1A1F87BA0079492B /* main.cpp in Sources */,
 				78CA6D0B1C20645200BF8416 /* Character.cpp in Sources */,
+				78B4B6FE1CBF91E000F2D8A7 /* Gate.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1326,7 +1347,6 @@
 			files = (
 				78E33FD91C4AA4440021272D /* Generator.cpp in Sources */,
 				782C44961BD2495E00A7DD46 /* NSInternal.mm in Sources */,
-				78DE4C8E1C4DA6AC0080F105 /* Spike.cpp in Sources */,
 				78DE4C8A1C4DA0990080F105 /* Decoration.cpp in Sources */,
 				788F17CE1CA405B100F4E5D6 /* Color.cpp in Sources */,
 				7847CDF91AB184820014E3F3 /* RootViewController.mm in Sources */,
@@ -1343,26 +1363,30 @@
 				7857E2C11C65B9D80020AAEA /* Store.cpp in Sources */,
 				7823FBC61ABDC0F900447F0A /* NSBatch.mm in Sources */,
 				7894C01A1BC9245800363FC9 /* Events.cpp in Sources */,
+				78B4B7011CBF93C500F2D8A7 /* TypeGate.cpp in Sources */,
 				7847CDF71AB184820014E3F3 /* main.m in Sources */,
 				7847CDF81AB184820014E3F3 /* NSMedia.mm in Sources */,
 				78DE4C921C4FC2230080F105 /* Fish.cpp in Sources */,
 				7847CDF61AB184820014E3F3 /* AppController.mm in Sources */,
 				78382F811C2469B90001B3F1 /* NSVote.mm in Sources */,
 				78E33FCF1C4A84080021272D /* Plate.cpp in Sources */,
+				78B4B6FD1CBF91E000F2D8A7 /* Gate.cpp in Sources */,
 				78B4B6EC1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */,
-				78B4B6C31CBBFA9500F2D8A7 /* Saw.cpp in Sources */,
 				78EC8D6D1BBAF0B900CC5785 /* NSModal.mm in Sources */,
 				78B4B6E61CBD8EBD00F2D8A7 /* Special.cpp in Sources */,
 				78B4B6D61CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
 				78357A151CA6F00300F86325 /* Down.cpp in Sources */,
 				78B4B6DC1CBD751D00F2D8A7 /* Pickup.cpp in Sources */,
 				78DF453F1BBAA54F004E4570 /* NSPurchase.mm in Sources */,
+				78B4B6F31CBF911800F2D8A7 /* Saw.cpp in Sources */,
 				78B4B6E21CBD817900F2D8A7 /* Shadow.cpp in Sources */,
+				78B4B6FB1CBF91E000F2D8A7 /* Door.cpp in Sources */,
 				7857E2B91C65733F0020AAEA /* Menu.cpp in Sources */,
 				78B4B6DA1CBD751D00F2D8A7 /* Heart.cpp in Sources */,
 				7843ACA51C2242AA0011F47C /* Reachability.m in Sources */,
 				786696CA1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				7847CDF51AB184820014E3F3 /* NSAnalytics.mm in Sources */,
+				78B4B6F51CBF911800F2D8A7 /* Spike.cpp in Sources */,
 				78809FA71B11D36B002397E7 /* NSHeyzap.mm in Sources */,
 				78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */,
 				788F17D31CA4399200F4E5D6 /* Up.cpp in Sources */,

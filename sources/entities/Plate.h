@@ -69,6 +69,7 @@ class Plate : public Cube
     UP,
     DOWN,
     SAW,
+    GATE,
     DIAMOND,
     CRYSTAL,
     ENERGY,

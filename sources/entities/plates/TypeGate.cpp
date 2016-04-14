@@ -28,13 +28,14 @@
  *
  *
  */
-TypeSaw::TypeSaw()
-: Special("plate-type-saw.obj")
+TypeGate::TypeGate()
+: Special("plate.obj")
 {
-  this->saws = new Pool(new Saw, this);
+  this->gate = new Gate(this);
+  this->decorations = new Pool(new Door, this);
 }
 
-TypeSaw::~TypeSaw()
+TypeGate::~TypeGate()
 {
 }
 
@@ -43,19 +44,12 @@ TypeSaw::~TypeSaw()
  *
  *
  */
-void TypeSaw::onCreate()
+void TypeGate::onCreate()
 {
   Special::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setTexture("plate-texture-state-1-saw.png");
 }
 
-void TypeSaw::onDestroy(bool action)
+void TypeGate::onDestroy(bool action)
 {
   Special::onDestroy(action);
 }
@@ -65,7 +59,7 @@ void TypeSaw::onDestroy(bool action)
  *
  *
  */
-void TypeSaw::setPlate(Plate* plate)
+void TypeGate::setPlate(Plate* plate)
 {
   Special::setPlate(plate);
 
@@ -74,25 +68,23 @@ void TypeSaw::setPlate(Plate* plate)
    *
    *
    */
-  auto decoration1 = static_cast<Decoration*>(this->saws->_create());
-  auto decoration2 = static_cast<Decoration*>(this->saws->_create());
+  this->gate->_create();
+
+  auto decoration1 = static_cast<Decoration*>(this->decorations->_create());
+  auto decoration2 = static_cast<Decoration*>(this->decorations->_create());
 
   decoration1->setPlate(this->plate, false);
   decoration2->setPlate(this->plate, false);
 
-  decoration1->setPosition3D(Vec3(-0.3, 0.4, -1.5f));
-  decoration2->setPosition3D(Vec3(+0.3, 0.4, +1.5f));
+  decoration1->setPosition3D(Vec3(0.0, 0, -0.75f));
+  decoration2->setPosition3D(Vec3(0.0, 0, +0.75f));
 
   decoration1->runAction(
     RepeatForever::create(
       Sequence::create(
-        EaseSineInOut::create(
-          RotateBy::create(1.0, Vec3(720.0f, 0, 0))
-        ),
+        MoveBy::create(1.0, Vec3(0, 0, -0.75)),
         DelayTime::create(0.5f),
-        EaseSineInOut::create(
-          RotateBy::create(1.0, Vec3(-720.0f, 0, 0))
-        ),
+        MoveBy::create(1.0, Vec3(0, 0, 0.75)),
         DelayTime::create(0.5f),
         nullptr
       )
@@ -102,43 +94,16 @@ void TypeSaw::setPlate(Plate* plate)
   decoration2->runAction(
     RepeatForever::create(
       Sequence::create(
-        EaseSineInOut::create(
-          RotateBy::create(1.0, Vec3(-720.0f, 0, 0))
-        ),
+        MoveBy::create(1.0, Vec3(0, 0, 0.75)),
         DelayTime::create(0.5f),
-        EaseSineInOut::create(
-          RotateBy::create(1.0, Vec3(720.0f, 0, 0))
-        ),
+        MoveBy::create(1.0, Vec3(0, 0, -0.75)),
         DelayTime::create(0.5f),
         nullptr
       )
     )
   );
 
-  decoration1->runAction(
-    RepeatForever::create(
-      Sequence::create(
-        MoveBy::create(1.0, Vec3(0, 0, 3)),
-        DelayTime::create(0.5f),
-        MoveBy::create(1.0, Vec3(0, 0, -3)),
-        DelayTime::create(0.5f),
-        nullptr
-      )
-    )
-  );
-
-  decoration2->runAction(
-    RepeatForever::create(
-      Sequence::create(
-        MoveBy::create(1.0, Vec3(0, 0, -3)),
-        DelayTime::create(0.5f),
-        MoveBy::create(1.0, Vec3(0, 0, 3)),
-        DelayTime::create(0.5f),
-        nullptr
-      )
-    )
-  );
-
+  this->getDecorations().push_back(this->gate);
   this->getDecorations().push_back(decoration1);
   this->getDecorations().push_back(decoration2);
 }
@@ -148,7 +113,7 @@ void TypeSaw::setPlate(Plate* plate)
  *
  *
  */
-TypeSaw* TypeSaw::deepCopy()
+TypeGate* TypeGate::deepCopy()
 {
-  return new TypeSaw;
+  return new TypeGate;
 }

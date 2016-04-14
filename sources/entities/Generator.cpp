@@ -166,6 +166,16 @@ Plate* Generator::create()
       this->conditions.s1 = 2;
       this->conditions.s2 = 2;
     }
+    else if(this->count > 0 && this->conditions.s1 < 1 && probably(20))
+    {
+      plate->setType(Plate::GATE);
+
+      this->length++;
+      this->length++;
+
+      this->conditions.s1 = 2;
+      this->conditions.s2 = 2;
+    }
   }
 
   plate->setPositionX(this->x - 0);

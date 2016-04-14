@@ -21,6 +21,9 @@
  *
  */
 
+#ifndef _DOOR_H_
+#define _DOOR_H_
+
 #include "Game.h"
 
 /**
@@ -28,60 +31,37 @@
  *
  *
  */
-Saw::Saw()
-: Decoration("saw.obj")
+class Door : public Decoration
 {
-  this->setColor(Color3B(255.0, 60.0, 60.0));
+  /**
+   *
+   *
+   *
+   */
+  private:
 
-  this->removable = false;
-  this->stopable = true;
-}
+  /**
+   *
+   *
+   *
+   */
+  protected:
 
-Saw::~Saw()
-{
-}
+  /**
+   *
+   *
+   *
+   */
+  public:
+  Door();
+ ~Door();
 
-/**
- *
- *
- *
- */
-void Saw::onCreate()
-{
-  Decoration::onCreate();
-}
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
-void Saw::onDestroy(bool action)
-{
-  Decoration::onDestroy(action);
-}
+  virtual void setPlate(Plate* plate);
 
-/**
- *
- *
- *
- */
-void Saw::setPlate(Plate* plate)
-{
-  Decoration::setPlate(plate);
-}
+  Door* deepCopy();
+};
 
-/**
- *
- *
- *
- */
-Character::Crash Saw::status()
-{
-  return this->enable ? Character::Crash::SPIKES : Character::Crash::UNDEFINED;
-}
-
-/**
- *
- *
- *
- */
-Saw* Saw::deepCopy()
-{
-  return new Saw;
-}
+#endif

@@ -45,7 +45,6 @@
 #include "Decoration.h"
 #include "Special.h"
 #include "Pickup.h"
-#include "Spike.h"
 #include "Up.h"
 #include "Down.h"
 #include "Diamond.h"
@@ -54,13 +53,18 @@
 #include "Star.h"
 #include "Heart.h"
 #include "Plate.h"
-#include "Saw.h"
 #include "Character.h"
 #include "Particle.h"
 #include "Fish.h"
 #include "Ripple.h"
 
+#include "Spike.h"
+#include "Saw.h"
+#include "Gate.h"
+#include "Door.h"
+
 #include "TypeSaw.h"
+#include "TypeGate.h"
 
 #include "Counter.h"
 
