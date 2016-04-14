@@ -28,22 +28,13 @@
  *
  *
  */
-Special::Special(const char* file, Node* parent)
-: Cube(file, parent)
+TypeCopter::TypeCopter()
+: Special("plate-type-copter.obj")
 {
+  this->copter = new Copter(this);
 }
 
-Special::Special(const char* file)
-: Cube(file)
-{
-}
-
-Special::Special()
-: Cube()
-{
-}
-
-Special::~Special()
+TypeCopter::~TypeCopter()
 {
 }
 
@@ -52,34 +43,41 @@ Special::~Special()
  *
  *
  */
-void Special::onCreate()
+void TypeCopter::onCreate()
 {
-  Cube::onCreate();
+  Special::onCreate();
 
   /**
    *
    *
    *
    */
-  this->setRotation3D(Vec3(0, 0, 0));
-
-  this->runAction(
-    EaseBounceOut::create(
-      MoveBy::create(0.5, Vec3(0, 1, 0))
-    )
-  );
+  this->setTexture("plate-texture-state-1-copter.png");
 }
 
-void Special::onDestroy(bool action)
+void TypeCopter::onDestroy(bool action)
 {
-  Cube::onDestroy(action);
+  Special::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void TypeCopter::setPlate(Plate* plate)
+{
+  Special::setPlate(plate);
 
   /**
    *
    *
    *
    */
-  this->clearDecorations(true, true, true);
+  this->copter->_create();
+  this->copter->setPosition3D(Vec3(0, 0, 0));
+
+  this->getDecorations().push_back(this->copter);
 }
 
 /**
@@ -87,48 +85,7 @@ void Special::onDestroy(bool action)
  *
  *
  */
-vector<Decoration*> &Special::getDecorations()
+TypeCopter* TypeCopter::deepCopy()
 {
-  return this->decorations;
-}
-
-/**
- *
- *
- *
- */
-void Special::setPlate(Plate* plate)
-{
-  this->plate = plate;
-}
-
-/**
- *
- *
- *
- */
-void Special::clearDecorations(bool force, bool animated, bool total)
-{
-  for(auto decoration : this->getDecorations())
-  {
-    if((decoration->removable || force || animated || total) && (!decoration->unremovable || total))
-    {
-      decoration->remove(force);
-    }
-  }
-
-  if(force || animated || total)
-  {
-    this->getDecorations().clear();
-  }
-}
-
-/**
- *
- *
- *
- */
-Special* Special::deepCopy()
-{
-  return new Special(this->textureFileName);
+  return new TypeCopter;
 }

@@ -28,22 +28,17 @@
  *
  *
  */
-Special::Special(const char* file, Node* parent)
-: Cube(file, parent)
+Copter::Copter(Node* parent)
+: Decoration("copter.obj", parent)
 {
+  this->setColor(Color3B(255.0, 60.0, 60.0));
+
+  this->removable = false;
+  this->stopable = true;
+  this->unremovable = true;
 }
 
-Special::Special(const char* file)
-: Cube(file)
-{
-}
-
-Special::Special()
-: Cube()
-{
-}
-
-Special::~Special()
+Copter::~Copter()
 {
 }
 
@@ -52,34 +47,31 @@ Special::~Special()
  *
  *
  */
-void Special::onCreate()
+void Copter::onCreate()
 {
-  Cube::onCreate();
+  Decoration::onCreate();
 
   /**
    *
    *
    *
    */
-  this->setRotation3D(Vec3(0, 0, 0));
-
   this->runAction(
-    EaseBounceOut::create(
-      MoveBy::create(0.5, Vec3(0, 1, 0))
+    RepeatForever::create(
+      Sequence::create(
+        EaseSineInOut::create(
+          RotateBy::create(2.0, Vec3(0, 720, 0))
+        ),
+        DelayTime::create(1.0),
+        nullptr
+      )
     )
   );
 }
 
-void Special::onDestroy(bool action)
+void Copter::onDestroy(bool action)
 {
-  Cube::onDestroy(action);
-
-  /**
-   *
-   *
-   *
-   */
-  this->clearDecorations(true, true, true);
+  Decoration::onDestroy(action);
 }
 
 /**
@@ -87,9 +79,9 @@ void Special::onDestroy(bool action)
  *
  *
  */
-vector<Decoration*> &Special::getDecorations()
+void Copter::setPlate(Plate* plate)
 {
-  return this->decorations;
+  Decoration::setPlate(plate);
 }
 
 /**
@@ -97,38 +89,7 @@ vector<Decoration*> &Special::getDecorations()
  *
  *
  */
-void Special::setPlate(Plate* plate)
+Copter* Copter::deepCopy()
 {
-  this->plate = plate;
-}
-
-/**
- *
- *
- *
- */
-void Special::clearDecorations(bool force, bool animated, bool total)
-{
-  for(auto decoration : this->getDecorations())
-  {
-    if((decoration->removable || force || animated || total) && (!decoration->unremovable || total))
-    {
-      decoration->remove(force);
-    }
-  }
-
-  if(force || animated || total)
-  {
-    this->getDecorations().clear();
-  }
-}
-
-/**
- *
- *
- *
- */
-Special* Special::deepCopy()
-{
-  return new Special(this->textureFileName);
+  return new Copter;
 }

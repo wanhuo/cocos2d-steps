@@ -150,6 +150,10 @@
 		78B4B6FE1CBF91E000F2D8A7 /* Gate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6F91CBF91E000F2D8A7 /* Gate.cpp */; };
 		78B4B7011CBF93C500F2D8A7 /* TypeGate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6FF1CBF93C500F2D8A7 /* TypeGate.cpp */; };
 		78B4B7021CBF93C500F2D8A7 /* TypeGate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6FF1CBF93C500F2D8A7 /* TypeGate.cpp */; };
+		78B4B7061CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B7041CBFB40700F2D8A7 /* TypeCopter.cpp */; };
+		78B4B7071CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B7041CBFB40700F2D8A7 /* TypeCopter.cpp */; };
+		78B4B70A1CBFB51F00F2D8A7 /* Copter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B7081CBFB51F00F2D8A7 /* Copter.cpp */; };
+		78B4B70B1CBFB51F00F2D8A7 /* Copter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B7081CBFB51F00F2D8A7 /* Copter.cpp */; };
 		78CA6D0A1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78CA6D0B1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
@@ -385,6 +389,10 @@
 		78B4B6FA1CBF91E000F2D8A7 /* Gate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gate.h; sourceTree = "<group>"; };
 		78B4B6FF1CBF93C500F2D8A7 /* TypeGate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeGate.cpp; sourceTree = "<group>"; };
 		78B4B7001CBF93C500F2D8A7 /* TypeGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeGate.h; sourceTree = "<group>"; };
+		78B4B7041CBFB40700F2D8A7 /* TypeCopter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeCopter.cpp; sourceTree = "<group>"; };
+		78B4B7051CBFB40700F2D8A7 /* TypeCopter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeCopter.h; sourceTree = "<group>"; };
+		78B4B7081CBFB51F00F2D8A7 /* Copter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Copter.cpp; sourceTree = "<group>"; };
+		78B4B7091CBFB51F00F2D8A7 /* Copter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Copter.h; sourceTree = "<group>"; };
 		78CA6D031C202CAB00BF8416 /* Purchases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchases.h; sourceTree = "<group>"; };
 		78CA6D041C20645200BF8416 /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
 		78CA6D051C20645200BF8416 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
@@ -981,6 +989,8 @@
 		78B4B6C51CBD751D00F2D8A7 /* decorations */ = {
 			isa = PBXGroup;
 			children = (
+				78B4B7081CBFB51F00F2D8A7 /* Copter.cpp */,
+				78B4B7091CBFB51F00F2D8A7 /* Copter.h */,
 				78B4B6F11CBF911800F2D8A7 /* Spike.cpp */,
 				78B4B6F21CBF911800F2D8A7 /* Spike.h */,
 				78B4B6EF1CBF911800F2D8A7 /* Saw.cpp */,
@@ -1015,6 +1025,8 @@
 		78B4B6D31CBD751D00F2D8A7 /* plates */ = {
 			isa = PBXGroup;
 			children = (
+				78B4B7041CBFB40700F2D8A7 /* TypeCopter.cpp */,
+				78B4B7051CBFB40700F2D8A7 /* TypeCopter.h */,
 				78B4B6FF1CBF93C500F2D8A7 /* TypeGate.cpp */,
 				78B4B7001CBF93C500F2D8A7 /* TypeGate.h */,
 				78B4B6EA1CBDBD8800F2D8A7 /* TypeSaw.cpp */,
@@ -1320,6 +1332,7 @@
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
 				7857E2C21C65BA940020AAEA /* Store.cpp in Sources */,
 				78B4B6DD1CBD751D00F2D8A7 /* Pickup.cpp in Sources */,
+				78B4B7071CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */,
 				78B4B6F61CBF911800F2D8A7 /* Spike.cpp in Sources */,
 				78B4B6DF1CBD751D00F2D8A7 /* Star.cpp in Sources */,
 				78B4B6DB1CBD751D00F2D8A7 /* Heart.cpp in Sources */,
@@ -1329,6 +1342,7 @@
 				7825DD401C5479BE00708016 /* Dust.cpp in Sources */,
 				78B4B6E31CBD817900F2D8A7 /* Shadow.cpp in Sources */,
 				78E33FDA1C4AA4440021272D /* Generator.cpp in Sources */,
+				78B4B70B1CBFB51F00F2D8A7 /* Copter.cpp in Sources */,
 				78CA6D0D1C20645200BF8416 /* Environment.cpp in Sources */,
 				78B4B6FC1CBF91E000F2D8A7 /* Door.cpp in Sources */,
 				78DE4C8B1C4DA0990080F105 /* Decoration.cpp in Sources */,
@@ -1361,6 +1375,7 @@
 				7894C0331BC9282F00363FC9 /* Game.cpp in Sources */,
 				78E33FD11C4A84080021272D /* Particle.cpp in Sources */,
 				7857E2C11C65B9D80020AAEA /* Store.cpp in Sources */,
+				78B4B70A1CBFB51F00F2D8A7 /* Copter.cpp in Sources */,
 				7823FBC61ABDC0F900447F0A /* NSBatch.mm in Sources */,
 				7894C01A1BC9245800363FC9 /* Events.cpp in Sources */,
 				78B4B7011CBF93C500F2D8A7 /* TypeGate.cpp in Sources */,
@@ -1371,6 +1386,7 @@
 				78382F811C2469B90001B3F1 /* NSVote.mm in Sources */,
 				78E33FCF1C4A84080021272D /* Plate.cpp in Sources */,
 				78B4B6FD1CBF91E000F2D8A7 /* Gate.cpp in Sources */,
+				78B4B7061CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */,
 				78B4B6EC1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */,
 				78EC8D6D1BBAF0B900CC5785 /* NSModal.mm in Sources */,
 				78B4B6E61CBD8EBD00F2D8A7 /* Special.cpp in Sources */,

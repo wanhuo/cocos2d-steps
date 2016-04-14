@@ -88,6 +88,7 @@ void Environment::create()
   this->plates_up = new Pool(new Special("plate-type-up.obj"), this->plane);
   this->plates_saw = new Pool(new TypeSaw, this->plane);
   this->plates_gate = new Pool(new TypeGate, this->plane);
+  this->plates_copter = new Pool(new TypeCopter, this->plane);
 
   this->character = new Character;
 
@@ -200,6 +201,7 @@ void Environment::onMenu()
   this->plates_up->clear(true);
   this->plates_saw->clear(true);
   this->plates_gate->clear(true);
+  this->plates_copter->clear(true);
 
   this->spikes->clear(true);
   this->ups->clear(true);

@@ -141,6 +141,9 @@ void Plate::onCount()
       case SAW:
       this->special->setTexture("plate-texture-state-2-saw.png");
       break;
+      case COPTER:
+      this->special->setTexture("plate-texture-state-2-copter.png");
+      break;
     }
   }
 }
@@ -278,6 +281,14 @@ void Plate::setType(Type type, bool animated)
     case GATE:
     {
       this->special = static_cast<TypeGate*>(Application->environment->plates_gate->_create());
+      this->special->setPlate(this);
+    }
+    break;
+    case COPTER:
+    {
+      this->setVisible(false);
+
+      this->special = static_cast<TypeCopter*>(Application->environment->plates_copter->_create());
       this->special->setPlate(this);
     }
     break;
@@ -832,13 +843,13 @@ void Plate::clearDecorations(bool force, bool animated, bool total)
 
   for(auto decoration : this->getDecorations())
   {
-    if((decoration->removable || force || animated) && (!decoration->unremovable || total))
+    if((decoration->removable || force || animated || total) && (!decoration->unremovable || total))
     {
       decoration->remove(force);
     }
   }
 
-  if(force || animated)
+  if(force || animated || total)
   {
     this->getDecorations().clear();
   }

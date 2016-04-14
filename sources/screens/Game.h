@@ -62,9 +62,11 @@
 #include "Saw.h"
 #include "Gate.h"
 #include "Door.h"
+#include "Copter.h"
 
 #include "TypeSaw.h"
 #include "TypeGate.h"
+#include "TypeCopter.h"
 
 #include "Counter.h"
 

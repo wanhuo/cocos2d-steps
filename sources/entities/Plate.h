@@ -70,6 +70,7 @@ class Plate : public Cube
     DOWN,
     SAW,
     GATE,
+    COPTER,
     DIAMOND,
     CRYSTAL,
     ENERGY,
