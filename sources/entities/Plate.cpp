@@ -31,6 +31,7 @@
 Plate::Plate()
 : Cube("plate.obj")
 {
+  this->decorations = *new vector<Decoration*>();
 }
 
 Plate::~Plate()
@@ -845,7 +846,7 @@ void Plate::clearDecorations(bool force, bool animated, bool total)
   {
     if((decoration->removable || force || animated || total) && (!decoration->unremovable || total))
     {
-      decoration->remove(force);
+      decoration->remove(force || total);
     }
   }
 

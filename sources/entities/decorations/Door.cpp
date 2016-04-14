@@ -37,7 +37,7 @@ Door::Door()
   this->setTexture("door-texture.png");
 
   this->removable = false;
-  this->stopable = true;
+  this->stopable = false;
   this->unremovable = true;
 }
 
@@ -59,7 +59,23 @@ void Door::onCreate()
    *
    *
    */
-  this->engine->_create();
+  this->engine->_create()->setPosition3D(Vec3(0.0, 1.15, 1.05));
+
+  this->engine->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        EaseSineInOut::create(
+          RotateBy::create(0.3, Vec3(0, 0, 180))
+        ),
+        DelayTime::create(0.7),
+        EaseSineInOut::create(
+          RotateBy::create(0.3, Vec3(0, 0, -180))
+        ),
+        DelayTime::create(0.7),
+        nullptr
+      )
+    )
+  );
 
   this->runAction(
     RepeatForever::create(

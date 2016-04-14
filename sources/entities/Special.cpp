@@ -31,16 +31,13 @@
 Special::Special(const char* file, Node* parent)
 : Cube(file, parent)
 {
-}
-
-Special::Special(const char* file)
-: Cube(file)
-{
+  this->decorations = *new vector<Decoration*>();
 }
 
 Special::Special()
 : Cube()
 {
+  this->decorations = *new vector<Decoration*>();
 }
 
 Special::~Special()
@@ -113,7 +110,7 @@ void Special::clearDecorations(bool force, bool animated, bool total)
   {
     if((decoration->removable || force || animated || total) && (!decoration->unremovable || total))
     {
-      decoration->remove(force);
+      decoration->remove(force || total);
     }
   }
 

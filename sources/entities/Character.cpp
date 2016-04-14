@@ -1007,6 +1007,45 @@ void Character::update(float time)
     this->steps = 0;
     this->sound = 1;
   }
+
+  /**
+   *
+   *
+   *
+   */
+  if(true)
+  {
+    if(Application->environment->character->plates.current)
+    {
+      auto element = Application->environment->character->plates.current;
+      auto plates = Application->environment->character->getPlatesNearWithDefaults(element);
+
+      if(plates.plates[Plate::LEFT])
+      {
+        element = plates.plates[Plate::LEFT];
+      }
+      else
+      {
+        element = plates.plates[Plate::RIGHT];
+      }
+
+      if(element)
+      {
+        for(auto decoration : element->getDecorations())
+        {
+          if(decoration->enable || element->moved)
+          {
+            return;
+          }
+        }
+
+        if(this->state == NORMAL)
+        {
+          this->onTurn();
+        }
+      }
+    }
+  }
 }
 
 /**

@@ -116,23 +116,16 @@ void Decoration::remove(bool force)
   else
   {
     this->runAction(
-      Spawn::create(
-        Sequence::create(
-          EaseSineInOut::create(
-            MoveBy::create(0.2, Vec3(0, 1.0, 0))
-          ),
-          EaseSineInOut::create(
-            MoveBy::create(0.4, Vec3(0, -6.0, 0))
-          ),
-          CallFunc::create([=] () {
-            this->_destroy(true);
-          }),
-          nullptr
+      Sequence::create(
+        EaseSineInOut::create(
+          MoveBy::create(0.2, Vec3(0, 1.0, 0))
         ),
-        Sequence::create(
-          DelayTime::create(0.3),
-          nullptr
+        EaseSineInOut::create(
+          MoveBy::create(0.4, Vec3(0, -6.0, 0))
         ),
+        CallFunc::create([=] () {
+          this->_destroy(true);
+        }),
         nullptr
       )
     );
