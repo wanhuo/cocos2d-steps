@@ -29,7 +29,7 @@
  *
  */
 Character::Character()
-: Cube("cube13.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
+: Cube("cube12.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
 {
   this->shadow = new Shadow("plate-down-shadow.obj", Application->environment->plane);
   this->shadow->setColor(Color3B(0, 0, 0));
@@ -38,7 +38,7 @@ Character::Character()
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
 
-  this->setTexture("cube13-texture.png");
+  this->setTexture("cube12-texture.png");
 
   this->setScheduleUpdate(true);
 }
@@ -56,11 +56,21 @@ void Character::reset()
 {
   this->changeState(NORMAL);
 
+  this->botEnabled = false;
+  this->botWait = false;
+
+  this->botTime = 0.05;
+  this->botTimeElapsed = 0;
+
+  this->botWaitTime = 0.2;
+  this->botWaitTimeElapsed = 0;
+
   this->autoTurnLeft = false;
   this->autoTurnRight = false;
 
   this->manual = true;
 
+  this->turns = 0;
   this->time = 0;
   this->lives = 0;
   this->steps = 0;
@@ -190,6 +200,34 @@ void Character::onTurn(bool action, bool set)
 {
   if(action)
   {
+    if(this->state == STATE_COPTER)
+    {
+      this->turns++;
+
+      if(this->turns < STATE_COPTER_TURNS)
+      {
+        Application->counter->onCount();  
+
+        this->onSound();
+
+        return;
+      }
+      else
+      {
+        Application->environment->characterActionHolder->runAction(
+          EaseSineInOut::create(
+            ScaleTo::create(0.5, 0.0)
+          )
+        );
+
+        this->updateStates(0);
+
+        this->changeState(NORMAL);
+      }
+    }
+
+    this->turns = 0;
+
     if(this->getPlatesNearWithDefaults().plates[Plate::RIGHT])
     {
       this->onTurnLeft(action, set);
@@ -615,6 +653,12 @@ void Character::onFall()
 
 void Character::onCrash(Crash crash)
 {
+  Application->environment->characterActionHolder->runAction(
+    EaseSineInOut::create(
+      ScaleTo::create(0.5, 0.0)
+    )
+  );
+
   this->plane->stopAllActions();
 
   switch(crash)
@@ -648,6 +692,7 @@ void Character::onCrash(Crash crash)
     case CATCH:
     this->runAction(
       Spawn::create(
+        MoveTo::create(0.1, Vec3(this->getPositionX(), 0.9, this->getPositionZ())),
         RotateGlobalBy::create(0.3, Vec3((this->plates.current->getDirection() ? 0 : 20), 0, (this->plates.current->getDirection() ? 20 : 0))),
         Sequence::create(
           EaseSineOut::create(
@@ -673,6 +718,9 @@ void Character::onCrash(Crash crash)
         nullptr
       )
     );
+    break;
+    case COPTER:
+    this->changeState(STATE_COPTER);
     break;
   }
 
@@ -706,6 +754,39 @@ void Character::onHit()
   );*/
 
   Sound->play("character-hit");
+}
+
+void Character::onCopter()
+{
+  Application->environment->characterActionHolder->runAction(
+    EaseSineInOut::create(
+      ScaleTo::create(0.5, 1.0)
+    )
+  );
+
+  this->runAction(
+    Sequence::create(
+      EaseSineOut::create(
+        MoveBy::create(0.2, Vec3(0, 1, 0))
+      ),
+      CallFunc::create([=] () {
+        this->runAction(
+          RepeatForever::create(
+            Sequence::create(
+              EaseSineOut::create(
+                MoveBy::create(0.5, Vec3(0, -0.5, 0))
+              ),
+              EaseSineOut::create(
+                MoveBy::create(0.5, Vec3(0, 0.5, 0))
+              ),
+              nullptr
+            )
+          )
+        );
+      }),
+      nullptr
+    )
+  );
 }
 
 /**
@@ -901,6 +982,9 @@ void Character::changeState(State state, Crash crash)
       case HIT:
       this->onHit();
       break;
+      case STATE_COPTER:
+      this->onCopter();
+      break;
     }
   }
 }
@@ -952,6 +1036,13 @@ void Character::updateHit(float time)
 {
 }
 
+void Character::updateCopter(float time)
+{
+  this->turns -= 0.01;
+
+  Application->environment->characterAction->setScaleX(min(1.0f, max(0.0f, this->turns / STATE_COPTER_TURNS)));
+}
+
 /**
  *
  *
@@ -975,6 +1066,9 @@ void Character::updateStates(float time)
     break;
     case HIT:
     this->updateHit(time);
+    break;
+    case STATE_COPTER:
+    this->updateCopter(time);
     break;
   }
 }
@@ -1013,35 +1107,61 @@ void Character::update(float time)
    *
    *
    */
-  if(true)
+  if(this->botEnabled)
   {
-    if(Application->environment->character->plates.current)
+    this->botTimeElapsed += time;
+
+    if(this->botTimeElapsed >= this->botTime)
     {
-      auto element = Application->environment->character->plates.current;
-      auto plates = Application->environment->character->getPlatesNearWithDefaults(element);
+      this->botTimeElapsed = 0;
 
-      if(plates.plates[Plate::LEFT])
+      if(Application->environment->character->plates.current)
       {
-        element = plates.plates[Plate::LEFT];
-      }
-      else
-      {
-        element = plates.plates[Plate::RIGHT];
-      }
+        auto element = Application->environment->character->plates.current;
+        auto plates = Application->environment->character->getPlatesNear(element);
 
-      if(element)
-      {
-        for(auto decoration : element->getDecorations())
+        if(plates.plates[Plate::LEFT])
         {
-          if(decoration->enable || element->moved)
-          {
-            return;
-          }
+          element = plates.plates[Plate::LEFT];
+        }
+        else
+        {
+          element = plates.plates[Plate::RIGHT];
         }
 
-        if(this->state == NORMAL)
+        if(element)
         {
-          this->onTurn();
+          for(auto decoration : element->getDecorations())
+          {
+            if(decoration->enable || element->moved)
+            {
+              return;
+            }
+          }
+
+          if(element->getDecorations().size())
+          {
+            if(!this->botWait && this->plates.previous)
+            {
+              if(this->plates.previous->getDecorations().size()) this->botWait = true;
+            }
+          }
+
+          if(this->botWait)
+          {
+            this->botWaitTimeElapsed += time;
+
+            if(this->botWaitTimeElapsed >= this->botWaitTime)
+            {
+              this->botWaitTimeElapsed = 0;
+              this->botWait = false;
+            }
+          }
+
+          if(this->state == NORMAL && !this->botWait)
+          {
+            this->onTurn();
+          }
         }
       }
     }

@@ -31,13 +31,11 @@
 Copter::Copter(Node* parent)
 : Decoration("copter.obj", parent)
 {
-  this->setColor(Color3B(255.0, 60.0, 60.0));
-
   this->removable = false;
-  this->stopable = true;
+  this->stopable = false;
   this->unremovable = true;
 }
-
+  
 Copter::~Copter()
 {
 }
@@ -59,9 +57,21 @@ void Copter::onCreate()
   this->runAction(
     RepeatForever::create(
       Sequence::create(
+        CallFunc::create([=] () {
+          this->enable = true;
+          this->runAction(
+            TintTo::create(0.1, Color3B(255.0, 60.0, 60.0))
+          );
+        }),
         EaseSineInOut::create(
-          RotateBy::create(2.0, Vec3(0, 720, 0))
+          RotateBy::create(2.0, Vec3(0, 900, 0))
         ),
+        CallFunc::create([=] () {
+          this->enable = false;
+          this->runAction(
+            TintTo::create(0.1, Color3B(250.0, 206.0, 85.0))
+          );
+        }),
         DelayTime::create(1.0),
         nullptr
       )
@@ -82,6 +92,30 @@ void Copter::onDestroy(bool action)
 void Copter::setPlate(Plate* plate)
 {
   Decoration::setPlate(plate);
+}
+
+/**
+ *
+ *
+ *
+ */
+Character::Crash Copter::status()
+{
+  if(this->enable)
+  {
+    this->setColor(Color3B(255.0, 60.0, 60.0));
+
+    this->stopAllActions();
+    this->runAction(
+      RepeatForever::create(
+        RotateBy::create(1.0, Vec3(0, 900, 0))
+      )
+    );
+
+    return Character::Crash::COPTER;
+  }
+
+  return Character::Crash::UNDEFINED;
 }
 
 /**

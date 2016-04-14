@@ -61,6 +61,8 @@ class Copter : public Decoration
 
   virtual void setPlate(Plate* plate);
 
+  virtual Character::Crash status();
+
   Copter* deepCopy();
 };
 

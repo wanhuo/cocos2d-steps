@@ -91,8 +91,26 @@ void Environment::create()
   this->plates_copter = new Pool(new TypeCopter, this->plane);
 
   this->character = new Character;
-
   this->generator = new Generator;
+
+  this->characterActionHolder = new Background(this);
+  this->characterActionHolder->setContentSize(Size(Application->getWidth(), 40));
+  this->characterActionHolder->setPosition(Vec2(0, 950));
+  this->characterActionHolder->setCameraMask(4);
+
+  this->characterActionBackground = new BackgroundColor(this->characterActionHolder, Color4B(255, 255, 255, 50));
+  this->characterActionBackground->setContentSize(Size(Application->getWidth() - 100, 40));
+  this->characterActionBackground->setAnchorPoint(Vec2(0, 0));
+  this->characterActionBackground->setPosition(Vec2(50, 10));
+  this->characterActionBackground->setCameraMask(4);
+
+  this->characterAction = new BackgroundColor(this->characterActionHolder, Color4B(255, 255, 255, 50));
+  this->characterAction->setContentSize(Size(Application->getWidth() - 110, 30));
+  this->characterAction->setAnchorPoint(Vec2(0, 0));
+  this->characterAction->setPosition(Vec2(55, 15));
+  this->characterAction->setCameraMask(4);
+
+  this->characterActionHolder->setScale(0);
 
   this->onGame();
 
@@ -230,6 +248,10 @@ void Environment::onGame()
 void Environment::onLose()
 {
   this->stopAllActions();
+}
+
+void Environment::onCopter()
+{
 }
 
 /**

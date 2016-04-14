@@ -39,6 +39,7 @@ class Character : public Cube
    *
    */
   private:
+  const static int STATE_COPTER_TURNS = 10;
 
   /**
    *
@@ -46,6 +47,9 @@ class Character : public Cube
    *
    */
   protected:
+  bool botEnabled;
+  bool botWait;
+
   bool autoTurnLeft;
   bool autoTurnRight;
   bool manual;
@@ -53,8 +57,16 @@ class Character : public Cube
   float soundTime;
   float soundTimeElapsed;
 
+  float botTime;
+  float botTimeElapsed;
+
+  float botWaitTime;
+  float botWaitTimeElapsed;
+
   float sound;
   float time;
+
+  float turns;
 
   int lives;
   int steps;
@@ -72,7 +84,8 @@ class Character : public Cube
     JUMP,
     FALL,
     CRASH,
-    HIT
+    HIT,
+    STATE_COPTER
   };
 
   enum Crash {
@@ -80,7 +93,8 @@ class Character : public Cube
     CATCH,
     SPIKES,
     DOWN,
-    GATE
+    GATE,
+    COPTER
   };
 
   enum Turn {
@@ -138,6 +152,7 @@ class Character : public Cube
   virtual void onFall();
   virtual void onCrash(Crash crash = UNDEFINED);
   virtual void onHit();
+  virtual void onCopter();
 
   virtual bool onTouch();
 
@@ -180,6 +195,7 @@ class Character : public Cube
   virtual void updateFall(float time);
   virtual void updateCrash(float time);
   virtual void updateHit(float time);
+  virtual void updateCopter(float time);
 
   virtual void updateStates(float time);
 

@@ -126,6 +126,10 @@ class Environment : public Background
 
   Color* color;
 
+  Background* characterActionHolder;
+  BackgroundColor* characterActionBackground;
+  BackgroundColor* characterAction;
+
   virtual void onAccelerate(Acceleration* acceleration, Event* e);
 
   virtual void create();
@@ -140,6 +144,7 @@ class Environment : public Background
   virtual void onMenu();
   virtual void onGame();
   virtual void onLose();
+  virtual void onCopter();
 
   virtual void updateLight(float time);
   virtual void updateDusts(float time);
