@@ -69,6 +69,7 @@ void TypeGate::setPlate(Plate* plate)
    *
    */
   this->gate->_create();
+  this->gate->setPosition3D(Vec3(0, 0, 0));
 
   auto decoration1 = static_cast<Decoration*>(this->decorations->_create());
   auto decoration2 = static_cast<Decoration*>(this->decorations->_create());
@@ -82,10 +83,14 @@ void TypeGate::setPlate(Plate* plate)
   decoration1->runAction(
     RepeatForever::create(
       Sequence::create(
-        MoveBy::create(1.0, Vec3(0, 0, -0.75)),
-        DelayTime::create(0.5f),
-        MoveBy::create(1.0, Vec3(0, 0, 0.75)),
-        DelayTime::create(0.5f),
+        EaseBounceOut::create(
+          MoveBy::create(0.5, Vec3(0, 0, -0.75))
+        ),
+        DelayTime::create(0.5),
+        EaseBounceOut::create(
+          MoveBy::create(0.5, Vec3(0, 0, 0.75))
+        ),
+        DelayTime::create(0.5),
         nullptr
       )
     )
@@ -94,10 +99,14 @@ void TypeGate::setPlate(Plate* plate)
   decoration2->runAction(
     RepeatForever::create(
       Sequence::create(
-        MoveBy::create(1.0, Vec3(0, 0, 0.75)),
-        DelayTime::create(0.5f),
-        MoveBy::create(1.0, Vec3(0, 0, -0.75)),
-        DelayTime::create(0.5f),
+        EaseBounceOut::create(
+          MoveBy::create(0.5, Vec3(0, 0, 0.75))
+        ),
+        DelayTime::create(0.5),
+        EaseBounceOut::create(
+          MoveBy::create(0.5, Vec3(0, 0, -0.75))
+        ),
+        DelayTime::create(0.5),
         nullptr
       )
     )
@@ -106,6 +115,22 @@ void TypeGate::setPlate(Plate* plate)
   this->getDecorations().push_back(this->gate);
   this->getDecorations().push_back(decoration1);
   this->getDecorations().push_back(decoration2);
+
+  this->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        CallFunc::create([=] () {
+          this->plate->blocked = false;
+        }),
+        DelayTime::create(1.0),
+        CallFunc::create([=] () {
+          this->plate->blocked = true;
+        }),
+        DelayTime::create(1.0),
+        nullptr
+      )
+    )
+  );
 }
 
 /**

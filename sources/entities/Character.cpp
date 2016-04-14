@@ -663,6 +663,17 @@ void Character::onCrash(Crash crash)
       )
     );
     break;
+    case GATE:
+    this->plane->runAction(
+      Sequence::create(
+        ScaleTo::create(0.1, this->plates.current->getDirection() ? 1.0 : 0.1, 1.0, this->plates.current->getDirection() ? 0.1 : 1.0),
+        CallFunc::create([=] () {
+          Application->changeState(Game::LOSE);
+        }),
+        nullptr
+      )
+    );
+    break;
   }
 
   Sound->play("character-hit");

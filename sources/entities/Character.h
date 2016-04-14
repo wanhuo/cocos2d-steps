@@ -79,7 +79,8 @@ class Character : public Cube
     UNDEFINED,
     CATCH,
     SPIKES,
-    DOWN
+    DOWN,
+    GATE
   };
 
   enum Turn {

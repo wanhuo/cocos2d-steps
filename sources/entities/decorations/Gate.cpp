@@ -49,6 +49,27 @@ Gate::~Gate()
 void Gate::onCreate()
 {
   Decoration::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  this->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        CallFunc::create([=] () {
+          this->enable = false;
+        }),
+        DelayTime::create(1.0),
+        CallFunc::create([=] () {
+          this->enable = true;
+        }),
+        DelayTime::create(1.0),
+        nullptr
+      )
+    )
+  );
 }
 
 void Gate::onDestroy(bool action)
@@ -64,6 +85,16 @@ void Gate::onDestroy(bool action)
 void Gate::setPlate(Plate* plate)
 {
   Decoration::setPlate(plate);
+}
+
+/**
+ *
+ *
+ *
+ */
+Character::Crash Gate::status()
+{
+  return this->enable ? Character::Crash::GATE : Character::Crash::UNDEFINED;
 }
 
 /**

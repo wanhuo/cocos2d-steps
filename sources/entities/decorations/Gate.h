@@ -61,6 +61,8 @@ class Gate : public Decoration
 
   virtual void setPlate(Plate* plate);
 
+  virtual Character::Crash status();
+
   Gate* deepCopy();
 };
 
