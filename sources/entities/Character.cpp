@@ -29,7 +29,7 @@
  *
  */
 Character::Character()
-: Cube("cube12.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
+: Cube("cube13.obj")//(patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
 {
   this->shadow = new Shadow("plate-down-shadow.obj", Application->environment->plane);
   this->shadow->setColor(Color3B(0, 0, 0));
@@ -38,7 +38,7 @@ Character::Character()
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
 
-  this->setTexture("cube12-texture.png");
+  this->setTexture("cube13-texture.png");
 
   this->setScheduleUpdate(true);
 }
