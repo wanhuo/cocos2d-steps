@@ -84,6 +84,7 @@ void Spike::onCreate()
             Sequence::create(
               DelayTime::create(0.1),
               CallFunc::create([=] () {
+                Sound->play("decoration-spike");
                 this->enable = true;
               }),
               DelayTime::create(0.5),

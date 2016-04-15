@@ -60,6 +60,7 @@ void Saw::onCreate()
       Sequence::create(
         DelayTime::create(0.25f),
         CallFunc::create([=] () {
+          Sound->play("decoration-saw");
           this->enable = true;
         }),
         DelayTime::create(0.5f),
@@ -68,6 +69,7 @@ void Saw::onCreate()
         }),
         DelayTime::create(1.0f),
         CallFunc::create([=] () {
+          Sound->play("decoration-saw");
           this->enable = true;
         }),
         DelayTime::create(0.5f),

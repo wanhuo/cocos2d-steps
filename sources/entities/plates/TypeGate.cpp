@@ -51,6 +51,13 @@ void TypeGate::onCreate()
 void TypeGate::onDestroy(bool action)
 {
   Special::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  this->decorations->clear(true);
 }
 
 /**
