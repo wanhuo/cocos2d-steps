@@ -176,7 +176,7 @@ Plate* Generator::create()
       this->conditions.s1 = 2;
       this->conditions.s2 = 2;
     }
-    else if(probably(20))
+    else if(probably(5))
     {
       plate->setType(Plate::COPTER);
 

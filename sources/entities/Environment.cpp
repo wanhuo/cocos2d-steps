@@ -96,6 +96,7 @@ void Environment::create()
   this->characterActionHolder = new Background(this);
   this->characterActionHolder->setContentSize(Size(Application->getWidth(), 0));
   this->characterActionHolder->setPosition(Vec2(0, 950));
+  this->characterActionHolder->setCascadeOpacityEnabled(true);
   this->characterActionHolder->setCameraMask(4);
 
   this->characterActionBackground = new BackgroundColor(this->characterActionHolder, Color4B(255, 255, 255, 50));

@@ -39,7 +39,7 @@ class Character : public Cube
    *
    */
   private:
-  const static int STATE_COPTER_TURNS = 5;
+  const static int STATE_COPTER_TURNS = 15;
 
   /**
    *
@@ -169,6 +169,9 @@ class Character : public Cube
 
   virtual void onMoveLeft();
   virtual void onMoveRight();
+
+  virtual void onEnvironmentMoveLeft();
+  virtual void onEnvironmentMoveRight();
 
   virtual bool getManual();
   virtual bool setManual(bool manual);

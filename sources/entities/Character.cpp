@@ -105,23 +105,6 @@ void Character::reset()
       )
     )
   );
-
-  /*this->plane->runAction(
-    Sequence::create(
-      MoveBy::create(1.0, Vec3(0, 3, 0)),
-      CallFunc::create([=] () {
-        this->runAction(
-          RepeatForever::create(
-            Sequence::create(
-              RotateBy::create(2.0, Vec3(90.0, 90.0, 90.0)),
-              nullptr
-            )
-          )
-        );
-      }),
-      nullptr
-    )
-  );*/
 }
 
 /**
@@ -215,8 +198,14 @@ void Character::onTurn(bool action, bool set)
       else
       {
         Application->environment->characterActionHolder->runAction(
-          EaseSineInOut::create(
-            ScaleTo::create(0.5, 0.0)
+          Spawn::create(
+            EaseSineInOut::create(
+              ScaleTo::create(0.2, 1.2)
+            ),
+            EaseSineInOut::create(
+              FadeOut::create(0.2)
+            ),
+            nullptr
           )
         );
 
@@ -522,13 +511,13 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   auto y = this->getPositionY();
   auto z = this->getPositionZ();
 
-  /*if(plate->behavior == Plate::DYNAMIC)
+  if(plate->behavior == Plate::DYNAMIC)
   {
-    if(plate->numberOfRunningActions() > 1)
+    if(plate->numberOfRunningActions() > 2)
     {
       return this->onLandFail(turn, plate);
     }
-  }*/
+  }
 
   plate->onCount();
 
@@ -624,6 +613,25 @@ void Character::onMoveLeft()
     MoveBy::create(0.1, Vec3(0, 0, 1.5))
   );
 
+  this->onEnvironmentMoveLeft();
+}
+
+void Character::onMoveRight()
+{
+  Application->environment->plane->runAction(
+    MoveBy::create(0.1, Vec3(-1.5, 0, 0))
+  );
+
+  this->onEnvironmentMoveRight();
+}
+
+/**
+ *
+ *
+ *
+ */
+void Character::onEnvironmentMoveLeft()
+{
   for(int i = 0; i < Application->environment->dusts->count; i++)
   {
     Application->environment->dusts->element(i)->runAction(
@@ -634,12 +642,8 @@ void Character::onMoveLeft()
   }
 }
 
-void Character::onMoveRight()
+void Character::onEnvironmentMoveRight()
 {
-  Application->environment->plane->runAction(
-    MoveBy::create(0.1, Vec3(-1.5, 0, 0))
-  );
-
   for(int i = 0; i < Application->environment->dusts->count; i++)
   {
     Application->environment->dusts->element(i)->runAction(
@@ -671,11 +675,17 @@ void Character::onFall()
 
 void Character::onCrash(Crash crash)
 {
-  Application->environment->characterActionHolder->runAction(
-    EaseSineInOut::create(
-      ScaleTo::create(0.5, 0.0)
-    )
-  );
+    Application->environment->characterActionHolder->runAction(
+      Spawn::create(
+        EaseSineInOut::create(
+          ScaleTo::create(0.2, 1.2)
+        ),
+        EaseSineInOut::create(
+          FadeOut::create(0.2)
+        ),
+        nullptr
+      )
+    );
 
   this->plane->stopAllActions();
 
@@ -742,7 +752,21 @@ void Character::onCrash(Crash crash)
     break;
   }
 
-  Sound->play("character-hit");
+  switch(crash)
+  {
+    case SPIKES:
+    break;
+    case DOWN:
+    break;
+    case CATCH:
+    break;
+    case GATE:
+    break;
+    case COPTER:
+    break;
+  }
+
+  Sound->play("smash-death");
 }
 
 void Character::onHit()
@@ -776,6 +800,9 @@ void Character::onHit()
 
 void Character::onCopter()
 {
+  Application->environment->characterActionHolder->stopAllActions();
+  Application->environment->characterActionHolder->setOpacity(255);
+  Application->environment->characterActionHolder->setScale(0);
   Application->environment->characterActionHolder->runAction(
     EaseSineInOut::create(
       ScaleTo::create(0.5, 1.0)
