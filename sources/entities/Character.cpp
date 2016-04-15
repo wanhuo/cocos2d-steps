@@ -136,7 +136,7 @@ void Character::onDestroy(bool action)
  */
 void Character::onSound(string file)
 {
-  Sound->play(file, this->sound);
+  Sound->play(file, false, this->sound, 1.0);
 
   this->soundTimeElapsed = 0;
 

@@ -60,7 +60,9 @@ void Saw::onCreate()
       Sequence::create(
         DelayTime::create(0.25f),
         CallFunc::create([=] () {
-          //Sound->play("decoration-saw");
+          int a = Sound->play("decoration-saw", [=] () {
+
+          }, 5.0);log("%d", a);
           this->enable = true;
         }),
         DelayTime::create(0.5f),
@@ -69,7 +71,7 @@ void Saw::onCreate()
         }),
         DelayTime::create(1.0f),
         CallFunc::create([=] () {
-          //Sound->play("decoration-saw");
+          Sound->play("decoration-saw", false, 1.0, 1.0, max(0.0f, 1.0f - this->getPosition3D().distance(Application->environment->character->getPosition3D()) / 5.0f));
           this->enable = true;
         }),
         DelayTime::create(0.5f),

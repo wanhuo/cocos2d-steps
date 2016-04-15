@@ -84,7 +84,7 @@ void Spike::onCreate()
             Sequence::create(
               DelayTime::create(0.1),
               CallFunc::create([=] () {
-                Sound->play("decoration-spike");
+                Sound->play("decoration-spike", false, 1.0, 1.0, max(0.0f, 1.0f - this->getPosition3D().distance(Application->environment->character->getPosition3D()) / 5.0f));
                 this->enable = true;
               }),
               DelayTime::create(0.5),
