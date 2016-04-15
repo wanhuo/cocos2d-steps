@@ -778,7 +778,7 @@ void Character::onCopter()
 {
   Application->environment->characterActionHolder->runAction(
     EaseSineInOut::create(
-      ScaleTo::create(0.5, 1.0)
+      ScaleTo::create(0.5, 1.5)
     )
   );
 

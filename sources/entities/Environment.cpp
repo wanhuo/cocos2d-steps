@@ -95,7 +95,7 @@ void Environment::create()
 
   this->characterActionHolder = new Background(this);
   this->characterActionHolder->setContentSize(Size(Application->getWidth(), 40));
-  this->characterActionHolder->setPosition(Vec2(0, 450));
+  this->characterActionHolder->setPosition(Vec2(0, 480));
   this->characterActionHolder->setCameraMask(4);
 
  /* this->characterActionBackground = new BackgroundColor(this->characterActionHolder, Color4B(255, 255, 255, 50));
@@ -111,13 +111,13 @@ void Environment::create()
   this->characterAction->setCameraMask(4);*/
 
   this->characterActionBackground = new Entity("character-action-background.png", this->characterActionHolder, true);
-  this->characterActionBackground->setPosition(Vec2(Application->getWidth() / 2, 10));
+  this->characterActionBackground->setPosition(Vec2(Application->getWidth() / 2, 0));
   this->characterActionBackground->setCameraMask(4);
 
   this->characterAction = ProgressTimer::create(Entity::create("character-action.png"));
   this->characterAction->setType(ProgressTimer::Type::RADIAL);
   this->characterAction->setReverseProgress(true);
-  this->characterAction->setPosition(Vec2(Application->getWidth() / 2, 15));
+  this->characterAction->setPosition(Vec2(Application->getWidth() / 2, 0));
   this->characterAction->setCameraMask(4);
 
   this->characterActionHolder->addChild(this->characterAction);
