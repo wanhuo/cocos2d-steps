@@ -91,13 +91,12 @@ void Down::onCreate()
         this->runAction(
           RepeatForever::create(
             Sequence::create(
-              DelayTime::create(0.1),
               CallFunc::create([=] () {
                 this->enable = true;
                 this->plate->moved = true;
                 this->plate->blocked = true;
               }),
-              DelayTime::create(0.5),
+              DelayTime::create(0.6),
               DelayTime::create(0.6),
               CallFunc::create([=] () {
                 this->enable = false;

@@ -1,4 +1,4 @@
-/**
+  /**
  * Tooflya Inc. Development
  *
  * @author Igor Mats from Tooflya Inc.
@@ -60,9 +60,9 @@ void Saw::onCreate()
       Sequence::create(
         DelayTime::create(0.25f),
         CallFunc::create([=] () {
-          int a = Sound->play("decoration-saw", [=] () {
-
-          }, 5.0);log("%d", a);
+          Sound->play("decoration-saw", this, [=] () -> float {
+            return this->getParent()->getPosition3D().distance(Application->environment->character->getPosition3D());
+          }, Game::SOUND_DISTANCE);
           this->enable = true;
         }),
         DelayTime::create(0.5f),
@@ -71,7 +71,10 @@ void Saw::onCreate()
         }),
         DelayTime::create(1.0f),
         CallFunc::create([=] () {
-          Sound->play("decoration-saw", false, 1.0, 1.0, max(0.0f, 1.0f - this->getPosition3D().distance(Application->environment->character->getPosition3D()) / 5.0f));
+          Sound->play("decoration-saw", this, [=] () -> float {
+            return this->getParent()->getPosition3D().distance(Application->environment->character->getPosition3D());
+          }, Game::SOUND_DISTANCE);
+
           this->enable = true;
         }),
         DelayTime::create(0.5f),

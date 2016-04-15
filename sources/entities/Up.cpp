@@ -185,7 +185,7 @@ void Up::onPickup()
     )
   );
 
-  Sound->play("batyt");
+  Sound->play("up");
 }
 
 /**

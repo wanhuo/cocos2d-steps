@@ -64,8 +64,7 @@ class Fish : public Cube
    *
    *
    */
-  public:
-  Fish(const char* file, Node* parent);
+  public: 
   Fish();
  ~Fish();
 

@@ -122,5 +122,5 @@ void Cube::update(float time)
     this->shadow->setScaleZ(max(0.0f, position.y));
   }
 
-  //this->setOpacity(position.y >= 0 ? 255 : max(0.0, 255.0 + (position.y * DEPTH)));
+  this->setOpacity(position.y >= 0 ? 255 : max(0.0, 255.0 + (position.y * DEPTH)));
 }

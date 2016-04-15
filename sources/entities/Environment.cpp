@@ -112,6 +112,7 @@ void Environment::create()
   this->characterAction->setCameraMask(4);
 
   this->characterActionHolder->setScale(0);
+  this->characterActionHolder->setOpacity(0);
 
   this->onGame();
 
@@ -182,20 +183,6 @@ Entity3D* Environment::createParticle(float x, float y, float z)
   );
 
   return particle;
-}
-
-/**
- *
- *
- *
- */
-Vec3 Environment::position()
-{
-  auto x = this->character->getPositionX() + random(-5.0, 5.0);
-  auto y = 0;
-  auto z = this->character->getPositionZ() + random(-5.0, 5.0);
-
-  return Vec3(x, y, z);
 }
 
 /**
@@ -286,15 +273,7 @@ void Environment::updateFishes(float time)
 {
   if(this->fishes->count < MAX_FISH_COUNT)
   {
-    this->createFishTimeElapsed += time;
-
-    if(this->createFishTimeElapsed >= this->createFishTime)
-    {
-      this->createFishTime = random<float>(MIN_FISH_TIME, MAX_FISH_TIME);
-      this->createFishTimeElapsed = 0;
-
       this->fishes->_create();
-    }
   }
 }
 
@@ -372,7 +351,7 @@ void Environment::update(float time)
 
   this->updateDusts(time);
   this->updateLight(time);
-  //this->updateFishes(time);
+  this->updateFishes(time);
 
   //this->updateCamera(time);
 

@@ -120,6 +120,8 @@ class Game : public Screen
    *
    */
   public:
+  const static int SOUND_DISTANCE = 5;
+
   enum State {
     NONE,
     MENU,

@@ -70,21 +70,9 @@ class Environment : public Background
    *
    *
    */
-  protected:
-  float createFishTime = 0;
-  float createFishTimeElapsed = 0;
-
-  /**
-   *
-   *
-   *
-   */
   public:
   const static int DUSTS_COUNT = 100;
-  const static int MAX_FISH_COUNT = 5;
-
-  const static int MIN_FISH_TIME = 1;
-  const static int MAX_FISH_TIME = 3;
+  const static int MAX_FISH_COUNT = 2;
 
   Environment(Node* parent);
  ~Environment();
@@ -133,8 +121,6 @@ class Environment : public Background
 
   virtual Entity3D* createRipple(float x, float z, float scale = 1.0);
   virtual Entity3D* createParticle(float x, float y, float z);
-
-  virtual Vec3 position();
 
   virtual void onTurn(bool action = true);
 

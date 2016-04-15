@@ -103,6 +103,8 @@ Game::Game()
   this->environment = new Environment(this);
 
   this->environment->create();
+
+  Music->play("music-1");
 }
 
 Game::~Game()
@@ -274,6 +276,8 @@ void Game::onMenu()
 
 void Game::onGame()
 {
+  Music->play("music-2", true);
+
   this->environment->onGame();
   this->counter->onGame();
 
@@ -282,6 +286,8 @@ void Game::onGame()
 
 void Game::onLose()
 {
+  Music->stop();
+
   this->environment->onLose();
   this->counter->onLose();
 

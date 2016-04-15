@@ -3,10 +3,31 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "Environment::updateFishes(float):Environment.cpp">
+         contextName = "Plate::remove():Plate.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "TypeGate::onDestroy(bool):TypeGate.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Plate::clearDecorations(bool, bool, bool):Plate.cpp">
       </ContextState>
       <ContextState
          contextName = "Energy::onPickup()::$_0::operator()() const:Energy.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Special::clearDecorations(bool, bool, bool):Special.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Up::onPickup():Up.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Plate::clearDecorations(bool, bool):Plate.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Cube::update(float):Cube.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Character::update(float):Character.cpp">
       </ContextState>
       <ContextState
          contextName = "Character::onTurn(int):Character.cpp">
@@ -18,6 +39,12 @@
                value = "z">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Environment::updateFishes(float):Environment.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Character::updateCopter(float):Character.cpp">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

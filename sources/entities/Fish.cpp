@@ -37,17 +37,10 @@
 Fish::Fish()
 : Cube("fish.obj")
 {
-  this->collider = new Entity3D("cube.obj", Application->environment->plane);
+  this->collider = new Entity3D("cube1.obj", Application->environment->plane);
   this->shadow = new Shadow("fish-shadow.obj", Application->environment->plane);
 
   this->setTexture("fish-texture-3.png");
-  this->setScheduleUpdate(true);
-}
-
-Fish::Fish(const char* file, Node* parent)
-: Cube(file, parent)
-{
-  this->collider = new Entity3D("cube.obj", Application->environment->plane);
   this->setScheduleUpdate(true);
 }
 
@@ -69,12 +62,11 @@ void Fish::onCreate()
 
   while(!position && count > 0)
   {
-    auto environment = Application->environment->position();
     auto collision = false;
 
-    auto x = environment.x - 0.0;
-    auto y = environment.y - 4.0;
-    auto z = environment.z - 0.0;
+    auto x = Application->environment->character->getPositionX() + random(-5.0, 10.0);
+    auto y = -4.0;
+    auto z = Application->environment->character->getPositionZ() + random(-10.0, 5.0);
 
     this->setPositionX(x);
     this->setPositionY(y);
@@ -96,10 +88,10 @@ void Fish::onCreate()
       }
     }
 
-    if(!Application->cameras.d->isVisibleInFrustum(&this->getAABB()))
+    /*if(!Application->cameras.d->isVisibleInFrustum(&this->getAABB()))
     {
       collision = true;
-    }
+    }*/ 
 
     if(!collision)
     {
@@ -122,6 +114,8 @@ void Fish::onCreate()
   }
   else
   {
+    log("Warning: Another fish can't find their postion.");
+
     this->runAction(
       Sequence::create(
         DelayTime::create(0.1),
@@ -178,7 +172,10 @@ void Fish::update(float time)
     {
       if(y >= 0)
       {
-  Sound->play("water-splash-" + patch::to_string(random(1, 7)));
+        Sound->play("water-splash-" + patch::to_string(random(1, 7)), this, [=] () -> float {
+          return this->getPosition3D().distance(Application->environment->character->getPosition3D());
+        }, Game::SOUND_DISTANCE * 3);
+
         this->ripple1 = true;
         Application->environment->createRipple(x, z, 0.5);
 
@@ -196,8 +193,10 @@ void Fish::update(float time)
     {
       if(y <= 0)
       {
-        
-  Sound->play("water-splash-" + patch::to_string(random(1, 7)));
+        Sound->play("water-splash-" + patch::to_string(random(1, 7)), this, [=] () -> float {
+          return this->getPosition3D().distance(Application->environment->character->getPosition3D());
+        }, Game::SOUND_DISTANCE * 3);
+
         this->ripple2 = true;
         Application->environment->createRipple(x, z, 0.5);
 

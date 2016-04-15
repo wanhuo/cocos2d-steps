@@ -755,18 +755,20 @@ void Character::onCrash(Crash crash)
   switch(crash)
   {
     case SPIKES:
+    Sound->play("character-destroy-spikes");
     break;
     case DOWN:
+    Sound->play("character-destroy-smash");
     break;
     case CATCH:
+    Sound->play("character-destroy-catch");
     break;
     case GATE:
+    Sound->play("character-destroy-smash");
     break;
     case COPTER:
     break;
   }
-
-  Sound->play("smash-death");
 }
 
 void Character::onHit()
