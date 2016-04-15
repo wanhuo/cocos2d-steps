@@ -124,10 +124,8 @@ class Environment : public Background
   Color* color;
 
   Background* characterActionHolder;
-  /*BackgroundColor* characterActionBackground;
-  BackgroundColor* characterAction;*/
-  Entity* characterActionBackground;
-  ProgressTimer* characterAction;
+  BackgroundColor* characterActionBackground;
+  BackgroundColor* characterAction;
 
   virtual void onAccelerate(Acceleration* acceleration, Event* e);
 

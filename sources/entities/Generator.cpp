@@ -295,7 +295,7 @@ void Generator::clear()
       }), PLATES_START
     )
   );
-  /*Application->environment->runAction(
+  Application->environment->runAction(
     RepeatForever::create(
       Sequence::create(
         DelayTime::create(0.5),
@@ -303,5 +303,5 @@ void Generator::clear()
         nullptr
       )
     )
-  );*/
+  );
 }

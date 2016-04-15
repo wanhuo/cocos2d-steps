@@ -778,42 +778,30 @@ void Character::onCopter()
 {
   Application->environment->characterActionHolder->runAction(
     EaseSineInOut::create(
-      ScaleTo::create(0.5, 1.5)
+      ScaleTo::create(0.5, 1.0)
     )
   );
 
-  /*this->runAction(
+  this->runAction(
     Sequence::create(
       EaseSineOut::create(
-        MoveBy::create(0.2, Vec3(0, 1, 0))
+        MoveBy::create(0.2, Vec3(0, 0.8, 0))
       ),
       CallFunc::create([=] () {
         this->runAction(
           RepeatForever::create(
             Sequence::create(
               EaseSineOut::create(
-                MoveBy::create(0.5, Vec3(0, -0.5, 0))
+                MoveBy::create(0.5, Vec3(0, -0.4, 0))
               ),
               EaseSineOut::create(
-                MoveBy::create(0.5, Vec3(0, 0.5, 0))
+                MoveBy::create(0.5, Vec3(0, 0.4, 0))
               ),
               nullptr
             )
           )
         );
       }),
-      nullptr
-    )
-  );*/
-
-  this->runAction(
-    Spawn::create(
-      EaseSineOut::create(
-        MoveBy::create(0.2, Vec3(0, 1, 0))
-      ),
-      RepeatForever::create(
-        RotateGlobalBy::create(1.0, Vec3(0, 360, 0))
-      ),
       nullptr
     )
   );
@@ -1070,8 +1058,7 @@ void Character::updateCopter(float time)
 {
   this->turns -= 0.01;
 
-  //Application->environment->characterAction->setScaleX(min(1.0f, max(0.0f, this->turns / STATE_COPTER_TURNS)));
-  Application->environment->characterAction->setPercentage(this->turns / STATE_COPTER_TURNS * 100);
+  Application->environment->characterAction->setScaleX(min(1.0f, max(0.0f, this->turns / STATE_COPTER_TURNS)));
 }
 
 /**
