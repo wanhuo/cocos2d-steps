@@ -31,6 +31,8 @@
 Copter::Copter(Node* parent)
 : Decoration("copter.obj", parent)
 {
+  this->setColor(Color3B(255.0, 60.0, 60.0));
+
   this->removable = false;
   this->stopable = false;
   this->unremovable = true;
@@ -59,18 +61,12 @@ void Copter::onCreate()
       Sequence::create(
         CallFunc::create([=] () {
           this->enable = true;
-          this->runAction(
-            TintTo::create(0.1, Color3B(255.0, 60.0, 60.0))
-          );
         }),
         EaseSineInOut::create(
           RotateBy::create(2.0, Vec3(0, 900, 0))
         ),
         CallFunc::create([=] () {
           this->enable = false;
-          this->runAction(
-            TintTo::create(0.1, Color3B(250.0, 206.0, 85.0))
-          );
         }),
         DelayTime::create(1.0),
         nullptr
@@ -103,8 +99,6 @@ Character::Crash Copter::status()
 {
   if(this->enable)
   {
-    this->setColor(Color3B(255.0, 60.0, 60.0));
-
     this->stopAllActions();
     this->runAction(
       RepeatForever::create(

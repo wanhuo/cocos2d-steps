@@ -156,7 +156,7 @@ Plate* Generator::create()
     {
       //plate->setType(Plate::HEART);
     }
-    else if(this->count > 0 && this->conditions.s1 < 1 && probably(20))
+    else if(this->count > 0 && this->conditions.s1 < 1 && this->conditions.s2 < 1 && probably(20))
     {
       plate->setType(Plate::SAW);
 

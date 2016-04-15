@@ -80,11 +80,8 @@ class Environment : public Background
    *
    */
   public:
-  const static int DUSTS_COUNT = 50;
-  const static int SLIDES_COUNT = 50;
-
+  const static int DUSTS_COUNT = 100;
   const static int MAX_FISH_COUNT = 5;
-  const static int MAX_SHIP_COUNT = 2;
 
   const static int MIN_FISH_TIME = 1;
   const static int MAX_FISH_TIME = 3;
@@ -127,8 +124,10 @@ class Environment : public Background
   Color* color;
 
   Background* characterActionHolder;
-  BackgroundColor* characterActionBackground;
-  BackgroundColor* characterAction;
+  /*BackgroundColor* characterActionBackground;
+  BackgroundColor* characterAction;*/
+  Entity* characterActionBackground;
+  ProgressTimer* characterAction;
 
   virtual void onAccelerate(Acceleration* acceleration, Event* e);
 

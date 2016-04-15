@@ -59,7 +59,7 @@ void Character::reset()
   this->botEnabled = false;
   this->botWait = false;
 
-  this->botTime = 0.05;
+  this->botTime = 0.00;
   this->botTimeElapsed = 0;
 
   this->botWaitTime = 0.2;
@@ -151,9 +151,9 @@ void Character::onDestroy(bool action)
  *
  *
  */
-void Character::onSound()
+void Character::onSound(string file)
 {
-  Sound->play("character-jump", this->sound);
+  Sound->play(file, this->sound);
 
   this->soundTimeElapsed = 0;
 
@@ -208,7 +208,7 @@ void Character::onTurn(bool action, bool set)
       {
         Application->counter->onCount();  
 
-        this->onSound();
+        this->onSound("pickup-diamond");
 
         return;
       }
@@ -623,6 +623,15 @@ void Character::onMoveLeft()
   Application->environment->plane->runAction(
     MoveBy::create(0.1, Vec3(0, 0, 1.5))
   );
+
+  for(int i = 0; i < Application->environment->dusts->count; i++)
+  {
+    Application->environment->dusts->element(i)->runAction(
+      EaseSineInOut::create(
+        MoveBy::create(0.25, Vec2(100.5, -100.5))
+      )
+    );
+  }
 }
 
 void Character::onMoveRight()
@@ -630,6 +639,15 @@ void Character::onMoveRight()
   Application->environment->plane->runAction(
     MoveBy::create(0.1, Vec3(-1.5, 0, 0))
   );
+
+  for(int i = 0; i < Application->environment->dusts->count; i++)
+  {
+    Application->environment->dusts->element(i)->runAction(
+      EaseSineInOut::create(
+        MoveBy::create(0.25, Vec2(-100.5, -100.5))
+      )
+    );
+  }
 }
 
 /**
@@ -764,7 +782,7 @@ void Character::onCopter()
     )
   );
 
-  this->runAction(
+  /*this->runAction(
     Sequence::create(
       EaseSineOut::create(
         MoveBy::create(0.2, Vec3(0, 1, 0))
@@ -784,6 +802,18 @@ void Character::onCopter()
           )
         );
       }),
+      nullptr
+    )
+  );*/
+
+  this->runAction(
+    Spawn::create(
+      EaseSineOut::create(
+        MoveBy::create(0.2, Vec3(0, 1, 0))
+      ),
+      RepeatForever::create(
+        RotateGlobalBy::create(1.0, Vec3(0, 360, 0))
+      ),
       nullptr
     )
   );
@@ -1040,7 +1070,8 @@ void Character::updateCopter(float time)
 {
   this->turns -= 0.01;
 
-  Application->environment->characterAction->setScaleX(min(1.0f, max(0.0f, this->turns / STATE_COPTER_TURNS)));
+  //Application->environment->characterAction->setScaleX(min(1.0f, max(0.0f, this->turns / STATE_COPTER_TURNS)));
+  Application->environment->characterAction->setPercentage(this->turns / STATE_COPTER_TURNS * 100);
 }
 
 /**
@@ -1113,7 +1144,7 @@ void Character::update(float time)
 
     if(this->botTimeElapsed >= this->botTime)
     {
-      this->botTimeElapsed = 0;
+      this->botTimeElapsed = this->state == STATE_COPTER ? -0.1 : 0.0;
 
       if(Application->environment->character->plates.current)
       {
@@ -1133,7 +1164,7 @@ void Character::update(float time)
         {
           for(auto decoration : element->getDecorations())
           {
-            if(decoration->enable || element->moved)
+            if((decoration->enable || element->moved) && element->type != Plate::COPTER)
             {
               return;
             }
@@ -1158,7 +1189,7 @@ void Character::update(float time)
             }
           }
 
-          if(this->state == NORMAL && !this->botWait)
+          if((this->state == NORMAL || this->state == STATE_COPTER) && !this->botWait)
           {
             this->onTurn();
           }

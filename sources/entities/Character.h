@@ -39,7 +39,7 @@ class Character : public Cube
    *
    */
   private:
-  const static int STATE_COPTER_TURNS = 10;
+  const static int STATE_COPTER_TURNS = 5;
 
   /**
    *
@@ -145,7 +145,7 @@ class Character : public Cube
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
-  virtual void onSound();
+  virtual void onSound(string file = "character-jump");
 
   virtual void onNormal();
   virtual void onJump();

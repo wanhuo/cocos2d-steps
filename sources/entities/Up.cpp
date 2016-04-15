@@ -105,7 +105,7 @@ void Up::onPickup()
       Sequence::create(
         DelayTime::create(time * i),
         CallFunc::create(CC_CALLBACK_0(Plate::onCount, element)),
-        CallFunc::create(CC_CALLBACK_0(Character::onSound, Application->environment->character)),
+        CallFunc::create(CC_CALLBACK_0(Character::onSound, Application->environment->character, "character-jump")),
         CallFunc::create(CC_CALLBACK_0(Counter::onCount, Application->counter)),
         nullptr
       )

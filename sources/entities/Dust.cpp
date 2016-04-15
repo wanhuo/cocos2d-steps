@@ -59,8 +59,8 @@ void Dust::onCreate()
    *
    *
    */
-  auto x = random(0.0f, Application->getWidth());
-  auto y = random(0.0f, Application->getHeight());
+  auto x = random(-Application->getWidth(), Application->getWidth()*2);
+  auto y = random(Application->getHeight(), Application->getHeight()-300);
 
   this->setPosition(x, y);
   this->setOpacity(0);
@@ -74,8 +74,8 @@ void Dust::onCreate()
 
   this->runAction(
     Spawn::create(
-      FadeIn::create(random(0.0, 10.0)),
-      ScaleTo::create(random(0.0, 10.0), random(0.0, 1.5)),
+      FadeIn::create(random(0.0, 2.0)),
+      ScaleTo::create(random(0.0, 2.0), random(0.0, 1.5)),
       nullptr
     )
   );
@@ -107,7 +107,7 @@ void Dust::update(float time)
   this->vector.x += random(-0.1, 0.1);
   this->vector.y += random(-0.1, 0.1);
 
-  if(!Application->isVisibleScreen(this))
+  if(this->getPositionY() < 0)
   {
     this->_destroy(true);
   }
