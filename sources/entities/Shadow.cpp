@@ -31,6 +31,7 @@
 Shadow::Shadow(const char* file, Node* parent)
 : Entity3D(file, parent)
 {
+  this->setLightMask(2);
 }
 
 Shadow::~Shadow()

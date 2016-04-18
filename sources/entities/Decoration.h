@@ -62,8 +62,8 @@ class Decoration : public Cube
    *
    */
   public:
-  Decoration(const char* file, Node* parent);
-  Decoration(const char* file);
+  Decoration(string file, Node* parent);
+  Decoration(string file);
   Decoration();
  ~Decoration();
 
@@ -76,6 +76,7 @@ class Decoration : public Cube
   virtual void onDestroy(bool action = false);
 
   virtual void onPickup();
+  virtual void onSound();
 
   virtual void setPlate(Plate* plate, bool animated = true);
 

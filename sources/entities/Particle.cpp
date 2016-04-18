@@ -45,6 +45,13 @@ Particle::~Particle()
 void Particle::onCreate()
 {
   Cube::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  this->setColor(Color3B::WHITE);
 }
 
 void Particle::onDestroy(bool action)

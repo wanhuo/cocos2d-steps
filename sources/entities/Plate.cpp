@@ -69,7 +69,7 @@ void Plate::onCreate()
     )
   );
 
-  this->runAction(
+  /*this->runAction(
     RepeatForever::create(
       Sequence::create(
         DelayTime::create(random(1.0, 5.0)),
@@ -79,7 +79,7 @@ void Plate::onCreate()
         nullptr
       )
     )
-  );
+  );*/
 }
 
 void Plate::onDestroy(bool action)

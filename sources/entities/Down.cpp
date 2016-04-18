@@ -123,6 +123,8 @@ void Down::onCreate()
             Sequence::create(
               DelayTime::create(0.3),
               CallFunc::create([=] () {
+                this->onSound();
+
                 Application->environment->runAction(
                   Shake::create(0.1, 0.05)
                 );
@@ -141,6 +143,18 @@ void Down::onCreate()
 void Down::onDestroy(bool action)
 {
   Decoration::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Down::onSound()
+{
+  Sound->play("decoration-down", this, [=] () -> float {
+    return this->getPosition3D().distance(Application->environment->character->getPosition3D());
+  }, Game::SOUND_DISTANCE);
 }
 
 /**

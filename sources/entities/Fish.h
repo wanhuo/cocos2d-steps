@@ -71,6 +71,8 @@ class Fish : public Cube
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
+  virtual void onSound();
+
   virtual void update(float time);
 
   Fish* deepCopy();

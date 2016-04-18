@@ -258,7 +258,7 @@ void Environment::updateLight(float time)
 
 void Environment::updateDusts(float time)
 {
-  if(this->dusts->count < DUSTS_COUNT)
+  if(this->dusts->count < DUST_COUNT)
   {
     this->dusts->_create();
   }
@@ -271,9 +271,12 @@ void Environment::updateDusts(float time)
  */
 void Environment::updateFishes(float time)
 {
-  if(this->fishes->count < MAX_FISH_COUNT)
+  if(this->fishes->count < FISH_COUNT)
   {
+    if(probably(10))
+    {
       this->fishes->_create();
+    }
   }
 }
 
@@ -351,7 +354,7 @@ void Environment::update(float time)
 
   this->updateDusts(time);
   this->updateLight(time);
-  this->updateFishes(time);
+  //this->updateFishes(time);
 
   //this->updateCamera(time);
 

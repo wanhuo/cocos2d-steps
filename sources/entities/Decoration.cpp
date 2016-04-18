@@ -28,12 +28,12 @@
  *
  *
  */
-Decoration::Decoration(const char* file, Node* parent)
+Decoration::Decoration(string file, Node* parent)
 : Cube(file, parent)
 {
 }
 
-Decoration::Decoration(const char* file)
+Decoration::Decoration(string file)
 : Cube(file)
 {
 }
@@ -75,6 +75,10 @@ void Decoration::onDestroy(bool action)
  *
  */
 void Decoration::onPickup()
+{
+}
+
+void Decoration::onSound()
 {
 }
 

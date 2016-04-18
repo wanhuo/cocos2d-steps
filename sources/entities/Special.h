@@ -62,7 +62,7 @@ class Special : public Cube
    *
    */
   public:
-  Special(const char* file, Node* parent = nullptr);
+  Special(string file, Node* parent = nullptr);
   Special();
  ~Special();
 

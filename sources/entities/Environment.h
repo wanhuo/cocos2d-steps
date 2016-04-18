@@ -71,8 +71,8 @@ class Environment : public Background
    *
    */
   public:
-  const static int DUSTS_COUNT = 100;
-  const static int MAX_FISH_COUNT = 2;
+  const static int DUST_COUNT = 100;
+  const static int FISH_COUNT = 2;
 
   Environment(Node* parent);
  ~Environment();

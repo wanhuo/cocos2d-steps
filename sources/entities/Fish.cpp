@@ -40,7 +40,6 @@ Fish::Fish()
   this->collider = new Entity3D("cube1.obj", Application->environment->plane);
   this->shadow = new Shadow("fish-shadow.obj", Application->environment->plane);
 
-  this->setTexture("fish-texture-3.png");
   this->setScheduleUpdate(true);
 }
 
@@ -57,6 +56,8 @@ void Fish::onCreate()
 {
   Cube::onCreate();
 
+  this->setTexture("fish-texture-" +  patch::to_string(random(1, 3)) + ".png");
+
   auto position = false;
   auto count = 5;
 
@@ -72,10 +73,13 @@ void Fish::onCreate()
     this->setPositionY(y);
     this->setPositionZ(z);
 
-    this->collider->setPosition3D(this->getPosition3D());
-    this->collider->setScaleX(10);
-    this->collider->setScaleY(10);
-    this->collider->setScaleZ(2);
+    this->collider->setPositionX(x);
+    this->collider->setPositionY(0);
+    this->collider->setPositionZ(z);
+
+    this->collider->setScaleX(20);
+    this->collider->setScaleY(1);
+    this->collider->setScaleZ(1);
 
     auto box = this->collider->getAABB();
 
@@ -87,11 +91,6 @@ void Fish::onCreate()
         break;
       }
     }
-
-    /*if(!Application->cameras.d->isVisibleInFrustum(&this->getAABB()))
-    {
-      collision = true;
-    }*/ 
 
     if(!collision)
     {
@@ -138,6 +137,18 @@ void Fish::onDestroy(bool action)
  *
  *
  */
+void Fish::onSound()
+{
+  Sound->play("water-splash-" + patch::to_string(random(1, 7)), this, [=] () -> float {
+    return this->getPosition3D().distance(Application->environment->character->getPosition3D());
+  }, Game::SOUND_DISTANCE * 2);
+}
+
+/**
+ *
+ *
+ *
+ */
 void Fish::update(float time)
 {
   Cube::update(time);
@@ -161,7 +172,7 @@ void Fish::update(float time)
 
   this->vector.y -= 1.2 * time;
 
-  if(y <= -150.0)
+  if(y <= -10.0)
   {
     this->_destroy(true);
   }
@@ -172,16 +183,17 @@ void Fish::update(float time)
     {
       if(y >= 0)
       {
-        Sound->play("water-splash-" + patch::to_string(random(1, 7)), this, [=] () -> float {
-          return this->getPosition3D().distance(Application->environment->character->getPosition3D());
-        }, Game::SOUND_DISTANCE * 3);
+        this->onSound();
 
         this->ripple1 = true;
         Application->environment->createRipple(x, z, 0.5);
 
         for(int i = 0; i < 5; i++)
         {
-          auto particle = Application->environment->createParticle(x, y+1, z);
+          auto particle = Application->environment->createParticle(x, y, z);
+
+          particle->setTexture("particle-texture.png");
+          particle->setColor(Application->environment->water->getColor());
         }
       }
     }
@@ -193,16 +205,17 @@ void Fish::update(float time)
     {
       if(y <= 0)
       {
-        Sound->play("water-splash-" + patch::to_string(random(1, 7)), this, [=] () -> float {
-          return this->getPosition3D().distance(Application->environment->character->getPosition3D());
-        }, Game::SOUND_DISTANCE * 3);
+        this->onSound();
 
         this->ripple2 = true;
         Application->environment->createRipple(x, z, 0.5);
 
         for(int i = 0; i < 5; i++)
         {
-          auto particle = Application->environment->createParticle(x, y+1, z);
+          auto particle = Application->environment->createParticle(x, y, z);
+
+          particle->setTexture("particle-texture.png");
+          particle->setColor(Application->environment->water->getColor());
         }
       }
     }

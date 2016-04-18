@@ -34,7 +34,7 @@
  *
  *
  */
-Cube::Cube(const char* file, Node* parent)
+Cube::Cube(string file, Node* parent)
 : Entity3D(file, parent)
 {
 }

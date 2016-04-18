@@ -37,6 +37,8 @@
 Ripple::Ripple()
 : Entity3D()
 {
+  this->setLightMask(2);
+
   for(int i = 0; i < 2; i++)
   {
     this->ripples[i] = new Entity3D("ripple.obj", this);

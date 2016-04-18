@@ -60,6 +60,8 @@ class Down : public Decoration
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
+  virtual void onSound();
+
   virtual void setPlate(Plate* plate);
 
   virtual Character::Crash status();

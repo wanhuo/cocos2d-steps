@@ -28,7 +28,7 @@
  *
  *
  */
-Special::Special(const char* file, Node* parent)
+Special::Special(string file, Node* parent)
 : Cube(file, parent)
 {
   this->decorations = *new vector<Decoration*>();
