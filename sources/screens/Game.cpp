@@ -303,6 +303,11 @@ void Game::onStore()
   Store::getInstance()->show();
 }
 
+void Game::onBonus()
+{
+  this->environment->onBonus();
+}
+
 /**
  *
  *
@@ -337,6 +342,9 @@ void Game::changeState(State state)
       case STORE:
       this->onStore();
       break;
+      case BONUS:
+      this->onBonus();
+      break;
     }
   }
 }
@@ -362,6 +370,10 @@ void Game::updateStore(float time)
 {
 }
 
+void Game::updateBonus(float time)
+{
+}
+
 /**
  *
  *
@@ -382,6 +394,9 @@ void Game::updateStates(float time)
     break;
     case STORE:
     this->updateStore(time);
+    break;
+    case BONUS:
+    this->updateBonus(time);
     break;
   }
 

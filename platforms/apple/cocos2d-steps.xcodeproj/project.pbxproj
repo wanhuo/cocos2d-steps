@@ -120,6 +120,10 @@
 		7894C0341BC9282F00363FC9 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0311BC9282F00363FC9 /* Game.cpp */; };
 		7894C0731BC97EE500363FC9 /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7883470C1BC917A700DBA14E /* libcocos2d iOS.a */; };
 		7894C0751BC98A6D00363FC9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7894C0741BC98A6D00363FC9 /* Images.xcassets */; };
+		789809611CC51C0A00E3CF28 /* Start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7898095F1CC51C0A00E3CF28 /* Start.cpp */; };
+		789809621CC51C0A00E3CF28 /* Start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7898095F1CC51C0A00E3CF28 /* Start.cpp */; };
+		789809651CC53A8B00E3CF28 /* Cub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789809631CC53A8B00E3CF28 /* Cub.cpp */; };
+		789809661CC53A8B00E3CF28 /* Cub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789809631CC53A8B00E3CF28 /* Cub.cpp */; };
 		7899D44E1BF48194008080B5 /* services.json in Resources */ = {isa = PBXBuildFile; fileRef = 7899D44D1BF48194008080B5 /* services.json */; };
 		7899D44F1BF48194008080B5 /* services.json in Resources */ = {isa = PBXBuildFile; fileRef = 7899D44D1BF48194008080B5 /* services.json */; };
 		78B4B6D41CBD751D00F2D8A7 /* Crystal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */; };
@@ -358,6 +362,10 @@
 		7894C0311BC9282F00363FC9 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		7894C0321BC9282F00363FC9 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		7894C0741BC98A6D00363FC9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ios/Images.xcassets; sourceTree = "<group>"; };
+		7898095F1CC51C0A00E3CF28 /* Start.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Start.cpp; sourceTree = "<group>"; };
+		789809601CC51C0A00E3CF28 /* Start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Start.h; sourceTree = "<group>"; };
+		789809631CC53A8B00E3CF28 /* Cub.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cub.cpp; sourceTree = "<group>"; };
+		789809641CC53A8B00E3CF28 /* Cub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cub.h; sourceTree = "<group>"; };
 		7899D44D1BF48194008080B5 /* services.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = services.json; path = apple/services.json; sourceTree = "<group>"; };
 		78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Crystal.cpp; sourceTree = "<group>"; };
 		78B4B6C81CBD751D00F2D8A7 /* Crystal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crystal.h; sourceTree = "<group>"; };
@@ -985,6 +993,10 @@
 		78B4B6C51CBD751D00F2D8A7 /* decorations */ = {
 			isa = PBXGroup;
 			children = (
+				789809631CC53A8B00E3CF28 /* Cub.cpp */,
+				789809641CC53A8B00E3CF28 /* Cub.h */,
+				7898095F1CC51C0A00E3CF28 /* Start.cpp */,
+				789809601CC51C0A00E3CF28 /* Start.h */,
 				78B4B7081CBFB51F00F2D8A7 /* Copter.cpp */,
 				78B4B7091CBFB51F00F2D8A7 /* Copter.h */,
 				78B4B6F11CBF911800F2D8A7 /* Spike.cpp */,
@@ -1311,6 +1323,7 @@
 				78B4B7021CBF93C500F2D8A7 /* TypeGate.cpp in Sources */,
 				7857E2BA1C6573F70020AAEA /* Menu.cpp in Sources */,
 				7825DD441C5484CC00708016 /* Popup.cpp in Sources */,
+				789809661CC53A8B00E3CF28 /* Cub.cpp in Sources */,
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
 				78B4B6F41CBF911800F2D8A7 /* Saw.cpp in Sources */,
 				78B4B6D71CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
@@ -1322,6 +1335,7 @@
 				78D015ED1CB02BF900327D33 /* Item.cpp in Sources */,
 				788F17D41CA4399200F4E5D6 /* Up.cpp in Sources */,
 				788F17CF1CA405B100F4E5D6 /* Color.cpp in Sources */,
+				789809621CC51C0A00E3CF28 /* Start.cpp in Sources */,
 				78E33FD21C4A84080021272D /* Particle.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
 				7857E2C21C65BA940020AAEA /* Store.cpp in Sources */,
@@ -1374,7 +1388,9 @@
 				78B4B7011CBF93C500F2D8A7 /* TypeGate.cpp in Sources */,
 				7847CDF71AB184820014E3F3 /* main.m in Sources */,
 				7847CDF81AB184820014E3F3 /* NSMedia.mm in Sources */,
+				789809611CC51C0A00E3CF28 /* Start.cpp in Sources */,
 				78DE4C921C4FC2230080F105 /* Fish.cpp in Sources */,
+				789809651CC53A8B00E3CF28 /* Cub.cpp in Sources */,
 				7847CDF61AB184820014E3F3 /* AppController.mm in Sources */,
 				78382F811C2469B90001B3F1 /* NSVote.mm in Sources */,
 				78E33FCF1C4A84080021272D /* Plate.cpp in Sources */,

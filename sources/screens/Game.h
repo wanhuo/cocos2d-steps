@@ -58,10 +58,12 @@
 #include "Fish.h"
 #include "Ripple.h"
 
+#include "Start.h"
 #include "Spike.h"
 #include "Saw.h"
 #include "Door.h"
 #include "Copter.h"
+#include "Cub.h"
 
 #include "TypeSaw.h"
 #include "TypeGate.h"
@@ -127,7 +129,8 @@ class Game : public Screen
     MENU,
     GAME,
     LOSE,
-    STORE
+    STORE,
+    BONUS
   };
 
   /**
@@ -143,20 +146,6 @@ class Game : public Screen
   float startCameraRotationX;
   float startCameraRotationY;
   float startCameraRotationZ;
-
-  /**
-   *
-   *
-   *
-   */
-  protected:
-
-  /**
-   *
-   *
-   *
-   */
-  public:
 
   /**
    *
@@ -201,6 +190,7 @@ class Game : public Screen
   virtual void onGame();
   virtual void onLose();
   virtual void onStore();
+  virtual void onBonus();
 
   virtual void onNoad();
 
@@ -210,6 +200,7 @@ class Game : public Screen
   virtual void updateGame(float time);
   virtual void updateLose(float time);
   virtual void updateStore(float time);
+  virtual void updateBonus(float time);
 
   virtual void updateStates(float time);
 

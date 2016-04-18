@@ -125,6 +125,7 @@ void Counter::onCount()
     );
   }
 
+  this->values.start++;
   this->values.current++;
 
   if(this->values.current > this->values.best)
@@ -167,6 +168,7 @@ void Counter::onRegular()
  */
 void Counter::reset()
 {
+  this->values.start = 0;
   this->values.current = 0;
   this->values.best = Storage::get("application.score.best");
 }

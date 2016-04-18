@@ -101,7 +101,7 @@ void Special::setPlate(Plate* plate)
 
 /**
  *
- *
+ * TODO: Decoration should be removed from vector inside corations loop.
  *
  */
 void Special::clearDecorations(bool force, bool animated, bool total)
@@ -114,10 +114,16 @@ void Special::clearDecorations(bool force, bool animated, bool total)
     }
   }
 
-  if(force || animated || total)
-  {
-    this->getDecorations().clear();
-  }
+  this->getDecorations().erase(
+    std::remove_if(
+        this->getDecorations().begin(),
+        this->getDecorations().end(),
+        [](Decoration* element) -> bool {
+            return element->removed;
+        }
+    ),
+    this->getDecorations().end()
+  );
 }
 
 /**

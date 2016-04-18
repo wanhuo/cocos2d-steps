@@ -33,7 +33,7 @@ Character::Character()
 {
   this->shadow = new Shadow("plate-down-shadow.obj", Application->environment->plane);
   this->shadow->setColor(Color3B(0, 0, 0));
-  this->shadow->setOpacity(30);
+  this->shadow->setMaxScale(Vec3(2.5, 2.5, 2.5));
 
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
@@ -191,12 +191,14 @@ void Character::onTurn(bool action, bool set)
       {
         Application->counter->onCount();  
 
-        this->onSound("pickup-diamond");
+        this->onSound();
 
         return;
       }
       else
       {
+        Sound->play("copter-success");
+
         Application->environment->characterActionHolder->runAction(
           Spawn::create(
             EaseSineInOut::create(
@@ -549,6 +551,11 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   Application->environment->generator->create();
 
   this->onSound();
+
+  if(plate->type == Plate::BONUS)
+  {
+    this->changeState(BONUS);
+  }
 }
 
 void Character::onLandFail(Turn turn, Plate* plate)
@@ -836,6 +843,80 @@ void Character::onCopter()
   );
 }
 
+void Character::onBonus()
+{
+  Application->changeState(Game::BONUS);
+
+  this->plane->stopAllActions();
+  this->plane->runAction(
+      Sequence::create(
+        DelayTime::create(0.6),
+        EaseSineOut::create(
+          ScaleTo::create(0.15, 0.8, 1.6, 0.8)
+        ),
+        EaseSineInOut::create(
+          ScaleTo::create(0.5, 1.0, 1.0, 1.0)
+        ),
+        nullptr
+      )
+  );
+  this->plane->runAction(
+      Sequence::create(
+        DelayTime::create(0.25),
+        EaseSineInOut::create(
+          ScaleTo::create(0.5, 1.2, 0.8, 1.2)
+        ),
+        nullptr
+      )
+  );
+
+  this->runAction(
+    Spawn::create(
+      Sequence::create(
+        DelayTime::create(0.5),
+        RotateGlobalBy::create(0.5, Vec3(0, 180, 0)),
+        RotateGlobalBy::create(0.5, Vec3(0, 720, 0)),
+        nullptr
+      ),
+      Sequence::create(
+        EaseSineOut::create(
+          MoveBy::create(0.25, Vec3(0, 3, 0))
+        ),
+        EaseSineOut::create(
+          MoveBy::create(0.35, Vec3(0, -1, 0))
+        ),
+        CallFunc::create([=] () {
+        this->shadow->setVisible(false);
+        }),
+        EaseSineOut::create(
+          MoveBy::create(0.5, Vec3(0, 18, 0))
+        ),
+        DelayTime::create(0.5),
+        CallFunc::create([=] () {
+        this->shadow->setVisible(true);
+        }),
+        EaseSineIn::create(
+          MoveBy::create(0.5, Vec3(0, -20, 0))
+        ),
+        CallFunc::create([=] () {
+          Application->state = Game::GAME;
+
+          Application->environment->runAction(
+            Shake::create(0.1, 0.1)
+          );
+
+          this->changeState(NORMAL);
+          this->onLandSuccessful(NONE, this->plates.current);
+
+          Sound->play("smash");
+        }),
+        nullptr
+      ),
+      nullptr
+    )
+  );
+}
+
 /**
  *
  *
@@ -1032,6 +1113,9 @@ void Character::changeState(State state, Crash crash)
       case STATE_COPTER:
       this->onCopter();
       break;
+      case BONUS:
+      this->onBonus();
+      break;
     }
   }
 }
@@ -1090,6 +1174,10 @@ void Character::updateCopter(float time)
   Application->environment->characterAction->setScaleX(min(1.0f, max(0.0f, this->turns / STATE_COPTER_TURNS)));
 }
 
+void Character::updateBonus(float time)
+{
+}
+
 /**
  *
  *
@@ -1116,6 +1204,9 @@ void Character::updateStates(float time)
     break;
     case STATE_COPTER:
     this->updateCopter(time);
+    break;
+    case BONUS:
+    this->updateBonus(time);
     break;
   }
 }

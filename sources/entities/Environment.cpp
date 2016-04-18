@@ -68,11 +68,11 @@ void Environment::create()
 
   this->dusts = new Pool(new Dust, this);
 
-  this->start = new Decoration("start.obj", this->plane);
-
+  this->starts = new Pool(new Start, this->plane);
   this->spikes = new Pool(new Spike, this->plane);
   this->ups = new Pool(new Up, this->plane);
   this->downs = new Pool(new Down, this->plane);
+  this->cubs = new Pool(new Cub, this->plane);
   this->diamonds = new Pool(new Diamond, this->plane);
   this->crystals = new Pool(new Crystal, this->plane);
   this->energies = new Pool(new Energy, this->plane);
@@ -202,6 +202,9 @@ void Environment::onTurn(bool action)
  */
 void Environment::onMenu()
 {
+  this->platesTime = 1.0;
+  this->platesTimeElapsed = 0;
+
   this->plates->clear(true);
   this->plates_spikes->clear(true);
   this->plates_up->clear(true);
@@ -240,6 +243,67 @@ void Environment::onLose()
 
 void Environment::onCopter()
 {
+}
+
+void Environment::onBonus()
+{
+  Application->counter->values.start = 0;
+
+  for(int i = 0; i < this->plates->count; i++)
+  {
+    auto plate = static_cast<Plate*>(this->plates->element(i));
+
+    plate->runAction(
+      Sequence::create(
+        DelayTime::create(0.7),
+        CallFunc::create(CC_CALLBACK_0(Plate::remove, plate, false)),
+        nullptr
+      )
+    );
+  }
+
+  this->runAction(
+    Sequence::create(
+      DelayTime::create(1.4),
+      CallFunc::create([=] () {
+        auto x = this->character->plates.current->getPositionX();
+        auto y = this->character->plates.current->getPositionY();
+        auto z = this->character->plates.current->getPositionZ();
+
+        this->generator->x = x;
+        this->generator->z = z;
+
+        this->generator->count = 0;
+        this->generator->length = 10;
+
+        this->generator->index = 0;
+
+        this->generator->direction = false;
+        this->generator->bonus = !this->generator->bonus;
+
+        this->character->plates.current = nullptr;
+
+        this->runAction(
+          Repeat::create(
+            CallFunc::create([=] () {
+              if(!this->character->plates.current)
+              {
+                this->character->plates.current =  this->generator->create();
+              }
+              else
+              {
+                this->generator->create();
+              }
+            }), Generator::PLATES_START
+          )
+        );
+
+        this->platesTime = 1.0;
+        this->platesTimeElapsed = 0;
+      }),
+      nullptr
+    )
+  );
 }
 
 /**
@@ -289,12 +353,21 @@ void Environment::updateMenu(float time)
 {
 }
 
-void Environment::updateGame(float time)
+void Environment::updateLose(float time)
 {
 }
 
-void Environment::updateLose(float time)
+void Environment::updateGame(float time)
 {
+  this->platesTimeElapsed += time;
+
+  if(this->platesTimeElapsed >= this->platesTime)
+  {
+    this->platesTime = max(0.3, this->platesTime - 0.01);
+    this->platesTimeElapsed = 0;
+
+    this->generator->destroy();
+  }
 }
 
 /**

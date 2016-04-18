@@ -100,15 +100,18 @@ void Plate::onDestroy(bool action)
  *
  *
  */
-void Plate::onRemove()
+void Plate::onRemove(bool complete)
 {
-  auto character = Application->environment->character;
-
-  if(character->plates.current)
+  if(complete)
   {
-    if(character->plates.current->getIndex() == this->getIndex())
+    auto character = Application->environment->character;
+
+    if(character->plates.current)
     {
-      Application->environment->character->changeState(Character::CRASH, Character::Crash::CATCH);
+      if(character->plates.current->getIndex() == this->getIndex())
+      {
+        Application->environment->character->changeState(Character::CRASH, Character::Crash::CATCH);
+      }
     }
   }
 
@@ -232,12 +235,25 @@ void Plate::setType(Type type, bool animated)
     {
       this->setTexture("plate-texture-state-2.png");
 
-      auto decoration = static_cast<Decoration*>(Application->environment->start->_create());
-      decoration->setTexture("start-texture.png");
+      auto decoration = static_cast<Decoration*>(Application->environment->starts->_create());
       decoration->setPlate(this, animated);
       decoration->setRotation3D(Vec3(0, 0, 0));
 
       this->getDecorations().push_back(decoration);
+    }
+    break;
+    case FINISH:
+    {
+      this->setTexture("plate-texture-state-1.png");
+
+      if(!Application->environment->starts->count)
+      {
+        auto decoration = static_cast<Decoration*>(Application->environment->starts->_create());
+        decoration->setPlate(this, animated);
+        decoration->setRotation3D(Vec3(0, this->direction ? 0 : 90, 0));
+
+        this->getDecorations().push_back(decoration);
+      }
     }
     break;
     case BEST:
@@ -301,6 +317,14 @@ void Plate::setType(Type type, bool animated)
       this->getDecorations().push_back(decoration);
     }
     break;
+    case CUB:
+    {
+      auto decoration = static_cast<Decoration*>(Application->environment->cubs->_create());
+      decoration->setPlate(this, animated);
+
+      this->getDecorations().push_back(decoration);
+    }
+    break;
     case DIAMOND:
     {
       auto decoration = static_cast<Decoration*>(Application->environment->diamonds->_create());
@@ -339,6 +363,10 @@ void Plate::setType(Type type, bool animated)
       decoration->setPlate(this, animated);
 
       this->getDecorations().push_back(decoration);
+    }
+    break;
+    case BONUS:
+    {
     }
     break;
 
@@ -790,13 +818,13 @@ void Plate::setType(Type type, bool animated)
  *
  *
  */
-void Plate::remove()
+void Plate::remove(bool complete)
 {
-  this->onRemove();
+  this->onRemove(complete);
 
   this->runAction(
     Spawn::create(
-      RotateBy::create(0.3, Vec3((this->direction ? 0 : 20), 0, (this->direction ? -20 : 0))),
+      (complete ? RotateBy::create(0.3, Vec3((this->direction ? 0 : 20), 0, (this->direction ? -20 : 0))) : RotateBy::create(0, Vec3(0, 0, 0))),
       Sequence::create(
         EaseSineOut::create(
           MoveBy::create(0.5, Vec3(0, -1, 0))
@@ -816,15 +844,15 @@ void Plate::remove()
     }
 
     decoration->runAction(
-    Spawn::create(
-      RotateBy::create(0.3, Vec3((this->direction ? 0 : 20), 0, (this->direction ? -20 : 0))),
-      Sequence::create(
-        EaseSineOut::create(
-          MoveBy::create(0.5, Vec3(0, -1, 0))
+      Spawn::create(
+        (complete ? RotateBy::create(0.3, Vec3((this->direction ? 0 : 20), 0, (this->direction ? -20 : 0))) : RotateBy::create(0, Vec3(0, 0, 0))),
+        Sequence::create(
+          EaseSineOut::create(
+            MoveBy::create(0.5, Vec3(0, -1, 0))
+          ),
+          nullptr
         ),
         nullptr
-      ),
-      nullptr
       )
     );
   }
@@ -850,10 +878,16 @@ void Plate::clearDecorations(bool force, bool animated, bool total)
     }
   }
 
-  if(force || animated || total)
-  {
-    this->getDecorations().clear();
-  }
+  this->getDecorations().erase(
+    std::remove_if(
+        this->getDecorations().begin(),
+        this->getDecorations().end(),
+        [](Decoration* element) -> bool {
+            return element->removed;
+        }
+    ),
+    this->getDecorations().end()
+  );
 }
 
 void Plate::clearSpecial()

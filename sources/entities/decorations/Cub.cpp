@@ -28,18 +28,21 @@
  *
  *
  */
-Pickup::Pickup(const char* file)
-: Decoration(file)
+Cub::Cub()
+: Decoration("plate-down.obj")
 {
-  this->removable = true;
-
-  this->shadow = new Shadow("pickup-shadow.obj", Application->environment->plane);
+  this->shadow = new Shadow("plate-down-shadow.obj", Application->environment->plane);
   this->shadow->setColor(Color3B(0, 0, 0));
+  this->shadow->setMaxScale(Vec3(2.5, 2.5, 2.5));
 
   this->setScheduleUpdate(true);
+
+  this->setTexture("plate-texture-state-1.png");
+
+  this->removable = false;
 }
 
-Pickup::~Pickup()
+Cub::~Cub()
 {
 }
 
@@ -48,7 +51,7 @@ Pickup::~Pickup()
  *
  *
  */
-void Pickup::onCreate()
+void Cub::onCreate()
 {
   Decoration::onCreate();
 
@@ -57,15 +60,14 @@ void Pickup::onCreate()
    *
    *
    */
-  this->stopAllActions();
-  this->runAction(
-    RepeatForever::create(
-      RotateBy::create(1.0, Vec3(0, 100, 0))
-    )
-  );
+  this->enable = false;
+
+  this->setScaleY(3.2);
+
+
 }
 
-void Pickup::onDestroy(bool action)
+void Cub::onDestroy(bool action)
 {
   Decoration::onDestroy(action);
 }
@@ -75,8 +77,11 @@ void Pickup::onDestroy(bool action)
  *
  *
  */
-void Pickup::onPickup()
+void Cub::onSound()
 {
+  Sound->play("decoration-down", this, [=] () -> float {
+    return this->getPosition3D().distance(Application->environment->character->getPosition3D());
+  }, Game::SOUND_DISTANCE);
 }
 
 /**
@@ -84,14 +89,34 @@ void Pickup::onPickup()
  *
  *
  */
-void Pickup::setPlate(Plate* plate, bool animated)
+void Cub::setPlate(Plate* plate, bool animated)
 {
-  Decoration::setPlate(plate, animated);
+  Decoration::setPlate(plate, false);
 
   /**
    *
    *
    *
    */
-  this->setPositionY(this->getPositionY() + 1.2f);
+  this->setPositionY(20.0);
+}
+
+/**
+ *
+ *
+ *
+ */
+Character::Crash Cub::status()
+{
+  return this->enable ? Character::Crash::DOWN : Character::Crash::UNDEFINED;
+}
+
+/**
+ *
+ *
+ *
+ */
+Cub* Cub::deepCopy()
+{
+  return new Cub;
 }

@@ -39,6 +39,7 @@ class Shadow : public Entity3D
    *
    */
   protected:
+  Vec3 maxScale = Vec3(10, 10, 10);
 
   /**
    *
@@ -48,6 +49,9 @@ class Shadow : public Entity3D
   public:
   Shadow(const char* file, Node* parent = nullptr);
  ~Shadow();
+
+  virtual void setMaxScale(Vec3 scale);
+  virtual Vec3 getMaxScale();
 };
 
 #endif

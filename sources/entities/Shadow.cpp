@@ -37,3 +37,18 @@ Shadow::Shadow(const char* file, Node* parent)
 Shadow::~Shadow()
 {
 }
+
+/**
+ *
+ *
+ *
+ */
+void Shadow::setMaxScale(Vec3 scale)
+{
+  this->maxScale = scale;
+}
+
+Vec3 Shadow::getMaxScale()
+{
+  return this->maxScale;
+}

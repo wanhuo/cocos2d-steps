@@ -54,7 +54,7 @@ class Decoration : public Cube
    *
    */
   protected:
-  Plate* plate;
+  Plate* plate = nullptr;
 
   /**
    *
@@ -66,6 +66,8 @@ class Decoration : public Cube
   Decoration(string file);
   Decoration();
  ~Decoration();
+
+  bool removed;
 
   bool unremovable = false;
   bool removable = false;

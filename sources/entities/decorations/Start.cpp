@@ -21,9 +21,6 @@
  *
  */
 
-#ifndef _COUNTER_H_
-#define _COUNTER_H_
-
 #include "Game.h"
 
 /**
@@ -31,67 +28,57 @@
  *
  *
  */
-class Counter : public Background
+Start::Start()
+: Decoration("start.obj")
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  struct Texts {
-    Text* name;
-    Text* score;
-    Text* coins;
-    Text* best1;
-    Text* best2;
-  };
+  this->setTexture("start-texture.png");
+
+  this->removable = false;
+  this->stopable = false;
+  this->unremovable = true;
+}
+
+Start::~Start()
+{
+}
+
+/**
+ *
+ *
+ *
+ */
+void Start::onCreate()
+{
+  Decoration::onCreate();
 
   /**
    *
    *
    *
    */
-  protected:
-  Texts texts;
+}
 
-  Entity* icon;
+void Start::onDestroy(bool action)
+{
+  Decoration::onDestroy(action);
+}
 
-  struct Values {
-    int current = 0;
-    int best = 0;
+/**
+ *
+ *
+ *
+ */
+void Start::setPlate(Plate* plate)
+{
+  Decoration::setPlate(plate);
+}
 
-    int start = 0;
-
-    int coins = 0;
-  };
-
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Counter(Node* parent);
- ~Counter();
-
-  Values values;
-
-  virtual void onMenu();
-  virtual void onGame();
-  virtual void onLose();
-  virtual void onStore();
-
-  virtual void onCount();
-  virtual void onCoins();
-
-  virtual void onBest();
-  virtual void onRegular();
-
-  virtual void reset();
-  virtual void save();
-
-  virtual void update();
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+Start* Start::deepCopy()
+{
+  return new Start;
+}

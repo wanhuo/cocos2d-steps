@@ -39,7 +39,7 @@ class Energy : public Pickup
    *
    */
   private:
-  const static int COUNT = 5;
+  const static int COUNT = 12;
 
   /**
    *

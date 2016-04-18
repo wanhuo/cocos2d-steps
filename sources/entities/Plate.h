@@ -64,10 +64,12 @@ class Plate : public Cube
   enum Type {
     NORMAL,
     START,
+    FINISH,
     BEST,
     SPIKES,
     UP,
     DOWN,
+    CUB,
     SAW,
     GATE,
     COPTER,
@@ -76,6 +78,7 @@ class Plate : public Cube
     ENERGY,
     STAR,
     HEART,
+    BONUS,
     MOVED1,
     MOVED2,
     MOVED3,
@@ -115,7 +118,7 @@ class Plate : public Cube
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
-  virtual void onRemove();
+  virtual void onRemove(bool complete = true);
   virtual void onCount();
 
   virtual bool getDirection();
@@ -136,7 +139,7 @@ class Plate : public Cube
 
   virtual void setType(Type type, bool animated = true);
 
-  virtual void remove();
+  virtual void remove(bool complete = true);
 
   virtual void clearDecorations(bool force = false, bool animated = false, bool total = false);
   virtual void clearSpecial();

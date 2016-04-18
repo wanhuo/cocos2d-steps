@@ -86,7 +86,7 @@ void Energy::onPickup()
             Sequence::create(
               MoveBy::create(0.1, Vec3(x, (Application->environment->character->getPositionY() - 0.9), z)),
               CallFunc::create([=] () {
-                if((++this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::UP)
+                if((++this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::UP && next->type != Plate::BONUS)
                 {
                   Application->environment->character->runAction(this->action);
                 }

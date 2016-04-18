@@ -61,6 +61,8 @@ void Decoration::onCreate()
    *
    *
    */
+  this->removed = false;
+
   this->setRotation3D(Vec3(0, 0, 0));
 }
 
@@ -113,6 +115,8 @@ void Decoration::setPlate(Plate* plate, bool animated)
  */
 void Decoration::remove(bool force)
 {
+  this->removed = true;
+
   if(force)
   {
     this->_destroy(true);

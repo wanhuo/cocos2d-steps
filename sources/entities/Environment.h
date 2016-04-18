@@ -70,6 +70,14 @@ class Environment : public Background
    *
    *
    */
+  float platesTime;
+  float platesTimeElapsed;
+
+  /**
+   *
+   *
+   *
+   */
   public:
   const static int DUST_COUNT = 100;
   const static int FISH_COUNT = 2;
@@ -85,9 +93,11 @@ class Environment : public Background
 
   Pool* dusts;
 
+  Pool* starts;
   Pool* spikes;
   Pool* ups;
   Pool* downs;
+  Pool* cubs;
   Pool* diamonds;
   Pool* crystals;
   Pool* energies;
@@ -106,8 +116,6 @@ class Environment : public Background
 
   Entity3D* plane;
   Entity3D* water;
-
-  Decoration* start;
 
   Color* color;
 
@@ -128,6 +136,7 @@ class Environment : public Background
   virtual void onGame();
   virtual void onLose();
   virtual void onCopter();
+  virtual void onBonus();
 
   virtual void updateLight(float time);
   virtual void updateDusts(float time);

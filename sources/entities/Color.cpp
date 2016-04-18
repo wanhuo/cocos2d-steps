@@ -128,11 +128,9 @@ Color3B Color::get()
   }
 
   if (increment[0] == 0 && increment[1] == 0 && increment[2] == 0) {
-    //clearInterval(intervalId);
-
     targetColor = generateRGB(25, 200);
     distance  = calculateDistance(currentColor, targetColor);
-  increment = calculateIncrement(distance);
+    increment = calculateIncrement(distance);
     
     return get();
   }

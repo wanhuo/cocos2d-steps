@@ -46,9 +46,6 @@ class Generator : public Ref
    *
    */
   private:
-  const static int PLATES_START = 8;
-  const static int PLATES_SAVE = 5;
-
   const static int ROUTE_LENGTH_MAX = 3;
   const static int ROUTE_LENGTH_MIN = 0;
 
@@ -66,6 +63,18 @@ class Generator : public Ref
 
   Conditions conditions;
 
+  /**
+   *
+   *
+   *
+   */
+  public:
+  const static int PLATES_START = 8;
+  const static int PLATES_SAVE = 5;
+
+  Generator();
+ ~Generator();
+
   float x;
   float y;
   float z;
@@ -75,15 +84,7 @@ class Generator : public Ref
   int length;
 
   bool direction;
-
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Generator();
- ~Generator();
+  bool bonus;
 
   virtual Plate* create();
   virtual void destroy(bool manual = false);

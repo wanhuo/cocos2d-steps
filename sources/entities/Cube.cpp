@@ -118,9 +118,11 @@ void Cube::update(float time)
     this->shadow->setPositionX(position.x);
     this->shadow->setPositionZ(position.z);
 
-    this->shadow->setScaleX(max(0.0f, position.y));
-    this->shadow->setScaleZ(max(0.0f, position.y));
+    this->shadow->setScaleX(max(0.0f, min(this->shadow->getMaxScale().x, position.y)));
+    this->shadow->setScaleZ(max(0.0f, min(this->shadow->getMaxScale().z, position.y)));
+
+    this->shadow->setOpacity(max(0.0f, min(30.0f, 30.0f - (position.y * 2.5f))));
   }
 
-  this->setOpacity(position.y >= 0 ? 255 : max(0.0, 255.0 + (position.y * DEPTH)));
+  this->setOpacity(position.y >= 0 ? 255 : max(0.0f, 255.0f + (position.y * DEPTH)));
 }
