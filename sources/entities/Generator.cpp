@@ -85,6 +85,7 @@ Plate* Generator::create()
       }
       else
       {
+        plate->setType(Plate::BONUS);
         plate->setType(Plate::DIAMOND);
 
         if(this->conditions.s1 < 1)
@@ -180,7 +181,7 @@ Plate* Generator::create()
           {
             plate->setType(Plate::ENERGY);
           }
-          else if(probably(20))
+          else if(probably(2))
           {
             plate->setType(Plate::STAR);
           }

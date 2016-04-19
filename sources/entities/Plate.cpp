@@ -359,6 +359,10 @@ void Plate::setType(Type type, bool animated)
       this->getDecorations().push_back(decoration);
     }
     break;
+    case BONUS:
+    {
+      this->setTexture("");
+    }
     break;
 
     /**

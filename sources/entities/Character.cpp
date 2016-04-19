@@ -890,6 +890,9 @@ void Character::onFinish()
         nullptr
       ),
       Sequence::create(
+        CallFunc::create([=] () {
+          Sound->play("character-finish-1");
+        }),
         EaseSineOut::create(
           MoveBy::create(0.25, Vec3(0, 3, 0))
         ),
@@ -897,7 +900,9 @@ void Character::onFinish()
           MoveBy::create(0.35, Vec3(0, -1, 0))
         ),
         CallFunc::create([=] () {
-        this->shadow->setVisible(false);
+          Sound->play("character-finish-2");
+
+          this->shadow->setVisible(false);
         }),
         EaseSineOut::create(
           MoveBy::create(0.5, Vec3(0, 18, 0))
@@ -935,8 +940,6 @@ void Character::onFinish()
       nullptr
     )
   );
-
-  Sound->play("character-finish");
 }
 
 /**

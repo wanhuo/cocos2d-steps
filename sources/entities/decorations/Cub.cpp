@@ -67,20 +67,10 @@ void Cub::onCreate()
   this->runAction(
     RepeatForever::create(
       Sequence::create(
-        DelayTime::create(random(0.0, 2.0)),
+        DelayTime::create(0.2),
         CallFunc::create([=] () {
-          this->shadow->runAction(
-            Sequence::create(
-              CallFunc::create([=] () {
-                this->shadow->setVisible(true);
-                this->shadow->setOpacity(0);
-              }),
-              FadeTo::create(0.5, 30.0),
-              nullptr
-            )
-          );
+            this->shadow->setVisible(true);
         }),
-        DelayTime::create(0.5),
         MoveBy::create(0.5, Vec3(0, -25, 0)),
         CallFunc::create([=] () {
           this->enable = true;
@@ -110,17 +100,6 @@ void Cub::onCreate()
         EaseSineInOut::create(
           MoveBy::create(1.0, Vec3(0, 30, 0))
         ),
-        CallFunc::create([=] () {
-          this->shadow->runAction(
-            Sequence::create(
-              FadeOut::create(0.5),
-              CallFunc::create([=] () {
-                this->shadow->setVisible(false);
-              }),
-              nullptr
-            )
-          );
-        }),
         nullptr
       )
     )
