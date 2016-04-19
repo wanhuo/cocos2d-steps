@@ -356,7 +356,7 @@ void Counter::onRegular()
  *
  */
 void Counter::reset()
-{Storage::set("application.score.best", 0);
+{
   this->values.start = 0;
   this->values.current = 0;
   this->values.bonus = Generator::PLATES_FINISH;
@@ -385,6 +385,5 @@ void Counter::update()
 
   if(this->values.current > this->values.best)
   {
-    this->onBest();
   }
 }
