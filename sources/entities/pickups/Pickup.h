@@ -46,6 +46,8 @@ class Pickup : public Decoration
    *
    */
   protected:
+  BillBoard* window;
+  Entity* glow;
 
   /**
    *

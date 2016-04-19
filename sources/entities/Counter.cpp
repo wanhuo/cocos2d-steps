@@ -31,10 +31,13 @@
 Counter::Counter(Node* parent)
 : Background(parent)
 {
+  this->holder = new BackgroundColor(this, Color4B::RED);
+  this->holder->setContentSize(Size(0, 0));
+
   this->icon = new Entity("coins-icon.png", this, true);
 
   this->texts.name = new Text("name", this, true);
-  this->texts.score = new Text("counter-score", this, true);
+  this->texts.score = new Text("counter-score", this->holder, true);
   this->texts.coins = new Text("counter-coins", this, true);
   this->texts.best1 = new Text("counter-best", this, true);
   this->texts.best2 = new Text("counter-new-best", this, true);
@@ -47,6 +50,10 @@ Counter::Counter(Node* parent)
   this->texts.best2->setOpacity(0);
 
   this->setCameraMask(4);
+
+  this->holder->setPosition(Application->getCenter().x, Application->getHeight() - 200);
+  this->texts.name->setPosition(Application->getCenter().x, Application->getHeight() - 300);
+  this->texts.score->setPosition(0, 0);
 
   this->reset();
   this->update();
@@ -125,6 +132,14 @@ void Counter::onCount()
     );
   }
 
+  this->holder->runAction(
+    Sequence::create(
+      ScaleTo::create(0.1, 1.2),
+      ScaleTo::create(0.5, 1.0),
+      nullptr
+    )
+  );
+
   this->values.start++;
   this->values.current++;
 
@@ -187,11 +202,7 @@ void Counter::update()
 {
   this->texts.score->data(this->values.current);
   this->texts.best1->data(this->values.best);
-  //this->texts.best2->data(this->values.best);
   this->texts.coins->data(this->values.coins);
-
-  this->texts.name->setPosition(Application->getCenter().x, Application->getHeight() - 300);
-  this->texts.score->setPosition(Application->getCenter().x, Application->getHeight() - 200);
   this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() - 60, Application->getHeight() - 60);
 
   this->icon->setPosition(this->texts.coins->getPositionX() + this->texts.coins->getWidth() / 2 + 30, Application->getHeight() - 50);

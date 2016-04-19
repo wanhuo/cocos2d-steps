@@ -32,6 +32,8 @@ Energy::Energy()
 : Pickup("energy.obj")
 {
   this->setTexture("energy-texture.png");
+
+  this->glow->setColor(Color3B(252.0, 252.0, 136.0));
 }
 
 Energy::~Energy()
@@ -86,7 +88,7 @@ void Energy::onPickup()
             Sequence::create(
               MoveBy::create(0.1, Vec3(x, (Application->environment->character->getPositionY() - 0.9), z)),
               CallFunc::create([=] () {
-                if((++this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::UP && next->type != Plate::BONUS)
+                if((++this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::UP && next->type != Plate::FINISH)
                 {
                   Application->environment->character->runAction(this->action);
                 }

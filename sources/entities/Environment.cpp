@@ -245,7 +245,7 @@ void Environment::onCopter()
 {
 }
 
-void Environment::onBonus()
+void Environment::onFinish()
 {
   Application->counter->values.start = 0;
 
@@ -273,6 +273,7 @@ void Environment::onBonus()
         this->generator->x = x;
         this->generator->z = z;
 
+        this->generator->resets++;
         this->generator->count = 0;
         this->generator->length = 10;
 
@@ -359,14 +360,17 @@ void Environment::updateLose(float time)
 
 void Environment::updateGame(float time)
 {
-  this->platesTimeElapsed += time;
-
-  if(this->platesTimeElapsed >= this->platesTime)
+  if(this->character->state != Character::CRASH)
   {
-    this->platesTime = max(0.3, this->platesTime - 0.01);
-    this->platesTimeElapsed = 0;
+    this->platesTimeElapsed += time;
 
-    this->generator->destroy();
+    if(this->platesTimeElapsed >= this->platesTime)
+    {
+      this->platesTime = max(0.3, this->platesTime - 0.01);
+      this->platesTimeElapsed = 0;
+
+      this->generator->destroy();
+    }
   }
 }
 

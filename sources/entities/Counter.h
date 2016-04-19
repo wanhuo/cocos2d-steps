@@ -55,6 +55,7 @@ class Counter : public Background
   protected:
   Texts texts;
 
+  BackgroundColor* holder;
   Entity* icon;
 
   struct Values {

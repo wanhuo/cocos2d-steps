@@ -48,7 +48,17 @@ void Shadow::setMaxScale(Vec3 scale)
   this->maxScale = scale;
 }
 
+void Shadow::setSize(float size)
+{
+  this->size = size;
+}
+
 Vec3 Shadow::getMaxScale()
 {
   return this->maxScale;
+}
+
+float Shadow::getSize()
+{
+  return this->size;
 }

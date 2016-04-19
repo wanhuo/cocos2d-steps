@@ -276,7 +276,10 @@ void Game::onMenu()
 
 void Game::onGame()
 {
+  this->stopAllActions();
+
   Music->play("music-2", true);
+  Music->volume(1.0);
 
   this->environment->onGame();
   this->counter->onGame();
@@ -286,7 +289,17 @@ void Game::onGame()
 
 void Game::onLose()
 {
-  Music->stop();
+  this->runAction(
+    Repeat::create(
+      Sequence::create(
+        CallFunc::create([=] () {
+          Music->volume(Music->volume() - 0.05);
+        }),
+        DelayTime::create(0.1),
+        nullptr
+      ), 20
+    )
+  );
 
   this->environment->onLose();
   this->counter->onLose();
@@ -303,9 +316,9 @@ void Game::onStore()
   Store::getInstance()->show();
 }
 
-void Game::onBonus()
+void Game::onFinish()
 {
-  this->environment->onBonus();
+  this->environment->onFinish();
 }
 
 /**
@@ -342,8 +355,8 @@ void Game::changeState(State state)
       case STORE:
       this->onStore();
       break;
-      case BONUS:
-      this->onBonus();
+      case FINISH:
+      this->onFinish();
       break;
     }
   }
@@ -370,7 +383,7 @@ void Game::updateStore(float time)
 {
 }
 
-void Game::updateBonus(float time)
+void Game::updateFinish(float time)
 {
 }
 
@@ -395,8 +408,8 @@ void Game::updateStates(float time)
     case STORE:
     this->updateStore(time);
     break;
-    case BONUS:
-    this->updateBonus(time);
+    case FINISH:
+    this->updateFinish(time);
     break;
   }
 

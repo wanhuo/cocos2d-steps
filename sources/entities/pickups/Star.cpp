@@ -32,6 +32,8 @@ Star::Star()
 : Pickup("star.obj")
 {
   this->setColor(Color3B(237, 234, 0));
+
+  this->glow->setColor(Color3B(252.0, 252.0, 136.0));
 }
 
 Star::~Star()

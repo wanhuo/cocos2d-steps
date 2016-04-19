@@ -33,14 +33,7 @@ Crystal::Crystal()
 {
   this->setTexture("crystal-texture.png");
 
-  auto billboard = BillBoard::create();
-
-  this->addChild(billboard);
-
-  auto glow = new Entity("glow.png", billboard, true);
-
-  glow->setScale(0.008);
-  glow->setColor(Color3B(230.0, 190.0, 255.0));
+  this->glow->setColor(Color3B(230.0, 190.0, 255.0));
 }
 
 Crystal::~Crystal()

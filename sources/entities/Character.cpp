@@ -552,9 +552,9 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
 
   this->onSound();
 
-  if(plate->type == Plate::BONUS)
+  if(plate->type == Plate::FINISH)
   {
-    this->changeState(BONUS);
+    this->changeState(STATE_FINISH);
   }
 }
 
@@ -700,15 +700,23 @@ void Character::onCrash(Crash crash)
   {
     case SPIKES:
     this->runAction(
-      Sequence::create(
-        ScaleTo::create(0.1, 1.2),
-        EaseSineIn::create(
-          ScaleTo::create(0.3, 1.0)
+      Spawn::create(
+        Sequence::create(
+          ScaleTo::create(0.1, 1.2),
+          EaseSineIn::create(
+            ScaleTo::create(0.3, 1.0)
+          ),
+          DelayTime::create(1.0),
+          CallFunc::create([=] () {
+            Application->changeState(Game::LOSE);
+          }),
+          nullptr
         ),
-        CallFunc::create([=] () {
-          Application->changeState(Game::LOSE);
-        }),
-        MoveBy::create(2.0, Vec3(0, -0.8, 0)),
+        Sequence::create(
+          DelayTime::create(0.4),
+          MoveBy::create(2.0, Vec3(0, -0.8, 0)),
+          nullptr
+        ),
         nullptr
       )
     );
@@ -717,6 +725,7 @@ void Character::onCrash(Crash crash)
     this->runAction(
       Sequence::create(
         MoveBy::create(0.1f, Vec3(0.0, -0.9, 0.0)),
+        DelayTime::create(1.0),
         CallFunc::create([=] () {
           Application->changeState(Game::LOSE);
         }),
@@ -733,6 +742,7 @@ void Character::onCrash(Crash crash)
           EaseSineOut::create(
             MoveBy::create(0.5, Vec3(0, -1, 0))
           ),
+          DelayTime::create(1.0),
           CallFunc::create([=] () {
             this->_destroy();
             Application->changeState(Game::LOSE);
@@ -747,6 +757,7 @@ void Character::onCrash(Crash crash)
     this->plane->runAction(
       Sequence::create(
         ScaleTo::create(0.1, this->plates.current->getDirection() ? 1.0 : 0.1, 1.0, this->plates.current->getDirection() ? 0.1 : 1.0),
+        DelayTime::create(1.0),
         CallFunc::create([=] () {
           Application->changeState(Game::LOSE);
         }),
@@ -843,9 +854,9 @@ void Character::onCopter()
   );
 }
 
-void Character::onBonus()
+void Character::onFinish()
 {
-  Application->changeState(Game::BONUS);
+  Application->changeState(Game::FINISH);
 
   this->plane->stopAllActions();
   this->plane->runAction(
@@ -902,13 +913,22 @@ void Character::onBonus()
           Application->state = Game::GAME;
 
           Application->environment->runAction(
-            Shake::create(0.1, 0.1)
+            Shake::create(0.5, 0.2)
           );
 
           this->changeState(NORMAL);
           this->onLandSuccessful(NONE, this->plates.current);
 
-          Sound->play("smash");
+          Sound->play("landing-" + patch::to_string(random(1, 4)));
+
+          if(Application->environment->generator->bonus)
+          {
+            Music->play("music-3", true);
+          }
+          else
+          {
+            Music->play("music-2", true);
+          }
         }),
         nullptr
       ),
@@ -1113,8 +1133,8 @@ void Character::changeState(State state, Crash crash)
       case STATE_COPTER:
       this->onCopter();
       break;
-      case BONUS:
-      this->onBonus();
+      case STATE_FINISH:
+      this->onFinish();
       break;
     }
   }
@@ -1174,7 +1194,7 @@ void Character::updateCopter(float time)
   Application->environment->characterAction->setScaleX(min(1.0f, max(0.0f, this->turns / STATE_COPTER_TURNS)));
 }
 
-void Character::updateBonus(float time)
+void Character::updateFinish(float time)
 {
 }
 
@@ -1205,8 +1225,8 @@ void Character::updateStates(float time)
     case STATE_COPTER:
     this->updateCopter(time);
     break;
-    case BONUS:
-    this->updateBonus(time);
+    case STATE_FINISH:
+    this->updateFinish(time);
     break;
   }
 }

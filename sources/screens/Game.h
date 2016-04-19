@@ -128,9 +128,9 @@ class Game : public Screen
     NONE,
     MENU,
     GAME,
+    FINISH,
     LOSE,
-    STORE,
-    BONUS
+    STORE
   };
 
   /**
@@ -190,7 +190,7 @@ class Game : public Screen
   virtual void onGame();
   virtual void onLose();
   virtual void onStore();
-  virtual void onBonus();
+  virtual void onFinish();
 
   virtual void onNoad();
 
@@ -200,7 +200,7 @@ class Game : public Screen
   virtual void updateGame(float time);
   virtual void updateLose(float time);
   virtual void updateStore(float time);
-  virtual void updateBonus(float time);
+  virtual void updateFinish(float time);
 
   virtual void updateStates(float time);
 

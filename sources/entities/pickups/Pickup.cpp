@@ -36,6 +36,12 @@ Pickup::Pickup(const char* file)
   this->shadow = new Shadow("pickup-shadow.obj", Application->environment->plane);
   this->shadow->setColor(Color3B(0, 0, 0));
 
+  this->window = BillBoard::create();
+  this->addChild(this->window);
+
+  this->glow = new Entity("glow.png", this->window, true);
+  this->glow->setScale(0.008);
+
   this->setScheduleUpdate(true);
 }
 

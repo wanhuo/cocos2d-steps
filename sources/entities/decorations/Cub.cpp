@@ -33,6 +33,7 @@ Cub::Cub()
 {
   this->shadow = new Shadow("plate-down-shadow.obj", Application->environment->plane);
   this->shadow->setColor(Color3B(0, 0, 0));
+  this->shadow->setSize(0);
   this->shadow->setMaxScale(Vec3(2.5, 2.5, 2.5));
 
   this->setScheduleUpdate(true);
@@ -63,8 +64,70 @@ void Cub::onCreate()
   this->enable = false;
 
   this->setScaleY(3.2);
+  this->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        DelayTime::create(random(0.0, 2.0)),
+        CallFunc::create([=] () {
+          this->shadow->runAction(
+            Sequence::create(
+              CallFunc::create([=] () {
+                this->shadow->setVisible(true);
+                this->shadow->setOpacity(0);
+              }),
+              FadeTo::create(0.5, 30.0),
+              nullptr
+            )
+          );
+        }),
+        DelayTime::create(0.5),
+        MoveBy::create(0.5, Vec3(0, -25, 0)),
+        CallFunc::create([=] () {
+          this->enable = true;
+          this->plate->moved = true;
+          this->plate->blocked = true;
+        }),
+        MoveBy::create(0.1, Vec3(0, -5, 0)),
+        CallFunc::create([=] () {
+          this->onSound();
 
+          Application->environment->runAction(
+            Shake::create(0.5, 0.2)
+          );
+        }),
+        EaseSineInOut::create(
+          MoveBy::create(0.1, Vec3(0, 1, 0))
+        ),
+        EaseBounceOut::create(
+          MoveBy::create(0.4, Vec3(0, -1, 0))
+        ),
+        DelayTime::create(random(0.0, 1.0)),
+        CallFunc::create([=] () {
+          this->enable = false;
+          this->plate->moved = false;
+          this->plate->blocked = false;
+        }),
+        EaseSineInOut::create(
+          MoveBy::create(1.0, Vec3(0, 30, 0))
+        ),
+        CallFunc::create([=] () {
+          this->shadow->runAction(
+            Sequence::create(
+              FadeOut::create(0.5),
+              CallFunc::create([=] () {
+                this->shadow->setVisible(false);
+              }),
+              nullptr
+            )
+          );
+        }),
+        nullptr
+      )
+    )
+  );
 
+  this->shadow->setVisible(false);
+  this->shadow->setPositionY(0.01);
 }
 
 void Cub::onDestroy(bool action)
@@ -98,7 +161,7 @@ void Cub::setPlate(Plate* plate, bool animated)
    *
    *
    */
-  this->setPositionY(20.0);
+  this->setPositionY(30.4);
 }
 
 /**

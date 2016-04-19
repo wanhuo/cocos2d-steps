@@ -43,7 +43,7 @@ Generator::~Generator()
  */
 Plate* Generator::create()
 {
-  if(this->index <= 30)
+  if((!this->bonus && this->index <= PLATES_FINISH) || (this->bonus && this->index <= PLATES_FINISH_BONUS))
   {
     if(++this->count > this->length)
     {
@@ -79,9 +79,9 @@ Plate* Generator::create()
       if(this->index < 1)
       {
       }
-      else if(this->index >= 30)
+      else if(this->index >= PLATES_FINISH_BONUS)
       {
-          plate->setType(Plate::BONUS);
+          plate->setType(Plate::FINISH);
       }
       else
       {
@@ -97,7 +97,7 @@ Plate* Generator::create()
     }
     else
     {
-      if(Application->environment->plates->count <= 1)
+      if(this->resets == 0 && Application->environment->plates->count <= 1)
       {
         plate->setType(Plate::START);
       }
@@ -109,12 +109,11 @@ Plate* Generator::create()
           plate->setType(Plate::BEST);
         }
 
-        if(this->index == 30)
+        if(this->index == PLATES_FINISH)
         {
           plate->setType(Plate::FINISH);
-          plate->setType(Plate::BONUS);
         }
-        else if(probably(50))
+        else if(probably(PLATES_PROBABILITY))
         {
           if(this->conditions.s2 < 1 && probably(10))
           {
@@ -317,6 +316,7 @@ void Generator::clear()
 
   this->index = 0;
   this->count = 0;
+  this->resets = 0;
   this->length = random(3, PLATES_START);
 
   this->conditions.s1 = 0;

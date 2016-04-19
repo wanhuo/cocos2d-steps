@@ -78,7 +78,6 @@ class Plate : public Cube
     ENERGY,
     STAR,
     HEART,
-    BONUS,
     MOVED1,
     MOVED2,
     MOVED3,

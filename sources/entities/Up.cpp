@@ -90,6 +90,11 @@ void Up::onPickup()
       element = plates.plates[Plate::RIGHT];
     }
 
+    if(element->type == Plate::FINISH)
+    {
+      break;
+    }
+
     if(!element || element == NULL || element->behavior == Plate::DYNAMIC || element->type == Plate::SPIKES || element->type == Plate::GATE || element->type == Plate::SAW || element->type == Plate::DOWN)
     {
       if(i >= count - 1)

@@ -86,7 +86,7 @@ class Character : public Cube
     CRASH,
     HIT,
     STATE_COPTER,
-    BONUS
+    STATE_FINISH
   };
 
   enum Crash {
@@ -154,7 +154,7 @@ class Character : public Cube
   virtual void onCrash(Crash crash = UNDEFINED);
   virtual void onHit();
   virtual void onCopter();
-  virtual void onBonus();
+  virtual void onFinish();
 
   virtual bool onTouch();
 
@@ -201,7 +201,7 @@ class Character : public Cube
   virtual void updateCrash(float time);
   virtual void updateHit(float time);
   virtual void updateCopter(float time);
-  virtual void updateBonus(float time);
+  virtual void updateFinish(float time);
 
   virtual void updateStates(float time);
 

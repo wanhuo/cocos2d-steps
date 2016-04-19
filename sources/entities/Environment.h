@@ -136,7 +136,7 @@ class Environment : public Background
   virtual void onGame();
   virtual void onLose();
   virtual void onCopter();
-  virtual void onBonus();
+  virtual void onFinish();
 
   virtual void updateLight(float time);
   virtual void updateDusts(float time);

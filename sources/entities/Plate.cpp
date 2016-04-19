@@ -130,6 +130,9 @@ void Plate::onCount()
     case BEST:
     this->setTexture("plate-texture-state-2-best.png");
     break;
+    case FINISH:
+    this->setTexture("plate-texture-state-2-finish.png");
+    break;
   }
 
   if(this->special)
@@ -244,16 +247,7 @@ void Plate::setType(Type type, bool animated)
     break;
     case FINISH:
     {
-      this->setTexture("plate-texture-state-1.png");
-
-      if(!Application->environment->starts->count)
-      {
-        auto decoration = static_cast<Decoration*>(Application->environment->starts->_create());
-        decoration->setPlate(this, animated);
-        decoration->setRotation3D(Vec3(0, this->direction ? 0 : 90, 0));
-
-        this->getDecorations().push_back(decoration);
-      }
+      this->setTexture("plate-texture-state-1-finish.png");
     }
     break;
     case BEST:
@@ -365,9 +359,6 @@ void Plate::setType(Type type, bool animated)
       this->getDecorations().push_back(decoration);
     }
     break;
-    case BONUS:
-    {
-    }
     break;
 
     /**
