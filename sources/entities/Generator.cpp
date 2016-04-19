@@ -206,7 +206,7 @@ Plate* Generator::create()
             }
             else if(this->count > 1 && probably(100))
             {
-              int size = random(5, 10);
+              int size = random(5, 8) + 1;
 
               if(this->index + size < PLATES_FINISH)
               {
@@ -227,8 +227,7 @@ Plate* Generator::create()
                 this->length++;
 
                 for(int i = 0; i < size; i++)
-                {
-                  this->preUpdate();
+                {                  this->preUpdate();
 
                   auto p = static_cast<Plate*>(Application->environment->plates->_create());
 
@@ -240,42 +239,61 @@ Plate* Generator::create()
 
                   p->setIndex(this->index);
 
-                  Decoration* test = nullptr;
-                  if(this->count == 0)
+                  if(i == size - 1)
                   {
-                    test = new Decoration("tunnel-part1.obj", Application->environment->plane);
-                    test->setPlate(p);
-                    test->_create();
-                    if(this->direction)
-                    {
-                      test->setRotation3D(Vec3(0, 180, 0));
-                    }
-                    else
-                    {
-                      test->setRotation3D(Vec3(0, 0, 0));
-                    }
-                  p->getDecorations().push_back(test);
-                  }
-                  else if(this->count == 1)
-                  {
-                  }
-                  else if(this->count == this->length)
-                  {
+                    p->setType(Plate::ENERGY);
                   }
                   else
                   {
-                    test = new Decoration("tunnel-part2.obj", Application->environment->plane);
-                    test->setPlate(p);
-                    test->_create();
-                    if(this->direction)
+                    p->setType(Plate::TUNNEL);
+                    Decoration* test = nullptr;
+                    if(this->count == 0)
                     {
-                      test->setRotation3D(Vec3(0, 0, 0));
+                      this->length++;
+                    }
+
+                    if(this->count == this->length - 1)
+                    {
+                    }
+                    else if(this->count == this->length)
+                    {
+                      test = new Decoration("tunnel-part1.obj", Application->environment->plane);
+                      test->setPlate(p);
+                      test->removable = false;
+                      test->stopable = false;
+                      test->unremovable = true;
+                      test->setTexture("tunnel-texture.png");
+                      test->_create();
+                      if(this->direction)
+                      {
+                        test->setRotation3D(Vec3(0, 0, 0));
+                      }
+                      else
+                      {
+                        test->setRotation3D(Vec3(0, 180, 0));
+                      }
+                      p->getDecorations().push_back(test);
+
                     }
                     else
                     {
-                      test->setRotation3D(Vec3(0, 90, 0));
+                      test = new Decoration("tunnel-part2.obj", Application->environment->plane);
+                      test->setPlate(p);
+                      test->removable = false;
+                      test->stopable = false;
+                      test->unremovable = true;
+                      test->setTexture("tunnel-texture.png");
+                      test->_create();
+                      if(this->direction)
+                      {
+                        test->setRotation3D(Vec3(0, 0, 0));
+                      }
+                      else
+                      {
+                        test->setRotation3D(Vec3(0, 90, 0));
+                      }
+                      p->getDecorations().push_back(test);
                     }
-                  p->getDecorations().push_back(test);
                   }
 
   this->conditions.s1 = 2;
