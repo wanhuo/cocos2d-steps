@@ -59,6 +59,9 @@ class Counter : public Background
   BackgroundColor* holder;
   Entity* icon;
 
+  Entity* starBackground;
+  ProgressTo* starAction;
+
   struct Values {
     int current = 0;
     int best = 0;
@@ -86,7 +89,9 @@ class Counter : public Background
   virtual void onLose();
   virtual void onStore();
 
-  virtual void onStar();
+  virtual void onStarStart();
+  virtual void onStarFinish();
+  virtual void onStarUpdate();
 
   virtual void onCount();
   virtual void onCoins();

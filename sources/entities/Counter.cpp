@@ -35,6 +35,8 @@ Counter::Counter(Node* parent)
   this->holder->setContentSize(Size(0, 0));
   this->holder->setCascadeOpacityEnabled(true);
 
+  this->starBackground = new Entity("counter-star.png", this->holder);
+
   this->icon = new Entity("coins-icon.png", this, true);
 
   this->texts.name = new Text("name", this, true);
@@ -120,6 +122,8 @@ void Counter::onFinish()
 
 void Counter::onLose()
 {
+  this->texts.bonus->setVisible(false);
+
   this->update();
 
   this->holder->runAction(
@@ -148,7 +152,17 @@ void Counter::onStore()
  *
  *
  */
-void Counter::onStar()
+void Counter::onStarStart()
+{
+  this->starBackground->_create();
+}
+
+void Counter::onStarFinish()
+{
+  this->starBackground->_destroy();
+}
+
+void Counter::onStarUpdate()
 {
 }
 

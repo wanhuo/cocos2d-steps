@@ -320,11 +320,15 @@ void Environment::startStar()
 
   this->starTime = STAR_TIME;
   this->starTimeElapsed = 0;
+
+  Application->counter->onStarStart();
 }
 
 void Environment::finishStar()
 {
   this->star = false;
+
+  Application->counter->onStarFinish();
 }
 
 /**
@@ -403,6 +407,8 @@ void Environment::updateStar(float time)
 {
   if(this->star)
   {
+    Application->counter->onStarUpdate();
+
     this->starTimeElapsed += time;
 
     if(this->starTimeElapsed >= this->starTime)
