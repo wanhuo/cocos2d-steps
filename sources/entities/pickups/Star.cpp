@@ -55,6 +55,8 @@ void Star::onPickup()
    *
    */
   Application->environment->startStar();
+
+  Sound->play("star-" + patch::to_string(random(1, 4)));
 }
 
 /**

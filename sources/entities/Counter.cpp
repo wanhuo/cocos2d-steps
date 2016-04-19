@@ -36,6 +36,24 @@ Counter::Counter(Node* parent)
   this->holder->setCascadeOpacityEnabled(true);
 
   this->starBackground = new Entity("counter-star.png", this->holder);
+  this->starBackground->setPosition(0, -80);
+  this->starBackground->setPosition(0, 25);
+  this->starBackground->setCascadeOpacityEnabled(true);
+  this->starBackground->setOpacity(0);
+  this->starBackground->setScale(1.5);
+
+  this->bonusBackground = new Entity("counter-bonus.png", this->holder);
+  this->bonusBackground->setPosition(0, -80);
+  this->bonusBackground->setCascadeOpacityEnabled(true);
+  this->bonusBackground->setOpacity(0);
+  this->bonusBackground->setScale(1.5);
+
+  this->starAction = ProgressTimer::create(new Entity("counter-star.png"));
+  this->starAction->setType(ProgressTimer::Type::RADIAL);
+  this->starBackground->addChild(this->starAction);
+  this->starAction->getSprite()->setOpacity(150);
+  this->starAction->getSprite()->setScale(0.8);
+  this->starAction->setPosition(this->starBackground->getWidth() / 2, this->starBackground->getHeight() / 2);
 
   this->icon = new Entity("coins-icon.png", this, true);
 
@@ -44,7 +62,7 @@ Counter::Counter(Node* parent)
   this->texts.coins = new Text("counter-coins", this, true);
   this->texts.best1 = new Text("counter-best", this, true);
   this->texts.best2 = new Text("counter-best-new", this, true);
-  this->texts.bonus = new Text("counter-bonus", this->holder, true);
+  this->texts.bonus = new Text("counter-bonus", this->bonusBackground, true);
 
   this->texts.best1->setPosition(Application->getCenter().x, Application->getHeight() - 300);
 
@@ -57,7 +75,7 @@ Counter::Counter(Node* parent)
   this->holder->setPosition(Application->getCenter().x, Application->getHeight() - 200);
   this->texts.name->setPosition(Application->getCenter().x, Application->getHeight() - 300);
   this->texts.score->setPosition(0, 0);
-  this->texts.bonus->setPosition(0, 100);
+  this->texts.bonus->setPosition(this->bonusBackground->getWidth() / 2, this->bonusBackground->getHeight() / 2 - 12);
 
   this->reset();
 
@@ -99,7 +117,19 @@ void Counter::onGame()
 {
   if(!Application->environment->generator->bonus)
   {
-    this->texts.bonus->setVisible(true);
+    this->bonusBackground->runAction(
+      Spawn::create(
+        FadeTo::create(0.2, 255),
+        Sequence::create(
+          CallFunc::create([=] () {
+            this->bonusBackground->setVisible(true);
+          }),
+          MoveTo::create(0.2, Vec2(0, -80)),
+          nullptr
+        ),
+        nullptr
+      )
+    );
   }
 
   this->update();
@@ -116,13 +146,37 @@ void Counter::onFinish()
   }
   else
   {
-    this->texts.bonus->setVisible(false);
+    this->bonusBackground->runAction(
+      Spawn::create(
+        FadeTo::create(0.2, 0),
+        Sequence::create(
+          MoveTo::create(0.2, Vec2(0, 0)),
+          CallFunc::create([=] () {
+            this->bonusBackground->setVisible(false);
+          }),
+          nullptr
+        ),
+        nullptr
+      )
+    );
   }
 }
 
 void Counter::onLose()
 {
-  this->texts.bonus->setVisible(false);
+  this->bonusBackground->runAction(
+    Spawn::create(
+      FadeTo::create(0.2, 0),
+      Sequence::create(
+        MoveTo::create(0.2, Vec2(0, 0)),
+        CallFunc::create([=] () {
+          this->bonusBackground->setVisible(false);
+        }),
+        nullptr
+      ),
+      nullptr
+    )
+  );
 
   this->update();
 
@@ -154,16 +208,97 @@ void Counter::onStore()
  */
 void Counter::onStarStart()
 {
-  this->starBackground->_create();
+  if(this->bonusBackground->isVisible())
+  {
+    this->bonusBackground->runAction(
+      Spawn::create(
+        FadeTo::create(0.2, 0),
+        Sequence::create(
+          MoveTo::create(0.2, Vec2(0, 0)),
+          CallFunc::create([=] () {
+            this->bonusBackground->setVisible(false);
+
+            this->starBackground->runAction(
+              Spawn::create(
+                FadeTo::create(0.2, 150),
+                Sequence::create(
+                  CallFunc::create([=] () {
+                    this->starBackground->setVisible(true);
+                  }),
+                  MoveTo::create(0.2, Vec2(0, -80)),
+                  nullptr
+                ),
+                nullptr
+              )
+            );
+          }),
+          nullptr
+        ),
+        nullptr
+      )
+    );
+  }
+  else
+  {
+  }
 }
 
 void Counter::onStarFinish()
 {
-  this->starBackground->_destroy();
+  if(Application->environment->generator->bonus)
+  {
+    this->starBackground->runAction(
+      Spawn::create(
+        FadeTo::create(0.2, 0),
+        Sequence::create(
+          CallFunc::create([=] () {
+            this->starBackground->setVisible(false);
+          }),
+          MoveTo::create(0.2, Vec2(0, 0)),
+          nullptr
+        ),
+        nullptr
+      )
+    );
+  }
+  else
+  {
+    this->starBackground->runAction(
+      Spawn::create(
+        FadeTo::create(0.2, 0),
+        Sequence::create(
+          MoveTo::create(0.2, Vec2(0, 0)),
+          CallFunc::create([=] () {
+            this->starBackground->setVisible(false);
+
+            if(Application->state == Game::GAME)
+            {
+              this->bonusBackground->runAction(
+                Spawn::create(
+                  FadeTo::create(0.2, 255),
+                  Sequence::create(
+                    CallFunc::create([=] () {
+                      this->bonusBackground->setVisible(true);
+                    }),
+                    MoveTo::create(0.2, Vec2(0, -80)),
+                    nullptr
+                  ),
+                  nullptr
+                )
+              );
+            }
+          }),
+          nullptr
+        ),
+        nullptr
+      )
+    );
+  }
 }
 
 void Counter::onStarUpdate()
 {
+  this->starAction->setPercentage(Application->environment->starTimeElapsed / Application->environment->starTime * 100);
 }
 
 /**
@@ -178,14 +313,6 @@ void Counter::onCount()
       FadeTo::create(0.2, 255)
     );
   }
-
-  this->holder->runAction(
-    Sequence::create(
-      ScaleTo::create(0.0, 1.2),
-      ScaleTo::create(0.2, 1.0),
-      nullptr
-    )
-  );
 
   this->values.start += (Application->environment->star ? 2 : 1);
   this->values.current += (Application->environment->star ? 2 : 1);
@@ -229,7 +356,7 @@ void Counter::onRegular()
  *
  */
 void Counter::reset()
-{
+{Storage::set("application.score.best", 0);
   this->values.start = 0;
   this->values.current = 0;
   this->values.bonus = Generator::PLATES_FINISH;
@@ -258,6 +385,6 @@ void Counter::update()
 
   if(this->values.current > this->values.best)
   {
-    //this->on???;
+    this->onBest();
   }
 }

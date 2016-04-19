@@ -60,7 +60,9 @@ class Counter : public Background
   Entity* icon;
 
   Entity* starBackground;
-  ProgressTo* starAction;
+  Entity* bonusBackground;
+
+  ProgressTimer* starAction;
 
   struct Values {
     int current = 0;

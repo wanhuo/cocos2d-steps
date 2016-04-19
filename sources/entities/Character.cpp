@@ -935,6 +935,8 @@ void Character::onFinish()
       nullptr
     )
   );
+
+  Sound->play("character-finish");
 }
 
 /**

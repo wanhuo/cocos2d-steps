@@ -180,7 +180,7 @@ Plate* Generator::create()
           {
             plate->setType(Plate::ENERGY);
           }
-          else if(probably(2))
+          else if(probably(20))
           {
             plate->setType(Plate::STAR);
           }

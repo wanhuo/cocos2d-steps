@@ -202,7 +202,7 @@ void Environment::onTurn(bool action)
  */
 void Environment::onMenu()
 {
-  this->star = false;
+  this->finishStar();
 
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;
@@ -240,6 +240,8 @@ void Environment::onGame()
 
 void Environment::onLose()
 {
+  this->finishStar();
+
   this->stopAllActions();
 }
 
