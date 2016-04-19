@@ -227,7 +227,8 @@ Plate* Generator::create()
                 this->length++;
 
                 for(int i = 0; i < size; i++)
-                {                  this->preUpdate();
+                {
+                  this->preUpdate();
 
                   auto p = static_cast<Plate*>(Application->environment->plates->_create());
 
