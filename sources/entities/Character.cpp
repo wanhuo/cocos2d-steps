@@ -549,6 +549,7 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   }
 
   Application->environment->generator->create();
+  Application->environment->generator->destroy(true);
 
   this->onSound();
 

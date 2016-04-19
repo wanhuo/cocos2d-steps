@@ -133,6 +133,9 @@ void Plate::onCount()
     case FINISH:
     this->setTexture("plate-texture-state-2-finish.png");
     break;
+    case BONUS:
+    this->setTexture("plate-texture-state-2-bonus.png");
+    break;
   }
 
   if(this->special)
@@ -361,7 +364,8 @@ void Plate::setType(Type type, bool animated)
     break;
     case BONUS:
     {
-      this->setTexture("");
+      this->setTexture("plate-texture-state-1-bonus.png");
+      this->setRotation3D(Vec3(0, this->direction ? 180 : -90, 0));
     }
     break;
 
