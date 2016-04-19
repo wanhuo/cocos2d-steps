@@ -202,6 +202,8 @@ void Environment::onTurn(bool action)
  */
 void Environment::onMenu()
 {
+  this->star = false;
+
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;
 
@@ -312,6 +314,24 @@ void Environment::onFinish()
  *
  *
  */
+void Environment::startStar()
+{
+  this->star = true;
+
+  this->starTime = STAR_TIME;
+  this->starTimeElapsed = 0;
+}
+
+void Environment::finishStar()
+{
+  this->star = false;
+}
+
+/**
+ *
+ *
+ *
+ */
 void Environment::updateLight(float time)
 {
   auto x = this->character->getPositionX();
@@ -379,6 +399,24 @@ void Environment::updateGame(float time)
  *
  *
  */
+void Environment::updateStar(float time)
+{
+  if(this->star)
+  {
+    this->starTimeElapsed += time;
+
+    if(this->starTimeElapsed >= this->starTime)
+    {
+      this->finishStar();
+    }
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
 void Environment::updateCamera(float time)
 {
   auto position = Application->cameras.d->getPosition3D();
@@ -432,6 +470,8 @@ void Environment::update(float time)
   this->updateDusts(time);
   this->updateLight(time);
   //this->updateFishes(time);
+
+  this->updateStar(time);
 
   //this->updateCamera(time);
 

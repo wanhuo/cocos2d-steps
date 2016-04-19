@@ -272,19 +272,19 @@ void Game::onMenu()
   this->counter->onMenu();
 
   Menu::getInstance()->show();
+
+  this->counter->reset();
 }
 
 void Game::onGame()
 {
   this->stopAllActions();
 
-  Music->play("music-2", true);
   Music->volume(1.0);
+  Music->play("music-2", true);
 
   this->environment->onGame();
   this->counter->onGame();
-
-  this->counter->reset();
 }
 
 void Game::onLose()
@@ -318,6 +318,7 @@ void Game::onStore()
 
 void Game::onFinish()
 {
+  this->counter->onFinish();
   this->environment->onFinish();
 }
 

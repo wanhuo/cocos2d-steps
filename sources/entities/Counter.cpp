@@ -33,6 +33,7 @@ Counter::Counter(Node* parent)
 {
   this->holder = new BackgroundColor(this, Color4B::RED);
   this->holder->setContentSize(Size(0, 0));
+  this->holder->setCascadeOpacityEnabled(true);
 
   this->icon = new Entity("coins-icon.png", this, true);
 
@@ -40,12 +41,12 @@ Counter::Counter(Node* parent)
   this->texts.score = new Text("counter-score", this->holder, true);
   this->texts.coins = new Text("counter-coins", this, true);
   this->texts.best1 = new Text("counter-best", this, true);
-  this->texts.best2 = new Text("counter-new-best", this, true);
+  this->texts.best2 = new Text("counter-best-new", this, true);
+  this->texts.bonus = new Text("counter-bonus", this->holder, true);
 
   this->texts.best1->setPosition(Application->getCenter().x, Application->getHeight() - 300);
-  this->texts.best2->setPosition(Application->getCenter().x, Application->getHeight() - 300);
 
-  this->texts.score->setOpacity(0);
+  this->holder->setOpacity(0);
   this->texts.best1->setOpacity(0);
   this->texts.best2->setOpacity(0);
 
@@ -54,9 +55,9 @@ Counter::Counter(Node* parent)
   this->holder->setPosition(Application->getCenter().x, Application->getHeight() - 200);
   this->texts.name->setPosition(Application->getCenter().x, Application->getHeight() - 300);
   this->texts.score->setPosition(0, 0);
+  this->texts.bonus->setPosition(0, 100);
 
   this->reset();
-  this->update();
 
   this->icon->setGlobalZOrder(100);
   this->texts.coins->setGlobalZOrder(100);
@@ -73,17 +74,20 @@ Counter::~Counter()
  */
 void Counter::onMenu()
 {
-  this->texts.name->runAction(
-    FadeTo::create(0.2, 255)
+  this->update();
+
+  this->holder->runAction(
+    FadeTo::create(0.2, 0)
   );
 
-  this->texts.score->runAction(
-    FadeTo::create(0.2, 0)
+  this->texts.name->runAction(
+    FadeTo::create(0.2, 255)
   );
 
   this->texts.best1->runAction(
     FadeTo::create(0.2, 0)
   );
+
   this->texts.best2->runAction(
     FadeTo::create(0.2, 0)
   );
@@ -91,14 +95,34 @@ void Counter::onMenu()
 
 void Counter::onGame()
 {
+  if(!Application->environment->generator->bonus)
+  {
+    this->texts.bonus->setVisible(true);
+  }
+
+  this->update();
+
   this->texts.name->runAction(
     FadeTo::create(0.2, 0)
   );
 }
 
+void Counter::onFinish()
+{
+  if(Application->environment->generator->bonus)
+  {
+  }
+  else
+  {
+    this->texts.bonus->setVisible(false);
+  }
+}
+
 void Counter::onLose()
 {
-  this->texts.score->runAction(
+  this->update();
+
+  this->holder->runAction(
     FadeTo::create(0.2, 255)
   );
 
@@ -124,24 +148,33 @@ void Counter::onStore()
  *
  *
  */
+void Counter::onStar()
+{
+}
+
+/**
+ *
+ *
+ *
+ */
 void Counter::onCount()
 {
   if(this->values.current < 1) {
-    this->texts.score->runAction(
+    this->holder->runAction(
       FadeTo::create(0.2, 255)
     );
   }
 
   this->holder->runAction(
     Sequence::create(
-      ScaleTo::create(0.1, 1.2),
-      ScaleTo::create(0.5, 1.0),
+      ScaleTo::create(0.0, 1.2),
+      ScaleTo::create(0.2, 1.0),
       nullptr
     )
   );
 
-  this->values.start++;
-  this->values.current++;
+  this->values.start += (Application->environment->star ? 2 : 1);
+  this->values.current += (Application->environment->star ? 2 : 1);
 
   if(this->values.current > this->values.best)
   {
@@ -185,6 +218,7 @@ void Counter::reset()
 {
   this->values.start = 0;
   this->values.current = 0;
+  this->values.bonus = Generator::PLATES_FINISH;
   this->values.best = Storage::get("application.score.best");
 }
 
@@ -201,6 +235,7 @@ void Counter::save()
 void Counter::update()
 {
   this->texts.score->data(this->values.current);
+  this->texts.bonus->data(this->values.bonus - (Application->environment->character->plates.current ? Application->environment->character->plates.current->getIndex() : 0));
   this->texts.best1->data(this->values.best);
   this->texts.coins->data(this->values.coins);
   this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() - 60, Application->getHeight() - 60);

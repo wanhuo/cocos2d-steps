@@ -45,6 +45,7 @@ class Counter : public Background
     Text* coins;
     Text* best1;
     Text* best2;
+    Text* bonus;
   };
 
   /**
@@ -61,6 +62,7 @@ class Counter : public Background
   struct Values {
     int current = 0;
     int best = 0;
+    int bonus = 0;
 
     int start = 0;
 
@@ -80,8 +82,11 @@ class Counter : public Background
 
   virtual void onMenu();
   virtual void onGame();
+  virtual void onFinish();
   virtual void onLose();
   virtual void onStore();
+
+  virtual void onStar();
 
   virtual void onCount();
   virtual void onCoins();

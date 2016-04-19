@@ -56,6 +56,8 @@ class Star : public Pickup
   Star();
  ~Star();
 
+  virtual void onPickup();
+
   Star* deepCopy();
 };
 

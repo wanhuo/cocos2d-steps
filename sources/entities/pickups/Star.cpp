@@ -45,6 +45,23 @@ Star::~Star()
  *
  *
  */
+void Star::onPickup()
+{
+  Pickup::onPickup();
+
+  /**
+   *
+   *
+   *
+   */
+  Application->environment->startStar();
+}
+
+/**
+ *
+ *
+ *
+ */
 Star* Star::deepCopy()
 {
   return new Star;

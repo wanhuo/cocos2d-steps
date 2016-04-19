@@ -49,11 +49,18 @@
         "size": 80
       }
     ],
-    "counter-new-best": [
+    "counter-best-new": [
       {
         "title": "NEW BEST",
         "font": "Consolas",
         "size": 72
+      }
+    ],
+    "counter-bonus": [
+      {
+        "title": "$1",
+        "font": "Consolas",
+        "size": 20
       }
     ],
     "menu-tap": [

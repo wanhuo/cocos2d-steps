@@ -910,7 +910,7 @@ void Character::onFinish()
           MoveBy::create(0.5, Vec3(0, -20, 0))
         ),
         CallFunc::create([=] () {
-          Application->state = Game::GAME;
+          Application->changeState(Game::GAME);
 
           Application->environment->runAction(
             Shake::create(0.5, 0.2)

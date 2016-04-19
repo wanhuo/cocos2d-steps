@@ -82,14 +82,21 @@ class Environment : public Background
   const static int DUST_COUNT = 100;
   const static int FISH_COUNT = 2;
 
+  const static int STAR_TIME = 5;
+
   Environment(Node* parent);
  ~Environment();
+
+  bool star;
+
+  float starTime;
+  float starTimeElapsed;
 
   Light light;
 
   Character* character;
 
-  Generator* generator;
+  Generator* generator = nullptr;
 
   Pool* dusts;
 
@@ -138,9 +145,14 @@ class Environment : public Background
   virtual void onCopter();
   virtual void onFinish();
 
+  virtual void startStar();
+  virtual void finishStar();
+
   virtual void updateLight(float time);
   virtual void updateDusts(float time);
   virtual void updateFishes(float time);
+
+  virtual void updateStar(float time);
 
   virtual void updateCamera(float time);
 
