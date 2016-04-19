@@ -95,17 +95,17 @@ void Environment::create()
 
   this->characterActionHolder = new Background(this);
   this->characterActionHolder->setContentSize(Size(Application->getWidth(), 0));
-  this->characterActionHolder->setPosition(Vec2(0, 950));
+  this->characterActionHolder->setPosition(Vec2(0, 870));
   this->characterActionHolder->setCascadeOpacityEnabled(true);
   this->characterActionHolder->setCameraMask(4);
 
-  this->characterActionBackground = new BackgroundColor(this->characterActionHolder, Color4B(255, 255, 255, 50));
+  this->characterActionBackground = new BackgroundColor(this->characterActionHolder, Color4B(255, 255, 255, 150));
   this->characterActionBackground->setContentSize(Size(Application->getWidth() - 100, 40));
   this->characterActionBackground->setAnchorPoint(Vec2(0, 0));
   this->characterActionBackground->setPosition(Vec2(50, 10));
   this->characterActionBackground->setCameraMask(4);
 
-  this->characterAction = new BackgroundColor(this->characterActionHolder, Color4B(255, 255, 255, 50));
+  this->characterAction = new BackgroundColor(this->characterActionHolder, Color4B(255, 255, 255, 150));
   this->characterAction->setContentSize(Size(Application->getWidth() - 110, 30));
   this->characterAction->setAnchorPoint(Vec2(0, 0));
   this->characterAction->setPosition(Vec2(55, 15));
@@ -228,6 +228,8 @@ void Environment::onMenu()
   this->character->_create();
   this->character->reset();
 
+  this->setPosition3D(Vec3(0, 0, 0));
+
   this->plane->setPosition3D(Vec3(0, 0, 0));
   this->water->setRotation3D(Vec3(0, 0, 0));
   this->water->setPosition3D(Vec3(0, 0, 0));
@@ -278,6 +280,7 @@ void Environment::onFinish()
         this->generator->z = z;
 
         this->generator->resets++;
+        this->generator->currentLength += 100;
         this->generator->count = 0;
         this->generator->length = 10;
 

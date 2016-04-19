@@ -60,6 +60,7 @@ class Generator : public Ref
     int s2;
     int s3;
     int s4;
+    int s5;
   };
 
   Conditions conditions;
@@ -72,12 +73,13 @@ class Generator : public Ref
   public:
   const static int PLATES_START = 8;
   const static int PLATES_SAVE = 5;
-  const static int PLATES_FINISH = 30;
   const static int PLATES_FINISH_BONUS = 22;
-  const static int PLATES_PROBABILITY = 50;
+  const static int PLATES_PROBABILITY = 100;
 
   Generator();
  ~Generator();
+
+  int currentLength;
 
   float x;
   float y;

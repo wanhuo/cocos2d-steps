@@ -77,7 +77,7 @@ Counter::Counter(Node* parent)
   this->texts.score->setPosition(0, 0);
   this->texts.bonus->setPosition(this->bonusBackground->getWidth() / 2, this->bonusBackground->getHeight() / 2 - 12);
 
-  this->reset();
+  //this->reset();
 
   this->icon->setGlobalZOrder(100);
   this->texts.coins->setGlobalZOrder(100);
@@ -115,8 +115,11 @@ void Counter::onMenu()
 
 void Counter::onGame()
 {
+  this->values.bonus = Application->environment->generator->currentLength;
+
   if(!Application->environment->generator->bonus)
   {
+    this->bonusBackground->stopAllActions();
     this->bonusBackground->runAction(
       Spawn::create(
         FadeTo::create(0.2, 255),
@@ -146,6 +149,7 @@ void Counter::onFinish()
   }
   else
   {
+    this->bonusBackground->stopAllActions();
     this->bonusBackground->runAction(
       Spawn::create(
         FadeTo::create(0.2, 0),
@@ -164,6 +168,7 @@ void Counter::onFinish()
 
 void Counter::onLose()
 {
+  this->bonusBackground->stopAllActions();
   this->bonusBackground->runAction(
     Spawn::create(
       FadeTo::create(0.2, 0),
@@ -210,6 +215,7 @@ void Counter::onStarStart()
 {
   if(this->bonusBackground->isVisible())
   {
+    this->bonusBackground->stopAllActions();
     this->bonusBackground->runAction(
       Spawn::create(
         FadeTo::create(0.2, 0),
@@ -218,6 +224,7 @@ void Counter::onStarStart()
           CallFunc::create([=] () {
             this->bonusBackground->setVisible(false);
 
+            this->starBackground->stopAllActions();
             this->starBackground->runAction(
               Spawn::create(
                 FadeTo::create(0.2, 150),
@@ -247,6 +254,7 @@ void Counter::onStarFinish()
 {
   if(Application->environment->generator->bonus)
   {
+    this->starBackground->stopAllActions();
     this->starBackground->runAction(
       Spawn::create(
         FadeTo::create(0.2, 0),
@@ -263,6 +271,7 @@ void Counter::onStarFinish()
   }
   else
   {
+    this->starBackground->stopAllActions();
     this->starBackground->runAction(
       Spawn::create(
         FadeTo::create(0.2, 0),
@@ -273,6 +282,7 @@ void Counter::onStarFinish()
 
             if(Application->state == Game::GAME)
             {
+              this->bonusBackground->stopAllActions();
               this->bonusBackground->runAction(
                 Spawn::create(
                   FadeTo::create(0.2, 255),
@@ -359,7 +369,6 @@ void Counter::reset()
 {
   this->values.start = 0;
   this->values.current = 0;
-  this->values.bonus = Generator::PLATES_FINISH;
   this->values.best = Storage::get("application.score.best");
 }
 

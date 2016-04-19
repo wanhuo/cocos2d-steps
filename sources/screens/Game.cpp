@@ -268,6 +268,8 @@ void Game::onRestorePurchases()
  */
 void Game::onMenu()
 {
+  this->setPosition3D(Vec3(0, 0, 0));
+
   this->environment->onMenu();
   this->counter->onMenu();
 

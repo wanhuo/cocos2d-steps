@@ -81,22 +81,32 @@ void Up::onPickup()
 
     if(plates.plates[Plate::LEFT])
     {
+      if(plates.plates[Plate::LEFT] && plates.plates[Plate::LEFT]->type == Plate::TUNNEL)
+      {
+        break;
+      }
+
       l++;
       element = plates.plates[Plate::LEFT];
     }
     else
     {
+      if(plates.plates[Plate::RIGHT] && plates.plates[Plate::RIGHT]->type == Plate::TUNNEL)
+      {
+        break;
+      }
+
       r++;
       element = plates.plates[Plate::RIGHT];
     }
 
-    if(element->type == Plate::FINISH)
-    {
-      break;
-    }
-
     if(!element || element == NULL || element->behavior == Plate::DYNAMIC || element->type == Plate::SPIKES || element->type == Plate::GATE || element->type == Plate::SAW || element->type == Plate::DOWN)
     {
+      if(element->type == Plate::FINISH)
+      {
+        break;
+      }
+
       if(i >= count - 1)
       {
         Application->environment->generator->create();

@@ -45,7 +45,7 @@ Plate* Generator::create()
 {
   if(this->unless <= 0)
   {
-    if((!this->bonus && this->index <= PLATES_FINISH) || (this->bonus && this->index <= PLATES_FINISH_BONUS))
+    if((!this->bonus && this->index <= this->currentLength) || (this->bonus && this->index <= PLATES_FINISH_BONUS))
     {
       this->preUpdate();
 
@@ -58,7 +58,7 @@ Plate* Generator::create()
       plate->setPositionZ(this->z - 0);
 
       plate->setIndex(this->index);
-
+  
       if(this->bonus)
       {
         if(this->index < 1)
@@ -96,7 +96,7 @@ Plate* Generator::create()
             plate->setType(Plate::BEST);
           }
 
-          if(this->index == PLATES_FINISH)
+          if(this->index == this->currentLength)
           {
             plate->setType(Plate::FINISH);
           }
@@ -197,18 +197,19 @@ Plate* Generator::create()
               this->conditions.s1 = 2;
               this->conditions.s2 = 2;
             }
-            else if(probably(5))
+            else if(this->conditions.s5 < 0 && probably(5))
             {
               plate->setType(Plate::COPTER);
 
               this->conditions.s1 = 2;
               this->conditions.s2 = 2;
+              this->conditions.s5 = 10;
             }
-            else if(this->count > 1 && probably(100))
+            else if(this->count > 1 && probably(2) && this->resets > 0)
             {
               int size = random(5, 8) + 1;
 
-              if(this->index + size < PLATES_FINISH)
+              if(this->index + size < this->currentLength)
               {
                 this->unless = size;
 
@@ -301,6 +302,7 @@ Plate* Generator::create()
   this->conditions.s2 = 2;
   this->conditions.s3 = 2;
   this->conditions.s4 = 2;
+  this->conditions.s5 = 2;
 
 
                   p->setPositionX(this->x - 0);
@@ -430,6 +432,7 @@ void Generator::postUpdate()
   this->conditions.s2--;
   this->conditions.s3--;
   this->conditions.s4--;
+  this->conditions.s5--;
 
   if(this->direction)
   {
@@ -454,6 +457,8 @@ void Generator::clear()
   this->y = 0;
   this->z = 0;
 
+  this->currentLength = 25;
+
   this->index = 0;
   this->count = 0;
   this->resets = 0;
@@ -464,6 +469,7 @@ void Generator::clear()
   this->conditions.s2 = 0;
   this->conditions.s3 = 0;
   this->conditions.s4 = 0;
+  this->conditions.s5 = 0;
 
   this->direction = true;
   this->bonus = false;

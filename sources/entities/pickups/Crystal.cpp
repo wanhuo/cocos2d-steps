@@ -58,7 +58,7 @@ void Crystal::onPickup()
 
     if(next)
     {
-      if(next->getDecorations().size() || next->behavior == Plate::DYNAMIC)
+      if(next->getDecorations().size() || next->behavior == Plate::DYNAMIC || next->type == Plate::FINISH)
       {
         continue;
       }
