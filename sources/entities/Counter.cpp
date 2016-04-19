@@ -375,6 +375,8 @@ void Counter::reset()
 void Counter::save()
 {
   Storage::set("application.score.best", this->values.best);
+
+  Analytics::sendEvent("Application", "application.events.onLose", ("User is lost: (" + patch::to_string(this->values.current) + "/" + patch::to_string(this->values.best) + ")").c_str());
 }
 
 /**

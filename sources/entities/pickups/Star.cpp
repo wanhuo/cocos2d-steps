@@ -31,7 +31,7 @@
 Star::Star()
 : Pickup("star.obj")
 {
-  this->setColor(Color3B(237, 234, 0));
+  this->setTexture("star-texture.png");
 
   this->glow->setColor(Color3B(252.0, 252.0, 136.0));
 }
@@ -57,6 +57,16 @@ void Star::onPickup()
   Application->environment->startStar();
 
   Sound->play("star-" + patch::to_string(random(1, 4)));
+}
+
+/**
+ *
+ *
+ *
+ */
+const char* Star::getParticleTexture()
+{
+  return "star-texture.png";
 }
 
 /**

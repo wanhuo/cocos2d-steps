@@ -211,7 +211,7 @@ Plate* Generator::create()
 
               if(this->index + size < this->currentLength)
               {
-                this->unless = size;
+                this->unless = size + 1;
 
                 plate->setPositionX(this->x - 0);
                 plate->setPositionY(this->y - 1);

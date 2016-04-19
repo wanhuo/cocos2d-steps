@@ -192,6 +192,8 @@ Entity3D* Environment::createParticle(float x, float y, float z)
  */
 void Environment::onTurn(bool action)
 {
+  this->setPosition3D(Vec3(0, 0, 0));
+
   this->character->onTurn(action);
 }
 
@@ -286,7 +288,7 @@ void Environment::onFinish()
 
         this->generator->index = 0;
 
-        this->generator->direction = false;
+        this->generator->direction = !this->generator->direction;
         this->generator->bonus = !this->generator->bonus;
 
         this->character->plates.current = nullptr;

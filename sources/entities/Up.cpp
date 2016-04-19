@@ -100,19 +100,23 @@ void Up::onPickup()
       element = plates.plates[Plate::RIGHT];
     }
 
-    if(!element || element == NULL || element->behavior == Plate::DYNAMIC || element->type == Plate::SPIKES || element->type == Plate::GATE || element->type == Plate::SAW || element->type == Plate::DOWN)
+    if(element)
     {
       if(element->type == Plate::FINISH)
       {
         break;
       }
+    }
 
+    if(!element || element == NULL || element->behavior == Plate::DYNAMIC || element->type == Plate::SPIKES || element->type == Plate::GATE || element->type == Plate::SAW || element->type == Plate::DOWN)
+    {
       if(i >= count - 1)
       {
-        Application->environment->generator->create();
-
-        count++;
-        remove++;
+        if(Application->environment->generator->create())
+        {
+          count++;
+          remove++;
+        }
       }
     }
 
