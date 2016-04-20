@@ -61,6 +61,7 @@ class Generator : public Ref
     int s3;
     int s4;
     int s5;
+    int s6;
   };
 
   Conditions conditions;

@@ -82,7 +82,7 @@ void Cub::onCreate()
           this->onSound();
 
           Application->environment->runAction(
-            Shake::create(0.5, 0.2)
+            Shake::create(0.5, 0.1)
           );
         }),
         EaseSineInOut::create(

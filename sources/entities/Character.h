@@ -39,7 +39,7 @@ class Character : public Cube
    *
    */
   private:
-  const static int STATE_COPTER_TURNS = 10;
+  const static int STATE_COPTER_TURNS = 5;
 
   /**
    *

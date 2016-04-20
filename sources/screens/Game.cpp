@@ -72,7 +72,7 @@ Game::Game()
   this->cameras.s->setDepth(3);
   //this->cameras.e->setDepth(3);
 
-  float x = -(this->getWidth() / SCALE_FACTOR) / 2 - 39.25;
+  float x = -(this->getWidth() / SCALE_FACTOR) / 2 - 39.35;
   float y = -(this->getHeight() / SCALE_FACTOR) / 2 + 55;
   float z = 45;
 

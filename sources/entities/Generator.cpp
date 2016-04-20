@@ -115,6 +115,7 @@ Plate* Generator::create()
 
               this->conditions.s1 = 2;
               this->conditions.s2 = 2;
+              this->conditions.s6 = 15;
             }
             else if(this->conditions.s2 < 1 && probably(10))
             {
@@ -123,33 +124,33 @@ Plate* Generator::create()
               this->conditions.s1 = 2;
               this->conditions.s2 = 2;
             }
-            else if((this->length - this->count) > 1 && this->conditions.s1 < 1 && this->direction && probably(10))
+            else if((this->length - this->count) > 1 && this->conditions.s2 < 0 && this->direction && probably(10))
             {
               plate->setType(Plate::MOVED1);
 
               this->length++;
               this->conditions.s2 = 2;
             }
-            else if((this->length - this->count) > 1 && this->conditions.s1 < 1 && !this->direction && probably(10))
+            else if((this->length - this->count) > 1 && this->conditions.s2 < 0 && !this->direction && probably(10))
             {
               plate->setType(Plate::MOVED2);
 
               this->length++;
               this->conditions.s2 = 2;
             }
-            else if(this->count >= this->length && this->conditions.s1 < 1 && this->direction && probably(10))
+            else if(this->count >= this->length && this->conditions.s2 < 0 && this->direction && probably(10))
             {
               plate->setType(Plate::MOVED3);
 
               this->conditions.s2 = 2;
             }
-            else if(this->count >= this->length && this->conditions.s1 < 1 && !this->direction && probably(10))
+            else if(this->count >= this->length && this->conditions.s2 < 0 && !this->direction && probably(10))
             {
               plate->setType(Plate::MOVED4);
 
               this->conditions.s2 = 2;
             }
-            else if(this->count > 0 && this->count < this->length && this->conditions.s1 < 1 && probably(10))
+            else if(this->count > 0 && this->count < this->length && this->conditions.s1 < 1 && this->conditions.s2 < 0 && probably(10))
             {
               plate->setType(Plate::MOVED5);
 
@@ -205,13 +206,13 @@ Plate* Generator::create()
               this->conditions.s2 = 2;
               this->conditions.s5 = 10;
             }
-            else if(this->count > 1 && probably(2) && this->resets > 0)
+            else if(this->count > 1 && this->conditions.s6 < 0 && probably(5) && this->resets > 0 && false)
             {
               int size = random(5, 8) + 1;
 
               if(this->index + size < this->currentLength)
               {
-                this->unless = size + 1;
+                this->unless = size;
 
                 plate->setPositionX(this->x - 0);
                 plate->setPositionY(this->y - 1);
@@ -433,6 +434,7 @@ void Generator::postUpdate()
   this->conditions.s3--;
   this->conditions.s4--;
   this->conditions.s5--;
+  this->conditions.s6--;
 
   if(this->direction)
   {
@@ -470,6 +472,7 @@ void Generator::clear()
   this->conditions.s3 = 0;
   this->conditions.s4 = 0;
   this->conditions.s5 = 0;
+  this->conditions.s6 = 0;
 
   this->direction = true;
   this->bonus = false;

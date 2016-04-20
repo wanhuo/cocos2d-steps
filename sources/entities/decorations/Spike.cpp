@@ -65,7 +65,7 @@ void Spike::onCreate()
               MoveBy::create(0.2, Vec3(0, 0.8, 0)),
               DelayTime::create(0.2),
               MoveBy::create(0.2, Vec3(0, -0.8, 0)),
-              DelayTime::create(0.2),
+              DelayTime::create(0.4),
               nullptr
             )
           )
@@ -93,7 +93,7 @@ void Spike::onCreate()
               CallFunc::create([=] () {
                 this->enable = false;
               }),
-              DelayTime::create(0.2),
+              DelayTime::create(0.4),
               nullptr
             )
           )
