@@ -105,6 +105,7 @@ Game::Game()
   this->environment->create();
 
   this->s = new BackgroundColor(this, Color4B(255, 255, 255, 0));
+  this->s->setGlobalZOrder(200);
   this->s->setCameraMask(4);
 
   Music->play("music-1");

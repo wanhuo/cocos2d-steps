@@ -55,7 +55,7 @@ Counter::Counter(Node* parent)
   this->starAction->getSprite()->setScale(0.8);
   this->starAction->setPosition(this->starBackground->getWidth() / 2, this->starBackground->getHeight() / 2);
 
-  this->icon = new Entity3D("diamond.obj", Application, true);
+  this->icon = new Entity3D("diamond.obj", this, true);
   this->icon->setTexture("diamond-texture.png");
   this->icon->setScale(0.8);
   this->icon->setCameraMask(2);
@@ -406,7 +406,7 @@ void Counter::update()
   this->texts.bonus->data(this->values.bonus - (Application->environment->character->plates.current ? Application->environment->character->plates.current->getIndex() : 0));
   this->texts.best1->data(this->values.best);
   this->texts.coins->data(this->values.coins);
-  this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() - 60, Application->getHeight() - 60);
+  this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() / 2 - 60, Application->getHeight() - 60);
 
   //this->icon->setPosition(this->texts.coins->getPositionX() + this->texts.coins->getWidth() / 2 + 30, Application->getHeight() - 50);
 
