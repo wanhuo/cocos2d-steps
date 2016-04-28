@@ -60,17 +60,17 @@ Game::Game()
   this->cameras.d = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
   this->cameras.c = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
   this->cameras.s = Camera::create();
-  //this->cameras.e = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
+  this->cameras.e = Camera::create();
 
   this->cameras.d->setCameraFlag(CameraFlag::DEFAULT);
   this->cameras.c->setCameraFlag(CameraFlag::USER1);
   this->cameras.s->setCameraFlag(CameraFlag::USER2);
-  //this->cameras.e->setCameraFlag(CameraFlag::USER3);
+  this->cameras.e->setCameraFlag(CameraFlag::USER3);
 
   this->cameras.d->setDepth(1);
   this->cameras.s->setDepth(2);
   this->cameras.c->setDepth(3);
-  //this->cameras.e->setDepth(4);
+  this->cameras.e->setDepth(4);
 
   float x = -(this->getWidth() / SCALE_FACTOR) / 2 - 39.35;
   float y = -(this->getHeight() / SCALE_FACTOR) / 2 + 55;
@@ -97,7 +97,7 @@ Game::Game()
   this->addChild(this->cameras.d);
   this->addChild(this->cameras.s);
   this->addChild(this->cameras.c);
-  //this->addChild(this->cameras.e);
+  this->addChild(this->cameras.e);
 
   this->counter = new Counter(this);
   this->environment = new Environment(this);
@@ -105,8 +105,7 @@ Game::Game()
   this->environment->create();
 
   this->s = new BackgroundColor(this, Color4B(255, 255, 255, 0));
-  this->s->setGlobalZOrder(200);
-  this->s->setCameraMask(4);
+  this->s->setCameraMask(8);
 
   Music->play("music-1");
 }

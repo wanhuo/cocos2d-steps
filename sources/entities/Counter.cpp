@@ -55,7 +55,7 @@ Counter::Counter(Node* parent)
   this->starAction->getSprite()->setScale(0.8);
   this->starAction->setPosition(this->starBackground->getWidth() / 2, this->starBackground->getHeight() / 2);
 
-  this->icon = new Entity3D("diamond.obj", this, true);
+  this->icon = new Entity3D("diamond.obj", Application, true);
   this->icon->setTexture("diamond-texture.png");
   this->icon->setScale(0.8);
   this->icon->setCameraMask(2);
