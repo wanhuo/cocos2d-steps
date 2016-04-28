@@ -95,7 +95,7 @@ class Generator : public Ref
   bool direction;
   bool bonus;
 
-  virtual Plate* create();
+  virtual Plate* create(bool animated = false);
   virtual void destroy(bool manual = false);
 
   virtual void preUpdate();

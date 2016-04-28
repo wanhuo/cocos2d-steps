@@ -102,7 +102,7 @@ void Up::onPickup()
     {
       if(i >= count - 1)
       {
-        if(Application->environment->generator->create())
+        if(Application->environment->generator->create(true))
         {
           count++;
           remove++;
@@ -178,7 +178,7 @@ void Up::onPickup()
       Sequence::create(
         DelayTime::create(time),
         CallFunc::create([=] () {
-          Application->environment->generator->create();
+          Application->environment->generator->create(true);
         }),
         nullptr
       ), count - remove

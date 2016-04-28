@@ -41,7 +41,7 @@ Generator::~Generator()
  *
  *
  */
-Plate* Generator::create()
+Plate* Generator::create(bool animated)
 {
   if(this->unless <= 0)
   {
@@ -222,7 +222,10 @@ Plate* Generator::create()
       plate->setStartPositionY(this->y);
       plate->setStartPositionZ(this->z);
 
-      plate->add();
+      if(animated)
+      {
+        plate->add();
+      }
 
       this->postUpdate();
 

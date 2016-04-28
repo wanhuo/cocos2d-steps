@@ -563,7 +563,7 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
     particle->setColor(color);
   }
 
-  Application->environment->generator->create();
+  Application->environment->generator->create(true);
   Application->environment->generator->destroy(true);
 
   this->onSound();
