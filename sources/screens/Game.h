@@ -37,26 +37,25 @@
 
 #include "Generator.h"
 
-#include "Dust.h"
-
 #include "Environment.h"
+#include "Ground.h"
 #include "Cube.h"
 #include "Shadow.h"
 #include "Decoration.h"
 #include "Special.h"
-#include "Pickup.h"
 #include "Up.h"
 #include "Down.h"
+#include "Plate.h"
+#include "Character.h"
+#include "Particle.h"
+
+#include "Pickup.h"
 #include "Diamond.h"
 #include "Crystal.h"
 #include "Energy.h"
 #include "Star.h"
 #include "Heart.h"
-#include "Plate.h"
-#include "Character.h"
-#include "Particle.h"
-#include "Fish.h"
-#include "Ripple.h"
+#include "Color.h"
 
 #include "Start.h"
 #include "Spike.h"
@@ -74,8 +73,6 @@
 #include "Menu.h"
 #include "Finish.h"
 #include "Store.h"
-
-#include "Color.h"
 
 #include "RotateGlobalBy.h"
 #include "Shake.h"
@@ -157,6 +154,8 @@ class Game : public Screen
 
   Game();
  ~Game();
+
+  BackgroundColor* s;
 
   Environment* environment;
   Cameras cameras;

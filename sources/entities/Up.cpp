@@ -81,21 +81,11 @@ void Up::onPickup()
 
     if(plates.plates[Plate::LEFT])
     {
-      if(plates.plates[Plate::LEFT] && plates.plates[Plate::LEFT]->type == Plate::TUNNEL)
-      {
-        break;
-      }
-
       l++;
       element = plates.plates[Plate::LEFT];
     }
     else
     {
-      if(plates.plates[Plate::RIGHT] && plates.plates[Plate::RIGHT]->type == Plate::TUNNEL)
-      {
-        break;
-      }
-
       r++;
       element = plates.plates[Plate::RIGHT];
     }
@@ -148,15 +138,6 @@ void Up::onPickup()
               MoveBy::create(time* count / 2, Vec3(-0.75 * l, 0, 0.75 * r))
             )
           );
-
-          for(int i = 0; i < Application->environment->dusts->count; i++)
-          {
-            Application->environment->dusts->element(i)->runAction(
-              EaseSineInOut::create(
-                MoveBy::create(time* count, Vec2(100.5 * l, -100.5 * r))
-              )
-            );
-          }
         }),
         EaseSineIn::create(
           MoveBy::create(time * count / 2, Vec3(0.75 * l, 1.0 + 0.2 * remove, -0.75 * r))

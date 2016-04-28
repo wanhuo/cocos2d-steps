@@ -61,8 +61,6 @@ void Decoration::onCreate()
    *
    *
    */
-  this->removed = false;
-
   this->setRotation3D(Vec3(0, 0, 0));
 }
 
@@ -94,18 +92,6 @@ void Decoration::setPlate(Plate* plate, bool animated)
   this->plate = plate;
 
   this->setPosition3D(plate->getPosition3D());
-
-  if(animated)
-  {
-    this->runAction(
-      Spawn::create(
-        EaseBounceOut::create(
-          MoveBy::create(0.5, Vec3(0, 1, 0))
-        ),
-        nullptr
-      )
-    );
-  }
 }
 
 /**
@@ -113,33 +99,6 @@ void Decoration::setPlate(Plate* plate, bool animated)
  *
  *
  */
-void Decoration::remove(bool force)
-{
-  this->removed = true;
-
-  if(force)
-  {
-    this->_destroy(true);
-  }
-  else
-  {
-    this->runAction(
-      Sequence::create(
-        EaseSineInOut::create(
-          MoveBy::create(0.2, Vec3(0, 1.0, 0))
-        ),
-        EaseSineInOut::create(
-          MoveBy::create(0.4, Vec3(0, -6.0, 0))
-        ),
-        CallFunc::create([=] () {
-          this->_destroy(true);
-        }),
-        nullptr
-      )
-    );
-  }
-}
-
 Character::Crash Decoration::status()
 {
   return Character::Crash::UNDEFINED;

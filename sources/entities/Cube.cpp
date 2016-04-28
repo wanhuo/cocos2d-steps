@@ -63,7 +63,6 @@ void Cube::onCreate()
    *
    */
   this->createShadow();
-  this->setOpacity(255);
 }
 
 void Cube::onDestroy(bool action)
@@ -113,6 +112,8 @@ void Cube::update(float time)
 {
   auto position = this->getPosition3D();
 
+  position.y -= 0.4;
+
   if(this->shadow)
   {
     this->shadow->setPositionX(position.x);
@@ -126,6 +127,4 @@ void Cube::update(float time)
       this->shadow->setOpacity(max(0.0f, min(30.0f, 30.0f - (position.y * this->shadow->getSize()))));
     }
   }
-
-  this->setOpacity(position.y >= 0 ? 255 : max(0.0f, 255.0f + (position.y * DEPTH)));
 }

@@ -55,7 +55,25 @@ Counter::Counter(Node* parent)
   this->starAction->getSprite()->setScale(0.8);
   this->starAction->setPosition(this->starBackground->getWidth() / 2, this->starBackground->getHeight() / 2);
 
-  this->icon = new Entity("coins-icon.png", this, true);
+  this->icon = new Entity3D("diamond.obj", Application, true);
+  this->icon->setTexture("diamond-texture.png");
+  this->icon->setScale(0.8);
+  this->icon->setCameraMask(2);
+  this->icon->setLightMask(2);
+  this->icon->runAction(
+    RepeatForever::create(
+      RotateBy::create(1.0, Vec3(0, 100, 0))
+    )
+  );
+
+  // TODO: Remove light to the own class.
+  auto light = DirectionLight::create(Vec3(1.0, -1.0, -1.0), Color3B(200, 200, 200));
+  light->setLightFlag(LightFlag::LIGHT1);
+  this->addChild(light);
+
+  auto light2 = AmbientLight::create(Color3B(120, 120, 120));
+  light2->setLightFlag(LightFlag::LIGHT1);
+  this->addChild(light2);
 
   this->texts.name = new Text("name", this, true);
   this->texts.score = new Text("counter-score", this->holder, true);
@@ -77,7 +95,7 @@ Counter::Counter(Node* parent)
   this->texts.score->setPosition(0, 0);
   this->texts.bonus->setPosition(this->bonusBackground->getWidth() / 2, this->bonusBackground->getHeight() / 2 - 12);
 
-  //this->reset();
+  this->reset();
 
   this->icon->setGlobalZOrder(100);
   this->texts.coins->setGlobalZOrder(100);
@@ -333,8 +351,6 @@ void Counter::onCount()
   }
 
   this->update();
-
-  Application->environment->water->setColor(Application->environment->color->get());
 }
 
 void Counter::onCoins()
@@ -392,7 +408,7 @@ void Counter::update()
   this->texts.coins->data(this->values.coins);
   this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() - 60, Application->getHeight() - 60);
 
-  this->icon->setPosition(this->texts.coins->getPositionX() + this->texts.coins->getWidth() / 2 + 30, Application->getHeight() - 50);
+  //this->icon->setPosition(this->texts.coins->getPositionX() + this->texts.coins->getWidth() / 2 + 30, Application->getHeight() - 50);
 
   if(this->values.current > this->values.best)
   {

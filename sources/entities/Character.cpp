@@ -29,16 +29,26 @@
  *
  */
 Character::Character()
-: Cube((patch::to_string("cube") + patch::to_string(random(1, 10)) + patch::to_string(".obj")).c_str())
+: Cube("character.obj")
 {
-  this->shadow = new Shadow("plate-down-shadow.obj", Application->environment->plane);
+  this->shadow = new Shadow("character-shadow.obj", Application->environment->plane);
   this->shadow->setColor(Color3B(0, 0, 0));
   this->shadow->setMaxScale(Vec3(2.5, 2.5, 2.5));
 
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
 
+  if(false)
+  {
+    // TODO: Assign saved color;
+  }
+  else
+  {
+    this->color = Color3B(224.0, 95.0, 171.0);
+  }
+
   this->setTexture("character-texture.png");
+  this->setColor(this->color);
 
   this->setScheduleUpdate(true);
 }
@@ -54,6 +64,26 @@ Character::~Character()
  */
 void Character::reset()
 {
+  this->plane->setPosition3D(Vec3(0.0, 0.0, 0.0));
+  this->plane->setRotation3D(Vec3(0.0, 0.0, 0.0));
+
+  this->plane->stopAllActions();
+
+  this->plane->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        ScaleTo::create(0.2, 1.0, 1.2, 1.0),
+        ScaleTo::create(0.2, 1.0, 1.0, 1.0),
+        nullptr
+      )
+    )
+  );
+
+  /**
+   *
+   *
+   *
+   */
   this->changeState(NORMAL);
 
   this->botEnabled = false;
@@ -82,29 +112,10 @@ void Character::reset()
   this->plates.current = nullptr;
   this->plates.previous = nullptr;
 
-  this->setPosition3D(Vec3(0, -1.1, 0));
-  this->setRotation3D(Vec3(0, 0, 0));
-
-  this->setOpacity(255);
+  this->setPosition3D(Vec3(0.0, 1.3, 0.0));
+  this->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
   this->stopAllActions();
-  this->plane->stopAllActions();
-
-  this->runAction(
-    EaseBounceOut::create(
-      MoveTo::create(0.5, Vec3(0.0, 0.9, 0.0))
-    )
-  );
-
-  this->plane->runAction(
-    RepeatForever::create(
-      Sequence::create(
-        ScaleTo::create(0.2, 1.0, 1.2, 1.0),
-        ScaleTo::create(0.2, 1.0, 1.0, 1.0),
-        nullptr
-      )
-    )
-  );
 }
 
 /**
@@ -260,7 +271,7 @@ void Character::onTurnLeft(bool action, bool set)
           RotateGlobalBy::create(0.1, Vec3(-90, 0, 0)),
           Sequence::create(
             MoveBy::create(0.05, Vec3(0.0, 0.2, -0.75)),
-            MoveBy::create(0.05, Vec3(0.0, -0.2 - (this->getPositionY() - 0.9), -0.75)),
+            MoveBy::create(0.05, Vec3(0.0, -0.2 - (this->getPositionY() - 1.3), -0.75)),
             CallFunc::create([=] () {
               if(next)
               {
@@ -338,7 +349,7 @@ void Character::onTurnRight(bool action, bool set)
           RotateGlobalBy::create(0.1, Vec3(0, 0, -90)),
           Sequence::create(
             MoveBy::create(0.05, Vec3(0.75, 0.2, 0)),
-            MoveBy::create(0.05, Vec3(0.75, -0.2 - (this->getPositionY() - 0.9), 0)),
+            MoveBy::create(0.05, Vec3(0.75, -0.2 - (this->getPositionY() - 1.3), 0)),
             CallFunc::create([=] () {
               if(next)
               {
@@ -525,27 +536,31 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
 
   Application->counter->onCount();
 
-  string texture = "character-texture.png";
+  auto texture = "character-texture.png";
+  auto color = this->color;
 
   for(Decoration* decoration : plate->getDecorations())
   {
     if(decoration->removable)
     {
       texture = decoration->getParticleTexture();
+      color = Color3B::WHITE;
     }
 
     if(proceed)
     {
       decoration->onPickup();
 
-      plate->clearDecorations(!this->manual);
+      plate->clearDecorations();
     }
   }
 
   for(int i = 0; i < 10; i++)
   {
     auto particle = Application->environment->createParticle(x, y - 0.5, z);
+
     particle->setTexture(texture);
+    particle->setColor(color);
   }
 
   Application->environment->generator->create();
@@ -567,8 +582,6 @@ void Character::onLandFail(Turn turn, Plate* plate)
 
   this->changeState(FALL);
 
-  Application->environment->createRipple(x, z, 2);
-
   switch(turn)
   {
     case LEFT:
@@ -578,7 +591,6 @@ void Character::onLandFail(Turn turn, Plate* plate)
         RotateBy::create(0.5, Vec3(-125, 0, 0)),
         Sequence::create(
           DelayTime::create(0.2),
-          FadeOut::create(0.3),
           CallFunc::create([=] () {
           Application->changeState(Game::LOSE);
           }),
@@ -595,7 +607,6 @@ void Character::onLandFail(Turn turn, Plate* plate)
         RotateBy::create(0.5, Vec3(0, 0, 125)),
         Sequence::create(
           DelayTime::create(0.2),
-          FadeOut::create(0.3),
           CallFunc::create([=] () {
           Application->changeState(Game::LOSE);
           }),
@@ -640,26 +651,10 @@ void Character::onMoveRight()
  */
 void Character::onEnvironmentMoveLeft()
 {
-  for(int i = 0; i < Application->environment->dusts->count; i++)
-  {
-    Application->environment->dusts->element(i)->runAction(
-      EaseSineInOut::create(
-        MoveBy::create(0.25, Vec2(100.5, -100.5))
-      )
-    );
-  }
 }
 
 void Character::onEnvironmentMoveRight()
 {
-  for(int i = 0; i < Application->environment->dusts->count; i++)
-  {
-    Application->environment->dusts->element(i)->runAction(
-      EaseSineInOut::create(
-        MoveBy::create(0.25, Vec2(-100.5, -100.5))
-      )
-    );
-  }
 }
 
 /**
@@ -792,7 +787,7 @@ void Character::onCrash(Crash crash)
 
 void Character::onHit()
 {
-  this->plates.current->clearDecorations(true);
+  this->plates.current->clearDecorations();
 
   auto x = this->getPositionX();
   auto y = this->getPositionY();
@@ -857,8 +852,6 @@ void Character::onCopter()
 
 void Character::onFinish()
 {
-  Application->changeState(Game::FINISH);
-
   this->plane->stopAllActions();
   this->plane->runAction(
       Sequence::create(
@@ -909,16 +902,11 @@ void Character::onFinish()
         ),
         CallFunc::create([=] () {
           Sound->play("character-finish-2");
-
-          this->shadow->setVisible(false);
         }),
         EaseSineOut::create(
           MoveBy::create(0.5, Vec3(0, 18, 0))
         ),
         DelayTime::create(0.5),
-        CallFunc::create([=] () {
-        this->shadow->setVisible(true);
-        }),
         EaseSineIn::create(
           MoveBy::create(0.5, Vec3(0, -20, 0))
         ),
@@ -945,6 +933,18 @@ void Character::onFinish()
         }),
         nullptr
       ),
+      nullptr
+    )
+  );
+
+  Application->s->runAction(
+    Sequence::create(
+      DelayTime::create(1.1),
+      FadeIn::create(0.5),
+      CallFunc::create([=] () {
+        Application->changeState(Game::FINISH);
+      }),
+      FadeOut::create(0.5),
       nullptr
     )
   );

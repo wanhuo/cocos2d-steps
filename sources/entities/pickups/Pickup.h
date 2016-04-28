@@ -64,6 +64,8 @@ class Pickup : public Decoration
   virtual void onPickup();
 
   virtual void setPlate(Plate* plate, bool animated = true);
+
+  virtual void update(float time);
 };
 
 #endif

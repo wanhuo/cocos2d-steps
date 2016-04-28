@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _SPECIAL_H_
-#define _SPECIAL_H_
+#ifndef _COLOR_H_
+#define _COLOR_H_
 
 #include "Game.h"
 
@@ -31,14 +31,7 @@
  *
  *
  */
-class Plate;
-
-/**
- *
- *
- *
- */
-class Special : public Cube
+class Color : public Pickup
 {
   /**
    *
@@ -46,7 +39,6 @@ class Special : public Cube
    *
    */
   private:
-  vector<Decoration*> decorations;
 
   /**
    *
@@ -54,7 +46,6 @@ class Special : public Cube
    *
    */
   protected:
-  Plate* plate;
 
   /**
    *
@@ -62,20 +53,17 @@ class Special : public Cube
    *
    */
   public:
-  Special(string file, Node* parent = nullptr);
-  Special();
- ~Special();
+  Color();
+ ~Color();
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
-  virtual vector<Decoration*> &getDecorations();
+  virtual void onPickup();
 
-  virtual void setPlate(Plate* plate);
+  virtual void setPlate(Plate* plate, bool animated = true);
 
-  virtual void clearDecorations();
-
-  virtual Special* deepCopy();
+  Color* deepCopy();
 };
 
 #endif

@@ -37,10 +37,11 @@ Pickup::Pickup(const char* file)
   this->shadow->setColor(Color3B(0, 0, 0));
 
   this->window = BillBoard::create();
-  this->addChild(this->window);
+  this->window->_destroy();
+  Application->environment->plane->addChild(this->window);
 
   this->glow = new Entity("glow.png", this->window, true);
-  this->glow->setScale(0.008);
+  this->glow->setScale(0.011);
 
   this->setScheduleUpdate(true);
 }
@@ -69,11 +70,20 @@ void Pickup::onCreate()
       RotateBy::create(1.0, Vec3(0, 100, 0))
     )
   );
+
+  this->window->_create();
 }
 
 void Pickup::onDestroy(bool action)
 {
   Decoration::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  this->window->_destroy(action);
 }
 
 /**
@@ -100,4 +110,25 @@ void Pickup::setPlate(Plate* plate, bool animated)
    *
    */
   this->setPositionY(this->getPositionY() + 1.2f);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Pickup::update(float time)
+{
+  Decoration::update(time);
+
+  /**
+   *
+   *
+   *
+   */
+  auto x = this->getPositionX() + 0.2;
+  auto y = this->getPositionY() - 0.25;
+  auto z = this->getPositionZ() - 0.2;
+
+  this->window->setPosition3D(Vec3(x, y, z));
 }

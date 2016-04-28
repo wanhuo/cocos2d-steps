@@ -58,28 +58,12 @@ void Plate::onCreate()
 
   this->behavior = STATIC;
 
+  this->setScale(1.0);
+
   this->setRotation3D(Vec3(0, 0, 0));
   this->setTexture("plate-texture-state-1.png");
 
   this->setType(NORMAL);
-
-  this->runAction(
-    EaseBounceOut::create(
-      MoveBy::create(0.5, Vec3(0, 1, 0))
-    )
-  );
-
-  this->runAction(
-    RepeatForever::create(
-      Sequence::create(
-        DelayTime::create(random(1.0, 5.0)),
-        CallFunc::create([=] () {
-          Application->environment->createRipple(this->getPositionX(), this->getPositionZ(), 1.25);
-        }),
-        nullptr
-      )
-    )
-  );
 }
 
 void Plate::onDestroy(bool action)
@@ -91,7 +75,7 @@ void Plate::onDestroy(bool action)
    *
    *
    */
-  this->clearDecorations(true, true, true);
+  this->clearDecorations();
   this->clearSpecial();
 }
 
@@ -100,6 +84,10 @@ void Plate::onDestroy(bool action)
  *
  *
  */
+void Plate::onAdd()
+{
+}
+
 void Plate::onRemove(bool complete)
 {
   if(complete)
@@ -317,6 +305,14 @@ void Plate::setType(Type type, bool animated)
     case CUB:
     {
       auto decoration = static_cast<Decoration*>(Application->environment->cubs->_create());
+      decoration->setPlate(this, animated);
+
+      this->getDecorations().push_back(decoration);
+    }
+    break;
+    case COLOR:
+    {
+      auto decoration = static_cast<Decoration*>(Application->environment->colors->_create());
       decoration->setPlate(this, animated);
 
       this->getDecorations().push_back(decoration);
@@ -817,18 +813,48 @@ void Plate::setType(Type type, bool animated)
  *
  *
  */
+void Plate::add()
+{
+  this->onAdd();
+
+  auto action = Sequence::create(
+    EaseSineIn::create(
+      MoveBy::create(0.5, Vec3(this->direction ? -10.0 : 0.0, 0.0, this->direction ? 0.0 : 10.0))
+    ),
+    nullptr
+  );
+
+  auto x = this->getPositionX();
+  auto y = this->getPositionY();
+  auto z = this->getPositionZ();
+
+  this->setPosition3D(Vec3(x + (this->direction ? 10.0 : 0.0), y, z - (this->direction ? 0.0 : 10.0)));
+  this->runAction(action);
+
+  for(auto decoration : this->getDecorations())
+  {
+    auto x = decoration->getPositionX();
+    auto y = decoration->getPositionY();
+    auto z = decoration->getPositionZ();
+
+    decoration->setPosition3D(Vec3(x + (this->direction ? 10.0 : 0.0), y, z - (this->direction ? 0.0 : 10.0)));
+    decoration->runAction(action->clone());
+  }
+}
+
 void Plate::remove(bool complete)
 {
   this->onRemove(complete);
 
   this->runAction(
     Spawn::create(
-      (complete ? RotateBy::create(0.3, Vec3((this->direction ? 0 : 20), 0, (this->direction ? -20 : 0))) : RotateBy::create(0, Vec3(0, 0, 0))),
       Sequence::create(
-        EaseSineOut::create(
-          MoveBy::create(0.5, Vec3(0, -1, 0))
+        EaseSineIn::create(
+          MoveBy::create(0.2, Vec3(this->direction ? -10 : 0, 0, this->direction ? 0 : 10))
         ),
-        CallFunc::create(CC_CALLBACK_0(Node::_destroy, this, true)),
+        CallFunc::create([=] () {
+          this->_destroy(true);
+        }),
         nullptr
       ),
       nullptr
@@ -844,10 +870,9 @@ void Plate::remove(bool complete)
 
     decoration->runAction(
       Spawn::create(
-        (complete ? RotateBy::create(0.3, Vec3((this->direction ? 0 : 20), 0, (this->direction ? -20 : 0))) : RotateBy::create(0, Vec3(0, 0, 0))),
         Sequence::create(
-          EaseSineOut::create(
-            MoveBy::create(0.5, Vec3(0, -1, 0))
+          EaseSineIn::create(
+            MoveBy::create(0.2, Vec3(this->direction ? -10 : 0, 0, this->direction ? 0 : 10))
           ),
           nullptr
         ),
@@ -859,21 +884,21 @@ void Plate::remove(bool complete)
 
 /**
  *
- * TODO: Decoration should be removed from vector inside corations loop.
+ *
  *
  */
-void Plate::clearDecorations(bool force, bool animated, bool total)
+void Plate::clearDecorations()
 {
   if(this->special)
   {
-    this->special->clearDecorations(force, animated, total);
+    this->special->clearDecorations();
   }
 
   for(auto decoration : this->getDecorations())
   {
-    if((decoration->removable || force || animated || total) && (!decoration->unremovable || total))
+    if((decoration->removable && !decoration->unremovable) || !this->state->create)
     {
-      decoration->remove(force || total);
+      decoration->_destroy(true);
     }
   }
 
@@ -882,7 +907,7 @@ void Plate::clearDecorations(bool force, bool animated, bool total)
         this->getDecorations().begin(),
         this->getDecorations().end(),
         [](Decoration* element) -> bool {
-            return element->removed;
+            return !element->state->create;
         }
     ),
     this->getDecorations().end()

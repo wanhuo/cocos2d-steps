@@ -21,9 +21,6 @@
  *
  */
 
-#ifndef _SPECIAL_H_
-#define _SPECIAL_H_
-
 #include "Game.h"
 
 /**
@@ -31,51 +28,96 @@
  *
  *
  */
-class Plate;
+Color::Color()
+: Pickup("color.obj")
+{
+  this->setTexture("color-texture.png");
+
+  this->glow->setColor(Color3B::WHITE);
+  this->glow->setScale(0.006);
+}
+
+Color::~Color()
+{
+}
 
 /**
  *
  *
  *
  */
-class Special : public Cube
+void Color::onCreate()
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  vector<Decoration*> decorations;
+  Pickup::onCreate();
 
   /**
    *
    *
    *
    */
-  protected:
-  Plate* plate;
+  this->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        CallFunc::create([=] () {
+          this->runAction(
+            TintTo::create(0.5, random(0.0, 255.0), random(0.0, 255.0), random(0.0, 255.0))
+          );
+        }),
+        DelayTime::create(0.5),
+        nullptr
+      )
+    )
+  );
+}
+
+void Color::onDestroy(bool action)
+{
+  Pickup::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Color::onPickup()
+{
+  Pickup::onPickup();
 
   /**
    *
    *
    *
    */
-  public:
-  Special(string file, Node* parent = nullptr);
-  Special();
- ~Special();
+  Application->environment->character->color = this->getColor();
+  Application->environment->character->runAction(
+    TintTo::create(0.5, this->getColor())
+  );
+}
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+/**
+ *
+ *
+ *
+ */
+void Color::setPlate(Plate* plate, bool animated)
+{
+  Decoration::setPlate(plate, animated);
 
-  virtual vector<Decoration*> &getDecorations();
+  /**
+   *
+   *
+   *
+   */
+  this->setPositionY(this->getPositionY() + 1.0f);
+}
 
-  virtual void setPlate(Plate* plate);
-
-  virtual void clearDecorations();
-
-  virtual Special* deepCopy();
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+Color* Color::deepCopy()
+{
+  return new Color;
+}

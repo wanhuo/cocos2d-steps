@@ -60,13 +60,7 @@ void Environment::create()
   this->plane->setRotation3D(Vec3(0, 0, 0));
   this->plane->setPosition3D(Vec3(0, 0, 0));
 
-  this->water = new Entity3D("water.obj", this, true);
-  this->water->setRotation3D(Vec3(0, 0, 0));
-  this->water->setPosition3D(Vec3(0, 0, 0));
-  this->water->setColor(Color3B(84, 205, 240));
-  this->water->setOpacity(220);
-
-  this->dusts = new Pool(new Dust, this);
+  this->ground = new Ground(this);
 
   this->starts = new Pool(new Start, this->plane);
   this->spikes = new Pool(new Spike, this->plane);
@@ -78,11 +72,10 @@ void Environment::create()
   this->energies = new Pool(new Energy, this->plane);
   this->stars = new Pool(new Star, this->plane);
   this->hearts = new Pool(new Heart, this->plane);
+  this->colors = new Pool(new Color, this->plane);
 
   this->plates = new Pool(new Plate, this->plane);
   this->particles = new Pool(new Particle, this->plane);
-  this->fishes = new Pool(new Fish, this->plane);
-  this->ripples = new Pool(new Ripple, this->plane);
 
   this->plates_spikes = new Pool(new Special("plate-type-spike.obj"), this->plane);
   this->plates_up = new Pool(new Special("plate-type-up.obj"), this->plane);
@@ -116,8 +109,6 @@ void Environment::create()
 
   this->onGame();
 
-  this->color = new Color(255, 84, 205, 250);
-
   this->light.natural = AmbientLight::create(Color3B(150, 150, 150));
   this->light.environment = DirectionLight::create(Vec3(0.5, -1.0, 0.0), Color3B(120, 120, 120));
   this->light.character = SpotLight::create(Vec3(0, 0, 0), Vec3(0, 0, 0), Color3B(255, 255, 255), 320.0f, 0.0f, 20.0f);
@@ -132,20 +123,6 @@ void Environment::create()
  *
  *
  */
-Entity3D* Environment::createRipple(float x, float z, float scale)
-{
-  auto ripple = static_cast<Entity3D*>(this->ripples->_create());
-
-  ripple->setPositionX(x);
-  ripple->setPositionY(0);
-  ripple->setPositionZ(z);
-
-  ripple->setScaleX(scale);
-  ripple->setScaleZ(scale);
-
-  return ripple;
-}
-
 Entity3D* Environment::createParticle(float x, float y, float z)
 {
   auto particle = static_cast<Entity3D*>(this->particles->_create());
@@ -220,12 +197,7 @@ void Environment::onMenu()
   this->ups->clear(true);
   this->downs->clear(true);
 
-  this->ripples->clear(true);
-
   this->generator->clear();
-
-  this->character->_destroy();
-  this->character = new Character;
 
   this->character->_create();
   this->character->reset();
@@ -233,8 +205,6 @@ void Environment::onMenu()
   this->setPosition3D(Vec3(0, 0, 0));
 
   this->plane->setPosition3D(Vec3(0, 0, 0));
-  this->water->setRotation3D(Vec3(0, 0, 0));
-  this->water->setPosition3D(Vec3(0, 0, 0));
 }
 
 void Environment::onGame()
@@ -255,65 +225,48 @@ void Environment::onCopter()
 
 void Environment::onFinish()
 {
+  this->stopAllActions();
+
   Application->counter->values.start = 0;
 
-  for(int i = 0; i < this->plates->count; i++)
-  {
-    auto plate = static_cast<Plate*>(this->plates->element(i));
+  this->plates->clear(true);
 
-    plate->runAction(
-      Sequence::create(
-        DelayTime::create(0.7),
-        CallFunc::create(CC_CALLBACK_0(Plate::remove, plate, false)),
-        nullptr
-      )
-    );
-  }
+  auto x = this->character->plates.current->getPositionX();
+  auto y = this->character->plates.current->getPositionY();
+  auto z = this->character->plates.current->getPositionZ();
+
+  this->generator->x = x;
+  this->generator->z = z;
+
+  this->generator->resets++;
+  this->generator->currentLength += 100;
+  this->generator->count = 0;
+  this->generator->length = 10;
+
+  this->generator->index = 0;
+
+  this->generator->direction = !this->generator->direction;
+  this->generator->bonus = !this->generator->bonus;
+
+  this->character->plates.current = nullptr;
 
   this->runAction(
-    Sequence::create(
-      DelayTime::create(1.4),
+    Repeat::create(
       CallFunc::create([=] () {
-        auto x = this->character->plates.current->getPositionX();
-        auto y = this->character->plates.current->getPositionY();
-        auto z = this->character->plates.current->getPositionZ();
-
-        this->generator->x = x;
-        this->generator->z = z;
-
-        this->generator->resets++;
-        this->generator->currentLength += 100;
-        this->generator->count = 0;
-        this->generator->length = 10;
-
-        this->generator->index = 0;
-
-        this->generator->direction = !this->generator->direction;
-        this->generator->bonus = !this->generator->bonus;
-
-        this->character->plates.current = nullptr;
-
-        this->runAction(
-          Repeat::create(
-            CallFunc::create([=] () {
-              if(!this->character->plates.current)
-              {
-                this->character->plates.current =  this->generator->create();
-              }
-              else
-              {
-                this->generator->create();
-              }
-            }), Generator::PLATES_START
-          )
-        );
-
-        this->platesTime = 1.0;
-        this->platesTimeElapsed = 0;
-      }),
-      nullptr
+        if(!this->character->plates.current)
+        {
+          this->character->plates.current =  this->generator->create();
+        }
+        else
+        {
+          this->generator->create();
+        }
+      }), Generator::PLATES_START
     )
   );
+
+  this->platesTime = 1.0;
+  this->platesTimeElapsed = 0;
 }
 
 /**
@@ -350,30 +303,6 @@ void Environment::updateLight(float time)
   auto z = this->character->getPositionZ();
 
   this->light.character->setPosition3D(Vec3(x, y, z));
-}
-
-void Environment::updateDusts(float time)
-{
-  if(this->dusts->count < DUST_COUNT)
-  {
-    this->dusts->_create();
-  }
-}
-
-/**
- *
- *
- *
- */
-void Environment::updateFishes(float time)
-{
-  if(this->fishes->count < FISH_COUNT)
-  {
-    if(probably(10))
-    {
-      this->fishes->_create();
-    }
-  }
 }
 
 /**
@@ -430,41 +359,6 @@ void Environment::updateStar(float time)
  *
  *
  */
-void Environment::updateCamera(float time)
-{
-  auto position = Application->cameras.d->getPosition3D();
-  auto rotation = Application->cameras.d->getRotation3D();
-
-  auto ax = 0.0;
-  auto ay = 0.0;
-  auto az = 0.0;
-
-  ax = ACCELEROMETER_FACTOR / ACCELERATION_FACTOR * time * abs(this->accelerationX - this->accelerometerX);
-  ay = ACCELEROMETER_FACTOR / ACCELERATION_FACTOR * time * abs(this->accelerationY - this->accelerometerY);
-  az = ACCELEROMETER_FACTOR / ACCELERATION_FACTOR * time * abs(this->accelerationZ - this->accelerometerZ);
-
-  ax = ax * (this->accelerationX < this->accelerometerX ? 1 : -1);
-  ay = ay * (this->accelerationY < this->accelerometerY ? 1 : -1);
-  az = az * (this->accelerationZ < this->accelerometerZ ? 1 : -1);
-
-  this->accelerationX += ax;
-  this->accelerationZ += az;
-
-  position.x += ax;
-  position.z += az;
-
-  rotation.x += az;
-  rotation.y += ax;
-
-  Application->cameras.d->setPosition3D(Vec3(position.x, position.y, position.z));
-  Application->cameras.d->setRotation3D(Vec3(rotation.x, rotation.y, rotation.z));
-}
-
-/**
- *
- *
- *
- */
 void Environment::update(float time)
 {
   switch(Application->state)
@@ -480,12 +374,6 @@ void Environment::update(float time)
     break;
   }
 
-  this->updateDusts(time);
   this->updateLight(time);
-  //this->updateFishes(time);
-
   this->updateStar(time);
-
-  //this->updateCamera(time);
-
 }

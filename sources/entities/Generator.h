@@ -72,7 +72,7 @@ class Generator : public Ref
    *
    */
   public:
-  const static int PLATES_START = 8;
+  const static int PLATES_START = 12;
   const static int PLATES_SAVE = 5;
   const static int PLATES_FINISH_BONUS = 22;
   const static int PLATES_PROBABILITY = 100;

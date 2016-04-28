@@ -17,19 +17,6 @@
                 <key>sourceSize</key>
                 <string>{280,140}</string>
             </dict>
-            <key>coins-icon.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1367,305},{35,47}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{35,47}}</string>
-                <key>sourceSize</key>
-                <string>{35,47}</string>
-            </dict>
             <key>counter-bonus.png</key>
             <dict>
                 <key>frame</key>
@@ -209,7 +196,7 @@
             <key>size</key>
             <string>{1521,481}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ad7ce1e0fd5b315f57e0bda74e342c07:6c7e096bf4f7ed4b548a2140d6d07b23:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
+            <string>$TexturePacker:SmartUpdate:64406f56a6aa43951430a0960ffe8e82:d6e62b6be4adf21f5c65f3b76c530262:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
             <key>textureFileName</key>
             <string>ui.png</string>
         </dict>

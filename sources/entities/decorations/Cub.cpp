@@ -68,9 +68,6 @@ void Cub::onCreate()
     RepeatForever::create(
       Sequence::create(
         DelayTime::create(0.2),
-        CallFunc::create([=] () {
-            this->shadow->setVisible(true);
-        }),
         MoveBy::create(0.5, Vec3(0, -25, 0)),
         CallFunc::create([=] () {
           this->enable = true;
@@ -94,6 +91,7 @@ void Cub::onCreate()
         DelayTime::create(random(0.0, 1.0)),
         CallFunc::create([=] () {
           this->enable = false;
+
           this->plate->moved = false;
           this->plate->blocked = false;
         }),
@@ -104,9 +102,6 @@ void Cub::onCreate()
       )
     )
   );
-
-  this->shadow->setVisible(false);
-  this->shadow->setPositionY(0.01);
 }
 
 void Cub::onDestroy(bool action)
@@ -140,7 +135,7 @@ void Cub::setPlate(Plate* plate, bool animated)
    *
    *
    */
-  this->setPositionY(30.4);
+  this->setPositionY(30.8);
 }
 
 /**

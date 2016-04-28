@@ -53,9 +53,9 @@ Plate* Generator::create()
 
       plate->setDirection(this->direction);
 
-      plate->setPositionX(this->x - 0);
-      plate->setPositionY(this->y - 1);
-      plate->setPositionZ(this->z - 0);
+      plate->setPositionX(this->x);
+      plate->setPositionY(this->y);
+      plate->setPositionZ(this->z);
 
       plate->setIndex(this->index);
   
@@ -89,7 +89,7 @@ Plate* Generator::create()
           plate->setType(Plate::START);
         }
 
-        if(this->index >= PLATES_START)
+        if(this->index >= PLATES_SAVE)
         {
           if(this->index == Application->counter->values.best)
           {
@@ -158,6 +158,10 @@ Plate* Generator::create()
             }
             else if(probably(2))
             {
+              plate->setType(Plate::COLOR);
+            }
+            else if(probably(2))
+            {
               plate->setType(Plate::DIAMOND);
             }
             else if(probably(2))
@@ -206,131 +210,19 @@ Plate* Generator::create()
               this->conditions.s2 = 2;
               this->conditions.s5 = 10;
             }
-            else if(this->count > 1 && this->conditions.s6 < 0 && probably(5) && this->resets > 0 && false)
-            {
-              int size = random(5, 8) + 1;
-
-              if(this->index + size < this->currentLength)
-              {
-                this->unless = size;
-
-                plate->setPositionX(this->x - 0);
-                plate->setPositionY(this->y - 1);
-                plate->setPositionZ(this->z - 0);
-
-                plate->setStartPositionX(this->x);
-                plate->setStartPositionY(this->y);
-                plate->setStartPositionZ(this->z);
-
-                this->postUpdate();
-
-                this->length++;
-                this->length++;
-                this->length++;
-
-                for(int i = 0; i < size; i++)
-                {
-                  this->preUpdate();
-
-                  auto p = static_cast<Plate*>(Application->environment->plates->_create());
-
-                  p->setDirection(this->direction);
-
-                  p->setPositionX(this->x - 0);
-                  p->setPositionY(this->y - 1);
-                  p->setPositionZ(this->z - 0);
-
-                  p->setIndex(this->index);
-
-                  if(i == size - 1)
-                  {
-                    p->setType(Plate::ENERGY);
-                  }
-                  else
-                  {
-                    p->setType(Plate::TUNNEL);
-                    Decoration* test = nullptr;
-                    if(this->count == 0)
-                    {
-                      this->length++;
-                    }
-
-                    if(this->count == this->length - 1)
-                    {
-                    }
-                    else if(this->count == this->length)
-                    {
-                      test = new Decoration("tunnel-part1.obj", Application->environment->plane);
-                      test->setPlate(p);
-                      test->removable = false;
-                      test->stopable = false;
-                      test->unremovable = true;
-                      test->setTexture("tunnel-texture.png");
-                      test->_create();
-                      if(this->direction)
-                      {
-                        test->setRotation3D(Vec3(0, 0, 0));
-                      }
-                      else
-                      {
-                        test->setRotation3D(Vec3(0, 180, 0));
-                      }
-                      p->getDecorations().push_back(test);
-
-                    }
-                    else
-                    {
-                      test = new Decoration("tunnel-part2.obj", Application->environment->plane);
-                      test->setPlate(p);
-                      test->removable = false;
-                      test->stopable = false;
-                      test->unremovable = true;
-                      test->setTexture("tunnel-texture.png");
-                      test->_create();
-                      if(this->direction)
-                      {
-                        test->setRotation3D(Vec3(0, 0, 0));
-                      }
-                      else
-                      {
-                        test->setRotation3D(Vec3(0, 90, 0));
-                      }
-                      p->getDecorations().push_back(test);
-                    }
-                  }
-
-  this->conditions.s1 = 2;
-  this->conditions.s2 = 2;
-  this->conditions.s3 = 2;
-  this->conditions.s4 = 2;
-  this->conditions.s5 = 2;
-
-
-                  p->setPositionX(this->x - 0);
-                  p->setPositionY(this->y - 1);
-                  p->setPositionZ(this->z - 0);
-
-                  p->setStartPositionX(this->x);
-                  p->setStartPositionY(this->y);
-                  p->setStartPositionZ(this->z);
-
-                  this->postUpdate();
-                }
-
-                return plate;
-              }
-            }
           }
         }
       }
 
-      plate->setPositionX(this->x - 0);
-      plate->setPositionY(this->y - 1);
-      plate->setPositionZ(this->z - 0);
+      plate->setPositionX(this->x);
+      plate->setPositionY(this->y);
+      plate->setPositionZ(this->z);
 
       plate->setStartPositionX(this->x);
       plate->setStartPositionY(this->y);
       plate->setStartPositionZ(this->z);
+
+      plate->add();
 
       this->postUpdate();
 
@@ -354,13 +246,25 @@ void Generator::destroy(bool manual)
     {
       if(Application->environment->character->plates.current)
       {
+        int counter = 0;
+
         for(int i = 0; i < Application->environment->plates->count; i++)
         {
           Plate* element = static_cast<Plate*>(Application->environment->plates->element(i));
 
           if(element->getIndex() < Application->environment->character->plates.current->getIndex() - 5)
           {
-            element->remove();
+            Application->environment->runAction(
+              Sequence::create(
+                DelayTime::create(counter * 0.1),
+                CallFunc::create([=] () {
+                  element->remove();
+                }),
+                nullptr
+              )
+            );
+
+            counter++;
           }
         }
       }
@@ -455,9 +359,9 @@ void Generator::postUpdate()
  */
 void Generator::clear()
 {
-  this->x = 0;
-  this->y = 0;
-  this->z = 0;
+  this->x = 0.0;
+  this->y = 0.4;
+  this->z = 0.0;
 
   this->currentLength = 25;
 
@@ -465,7 +369,7 @@ void Generator::clear()
   this->count = 0;
   this->resets = 0;
   this->unless = 0;
-  this->length = random(3, PLATES_START);
+  this->length = random(3, PLATES_SAVE);
 
   this->conditions.s1 = 0;
   this->conditions.s2 = 0;
@@ -480,9 +384,12 @@ void Generator::clear()
   Application->environment->stopAllActions();
   Application->environment->runAction(
     Repeat::create(
-      CallFunc::create([=] () {
-      this->create();
-      }), PLATES_START
+      Sequence::create(
+        CallFunc::create([=] () {
+        this->create();
+        }),
+        nullptr
+      ), PLATES_START
     )
   );
 }

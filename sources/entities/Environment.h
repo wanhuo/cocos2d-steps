@@ -31,9 +31,9 @@
  *
  *
  */
-class Decoration;
 class Character;
-class Color;
+class Ground;
+class Decoration;
 
 /**
  *
@@ -42,6 +42,21 @@ class Color;
  */
 class Environment : public Background
 {
+  /**
+   *
+   *
+   *
+   */
+  private:
+  struct Light {
+    BaseLight* environment;
+    BaseLight* natural;
+    BaseLight* character;
+  };
+
+  struct Plates {
+  };
+
   /**
    *
    *
@@ -59,17 +74,6 @@ class Environment : public Background
   float accelerationY = 0;
   float accelerationZ = 0;
 
-  struct Light {
-    BaseLight* environment;
-    BaseLight* natural;
-    BaseLight* character;
-  };
-
-  /**
-   *
-   *
-   *
-   */
   float platesTime;
   float platesTimeElapsed;
 
@@ -79,9 +83,6 @@ class Environment : public Background
    *
    */
   public:
-  const static int DUST_COUNT = 100;
-  const static int FISH_COUNT = 2;
-
   const static int STAR_TIME = 5;
 
   Environment(Node* parent);
@@ -98,7 +99,7 @@ class Environment : public Background
 
   Generator* generator = nullptr;
 
-  Pool* dusts;
+  Entity3D* plane;
 
   Pool* starts;
   Pool* spikes;
@@ -110,6 +111,7 @@ class Environment : public Background
   Pool* energies;
   Pool* stars;
   Pool* hearts;
+  Pool* colors;
 
   Pool* plates;
   Pool* plates_spikes;
@@ -118,24 +120,18 @@ class Environment : public Background
   Pool* plates_gate;
   Pool* plates_copter;
   Pool* particles;
-  Pool* fishes;
-  Pool* ripples;
 
-  Entity3D* plane;
-  Entity3D* water;
-
-  Color* color;
+  Ground* ground;
 
   Background* characterActionHolder;
   BackgroundColor* characterActionBackground;
   BackgroundColor* characterAction;
 
-  virtual void onAccelerate(Acceleration* acceleration, Event* e);
-
   virtual void create();
 
-  virtual Entity3D* createRipple(float x, float z, float scale = 1.0);
   virtual Entity3D* createParticle(float x, float y, float z);
+
+  virtual void onAccelerate(Acceleration* acceleration, Event* e);
 
   virtual void onTurn(bool action = true);
 
@@ -149,12 +145,8 @@ class Environment : public Background
   virtual void finishStar();
 
   virtual void updateLight(float time);
-  virtual void updateDusts(float time);
-  virtual void updateFishes(float time);
 
   virtual void updateStar(float time);
-
-  virtual void updateCamera(float time);
 
   virtual void updateMenu(float time);
   virtual void updateGame(float time);

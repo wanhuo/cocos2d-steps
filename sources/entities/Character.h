@@ -138,6 +138,8 @@ class Character : public Cube
   Character();
  ~Character();
 
+  Color3B color;
+
   State state;
   Plates plates;
 

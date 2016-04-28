@@ -86,7 +86,7 @@ void Energy::onPickup()
           Spawn::create(
             RotateGlobalBy::create(0.1, Vec3(60 * z, 0, -60 * x)),
             Sequence::create(
-              MoveBy::create(0.1, Vec3(x, (Application->environment->character->getPositionY() - 0.9), z)),
+              MoveBy::create(0.1, Vec3(x, (Application->environment->character->getPositionY() - 1.3), z)),
               CallFunc::create([=] () {
                 if((++this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::UP && next->type != Plate::FINISH)
                 {

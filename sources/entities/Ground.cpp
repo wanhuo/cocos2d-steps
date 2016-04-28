@@ -21,9 +21,6 @@
  *
  */
 
-#ifndef _SPECIAL_H_
-#define _SPECIAL_H_
-
 #include "Game.h"
 
 /**
@@ -31,51 +28,34 @@
  *
  *
  */
-class Plate;
+Ground::Ground(Node* parent)
+: Entity3D(parent, true)
+{
+  this->texture = new Entity("ground-texture.png", this, true);
+  this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
+  this->texture->getTexture()->setAliasTexParameters();
+  this->texture->setScale(0.75);
+  this->texture->setLocalZOrder(-100);
+  this->texture->setGlobalZOrder(-100);
+
+  this->setRotation3D(Vec3(-90, 0, 0));
+
+  this->setScheduleUpdate(true);
+}
+
+Ground::~Ground()
+{
+}
 
 /**
  *
  *
  *
  */
-class Special : public Cube
+void Ground::update(float time)
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  vector<Decoration*> decorations;
+  auto x = -Application->environment->plane->getPositionX() / this->texture->getScale();
+  auto z = -Application->environment->plane->getPositionZ() / this->texture->getScale();
 
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  Plate* plate;
-
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Special(string file, Node* parent = nullptr);
-  Special();
- ~Special();
-
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
-
-  virtual vector<Decoration*> &getDecorations();
-
-  virtual void setPlate(Plate* plate);
-
-  virtual void clearDecorations();
-
-  virtual Special* deepCopy();
-};
-
-#endif
+  this->texture->setTextureRect(Rect(x, z, 50, 50));
+}

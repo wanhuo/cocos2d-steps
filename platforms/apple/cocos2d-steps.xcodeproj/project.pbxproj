@@ -10,8 +10,6 @@
 		781B06801BD26FC70072FB24 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 781B067F1BD26FC70072FB24 /* config.json */; };
 		781B06811BD26FC70072FB24 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 781B067F1BD26FC70072FB24 /* config.json */; };
 		7823FBC61ABDC0F900447F0A /* NSBatch.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7823FBC51ABDC0F900447F0A /* NSBatch.mm */; };
-		7825DD3F1C5479BE00708016 /* Dust.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7825DD3E1C5479BE00708016 /* Dust.cpp */; };
-		7825DD401C5479BE00708016 /* Dust.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7825DD3E1C5479BE00708016 /* Dust.cpp */; };
 		7825DD431C5484CC00708016 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7825DD421C5484CC00708016 /* Popup.cpp */; };
 		7825DD441C5484CC00708016 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7825DD421C5484CC00708016 /* Popup.cpp */; };
 		7828A0AF1A1F87BA0079492B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7828A0A71A1F87BA0079492B /* main.cpp */; };
@@ -97,8 +95,6 @@
 		78817A761BBDAFD3008BA961 /* Icon-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 78817A751BBDAFD3008BA961 /* Icon-512.png */; };
 		788F17C81CA308B000F4E5D6 /* Finish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17C61CA308B000F4E5D6 /* Finish.cpp */; };
 		788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17C61CA308B000F4E5D6 /* Finish.cpp */; };
-		788F17CE1CA405B100F4E5D6 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17CC1CA405B100F4E5D6 /* Color.cpp */; };
-		788F17CF1CA405B100F4E5D6 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17CC1CA405B100F4E5D6 /* Color.cpp */; };
 		788F17D31CA4399200F4E5D6 /* Up.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17D11CA4399200F4E5D6 /* Up.cpp */; };
 		788F17D41CA4399200F4E5D6 /* Up.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17D11CA4399200F4E5D6 /* Up.cpp */; };
 		7894C0011BC919D400363FC9 /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7883470A1BC917A700DBA14E /* libcocos2d Mac.a */; };
@@ -126,6 +122,10 @@
 		789809661CC53A8B00E3CF28 /* Cub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789809631CC53A8B00E3CF28 /* Cub.cpp */; };
 		7899D44E1BF48194008080B5 /* services.json in Resources */ = {isa = PBXBuildFile; fileRef = 7899D44D1BF48194008080B5 /* services.json */; };
 		7899D44F1BF48194008080B5 /* services.json in Resources */ = {isa = PBXBuildFile; fileRef = 7899D44D1BF48194008080B5 /* services.json */; };
+		789E71761CD1086200BDCDC7 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71741CD1086200BDCDC7 /* Ground.cpp */; };
+		789E71771CD1086200BDCDC7 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71741CD1086200BDCDC7 /* Ground.cpp */; };
+		789E717A1CD2621500BDCDC7 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71781CD2621500BDCDC7 /* Color.cpp */; };
+		789E717B1CD2621500BDCDC7 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71781CD2621500BDCDC7 /* Color.cpp */; };
 		78B4B6D41CBD751D00F2D8A7 /* Crystal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */; };
 		78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */; };
 		78B4B6D61CBD751D00F2D8A7 /* Diamond.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C91CBD751D00F2D8A7 /* Diamond.cpp */; };
@@ -166,10 +166,6 @@
 		78DE4C831C4D6C120080F105 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C811C4D6C120080F105 /* Counter.cpp */; };
 		78DE4C8A1C4DA0990080F105 /* Decoration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C891C4DA0990080F105 /* Decoration.cpp */; };
 		78DE4C8B1C4DA0990080F105 /* Decoration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C891C4DA0990080F105 /* Decoration.cpp */; };
-		78DE4C921C4FC2230080F105 /* Fish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C911C4FC2230080F105 /* Fish.cpp */; };
-		78DE4C931C4FC2230080F105 /* Fish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C911C4FC2230080F105 /* Fish.cpp */; };
-		78DE4C961C500D2A0080F105 /* Ripple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C951C500D2A0080F105 /* Ripple.cpp */; };
-		78DE4C971C500D2A0080F105 /* Ripple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C951C500D2A0080F105 /* Ripple.cpp */; };
 		78DEED691B1A911E0093CB64 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DEED531B1A911E0093CB64 /* Default-568h@2x.png */; };
 		78DEED6A1B1A911E0093CB64 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DEED541B1A911E0093CB64 /* Default.png */; };
 		78DEED6B1B1A911E0093CB64 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DEED551B1A911E0093CB64 /* Default@2x.png */; };
@@ -240,8 +236,6 @@
 		781B06D81BD37E410072FB24 /* NSBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBatch.h; sourceTree = "<group>"; };
 		781B06D91BD37F950072FB24 /* NSHeyzap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSHeyzap.h; sourceTree = "<group>"; };
 		7823FBC51ABDC0F900447F0A /* NSBatch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSBatch.mm; sourceTree = "<group>"; };
-		7825DD3D1C5479BE00708016 /* Dust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dust.h; sourceTree = "<group>"; };
-		7825DD3E1C5479BE00708016 /* Dust.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dust.cpp; sourceTree = "<group>"; };
 		7825DD411C5484CC00708016 /* Popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Popup.h; sourceTree = "<group>"; };
 		7825DD421C5484CC00708016 /* Popup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Popup.cpp; sourceTree = "<group>"; };
 		78273A011C22D8AF00293333 /* NSAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAnalytics.h; sourceTree = "<group>"; };
@@ -348,8 +342,6 @@
 		78817A751BBDAFD3008BA961 /* Icon-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-512.png"; sourceTree = "<group>"; };
 		788F17C61CA308B000F4E5D6 /* Finish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Finish.cpp; sourceTree = "<group>"; };
 		788F17C71CA308B000F4E5D6 /* Finish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Finish.h; sourceTree = "<group>"; };
-		788F17CC1CA405B100F4E5D6 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
-		788F17CD1CA405B100F4E5D6 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		788F17D11CA4399200F4E5D6 /* Up.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Up.cpp; sourceTree = "<group>"; };
 		788F17D21CA4399200F4E5D6 /* Up.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Up.h; sourceTree = "<group>"; };
 		7894C0191BC9245800363FC9 /* Events.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Events.cpp; sourceTree = "<group>"; };
@@ -367,6 +359,10 @@
 		789809631CC53A8B00E3CF28 /* Cub.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cub.cpp; sourceTree = "<group>"; };
 		789809641CC53A8B00E3CF28 /* Cub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cub.h; sourceTree = "<group>"; };
 		7899D44D1BF48194008080B5 /* services.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = services.json; path = apple/services.json; sourceTree = "<group>"; };
+		789E71741CD1086200BDCDC7 /* Ground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ground.cpp; sourceTree = "<group>"; };
+		789E71751CD1086200BDCDC7 /* Ground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ground.h; sourceTree = "<group>"; };
+		789E71781CD2621500BDCDC7 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Color.cpp; sourceTree = "<group>"; };
+		789E71791CD2621500BDCDC7 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Crystal.cpp; sourceTree = "<group>"; };
 		78B4B6C81CBD751D00F2D8A7 /* Crystal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crystal.h; sourceTree = "<group>"; };
 		78B4B6C91CBD751D00F2D8A7 /* Diamond.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Diamond.cpp; sourceTree = "<group>"; };
@@ -409,10 +405,6 @@
 		78DE4C811C4D6C120080F105 /* Counter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Counter.cpp; sourceTree = "<group>"; };
 		78DE4C881C4DA0990080F105 /* Decoration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoration.h; sourceTree = "<group>"; };
 		78DE4C891C4DA0990080F105 /* Decoration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Decoration.cpp; sourceTree = "<group>"; };
-		78DE4C901C4FC2230080F105 /* Fish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fish.h; sourceTree = "<group>"; };
-		78DE4C911C4FC2230080F105 /* Fish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fish.cpp; sourceTree = "<group>"; };
-		78DE4C941C500D2A0080F105 /* Ripple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ripple.h; sourceTree = "<group>"; };
-		78DE4C951C500D2A0080F105 /* Ripple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ripple.cpp; sourceTree = "<group>"; };
 		78DEED531B1A911E0093CB64 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		78DEED541B1A911E0093CB64 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		78DEED551B1A911E0093CB64 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -916,22 +908,20 @@
 				78B4B6C51CBD751D00F2D8A7 /* decorations */,
 				78B4B6C61CBD751D00F2D8A7 /* pickups */,
 				78B4B6D31CBD751D00F2D8A7 /* plates */,
-				78CA6D041C20645200BF8416 /* Character.cpp */,
-				78CA6D051C20645200BF8416 /* Character.h */,
 				78CA6D061C20645200BF8416 /* Environment.cpp */,
 				78CA6D071C20645200BF8416 /* Environment.h */,
+				789E71741CD1086200BDCDC7 /* Ground.cpp */,
+				789E71751CD1086200BDCDC7 /* Ground.h */,
+				78CA6D041C20645200BF8416 /* Character.cpp */,
+				78CA6D051C20645200BF8416 /* Character.h */,
 				78E33FD61C4AA4440021272D /* Generator.cpp */,
 				78E33FD51C4AA4440021272D /* Generator.h */,
-				788F17CC1CA405B100F4E5D6 /* Color.cpp */,
-				788F17CD1CA405B100F4E5D6 /* Color.h */,
 				786696C91C4A47FF00A256FC /* Cube.cpp */,
 				786696C81C4A47FF00A256FC /* Cube.h */,
 				78B4B6E01CBD817900F2D8A7 /* Shadow.cpp */,
 				78B4B6E11CBD817900F2D8A7 /* Shadow.h */,
 				78D015EA1CB02BF900327D33 /* Item.cpp */,
 				78D015EB1CB02BF900327D33 /* Item.h */,
-				7825DD3E1C5479BE00708016 /* Dust.cpp */,
-				7825DD3D1C5479BE00708016 /* Dust.h */,
 				78E33FCE1C4A84080021272D /* Particle.cpp */,
 				78E33FCD1C4A84080021272D /* Particle.h */,
 				78DE4C811C4D6C120080F105 /* Counter.cpp */,
@@ -946,10 +936,6 @@
 				788F17D21CA4399200F4E5D6 /* Up.h */,
 				78357A131CA6F00300F86325 /* Down.cpp */,
 				78357A141CA6F00300F86325 /* Down.h */,
-				78DE4C911C4FC2230080F105 /* Fish.cpp */,
-				78DE4C901C4FC2230080F105 /* Fish.h */,
-				78DE4C951C500D2A0080F105 /* Ripple.cpp */,
-				78DE4C941C500D2A0080F105 /* Ripple.h */,
 			);
 			name = entities;
 			path = ../../sources/entities;
@@ -1024,6 +1010,8 @@
 				78B4B6CE1CBD751D00F2D8A7 /* Heart.h */,
 				78B4B6D11CBD751D00F2D8A7 /* Star.cpp */,
 				78B4B6D21CBD751D00F2D8A7 /* Star.h */,
+				789E71781CD2621500BDCDC7 /* Color.cpp */,
+				789E71791CD2621500BDCDC7 /* Color.h */,
 			);
 			path = pickups;
 			sourceTree = "<group>";
@@ -1328,13 +1316,10 @@
 				78B4B6F41CBF911800F2D8A7 /* Saw.cpp in Sources */,
 				78B4B6D71CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
 				78B4B6D91CBD751D00F2D8A7 /* Energy.cpp in Sources */,
-				78DE4C971C500D2A0080F105 /* Ripple.cpp in Sources */,
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
-				78DE4C931C4FC2230080F105 /* Fish.cpp in Sources */,
 				78D015ED1CB02BF900327D33 /* Item.cpp in Sources */,
 				788F17D41CA4399200F4E5D6 /* Up.cpp in Sources */,
-				788F17CF1CA405B100F4E5D6 /* Color.cpp in Sources */,
 				789809621CC51C0A00E3CF28 /* Start.cpp in Sources */,
 				78E33FD21C4A84080021272D /* Particle.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
@@ -1347,7 +1332,7 @@
 				786696CB1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				78357A161CA6F00300F86325 /* Down.cpp in Sources */,
 				78B4B6ED1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */,
-				7825DD401C5479BE00708016 /* Dust.cpp in Sources */,
+				789E717B1CD2621500BDCDC7 /* Color.cpp in Sources */,
 				78B4B6E31CBD817900F2D8A7 /* Shadow.cpp in Sources */,
 				78E33FDA1C4AA4440021272D /* Generator.cpp in Sources */,
 				78B4B70B1CBFB51F00F2D8A7 /* Copter.cpp in Sources */,
@@ -1358,6 +1343,7 @@
 				78E33FD01C4A84080021272D /* Plate.cpp in Sources */,
 				78B4B6E71CBD8EBD00F2D8A7 /* Special.cpp in Sources */,
 				7828A0AF1A1F87BA0079492B /* main.cpp in Sources */,
+				789E71771CD1086200BDCDC7 /* Ground.cpp in Sources */,
 				78CA6D0B1C20645200BF8416 /* Character.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1367,12 +1353,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				78E33FD91C4AA4440021272D /* Generator.cpp in Sources */,
+				789E717A1CD2621500BDCDC7 /* Color.cpp in Sources */,
 				782C44961BD2495E00A7DD46 /* NSInternal.mm in Sources */,
 				78DE4C8A1C4DA0990080F105 /* Decoration.cpp in Sources */,
-				788F17CE1CA405B100F4E5D6 /* Color.cpp in Sources */,
 				7847CDF91AB184820014E3F3 /* RootViewController.mm in Sources */,
-				7825DD3F1C5479BE00708016 /* Dust.cpp in Sources */,
-				78DE4C961C500D2A0080F105 /* Ripple.cpp in Sources */,
 				7843AC9F1C2242AA0011F47C /* AdWebViewController.m in Sources */,
 				78B4B6D41CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
 				788F17C81CA308B000F4E5D6 /* Finish.cpp in Sources */,
@@ -1389,7 +1373,6 @@
 				7847CDF71AB184820014E3F3 /* main.m in Sources */,
 				7847CDF81AB184820014E3F3 /* NSMedia.mm in Sources */,
 				789809611CC51C0A00E3CF28 /* Start.cpp in Sources */,
-				78DE4C921C4FC2230080F105 /* Fish.cpp in Sources */,
 				789809651CC53A8B00E3CF28 /* Cub.cpp in Sources */,
 				7847CDF61AB184820014E3F3 /* AppController.mm in Sources */,
 				78382F811C2469B90001B3F1 /* NSVote.mm in Sources */,
@@ -1404,6 +1387,7 @@
 				78DF453F1BBAA54F004E4570 /* NSPurchase.mm in Sources */,
 				78B4B6F31CBF911800F2D8A7 /* Saw.cpp in Sources */,
 				78B4B6E21CBD817900F2D8A7 /* Shadow.cpp in Sources */,
+				789E71761CD1086200BDCDC7 /* Ground.cpp in Sources */,
 				78B4B6FB1CBF91E000F2D8A7 /* Door.cpp in Sources */,
 				7857E2B91C65733F0020AAEA /* Menu.cpp in Sources */,
 				78B4B6DA1CBD751D00F2D8A7 /* Heart.cpp in Sources */,

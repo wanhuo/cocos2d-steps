@@ -68,9 +68,9 @@ Game::Game()
   //this->cameras.e->setCameraFlag(CameraFlag::USER3);
 
   this->cameras.d->setDepth(1);
-  this->cameras.c->setDepth(2);
-  this->cameras.s->setDepth(3);
-  //this->cameras.e->setDepth(3);
+  this->cameras.s->setDepth(2);
+  this->cameras.c->setDepth(3);
+  //this->cameras.e->setDepth(4);
 
   float x = -(this->getWidth() / SCALE_FACTOR) / 2 - 39.35;
   float y = -(this->getHeight() / SCALE_FACTOR) / 2 + 55;
@@ -91,18 +91,21 @@ Game::Game()
   this->cameras.d->setPosition3D(Vec3(x, y, z));
   this->cameras.d->setRotation3D(Vec3(rx, ry, rz));
 
-  this->cameras.c->setPosition3D(Vec3(x, y, z));
-  this->cameras.c->setRotation3D(Vec3(rx, ry, rz));
+  this->cameras.c->setPosition3D(Vec3(-(this->getWidth() / SCALE_FACTOR) + 0.5, -(this->getHeight() / SCALE_FACTOR) + 0.7, NEAR + 1));
+  this->cameras.c->setRotation3D(Vec3(0, 0, 0));
 
   this->addChild(this->cameras.d);
-  this->addChild(this->cameras.c);
   this->addChild(this->cameras.s);
+  this->addChild(this->cameras.c);
   //this->addChild(this->cameras.e);
 
   this->counter = new Counter(this);
   this->environment = new Environment(this);
 
   this->environment->create();
+
+  this->s = new BackgroundColor(this, Color4B(255, 255, 255, 0));
+  this->s->setCameraMask(4);
 
   Music->play("music-1");
 }

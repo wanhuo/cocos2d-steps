@@ -67,8 +67,6 @@ class Decoration : public Cube
   Decoration();
  ~Decoration();
 
-  bool removed;
-
   bool unremovable = false;
   bool removable = false;
   bool stopable = false;
@@ -81,8 +79,6 @@ class Decoration : public Cube
   virtual void onSound();
 
   virtual void setPlate(Plate* plate, bool animated = true);
-
-  virtual void remove(bool force = false);
 
   virtual Character::Crash status();
 

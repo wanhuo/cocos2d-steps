@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _COLOR_H_
-#define _COLOR_H_
+#ifndef _GROUND_H_
+#define _GROUND_H_
 
 #include "Game.h"
 
@@ -31,22 +31,15 @@
  *
  *
  */
-class Color
+class Ground : public Entity3D
 {
   /**
    *
    *
    *
    */
-  private:
-  int index;
-
-  /**
-   *
-   *
-   *
-   */
   protected:
+  Entity* texture;
 
   /**
    *
@@ -54,18 +47,10 @@ class Color
    *
    */
   public:
-  Color(int index, int r = 0, int g = 0, int b = 0);
- ~Color();
+  Ground(Node* parent);
+~Ground();
 
-  int* currentColor = new int[3];
-  int* targetColor = new int[3];
-  int* distance = new int[3];
-  int* increment = new int[3];
-
-  int* generateRGB(int min = 0, int max = 255);
-  int* calculateDistance(int* colorArray1, int* colorArray2);
-  int* calculateIncrement(int* distanceArray);
-  Color3B get();
+  virtual void update(float time);
 };
 
 #endif

@@ -59,12 +59,6 @@ void Special::onCreate()
    *
    */
   this->setRotation3D(Vec3(0, 0, 0));
-
-  this->runAction(
-    EaseBounceOut::create(
-      MoveBy::create(0.5, Vec3(0, 1, 0))
-    )
-  );
 }
 
 void Special::onDestroy(bool action)
@@ -76,7 +70,7 @@ void Special::onDestroy(bool action)
    *
    *
    */
-  this->clearDecorations(true, true, true);
+  this->clearDecorations();
 }
 
 /**
@@ -101,16 +95,16 @@ void Special::setPlate(Plate* plate)
 
 /**
  *
- * TODO: Decoration should be removed from vector inside corations loop.
+ *
  *
  */
-void Special::clearDecorations(bool force, bool animated, bool total)
+void Special::clearDecorations()
 {
   for(auto decoration : this->getDecorations())
   {
-    if((decoration->removable || force || animated || total) && (!decoration->unremovable || total))
+    if((decoration->removable && !decoration->unremovable) || !this->state->create)
     {
-      decoration->remove(force || total);
+      decoration->_destroy(true);
     }
   }
 
@@ -119,7 +113,7 @@ void Special::clearDecorations(bool force, bool animated, bool total)
         this->getDecorations().begin(),
         this->getDecorations().end(),
         [](Decoration* element) -> bool {
-            return element->removed;
+            return !element->state->create;
         }
     ),
     this->getDecorations().end()
