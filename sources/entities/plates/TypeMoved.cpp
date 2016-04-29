@@ -31,6 +31,20 @@
 TypeMoved::TypeMoved()
 : Special("plate-type-moved.obj")
 {
+  this->shadow = new Shadow("plate-bottom-shadow.obj");
+  this->shadow->setMinScale(Vec3(1.0, 1.0, 1.0));
+  this->shadow->setPosition(0.02);
+
+  this->plane = new Decoration("decoration-move-plane.obj", Application->environment->plane);
+  this->spikes = new Decoration("decoration-move-spikes.obj", Application->environment->plane);
+
+  this->plane->setTexture("decoration-move-plane-texture.png");
+  this->spikes->setTexture("spikes-texture.png");
+
+  this->plane->unremovable = true;
+  this->spikes->unremovable = true;
+
+  this->setScheduleUpdate(true);
 }
 
 TypeMoved::~TypeMoved()
@@ -74,4 +88,13 @@ void TypeMoved::setPlate(Plate* plate)
    *
    */
   this->plate->behavior = Plate::DYNAMIC;
+
+  this->plane->_create();
+  this->spikes->_create();
+
+  this->plane->setPosition3D(Vec3(this->plate->getPositionX(), 0, this->plate->getPositionZ()));
+  this->spikes->setPosition3D(Vec3(this->plate->getPositionX(), 0, this->plate->getPositionZ()));
+
+  this->getDecorations().push_back(this->plane);
+  this->getDecorations().push_back(this->spikes);
 }

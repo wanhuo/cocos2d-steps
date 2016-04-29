@@ -56,6 +56,9 @@ class TypeMoved : public Special
   TypeMoved();
  ~TypeMoved();
 
+  Decoration* plane;
+  Decoration* spikes;
+
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 

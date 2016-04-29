@@ -91,6 +91,7 @@ class Character : public Cube
 
   enum Crash {
     UNDEFINED,
+    FAIL,
     CATCH,
     SPIKES,
     DOWN,

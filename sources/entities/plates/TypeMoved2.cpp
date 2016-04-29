@@ -44,7 +44,7 @@ TypeMoved2::~TypeMoved2()
  */
 void TypeMoved2::start()
 {
-  this->plate->runAction(
+  this->runAction(
     RepeatForever::create(
       Sequence::create(
         CallFunc::create([=] () {
@@ -59,11 +59,6 @@ void TypeMoved2::start()
           {
             Application->environment->character->runAction(action->clone());
           }
-
-          for(auto decoration : this->getDecorations())
-          {
-            decoration->runAction(action->clone());
-          }
         }),
         DelayTime::create(0.6),
         CallFunc::create([=] () {
@@ -86,11 +81,6 @@ void TypeMoved2::start()
           {
             Application->environment->character->runAction(action->clone());
           }
-
-          for(auto decoration : this->getDecorations())
-          {
-            decoration->runAction(action->clone());
-          }
         }),
         DelayTime::create(0.6),
         CallFunc::create([=] () {
@@ -106,10 +96,6 @@ void TypeMoved2::start()
             Application->environment->character->runAction(action->clone());
           }
 
-          for(auto decoration : this->getDecorations())
-          {
-            decoration->runAction(action->clone());
-          }
         }),
         DelayTime::create(0.6),
         CallFunc::create([=] () {
@@ -132,15 +118,20 @@ void TypeMoved2::start()
           {
             Application->environment->character->runAction(action->clone());
           }
-
-          for(auto decoration : this->getDecorations())
-          {
-            decoration->runAction(action->clone());
-          }
         }),
         DelayTime::create(0.6),
         nullptr
       )
     )
   );
+}
+
+/**
+ *
+ *
+ *
+ */
+TypeMoved2* TypeMoved2::deepCopy()
+{
+  return new TypeMoved2;
 }

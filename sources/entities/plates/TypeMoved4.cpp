@@ -44,7 +44,7 @@ TypeMoved4::~TypeMoved4()
  */
 void TypeMoved4::start()
 {
-  this->plate->runAction(
+  this->runAction(
     RepeatForever::create(
       Sequence::create(
         CallFunc::create([=] () {
@@ -58,11 +58,6 @@ void TypeMoved4::start()
           if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual())
           {
             Application->environment->character->runAction(action->clone());
-          }
-
-          for(auto decoration : this->getDecorations())
-          {
-            decoration->runAction(action->clone());
           }
         }),
         DelayTime::create(0.6),
@@ -86,15 +81,20 @@ void TypeMoved4::start()
           {
             Application->environment->character->runAction(action->clone());
           }
-
-          for(auto decoration : this->getDecorations())
-          {
-            decoration->runAction(action->clone());
-          }
         }),
         DelayTime::create(0.6),
         nullptr
       )
     )
   );
+}
+
+/**
+ *
+ *
+ *
+ */
+TypeMoved4* TypeMoved4::deepCopy()
+{
+  return new TypeMoved4;
 }

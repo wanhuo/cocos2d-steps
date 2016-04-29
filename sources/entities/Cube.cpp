@@ -118,8 +118,8 @@ void Cube::update(float time)
     this->shadow->setPositionY(this->shadow->getPosition());
     this->shadow->setPositionZ(position.z);
 
-    this->shadow->setScaleX(max(0.0f, min(this->shadow->getMaxScale().x, position.y - this->shadow->getPosition())));
-    this->shadow->setScaleZ(max(0.0f, min(this->shadow->getMaxScale().z, position.y - this->shadow->getPosition())));
+    this->shadow->setScaleX(max(this->shadow->getMinScale().x, min(this->shadow->getMaxScale().x, position.y - this->shadow->getPosition())));
+    this->shadow->setScaleZ(max(this->shadow->getMinScale().z, min(this->shadow->getMaxScale().z, position.y - this->shadow->getPosition())));
 
     if(!this->shadow->numberOfRunningActions())
     {

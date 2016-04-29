@@ -502,7 +502,7 @@ void Character::onTurn(Turn turn)
     int px = plate->getPositionX() / 1.5;
     int pz = plate->getPositionZ() / 1.5;
 
-    if(px == x && pz == z /*&& !plate->moved*/)
+    if(px == x && pz == z && (!plate->moved || plate->blocked))
     {
       this->plates.current = plate;
       break;
@@ -589,15 +589,10 @@ void Character::onLandFail(Turn turn, Plate* plate)
     case LEFT:
     this->runAction(
       Spawn::create(
-        MoveBy::create(0.5, Vec3(0, -10, -1.5)),
-        RotateBy::create(0.5, Vec3(-125, 0, 0)),
-        Sequence::create(
-          DelayTime::create(0.2),
-          CallFunc::create([=] () {
-          Application->changeState(Game::LOSE);
-          }),
-          nullptr
-        ),
+        MoveBy::create(0.1, Vec3(0, -0.8, 0.0)),
+        CallFunc::create([=] () {
+          this->changeState(CRASH, Crash::FAIL);
+        }),
         nullptr
       )
     );
@@ -605,22 +600,15 @@ void Character::onLandFail(Turn turn, Plate* plate)
     case RIGHT:
     this->runAction(
       Spawn::create(
-        MoveBy::create(0.5, Vec3(1.5, -10, 0)),
-        RotateBy::create(0.5, Vec3(0, 0, 125)),
-        Sequence::create(
-          DelayTime::create(0.2),
-          CallFunc::create([=] () {
-          Application->changeState(Game::LOSE);
-          }),
-          nullptr
-        ),
+        MoveBy::create(0.1, Vec3(0.0, -0.8, 0)),
+        CallFunc::create([=] () {
+          this->changeState(CRASH, Crash::FAIL);
+        }),
         nullptr
       )
     );
     break;
   }
-
-  Sound->play("water");
 }
 
 /**
@@ -666,6 +654,7 @@ void Character::onEnvironmentMoveRight()
  */
 void Character::onNormal()
 {
+  this->shadow->setVisible(true);
 }
 
 void Character::onJump()
@@ -680,22 +669,39 @@ void Character::onFall()
 
 void Character::onCrash(Crash crash)
 {
-    Application->environment->characterActionHolder->runAction(
-      Spawn::create(
-        EaseSineInOut::create(
-          ScaleTo::create(0.2, 1.2)
-        ),
-        EaseSineInOut::create(
-          FadeOut::create(0.2)
-        ),
-        nullptr
-      )
-    );
+  Application->environment->characterActionHolder->runAction(
+    Spawn::create(
+      EaseSineInOut::create(
+        ScaleTo::create(0.2, 1.2)
+      ),
+      EaseSineInOut::create(
+        FadeOut::create(0.2)
+      ),
+      nullptr
+    )
+  );
 
   this->plane->stopAllActions();
 
   switch(crash)
   {
+    case FAIL:
+    this->plane->runAction(
+      Spawn::create(
+        Sequence::create(
+          ScaleTo::create(0.1, 1.0, 0.2, 1.0),
+          DelayTime::create(1.0),
+          CallFunc::create([=] () {
+            Application->changeState(Game::LOSE);
+          }),
+          nullptr
+        ),
+        nullptr
+      )
+    );
+
+    this->shadow->setVisible(false);
+    break;
     case SPIKES:
     this->runAction(
       Spawn::create(
@@ -770,6 +776,7 @@ void Character::onCrash(Crash crash)
 
   switch(crash)
   {
+    case FAIL:
     case SPIKES:
     Sound->play("character-destroy-spikes");
     break;

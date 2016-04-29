@@ -32,6 +32,8 @@ TypeMoveUp::TypeMoveUp()
 : Special("plate.obj")
 {
   this->shadow = new Shadow("plate-bottom-shadow.obj");
+  this->shadow->setMinScale(Vec3(1.0, 1.0, 1.0));
+  this->shadow->setMaxScale(Vec3(1.0, 1.0, 1.0));
 
   this->plane = new Decoration(this);
   this->plane->unremovable = true;
@@ -98,17 +100,22 @@ void TypeMoveUp::setPlate(Plate* plate)
 
 void TypeMoveUp::start()
 {
-  this->plate->runAction(
+  this->runAction(
     RepeatForever::create(
       Sequence::create(
         CallFunc::create([=] () {
-          auto action = EaseSineInOut::create(
-            MoveBy::create(0.15, Vec3(0, 0.4, 0))
+          auto action = Sequence::create(
+            DelayTime::create(0.1),
+            EaseSineInOut::create(
+              MoveBy::create(0.15, Vec3(0, 0.8, 0))
+            ),
+            nullptr
           );
 
-          this->runAction(action->clone());
+          this->plate->runAction(action->clone());
           this->plate->moved = true;
           this->plate->blocked = true;
+          this->decoration->setColor(Color3B::RED);
 
           if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual())
           {
@@ -129,7 +136,7 @@ void TypeMoveUp::start()
         DelayTime::create(0.4),
         CallFunc::create([=] () {
           auto action = EaseSineInOut::create(
-            MoveBy::create(0.15, Vec3(0, -0.4, 0))
+            MoveBy::create(0.15, Vec3(0, -0.8, 0))
           );
 
           this->plate->moved = true;
@@ -141,6 +148,7 @@ void TypeMoveUp::start()
               CallFunc::create([=] () {
                 this->plate->moved = false;
                 this->plate->blocked = false;
+          this->decoration->setColor(Color3B::GREEN);
               }),
               nullptr
             )
@@ -158,7 +166,7 @@ void TypeMoveUp::start()
             )
           );
         }),
-        DelayTime::create(0.6),
+        DelayTime::create(0.5),
         nullptr
       )
     )

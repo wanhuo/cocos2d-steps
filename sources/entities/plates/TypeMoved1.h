@@ -57,6 +57,8 @@ class TypeMoved1 : public TypeMoved
  ~TypeMoved1();
 
   virtual void start();
+
+  virtual TypeMoved1* deepCopy();
 };
 
 #endif

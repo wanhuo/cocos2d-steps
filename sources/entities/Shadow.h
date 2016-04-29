@@ -43,6 +43,7 @@ class Shadow : public Entity3D
   float position = 0.0;
 
   Vec3 maxScale = Vec3(10, 10, 10);
+  Vec3 minScale = Vec3(0, 0, 0);
 
   /**
    *
@@ -54,10 +55,14 @@ class Shadow : public Entity3D
  ~Shadow();
 
   virtual void setMaxScale(Vec3 scale);
+  virtual void setMinScale(Vec3 scale);
+
   virtual void setSize(float size);
   virtual void setPosition(float position);
 
   virtual Vec3 getMaxScale();
+  virtual Vec3 getMinScale();
+
   virtual float getSize();
   virtual float getPosition();
 };
