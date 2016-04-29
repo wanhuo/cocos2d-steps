@@ -31,8 +31,7 @@
 Cub::Cub()
 : Decoration("plate-down.obj")
 {
-  this->shadow = new Shadow("plate-shadow.obj", Application->environment->plane);
-  this->shadow->setColor(Color3B(0, 0, 0));
+  this->shadow = new Shadow("plate-shadow.obj");
   this->shadow->setSize(0);
   this->shadow->setMaxScale(Vec3(2.5, 2.5, 2.5));
 

@@ -63,8 +63,6 @@ void Environment::create()
   this->ground = new Ground(this);
 
   this->starts = new Pool(new Start, this->plane);
-  this->spikes = new Pool(new Spike, this->plane);
-  this->ups = new Pool(new Up, this->plane);
   this->downs = new Pool(new Down, this->plane);
   this->cubs = new Pool(new Cub, this->plane);
   this->diamonds = new Pool(new Diamond, this->plane);
@@ -74,14 +72,19 @@ void Environment::create()
   this->hearts = new Pool(new Heart, this->plane);
   this->colors = new Pool(new Color, this->plane);
 
-  this->plates = new Pool(new Plate, this->plane);
   this->particles = new Pool(new Particle, this->plane);
 
-  this->plates_spikes = new Pool(new Special("plate-type-spike.obj"), this->plane);
-  this->plates_up = new Pool(new Special("plate-type-up.obj"), this->plane);
-  this->plates_saw = new Pool(new TypeSaw, this->plane);
-  this->plates_gate = new Pool(new TypeGate, this->plane);
-  this->plates_copter = new Pool(new TypeCopter, this->plane);
+  this->plates.normal = new Pool(new Plate, this->plane);
+  this->plates.spikes = new Pool(new TypeSpikes, this->plane);
+  this->plates.trampolines = new Pool(new TypeTrampoline, this->plane);
+  this->plates.saws = new Pool(new TypeSaw, this->plane);
+  this->plates.gates = new Pool(new TypeGate, this->plane);
+  this->plates.copters = new Pool(new TypeCopter, this->plane);
+  this->plates.moveups = new Pool(new TypeMoveUp, this->plane);
+  this->plates.moved1 = new Pool(new TypeMoved1, this->plane);
+  this->plates.moved2 = new Pool(new TypeMoved2, this->plane);
+  this->plates.moved3 = new Pool(new TypeMoved3, this->plane);
+  this->plates.moved4 = new Pool(new TypeMoved4, this->plane);
 
   this->character = new Character;
   this->generator = new Generator;
@@ -186,16 +189,7 @@ void Environment::onMenu()
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;
 
-  this->plates->clear(true);
-  this->plates_spikes->clear(true);
-  this->plates_up->clear(true);
-  this->plates_saw->clear(true);
-  this->plates_gate->clear(true);
-  this->plates_copter->clear(true);
-
-  this->spikes->clear(true);
-  this->ups->clear(true);
-  this->downs->clear(true);
+  this->plates.normal->clear(true);
 
   this->generator->clear();
 
@@ -229,7 +223,7 @@ void Environment::onFinish()
 
   Application->counter->values.start = 0;
 
-  this->plates->clear(true);
+  this->plates.normal->clear(true);
 
   auto x = this->character->plates.current->getPositionX();
   auto y = this->character->plates.current->getPositionY();

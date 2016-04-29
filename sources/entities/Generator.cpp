@@ -49,7 +49,7 @@ Plate* Generator::create(bool animated)
     {
       this->preUpdate();
 
-      auto plate = static_cast<Plate*>(Application->environment->plates->_create());
+      auto plate = static_cast<Plate*>(Application->environment->plates.normal->_create());
 
       plate->setDirection(this->direction);
 
@@ -84,7 +84,7 @@ Plate* Generator::create(bool animated)
       }
       else
       {
-        if(this->resets == 0 && Application->environment->plates->count <= 1)
+        if(this->resets == 0 && Application->environment->plates.normal->count <= 1)
         {
           plate->setType(Plate::START);
         }
@@ -111,7 +111,7 @@ Plate* Generator::create(bool animated)
             }
             else if(this->conditions.s2 < 1 && probably(10))
             {
-              plate->setType(Plate::UP);
+              plate->setType(Plate::TRAMPOLINE);
 
               this->conditions.s1 = 2;
               this->conditions.s2 = 2;
@@ -124,35 +124,35 @@ Plate* Generator::create(bool animated)
               this->conditions.s1 = 2;
               this->conditions.s2 = 2;
             }
-            else if((this->length - this->count) > 1 && this->conditions.s2 < 0 && this->direction && probably(10))
+            else if((this->length - this->count) > 1 && this->conditions.s2 < 0 && this->direction && probably(100))
             {
               plate->setType(Plate::MOVED1);
 
               this->length++;
               this->conditions.s2 = 2;
             }
-            else if((this->length - this->count) > 1 && this->conditions.s2 < 0 && !this->direction && probably(10))
+            else if((this->length - this->count) > 1 && this->conditions.s2 < 0 && !this->direction && probably(100))
             {
               plate->setType(Plate::MOVED2);
 
               this->length++;
               this->conditions.s2 = 2;
             }
-            else if(this->count >= this->length && this->conditions.s2 < 0 && this->direction && probably(10))
+            else if(this->count >= this->length && this->conditions.s2 < 0 && this->direction && probably(100))
             {
               plate->setType(Plate::MOVED3);
 
               this->conditions.s2 = 2;
             }
-            else if(this->count >= this->length && this->conditions.s2 < 0 && !this->direction && probably(10))
+            else if(this->count >= this->length && this->conditions.s2 < 0 && !this->direction && probably(100))
             {
               plate->setType(Plate::MOVED4);
 
               this->conditions.s2 = 2;
             }
-            else if(this->count > 0 && this->count < this->length && this->conditions.s1 < 1 && this->conditions.s2 < 0 && probably(10))
+            else if(this->count > 0 && this->count < this->length && this->conditions.s1 < 1 && this->conditions.s2 < 0 && probably(100))
             {
-              plate->setType(Plate::MOVED5);
+              plate->setType(Plate::MOVE_UP);
 
               this->conditions.s2 = 2;
             }
@@ -224,7 +224,11 @@ Plate* Generator::create(bool animated)
 
       if(animated)
       {
-        plate->add();
+        plate->prepare();
+      }
+      else
+      {
+        plate->start();
       }
 
       this->postUpdate();
@@ -251,9 +255,9 @@ void Generator::destroy(bool manual)
       {
         int counter = 0;
 
-        for(int i = 0; i < Application->environment->plates->count; i++)
+        for(int i = 0; i < Application->environment->plates.normal->count; i++)
         {
-          Plate* element = static_cast<Plate*>(Application->environment->plates->element(i));
+          Plate* element = static_cast<Plate*>(Application->environment->plates.normal->element(i));
 
           if(element->getIndex() < Application->environment->character->plates.current->getIndex() - 5)
           {
@@ -278,9 +282,9 @@ void Generator::destroy(bool manual)
       {
         Plate* plate = nullptr;
 
-        for(int i = 0; i < Application->environment->plates->count; i++)
+        for(int i = 0; i < Application->environment->plates.normal->count; i++)
         {
-          Plate* element = static_cast<Plate*>(Application->environment->plates->element(i));
+          Plate* element = static_cast<Plate*>(Application->environment->plates.normal->element(i));
 
           if(!plate)
           {

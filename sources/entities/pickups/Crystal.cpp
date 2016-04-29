@@ -70,7 +70,7 @@ void Crystal::onPickup()
         {
           decoration->setPosition3D(this->getPosition3D());
           decoration->runAction(
-            MoveTo::create(0.05 * (i + 1), Vec3(next->getPositionX(), 1.2f, next->getPositionZ()))
+            MoveTo::create(0.05 * (i + 1), Vec3(next->getPositionX(), 1.6f, next->getPositionZ()))
           );
         }
       }

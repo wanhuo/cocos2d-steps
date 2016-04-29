@@ -39,8 +39,8 @@ Cube::Cube(string file, Node* parent)
 {
 }
 
-Cube::Cube()
-: Entity3D()
+Cube::Cube(Node* parent)
+: Entity3D(parent)
 {
 }
 
@@ -112,15 +112,14 @@ void Cube::update(float time)
 {
   auto position = this->getPosition3D();
 
-  position.y -= 0.4;
-
   if(this->shadow)
   {
     this->shadow->setPositionX(position.x);
+    this->shadow->setPositionY(this->shadow->getPosition());
     this->shadow->setPositionZ(position.z);
 
-    this->shadow->setScaleX(max(0.0f, min(this->shadow->getMaxScale().x, position.y)));
-    this->shadow->setScaleZ(max(0.0f, min(this->shadow->getMaxScale().z, position.y)));
+    this->shadow->setScaleX(max(0.0f, min(this->shadow->getMaxScale().x, position.y - this->shadow->getPosition())));
+    this->shadow->setScaleZ(max(0.0f, min(this->shadow->getMaxScale().z, position.y - this->shadow->getPosition())));
 
     if(!this->shadow->numberOfRunningActions())
     {

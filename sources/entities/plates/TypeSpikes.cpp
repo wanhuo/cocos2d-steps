@@ -28,16 +28,13 @@
  *
  *
  */
-Shadow::Shadow(const char* file)
-: Entity3D(file, Application->environment->plane)
+TypeSpikes::TypeSpikes()
+: Special("plate-type-spikes.obj")
 {
-  this->setColor(Color3B(0, 0, 0));
-  this->setOpacity(30);
-
-  this->setLightMask(2048);
+  this->spikes = new Spikes(this);
 }
 
-Shadow::~Shadow()
+TypeSpikes::~TypeSpikes()
 {
 }
 
@@ -46,32 +43,49 @@ Shadow::~Shadow()
  *
  *
  */
-void Shadow::setMaxScale(Vec3 scale)
+void TypeSpikes::onCreate()
 {
-  this->maxScale = scale;
+  Special::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  this->setTexture("plate-texture-state-1-spikes.png");
 }
 
-void Shadow::setSize(float size)
+void TypeSpikes::onDestroy(bool action)
 {
-  this->size = size;
+  Special::onDestroy(action);
 }
 
-void Shadow::setPosition(float position)
+/**
+ *
+ *
+ *
+ */
+void TypeSpikes::setPlate(Plate* plate)
 {
-  this->position = position;
+  Special::setPlate(plate);
+
+  /**
+   *
+   *
+   *
+   */
+  this->spikes->_create();
+  this->spikes->setPosition3D(Vec3(0, 0, 0));
+
+  this->getDecorations().push_back(this->spikes);
 }
 
-Vec3 Shadow::getMaxScale()
+/**
+ *
+ *
+ *
+ */
+TypeSpikes* TypeSpikes::deepCopy()
 {
-  return this->maxScale;
-}
-
-float Shadow::getSize()
-{
-  return this->size;
-}
-
-float Shadow::getPosition()
-{
-  return this->position;
+  return new TypeSpikes;
 }

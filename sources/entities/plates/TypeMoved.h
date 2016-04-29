@@ -21,19 +21,17 @@
  *
  */
 
-#ifndef _SPIKE_H_
-#define _SPIKE_H_
+#ifndef _TYPE_MOVED_H_
+#define _TYPE_MOVED_H_
 
 #include "Game.h"
-
-#include "Character.h"
 
 /**
  *
  *
  *
  */
-class Spike : public Decoration
+class TypeMoved : public Special
 {
   /**
    *
@@ -55,17 +53,13 @@ class Spike : public Decoration
    *
    */
   public:
-  Spike();
- ~Spike();
+  TypeMoved();
+ ~TypeMoved();
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
   virtual void setPlate(Plate* plate);
-
-  virtual Character::Crash status();
-
-  Spike* deepCopy();
 };
 
 #endif

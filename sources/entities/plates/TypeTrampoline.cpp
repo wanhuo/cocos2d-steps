@@ -21,9 +21,6 @@
  *
  */
 
-#ifndef _UP_H_
-#define _UP_H_
-
 #include "Game.h"
 
 /**
@@ -31,37 +28,64 @@
  *
  *
  */
-class Up : public Decoration
+TypeTrampoline::TypeTrampoline()
+: Special("plate-type-trampoline.obj")
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
+  this->trampoline = new Trampoline(this);
+}
+
+TypeTrampoline::~TypeTrampoline()
+{
+}
+
+/**
+ *
+ *
+ *
+ */
+void TypeTrampoline::onCreate()
+{
+  Special::onCreate();
 
   /**
    *
    *
    *
    */
-  protected:
+  this->setTexture("plate-texture-state-1-trampoline.png");
+}
+
+void TypeTrampoline::onDestroy(bool action)
+{
+  Special::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void TypeTrampoline::setPlate(Plate* plate)
+{
+  Special::setPlate(plate);
 
   /**
    *
    *
    *
    */
-  public:
-  Up();
- ~Up();
+  this->trampoline->_create();
+  this->trampoline->setPosition3D(Vec3(0, 0, 0));
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+  this->getDecorations().push_back(this->trampoline);
+}
 
-  virtual void onPickup();
-
-  Up* deepCopy();
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+TypeTrampoline* TypeTrampoline::deepCopy()
+{
+  return new TypeTrampoline;
+}

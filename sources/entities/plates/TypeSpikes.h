@@ -21,6 +21,9 @@
  *
  */
 
+#ifndef _TYPE_SPIKES_H_
+#define _TYPE_SPIKES_H_
+
 #include "Game.h"
 
 /**
@@ -28,50 +31,39 @@
  *
  *
  */
-Shadow::Shadow(const char* file)
-: Entity3D(file, Application->environment->plane)
+class TypeSpikes : public Special
 {
-  this->setColor(Color3B(0, 0, 0));
-  this->setOpacity(30);
+  /**
+   *
+   *
+   *
+   */
+  private:
 
-  this->setLightMask(2048);
-}
+  /**
+   *
+   *
+   *
+   */
+  protected:
 
-Shadow::~Shadow()
-{
-}
+  /**
+   *
+   *
+   *
+   */
+  public:
+  TypeSpikes();
+ ~TypeSpikes();
 
-/**
- *
- *
- *
- */
-void Shadow::setMaxScale(Vec3 scale)
-{
-  this->maxScale = scale;
-}
+  Spikes* spikes;
 
-void Shadow::setSize(float size)
-{
-  this->size = size;
-}
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
-void Shadow::setPosition(float position)
-{
-  this->position = position;
-}
+  virtual void setPlate(Plate* plate);
 
-Vec3 Shadow::getMaxScale()
-{
-  return this->maxScale;
-}
+  TypeSpikes* deepCopy();
+};
 
-float Shadow::getSize()
-{
-  return this->size;
-}
-
-float Shadow::getPosition()
-{
-  return this->position;
-}
+#endif

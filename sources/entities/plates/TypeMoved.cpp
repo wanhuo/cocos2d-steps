@@ -21,9 +21,6 @@
  *
  */
 
-#ifndef _SPECIAL_H_
-#define _SPECIAL_H_
-
 #include "Game.h"
 
 /**
@@ -31,51 +28,50 @@
  *
  *
  */
-class Plate;
+TypeMoved::TypeMoved()
+: Special("plate-type-moved.obj")
+{
+}
+
+TypeMoved::~TypeMoved()
+{
+}
 
 /**
  *
  *
  *
  */
-class Special : public Cube
+void TypeMoved::onCreate()
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  vector<Decoration*> decorations;
+  Special::onCreate();
 
   /**
    *
    *
    *
    */
-  protected:
-  Plate* plate;
+  this->setTexture("plate-texture-state-1.png");
+}
+
+void TypeMoved::onDestroy(bool action)
+{
+  Special::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void TypeMoved::setPlate(Plate* plate)
+{
+  Special::setPlate(plate);
 
   /**
    *
    *
    *
    */
-  public:
-  Special(string file, Node* parent = nullptr);
-  Special();
- ~Special();
-
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
-
-  virtual vector<Decoration*> &getDecorations();
-
-  virtual void setPlate(Plate* plate);
-
-  virtual void clearDecorations();
-
-  virtual Special* deepCopy();
-};
-
-#endif
+  this->plate->behavior = Plate::DYNAMIC;
+}

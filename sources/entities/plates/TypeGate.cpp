@@ -46,6 +46,13 @@ TypeGate::~TypeGate()
 void TypeGate::onCreate()
 {
   Special::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  this->setTexture("plate-texture-state-1.png");
 }
 
 void TypeGate::onDestroy(bool action)

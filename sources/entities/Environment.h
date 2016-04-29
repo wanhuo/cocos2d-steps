@@ -55,6 +55,23 @@ class Environment : public Background
   };
 
   struct Plates {
+    Pool* normal;
+    Pool* spikes;
+    Pool* trampolines;
+    Pool* saws;
+    Pool* gates;
+    Pool* copters;
+    Pool* moveups;
+    Pool* moved1;
+    Pool* moved2;
+    Pool* moved3;
+    Pool* moved4;
+  };
+
+  struct Decorations {
+  };
+
+  struct Pickups {
   };
 
   /**
@@ -88,6 +105,10 @@ class Environment : public Background
   Environment(Node* parent);
  ~Environment();
 
+  Plates plates;
+  Decorations decorations;
+  Pickups pickups;
+
   bool star;
 
   float starTime;
@@ -102,8 +123,6 @@ class Environment : public Background
   Entity3D* plane;
 
   Pool* starts;
-  Pool* spikes;
-  Pool* ups;
   Pool* downs;
   Pool* cubs;
   Pool* diamonds;
@@ -113,12 +132,6 @@ class Environment : public Background
   Pool* hearts;
   Pool* colors;
 
-  Pool* plates;
-  Pool* plates_spikes;
-  Pool* plates_up;
-  Pool* plates_saw;
-  Pool* plates_gate;
-  Pool* plates_copter;
   Pool* particles;
 
   Ground* ground;

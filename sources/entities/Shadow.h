@@ -39,7 +39,8 @@ class Shadow : public Entity3D
    *
    */
   protected:
-  float size = 2.5f;
+  float size = 2.1;
+  float position = 0.0;
 
   Vec3 maxScale = Vec3(10, 10, 10);
 
@@ -49,14 +50,16 @@ class Shadow : public Entity3D
    *
    */
   public:
-  Shadow(const char* file, Node* parent = nullptr);
+  Shadow(const char* file);
  ~Shadow();
 
   virtual void setMaxScale(Vec3 scale);
   virtual void setSize(float size);
+  virtual void setPosition(float position);
 
   virtual Vec3 getMaxScale();
   virtual float getSize();
+  virtual float getPosition();
 };
 
 #endif

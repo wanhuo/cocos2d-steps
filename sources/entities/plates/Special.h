@@ -21,6 +21,9 @@
  *
  */
 
+#ifndef _SPECIAL_H_
+#define _SPECIAL_H_
+
 #include "Game.h"
 
 /**
@@ -28,50 +31,53 @@
  *
  *
  */
-Shadow::Shadow(const char* file)
-: Entity3D(file, Application->environment->plane)
-{
-  this->setColor(Color3B(0, 0, 0));
-  this->setOpacity(30);
-
-  this->setLightMask(2048);
-}
-
-Shadow::~Shadow()
-{
-}
+class Plate;
 
 /**
  *
  *
  *
  */
-void Shadow::setMaxScale(Vec3 scale)
+class Special : public Cube
 {
-  this->maxScale = scale;
-}
+  /**
+   *
+   *
+   *
+   */
+  private:
+  vector<Decoration*> decorations;
 
-void Shadow::setSize(float size)
-{
-  this->size = size;
-}
+  /**
+   *
+   *
+   *
+   */
+  protected:
+  Plate* plate;
 
-void Shadow::setPosition(float position)
-{
-  this->position = position;
-}
+  /**
+   *
+   *
+   *
+   */
+  public:
+  Special(string file, Node* parent = nullptr);
+  Special();
+ ~Special();
 
-Vec3 Shadow::getMaxScale()
-{
-  return this->maxScale;
-}
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
-float Shadow::getSize()
-{
-  return this->size;
-}
+  virtual vector<Decoration*> &getDecorations();
 
-float Shadow::getPosition()
-{
-  return this->position;
-}
+  virtual void setPlate(Plate* plate);
+
+  virtual void start();
+
+  virtual void clearDecorations();
+
+  virtual Special* deepCopy();
+};
+
+#endif

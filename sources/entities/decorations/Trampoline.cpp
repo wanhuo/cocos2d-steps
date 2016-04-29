@@ -28,13 +28,13 @@
  *
  *
  */
-Up::Up()
-: Decoration()
+Trampoline::Trampoline(Node* parent)
+: Decoration("", parent)
 {
   this->removable = false;
 }
 
-Up::~Up()
+Trampoline::~Trampoline()
 {
 }
 
@@ -43,28 +43,7 @@ Up::~Up()
  *
  *
  */
-void Up::onCreate()
-{
-  Decoration::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-}
-
-void Up::onDestroy(bool action)
-{
-  Decoration::onDestroy(action);
-}
-
-/**
- *
- *
- *
- */
-void Up::onPickup()
+void Trampoline::onPickup()
 {
   auto element = Application->environment->character->plates.current;
 
@@ -186,14 +165,4 @@ void Up::onPickup()
   );
 
   Sound->play("up");
-}
-
-/**
- *
- *
- *
- */
-Up* Up::deepCopy()
-{
-  return new Up;
 }

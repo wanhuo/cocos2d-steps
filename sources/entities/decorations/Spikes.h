@@ -21,57 +21,49 @@
  *
  */
 
+#ifndef _SPIKES_H_
+#define _SPIKES_H_
+
 #include "Game.h"
 
-/**
- *
- *
- *
- */
-Shadow::Shadow(const char* file)
-: Entity3D(file, Application->environment->plane)
-{
-  this->setColor(Color3B(0, 0, 0));
-  this->setOpacity(30);
-
-  this->setLightMask(2048);
-}
-
-Shadow::~Shadow()
-{
-}
+#include "Character.h"
 
 /**
  *
  *
  *
  */
-void Shadow::setMaxScale(Vec3 scale)
+class Spikes : public Decoration
 {
-  this->maxScale = scale;
-}
+  /**
+   *
+   *
+   *
+   */
+  private:
 
-void Shadow::setSize(float size)
-{
-  this->size = size;
-}
+  /**
+   *
+   *
+   *
+   */
+  protected:
 
-void Shadow::setPosition(float position)
-{
-  this->position = position;
-}
+  /**
+   *
+   *
+   *
+   */
+  public:
+  Spikes(Node* parent);
+ ~Spikes();
 
-Vec3 Shadow::getMaxScale()
-{
-  return this->maxScale;
-}
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
-float Shadow::getSize()
-{
-  return this->size;
-}
+  virtual void setPlate(Plate* plate);
 
-float Shadow::getPosition()
-{
-  return this->position;
-}
+  virtual Character::Crash status();
+};
+
+#endif

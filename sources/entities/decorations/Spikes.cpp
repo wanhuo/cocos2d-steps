@@ -28,16 +28,16 @@
  *
  *
  */
-Spike::Spike()
-: Decoration("spike.obj")
+Spikes::Spikes(Node* parent)
+: Decoration("spikes.obj", parent)
 {
-  this->setTexture("spike-texture.png");
+  this->setTexture("spikes-texture.png");
 
   this->removable = false;
   this->stopable = true;
 }
 
-Spike::~Spike()
+Spikes::~Spikes()
 {
 }
 
@@ -46,7 +46,7 @@ Spike::~Spike()
  *
  *
  */
-void Spike::onCreate()
+void Spikes::onCreate()
 {
   Decoration::onCreate();
 
@@ -85,7 +85,7 @@ void Spike::onCreate()
               DelayTime::create(0.1),
               CallFunc::create([=] () {
                 Sound->play("decoration-spike", this, [=] () -> float {
-                  return this->getPosition3D().distance(Application->environment->character->getPosition3D());
+                  return this->getParent()->getPosition3D().distance(Application->environment->character->getPosition3D());
                 }, Game::SOUND_DISTANCE);
                 this->enable = true;
               }),
@@ -104,7 +104,7 @@ void Spike::onCreate()
   );
 }
 
-void Spike::onDestroy(bool action)
+void Spikes::onDestroy(bool action)
 {
   Decoration::onDestroy(action);
 }
@@ -114,7 +114,7 @@ void Spike::onDestroy(bool action)
  *
  *
  */
-void Spike::setPlate(Plate* plate)
+void Spikes::setPlate(Plate* plate)
 {
   Decoration::setPlate(plate);
 }
@@ -124,17 +124,7 @@ void Spike::setPlate(Plate* plate)
  *
  *
  */
-Character::Crash Spike::status()
+Character::Crash Spikes::status()
 {
   return this->enable ? Character::Crash::SPIKES : Character::Crash::UNDEFINED;
-}
-
-/**
- *
- *
- *
- */
-Spike* Spike::deepCopy()
-{
-  return new Spike;
 }

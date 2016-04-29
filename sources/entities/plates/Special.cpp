@@ -98,6 +98,15 @@ void Special::setPlate(Plate* plate)
  *
  *
  */
+void Special::start()
+{
+}
+
+/**
+ *
+ *
+ *
+ */
 void Special::clearDecorations()
 {
   for(auto decoration : this->getDecorations())

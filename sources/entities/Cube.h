@@ -67,7 +67,7 @@ class Cube : public Entity3D
    */
   public:
   Cube(string file, Node* parent = nullptr);
-  Cube();
+  Cube(Node* parent = nullptr);
  ~Cube();
 
   Shadow* shadow = nullptr;

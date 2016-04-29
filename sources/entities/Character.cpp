@@ -31,8 +31,7 @@
 Character::Character()
 : Cube("character.obj")
 {
-  this->shadow = new Shadow("character-shadow.obj", Application->environment->plane);
-  this->shadow->setColor(Color3B(0, 0, 0));
+  this->shadow = new Shadow("character-shadow.obj");
   this->shadow->setMaxScale(Vec3(2.5, 2.5, 2.5));
 
   this->plane = new Entity3D(Application->environment->plane, true);
@@ -496,9 +495,9 @@ void Character::onTurn(Turn turn)
 
   this->plates.current = nullptr;
 
-  for(int i = 0; i < Application->environment->plates->count; i++)
+  for(int i = 0; i < Application->environment->plates.normal->count; i++)
   {
-    auto plate = static_cast<Plate*>(Application->environment->plates->element(i));
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
 
     int px = plate->getPositionX() / 1.5;
     int pz = plate->getPositionZ() / 1.5;
@@ -526,7 +525,7 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
 
   if(plate->behavior == Plate::DYNAMIC)
   {
-    if(plate->numberOfRunningActions() > 2)
+    if(plate->numberOfRunningActions() > 1)
     {
       return this->onLandFail(turn, plate);
     }
@@ -543,8 +542,11 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   {
     if(decoration->removable)
     {
-      texture = decoration->getParticleTexture();
-      color = Color3B::WHITE;
+      if(decoration->getParticleTexture())
+      {
+        texture = decoration->getParticleTexture();
+        color = Color3B::WHITE;
+      }
     }
 
     if(proceed)
@@ -969,9 +971,9 @@ Plate* Character::getPlateRight(Plate* current)
   int y = (current ? current->getPositionY() : this->plates.current->getPositionY()) / 1.5;
   int z = (current ? current->getPositionZ() : this->plates.current->getPositionZ()) / 1.5;
 
-  for(int i = 0; i < Application->environment->plates->count; i++)
+  for(int i = 0; i < Application->environment->plates.normal->count; i++)
   {
-    auto plate = static_cast<Plate*>(Application->environment->plates->element(i));
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
     auto position = plate->getPosition3D();
 
     int px = position.x / 1.5;
@@ -1004,9 +1006,9 @@ Plate* Character::getPlateLeft(Plate* current)
   int y = (current ? current->getPositionY() : this->plates.current->getPositionY()) / 1.5;
   int z = (current ? current->getPositionZ() : this->plates.current->getPositionZ()) / 1.5;
 
-  for(int i = 0; i < Application->environment->plates->count; i++)
+  for(int i = 0; i < Application->environment->plates.normal->count; i++)
   {
-    auto plate = static_cast<Plate*>(Application->environment->plates->element(i));
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
     auto position = plate->getPosition3D();
 
     int px = position.x / 1.5;
@@ -1039,9 +1041,9 @@ Plate* Character::getPlateRightWithDefaults(Plate* current)
   int y = (current ? current->getStartPositionY() : this->plates.current->getStartPositionY()) / 1.5;
   int z = (current ? current->getStartPositionZ() : this->plates.current->getStartPositionZ()) / 1.5;
 
-  for(int i = 0; i < Application->environment->plates->count; i++)
+  for(int i = 0; i < Application->environment->plates.normal->count; i++)
   {
-    auto plate = static_cast<Plate*>(Application->environment->plates->element(i));
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
     auto position = Vec3(plate->getStartPositionX(), plate->getStartPositionY(), plate->getStartPositionZ());
 
     int px = position.x / 1.5;
@@ -1074,9 +1076,9 @@ Plate* Character::getPlateLeftWithDefaults(Plate* current)
   int y = (current ? current->getStartPositionY() : this->plates.current->getStartPositionY()) / 1.5;
   int z = (current ? current->getStartPositionZ() : this->plates.current->getStartPositionZ()) / 1.5;
 
-  for(int i = 0; i < Application->environment->plates->count; i++)
+  for(int i = 0; i < Application->environment->plates.normal->count; i++)
   {
-    auto plate = static_cast<Plate*>(Application->environment->plates->element(i));
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
     auto position = Vec3(plate->getStartPositionX(), plate->getStartPositionY(), plate->getStartPositionZ());
 
     int px = position.x / 1.5;

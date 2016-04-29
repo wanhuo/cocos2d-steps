@@ -64,6 +64,7 @@ class Decoration : public Cube
   public:
   Decoration(string file, Node* parent);
   Decoration(string file);
+  Decoration(Node* parent);
   Decoration();
  ~Decoration();
 

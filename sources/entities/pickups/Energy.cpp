@@ -88,7 +88,7 @@ void Energy::onPickup()
             Sequence::create(
               MoveBy::create(0.1, Vec3(x, (Application->environment->character->getPositionY() - 1.3), z)),
               CallFunc::create([=] () {
-                if((++this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::UP && next->type != Plate::FINISH)
+                if((++this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::TRAMPOLINE && next->type != Plate::FINISH)
                 {
                   Application->environment->character->runAction(this->action);
                 }
@@ -100,7 +100,7 @@ void Energy::onPickup()
                     Sequence::create(
                       DelayTime::create(0.1),
                       CallFunc::create([=] () {
-                      if(next->type != Plate::UP)
+                      if(next->type != Plate::TRAMPOLINE)
                       {
                         Application->environment->character->setManual(true);
                       }

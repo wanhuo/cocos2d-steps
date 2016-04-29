@@ -31,10 +31,7 @@
 Pickup::Pickup(const char* file)
 : Decoration(file)
 {
-  this->removable = true;
-
-  this->shadow = new Shadow("pickup-shadow.obj", Application->environment->plane);
-  this->shadow->setColor(Color3B(0, 0, 0));
+  this->shadow = new Shadow("pickup-shadow.obj");
 
   this->window = BillBoard::create();
   this->window->_destroy();
@@ -42,6 +39,8 @@ Pickup::Pickup(const char* file)
 
   this->glow = new Entity("glow.png", this->window, true);
   this->glow->setScale(0.011);
+
+  this->removable = true;
 
   this->setScheduleUpdate(true);
 }

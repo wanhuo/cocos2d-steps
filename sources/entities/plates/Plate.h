@@ -67,7 +67,7 @@ class Plate : public Cube
     FINISH,
     BEST,
     SPIKES,
-    UP,
+    TRAMPOLINE,
     DOWN,
     CUB,
     SAW,
@@ -84,7 +84,7 @@ class Plate : public Cube
     MOVED2,
     MOVED3,
     MOVED4,
-    MOVED5
+    MOVE_UP
   };
 
   enum Side {
@@ -119,7 +119,7 @@ class Plate : public Cube
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
-  virtual void onAdd();
+  virtual void onPrepare();
   virtual void onRemove(bool complete = true);
 
   virtual void onCount();
@@ -142,8 +142,10 @@ class Plate : public Cube
 
   virtual void setType(Type type, bool animated = true);
 
-  virtual void add();
+  virtual void prepare();
   virtual void remove(bool complete = true);
+
+  virtual void start();
 
   virtual void clearDecorations();
   virtual void clearSpecial();

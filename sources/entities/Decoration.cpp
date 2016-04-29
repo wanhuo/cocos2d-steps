@@ -38,6 +38,11 @@ Decoration::Decoration(string file)
 {
 }
 
+Decoration::Decoration(Node* parent)
+: Cube(parent)
+{
+}
+
 Decoration::Decoration()
 : Cube()
 {
@@ -111,7 +116,7 @@ Character::Crash Decoration::status()
  */
 const char* Decoration::getParticleTexture()
 {
-  return "";
+  return nullptr;
 }
 
 /**

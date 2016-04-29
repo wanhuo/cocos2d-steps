@@ -21,6 +21,9 @@
  *
  */
 
+#ifndef _TRAMPOLINE_H_
+#define _TRAMPOLINE_H_
+
 #include "Game.h"
 
 /**
@@ -28,50 +31,32 @@
  *
  *
  */
-Shadow::Shadow(const char* file)
-: Entity3D(file, Application->environment->plane)
+class Trampoline : public Decoration
 {
-  this->setColor(Color3B(0, 0, 0));
-  this->setOpacity(30);
+  /**
+   *
+   *
+   *
+   */
+  private:
 
-  this->setLightMask(2048);
-}
+  /**
+   *
+   *
+   *
+   */
+  protected:
 
-Shadow::~Shadow()
-{
-}
+  /**
+   *
+   *
+   *
+   */
+  public:
+  Trampoline(Node* parent);
+ ~Trampoline();
 
-/**
- *
- *
- *
- */
-void Shadow::setMaxScale(Vec3 scale)
-{
-  this->maxScale = scale;
-}
+  virtual void onPickup();
+};
 
-void Shadow::setSize(float size)
-{
-  this->size = size;
-}
-
-void Shadow::setPosition(float position)
-{
-  this->position = position;
-}
-
-Vec3 Shadow::getMaxScale()
-{
-  return this->maxScale;
-}
-
-float Shadow::getSize()
-{
-  return this->size;
-}
-
-float Shadow::getPosition()
-{
-  return this->position;
-}
+#endif
