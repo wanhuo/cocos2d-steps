@@ -222,31 +222,39 @@ class Game : public Screen
   CustomCommand _customCommand;
 	virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
 	{
-		 _customCommand.init(_globalZOrder+10);
-		_customCommand.func = CC_CALLBACK_0(Game::onDraw, this, transform, true);
+		 _customCommand.init(_globalZOrder + 10);
+		_customCommand.func = CC_CALLBACK_0(Game::onDraw, this, renderer, transform, flags);
 		renderer->addCommand(&_customCommand);
 	}
 
-	virtual void onDraw(const kmMat4 &transform, bool transformUpdated)
+	virtual void onDraw(Renderer *renderer, const Mat4& transform, uint32_t flags)
 	{
-  GLuint FramebufferName = 0;
- glGenFramebuffers(1, &FramebufferName);
- glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
+   GLuint FramebufferName = 0;
+   glGenFramebuffers(1, &FramebufferName);
+   glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
 
- // Depth texture. Slower than a depth buffer, but you can sample it later in your shader
- GLuint depthTexture;
- glGenTextures(1, &depthTexture);
- glBindTexture(GL_TEXTURE_2D, depthTexture);
- glTexImage2D(GL_TEXTURE_2D, 0,GL_DEPTH_COMPONENT16, 1024, 1024, 0,GL_DEPTH_COMPONENT, GL_FLOAT, 0);
- glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
- glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
- glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
- glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+   // Depth texture. Slower than a depth buffer, but you can sample it later in your shader
+   GLuint depthTexture;
+   glGenTextures(1, &depthTexture);
+   glBindTexture(GL_TEXTURE_2D, depthTexture);
+   glTexImage2D(GL_TEXTURE_2D, 0,GL_DEPTH_COMPONENT16, 1024, 1024, 0,GL_DEPTH_COMPONENT, GL_FLOAT, 0);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
- glFramebufferTextureEXT(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0);
+   glFramebufferTextureEXT(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0);
 
- glDrawBuffer(GL_NONE); // No color buffer is drawn to.
+   glDrawBuffer(GL_NONE); // No color buffer is drawn to.
 
+   if(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE)
+   {
+    log("A");
+   }
+   else
+   {
+    log("B");
+   }
 	}
 };
 
