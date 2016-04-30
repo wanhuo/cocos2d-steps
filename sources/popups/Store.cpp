@@ -46,7 +46,7 @@ Store* Store::getInstance()
  *
  */
 Store::Store()
-: Popup()
+: Popup("")
 {
   instance = this;
 

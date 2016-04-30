@@ -21,66 +21,36 @@
  *
  */
 
-#ifndef _FINISH_H_
-#define _FINISH_H_
-
-#include "Popup.h"
+#include "Game.h"
 
 /**
  *
  *
  *
  */
-class Finish : public Popup
+Missions* Missions::instance;
+
+/**
+ *
+ *
+ *
+ */
+Missions* Missions::getInstance()
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  static Finish* instance;
+  return instance;
+}
 
-  struct Buttons {
-    Button* like;
-    Button* rate;
-    Button* share;
-    Button* leaderboards;
-    Button* video;
-  };
+/**
+ *
+ *
+ *
+ */
+Missions::Missions()
+: Popup("")
+{
+  instance = this;
+}
 
-  struct Texts {
-    Text* tap;
-    Text* video;
-  };
-
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  Texts texts;
-  Buttons buttons;
-
-  /**
-   *
-   *
-   *
-   */
-  public:
-  static Finish* getInstance();
-
-  Finish();
- ~Finish();
-
-  virtual void onShow();
-  virtual void onHide(Callback callback = NULL);
-
-  virtual void onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e);
-
-  virtual void show();
-  virtual void hide(Callback callback = NULL);
-};
-
-#endif
+Missions::~Missions()
+{
+}

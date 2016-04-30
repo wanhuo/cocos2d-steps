@@ -43,7 +43,7 @@ class Menu : public Popup
 
   struct Buttons {
     Button* store;
-    Button* rate;
+    Button* missions;
     Button* sound;
     Button* leaderboards;
   };

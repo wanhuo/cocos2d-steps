@@ -60,6 +60,7 @@ class Environment : public Background
     Pool* trampolines;
     Pool* saws;
     Pool* gates;
+    Pool* traps;
     Pool* copters;
     Pool* moveups;
     Pool* moved1;

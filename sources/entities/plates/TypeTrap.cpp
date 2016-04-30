@@ -21,66 +21,70 @@
  *
  */
 
-#ifndef _FINISH_H_
-#define _FINISH_H_
-
-#include "Popup.h"
+#include "Game.h"
 
 /**
  *
  *
  *
  */
-class Finish : public Popup
+TypeTrap::TypeTrap()
+: Special("plate-type-trap.obj")
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  static Finish* instance;
+  this->decoration = new Trap(this);
+}
 
-  struct Buttons {
-    Button* like;
-    Button* rate;
-    Button* share;
-    Button* leaderboards;
-    Button* video;
-  };
+TypeTrap::~TypeTrap()
+{
+}
 
-  struct Texts {
-    Text* tap;
-    Text* video;
-  };
+/**
+ *
+ *
+ *
+ */
+void TypeTrap::onCreate()
+{
+  Special::onCreate();
 
   /**
    *
    *
    *
    */
-  protected:
-  Texts texts;
-  Buttons buttons;
+  this->setTexture("plate-texture-state-1-trap.png");
+}
+
+void TypeTrap::onDestroy(bool action)
+{
+  Special::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void TypeTrap::setPlate(Plate* plate)
+{
+  Special::setPlate(plate);
 
   /**
    *
    *
    *
    */
-  public:
-  static Finish* getInstance();
+  this->decoration->_create();
 
-  Finish();
- ~Finish();
+  this->getDecorations().push_back(this->decoration);
+}
 
-  virtual void onShow();
-  virtual void onHide(Callback callback = NULL);
-
-  virtual void onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e);
-
-  virtual void show();
-  virtual void hide(Callback callback = NULL);
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+TypeTrap* TypeTrap::deepCopy()
+{
+  return new TypeTrap;
+}

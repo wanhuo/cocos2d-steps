@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _FINISH_H_
-#define _FINISH_H_
+#ifndef _MISSIONS_H_
+#define _MISSIONS_H_
 
 #include "Popup.h"
 
@@ -31,7 +31,7 @@
  *
  *
  */
-class Finish : public Popup
+class Missions : public Popup
 {
   /**
    *
@@ -39,19 +39,9 @@ class Finish : public Popup
    *
    */
   private:
-  static Finish* instance;
+  static Missions* instance;
 
   struct Buttons {
-    Button* like;
-    Button* rate;
-    Button* share;
-    Button* leaderboards;
-    Button* video;
-  };
-
-  struct Texts {
-    Text* tap;
-    Text* video;
   };
 
   /**
@@ -60,7 +50,6 @@ class Finish : public Popup
    *
    */
   protected:
-  Texts texts;
   Buttons buttons;
 
   /**
@@ -69,18 +58,10 @@ class Finish : public Popup
    *
    */
   public:
-  static Finish* getInstance();
+  static Missions* getInstance();
 
-  Finish();
- ~Finish();
-
-  virtual void onShow();
-  virtual void onHide(Callback callback = NULL);
-
-  virtual void onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e);
-
-  virtual void show();
-  virtual void hide(Callback callback = NULL);
+  Missions();
+ ~Missions();
 };
 
 #endif

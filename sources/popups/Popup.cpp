@@ -31,10 +31,17 @@
 Popup::Popup()
 {
   this->retain();
-
   this->bind(true);
 
   this->state->create = true;
+}
+
+Popup::Popup(const char* textureFilename)
+: Popup()
+{
+  this->background = new Entity(textureFilename, this, true);
+  this->background->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
+  this->background->getTexture()->setAliasTexParameters();
 }
 
 Popup::~Popup()
@@ -86,4 +93,17 @@ void Popup::hide(Callback callback)
 bool Popup::containsTouchLocation(cocos2d::Touch* touch)
 {
   return true;
+}
+
+/**
+ *
+ *
+ *
+ */
+void Popup::update(float time)
+{
+  if(this->background)
+  {
+    this->background->setTextureRect(Rect(0, 0, Application->width, Application->height));
+  }
 }

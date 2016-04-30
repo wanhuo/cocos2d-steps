@@ -56,6 +56,11 @@ void Shadow::setMinScale(Vec3 scale)
   this->minScale = scale;
 }
 
+void Shadow::setOffset(Vec3 offset)
+{
+  this->offset = offset;
+}
+
 void Shadow::setSize(float size)
 {
   this->size = size;
@@ -74,6 +79,11 @@ Vec3 Shadow::getMaxScale()
 Vec3 Shadow::getMinScale()
 {
   return this->minScale;
+}
+
+Vec3 Shadow::getOffset()
+{
+  return this->offset;
 }
 
 float Shadow::getSize()

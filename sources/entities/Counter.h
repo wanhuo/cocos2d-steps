@@ -90,6 +90,7 @@ class Counter : public Background
   virtual void onFinish();
   virtual void onLose();
   virtual void onStore();
+  virtual void onMissions();
 
   virtual void onStarStart();
   virtual void onStarFinish();

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		781B06801BD26FC70072FB24 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 781B067F1BD26FC70072FB24 /* config.json */; };
 		781B06811BD26FC70072FB24 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 781B067F1BD26FC70072FB24 /* config.json */; };
+		7823C8921CD4DFE200703A34 /* Missions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7823C8901CD4DFE200703A34 /* Missions.cpp */; };
+		7823C8931CD4DFE200703A34 /* Missions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7823C8901CD4DFE200703A34 /* Missions.cpp */; };
 		7823FBC61ABDC0F900447F0A /* NSBatch.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7823FBC51ABDC0F900447F0A /* NSBatch.mm */; };
 		7825DD431C5484CC00708016 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7825DD421C5484CC00708016 /* Popup.cpp */; };
 		7825DD441C5484CC00708016 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7825DD421C5484CC00708016 /* Popup.cpp */; };
@@ -146,6 +148,10 @@
 		789E71A91CD39D0D00BDCDC7 /* TypeMoved3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71A21CD39D0D00BDCDC7 /* TypeMoved3.cpp */; };
 		789E71AA1CD39D0D00BDCDC7 /* TypeMoved4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71A41CD39D0D00BDCDC7 /* TypeMoved4.cpp */; };
 		789E71AB1CD39D0D00BDCDC7 /* TypeMoved4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71A41CD39D0D00BDCDC7 /* TypeMoved4.cpp */; };
+		789E71AF1CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71AD1CD3D23200BDCDC7 /* TypeTrap.cpp */; };
+		789E71B01CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71AD1CD3D23200BDCDC7 /* TypeTrap.cpp */; };
+		789E71B31CD3DAF800BDCDC7 /* Trap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71B11CD3DAF800BDCDC7 /* Trap.cpp */; };
+		789E71B41CD3DAF800BDCDC7 /* Trap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71B11CD3DAF800BDCDC7 /* Trap.cpp */; };
 		78B4B6D41CBD751D00F2D8A7 /* Crystal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */; };
 		78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */; };
 		78B4B6D61CBD751D00F2D8A7 /* Diamond.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C91CBD751D00F2D8A7 /* Diamond.cpp */; };
@@ -251,6 +257,8 @@
 		781B06A51BD2B4D20072FB24 /* NSSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSSocial.h; sourceTree = "<group>"; };
 		781B06D81BD37E410072FB24 /* NSBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBatch.h; sourceTree = "<group>"; };
 		781B06D91BD37F950072FB24 /* NSHeyzap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSHeyzap.h; sourceTree = "<group>"; };
+		7823C8901CD4DFE200703A34 /* Missions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Missions.cpp; sourceTree = "<group>"; };
+		7823C8911CD4DFE200703A34 /* Missions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missions.h; sourceTree = "<group>"; };
 		7823FBC51ABDC0F900447F0A /* NSBatch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSBatch.mm; sourceTree = "<group>"; };
 		7825DD411C5484CC00708016 /* Popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Popup.h; sourceTree = "<group>"; };
 		7825DD421C5484CC00708016 /* Popup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Popup.cpp; sourceTree = "<group>"; };
@@ -399,6 +407,10 @@
 		789E71A31CD39D0D00BDCDC7 /* TypeMoved3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeMoved3.h; sourceTree = "<group>"; };
 		789E71A41CD39D0D00BDCDC7 /* TypeMoved4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeMoved4.cpp; sourceTree = "<group>"; };
 		789E71A51CD39D0D00BDCDC7 /* TypeMoved4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeMoved4.h; sourceTree = "<group>"; };
+		789E71AD1CD3D23200BDCDC7 /* TypeTrap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeTrap.cpp; sourceTree = "<group>"; };
+		789E71AE1CD3D23200BDCDC7 /* TypeTrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeTrap.h; sourceTree = "<group>"; };
+		789E71B11CD3DAF800BDCDC7 /* Trap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Trap.cpp; sourceTree = "<group>"; };
+		789E71B21CD3DAF800BDCDC7 /* Trap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trap.h; sourceTree = "<group>"; };
 		78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Crystal.cpp; sourceTree = "<group>"; };
 		78B4B6C81CBD751D00F2D8A7 /* Crystal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crystal.h; sourceTree = "<group>"; };
 		78B4B6C91CBD751D00F2D8A7 /* Diamond.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Diamond.cpp; sourceTree = "<group>"; };
@@ -976,6 +988,8 @@
 				788F17C71CA308B000F4E5D6 /* Finish.h */,
 				7857E2BE1C65B9D80020AAEA /* Store.cpp */,
 				7857E2BF1C65B9D80020AAEA /* Store.h */,
+				7823C8901CD4DFE200703A34 /* Missions.cpp */,
+				7823C8911CD4DFE200703A34 /* Missions.h */,
 			);
 			name = popups;
 			path = ../../sources/popups;
@@ -1013,6 +1027,8 @@
 				78B4B7091CBFB51F00F2D8A7 /* Copter.h */,
 				78B4B6F11CBF911800F2D8A7 /* Spikes.cpp */,
 				78B4B6F21CBF911800F2D8A7 /* Spikes.h */,
+				789E71B11CD3DAF800BDCDC7 /* Trap.cpp */,
+				789E71B21CD3DAF800BDCDC7 /* Trap.h */,
 				78B4B6EF1CBF911800F2D8A7 /* Saw.cpp */,
 				78B4B6F01CBF911800F2D8A7 /* Saw.h */,
 				78B4B6F71CBF91E000F2D8A7 /* Door.cpp */,
@@ -1059,6 +1075,8 @@
 				78B4B7051CBFB40700F2D8A7 /* TypeCopter.h */,
 				789E71801CD343FC00BDCDC7 /* TypeSpikes.cpp */,
 				789E71811CD343FC00BDCDC7 /* TypeSpikes.h */,
+				789E71AD1CD3D23200BDCDC7 /* TypeTrap.cpp */,
+				789E71AE1CD3D23200BDCDC7 /* TypeTrap.h */,
 				789E71821CD343FC00BDCDC7 /* TypeTrampoline.cpp */,
 				789E71831CD343FC00BDCDC7 /* TypeTrampoline.h */,
 				789E71901CD3653E00BDCDC7 /* TypeMoveUp.cpp */,
@@ -1358,6 +1376,7 @@
 			files = (
 				78B4B7021CBF93C500F2D8A7 /* TypeGate.cpp in Sources */,
 				7857E2BA1C6573F70020AAEA /* Menu.cpp in Sources */,
+				7823C8931CD4DFE200703A34 /* Missions.cpp in Sources */,
 				789E71A71CD39D0D00BDCDC7 /* TypeMoved2.cpp in Sources */,
 				7825DD441C5484CC00708016 /* Popup.cpp in Sources */,
 				789809661CC53A8B00E3CF28 /* Cub.cpp in Sources */,
@@ -1382,10 +1401,12 @@
 				78B4B6DF1CBD751D00F2D8A7 /* Star.cpp in Sources */,
 				78B4B6DB1CBD751D00F2D8A7 /* Heart.cpp in Sources */,
 				786696CB1C4A47FF00A256FC /* Cube.cpp in Sources */,
+				789E71B41CD3DAF800BDCDC7 /* Trap.cpp in Sources */,
 				78B4B6ED1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */,
 				789E718B1CD34AFB00BDCDC7 /* Trampoline.cpp in Sources */,
 				789E71851CD343FC00BDCDC7 /* TypeSpikes.cpp in Sources */,
 				789E717B1CD2621500BDCDC7 /* Color.cpp in Sources */,
+				789E71B01CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */,
 				78B4B6E31CBD817900F2D8A7 /* Shadow.cpp in Sources */,
 				789E719F1CD39A4A00BDCDC7 /* TypeMoved1.cpp in Sources */,
 				789E718F1CD3646C00BDCDC7 /* Down.cpp in Sources */,
@@ -1408,6 +1429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				789E71B31CD3DAF800BDCDC7 /* Trap.cpp in Sources */,
 				789E717E1CD3429E00BDCDC7 /* Plate.cpp in Sources */,
 				78E33FD91C4AA4440021272D /* Generator.cpp in Sources */,
 				789E717A1CD2621500BDCDC7 /* Color.cpp in Sources */,
@@ -1424,6 +1446,7 @@
 				7894C0331BC9282F00363FC9 /* Game.cpp in Sources */,
 				78E33FD11C4A84080021272D /* Particle.cpp in Sources */,
 				789E719E1CD39A4A00BDCDC7 /* TypeMoved1.cpp in Sources */,
+				7823C8921CD4DFE200703A34 /* Missions.cpp in Sources */,
 				7857E2C11C65B9D80020AAEA /* Store.cpp in Sources */,
 				78B4B70A1CBFB51F00F2D8A7 /* Copter.cpp in Sources */,
 				7823FBC61ABDC0F900447F0A /* NSBatch.mm in Sources */,
@@ -1460,6 +1483,7 @@
 				78B4B6F51CBF911800F2D8A7 /* Spikes.cpp in Sources */,
 				78809FA71B11D36B002397E7 /* NSHeyzap.mm in Sources */,
 				78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */,
+				789E71AF1CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */,
 				78DE4C821C4D6C120080F105 /* Counter.cpp in Sources */,
 				789E71921CD3653E00BDCDC7 /* TypeMoveUp.cpp in Sources */,
 				789E718A1CD34AFB00BDCDC7 /* Trampoline.cpp in Sources */,

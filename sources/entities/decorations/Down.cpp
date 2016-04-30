@@ -31,10 +31,6 @@
 Down::Down()
 : Decoration("plate-down.obj")
 {
-  this->shadow = new Shadow("plate-shadow.obj");
-
-  this->setScheduleUpdate(true);
-
   this->setTexture("plate-texture-state-1.png");
 
   this->removable = false;

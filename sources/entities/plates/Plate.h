@@ -61,7 +61,7 @@ class Plate : public Cube
    *
    */
   public:
-  enum Type {
+  enum Type {// TODO: Reorganize this
     NORMAL,
     START,
     FINISH,
@@ -84,7 +84,8 @@ class Plate : public Cube
     MOVED2,
     MOVED3,
     MOVED4,
-    MOVE_UP
+    MOVE_UP,
+    TRAP
   };
 
   enum Side {

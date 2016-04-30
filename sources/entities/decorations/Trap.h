@@ -21,17 +21,19 @@
  *
  */
 
-#ifndef _FINISH_H_
-#define _FINISH_H_
+#ifndef _TRAP_H_
+#define _TRAP_H_
 
-#include "Popup.h"
+#include "Game.h"
+
+#include "Character.h"
 
 /**
  *
  *
  *
  */
-class Finish : public Popup
+class Trap : public Decoration
 {
   /**
    *
@@ -39,20 +41,6 @@ class Finish : public Popup
    *
    */
   private:
-  static Finish* instance;
-
-  struct Buttons {
-    Button* like;
-    Button* rate;
-    Button* share;
-    Button* leaderboards;
-    Button* video;
-  };
-
-  struct Texts {
-    Text* tap;
-    Text* video;
-  };
 
   /**
    *
@@ -60,8 +48,6 @@ class Finish : public Popup
    *
    */
   protected:
-  Texts texts;
-  Buttons buttons;
 
   /**
    *
@@ -69,18 +55,17 @@ class Finish : public Popup
    *
    */
   public:
-  static Finish* getInstance();
+  Trap(Node* parent);
+ ~Trap();
 
-  Finish();
- ~Finish();
+  Pool* decorations;
 
-  virtual void onShow();
-  virtual void onHide(Callback callback = NULL);
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
-  virtual void onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e);
+  virtual void setPlate(Plate* plate);
 
-  virtual void show();
-  virtual void hide(Callback callback = NULL);
+  virtual Character::Crash status();
 };
 
 #endif

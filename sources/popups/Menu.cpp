@@ -52,12 +52,16 @@ Menu::Menu()
 
   this->texts.tap = new Text("menu-tap", this, true);
 
-  this->buttons.rate = new Button("rate-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
   this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application), true);
   this->buttons.sound = new Button("sound-button.png", 2, 2, this, std::bind(&Menu::onSound, this), true);
   this->buttons.store = new Button("store-button.png", 2, 1, this, std::bind([=] () {
     this->hide([=] () {
       Application->changeState(Game::STORE);
+    });
+  }), true);
+  this->buttons.missions = new Button("missions-button.png", 2, 1, this, std::bind([=] () {
+    this->hide([=] () {
+      Application->changeState(Game::MISSIONS);
     });
   }), true);
 
@@ -86,7 +90,7 @@ void Menu::onShow()
   Events::onScreenChanged("Menu");
 
   this->buttons.store->setPosition(Application->getCenter().x - 250, -100);
-  this->buttons.rate->setPosition(Application->getCenter().x - 85, -100);
+  this->buttons.missions->setPosition(Application->getCenter().x - 85, -100);
   this->buttons.sound->setPosition(Application->getCenter().x + 85, -100);
   this->buttons.leaderboards->setPosition(Application->getCenter().x + 250, -100);
 }
@@ -133,7 +137,7 @@ void Menu::show()
       nullptr
     )
   );
-  this->buttons.rate->runAction(
+  this->buttons.missions->runAction(
     Sequence::create(
       DelayTime::create(0.1),
       EaseSineOut::create(

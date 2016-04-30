@@ -55,9 +55,13 @@ Counter::Counter(Node* parent)
   this->starAction->getSprite()->setScale(0.8);
   this->starAction->setPosition(this->starBackground->getWidth() / 2, this->starBackground->getHeight() / 2);
 
-  this->icon = new Entity3D("diamond.obj", Application, true);
+  this->icon = new CameraEntity3D("diamond.obj", Application, true);
   this->icon->setTexture("diamond-texture.png");
   this->icon->setScale(0.8);
+  /*this->icon->addCamera();
+  this->icon->addLight();
+  this->icon->addLight();*/
+
   this->icon->setCameraMask(2);
   this->icon->setLightMask(2);
   this->icon->runAction(
@@ -219,9 +223,10 @@ void Counter::onLose()
 
 void Counter::onStore()
 {
-  this->texts.name->runAction(
-    FadeTo::create(0.2, 0)
-  );
+}
+
+void Counter::onMissions()
+{
 }
 
 /**

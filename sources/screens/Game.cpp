@@ -321,6 +321,13 @@ void Game::onStore()
   Store::getInstance()->show();
 }
 
+void Game::onMissions()
+{
+  this->counter->onMissions();
+
+  Missions::getInstance()->show();
+}
+
 void Game::onFinish()
 {
   this->counter->onFinish();
@@ -361,6 +368,9 @@ void Game::changeState(State state)
       case STORE:
       this->onStore();
       break;
+      case MISSIONS:
+      this->onMissions();
+      break;
       case FINISH:
       this->onFinish();
       break;
@@ -389,6 +399,10 @@ void Game::updateStore(float time)
 {
 }
 
+void Game::updateMissions(float time)
+{
+}
+
 void Game::updateFinish(float time)
 {
 }
@@ -413,6 +427,9 @@ void Game::updateStates(float time)
     break;
     case STORE:
     this->updateStore(time);
+    break;
+    case MISSIONS:
+    this->updateMissions(time);
     break;
     case FINISH:
     this->updateFinish(time);

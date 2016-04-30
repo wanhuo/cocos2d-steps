@@ -32,6 +32,13 @@ Plate::Plate()
 : Cube("plate.obj")
 {
   this->decorations = *new vector<Decoration*>();
+
+  this->shadow = new Shadow("plate-bottom-shadow.obj");
+  this->shadow->setMinScale(Vec3(1.0, 1.0, 1.0));
+  this->shadow->setMaxScale(Vec3(1.0, 1.0, 1.0));
+  this->shadow->setOffset(Vec3(0.4, 0.0, 0.4));
+
+  this->setScheduleUpdate(true);
 }
 
 Plate::~Plate()
@@ -135,6 +142,9 @@ void Plate::onCount()
       break;
       case SPIKES:
       this->special->setTexture("plate-texture-state-2-spikes.png");
+      break;
+      case TRAP:
+      this->special->setTexture("plate-texture-state-2-trap.png");
       break;
       case TRAMPOLINE:
       this->special->setTexture("plate-texture-state-2-trampoline.png");
@@ -257,6 +267,14 @@ void Plate::setType(Type type, bool animated)
       this->special->setPlate(this);
     }
     break;
+    case TRAP:
+    {
+      this->setVisible(false);
+
+      this->special = static_cast<Special*>(Application->environment->plates.traps->_create());
+      this->special->setPlate(this);
+    }
+    break;
     case TRAMPOLINE:
     {
       this->setVisible(false);
@@ -366,6 +384,7 @@ void Plate::setType(Type type, bool animated)
     case MOVED1:
     {
       this->setVisible(false);
+      this->shadow->setVisible(false);
 
       this->special = static_cast<TypeMoved1*>(Application->environment->plates.moved1->_create());
       this->special->setPlate(this);
@@ -376,6 +395,7 @@ void Plate::setType(Type type, bool animated)
     case MOVED2:
     {
       this->setVisible(false);
+      this->shadow->setVisible(false);
 
       this->special = static_cast<TypeMoved2*>(Application->environment->plates.moved2->_create());
       this->special->setPlate(this);
@@ -386,6 +406,7 @@ void Plate::setType(Type type, bool animated)
     case MOVED3:
     {
       this->setVisible(false);
+      this->shadow->setVisible(false);
 
       this->special = static_cast<TypeMoved3*>(Application->environment->plates.moved3->_create());
       this->special->setPlate(this);
@@ -396,6 +417,7 @@ void Plate::setType(Type type, bool animated)
     case MOVED4:
     {
       this->setVisible(false);
+      this->shadow->setVisible(false);
 
       this->special = static_cast<TypeMoved4*>(Application->environment->plates.moved4->_create());
       this->special->setPlate(this);

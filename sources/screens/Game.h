@@ -28,6 +28,7 @@
 #include "TiledEntity.h"
 #include "AnimatedEntity.h"
 #include "Entity3D.h"
+#include "CameraEntity3D.h"
 #include "Button.h"
 #include "Text.h"
 #include "Background.h"
@@ -58,6 +59,7 @@
 
 #include "Start.h"
 #include "Spikes.h"
+#include "Trap.h"
 #include "Saw.h"
 #include "Door.h"
 #include "Copter.h"
@@ -68,6 +70,7 @@
 #include "TypeGate.h"
 #include "TypeCopter.h"
 #include "TypeSpikes.h"
+#include "TypeTrap.h"
 #include "TypeTrampoline.h"
 #include "TypeMoveUp.h"
 #include "TypeMoved.h"
@@ -81,6 +84,7 @@
 #include "Menu.h"
 #include "Finish.h"
 #include "Store.h"
+#include "Missions.h"
 
 #include "RotateGlobalBy.h"
 #include "Shake.h"
@@ -135,7 +139,8 @@ class Game : public Screen
     GAME,
     FINISH,
     LOSE,
-    STORE
+    STORE,
+    MISSIONS
   };
 
   /**
@@ -197,6 +202,7 @@ class Game : public Screen
   virtual void onGame();
   virtual void onLose();
   virtual void onStore();
+  virtual void onMissions();
   virtual void onFinish();
 
   virtual void onNoad();
@@ -207,6 +213,7 @@ class Game : public Screen
   virtual void updateGame(float time);
   virtual void updateLose(float time);
   virtual void updateStore(float time);
+  virtual void updateMissions(float time);
   virtual void updateFinish(float time);
 
   virtual void updateStates(float time);

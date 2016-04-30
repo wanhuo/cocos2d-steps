@@ -109,6 +109,13 @@ Plate* Generator::create(bool animated)
               this->conditions.s1 = 2;
               this->conditions.s2 = 2;
             }
+            if(this->conditions.s2 < 1 && probably(10))
+            {
+              plate->setType(Plate::TRAP);
+
+              this->conditions.s1 = 2;
+              this->conditions.s2 = 2;
+            }
             else if(this->conditions.s2 < 1 && probably(10))
             {
               plate->setType(Plate::TRAMPOLINE);
@@ -399,4 +406,11 @@ void Generator::clear()
       ), PLATES_START
     )
   );
+
+  // Shadow Fix;
+  auto element = static_cast<Plate*>(Application->environment->plates.normal->element(0));
+
+  element->shadow->setMaxScale(Vec3(1.26666666667, 1.0, 1.0));
+  element->shadow->setMinScale(Vec3(1.26666666667, 1.0, 1.0));
+  element->shadow->setOffset(Vec3(0.2, 0.0, 0.4));
 }

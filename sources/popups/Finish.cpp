@@ -50,8 +50,8 @@ Finish::Finish()
 {
   instance = this;
 
-  this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
-  this->buttons.noad = new Button("noad-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
+  this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onLike, Application), true);
+  this->buttons.rate = new Button("rate-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
   this->buttons.share = new Button("share-button.png", 2, 1, this, std::bind([=] () {
     this->hide([=] () {
       Store::getInstance()->show();
@@ -85,7 +85,7 @@ void Finish::onShow()
   Events::onScreenChanged("Finish");
 
   this->buttons.like->setPosition(Application->getCenter().x - 250, -100);
-  this->buttons.noad->setPosition(Application->getCenter().x - 85, -100);
+  this->buttons.rate->setPosition(Application->getCenter().x - 85, -100);
   this->buttons.share->setPosition(Application->getCenter().x + 85, -100);
   this->buttons.leaderboards->setPosition(Application->getCenter().x + 250, -100);
 }
@@ -136,7 +136,7 @@ void Finish::show()
       nullptr
     )
   );
-  this->buttons.noad->runAction(
+  this->buttons.rate->runAction(
     Sequence::create(
       DelayTime::create(0.2),
       EaseSineOut::create(
