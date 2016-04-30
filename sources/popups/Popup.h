@@ -45,6 +45,15 @@ class Popup : public Background
    *
    *
    */
+  private:
+  float backgroundPosition = 0.0;
+  float backgroundSpeed = 1.0;
+
+  /**
+   *
+   *
+   *
+   */
   protected:
   Entity* background = nullptr;
 

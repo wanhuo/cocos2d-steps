@@ -34,6 +34,8 @@ Popup::Popup()
   this->bind(true);
 
   this->state->create = true;
+
+  this->setScheduleUpdate(true);
 }
 
 Popup::Popup(const char* textureFilename)
@@ -41,7 +43,8 @@ Popup::Popup(const char* textureFilename)
 {
   this->background = new Entity(textureFilename, this, true);
   this->background->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
-  this->background->getTexture()->setAliasTexParameters();
+
+  this->background->setPosition(Application->getCenter().x, Application->getCenter().y);
 }
 
 Popup::~Popup()
@@ -55,6 +58,7 @@ Popup::~Popup()
  */
 void Popup::onShow()
 {
+  this->backgroundPosition = 0;
 }
 
 void Popup::onHide(Callback callback)
@@ -104,6 +108,9 @@ void Popup::update(float time)
 {
   if(this->background)
   {
-    this->background->setTextureRect(Rect(0, 0, Application->width, Application->height));
+    this->backgroundPosition += this->backgroundSpeed;
+    this->background->setTextureRect(Rect(this->backgroundPosition, this->backgroundPosition, Application->getWidth(), Application->getHeight()));
+
+    // TODO: Check 64-bit proccessors for large number penalty.
   }
 }

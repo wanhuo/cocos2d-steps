@@ -46,11 +46,9 @@ Store* Store::getInstance()
  *
  */
 Store::Store()
-: Popup("")
+: Popup("store-background-texture.png")
 {
   instance = this;
-
-  this->background = new BackgroundColor(this, Color4B(0, 0, 0, 0));
 
   this->scroll = new BackgroundScroll(this);
   this->scroll->setDirection(cocos2d::ui::ScrollView::Direction::VERTICAL);
@@ -118,22 +116,12 @@ void Store::onHide(Callback callback)
  */
 void Store::show()
 {
-  this->background->setOpacity(150);
-
   Popup::show();
 }
 
 void Store::hide(Callback callback)
 {
-  this->background->runAction(
-    Sequence::create(
-      FadeOut::create(0.1),
-      CallFunc::create([=] () {
-        Popup::hide(callback);
-      }),
-      nullptr
-    )
-  );
+  Popup::hide(callback);
 }
 
 /**

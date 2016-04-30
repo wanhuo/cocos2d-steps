@@ -202,6 +202,7 @@
             <filename>../Graphics/ui/video-button.png</filename>
             <filename>../Graphics/ui/counter-star.png</filename>
             <filename>../Graphics/ui/counter-bonus.png</filename>
+            <filename>../Graphics/ui/missions-button.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

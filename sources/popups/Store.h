@@ -64,8 +64,6 @@ class Store : public Popup
   Buttons buttons;
   float size;
 
-  BackgroundColor* background;
-
   /**
    *
    *
