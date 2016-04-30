@@ -184,8 +184,6 @@
 		78CA6D0B1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
 		78CA6D0D1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
-		78D015EC1CB02BF900327D33 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D015EA1CB02BF900327D33 /* Item.cpp */; };
-		78D015ED1CB02BF900327D33 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D015EA1CB02BF900327D33 /* Item.cpp */; };
 		78DE4C821C4D6C120080F105 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C811C4D6C120080F105 /* Counter.cpp */; };
 		78DE4C831C4D6C120080F105 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C811C4D6C120080F105 /* Counter.cpp */; };
 		78DE4C8A1C4DA0990080F105 /* Decoration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DE4C891C4DA0990080F105 /* Decoration.cpp */; };
@@ -445,8 +443,6 @@
 		78CA6D061C20645200BF8416 /* Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Environment.cpp; sourceTree = "<group>"; };
 		78CA6D071C20645200BF8416 /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		78CA6DC21B56786D00F2525F /* Framework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Framework.xcodeproj; path = ../../../cocos2d/build/Framework.xcodeproj; sourceTree = "<group>"; };
-		78D015EA1CB02BF900327D33 /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
-		78D015EB1CB02BF900327D33 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		78DE4C801C4D6C120080F105 /* Counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Counter.h; sourceTree = "<group>"; };
 		78DE4C811C4D6C120080F105 /* Counter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Counter.cpp; sourceTree = "<group>"; };
 		78DE4C881C4DA0990080F105 /* Decoration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoration.h; sourceTree = "<group>"; };
@@ -964,8 +960,6 @@
 				786696C81C4A47FF00A256FC /* Cube.h */,
 				78B4B6E01CBD817900F2D8A7 /* Shadow.cpp */,
 				78B4B6E11CBD817900F2D8A7 /* Shadow.h */,
-				78D015EA1CB02BF900327D33 /* Item.cpp */,
-				78D015EB1CB02BF900327D33 /* Item.h */,
 				78E33FCE1C4A84080021272D /* Particle.cpp */,
 				78E33FCD1C4A84080021272D /* Particle.h */,
 				78DE4C811C4D6C120080F105 /* Counter.cpp */,
@@ -1387,7 +1381,6 @@
 				78B4B6D91CBD751D00F2D8A7 /* Energy.cpp in Sources */,
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
-				78D015ED1CB02BF900327D33 /* Item.cpp in Sources */,
 				789809621CC51C0A00E3CF28 /* Start.cpp in Sources */,
 				78E33FD21C4A84080021272D /* Particle.cpp in Sources */,
 				789E71931CD3653E00BDCDC7 /* TypeMoveUp.cpp in Sources */,
@@ -1440,7 +1433,6 @@
 				78B4B6D41CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
 				789E71AA1CD39D0D00BDCDC7 /* TypeMoved4.cpp in Sources */,
 				788F17C81CA308B000F4E5D6 /* Finish.cpp in Sources */,
-				78D015EC1CB02BF900327D33 /* Item.cpp in Sources */,
 				78CA6D0A1C20645200BF8416 /* Character.cpp in Sources */,
 				7843ACA41C2242AA0011F47C /* Interstitiel.m in Sources */,
 				7894C0331BC9282F00363FC9 /* Game.cpp in Sources */,

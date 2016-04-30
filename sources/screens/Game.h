@@ -89,8 +89,6 @@
 #include "RotateGlobalBy.h"
 #include "Shake.h"
 
-#include "Item.h"
-
 /**
  *
  *
@@ -206,6 +204,9 @@ class Game : public Screen
   virtual void onFinish();
 
   virtual void onNoad();
+
+  virtual float getFrustumWidth() { this->getWidth() / SCALE_FACTOR; }
+  virtual float getFrustumHeight() { this->getHeight() / SCALE_FACTOR; }
 
   virtual void changeState(State state);
 

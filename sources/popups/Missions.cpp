@@ -46,7 +46,7 @@ Missions* Missions::getInstance()
  *
  */
 Missions::Missions()
-: Popup("store-background-texture.png")
+: Popup("missions-background-texture.png")
 {
   instance = this;
 }

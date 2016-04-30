@@ -57,14 +57,12 @@ Store::Store()
   this->scroll->setPositionY(Application->getHeight() - (Application->getHeight() - 400) - 100);
   this->scroll->setScrollBarEnabled(false);
 
-  this->buttons.restore = new Button("restore-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
   this->buttons.back = new Button("back-button.png", 2, 1, this, std::bind([=] () {
     this->hide([=] () {
       Application->changeState(Game::MENU);
     });
   }), true);
 
-  this->buttons.restore->setPosition(Application->getCenter().x + 150, 200);
   this->buttons.back->setPosition(Application->getCenter().x - 150, 200);
 
   auto x = 150.0;
@@ -72,16 +70,16 @@ Store::Store()
 
   auto index = 0;
 
-  for(int i = 0; i < 5; i++)
+  for(int i = 0; i < 10; i++)
   {
-    for(int j = 0; j < 2; j++)
+    for(int j = 0; j < 4; j++)
     {
       index++;
 
-      auto item = new Item(index, this->scroll);
+      /*auto item = new Item(index, this->scroll);
       item->setPosition(Application->getCenter().x - x * (j == 0 ? 1 : -1), y);
 
-      this->items.push_back(item);
+      this->items.push_back(item);*/
     }
 
     y += 300;

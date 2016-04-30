@@ -57,7 +57,7 @@ class Counter : public Background
   Texts texts;
 
   BackgroundColor* holder;
-  Entity3D* icon;
+  CameraEntity3D* icon;
 
   Entity* starBackground;
   Entity* bonusBackground;

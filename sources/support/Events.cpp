@@ -36,6 +36,7 @@ void Events::onStart()
   new Menu;
   new Finish;
   new Store;
+  new Missions;
 
   Director::getInstance()->runWithScene(Application);
 

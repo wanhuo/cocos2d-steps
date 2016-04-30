@@ -52,7 +52,6 @@ class Store : public Popup
 
   struct Buttons {
     Button* back;
-    Button* restore;
   };
 
   /**
