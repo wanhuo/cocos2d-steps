@@ -62,34 +62,34 @@ class Plate : public Cube
    */
   public:
   enum Type {
-    NORMAL,
+    NORMAL, // 0
 
-    START,
-    FINISH,
-    BEST,
-    BONUS,
+    START, // 1
+    FINISH, // 2
+    BEST, // 3
+    BONUS, // 4
 
-    DIAMOND,
-    CRYSTAL,
-    ENERGY,
-    STAR,
-    HEART,
-    COLOR,
+    DIAMOND, // 5
+    CRYSTAL, // 6
+    ENERGY, // 7
+    STAR, // 8
+    HEART, // 9
+    COLOR, // 10
 
-    SPIKES,
-    TRAMPOLINE,
-    DOWN,
-    CUB,
-    SAW,
-    GATE,
-    COPTER,
-    TRAP,
+    SPIKES, // 11
+    TRAMPOLINE, // 12
+    DOWN, // 13
+    CUB, // 14
+    SAW, // 15
+    GATE, // 16
+    COPTER, // 17
+    TRAP, // 18
 
-    MOVE_UP,
-    MOVED1,
-    MOVED2,
-    MOVED3,
-    MOVED4
+    MOVE_UP, // 19
+    MOVED1, // 20
+    MOVED2, // 21
+    MOVED3, // 22
+    MOVED4 // 23
   };
 
   enum Side {

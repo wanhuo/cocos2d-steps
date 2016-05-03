@@ -21,9 +21,6 @@
  *
  */
 
-#ifndef _CRYSTAL_H_
-#define _CRYSTAL_H_
-
 #include "Game.h"
 
 /**
@@ -31,34 +28,21 @@
  *
  *
  */
-class Crystal : public Pickup
+TypeBest::TypeBest()
+: Special("plate-type-best.obj")
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
+}
 
-  /**
-   *
-   *
-   *
-   */
-  protected:
+TypeBest::~TypeBest()
+{
+}
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Crystal();
- ~Crystal();
-
-  virtual void onPickup();
-
-  Crystal* deepCopy();
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+TypeBest* TypeBest::deepCopy()
+{
+  return new TypeBest;
+}

@@ -37,7 +37,7 @@ Pickup::Pickup(const char* file)
   this->window->_destroy();
   Application->environment->plane->addChild(this->window);
 
-  this->glow = new Entity("glow.png", this->window, true);
+  this->glow = new Entity("ui/glow.png", this->window, true);
   this->glow->setScale(0.011);
 
   this->removable = true;

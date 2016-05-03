@@ -148,16 +148,6 @@ void Energy::onClear()
  *
  *
  */
-const char* Energy::getParticleTexture()
-{
-  return "energy-texture.png";
-}
-
-/**
- *
- *
- *
- */
 Energy* Energy::deepCopy()
 {
   return new Energy;

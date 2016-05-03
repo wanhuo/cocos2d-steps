@@ -62,16 +62,6 @@ void Star::onPickup()
  *
  *
  */
-const char* Star::getParticleTexture()
-{
-  return "star-texture.png";
-}
-
-/**
- *
- *
- *
- */
 Star* Star::deepCopy()
 {
   return new Star;

@@ -21,9 +21,6 @@
  *
  */
 
-#ifndef _CRYSTAL_H_
-#define _CRYSTAL_H_
-
 #include "Game.h"
 
 /**
@@ -31,34 +28,21 @@
  *
  *
  */
-class Crystal : public Pickup
+TypeBonus::TypeBonus()
+: Special("plate-type-bonus.obj")
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
+}
 
-  /**
-   *
-   *
-   *
-   */
-  protected:
+TypeBonus::~TypeBonus()
+{
+}
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Crystal();
- ~Crystal();
-
-  virtual void onPickup();
-
-  Crystal* deepCopy();
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+TypeBonus* TypeBonus::deepCopy()
+{
+  return new TypeBonus;
+}

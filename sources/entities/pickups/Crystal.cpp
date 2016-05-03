@@ -85,16 +85,6 @@ void Crystal::onPickup()
  *
  *
  */
-const char* Crystal::getParticleTexture()
-{
-  return "crystal-texture.png";
-}
-
-/**
- *
- *
- *
- */
 Crystal* Crystal::deepCopy()
 {
   return new Crystal;

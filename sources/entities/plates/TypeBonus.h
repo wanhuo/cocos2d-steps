@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _CRYSTAL_H_
-#define _CRYSTAL_H_
+#ifndef _TYPE_BONUS_H_
+#define _TYPE_BONUS_H_
 
 #include "Game.h"
 
@@ -31,7 +31,7 @@
  *
  *
  */
-class Crystal : public Pickup
+class TypeBonus : public Special
 {
   /**
    *
@@ -53,12 +53,10 @@ class Crystal : public Pickup
    *
    */
   public:
-  Crystal();
- ~Crystal();
+  TypeBonus();
+ ~TypeBonus();
 
-  virtual void onPickup();
-
-  Crystal* deepCopy();
+  TypeBonus* deepCopy();
 };
 
 #endif

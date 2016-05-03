@@ -209,10 +209,28 @@ void Plate::setType(int type, bool animated)
     break;
     case FINISH:
     {
+      this->setVisible(false);
+
+      this->special = static_cast<Special*>(Application->environment->plates.finish->_create());
+      this->special->setPlate(this);
     }
     break;
     case BEST:
     {
+      this->setVisible(false);
+
+      this->special = static_cast<Special*>(Application->environment->plates.best->_create());
+      this->special->setPlate(this);
+    }
+    break;
+    case BONUS:
+    {
+      this->setVisible(false);
+
+      this->special = static_cast<Special*>(Application->environment->plates.bonus->_create());
+      this->special->setPlate(this);
+
+      this->setRotation3D(Vec3(0, this->direction ? 180 : -90, 0));
     }
     break;
     case SPIKES:
@@ -325,11 +343,6 @@ void Plate::setType(int type, bool animated)
       this->getDecorations().push_back(decoration);
     }
     break;
-    case BONUS:
-    {
-      this->setRotation3D(Vec3(0, this->direction ? 180 : -90, 0));
-    }
-    break;
 
     /**
      *
@@ -402,7 +415,15 @@ void Plate::setType(int type, bool animated)
     break;
   }
 
-  this->setTexture(Application->environment->getTextureState1());
+  switch(this->type)
+  {
+    default:
+    this->setTexture(Application->environment->getTextureState1());
+    break;
+    case START:
+    this->setTexture(Application->environment->getTextureState2());
+    break;
+  }
 }
 
 /**
@@ -507,6 +528,8 @@ bool Plate::conditions(int type)
   auto result = false;
 
   auto length = &Application->environment->generator->length;
+  auto count = &Application->environment->generator->count;
+
   auto conditions = &Application->environment->generator->conditions;
 
   switch(type)
@@ -521,8 +544,10 @@ bool Plate::conditions(int type)
     result = true;
     break;
     case STAR:
+    result = conditions->s4 < 0;
     break;
     case HEART:
+    result = false;
     break;
     case COLOR:
     result = true;
@@ -541,10 +566,13 @@ bool Plate::conditions(int type)
     result = conditions->s1 < 1;
     break;
     case SAW:
+    result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1;
     break;
     case GATE:
+    result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1;
     break;
     case COPTER:
+    result = conditions->s5 < 1;
     break;
     case TRAP:
     result = conditions->s2 < 1;
@@ -573,6 +601,7 @@ bool Plate::conditions(int type)
       case ENERGY:
       break;
       case STAR:
+      conditions->s4 = 20;
       break;
       case HEART:
       break;
@@ -596,10 +625,26 @@ bool Plate::conditions(int type)
       conditions->s1 = random(2, 6);
       break;
       case SAW:
+      conditions->s1 = 2;
+      conditions->s2 = 2;
+
+      length++;
+      length++;
       break;
       case GATE:
+      conditions->s1 = 2;
+      conditions->s2 = 2;
+
+      length++;
+      length++;
       break;
       case COPTER:
+      conditions->s1 = 2;
+      conditions->s2 = 2;
+      conditions->s5 = 10;
+
+      length++;
+      length++;
       break;
       case TRAP:
       conditions->s1 = 2;

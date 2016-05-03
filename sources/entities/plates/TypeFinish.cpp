@@ -21,9 +21,6 @@
  *
  */
 
-#ifndef _CRYSTAL_H_
-#define _CRYSTAL_H_
-
 #include "Game.h"
 
 /**
@@ -31,34 +28,21 @@
  *
  *
  */
-class Crystal : public Pickup
+TypeFinish::TypeFinish()
+: Special("plate-type-finish.obj")
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
+}
 
-  /**
-   *
-   *
-   *
-   */
-  protected:
+TypeFinish::~TypeFinish()
+{
+}
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Crystal();
- ~Crystal();
-
-  virtual void onPickup();
-
-  Crystal* deepCopy();
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+TypeFinish* TypeFinish::deepCopy()
+{
+  return new TypeFinish;
+}

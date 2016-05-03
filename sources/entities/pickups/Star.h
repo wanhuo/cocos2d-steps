@@ -58,8 +58,6 @@ class Star : public Pickup
 
   virtual void onPickup();
 
-  virtual const char* getParticleTexture();
-
   Star* deepCopy();
 };
 

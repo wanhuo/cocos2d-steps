@@ -66,6 +66,9 @@
 #include "Cub.h"
 
 #include "Plate.h"
+#include "TypeBest.h"
+#include "TypeBonus.h"
+#include "TypeFinish.h"
 #include "TypeSaw.h"
 #include "TypeGate.h"
 #include "TypeCopter.h"

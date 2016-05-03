@@ -83,8 +83,6 @@ class Decoration : public Cube
 
   virtual Character::Crash status();
 
-  virtual const char* getParticleTexture();
-
   virtual Decoration* deepCopy();
 };
 

@@ -536,18 +536,13 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
 
   Application->counter->onCount();
 
-  auto texture = "character-texture.png";
   auto color = this->color;
 
   for(Decoration* decoration : plate->getDecorations())
   {
     if(decoration->removable)
     {
-      if(decoration->getParticleTexture())
-      {
-        texture = decoration->getParticleTexture();
-        color = Color3B::WHITE;
-      }
+      color = decoration->getColor();
     }
 
     if(proceed)
@@ -562,7 +557,6 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   {
     auto particle = Application->environment->createParticle(x, y - 0.5, z);
 
-    particle->setTexture(texture);
     particle->setColor(color);
   }
 

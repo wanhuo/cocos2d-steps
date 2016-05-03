@@ -114,16 +114,6 @@ Character::Crash Decoration::status()
  *
  *
  */
-const char* Decoration::getParticleTexture()
-{
-  return nullptr;
-}
-
-/**
- *
- *
- *
- */
 Decoration* Decoration::deepCopy()
 {
   return new Decoration(this->textureFileName);

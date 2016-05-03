@@ -435,44 +435,10 @@ void Generator::createGeneralElement(Plate* plate)
             this->conditions.s2 = 2;
           }
 
-          else if(this->conditions.s4 < 0 && probably(2))
-          {
-            plate->setType(Plate::STAR);
 
-            this->conditions.s4 = 20;
-          }
-          else if(probably(2))
-          {
-            //plate->setType(Plate::HEART);
-          }
-          else if(this->count > 0 && this->conditions.s1 < 1 && this->conditions.s2 < 1 && probably(20))
-          {
-            plate->setType(Plate::SAW);
+  
 
-            this->length++;
-            this->length++;
 
-            this->conditions.s1 = 2;
-            this->conditions.s2 = 2;
-          }
-          else if(this->count > 0 && this->conditions.s1 < 1 && this->conditions.s2 < 1 && probably(20))
-          {
-            plate->setType(Plate::GATE);
-
-            this->length++;
-            this->length++;
-
-            this->conditions.s1 = 2;
-            this->conditions.s2 = 2;
-          }
-          else if(this->conditions.s5 < 0 && probably(5))
-          {
-            plate->setType(Plate::COPTER);
-
-            this->conditions.s1 = 2;
-            this->conditions.s2 = 2;
-            this->conditions.s5 = 10;
-          }
         }*/
       }
     }

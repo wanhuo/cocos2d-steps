@@ -55,16 +55,6 @@ void Diamond::onPickup()
  *
  *
  */
-const char* Diamond::getParticleTexture()
-{
-  return "diamond-texture.png";
-}
-
-/**
- *
- *
- *
- */
 Diamond* Diamond::deepCopy()
 {
   return new Diamond;
