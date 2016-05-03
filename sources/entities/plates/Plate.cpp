@@ -572,13 +572,13 @@ bool Plate::conditions(int type)
     break;
 
     case SPIKES:
-    result = conditions.s2 < 1;
+    result = conditions->s2 < 1;
     break;
     case TRAMPOLINE:
-    result = conditions.s2 < 1;
+    result = conditions->s2 < 1;
     break;
     case DOWN:
-    result = conditions.s2 < 1;
+    result = conditions->s2 < 1;
     break;
     case CUB:
     result = conditions->s1 < 1;
@@ -590,7 +590,7 @@ bool Plate::conditions(int type)
     case COPTER:
     break;
     case TRAP:
-    result = conditions.s2 < 1;
+    result = conditions->s2 < 1;
     break;
 
     case MOVE_UP:

@@ -85,6 +85,8 @@
 		7847CDF91AB184820014E3F3 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7847CDEB1AB184820014E3F3 /* RootViewController.mm */; };
 		7847CDFA1AB184820014E3F3 /* NSServices.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7847CDED1AB184820014E3F3 /* NSServices.mm */; };
 		7847CDFB1AB184820014E3F3 /* NSSocial.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7847CDEF1AB184820014E3F3 /* NSSocial.mm */; };
+		785545ED1CD8CA2F00B58ED0 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 785545EC1CD8CA2F00B58ED0 /* Models */; };
+		785545EE1CD8CA2F00B58ED0 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 785545EC1CD8CA2F00B58ED0 /* Models */; };
 		7857E2B91C65733F0020AAEA /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2B61C65733F0020AAEA /* Menu.cpp */; };
 		7857E2BA1C6573F70020AAEA /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2B61C65733F0020AAEA /* Menu.cpp */; };
 		7857E2C11C65B9D80020AAEA /* Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2BE1C65B9D80020AAEA /* Store.cpp */; };
@@ -352,6 +354,7 @@
 		7847CDEB1AB184820014E3F3 /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = "<group>"; };
 		7847CDED1AB184820014E3F3 /* NSServices.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSServices.mm; sourceTree = "<group>"; };
 		7847CDEF1AB184820014E3F3 /* NSSocial.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSSocial.mm; sourceTree = "<group>"; };
+		785545EC1CD8CA2F00B58ED0 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = ../../resource/Models; sourceTree = "<group>"; };
 		7857E2B61C65733F0020AAEA /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
 		7857E2B71C65733F0020AAEA /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		7857E2BE1C65B9D80020AAEA /* Store.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Store.cpp; sourceTree = "<group>"; };
@@ -550,6 +553,7 @@
 				7894C02B1BC925FA00363FC9 /* Json */,
 				7894C01C1BC9258B00363FC9 /* Fonts */,
 				7894C01D1BC9258B00363FC9 /* Graphics */,
+				785545EC1CD8CA2F00B58ED0 /* Models */,
 				7894C01E1BC9258B00363FC9 /* Manifests */,
 				7894C01F1BC9258B00363FC9 /* Music */,
 				7894C0201BC9258B00363FC9 /* Sound */,
@@ -1270,6 +1274,7 @@
 				7894C02D1BC925FA00363FC9 /* Json in Resources */,
 				781B06811BD26FC70072FB24 /* config.json in Resources */,
 				7894C02A1BC9258B00363FC9 /* Sound in Resources */,
+				785545EE1CD8CA2F00B58ED0 /* Models in Resources */,
 				7894C0241BC9258B00363FC9 /* Graphics in Resources */,
 				7899D44F1BF48194008080B5 /* services.json in Resources */,
 				7894C0281BC9258B00363FC9 /* Music in Resources */,
@@ -1315,6 +1320,7 @@
 				78DEED691B1A911E0093CB64 /* Default-568h@2x.png in Resources */,
 				7899D44E1BF48194008080B5 /* services.json in Resources */,
 				78DEED791B1A911E0093CB64 /* Icon-57.png in Resources */,
+				785545ED1CD8CA2F00B58ED0 /* Models in Resources */,
 				7843AC981C2242AA0011F47C /* Batch.bundle in Resources */,
 				78DEED781B1A911E0093CB64 /* Icon-50.png in Resources */,
 				78DEED741B1A911E0093CB64 /* Icon-144.png in Resources */,
