@@ -243,37 +243,27 @@ Store::Position::~Position()
  *
  *
  */
-void Store::Position::onEnter()
+void Store::Position::setState(State state)
 {
-  BackgroundColor::onEnter();
+  this->state = state;
 
-  /**
-   *
-   *
-   *
-   */
-  this->Node::state->create = true;
+  this->saveState();
+  this->updateState();
+}
 
-  this->state = Storage::get(this->parameters.id);
+void Store::Position::saveState()
+{
+  Storage::set(this->parameters.id, this->state);
+}
 
-  if(!this->state)
-  {
-    if(this->parameters.index == 1)
-    {
-      this->state = SELECTED;
-    }
-    else
-    {
-      if(MissionsFactory::getInstance()->getCompletedMissionsCount() < this->parameters.missions)
-      {
-        this->state = MISSIONS;
-      }
-      else
-      {
-        this->state = DIAMONDS;
-      }
-    }
-  }
+void Store::Position::updateState()
+{
+  this->texts.missions->_destroy();
+  this->texts.diamonds->_destroy();
+
+  this->lock->_destroy();
+  this->diamond->_destroy();
+  this->texture->_destroy();
 
   switch(this->state)
   {
@@ -311,6 +301,48 @@ void Store::Position::onEnter()
     this->setColor(Color3B(237, 115, 113));
     break;
   }
+
+  this->setCameraMask(4);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Store::Position::onEnter()
+{
+  BackgroundColor::onEnter();
+
+  /**
+   *
+   *
+   *
+   */
+  this->Node::state->create = true;
+
+  this->state = Storage::get(this->parameters.id);
+
+  if(!this->state)
+  {
+    if(this->parameters.index == 1)
+    {
+      this->state = SELECTED;
+    }
+    else
+    {
+      if(MissionsFactory::getInstance()->getCompletedMissionsCount() < this->parameters.missions&&false)
+      {
+        this->state = MISSIONS;
+      }
+      else
+      {
+        this->state = DIAMONDS;
+      }
+    }
+  }
+
+  this->updateState();
 }
 
 void Store::Position::onExit()
@@ -323,13 +355,6 @@ void Store::Position::onExit()
    *
    */
   this->Node::state->create = false;
-
-  this->texts.missions->_destroy();
-  this->texts.diamonds->_destroy();
-
-  this->lock->_destroy();
-  this->diamond->_destroy();
-  this->texture->_destroy();
 }
 
 /**
@@ -413,8 +438,10 @@ void Store::Position::onTouch(cocos2d::Touch* touch, Event* e)
     Missions::getInstance()->show();
     break;
     case DIAMONDS:
+    this->onPurchase();
     break;
     case UNLOCKED:
+    this->onSelect();
     break;
     case SELECTED:
     break;
@@ -440,8 +467,68 @@ void Store::Position::onTouch(cocos2d::Touch* touch, Event* e)
  */
 void Store::Position::onSelect()
 {
+  for(auto position : Store::getInstance()->positions)
+  {
+    if(position->state == SELECTED)
+    {
+      position->setState(UNLOCKED);
+    }
+  }
+
+  this->runAction(
+    Sequence::create(
+      EaseSineInOut::create(
+        ScaleTo::create(0.2, 0.9)
+      ),
+      EaseSineInOut::create(
+        ScaleTo::create(0.2, 1.1)
+      ),
+      EaseSineInOut::create(
+        ScaleTo::create(0.2, 1.0)
+      ),
+      nullptr
+    )
+  );
+
+  this->setState(SELECTED);
+
+  Storage::set("store.texture.selected", this->parameters.index);
+
+  Application->environment->updateData();
 }
 
 void Store::Position::onPurchase()
 {
+  if(true)
+  {
+    this->runAction(
+      Sequence::create(
+        CallFunc::create([=] ()
+        {
+          Modal::block();
+        }),
+        Repeat::create(
+          Sequence::create(
+            ScaleTo::create(0.05, 0.9),
+            ScaleTo::create(0.05, 1.1),
+            nullptr
+          ),
+          12
+        ),
+        ScaleTo::create(0.05, 1.0),
+        CallFunc::create([=] () {
+        this->onSelect();
+        }),
+        DelayTime::create(1.0),
+        CallFunc::create([=] ()
+        {
+          Modal::hide();
+        }),
+        nullptr
+      )
+    );
+  }
+  else
+  {
+  }
 }

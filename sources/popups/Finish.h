@@ -40,18 +40,34 @@ class Finish : public Popup
    */
   private:
   static Finish* instance;
+  
+  struct Elapsed {
+    int video = 0;
+    int gift = random(0, 15);
+    int ad = -1;
+  };
+
+  struct Parameters {
+    int video = 4;
+    int gift = 15;
+    int ad = 4;
+
+    Elapsed elapsed;
+  };
 
   struct Buttons {
     Button* like;
     Button* rate;
     Button* share;
     Button* leaderboards;
-    Button* video;
+
+    Gift* gift;
+    Video* video;
+    Unlock* unlock;
   };
 
   struct Texts {
     Text* tap;
-    Text* video;
   };
 
   /**
@@ -73,6 +89,8 @@ class Finish : public Popup
 
   Finish();
  ~Finish();
+
+  Parameters parameters;
 
   virtual void onShow();
   virtual void onHide(Callback callback = NULL);

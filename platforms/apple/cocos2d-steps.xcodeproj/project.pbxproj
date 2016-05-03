@@ -93,6 +93,14 @@
 		785545F81CD8D61E00B58ED0 /* TypeBonus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785545F11CD8D61E00B58ED0 /* TypeBonus.cpp */; };
 		785545F91CD8D61E00B58ED0 /* TypeFinish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785545F31CD8D61E00B58ED0 /* TypeFinish.cpp */; };
 		785545FA1CD8D61E00B58ED0 /* TypeFinish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785545F31CD8D61E00B58ED0 /* TypeFinish.cpp */; };
+		785546031CD91D8B00B58ED0 /* Gift.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785545FD1CD91D8B00B58ED0 /* Gift.cpp */; };
+		785546041CD91D8B00B58ED0 /* Gift.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785545FD1CD91D8B00B58ED0 /* Gift.cpp */; };
+		785546051CD91D8B00B58ED0 /* Unlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785545FF1CD91D8B00B58ED0 /* Unlock.cpp */; };
+		785546061CD91D8B00B58ED0 /* Unlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785545FF1CD91D8B00B58ED0 /* Unlock.cpp */; };
+		785546071CD91D8B00B58ED0 /* Video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546011CD91D8B00B58ED0 /* Video.cpp */; };
+		785546081CD91D8B00B58ED0 /* Video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546011CD91D8B00B58ED0 /* Video.cpp */; };
+		7855460B1CD91F7E00B58ED0 /* Button3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546091CD91F7E00B58ED0 /* Button3D.cpp */; };
+		7855460C1CD91F7E00B58ED0 /* Button3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546091CD91F7E00B58ED0 /* Button3D.cpp */; };
 		7857E2B91C65733F0020AAEA /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2B61C65733F0020AAEA /* Menu.cpp */; };
 		7857E2BA1C6573F70020AAEA /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2B61C65733F0020AAEA /* Menu.cpp */; };
 		7857E2C11C65B9D80020AAEA /* Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2BE1C65B9D80020AAEA /* Store.cpp */; };
@@ -367,6 +375,14 @@
 		785545F21CD8D61E00B58ED0 /* TypeBonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeBonus.h; sourceTree = "<group>"; };
 		785545F31CD8D61E00B58ED0 /* TypeFinish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeFinish.cpp; sourceTree = "<group>"; };
 		785545F41CD8D61E00B58ED0 /* TypeFinish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeFinish.h; sourceTree = "<group>"; };
+		785545FD1CD91D8B00B58ED0 /* Gift.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gift.cpp; sourceTree = "<group>"; };
+		785545FE1CD91D8B00B58ED0 /* Gift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gift.h; sourceTree = "<group>"; };
+		785545FF1CD91D8B00B58ED0 /* Unlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Unlock.cpp; sourceTree = "<group>"; };
+		785546001CD91D8B00B58ED0 /* Unlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unlock.h; sourceTree = "<group>"; };
+		785546011CD91D8B00B58ED0 /* Video.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Video.cpp; sourceTree = "<group>"; };
+		785546021CD91D8B00B58ED0 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		785546091CD91F7E00B58ED0 /* Button3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Button3D.cpp; sourceTree = "<group>"; };
+		7855460A1CD91F7E00B58ED0 /* Button3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Button3D.h; sourceTree = "<group>"; };
 		7857E2B61C65733F0020AAEA /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
 		7857E2B71C65733F0020AAEA /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		7857E2BE1C65B9D80020AAEA /* Store.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Store.cpp; sourceTree = "<group>"; };
@@ -910,6 +926,21 @@
 			path = social;
 			sourceTree = "<group>";
 		};
+		785545FC1CD91D8B00B58ED0 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				785546091CD91F7E00B58ED0 /* Button3D.cpp */,
+				7855460A1CD91F7E00B58ED0 /* Button3D.h */,
+				785545FD1CD91D8B00B58ED0 /* Gift.cpp */,
+				785545FE1CD91D8B00B58ED0 /* Gift.h */,
+				785545FF1CD91D8B00B58ED0 /* Unlock.cpp */,
+				785546001CD91D8B00B58ED0 /* Unlock.h */,
+				785546011CD91D8B00B58ED0 /* Video.cpp */,
+				785546021CD91D8B00B58ED0 /* Video.h */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 		7878F9791ADDB01500A0F1D6 /* internal */ = {
 			isa = PBXGroup;
 			children = (
@@ -964,6 +995,7 @@
 				78B4B6C51CBD751D00F2D8A7 /* decorations */,
 				78B4B6C61CBD751D00F2D8A7 /* pickups */,
 				78B4B6D31CBD751D00F2D8A7 /* plates */,
+				785545FC1CD91D8B00B58ED0 /* ui */,
 				78CA6D061C20645200BF8416 /* Environment.cpp */,
 				78CA6D071C20645200BF8416 /* Environment.h */,
 				789E71741CD1086200BDCDC7 /* Ground.cpp */,
@@ -1398,6 +1430,8 @@
 				789E71A71CD39D0D00BDCDC7 /* TypeMoved2.cpp in Sources */,
 				7825DD441C5484CC00708016 /* Popup.cpp in Sources */,
 				789809661CC53A8B00E3CF28 /* Cub.cpp in Sources */,
+				785546081CD91D8B00B58ED0 /* Video.cpp in Sources */,
+				785546041CD91D8B00B58ED0 /* Gift.cpp in Sources */,
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
 				789E71971CD393D800BDCDC7 /* Special.cpp in Sources */,
 				78B4B6F41CBF911800F2D8A7 /* Saw.cpp in Sources */,
@@ -1416,8 +1450,10 @@
 				78B4B7071CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */,
 				78B4B6F61CBF911800F2D8A7 /* Spikes.cpp in Sources */,
 				789E71871CD343FC00BDCDC7 /* TypeTrampoline.cpp in Sources */,
+				7855460C1CD91F7E00B58ED0 /* Button3D.cpp in Sources */,
 				78B4B6DF1CBD751D00F2D8A7 /* Star.cpp in Sources */,
 				78B4B6DB1CBD751D00F2D8A7 /* Heart.cpp in Sources */,
+				785546061CD91D8B00B58ED0 /* Unlock.cpp in Sources */,
 				786696CB1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				789E71B41CD3DAF800BDCDC7 /* Trap.cpp in Sources */,
 				78B4B6ED1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */,
@@ -1458,6 +1494,7 @@
 				7847CDF91AB184820014E3F3 /* RootViewController.mm in Sources */,
 				7843AC9F1C2242AA0011F47C /* AdWebViewController.m in Sources */,
 				78B4B6D41CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
+				785546031CD91D8B00B58ED0 /* Gift.cpp in Sources */,
 				789E71AA1CD39D0D00BDCDC7 /* TypeMoved4.cpp in Sources */,
 				788F17C81CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78CA6D0A1C20645200BF8416 /* Character.cpp in Sources */,
@@ -1475,6 +1512,7 @@
 				7847CDF81AB184820014E3F3 /* NSMedia.mm in Sources */,
 				789809611CC51C0A00E3CF28 /* Start.cpp in Sources */,
 				789809651CC53A8B00E3CF28 /* Cub.cpp in Sources */,
+				785546051CD91D8B00B58ED0 /* Unlock.cpp in Sources */,
 				789E71841CD343FC00BDCDC7 /* TypeSpikes.cpp in Sources */,
 				7847CDF61AB184820014E3F3 /* AppController.mm in Sources */,
 				789E71961CD393D800BDCDC7 /* Special.cpp in Sources */,
@@ -1482,6 +1520,7 @@
 				78B4B7061CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */,
 				789E718E1CD3646C00BDCDC7 /* Down.cpp in Sources */,
 				78B4B6EC1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */,
+				7855460B1CD91F7E00B58ED0 /* Button3D.cpp in Sources */,
 				78EC8D6D1BBAF0B900CC5785 /* NSModal.mm in Sources */,
 				78B4B6D61CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
 				78B4B6DC1CBD751D00F2D8A7 /* Pickup.cpp in Sources */,
@@ -1512,6 +1551,7 @@
 				78B4B6DE1CBD751D00F2D8A7 /* Star.cpp in Sources */,
 				7847CDFA1AB184820014E3F3 /* NSServices.mm in Sources */,
 				78B4B6D81CBD751D00F2D8A7 /* Energy.cpp in Sources */,
+				785546071CD91D8B00B58ED0 /* Video.cpp in Sources */,
 				7825DD431C5484CC00708016 /* Popup.cpp in Sources */,
 				7847CDFB1AB184820014E3F3 /* NSSocial.mm in Sources */,
 			);

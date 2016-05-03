@@ -31,8 +31,7 @@
 Environment::Environment(Node* parent)
 : Background(parent)
 {
-  this->level = max(1, Storage::get("application.current.level"));
-  this->pack = 3;//max(1, Storage::get("store.texture.selected"));
+  this->updateData();
 }
 
 Environment::~Environment()
@@ -191,10 +190,18 @@ string Environment::getTextureState2()
  *
  *
  */
+void Environment::updateData()
+{
+  this->level = max(1, Storage::get("application.current.level"));
+  this->pack = max(1, Storage::get("store.texture.selected"));
+
+  Director::getInstance()->getTextureCache()->addImageAsync(this->getTextureState1(), nullptr);
+  Director::getInstance()->getTextureCache()->addImageAsync(this->getTextureState2(), nullptr);
+}
+
 void Environment::updateLevel()
 {
-  //Storage::set("application.current.level", ++this->level);
-  this->level++;
+  Storage::set("application.current.level", ++this->level);
 }
 
 /**
@@ -216,6 +223,8 @@ void Environment::onTurn(bool action)
  */
 void Environment::onMenu()
 {
+  this->updateData();
+
   this->finishStar();
 
   this->platesTime = 1.0;

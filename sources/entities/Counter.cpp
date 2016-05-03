@@ -394,6 +394,11 @@ void Counter::reset()
 void Counter::save()
 {
   Storage::set("application.score.best", this->values.best);
+  Storage::set("application.coins", this->values.coins);
+  Storage::set("character.color", 1);
+  Storage::set("character.color.r", Application->environment->character->getColor().r);
+  Storage::set("character.color.g", Application->environment->character->getColor().g);
+  Storage::set("character.color.b", Application->environment->character->getColor().b);
 
   Analytics::sendEvent("Application", "application.events.onLose", ("User is lost: (" + patch::to_string(this->values.current) + "/" + patch::to_string(this->values.best) + ")").c_str());
 }

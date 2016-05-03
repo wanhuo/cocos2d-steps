@@ -527,11 +527,11 @@ bool Plate::conditions(int type)
 {
   auto result = false;
 
-  auto direction = &Application->environment->generator->direction;
-  auto length = &Application->environment->generator->length;
-  auto count = &Application->environment->generator->count;
-  auto index = &Application->environment->generator->index;
-  auto size = &Application->environment->generator->size;
+  auto direction = Application->environment->generator->direction;
+  auto length = Application->environment->generator->length;
+  auto count = Application->environment->generator->count;
+  auto index = Application->environment->generator->index;
+  auto size = Application->environment->generator->size;
 
   auto conditions = &Application->environment->generator->conditions;
 

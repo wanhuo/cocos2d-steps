@@ -58,15 +58,12 @@ Finish::Finish()
     });
   }), true);
   this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application), true);
-  this->buttons.video = new Button("video-button.png", 1, 2, this, std::bind(&Game::onLeaderboards, Application), true);
+  this->buttons.gift = new Gift(this);
+  this->buttons.video = new Video(this);
+  this->buttons.unlock = new Unlock(this);
 
   this->texts.tap = new Text("finish-tap", this, true);
-  this->texts.video = new Text("video", this->buttons.video, true);
-
-  this->buttons.video->setPosition(Application->getCenter().x, 350);
-
   this->texts.tap->setPosition(Application->getCenter().x, 230);
-  this->texts.video->setPosition(this->buttons.video->getWidth() / 2 + 70, this->buttons.video->getHeight() / 2 - 15);
 }
 
 Finish::~Finish()
@@ -176,6 +173,35 @@ void Finish::show()
     )
   );
 
+  this->parameters.elapsed.video++;
+  this->parameters.elapsed.gift++;
+  this->parameters.elapsed.ad++;
+
+  if(Heyzap::available(Config::AD_TYPE_VIDEO) && this->parameters.elapsed.video >= this->parameters.video)
+  {
+    // TODO: Create video.
+  }
+  else
+  {
+    if(this->parameters.elapsed.gift >= this->parameters.gift)
+    {
+      // TODO: Create gift.
+    }
+    else
+    {
+      if(Application->counter->values.coins >= 100)
+      {
+        // TODO: Create unlock.
+      }
+
+      if(this->parameters.elapsed.ad >= this->parameters.ad)
+      {
+        this->parameters.elapsed.ad = 0;
+
+        Heyzap::show(Config::AD_TYPE_INTERSTITIAL);
+      }
+    }
+  }
 }
 
 void Finish::hide(Callback callback)

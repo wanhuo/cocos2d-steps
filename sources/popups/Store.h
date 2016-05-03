@@ -100,6 +100,10 @@ class Store : public Popup
     Position(Node* parent, Json* parameters);
    ~Position();
 
+    virtual void setState(State state);
+    virtual void saveState();
+    virtual void updateState();
+
     virtual void onEnter();
     virtual void onExit();
 

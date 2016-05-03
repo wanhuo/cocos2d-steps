@@ -197,7 +197,6 @@
             <filename>../Graphics/ui/store-button.png</filename>
             <filename>../Graphics/ui/restore-button.png</filename>
             <filename>../Graphics/ui/back-button.png</filename>
-            <filename>../Graphics/ui/video-button.png</filename>
             <filename>../Graphics/ui/counter-star.png</filename>
             <filename>../Graphics/ui/counter-bonus.png</filename>
             <filename>../Graphics/ui/missions-button.png</filename>

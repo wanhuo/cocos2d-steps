@@ -36,6 +36,11 @@
 #include "Screen.h"
 #include "Pool.h"
 
+#include "Button3D.h"
+#include "Gift.h"
+#include "Video.h"
+#include "Unlock.h"
+
 #include "Generator.h"
 
 #include "Environment.h"

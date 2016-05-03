@@ -37,9 +37,13 @@ Character::Character()
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
 
-  if(false)
+  if(Storage::get("character.color"))
   {
-    // TODO: Assign saved color;
+    auto r = Storage::get("character.color.r");
+    auto g = Storage::get("character.color.g");
+    auto b = Storage::get("character.color.b");
+
+    this->color = Color3B(r, g, b);
   }
   else
   {

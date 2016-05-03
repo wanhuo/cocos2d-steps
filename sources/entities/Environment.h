@@ -154,6 +154,7 @@ class Environment : public Background
   virtual string getTextureState1();
   virtual string getTextureState2();
 
+  virtual void updateData();
   virtual void updateLevel();
 
   virtual void onAccelerate(Acceleration* acceleration, Event* e);
