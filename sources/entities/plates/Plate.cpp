@@ -81,8 +81,8 @@ void Plate::onDestroy(bool action)
    *
    *
    */
-  this->clearDecorations();
   this->clearSpecial();
+  this->clearDecorations();
 }
 
 /**

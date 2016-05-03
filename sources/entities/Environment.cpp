@@ -55,7 +55,7 @@ void Environment::onAccelerate(Acceleration* acceleration, Event* e)
  *
  */
 void Environment::create()
-{
+{this->level = 2;
   this->plane = new Entity3D(this, true);
   this->plane->setRotation3D(Vec3(0, 0, 0));
   this->plane->setPosition3D(Vec3(0, 0, 0));
