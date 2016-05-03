@@ -55,7 +55,7 @@ Game::Game()
 
   Device::setAccelerometerEnabled(true);
 
-  SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ui.plist");
+  SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ui/ui.plist");
 
   this->cameras.d = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
   this->cameras.s = Camera::create();

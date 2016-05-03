@@ -46,7 +46,7 @@ Store* Store::getInstance()
  *
  */
 Store::Store()
-: Popup("store-background-texture.png")
+: Popup("ui/store-background-texture.png")
 {
   instance = this;
 
