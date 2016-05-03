@@ -70,6 +70,7 @@ Counter::Counter(Node* parent)
   this->icon->setTexture(Application->environment->getTextureState1());
   this->icon->setPosition3D(Vec3(Application->getFrustumWidth() - 0.4, Application->getFrustumHeight() - 0.7, 0));
   this->icon->setRotation3D(Vec3(0, 0, 0));
+  this->icon->setColor(Color3B(0.0, 231.0, 255.0));
   this->icon->runAction(
     RepeatForever::create(
       RotateBy::create(1.0, Vec3(0, 100, 0))

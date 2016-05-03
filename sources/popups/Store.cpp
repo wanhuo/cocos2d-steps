@@ -222,10 +222,14 @@ Store::Position::Position(Node* parent, Json* parameters)
   this->texts.missions = new Text("store-position-missions", this);
   this->texts.diamonds = new Text("store-position-diamonds", this);
 
+  this->texture = new TiledEntity("textures/textures.png", 5, 1, this);
+
   this->lock = new Entity("store-position-lock.png", this);
   this->diamond = new Entity("diamond.png", this);
 
   this->lock->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 + 10);
+  this->texture->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 + 10);
+  this->texture->setCurrentFrameIndex(this->parameters.index);
 
   this->bind(true, false);
 }
@@ -291,8 +295,10 @@ void Store::Position::onEnter()
     this->diamond->setPosition(this->getContentSize().width / 2 - this->diamond->getContentSize().width / 2 - 15, 18);
     break;
     case UNLOCKED:
+    this->texture->_create();
     break;
     case SELECTED:
+    this->texture->_create();
     break;
   }
 
@@ -323,6 +329,7 @@ void Store::Position::onExit()
 
   this->lock->_destroy();
   this->diamond->_destroy();
+  this->texture->_destroy();
 }
 
 /**

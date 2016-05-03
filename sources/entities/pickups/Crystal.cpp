@@ -31,6 +31,7 @@
 Crystal::Crystal()
 : Pickup("diamond.obj")
 {
+  this->setColor(Color3B(239.0, 87.0, 255.0));
   this->glow->setColor(Color3B(230.0, 190.0, 255.0));
 }
 

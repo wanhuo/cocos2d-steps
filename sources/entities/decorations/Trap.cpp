@@ -33,6 +33,8 @@ Trap::Trap(Node* parent)
 {
   this->decorations = new Pool(new Decoration("decoration-trap-spikes.obj"), this);
 
+  this->setColor(Color3B(255.0, 60.0, 60.0));
+
   this->removable = false;
   this->stopable = true;
 }
@@ -57,6 +59,9 @@ void Trap::onCreate()
    */
   auto decoration1 = static_cast<Decoration*>(this->decorations->_create());
   auto decoration2 = static_cast<Decoration*>(this->decorations->_create());
+
+  decoration1->setColor(Color3B(255.0, 60.0, 60.0));
+  decoration2->setColor(Color3B(255.0, 60.0, 60.0));
 
   decoration1->setPosition3D(Vec3(0.0, 0.3, 0.0));
   decoration2->setPosition3D(Vec3(0.0, 0.3, 0.0));

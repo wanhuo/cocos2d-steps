@@ -83,6 +83,8 @@ class Store : public Popup
     Entity* lock;
     Entity* diamond;
 
+    TiledEntity* texture;
+
     /**
      *
      *

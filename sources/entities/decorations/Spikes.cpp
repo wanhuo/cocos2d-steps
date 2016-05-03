@@ -31,6 +31,8 @@
 Spikes::Spikes(Node* parent)
 : Decoration("spikes.obj", parent)
 {
+  this->setColor(Color3B(255.0, 60.0, 60.0));
+
   this->removable = false;
   this->stopable = true;
 }

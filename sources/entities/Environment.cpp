@@ -32,7 +32,7 @@ Environment::Environment(Node* parent)
 : Background(parent)
 {
   this->level = max(1, Storage::get("application.current.level"));
-  this->pack = max(1, Storage::get("store.texture.selected"));
+  this->pack = 3;//max(1, Storage::get("store.texture.selected"));
 }
 
 Environment::~Environment()
