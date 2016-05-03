@@ -37,8 +37,6 @@ Cub::Cub()
 
   this->setScheduleUpdate(true);
 
-  this->setTexture("plate-texture-state-1.png");
-
   this->removable = false;
 }
 

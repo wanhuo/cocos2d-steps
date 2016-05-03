@@ -46,13 +46,6 @@ TypeCopter::~TypeCopter()
 void TypeCopter::onCreate()
 {
   Special::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setTexture("plate-texture-state-1-copter.png");
 }
 
 void TypeCopter::onDestroy(bool action)

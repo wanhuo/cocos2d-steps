@@ -31,8 +31,6 @@
 Diamond::Diamond()
 : Pickup("diamond.obj")
 {
-  this->setTexture("diamond-texture.png");
-
   this->glow->setColor(Color3B(187.0, 237.0, 255.0));
 }
 

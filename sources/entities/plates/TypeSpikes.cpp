@@ -46,13 +46,6 @@ TypeSpikes::~TypeSpikes()
 void TypeSpikes::onCreate()
 {
   Special::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setTexture("plate-texture-state-1-spikes.png");
 }
 
 void TypeSpikes::onDestroy(bool action)

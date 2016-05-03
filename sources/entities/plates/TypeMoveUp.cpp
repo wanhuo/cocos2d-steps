@@ -56,13 +56,6 @@ TypeMoveUp::~TypeMoveUp()
 void TypeMoveUp::onCreate()
 {
   Special::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setTexture("plate-texture-state-1.png");
 }
 
 void TypeMoveUp::onDestroy(bool action)

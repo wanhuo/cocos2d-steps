@@ -31,8 +31,6 @@
 Spikes::Spikes(Node* parent)
 : Decoration("spikes.obj", parent)
 {
-  this->setTexture("spikes-texture.png");
-
   this->removable = false;
   this->stopable = true;
 }

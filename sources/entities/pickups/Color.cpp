@@ -31,8 +31,6 @@
 Color::Color()
 : Pickup("color.obj")
 {
-  this->setTexture("color-texture.png");
-
   this->glow->setColor(Color3B::WHITE);
   this->glow->setScale(0.006);
 }

@@ -46,7 +46,7 @@ Character::Character()
     this->color = Color3B(224.0, 95.0, 171.0);
   }
 
-  this->setTexture("character-texture.png");
+  this->setTexture(Application->environment->getTextureState1());
   this->setColor(this->color);
 
   this->setScheduleUpdate(true);

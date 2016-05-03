@@ -38,9 +38,6 @@ TypeMoved::TypeMoved()
   this->plane = new Decoration("decoration-move-plane.obj", Application->environment->plane);
   this->spikes = new Decoration("decoration-move-spikes.obj", Application->environment->plane);
 
-  this->plane->setTexture("decoration-move-plane-texture.png");
-  this->spikes->setTexture("spikes-texture.png");
-
   this->plane->unremovable = true;
   this->spikes->unremovable = true;
 
@@ -59,13 +56,6 @@ TypeMoved::~TypeMoved()
 void TypeMoved::onCreate()
 {
   Special::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setTexture("plate-texture-state-1.png");
 }
 
 void TypeMoved::onDestroy(bool action)

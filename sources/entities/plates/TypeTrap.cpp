@@ -46,13 +46,6 @@ TypeTrap::~TypeTrap()
 void TypeTrap::onCreate()
 {
   Special::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setTexture("plate-texture-state-1-trap.png");
 }
 
 void TypeTrap::onDestroy(bool action)

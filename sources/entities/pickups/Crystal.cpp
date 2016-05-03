@@ -31,8 +31,6 @@
 Crystal::Crystal()
 : Pickup("diamond.obj")
 {
-  this->setTexture("crystal-texture.png");
-
   this->glow->setColor(Color3B(230.0, 190.0, 255.0));
 }
 

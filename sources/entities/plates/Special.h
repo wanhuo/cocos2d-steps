@@ -78,6 +78,14 @@ class Special : public Cube
   virtual void clearDecorations();
 
   virtual Special* deepCopy();
+
+  /**
+   *
+   *
+   *
+   */
+  public:
+  virtual void setTexture(const std::string& texture);
 };
 
 #endif

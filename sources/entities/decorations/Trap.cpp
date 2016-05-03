@@ -33,8 +33,6 @@ Trap::Trap(Node* parent)
 {
   this->decorations = new Pool(new Decoration("decoration-trap-spikes.obj"), this);
 
-  this->setTexture("spikes-texture.png");
-
   this->removable = false;
   this->stopable = true;
 }

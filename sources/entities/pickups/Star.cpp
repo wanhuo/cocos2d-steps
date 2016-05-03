@@ -31,8 +31,6 @@
 Star::Star()
 : Pickup("star.obj")
 {
-  this->setTexture("star-texture.png");
-
   this->glow->setColor(Color3B(252.0, 252.0, 136.0));
 }
 

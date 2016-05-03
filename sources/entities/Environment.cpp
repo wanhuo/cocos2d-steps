@@ -171,6 +171,21 @@ Entity3D* Environment::createParticle(float x, float y, float z)
  *
  *
  */
+string Environment::getTextureState1()
+{
+  return "textures/1/textures-state-1.png";
+}
+
+string Environment::getTextureState2()
+{
+  return "textures/1/textures-state-2.png";
+}
+
+/**
+ *
+ *
+ *
+ */
 void Environment::onTurn(bool action)
 {
   this->setPosition3D(Vec3(0, 0, 0));

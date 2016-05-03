@@ -31,8 +31,6 @@
 Down::Down()
 : Decoration("plate-down.obj")
 {
-  this->setTexture("plate-texture-state-1.png");
-
   this->removable = false;
 }
 

@@ -46,13 +46,6 @@ TypeTrampoline::~TypeTrampoline()
 void TypeTrampoline::onCreate()
 {
   Special::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setTexture("plate-texture-state-1-trampoline.png");
 }
 
 void TypeTrampoline::onDestroy(bool action)

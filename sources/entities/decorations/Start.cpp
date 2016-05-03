@@ -31,8 +31,6 @@
 Start::Start()
 : Decoration("start.obj")
 {
-  this->setTexture("start-texture.png");
-
   this->removable = false;
   this->stopable = false;
   this->unremovable = true;

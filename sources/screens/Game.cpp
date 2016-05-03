@@ -92,10 +92,10 @@ Game::Game()
   this->addChild(this->cameras.s);
   this->addChild(this->cameras.e);
 
-  this->counter = new Counter(this);
   this->environment = new Environment(this);
-
   this->environment->create();
+
+  this->counter = new Counter(this);
 
   this->s = new BackgroundColor(this, Color4B(255, 255, 255, 0));
   this->s->setCameraMask(8);

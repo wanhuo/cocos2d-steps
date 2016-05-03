@@ -34,8 +34,6 @@ Door::Door()
   this->engine = new Entity3D("door-engine.obj", this);
   this->engine->setColor(Color3B(255.0, 60.0, 60.0));
 
-  this->setTexture("door-texture.png");
-
   this->removable = false;
   this->stopable = false;
   this->unremovable = true;

@@ -173,6 +173,8 @@ class Plate : public Cube
   virtual void setPosition3D(Vec3 position);
 
   virtual Action* runAction(Action* action);
+
+  virtual void setTexture(const std::string& texture);
 };
 
 #endif

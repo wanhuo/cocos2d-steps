@@ -68,7 +68,6 @@ void Plate::onCreate()
   this->setScale(1.0);
 
   this->setRotation3D(Vec3(0, 0, 0));
-  this->setTexture("plate-texture-state-1.png");
 
   this->setType(NORMAL);
 }
@@ -117,46 +116,7 @@ void Plate::onRemove(bool complete)
 
 void Plate::onCount()
 {
-  switch(this->type)
-  {
-    default:
-    this->setTexture("plate-texture-state-2.png");
-    break;
-    case BEST:
-    this->setTexture("plate-texture-state-2-best.png");
-    break;
-    case FINISH:
-    this->setTexture("plate-texture-state-2-finish.png");
-    break;
-    case BONUS:
-    this->setTexture("plate-texture-state-2-bonus.png");
-    break;
-  }
-
-  if(this->special)
-  {
-    switch(this->type)
-    {
-      default:
-      this->special->setTexture("plate-texture-state-2.png");
-      break;
-      case SPIKES:
-      this->special->setTexture("plate-texture-state-2-spikes.png");
-      break;
-      case TRAP:
-      this->special->setTexture("plate-texture-state-2-trap.png");
-      break;
-      case TRAMPOLINE:
-      this->special->setTexture("plate-texture-state-2-trampoline.png");
-      break;
-      case SAW:
-      this->special->setTexture("plate-texture-state-2-saw.png");
-      break;
-      case COPTER:
-      this->special->setTexture("plate-texture-state-2-copter.png");
-      break;
-    }
-  }
+  this->setTexture(Application->environment->getTextureState2());
 }
 
 /**
@@ -240,8 +200,6 @@ void Plate::setType(int type, bool animated)
   {
     case START:
     {
-      this->setTexture("plate-texture-state-2.png");
-
       auto decoration = static_cast<Decoration*>(Application->environment->starts->_create());
       decoration->setPlate(this, animated);
       decoration->setRotation3D(Vec3(0, 0, 0));
@@ -251,12 +209,10 @@ void Plate::setType(int type, bool animated)
     break;
     case FINISH:
     {
-      this->setTexture("plate-texture-state-1-finish.png");
     }
     break;
     case BEST:
     {
-      this->setTexture("plate-texture-state-1-best.png");
     }
     break;
     case SPIKES:
@@ -371,7 +327,6 @@ void Plate::setType(int type, bool animated)
     break;
     case BONUS:
     {
-      this->setTexture("plate-texture-state-1-bonus.png");
       this->setRotation3D(Vec3(0, this->direction ? 180 : -90, 0));
     }
     break;
@@ -446,6 +401,8 @@ void Plate::setType(int type, bool animated)
     }
     break;
   }
+
+  this->setTexture(Application->environment->getTextureState1());
 }
 
 /**
@@ -823,5 +780,35 @@ Action* Plate::runAction(Action* action)
   if(this->special)
   {
     this->special->runAction(action->clone());
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Plate::setTexture(const std::string& texture)
+{
+  Cube::setTexture(texture);
+
+  /**
+   *
+   *
+   *
+   */
+  for(auto decoration : this->getDecorations())
+  {
+    decoration->setTexture(texture);
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->special)
+  {
+    this->special->setTexture(texture);
   }
 }

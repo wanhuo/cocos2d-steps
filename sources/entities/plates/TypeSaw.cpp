@@ -46,13 +46,6 @@ TypeSaw::~TypeSaw()
 void TypeSaw::onCreate()
 {
   Special::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setTexture("plate-texture-state-1-saw.png");
 }
 
 void TypeSaw::onDestroy(bool action)

@@ -145,6 +145,9 @@ class Environment : public Background
 
   virtual Entity3D* createParticle(float x, float y, float z);
 
+  virtual string getTextureState1();
+  virtual string getTextureState2();
+
   virtual void onAccelerate(Acceleration* acceleration, Event* e);
 
   virtual void onTurn(bool action = true);

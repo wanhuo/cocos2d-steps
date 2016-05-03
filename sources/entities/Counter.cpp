@@ -67,7 +67,7 @@ Counter::Counter(Node* parent)
     {DirectionLight::create(Vec3(1.0, -1.0, -1.0), Color3B(200, 200, 200)), Application},
     {AmbientLight::create(Color3B(120, 120, 120)), Application}
   });
-  this->icon->setTexture("diamond-texture.png");
+  this->icon->setTexture(Application->environment->getTextureState1());
   this->icon->setPosition3D(Vec3(Application->getFrustumWidth() - 0.4, Application->getFrustumHeight() - 0.7, 0));
   this->icon->setRotation3D(Vec3(0, 0, 0));
   this->icon->runAction(

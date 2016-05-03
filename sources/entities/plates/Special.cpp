@@ -138,3 +138,23 @@ Special* Special::deepCopy()
 {
   return new Special(this->textureFileName);
 }
+
+/**
+ *
+ *
+ *
+ */
+void Special::setTexture(const std::string& texture)
+{
+  Cube::setTexture(texture);
+
+  /**
+   *
+   *
+   *
+   */
+  for(auto decoration : this->getDecorations())
+  {
+    decoration->setTexture(texture);
+  }
+}
