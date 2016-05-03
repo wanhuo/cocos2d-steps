@@ -1,0 +1,46 @@
+{
+	"general": {
+		"size": 25,
+		"save": 5,
+		"start": 12,
+		"route": {
+			"max": 100,
+			"min": 0
+		},
+		"bonus": {
+			"size": 25
+		},
+		"plates": {
+			"probability": 100,
+			"elements": []
+		},
+		"pickups": {
+			"probability": 100,
+			"elements": []
+		}
+	},
+	"levels": [
+		{
+			"size": 25,
+			"save": 5,
+			"start": 12,
+			"route": {
+				"max": 5,
+				"min": 3
+			},
+			"bonus": {
+				"size": 25
+			},
+			"plates": {
+				"probability": 100,
+				"elements": []
+			},
+			"pickups": {
+				"probability": 100,
+				"elements": [
+					{"type": 11, "probability": 10}
+				]
+			}
+		}
+	]
+}

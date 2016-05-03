@@ -46,8 +46,44 @@ class Generator : public Ref
    *
    */
   private:
-  const static int ROUTE_LENGTH_MAX = 3;
-  const static int ROUTE_LENGTH_MIN = 0;
+  struct Element {
+    int probability;
+    int type;
+    int min;
+    int max;
+  };
+
+  struct Elements {
+    int probability;
+
+    vector<Element> elements;
+  };
+
+  struct Bonus {
+    int size;
+  };
+
+  struct Route {
+    float max;
+    float min;
+  };
+
+  struct Parameter {
+    int size;
+    int save;
+    int start;
+
+    Route route;
+    Bonus bonus;
+
+    Elements plates;
+    Elements pickups;
+  };
+
+  struct Parameters {
+    Parameter general;
+    Parameter current;
+  };
 
   /**
    *
@@ -64,7 +100,9 @@ class Generator : public Ref
     int s6;
   };
 
-  Conditions conditions;
+  Parameters parameters;
+
+  vector<Parameter> levels;
 
   /**
    *
@@ -72,34 +110,32 @@ class Generator : public Ref
    *
    */
   public:
-  const static int PLATES_START = 12;
-  const static int PLATES_SAVE = 5;
-  const static int PLATES_FINISH_BONUS = 22;
-  const static int PLATES_PROBABILITY = 40;
+  Conditions conditions;
 
   Generator();
  ~Generator();
-
-  int currentLength;
 
   float x;
   float y;
   float z;
 
-  int index;
+  int size;
+  int start;
+  int save;
   int count;
+  int index;
   int length;
-  int resets;
-  int unless;
 
   bool direction;
   bool bonus;
 
   virtual Plate* create(bool animated = false);
-  virtual void destroy(bool manual = false);
+  virtual Plate* destroy(bool manual = false);
 
-  virtual void preUpdate();
-  virtual void postUpdate();
+  virtual void createBonusElement(Plate* plate);
+  virtual void createGeneralElement(Plate* plate);
+
+  virtual Plate* update(bool post);
 
   virtual void clear();
 };

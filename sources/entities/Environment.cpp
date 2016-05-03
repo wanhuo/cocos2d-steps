@@ -190,12 +190,10 @@ void Environment::onMenu()
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;
 
-  this->plates.normal->clear(true);
-
-  this->generator->clear();
-
   this->character->_create();
   this->character->reset();
+
+  this->generator->clear();
 
   this->setPosition3D(Vec3(0, 0, 0));
 
@@ -210,8 +208,6 @@ void Environment::onGame()
 void Environment::onLose()
 {
   this->finishStar();
-
-  this->stopAllActions();
 }
 
 void Environment::onCopter()
@@ -220,45 +216,7 @@ void Environment::onCopter()
 
 void Environment::onFinish()
 {
-  this->stopAllActions();
-
-  Application->counter->values.start = 0;
-
-  this->plates.normal->clear(true);
-
-  auto x = this->character->plates.current->getPositionX();
-  auto y = this->character->plates.current->getPositionY();
-  auto z = this->character->plates.current->getPositionZ();
-
-  this->generator->x = x;
-  this->generator->z = z;
-
-  this->generator->resets++;
-  this->generator->currentLength += 100;
-  this->generator->count = 0;
-  this->generator->length = 10;
-
-  this->generator->index = 0;
-
-  this->generator->direction = !this->generator->direction;
-  this->generator->bonus = !this->generator->bonus;
-
-  this->character->plates.current = nullptr;
-
-  this->runAction(
-    Repeat::create(
-      CallFunc::create([=] () {
-        if(!this->character->plates.current)
-        {
-          this->character->plates.current =  this->generator->create();
-        }
-        else
-        {
-          this->generator->create();
-        }
-      }), Generator::PLATES_START
-    )
-  );
+  this->generator->clear();
 
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;

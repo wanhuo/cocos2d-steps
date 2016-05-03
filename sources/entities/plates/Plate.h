@@ -61,11 +61,21 @@ class Plate : public Cube
    *
    */
   public:
-  enum Type {// TODO: Reorganize this
+  enum Type {
     NORMAL,
+
     START,
     FINISH,
     BEST,
+    BONUS,
+
+    DIAMOND,
+    CRYSTAL,
+    ENERGY,
+    STAR,
+    HEART,
+    COLOR,
+
     SPIKES,
     TRAMPOLINE,
     DOWN,
@@ -73,19 +83,13 @@ class Plate : public Cube
     SAW,
     GATE,
     COPTER,
-    DIAMOND,
-    CRYSTAL,
-    ENERGY,
-    STAR,
-    HEART,
-    COLOR,
-    BONUS,
+    TRAP,
+
+    MOVE_UP,
     MOVED1,
     MOVED2,
     MOVED3,
-    MOVED4,
-    MOVE_UP,
-    TRAP
+    MOVED4
   };
 
   enum Side {
@@ -141,12 +145,14 @@ class Plate : public Cube
   virtual void setStartPositionY(float y);
   virtual void setStartPositionZ(float z);
 
-  virtual void setType(Type type, bool animated = true);
+  virtual void setType(int type, bool animated = true);
 
   virtual void prepare();
   virtual void remove(bool complete = true);
 
   virtual void start();
+
+  virtual bool conditions(int type);
 
   virtual void clearDecorations();
   virtual void clearSpecial();

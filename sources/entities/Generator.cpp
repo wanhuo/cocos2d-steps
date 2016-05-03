@@ -30,6 +30,150 @@
  */
 Generator::Generator()
 {
+  auto rootJsonData = Json_create(FileUtils::getInstance()->getStringFromFile("generator.json").c_str());
+  auto generalJsonData = Json_getItem(rootJsonData, "general");
+  auto levelsJsonData = Json_getItem(rootJsonData, "levels");
+
+  /**
+   *
+   *
+   *
+   */
+  auto platesJsonData = Json_getItem(generalJsonData, "plates");
+  auto pickupsJsonData = Json_getItem(generalJsonData, "pickups");
+
+  /**
+   *
+   *
+   *
+   */
+  auto bonusJsonData = Json_getItem(generalJsonData, "bonus");
+  auto routeJsonData = Json_getItem(generalJsonData, "route");
+  auto platesElementsJsonData = Json_getItem(platesJsonData, "elements");
+  auto pickupsElementsJsonData = Json_getItem(pickupsJsonData, "elements");
+
+  /**
+   *
+   *
+   *
+   */
+  this->parameters.general.size = Json_getInt(generalJsonData, "size", 0);
+  this->parameters.general.save = Json_getInt(generalJsonData, "save", 0);
+  this->parameters.general.start = Json_getInt(generalJsonData, "start", 0);
+  this->parameters.general.bonus.size = Json_getInt(bonusJsonData, "size", 0);
+  this->parameters.general.route.max = Json_getInt(routeJsonData, "max", 0);
+  this->parameters.general.route.min = Json_getInt(routeJsonData, "min", 0);
+
+  /**
+   *
+   *
+   *
+   */
+  this->parameters.general.plates.probability = Json_getInt(platesJsonData, "probability", 0);
+  for(auto plateJsonData = platesElementsJsonData->child; plateJsonData; plateJsonData = plateJsonData->next)
+  {
+    Element element;
+
+    element.type = Json_getInt(plateJsonData, "type", 0);
+    element.probability = Json_getInt(plateJsonData, "probability", 0);
+
+    this->parameters.general.plates.elements.push_back(element);
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  this->parameters.general.pickups.probability = Json_getInt(pickupsJsonData, "probability", 0);
+  for(auto pickupJsonData = pickupsElementsJsonData->child; pickupJsonData; pickupJsonData = pickupJsonData->next)
+  {
+    Element element;
+
+    element.type = Json_getInt(pickupJsonData, "type", 0);
+    element.probability = Json_getInt(pickupJsonData, "probability", 0);
+
+    this->parameters.general.pickups.elements.push_back(element);
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  for(auto levelJsonData = levelsJsonData->child; levelJsonData; levelJsonData = levelJsonData->next)
+  {
+    Parameter parameter;
+
+    /**
+     *
+     *
+     *
+     */
+    auto platesJsonData = Json_getItem(levelJsonData, "plates");
+    auto pickupsJsonData = Json_getItem(levelJsonData, "pickups");
+
+    /**
+     *
+     *
+     *
+     */
+    auto bonusJsonData = Json_getItem(levelJsonData, "bonus");
+    auto routeJsonData = Json_getItem(levelJsonData, "route");
+    auto platesElementsJsonData = Json_getItem(platesJsonData, "elements");
+    auto pickupsElementsJsonData = Json_getItem(pickupsJsonData, "elements");
+
+    /**
+     *
+     *
+     *
+     */
+    parameter.size = Json_getInt(levelJsonData, "size", 0);
+    parameter.save = Json_getInt(levelJsonData, "save", 0);
+    parameter.start = Json_getInt(levelJsonData, "start", 0);
+    parameter.bonus.size = Json_getInt(bonusJsonData, "size", 0);
+    parameter.route.max = Json_getInt(routeJsonData, "max", 0);
+    parameter.route.min = Json_getInt(routeJsonData, "min", 0);
+
+    /**
+     *
+     *
+     *
+     */
+    parameter.plates.probability = Json_getInt(platesJsonData, "probability", 0);
+    for(auto plateJsonData = platesElementsJsonData->child; plateJsonData; plateJsonData = plateJsonData->next)
+    {
+      Element element;
+
+      element.type = Json_getInt(plateJsonData, "type", 0);
+      element.probability = Json_getInt(plateJsonData, "probability", 0);
+
+      parameter.plates.elements.push_back(element);
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    parameter.pickups.probability = Json_getInt(pickupsJsonData, "probability", 0);
+    for(auto pickupJsonData = pickupsElementsJsonData->child; pickupJsonData; pickupJsonData = pickupJsonData->next)
+    {
+      Element element;
+
+      element.type = Json_getInt(pickupJsonData, "type", 0);
+      element.probability = Json_getInt(pickupJsonData, "probability", 0);
+
+      parameter.pickups.elements.push_back(element);
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    this->levels.push_back(parameter);
+  }
 }
 
 Generator::~Generator()
@@ -43,215 +187,58 @@ Generator::~Generator()
  */
 Plate* Generator::create(bool animated)
 {
-  if(this->unless <= 0)
+  if((!this->bonus && this->index <= this->size) || (this->bonus && this->index <= this->size))
   {
-    if((!this->bonus && this->index <= this->currentLength) || (this->bonus && this->index <= PLATES_FINISH_BONUS))
+    auto plate = this->update(false);
+
+    /**
+     *
+     * @Generator
+     * Bonus generation.
+     *
+     */
+    if(this->bonus)
     {
-      this->preUpdate();
-
-      auto plate = static_cast<Plate*>(Application->environment->plates.normal->_create());
-
-      plate->setDirection(this->direction);
-
-      plate->setPositionX(this->x);
-      plate->setPositionY(this->y);
-      plate->setPositionZ(this->z);
-
-      plate->setIndex(this->index);
-  
-      if(this->bonus)
-      {
-        if(this->index < 1)
-        {
-        }
-        else if(this->index >= PLATES_FINISH_BONUS)
-        {
-            plate->setType(Plate::FINISH);
-        }
-        else
-        {
-          plate->setType(Plate::DIAMOND);
-
-          if(this->conditions.s1 < 1)
-          {
-            plate->setType(Plate::CUB);
-
-            this->conditions.s1 = random(2, 6);
-          }
-
-          plate->setType(Plate::BONUS);
-        }
-      }
-      else
-      {
-        if(this->resets == 0 && Application->environment->plates.normal->count <= 1)
-        {
-          plate->setType(Plate::START);
-        }
-
-        if(this->index >= PLATES_SAVE)
-        {
-          if(this->index == Application->counter->values.best)
-          {
-            plate->setType(Plate::BEST);
-          }
-
-          if(this->index == this->currentLength)
-          {
-            plate->setType(Plate::FINISH);
-          }
-          else if(probably(PLATES_PROBABILITY))
-          {
-            if(this->conditions.s2 < 1 && probably(10))
-            {
-              plate->setType(Plate::SPIKES);
-
-              this->conditions.s1 = 2;
-              this->conditions.s2 = 2;
-            }
-            if(this->conditions.s2 < 1 && probably(10))
-            {
-              plate->setType(Plate::TRAP);
-
-              this->conditions.s1 = 2;
-              this->conditions.s2 = 2;
-            }
-            else if(this->conditions.s2 < 1 && probably(10))
-            {
-              plate->setType(Plate::TRAMPOLINE);
-
-              this->conditions.s1 = 2;
-              this->conditions.s2 = 2;
-              this->conditions.s6 = 15;
-            }
-            else if(this->conditions.s2 < 1 && probably(10))
-            {
-              plate->setType(Plate::DOWN);
-
-              this->conditions.s1 = 2;
-              this->conditions.s2 = 2;
-            }
-            else if((this->length - this->count) > 1 && this->conditions.s2 < 0 && this->direction && probably(100))
-            {
-              plate->setType(Plate::MOVED1);
-
-              this->length++;
-              this->conditions.s2 = 2;
-            }
-            else if((this->length - this->count) > 1 && this->conditions.s2 < 0 && !this->direction && probably(100))
-            {
-              plate->setType(Plate::MOVED2);
-
-              this->length++;
-              this->conditions.s2 = 2;
-            }
-            else if(this->count >= this->length && this->conditions.s2 < 0 && this->direction && probably(100))
-            {
-              plate->setType(Plate::MOVED3);
-
-              this->conditions.s2 = 2;
-            }
-            else if(this->count >= this->length && this->conditions.s2 < 0 && !this->direction && probably(100))
-            {
-              plate->setType(Plate::MOVED4);
-
-              this->conditions.s2 = 2;
-            }
-            else if(this->count > 0 && this->count < this->length && this->conditions.s1 < 1 && this->conditions.s2 < 0 && probably(100))
-            {
-              plate->setType(Plate::MOVE_UP);
-
-              this->conditions.s2 = 2;
-            }
-            else if(probably(2))
-            {
-              plate->setType(Plate::COLOR);
-            }
-            else if(probably(2))
-            {
-              plate->setType(Plate::DIAMOND);
-            }
-            else if(probably(2))
-            {
-              plate->setType(Plate::CRYSTAL);
-            }
-            else if(probably(2))
-            {
-              plate->setType(Plate::ENERGY);
-            }
-            else if(this->conditions.s4 < 0 && probably(2))
-            {
-              plate->setType(Plate::STAR);
-
-              this->conditions.s4 = 20;
-            }
-            else if(probably(2))
-            {
-              //plate->setType(Plate::HEART);
-            }
-            else if(this->count > 0 && this->conditions.s1 < 1 && this->conditions.s2 < 1 && probably(20))
-            {
-              plate->setType(Plate::SAW);
-
-              this->length++;
-              this->length++;
-
-              this->conditions.s1 = 2;
-              this->conditions.s2 = 2;
-            }
-            else if(this->count > 0 && this->conditions.s1 < 1 && this->conditions.s2 < 1 && probably(20))
-            {
-              plate->setType(Plate::GATE);
-
-              this->length++;
-              this->length++;
-
-              this->conditions.s1 = 2;
-              this->conditions.s2 = 2;
-            }
-            else if(this->conditions.s5 < 0 && probably(5))
-            {
-              plate->setType(Plate::COPTER);
-
-              this->conditions.s1 = 2;
-              this->conditions.s2 = 2;
-              this->conditions.s5 = 10;
-            }
-          }
-        }
-      }
-
-      plate->setPositionX(this->x);
-      plate->setPositionY(this->y);
-      plate->setPositionZ(this->z);
-
-      plate->setStartPositionX(this->x);
-      plate->setStartPositionY(this->y);
-      plate->setStartPositionZ(this->z);
-
-      if(animated)
-      {
-        plate->prepare();
-      }
-      else
-      {
-        plate->start();
-      }
-
-      this->postUpdate();
-
-      return plate;
+      this->createBonusElement(plate);
     }
-  }
-  else
-  {
-    this->unless--;
+
+    /**
+     *
+     * @Generator
+     * General generation.
+     *
+     */
+    else
+    {
+      this->createGeneralElement(plate);
+    }
+
+    plate->setPositionX(this->x);
+    plate->setPositionY(this->y);
+    plate->setPositionZ(this->z);
+
+    plate->setStartPositionX(this->x);
+    plate->setStartPositionY(this->y);
+    plate->setStartPositionZ(this->z);
+
+    if(animated)
+    {
+      plate->prepare();
+    }
+    else
+    {
+      plate->start();
+    }
+
+    this->update(true);
+
+    return plate;
   }
 
   return nullptr;
 }
 
-void Generator::destroy(bool manual)
+Plate* Generator::destroy(bool manual)
 {
   switch(Application->state)
   {
@@ -285,7 +272,7 @@ void Generator::destroy(bool manual)
     }
     else
     {
-      if(Application->counter->values.start >= PLATES_SAVE)
+      if(Application->counter->values.start >= this->save)
       {
         Plate* plate = nullptr;
 
@@ -314,6 +301,8 @@ void Generator::destroy(bool manual)
     }
     break;
   }
+
+  return nullptr;
 }
 
 /**
@@ -321,49 +310,250 @@ void Generator::destroy(bool manual)
  *
  *
  */
-void Generator::preUpdate()
+void Generator::createBonusElement(Plate* plate)
 {
-  if(++this->count > this->length)
+  if(this->index >= 1)
   {
-    this->count = 0;
-    this->length = random(ROUTE_LENGTH_MIN, ROUTE_LENGTH_MAX);
-
-    this->direction = !this->direction;
-
-    if(this->direction)
+    if(this->index >= this->size)
     {
-      this->x += 1.5f;
-      this->z += 1.5f;
+      plate->setType(Plate::FINISH);
     }
     else
     {
-      this->x -= 1.5f;
-      this->z -= 1.5f;
+      plate->setType(Plate::DIAMOND);
+      plate->setType(Plate::BONUS);
+
+      if(plate->conditions(Plate::CUB))
+      {
+        plate->setType(Plate::CUB);
+      }
     }
   }
 }
 
-void Generator::postUpdate()
+void Generator::createGeneralElement(Plate* plate)
 {
-  this->index++;
-
-  this->conditions.s1--;
-  this->conditions.s2--;
-  this->conditions.s3--;
-  this->conditions.s4--;
-  this->conditions.s5--;
-  this->conditions.s6--;
-
-  if(this->direction)
+  /**
+   *
+   * Check if this is a first plate of level.
+   *
+   */
+  if(this->index == 0)
   {
-    this->x += 1.5f;
+    plate->setType(Plate::START);
   }
   else
   {
-    this->z -= 1.5f;
+    /**
+     *
+     * Check if plates length is more that save plates count.
+     *
+     */
+    if(this->index >= this->save)
+    {
+      if(this->index == Application->counter->values.best)
+      {
+        plate->setType(Plate::BEST);
+      }
+
+      /**
+       *
+       * Check if there is a finish plate.
+       *
+       */
+      if(this->index == this->size)
+      {
+        plate->setType(Plate::FINISH);
+      }
+      else
+      {
+        /**
+         *
+         * Try to generate some pickup.
+         *
+         */
+        if(this->parameters.current.plates.elements.size()) if(probably(this->parameters.current.plates.probability))
+        {
+          auto element = this->parameters.current.plates.elements.at(random<int>(0, this->parameters.current.plates.elements.size() - 1));
+
+          if(probably(element.probability) && plate->conditions(element.type))
+          {
+            plate->setType(element.type);
+          }
+        }
+
+        /**
+         *
+         * Try to generate some enemy plate.
+         *
+         */
+        if(this->parameters.current.pickups.elements.size()) if(probably(this->parameters.current.pickups.probability))
+        {
+          auto element = this->parameters.current.pickups.elements.at(random<int>(0, this->parameters.current.pickups.elements.size() - 1));
+
+          if(probably(element.probability) && plate->conditions(element.type))
+          {
+            plate->setType(element.type);
+          }
+        }
+
+        /*if(probably(0))
+        {
+
+
+
+          else if((this->length - this->count) > 1 && this->conditions.s2 < 0 && this->direction && probably(100))
+          {
+            plate->setType(Plate::MOVED1);
+
+            this->length++;
+            this->conditions.s2 = 2;
+          }
+          else if((this->length - this->count) > 1 && this->conditions.s2 < 0 && !this->direction && probably(100))
+          {
+            plate->setType(Plate::MOVED2);
+
+            this->length++;
+            this->conditions.s2 = 2;
+          }
+          else if(this->count >= this->length && this->conditions.s2 < 0 && this->direction && probably(100))
+          {
+            plate->setType(Plate::MOVED3);
+
+            this->conditions.s2 = 2;
+          }
+          else if(this->count >= this->length && this->conditions.s2 < 0 && !this->direction && probably(100))
+          {
+            plate->setType(Plate::MOVED4);
+
+            this->conditions.s2 = 2;
+          }
+          else if(this->count > 0 && this->count < this->length && this->conditions.s1 < 1 && this->conditions.s2 < 0 && probably(100))
+          {
+            plate->setType(Plate::MOVE_UP);
+
+            this->conditions.s2 = 2;
+          }
+
+          else if(this->conditions.s4 < 0 && probably(2))
+          {
+            plate->setType(Plate::STAR);
+
+            this->conditions.s4 = 20;
+          }
+          else if(probably(2))
+          {
+            //plate->setType(Plate::HEART);
+          }
+          else if(this->count > 0 && this->conditions.s1 < 1 && this->conditions.s2 < 1 && probably(20))
+          {
+            plate->setType(Plate::SAW);
+
+            this->length++;
+            this->length++;
+
+            this->conditions.s1 = 2;
+            this->conditions.s2 = 2;
+          }
+          else if(this->count > 0 && this->conditions.s1 < 1 && this->conditions.s2 < 1 && probably(20))
+          {
+            plate->setType(Plate::GATE);
+
+            this->length++;
+            this->length++;
+
+            this->conditions.s1 = 2;
+            this->conditions.s2 = 2;
+          }
+          else if(this->conditions.s5 < 0 && probably(5))
+          {
+            plate->setType(Plate::COPTER);
+
+            this->conditions.s1 = 2;
+            this->conditions.s2 = 2;
+            this->conditions.s5 = 10;
+          }
+        }*/
+      }
+    }
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+Plate* Generator::update(bool post)
+{
+  /**
+   *
+   *
+   *
+   */
+  if(post)
+  {
+    this->index++;
+
+    this->conditions.s1--;
+    this->conditions.s2--;
+    this->conditions.s3--;
+    this->conditions.s4--;
+    this->conditions.s5--;
+    this->conditions.s6--;
+
+    if(this->direction)
+    {
+      this->x += 1.5f;
+    }
+    else
+    {
+      this->z -= 1.5f;
+    }
+
+    this->destroy(true);
   }
 
-  this->destroy(true);
+  /**
+   *
+   *
+   *
+   */
+  else
+  {
+    if(++this->count > this->length)
+    {
+      this->count = 0;
+      this->length = random(this->parameters.current.route.min, this->parameters.current.route.max);
+
+      this->direction = !this->direction;
+
+      if(this->direction)
+      {
+        this->x += 1.5f;
+        this->z += 1.5f;
+      }
+      else
+      {
+        this->x -= 1.5f;
+        this->z -= 1.5f;
+      }
+    }
+
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->_create());
+
+    plate->setDirection(this->direction);
+
+    plate->setPositionX(this->x);
+    plate->setPositionY(this->y);
+    plate->setPositionZ(this->z);
+
+    plate->setIndex(this->index);
+
+    return plate;
+  }
+
+  return nullptr;
 }
 
 /**
@@ -373,17 +563,85 @@ void Generator::postUpdate()
  */
 void Generator::clear()
 {
-  this->x = 0.0;
-  this->y = 0.4;
-  this->z = 0.0;
+  Application->environment->plates.normal->clear(true);
 
-  this->currentLength = 25;
+  Application->counter->values.start = 0;
 
-  this->index = 0;
-  this->count = 0;
-  this->resets = 0;
-  this->unless = 0;
-  this->length = random(3, PLATES_SAVE);
+  if(Application->environment->character->plates.current)
+  {
+    this->x = Application->environment->character->plates.current->getPositionX();
+    this->y = 0.4;
+    this->z = Application->environment->character->plates.current->getPositionZ();
+  }
+  else
+  {
+    this->x = 0.0;
+    this->y = 0.4;
+    this->z = 0.0;
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  if(Application->environment->character->plates.current && Application->environment->character->plates.current->type == Plate::FINISH && !this->bonus)
+  {
+    this->index = 0;
+    this->count = 0;
+    this->start = this->parameters.current.start;
+    this->save = this->parameters.current.save;
+    this->size = this->parameters.current.bonus.size;
+    this->length = random(this->parameters.current.route.min, this->parameters.current.route.max);
+
+    this->direction = true;
+    this->bonus = true;
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  else
+  {
+    if(this->levels.size() >= 1)
+    {
+      this->parameters.current = this->levels.at(0);
+    }
+    else
+    {
+      this->parameters.current = this->parameters.general;
+    }
+
+    this->index = 0;
+    this->count = 0;
+    this->start = this->parameters.current.start;
+    this->save = this->parameters.current.save;
+    this->size = this->parameters.current.size;
+    this->length = random(this->parameters.current.route.min, this->parameters.current.route.max);
+
+    this->direction = true;
+    this->bonus = false;
+  }
+
+  Application->environment->character->plates.current = nullptr;
+
+  Application->environment->stopAllActions();
+  Application->environment->runAction(
+    Repeat::create(
+      CallFunc::create([=] () {
+        if(!Application->environment->character->plates.current)
+        {
+          Application->environment->character->plates.current = this->create();
+        }
+        else
+        {
+          this->create();
+        }
+      }), this->start
+    )
+  );
 
   this->conditions.s1 = 0;
   this->conditions.s2 = 0;
@@ -391,26 +649,4 @@ void Generator::clear()
   this->conditions.s4 = 0;
   this->conditions.s5 = 0;
   this->conditions.s6 = 0;
-
-  this->direction = true;
-  this->bonus = false;
-
-  Application->environment->stopAllActions();
-  Application->environment->runAction(
-    Repeat::create(
-      Sequence::create(
-        CallFunc::create([=] () {
-        this->create();
-        }),
-        nullptr
-      ), PLATES_START
-    )
-  );
-
-  // Shadow Fix;
-  auto element = static_cast<Plate*>(Application->environment->plates.normal->element(0));
-
-  element->shadow->setMaxScale(Vec3(1.26666666667, 1.0, 1.0));
-  element->shadow->setMinScale(Vec3(1.26666666667, 1.0, 1.0));
-  element->shadow->setOffset(Vec3(0.2, 0.0, 0.4));
 }

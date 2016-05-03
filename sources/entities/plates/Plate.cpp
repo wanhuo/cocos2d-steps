@@ -232,9 +232,9 @@ void Plate::setStartPositionZ(float z)
  *
  *
  */
-void Plate::setType(Type type, bool animated)
+void Plate::setType(int type, bool animated)
 {
-  this->type = type;
+  this->type = static_cast<Type>(type);
 
   switch(this->type)
   {
@@ -465,15 +465,26 @@ void Plate::prepare()
     EaseSineIn::create(
       MoveBy::create(0.5, Vec3(this->direction ? -10.0 : 0.0, 0.0, this->direction ? 0.0 : 10.0))
     ),
+    nullptr
+  );
+
+  this->setPosition3D(Vec3(x + (this->direction ? 10.0 : 0.0), y, z - (this->direction ? 0.0 : 10.0)));
+  this->runAction(action);
+
+  this->getActionManager()->addAction(Sequence::create(
+    DelayTime::create(0.6),
     CallFunc::create([=] () {
       this->setPosition3D(Vec3(x, y, z));
       this->start();
     }),
     nullptr
-  );
+  ), this, false);
 
-  this->setPosition3D(Vec3(x + (this->direction ? 10.0 : 0.0), y, z - (this->direction ? 0.0 : 10.0)));
-  this->getActionManager()->addAction(action, this, false);
+  for(auto decoration : this->getDecorations())
+  {
+    decoration->setPosition3D(Vec3(decoration->getPositionX() + (this->direction ? 10.0 : 0.0), decoration->getPositionY(), decoration->getPositionZ() - (this->direction ? 0.0 : 10.0)));
+    decoration->runAction(action->clone());
+  }
 }
 
 void Plate::remove(bool complete)
@@ -527,6 +538,131 @@ void Plate::start()
   {
     this->special->start();
   }
+}
+
+/**
+ *
+ *
+ *
+ */
+bool Plate::conditions(int type)
+{
+  auto result = false;
+
+  auto length = &Application->environment->generator->length;
+  auto conditions = &Application->environment->generator->conditions;
+
+  switch(type)
+  {
+    case DIAMOND:
+    result = true;
+    break;
+    case CRYSTAL:
+    result = true;
+    break;
+    case ENERGY:
+    result = true;
+    break;
+    case STAR:
+    break;
+    case HEART:
+    break;
+    case COLOR:
+    result = true;
+    break;
+
+    case SPIKES:
+    result = conditions.s2 < 1;
+    break;
+    case TRAMPOLINE:
+    result = conditions.s2 < 1;
+    break;
+    case DOWN:
+    result = conditions.s2 < 1;
+    break;
+    case CUB:
+    result = conditions->s1 < 1;
+    break;
+    case SAW:
+    break;
+    case GATE:
+    break;
+    case COPTER:
+    break;
+    case TRAP:
+    result = conditions.s2 < 1;
+    break;
+
+    case MOVE_UP:
+    break;
+    case MOVED1:
+    break;
+    case MOVED2:
+    break;
+    case MOVED3:
+    break;
+    case MOVED4:
+    break;
+  }
+
+  if(result)
+  {
+    switch(type)
+    {
+      case DIAMOND:
+      break;
+      case CRYSTAL:
+      break;
+      case ENERGY:
+      break;
+      case STAR:
+      break;
+      case HEART:
+      break;
+      case COLOR:
+      break;
+
+      case SPIKES:
+      conditions->s1 = 2;
+      conditions->s2 = 2;
+      break;
+      case TRAMPOLINE:
+      conditions->s1 = 2;
+      conditions->s2 = 2;
+      conditions->s6 = 15;
+      break;
+      case DOWN:
+      conditions->s1 = 2;
+      conditions->s2 = 2;
+      break;
+      case CUB:
+      conditions->s1 = random(2, 6);
+      break;
+      case SAW:
+      break;
+      case GATE:
+      break;
+      case COPTER:
+      break;
+      case TRAP:
+      conditions->s1 = 2;
+      conditions->s2 = 2;
+      break;
+
+      case MOVE_UP:
+      break;
+      case MOVED1:
+      break;
+      case MOVED2:
+      break;
+      case MOVED3:
+      break;
+      case MOVED4:
+      break;
+    }
+  }
+
+  return result;
 }
 
 /**

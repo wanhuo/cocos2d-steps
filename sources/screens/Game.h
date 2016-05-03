@@ -113,7 +113,6 @@ class Game : public Screen
 
   struct Cameras {
     Camera* d;
-    Camera* c;
     Camera* s;
     Camera* e;
   };
@@ -121,7 +120,7 @@ class Game : public Screen
   const static int SCALE_FACTOR = 70;
 
   const static int NEAR = 1;
-  const static int FAR = 100;
+  const static int FAR = 10000;
 
   /**
    *
@@ -205,8 +204,8 @@ class Game : public Screen
 
   virtual void onNoad();
 
-  virtual float getFrustumWidth() { this->getWidth() / SCALE_FACTOR; }
-  virtual float getFrustumHeight() { this->getHeight() / SCALE_FACTOR; }
+  virtual float getFrustumWidth() { return this->getWidth() / SCALE_FACTOR; }
+  virtual float getFrustumHeight() { return this->getHeight() / SCALE_FACTOR; }
 
   virtual void changeState(State state);
 
@@ -227,43 +226,10 @@ class Game : public Screen
    *
    */
   protected:
-  CustomCommand _customCommand;
-	virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
-	{
-		 _customCommand.init(_globalZOrder + 10);
-		_customCommand.func = CC_CALLBACK_0(Game::onDraw, this, renderer, transform, flags);
-		renderer->addCommand(&_customCommand);
-	}
+  CustomCommand drawCommand;
 
-	virtual void onDraw(Renderer *renderer, const Mat4& transform, uint32_t flags)
-	{
-   GLuint FramebufferName = 0;
-   glGenFramebuffers(1, &FramebufferName);
-   glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
-
-   // Depth texture. Slower than a depth buffer, but you can sample it later in your shader
-   GLuint depthTexture;
-   glGenTextures(1, &depthTexture);
-   glBindTexture(GL_TEXTURE_2D, depthTexture);
-   glTexImage2D(GL_TEXTURE_2D, 0,GL_DEPTH_COMPONENT16, 1024, 1024, 0,GL_DEPTH_COMPONENT, GL_FLOAT, 0);
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-   glFramebufferTextureEXT(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0);
-
-   glDrawBuffer(GL_NONE); // No color buffer is drawn to.
-
-   if(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE)
-   {
-    log("A");
-   }
-   else
-   {
-    log("B");
-   }
-	}
+	virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags);
+	virtual void onDraw(Renderer *renderer, const Mat4& transform, uint32_t flags);
 };
 
 #endif

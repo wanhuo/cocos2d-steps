@@ -33,15 +33,81 @@
  *
  *
  */
-class Item;
-
-/**
- *
- *
- *
- */
 class Store : public Popup
 {
+  /**
+   *
+   *
+   *
+   */
+  public:
+  class Position : public BackgroundColor {
+
+    /**
+     *
+     *
+     *
+     */
+    private:
+    enum State {
+      NONE,
+      MISSIONS,
+      DIAMONDS,
+      UNLOCKED,
+      SELECTED
+    };
+
+    struct Parameters {
+      const char* id;
+      int index;
+      int missions;
+      int diamonds;
+    };
+
+    struct Texts {
+      Text* missions;
+      Text* diamonds;
+    };
+
+    /**
+     *
+     *
+     *
+     */
+    protected:
+    int state;
+
+    Parameters parameters;
+    Texts texts;
+
+    Entity* lock;
+    Entity* diamond;
+
+    /**
+     *
+     *
+     *
+     */
+    public:
+    const static int WIDTH = 218;
+    const static int HEIGHT = 184;
+
+    const static int PX = 16;
+    const static int PY = 20;
+
+    Position(Node* parent, Json* parameters);
+   ~Position();
+
+    virtual void onEnter();
+    virtual void onExit();
+
+    virtual void onTouchStart(cocos2d::Touch* touch, Event* e);
+    virtual void onTouchFinish(cocos2d::Touch* touch, Event* e);
+    virtual void onTouchCancelled(cocos2d::Touch* touch, Event* e);
+
+    virtual void onTouch(cocos2d::Touch* touch, Event* e);
+  };
+
   /**
    *
    *
@@ -54,14 +120,19 @@ class Store : public Popup
     Button* back;
   };
 
+  BackgroundScroll* scroll;
+
   /**
    *
    *
    *
    */
   protected:
+  const static int ROW = 3;
+
   Buttons buttons;
-  float size;
+
+  vector<Position*> positions;
 
   /**
    *
@@ -74,10 +145,6 @@ class Store : public Popup
   Store();
  ~Store();
 
-  BackgroundScroll* scroll;
-
-  vector<Item*> items;
-
   virtual void onShow();
   virtual void onHide(Callback callback = NULL);
 
@@ -87,7 +154,7 @@ class Store : public Popup
   virtual void onEnter();
   virtual void onExit();
 
-  virtual void updateListHeight();
+  virtual void update();
 };
 
 #endif

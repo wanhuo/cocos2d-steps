@@ -189,17 +189,7 @@ void Menu::show()
 
 void Menu::hide(Callback callback)
 {
-  this->texts.tap->stopAllActions();
-
-  this->runAction(
-    Sequence::create(
-      FadeOut::create(0.2),
-      CallFunc::create([=] () {
-        Popup::hide(callback);
-      }),
-      nullptr
-    )
-  );
+  Popup::hide(callback);
 }
 
 /**

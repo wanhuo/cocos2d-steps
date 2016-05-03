@@ -26,6 +26,8 @@
 
 #include "Popup.h"
 
+#include "BackgroundScroll.h"
+
 /**
  *
  *
@@ -38,11 +40,66 @@ class Missions : public Popup
    *
    *
    */
+  public:
+  class Position : public BackgroundColor {
+
+    /**
+     *
+     *
+     *
+     */
+    private:
+    struct Texts {
+      Text* missions;
+      Text* diamonds;
+    };
+
+    /**
+     *
+     *
+     *
+     */
+    protected:
+    MissionStruct* mission;
+
+    /**
+     *
+     *
+     *
+     */
+    public:
+    const static int WIDTH = 688;
+    const static int HEIGHT = 200;
+
+    const static int PX = 16;
+    const static int PY = 20;
+
+    Position(Node* parent, MissionStruct* mission);
+   ~Position();
+
+    virtual void onEnter();
+    virtual void onExit();
+
+    virtual void onTouchStart(cocos2d::Touch* touch, Event* e);
+    virtual void onTouchFinish(cocos2d::Touch* touch, Event* e);
+    virtual void onTouchCancelled(cocos2d::Touch* touch, Event* e);
+
+    virtual void onTouch(cocos2d::Touch* touch, Event* e);
+  };
+
+  /**
+   *
+   *
+   *
+   */
   private:
   static Missions* instance;
 
   struct Buttons {
+    Button* back;
   };
+
+  BackgroundScroll* scroll;
 
   /**
    *
@@ -51,6 +108,8 @@ class Missions : public Popup
    */
   protected:
   Buttons buttons;
+
+  vector<Position*> positions;
 
   /**
    *
@@ -62,6 +121,17 @@ class Missions : public Popup
 
   Missions();
  ~Missions();
+
+  virtual void onShow();
+  virtual void onHide(Callback callback = NULL);
+
+  virtual void show();
+  virtual void hide(Callback callback = NULL);
+
+  virtual void onEnter();
+  virtual void onExit();
+
+  virtual void update();
 };
 
 #endif

@@ -58,18 +58,15 @@ Game::Game()
   SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ui.plist");
 
   this->cameras.d = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
-  //this->cameras.c = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
   this->cameras.s = Camera::create();
   this->cameras.e = Camera::create();
 
-  this->cameras.d->setCameraFlag(CameraFlag::DEFAULT);
-  //this->cameras.c->setCameraFlag(CameraFlag::USER1);
-  this->cameras.s->setCameraFlag(CameraFlag::USER2);
-  this->cameras.e->setCameraFlag(CameraFlag::USER3);
+  this->cameras.d->setCameraFlag(1);
+  this->cameras.s->setCameraFlag(4);
+  this->cameras.e->setCameraFlag(8);
 
   this->cameras.d->setDepth(1);
   this->cameras.s->setDepth(2);
-  //this->cameras.c->setDepth(3);
   this->cameras.e->setDepth(4);
 
   float x = -(this->getWidth() / SCALE_FACTOR) / 2 - 39.35;
@@ -91,12 +88,8 @@ Game::Game()
   this->cameras.d->setPosition3D(Vec3(x, y, z));
   this->cameras.d->setRotation3D(Vec3(rx, ry, rz));
 
-  //this->cameras.c->setPosition3D(Vec3(-(this->getWidth() / SCALE_FACTOR) + 0.5, -(this->getHeight() / SCALE_FACTOR) + 0.7, NEAR + 1));
-  //this->cameras.c->setRotation3D(Vec3(0, 0, 0));
-
   this->addChild(this->cameras.d);
   this->addChild(this->cameras.s);
-  //this->addChild(this->cameras.c);
   this->addChild(this->cameras.e);
 
   this->counter = new Counter(this);
@@ -454,4 +447,46 @@ void Game::update(float time)
    *
    */
   this->updateStates(time);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Game::draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
+{
+  this->drawCommand.init(100);
+  this->drawCommand.func = CC_CALLBACK_0(Game::onDraw, this, renderer, transform, flags);
+
+  renderer->addCommand(&this->drawCommand);
+}
+
+void Game::onDraw(Renderer *renderer, const Mat4& transform, uint32_t flags)
+{
+ /*GLuint FramebufferName = 0;
+ glGenFramebuffers(1, &FramebufferName);
+ glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
+
+ GLuint depthTexture;
+ glGenTextures(1, &depthTexture);
+ glBindTexture(GL_TEXTURE_2D, depthTexture);
+ glTexImage2D(GL_TEXTURE_2D, 0,GL_DEPTH_COMPONENT16, 1024, 1024, 0,GL_DEPTH_COMPONENT, GL_FLOAT, 0);
+ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+ glFramebufferTextureEXT(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0);
+
+ glDrawBuffer(GL_NONE); // No color buffer is drawn to.
+
+ if(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE)
+ {
+  log("A");
+ }
+ else
+ {
+  log("B");
+ }*/
 }

@@ -56,28 +56,25 @@ Counter::Counter(Node* parent)
   this->starAction->setPosition(this->starBackground->getWidth() / 2, this->starBackground->getHeight() / 2);
 
   this->icon = new CameraEntity3D("diamond.obj", Application, true,
-    {
-      Camera::createOrthographic(Application->getWidth() / 70, Application->getHeight() / 70, 1, 100),
-      Vec3(-(Application->getWidth() / 70) / 2, -(Application->getHeight() / 70) / 2, 1 + 1),
-      Vec3(0, 0, 0),
-      Application,
-      3
-    },
-    {
-      {DirectionLight::create(Vec3(1.0, -1.0, -1.0), Color3B(200, 200, 200)), Application},
-      {AmbientLight::create(Color3B(120, 120, 120)), Application}
-    }
-  );
+  {
+    Camera::createOrthographic(Application->getFrustumWidth(), Application->getFrustumHeight(), 1, 100),
+    Vec3(0, 0, 2),
+    Vec3(0, 0, 0),
+    Application,
+    3
+  },
+  {
+    {DirectionLight::create(Vec3(1.0, -1.0, -1.0), Color3B(200, 200, 200)), Application},
+    {AmbientLight::create(Color3B(120, 120, 120)), Application}
+  });
   this->icon->setTexture("diamond-texture.png");
-  this->icon->setScale(0.8);
-  this->icon->setPosition3D(Vec3(0, Application->getFrustumHeight() / 2, 0));
+  this->icon->setPosition3D(Vec3(Application->getFrustumWidth() - 0.4, Application->getFrustumHeight() - 0.7, 0));
+  this->icon->setRotation3D(Vec3(0, 0, 0));
   this->icon->runAction(
     RepeatForever::create(
       RotateBy::create(1.0, Vec3(0, 100, 0))
     )
   );
-  //this->icon->setVisible(false);
-  auto n = this->icon->deepCopy();this->addChild(n->_create());
 
   this->texts.name = new Text("name", this, true);
   this->texts.score = new Text("counter-score", this->holder, true);
@@ -137,7 +134,7 @@ void Counter::onMenu()
 
 void Counter::onGame()
 {
-  this->values.bonus = Application->environment->generator->currentLength;
+  this->values.bonus = Application->environment->generator->size;
 
   if(!Application->environment->generator->bonus)
   {
