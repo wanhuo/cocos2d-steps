@@ -34,12 +34,56 @@
  *
  *
  */
-Button3D::Button3D(string file, Node* parent, CameraStruct camera, const vector<LightStruct> vec)
+Button3D::Button3D(string file, string texture, Node* parent, CameraStruct camera, const vector<LightStruct> vec)
 : CameraEntity3D(file, parent, false, camera, vec)
 {
-  //this->register(true);
+  this->texture = texture;
+
+  this->setTexture(this->texture);
+
+  this->bind(true);
 }
 
 Button3D::~Button3D()
 {
+}
+
+/**
+ *
+ *
+ *
+ */
+void Button3D::onCreate()
+{
+  CameraEntity3D::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  for(auto child : this->getChildren())
+  {
+    child->_create();
+
+    static_cast<Sprite3D*>(child)->setTexture(this->texture);
+    static_cast<Sprite3D*>(child)->setLightMask(this->index);
+  }
+
+  this->setCameraMask(this->index);
+}
+
+void Button3D::onDestroy(bool action)
+{
+  CameraEntity3D::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  for(auto child : this->getChildren())
+  {
+    child->_destroy();
+  }
 }

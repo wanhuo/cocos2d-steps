@@ -202,6 +202,13 @@ void Finish::show()
       }
     }
   }
+
+  /**
+   *
+   *
+   *
+   */
+  this->buttons.gift->_create();
 }
 
 void Finish::hide(Callback callback)

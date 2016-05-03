@@ -35,7 +35,7 @@
  *
  */
 Video::Video(Node* parent)
-: Button3D("", parent, {
+: Button3D("", "", parent, {
     Camera::createOrthographic(Application->getFrustumWidth(), Application->getFrustumHeight(), 1, 100),
     Vec3(0, 0, 2),
     Vec3(0, 0, 0),

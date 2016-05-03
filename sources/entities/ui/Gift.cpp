@@ -35,12 +35,12 @@
  *
  */
 Gift::Gift(Node* parent)
-: Button3D("", parent, {
-    Camera::createOrthographic(Application->getFrustumWidth(), Application->getFrustumHeight(), 1, 100),
+: Button3D("gift.obj", "ui/gift-texture.png", parent, {
+    Camera::createPerspective(60, Application->getWidth() / Application->getHeight(), 1, 100),
     Vec3(0, 0, 2),
     Vec3(0, 0, 0),
     Application,
-    3
+    5
   },
   {
     {DirectionLight::create(Vec3(1.0, -1.0, -1.0), Color3B(200, 200, 200)), Application},
@@ -68,6 +68,45 @@ void Gift::onCreate()
    *
    */
   Finish::getInstance()->parameters.elapsed.gift = 0;
+
+  this->setScale(0);
+
+  this->setPosition3D(Vec3(0, -4.0, -5));
+  this->setRotation3D(Vec3(0.0, 30.0, 0.0));
+
+  this->camera->setRotation3D(Vec3(-20.0, 0.0, 0.0));
+
+  this->runAction(
+    Sequence::create(
+      ScaleTo::create(0.2, 1.2),
+      ScaleTo::create(0.1, 0.8),
+      ScaleTo::create(0.1, 1.0),
+      CallFunc::create([=] () {
+        this->runAction(
+          RepeatForever::create(
+            Sequence::create(
+              ScaleTo::create(0.3, 1.05),
+              ScaleTo::create(0.3, 1.0),
+              nullptr
+            )
+          )
+        );
+      }),
+      nullptr
+    )
+  );
+
+  this->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        RotateBy::create(3.0, Vec3(0.0, 30.0, 0.0)),
+        RotateBy::create(3.0, Vec3(0.0, -30.0, 0.0)),
+        nullptr
+      )
+    )
+  );
+
+  this->getChildByName("door")->setPosition3D(Vec3(0, 3.0, 0));
 }
 
 void Gift::onDestroy(bool action)
