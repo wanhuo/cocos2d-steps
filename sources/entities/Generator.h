@@ -98,6 +98,7 @@ class Generator : public Ref
     int s4;
     int s5;
     int s6;
+    int s7;
   };
 
   Parameters parameters;

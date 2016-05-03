@@ -411,8 +411,6 @@ void Counter::update()
   this->texts.coins->data(this->values.coins);
   this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() / 2 - 60, Application->getHeight() - 60);
 
-  //this->icon->setPosition(this->texts.coins->getPositionX() + this->texts.coins->getWidth() / 2 + 30, Application->getHeight() - 50);
-
   if(this->values.current > this->values.best)
   {
   }

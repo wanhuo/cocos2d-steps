@@ -527,8 +527,11 @@ bool Plate::conditions(int type)
 {
   auto result = false;
 
+  auto direction = &Application->environment->generator->direction;
   auto length = &Application->environment->generator->length;
   auto count = &Application->environment->generator->count;
+  auto index = &Application->environment->generator->index;
+  auto size = &Application->environment->generator->size;
 
   auto conditions = &Application->environment->generator->conditions;
 
@@ -541,10 +544,10 @@ bool Plate::conditions(int type)
     result = true;
     break;
     case ENERGY:
-    result = true;
+    result = (size - index) > 20;
     break;
     case STAR:
-    result = conditions->s4 < 0;
+    result = conditions->s4 < 0 && (size - index) > 10;
     break;
     case HEART:
     result = false;
@@ -557,10 +560,10 @@ bool Plate::conditions(int type)
     result = conditions->s2 < 1;
     break;
     case TRAMPOLINE:
-    result = conditions->s2 < 1;
+    result = conditions->s2 < 1 && (size - index) > 20;
     break;
     case DOWN:
-    result = conditions->s2 < 1;
+    result = conditions->s2 < 1 && conditions->s7 < 1;
     break;
     case CUB:
     result = Application->environment->generator->bonus && conditions->s1 < 1;
@@ -569,7 +572,7 @@ bool Plate::conditions(int type)
     result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1;
     break;
     case GATE:
-    result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1;
+    result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1 && conditions->s7 < 1;
     break;
     case COPTER:
     result = conditions->s5 < 1;
@@ -579,14 +582,19 @@ bool Plate::conditions(int type)
     break;
 
     case MOVE_UP:
+    result = (count < length) && count > 0 && direction && conditions->s1 < 1 && conditions->s2 < 0 && conditions->s7 < 1;
     break;
     case MOVED1:
+    result = (length - count) > 1 && direction && conditions->s2 < 0 && conditions->s7 < 1;
     break;
     case MOVED2:
+    result = (length - count) > 1 && direction && conditions->s2 < 0 && conditions->s7 < 1;
     break;
     case MOVED3:
+    result = (count >= length) && direction && conditions->s2 < 0 && conditions->s7 < 1;
     break;
     case MOVED4:
+    result = (count >= length) && direction && conditions->s2 < 0 && conditions->s7 < 1;
     break;
   }
 
@@ -599,6 +607,7 @@ bool Plate::conditions(int type)
       case CRYSTAL:
       break;
       case ENERGY:
+      conditions->s7 = 20;
       break;
       case STAR:
       conditions->s4 = 20;
@@ -652,14 +661,23 @@ bool Plate::conditions(int type)
       break;
 
       case MOVE_UP:
+      conditions->s2 = 2;
       break;
       case MOVED1:
+      conditions->s2 = 2;
+
+      Application->environment->generator->length++;
       break;
       case MOVED2:
+      conditions->s2 = 2;
+
+      Application->environment->generator->length++;
       break;
       case MOVED3:
+      conditions->s2 = 2;
       break;
       case MOVED4:
+      conditions->s2 = 2;
       break;
     }
   }

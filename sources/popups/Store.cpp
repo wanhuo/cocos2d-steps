@@ -228,8 +228,8 @@ Store::Position::Position(Node* parent, Json* parameters)
   this->diamond = new Entity("diamond.png", this);
 
   this->lock->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 + 10);
-  this->texture->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 + 10);
-  this->texture->setCurrentFrameIndex(this->parameters.index);
+  this->texture->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
+  this->texture->setCurrentFrameIndex(this->parameters.index - 1);
 
   this->bind(true, false);
 }
@@ -410,6 +410,7 @@ void Store::Position::onTouch(cocos2d::Touch* touch, Event* e)
   switch(this->state)
   {
     case MISSIONS:
+    Missions::getInstance()->show();
     break;
     case DIAMONDS:
     break;
@@ -430,4 +431,17 @@ void Store::Position::onTouch(cocos2d::Touch* touch, Event* e)
     case SELECTED:
     break;
   }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Store::Position::onSelect()
+{
+}
+
+void Store::Position::onPurchase()
+{
 }

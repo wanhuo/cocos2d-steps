@@ -355,95 +355,53 @@ void Generator::createGeneralElement(Plate* plate)
       {
         plate->setType(Plate::BEST);
       }
-
-      /**
-       *
-       * Check if there is a finish plate.
-       *
-       */
-      if(this->index == this->size)
-      {
-        plate->setType(Plate::FINISH);
-      }
       else
       {
         /**
          *
-         * Try to generate some pickup.
+         * Check if there is a finish plate.
          *
          */
-        if(this->parameters.current.plates.elements.size()) if(probably(this->parameters.current.plates.probability))
+        if(this->index == this->size)
         {
-          auto element = this->parameters.current.plates.elements.at(random<int>(0, this->parameters.current.plates.elements.size() - 1));
-
-          if(probably(element.probability) && plate->conditions(element.type))
+          plate->setType(Plate::FINISH);
+        }
+        else
+        {
+          /**
+           *
+           * Try to generate some pickup.
+           *
+           */
+          if(this->parameters.current.plates.elements.size()) if(probably(this->parameters.current.plates.probability))
           {
-            plate->setType(element.type);
+            auto element = this->parameters.current.plates.elements.at(random<int>(0, this->parameters.current.plates.elements.size() - 1));
 
-            return;
+            if(probably(element.probability) && plate->conditions(element.type))
+            {
+              plate->setType(element.type);
+
+              return;
+            }
+          }
+
+          /**
+           *
+           * Try to generate some enemy plate.
+           *
+           */
+          if(this->parameters.current.pickups.elements.size()) if(probably(this->parameters.current.pickups.probability))
+          {
+            auto element = this->parameters.current.pickups.elements.at(random<int>(0, this->parameters.current.pickups.elements.size() - 1));
+
+            if(probably(element.probability) && plate->conditions(element.type))
+            {
+              plate->setType(element.type);
+
+              return;
+            }
           }
         }
-
-        /**
-         *
-         * Try to generate some enemy plate.
-         *
-         */
-        if(this->parameters.current.pickups.elements.size()) if(probably(this->parameters.current.pickups.probability))
-        {
-          auto element = this->parameters.current.pickups.elements.at(random<int>(0, this->parameters.current.pickups.elements.size() - 1));
-
-          if(probably(element.probability) && plate->conditions(element.type))
-          {
-            plate->setType(element.type);
-
-            return;
-          }
-        }
-
-        /*if(probably(0))
-        {
-
-
-
-          else if((this->length - this->count) > 1 && this->conditions.s2 < 0 && this->direction && probably(100))
-          {
-            plate->setType(Plate::MOVED1);
-
-            this->length++;
-            this->conditions.s2 = 2;
-          }
-          else if((this->length - this->count) > 1 && this->conditions.s2 < 0 && !this->direction && probably(100))
-          {
-            plate->setType(Plate::MOVED2);
-
-            this->length++;
-            this->conditions.s2 = 2;
-          }
-          else if(this->count >= this->length && this->conditions.s2 < 0 && this->direction && probably(100))
-          {
-            plate->setType(Plate::MOVED3);
-
-            this->conditions.s2 = 2;
-          }
-          else if(this->count >= this->length && this->conditions.s2 < 0 && !this->direction && probably(100))
-          {
-            plate->setType(Plate::MOVED4);
-
-            this->conditions.s2 = 2;
-          }
-          else if(this->count > 0 && this->count < this->length && this->conditions.s1 < 1 && this->conditions.s2 < 0 && probably(100))
-          {
-            plate->setType(Plate::MOVE_UP);
-
-            this->conditions.s2 = 2;
-          }
-
-
-  
-
-
-        }*/
       }
     }
   }
@@ -471,6 +429,7 @@ Plate* Generator::update(bool post)
     this->conditions.s4--;
     this->conditions.s5--;
     this->conditions.s6--;
+    this->conditions.s7--;
 
     if(this->direction)
     {
@@ -633,4 +592,5 @@ void Generator::reset()
   this->conditions.s4 = 0;
   this->conditions.s5 = 0;
   this->conditions.s6 = 0;
+  this->conditions.s7 = 0;
 }
