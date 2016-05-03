@@ -63,6 +63,11 @@ Character::~Character()
  */
 void Character::reset()
 {
+  if(!this->Node::state->create)
+  {
+    this->_create();
+  }
+
   this->plane->setPosition3D(Vec3(0.0, 0.0, 0.0));
   this->plane->setRotation3D(Vec3(0.0, 0.0, 0.0));
 

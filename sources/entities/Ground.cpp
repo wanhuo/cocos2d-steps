@@ -52,6 +52,16 @@ Ground::~Ground()
  *
  *
  */
+void Ground::reset()
+{
+  this->texture->setTexture("textures/" + to_string(Application->environment->level) + "/ground-texture.png");
+}
+
+/**
+ *
+ *
+ *
+ */
 void Ground::update(float time)
 {
   auto x = -Application->environment->plane->getPositionX() / this->texture->getScale();

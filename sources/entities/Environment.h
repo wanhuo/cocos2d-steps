@@ -56,6 +56,9 @@ class Environment : public Background
 
   struct Plates {
     Pool* normal;
+    Pool* finish;
+    Pool* best;
+    Pool* bonus;
     Pool* spikes;
     Pool* trampolines;
     Pool* saws;
@@ -105,6 +108,8 @@ class Environment : public Background
 
   Environment(Node* parent);
  ~Environment();
+
+  int level = 1;
 
   Plates plates;
   Decorations decorations;

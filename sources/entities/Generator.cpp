@@ -527,7 +527,7 @@ Plate* Generator::update(bool post)
  *
  *
  */
-void Generator::clear()
+void Generator::reset()
 {
   Application->environment->plates.normal->clear(true);
 

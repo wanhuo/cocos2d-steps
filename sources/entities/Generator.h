@@ -137,7 +137,7 @@ class Generator : public Ref
 
   virtual Plate* update(bool post);
 
-  virtual void clear();
+  virtual void reset();
 };
 
 #endif

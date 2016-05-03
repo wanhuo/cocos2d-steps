@@ -75,6 +75,9 @@ void Environment::create()
   this->particles = new Pool(new Particle, this->plane);
 
   this->plates.normal = new Pool(new Plate, this->plane);
+  this->plates.finish = new Pool(new TypeFinish, this->plane);
+  this->plates.best = new Pool(new TypeBest, this->plane);
+  this->plates.bonus = new Pool(new TypeBonus, this->plane);
   this->plates.spikes = new Pool(new TypeSpikes, this->plane);
   this->plates.trampolines = new Pool(new TypeTrampoline, this->plane);
   this->plates.saws = new Pool(new TypeSaw, this->plane);
@@ -173,12 +176,12 @@ Entity3D* Environment::createParticle(float x, float y, float z)
  */
 string Environment::getTextureState1()
 {
-  return "textures/1/textures-state-1.png";
+  return "textures/" + to_string(this->level) + "/textures-state-1.png";
 }
 
 string Environment::getTextureState2()
 {
-  return "textures/1/textures-state-2.png";
+  return "textures/" + to_string(this->level) + "/textures-state-2.png";
 }
 
 /**
@@ -205,10 +208,10 @@ void Environment::onMenu()
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;
 
-  this->character->_create();
   this->character->reset();
 
-  this->generator->clear();
+  this->ground->reset();
+  this->generator->reset();
 
   this->setPosition3D(Vec3(0, 0, 0));
 
@@ -231,7 +234,7 @@ void Environment::onCopter()
 
 void Environment::onFinish()
 {
-  this->generator->clear();
+  this->generator->reset();
 
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;

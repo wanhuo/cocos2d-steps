@@ -50,6 +50,8 @@ class Ground : public Entity3D
   Ground(Node* parent);
 ~Ground();
 
+  virtual void reset();
+
   virtual void update(float time);
 };
 

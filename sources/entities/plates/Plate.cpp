@@ -230,7 +230,7 @@ void Plate::setType(int type, bool animated)
       this->special = static_cast<Special*>(Application->environment->plates.bonus->_create());
       this->special->setPlate(this);
 
-      this->setRotation3D(Vec3(0, this->direction ? 180 : -90, 0));
+      this->special->setRotation3D(Vec3(0, this->direction ? 180 : -90, 0));
     }
     break;
     case SPIKES:
@@ -628,23 +628,23 @@ bool Plate::conditions(int type)
       conditions->s1 = 2;
       conditions->s2 = 2;
 
-      length++;
-      length++;
+      Application->environment->generator->length++;
+      Application->environment->generator->length++;
       break;
       case GATE:
       conditions->s1 = 2;
       conditions->s2 = 2;
 
-      length++;
-      length++;
+      Application->environment->generator->length++;
+      Application->environment->generator->length++;
       break;
       case COPTER:
       conditions->s1 = 2;
       conditions->s2 = 2;
       conditions->s5 = 10;
 
-      length++;
-      length++;
+      Application->environment->generator->length++;
+      Application->environment->generator->length++;
       break;
       case TRAP:
       conditions->s1 = 2;
