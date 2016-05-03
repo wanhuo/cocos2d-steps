@@ -379,6 +379,8 @@ void Generator::createGeneralElement(Plate* plate)
           if(probably(element.probability) && plate->conditions(element.type))
           {
             plate->setType(element.type);
+
+            return;
           }
         }
 
@@ -394,6 +396,8 @@ void Generator::createGeneralElement(Plate* plate)
           if(probably(element.probability) && plate->conditions(element.type))
           {
             plate->setType(element.type);
+
+            return;
           }
         }
 
@@ -571,9 +575,23 @@ void Generator::reset()
    */
   else
   {
-    if(this->levels.size() >= 1)
+    /**
+     *
+     * Update level if character`s current plate type is finish and bonus generation is enabled. 
+     *
+     */
+    if(Application->environment->character->plates.current && Application->environment->character->plates.current->type == Plate::FINISH && this->bonus)
     {
-      this->parameters.current = this->levels.at(0);
+      Application->environment->updateLevel();
+    }
+    /**
+     *
+     * Get parameters of current level.
+     *
+     */
+    if(this->levels.size() >= Application->environment->level)
+    {
+      this->parameters.current = this->levels.at(Application->environment->level - 1);
     }
     else
     {

@@ -56,7 +56,7 @@ class TypeSpikes : public Special
   TypeSpikes();
  ~TypeSpikes();
 
-  Spikes* spikes;
+  Spikes* decoration;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);

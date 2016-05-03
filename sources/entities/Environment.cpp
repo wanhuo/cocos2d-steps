@@ -31,6 +31,8 @@
 Environment::Environment(Node* parent)
 : Background(parent)
 {
+  this->level = max(1, Storage::get("application.current.level"));
+  this->pack = max(1, Storage::get("store.texture.selected"));
 }
 
 Environment::~Environment()
@@ -55,7 +57,7 @@ void Environment::onAccelerate(Acceleration* acceleration, Event* e)
  *
  */
 void Environment::create()
-{this->level = 2;
+{
   this->plane = new Entity3D(this, true);
   this->plane->setRotation3D(Vec3(0, 0, 0));
   this->plane->setPosition3D(Vec3(0, 0, 0));
@@ -176,12 +178,23 @@ Entity3D* Environment::createParticle(float x, float y, float z)
  */
 string Environment::getTextureState1()
 {
-  return "textures/" + to_string(this->level) + "/textures-state-1.png";
+  return "textures/" + to_string(this->pack) + "/textures-state-1.png";
 }
 
 string Environment::getTextureState2()
 {
-  return "textures/" + to_string(this->level) + "/textures-state-2.png";
+  return "textures/" + to_string(this->pack) + "/textures-state-2.png";
+}
+
+/**
+ *
+ *
+ *
+ */
+void Environment::updateLevel()
+{
+  //Storage::set("application.current.level", ++this->level);
+  this->level++;
 }
 
 /**

@@ -41,8 +41,6 @@ Ground::Ground(Node* parent)
   this->setRotation3D(Vec3(-90, 0, 0));
 
   this->setScheduleUpdate(true);
-
-  this->reset();
 }
 
 Ground::~Ground()
@@ -56,7 +54,7 @@ Ground::~Ground()
  */
 void Ground::reset()
 {
-  this->texture->setTexture("textures/" + to_string(Application->environment->level) + "/ground-texture.png");
+  this->texture->setTexture("textures/" + to_string(Application->environment->pack) + "/ground-texture.png");
   this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
   this->texture->getTexture()->setAliasTexParameters();
 }

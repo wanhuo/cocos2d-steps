@@ -109,7 +109,8 @@ class Environment : public Background
   Environment(Node* parent);
  ~Environment();
 
-  int level = 1;
+  int level;
+  int pack;
 
   Plates plates;
   Decorations decorations;
@@ -152,6 +153,8 @@ class Environment : public Background
 
   virtual string getTextureState1();
   virtual string getTextureState2();
+
+  virtual void updateLevel();
 
   virtual void onAccelerate(Acceleration* acceleration, Event* e);
 

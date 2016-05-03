@@ -31,7 +31,7 @@
 TypeSpikes::TypeSpikes()
 : Special("plate-type-spikes.obj")
 {
-  this->spikes = new Spikes(this);
+  this->decoration = new Spikes(this);
 }
 
 TypeSpikes::~TypeSpikes()
@@ -67,10 +67,10 @@ void TypeSpikes::setPlate(Plate* plate)
    *
    *
    */
-  this->spikes->_create();
-  this->spikes->setPosition3D(Vec3(0, 0, 0));
+  this->decoration->_create();
+  this->decoration->setPosition3D(Vec3(0, 0, 0));
 
-  this->getDecorations().push_back(this->spikes);
+  this->getDecorations().push_back(this->decoration);
 }
 
 /**

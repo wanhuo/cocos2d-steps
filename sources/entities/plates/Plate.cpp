@@ -563,7 +563,7 @@ bool Plate::conditions(int type)
     result = conditions->s2 < 1;
     break;
     case CUB:
-    result = conditions->s1 < 1;
+    result = Application->environment->generator->bonus && conditions->s1 < 1;
     break;
     case SAW:
     result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1;
