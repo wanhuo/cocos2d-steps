@@ -93,9 +93,7 @@ void Gift::onCreate()
 
   this->runAction(
     Sequence::create(
-      ScaleTo::create(0.2, 1.2),
-      ScaleTo::create(0.1, 0.8),
-      ScaleTo::create(0.1, 1.0),
+      ScaleTo::create(0.4, 1.0),
       CallFunc::create([=] () {
         this->runAction(
           RepeatForever::create(
@@ -112,12 +110,20 @@ void Gift::onCreate()
   );
 
   this->runAction(
-    RepeatForever::create(
-      Sequence::create(
-        RotateBy::create(3.0, Vec3(0.0, 30.0, 0.0)),
-        RotateBy::create(3.0, Vec3(0.0, -30.0, 0.0)),
-        nullptr
-      )
+    Sequence::create(
+      RotateBy::create(0.4, Vec3(0.0, 90.0, 0.0)),
+      CallFunc::create([=] () {
+      this->runAction(
+        RepeatForever::create(
+          Sequence::create(
+            RotateBy::create(3.0, Vec3(0.0, 30.0, 0.0)),
+            RotateBy::create(3.0, Vec3(0.0, -30.0, 0.0)),
+            nullptr
+          )
+        )
+      );
+      }),
+      nullptr
     )
   );
 }
@@ -147,63 +153,78 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
 
   this->stopAllActions();
 
-  this->getChildByName("door")->runAction(
-    Sequence::create(
-      EaseSineOut::create(
-        MoveBy::create(0.1, Vec3(0, -0.1, 0))
-      ),
-      EaseSineIn::create(
-        MoveBy::create(0.5, Vec3(0, 5.0, 0))
-      ),
-      CallFunc::create([=] () {
-      this->runAction(
+  this->runAction(
+    Spawn::create(
+      Repeat::create(
         Sequence::create(
-          EaseSineIn::create(
-            ScaleTo::create(0.2, 0.8)
-          ),
-          EaseSineOut::create(
-            ScaleTo::create(0.1    , 1.0)
-          ),
-          CallFunc::create([=] () {
-          for(int i = 0; i < 50; i++)
-          {
-            auto element = (Entity3D*) this->elements->_create();
-
-            element->setCameraMask(this->index);
-            element->setLightMask(this->index);
-          }
-
-          Present::getInstance()->texts.claim->stopAllActions();
-          Present::getInstance()->texts.claim->runAction(
-            Sequence::create(
-              FadeOut::create(0.2),
-              CallFunc::create([=] () {
-              Present::getInstance()->texts.con->runAction(
-                Sequence::create(
-                  FadeIn::create(0.2),
-                  CallFunc::create([=] () {
-                  Present::getInstance()->texts.con->runAction(
-                    RepeatForever::create(
-                      Sequence::create(
-                        FadeOut::create(0.5),
-                        FadeIn::create(0.5),
-                        nullptr
-                      )
-                    )
-                  );
-                  }),
-                  nullptr
-                )
-              );
-              }),
-              nullptr
-            )
-          );
-          }),
+          ScaleBy::create(0.05, 1.1),
+          ScaleBy::create(0.05, 0.9),
           nullptr
-        )
-      );
-      }),
+        ), 6),
+      Sequence::create(
+        DelayTime::create(0.5),
+        CallFunc::create([=] () {
+        this->getChildByName("door")->runAction(
+          Sequence::create(
+            EaseSineIn::create(
+              MoveBy::create(0.35, Vec3(0, 5.0, 0))
+            ),
+            nullptr
+          )
+        );
+        }),
+        nullptr
+      ),
+      Sequence::create(
+        DelayTime::create(0.65),
+        CallFunc::create([=] () {
+        Present::getInstance()->time = 1.0;
+
+        for(int i = 0; i < 40; i++)
+        {
+          auto element = (Entity3D*) this->elements->_create();
+
+          element->setCameraMask(this->index);
+          element->setLightMask(this->index);
+        }
+
+        Present::getInstance()->texts.claim->stopAllActions();
+        Present::getInstance()->texts.claim->runAction(
+          Sequence::create(
+            FadeOut::create(0.2),
+            CallFunc::create([=] () {
+            Present::getInstance()->texts.con->runAction(
+              Sequence::create(
+                FadeIn::create(0.2),
+                CallFunc::create([=] () {
+                Present::getInstance()->texts.con->runAction(
+                  RepeatForever::create(
+                    Sequence::create(
+                      FadeOut::create(0.5),
+                      FadeIn::create(0.5),
+                      nullptr
+                    )
+                  )
+                );
+                }),
+                nullptr
+              )
+            );
+            }),
+            nullptr
+          )
+        );
+        }),
+        DelayTime::create(0.4),
+        CallFunc::create([=] () {
+        Present::getInstance()->time = 0.4;
+        }),
+        DelayTime::create(0.5),
+        CallFunc::create([=] () {
+        Present::getInstance()->time = 1.0;
+        }),
+        nullptr
+      ),
       nullptr
     )
   );
@@ -269,14 +290,14 @@ void Gift::Element::onCreate()
   this->setPosition3D(Vec3(0.0, 0.0, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
-  this->setScale(0.3);
+  this->setScale(0.2);
 
-  this->direction = Vec3(random(0.5, 1.0) * (probably(50) ? 1 : -1), 1.0, random(0.5, 1.0) * (probably(50) ? 1 : -1));
-  this->speed = Vec3(random(0.02, 0.1), random(0.2, 0.3), random(0.02, 0.1));
+  this->direction = Vec3(random(0.2, 0.5) * (probably(50) ? 1 : -1), 1.0, random(0.2, 0.5) * (probably(50) ? 1 : -1));
+  this->speed = Vec3(random(0.02, 0.1), random(0.1, 0.2), random(0.02, 0.1));
 
   this->runAction(
     RepeatForever::create(
-      RotateBy::create(1.0, Vec3(0.0, 360.0, 0.0))
+      RotateBy::create(random(1.0, 2.0), Vec3(360.0, 360.0, 360.0))
     )
   );
 }
@@ -297,13 +318,13 @@ void Gift::Element::update(float time)
   auto y = this->getPositionY();
   auto z = this->getPositionZ();
 
-  x += this->direction.x * this->speed.x;
-  y += this->direction.y * this->speed.y;
-  z += this->direction.z * this->speed.z;
+  x += this->direction.x * this->speed.x * Present::getInstance()->time;
+  y += this->direction.y * this->speed.y * Present::getInstance()->time;
+  z += this->direction.z * this->speed.z * Present::getInstance()->time;
 
   this->setPosition3D(Vec3(x, y, z));
 
-  this->speed.y -= 0.01;
+  this->speed.y -= 0.008 * Present::getInstance()->time;
 }
 
 /**

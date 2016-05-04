@@ -63,6 +63,8 @@ class Present : public Popup
   Present();
  ~Present();
 
+  float time;
+
   Texts texts;
 
   Gift* element;

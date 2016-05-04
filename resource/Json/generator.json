@@ -76,6 +76,30 @@
 			"plates": {
 				"probability": 100,
 				"elements": [
+					{"type": 11, "probability": 20}
+				]
+			},
+			"pickups": {
+				"probability": 100,
+				"elements": [
+				]
+			}
+		},
+		{
+			"name": "LEVEL 3",
+			"size": 250,
+			"save": 10,
+			"start": 12,
+			"route": {
+				"max": 10,
+				"min": 5
+			},
+			"bonus": {
+				"size": 50
+			},
+			"plates": {
+				"probability": 100,
+				"elements": [
 					{"type": 11, "probability": 20},
 					{"type": 12, "probability": 20}
 				]
