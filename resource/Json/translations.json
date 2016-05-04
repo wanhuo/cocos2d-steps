@@ -49,13 +49,6 @@
         "size": 80
       }
     ],
-    "counter-best-new": [
-      {
-        "title": "NEW BEST",
-        "font": "Consolas",
-        "size": 72
-      }
-    ],
     "counter-bonus": [
       {
         "title": "$1",
@@ -77,18 +70,11 @@
         "size": 40
       }
     ],
-    "item-name": [
+    "present": [
       {
-        "title": "$1",
-        "font": "Consolasb",
-        "size": 24
-      }
-    ],
-    "video": [
-      {
-        "title": "+20",
-        "font": "Consolasb",
-        "size": 100
+        "title": "+50",
+        "font": "Consolas",
+        "size": 60
       }
     ],
     "store-position-missions": [

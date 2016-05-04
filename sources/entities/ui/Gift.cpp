@@ -66,16 +66,17 @@ void Gift::onCreate()
 
   this->texture = Application->parameters.presentTexture;
 
-  for(auto child : this->getChildren())
-  {
-    static_cast<Sprite3D*>(child)->setTexture(this->texture);
-    static_cast<Sprite3D*>(child)->setLightMask(this->index);
+  static_cast<Sprite3D*>(this->getChildByName("box"))->setTexture(this->texture);
+  static_cast<Sprite3D*>(this->getChildByName("box"))->setLightMask(this->index);
 
-    static_cast<Sprite3D*>(child)->setPosition3D(Vec3(0.0, 0.0, 0.0));
-    static_cast<Sprite3D*>(child)->setRotation3D(Vec3(0.0, 0.0, 0.0));
+  static_cast<Sprite3D*>(this->getChildByName("door"))->setTexture(this->texture);
+  static_cast<Sprite3D*>(this->getChildByName("door"))->setLightMask(this->index);
 
-    static_cast<Sprite3D*>(child)->getMesh()->getTexture()->setAliasTexParameters();
-  }
+  static_cast<Sprite3D*>(this->getChildByName("box"))->setPosition3D(Vec3(0.0, 0.0, 0.0));
+  static_cast<Sprite3D*>(this->getChildByName("box"))->setRotation3D(Vec3(0.0, 0.0, 0.0));
+
+  static_cast<Sprite3D*>(this->getChildByName("door"))->setPosition3D(Vec3(0.0, 0.0, 0.0));
+  static_cast<Sprite3D*>(this->getChildByName("door"))->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
   /**
    *
@@ -140,6 +141,7 @@ void Gift::onDestroy(bool action)
    *
    *
    */
+  this->element->_destroy();
   this->elements->clear();
 }
 
@@ -175,14 +177,6 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
             nullptr
           )
         );
-        this->getChildByName("box")->runAction(
-          Sequence::create(
-            EaseSineIn::create(
-              MoveBy::create(0.35, Vec3(0, -5.0, 0))
-            ),
-            nullptr
-          )
-        );
         }),
         nullptr
       ),
@@ -213,6 +207,18 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
       nullptr
     )
   );
+
+  this->element->runAction(
+    Sequence::create(
+      DelayTime::create(0.7),
+      EaseSineIn::create(
+        MoveBy::create(0.2, Vec3(0.0, 0.8, 0.0))
+      ),
+      nullptr
+    )
+  );
+
+  Sound->play("gift-open");
 }
 
 /**
@@ -270,9 +276,9 @@ void Gift::Diamond::onCreate()
    */
   this->setTexture(Application->environment->getTextureState1());
 
-  this->setColor(Color3B(0.0, 231.0, 255.0));
+  this->setColor(Color3B(0.0, 243.0, 120.0));
 
-  this->setPosition3D(Vec3(0.0, -0.5, 0.0));
+  this->setPosition3D(Vec3(0.0, 0.0, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
   this->setScale(0.2);
@@ -354,16 +360,24 @@ Gift::Diamond* Gift::Diamond::deepCopy()
 Gift::Element::Element(Node* parent)
 : Entity3D(parent)
 {
+  this->window = BillBoard::create();
+  this->addChild(this->window);
+
+  this->diamond = new Entity3D("diamond.obj", this->window, true);
+  this->diamond->setTexture(Application->environment->getTextureState1());
+  this->diamond->setColor(Color3B(0.0, 243.0, 120.0));
+  this->diamond->setScale(0.5);
+
+  this->text = new Text("present", this->window, true);
+  this->text->setScale(0.008);
+  this->text->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(-10, 0.0), 0);
+
+  this->text->setPosition(-this->text->getWidthScaled() / 2 + 0.2, 0);
+  this->diamond->setPosition(this->text->getWidthScaled()  / 2, 0.1);
 }
 
 Gift::Element::~Element()
 {
-  this->window = BillBoard::create();
-  this->window->_destroy();
-  this->getParent()->addChild(this->window);
-
-  this->glow = new Entity("ui/glow.png", this->window, true);
-  this->glow->setScale(0.011);
 }
 
 /**
@@ -382,6 +396,14 @@ void Gift::Element::onCreate()
    */
   this->setPosition3D(Vec3(0.0, 0.0, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
+
+  this->setScale(0.5);
+
+  this->diamond->runAction(
+    RepeatForever::create(
+      RotateBy::create(1.0, Vec3(0, 100, 0))
+    )
+  );
 }
 
 void Gift::Element::onDestroy(bool action)

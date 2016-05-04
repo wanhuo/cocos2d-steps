@@ -88,7 +88,8 @@ class Gift : public Button3D
      */
     protected:
     BillBoard* window;
-    Entity* glow;
+    Entity3D* diamond;
+    Text* text;
 
     /**
      *

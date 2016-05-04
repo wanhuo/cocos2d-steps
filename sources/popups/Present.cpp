@@ -50,7 +50,7 @@ Present::Present()
 {
   instance = this;
 
-  this->background = new BackgroundColor(this, Color4B(0.0, 0.0, 0.0, 100.0));
+  this->background = new BackgroundColor(this, Color4B(0.0, 0.0, 0.0, 50.0));
   this->background->setLocalZOrder(-1);
 
   this->element = new Gift(this);

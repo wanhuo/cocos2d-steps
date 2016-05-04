@@ -31,8 +31,8 @@
 Diamond::Diamond()
 : Pickup("diamond.obj")
 {
-  this->setColor(Color3B(0.0, 231.0, 255.0));
-  this->glow->setColor(Color3B(187.0, 237.0, 255.0));
+  this->setColor(Color3B(0.0, 243.0, 120.0));
+  this->glow->setColor(Color3B(168.0, 244.0, 203.0));
 }
 
 Diamond::~Diamond()

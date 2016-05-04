@@ -84,6 +84,8 @@ void Presention::onPickup()
    *
    */
   Application->parameters.showPresent = true;
+
+  Sound->play("pickup-gift");
 }
 
 /**

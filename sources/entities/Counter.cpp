@@ -71,7 +71,7 @@ Counter::Counter(Node* parent)
   this->icon->setTexture(Application->environment->getTextureState1());
   this->icon->setPosition3D(Vec3(Application->getFrustumWidth() - 0.4, Application->getFrustumHeight() - 0.7, 0));
   this->icon->setRotation3D(Vec3(0, 0, 0));
-  this->icon->setColor(Color3B(0.0, 231.0, 255.0));
+  this->icon->setColor(Color3B(0.0, 243.0, 120.0));
   this->icon->runAction(
     RepeatForever::create(
       RotateBy::create(1.0, Vec3(0, 100, 0))
@@ -84,11 +84,10 @@ Counter::Counter(Node* parent)
   this->texts.best = new Text("counter-best", this, true);
   this->texts.bonus = new Text("counter-bonus", this->bonusBackground, true);
 
-  this->texts.name->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -10), 1);
-  this->texts.score->enableShadow(Color4B(71.0, 132.0, 164.0, 100.0), Size(-3, -3), 1);
-  this->texts.best->enableShadow(Color4B(71.0, 132.0, 164.0, 100.0), Size(-3, -3), 1);
+  this->texts.name->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -10), 0);
+  this->texts.score->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
+  this->texts.best->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
   this->texts.coins->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
-  this->texts.bonus->enableShadow(Color4B(71.0, 132.0, 164.0, 100.0), Size(-1, -1), 1);
 
   this->texts.best->setPosition(Application->getCenter().x, Application->getHeight() - 300);
 
