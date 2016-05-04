@@ -80,6 +80,8 @@ class Presention : public Pickup
 
   virtual void setPlate(Plate* plate, bool animated = true);
 
+  virtual const Color3B& getColor(void) const override;
+
   Presention* deepCopy();
 };
 

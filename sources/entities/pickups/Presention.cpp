@@ -31,8 +31,7 @@
 Presention::Presention()
 : Pickup("gift.obj")
 {
-  this->glow->setColor(Color3B::WHITE);
-  this->glow->setScale(0);
+  this->glow->setVisible(false);
 }
 
 Presention::~Presention()
@@ -102,6 +101,16 @@ void Presention::setPlate(Plate* plate, bool animated)
    *
    */
   this->setPositionY(this->getPositionY() + 0.7);
+}
+
+/**
+ *
+ *
+ *
+ */
+const Color3B& Presention::getColor(void) const
+{
+  return Application->environment->character->getColor();
 }
 
 /**
