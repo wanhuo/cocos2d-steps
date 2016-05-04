@@ -63,7 +63,7 @@ void Gift::onCreate()
 {
   Button3D::onCreate();
 
-  this->texture = this->textures.at(random(0, (int) this->textures.size() - 1));
+  this->texture = Application->parameters.presentTexture;
 
   for(auto child : this->getChildren())
   {
@@ -85,7 +85,7 @@ void Gift::onCreate()
    */
   this->setScale(0);
 
-  this->setPosition3D(Vec3(0, -3.0, -5));
+  this->setPosition3D(Vec3(0, -1.5, -3.0));
   this->setRotation3D(Vec3(0.0, 30.0, 0.0));
 
   this->camera->setPosition3D(Vec3(0.0, 0.0, 0.0));

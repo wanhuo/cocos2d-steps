@@ -137,6 +137,8 @@ class Game : public Screen
     bool showPresent = false;
     bool showVideo = false;
 
+    string presentTexture;
+
     int ad = 4;
     int video = 4;
     int present = 15;

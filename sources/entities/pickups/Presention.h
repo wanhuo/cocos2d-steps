@@ -48,7 +48,6 @@ class Presention : public Pickup
   protected:
   string texture;
   vector<string> textures = {
-    "ui/gift-texture-1.png",
     "ui/gift-texture-2.png",
     "ui/gift-texture-3.png",
     "ui/gift-texture-4.png",
