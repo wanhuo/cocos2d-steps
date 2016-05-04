@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../../Graphics/ui.png</filename>
+        <filename>../../Graphics/ui/ui.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -145,7 +145,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../Graphics/ui.plist</filename>
+                <filename>../../Graphics/ui/ui.plist</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -198,10 +198,10 @@
             <filename>../Graphics/ui/restore-button.png</filename>
             <filename>../Graphics/ui/back-button.png</filename>
             <filename>../Graphics/ui/counter-star.png</filename>
-            <filename>../Graphics/ui/counter-bonus.png</filename>
             <filename>../Graphics/ui/missions-button.png</filename>
             <filename>../Graphics/ui/store-position-lock.png</filename>
             <filename>../Graphics/ui/diamond.png</filename>
+            <filename>../Graphics/ui/counter-bonus.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

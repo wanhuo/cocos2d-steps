@@ -31,7 +31,7 @@
  *
  *
  */
-class Present : public Popup
+class Present : public Finish
 {
   /**
    *
@@ -47,10 +47,7 @@ class Present : public Popup
    *
    */
   protected:
-  struct Texts {
-    Text* claim;
-    Text* con;
-  };
+  BackgroundColor* background;
 
   /**
    *
@@ -64,8 +61,6 @@ class Present : public Popup
  ~Present();
 
   float time;
-
-  Texts texts;
 
   Gift* element;
 

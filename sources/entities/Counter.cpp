@@ -47,6 +47,7 @@ Counter::Counter(Node* parent)
   this->bonusBackground->setCascadeOpacityEnabled(true);
   this->bonusBackground->setOpacity(0);
   this->bonusBackground->setScale(1.5);
+  //this->bonusBackground->setColor(Color3B(252.0, 225.0, 105.0));
 
   this->starAction = ProgressTimer::create(new Entity("counter-star.png"));
   this->starAction->setType(ProgressTimer::Type::RADIAL);
@@ -80,15 +81,19 @@ Counter::Counter(Node* parent)
   this->texts.name = new Text("name", this, true);
   this->texts.score = new Text("counter-score", this->holder, true);
   this->texts.coins = new Text("counter-coins", this, true);
-  this->texts.best1 = new Text("counter-best", this, true);
-  this->texts.best2 = new Text("counter-best-new", this, true);
+  this->texts.best = new Text("counter-best", this, true);
   this->texts.bonus = new Text("counter-bonus", this->bonusBackground, true);
 
-  this->texts.best1->setPosition(Application->getCenter().x, Application->getHeight() - 300);
+  this->texts.name->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -10), 1);
+  this->texts.score->enableShadow(Color4B(71.0, 132.0, 164.0, 100.0), Size(-3, -3), 1);
+  this->texts.best->enableShadow(Color4B(71.0, 132.0, 164.0, 100.0), Size(-3, -3), 1);
+  this->texts.coins->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
+  this->texts.bonus->enableShadow(Color4B(71.0, 132.0, 164.0, 100.0), Size(-1, -1), 1);
+
+  this->texts.best->setPosition(Application->getCenter().x, Application->getHeight() - 300);
 
   this->holder->setOpacity(0);
-  this->texts.best1->setOpacity(0);
-  this->texts.best2->setOpacity(0);
+  this->texts.best->setOpacity(0);
 
   this->setCameraMask(4);
 
@@ -100,6 +105,8 @@ Counter::Counter(Node* parent)
   this->reset();
 
   this->icon->setGlobalZOrder(100);
+  this->texts.score->setGlobalZOrder(100);
+  this->texts.best->setGlobalZOrder(100);
   this->texts.coins->setGlobalZOrder(100);
 }
 
@@ -124,11 +131,7 @@ void Counter::onMenu()
     FadeTo::create(0.2, 255)
   );
 
-  this->texts.best1->runAction(
-    FadeTo::create(0.2, 0)
-  );
-
-  this->texts.best2->runAction(
+  this->texts.best->runAction(
     FadeTo::create(0.2, 0)
   );
 }
@@ -378,7 +381,7 @@ void Counter::onCoins()
  */
 void Counter::onBest()
 {
-  this->texts.best1->runAction(
+  this->texts.best->runAction(
     FadeTo::create(0.2, 255)
   );
 }
@@ -421,7 +424,7 @@ void Counter::update()
 {
   this->texts.score->data(this->values.current);
   this->texts.bonus->data(this->values.bonus - (Application->environment->character->plates.current ? Application->environment->character->plates.current->getIndex() : 0));
-  this->texts.best1->data(this->values.best);
+  this->texts.best->data(this->values.best);
   this->texts.coins->data(this->values.coins);
   this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() / 2 - 60, Application->getHeight() - 60);
 

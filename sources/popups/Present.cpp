@@ -46,12 +46,12 @@ Present* Present::getInstance()
  *
  */
 Present::Present()
-: Popup("ui/present-background-texture.png")
+: Finish()
 {
   instance = this;
 
-  this->texts.claim = new Text("present-claim", this);
-  this->texts.con = new Text("present-con", this);
+  this->background = new BackgroundColor(this, Color4B(0.0, 0.0, 0.0, 100.0));
+  this->background->setLocalZOrder(-1);
 
   this->element = new Gift(this);
 }
@@ -79,7 +79,7 @@ void Present::onShow()
 
 void Present::onHide(Callback callback)
 {
-  Popup::onHide(callback);
+  Finish::onHide(callback);
 
   /**
    *
@@ -87,9 +87,6 @@ void Present::onHide(Callback callback)
    *
    */
   this->element->_destroy();
-
-  this->texts.claim->_destroy();
-  this->texts.con->_destroy();
 }
 
 /**
@@ -99,9 +96,10 @@ void Present::onHide(Callback callback)
  */
 void Present::onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e)
 {
-  this->hide([=] () {
-    Application->changeState(Game::FINISH);
-  });
+  if(!this->element->touch->binded)
+  {
+    Finish::onTouchStart(touch, e);
+  }
 }
 
 /**
@@ -111,37 +109,10 @@ void Present::onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e)
  */
 void Present::show()
 {
-  this->texts.claim->_create();
-  this->texts.con->_create();
-
-  this->texts.claim->setOpacity(0);
-  this->texts.con->setOpacity(0);
-
-  this->texts.claim->setPosition(Application->getWidth() / 2, 100);
-  this->texts.con->setPosition(Application->getWidth() / 2, 100);
-
-  this->texts.claim->runAction(
-    Sequence::create(
-      FadeIn::create(0.2),
-      CallFunc::create([=] () {
-      this->texts.claim->runAction(
-        RepeatForever::create(
-          Sequence::create(
-            FadeOut::create(0.5),
-            FadeIn::create(0.5),
-            nullptr
-          )
-        )
-      );
-      }),
-      nullptr
-    )
-  );
-
-  Popup::show();
+  Finish::show();
 }
 
 void Present::hide(Callback callback)
 {
-  Popup::hide(callback);
+  Finish::hide(callback);
 }

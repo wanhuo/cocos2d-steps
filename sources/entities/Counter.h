@@ -43,8 +43,7 @@ class Counter : public Background
     Text* name;
     Text* score;
     Text* coins;
-    Text* best1;
-    Text* best2;
+    Text* best;
     Text* bonus;
   };
 

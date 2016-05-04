@@ -47,7 +47,8 @@ Gift::Gift(Node* parent)
     {AmbientLight::create(Color3B(120, 120, 120)), Application}
   })
 {
-  this->elements = new Pool(new Gift::Element, this);
+  this->element = new Gift::Element(this);
+  this->elements = new Pool(new Gift::Diamond, this);
 }
 
 Gift::~Gift()
@@ -75,8 +76,6 @@ void Gift::onCreate()
 
     static_cast<Sprite3D*>(child)->getMesh()->getTexture()->setAliasTexParameters();
   }
-
-  this->setCameraMask(this->index);
 
   /**
    *
@@ -126,6 +125,10 @@ void Gift::onCreate()
       nullptr
     )
   );
+
+  this->element->_create();
+
+  this->setCameraMask(this->index);
 }
 
 void Gift::onDestroy(bool action)
@@ -172,6 +175,14 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
             nullptr
           )
         );
+        this->getChildByName("box")->runAction(
+          Sequence::create(
+            EaseSineIn::create(
+              MoveBy::create(0.35, Vec3(0, -5.0, 0))
+            ),
+            nullptr
+          )
+        );
         }),
         nullptr
       ),
@@ -187,33 +198,6 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
           element->setCameraMask(this->index);
           element->setLightMask(this->index);
         }
-
-        Present::getInstance()->texts.claim->stopAllActions();
-        Present::getInstance()->texts.claim->runAction(
-          Sequence::create(
-            FadeOut::create(0.2),
-            CallFunc::create([=] () {
-            Present::getInstance()->texts.con->runAction(
-              Sequence::create(
-                FadeIn::create(0.2),
-                CallFunc::create([=] () {
-                Present::getInstance()->texts.con->runAction(
-                  RepeatForever::create(
-                    Sequence::create(
-                      FadeOut::create(0.5),
-                      FadeIn::create(0.5),
-                      nullptr
-                    )
-                  )
-                );
-                }),
-                nullptr
-              )
-            );
-            }),
-            nullptr
-          )
-        );
         }),
         DelayTime::create(0.4),
         CallFunc::create([=] () {
@@ -222,6 +206,7 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
         DelayTime::create(0.5),
         CallFunc::create([=] () {
         Present::getInstance()->time = 1.0;
+        Present::getInstance()->Finish::onShow();
         }),
         nullptr
       ),
@@ -259,13 +244,13 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
  *
  */
 
-Gift::Element::Element()
+Gift::Diamond::Diamond()
 : Entity3D("diamond.obj", false)
 {
   this->setScheduleUpdate(true);
 }
 
-Gift::Element::~Element()
+Gift::Diamond::~Diamond()
 {
 }
 
@@ -274,7 +259,7 @@ Gift::Element::~Element()
  *
  *
  */
-void Gift::Element::onCreate()
+void Gift::Diamond::onCreate()
 {
   Entity3D::onCreate();
 
@@ -287,7 +272,7 @@ void Gift::Element::onCreate()
 
   this->setColor(Color3B(0.0, 231.0, 255.0));
 
-  this->setPosition3D(Vec3(0.0, 0.0, 0.0));
+  this->setPosition3D(Vec3(0.0, -0.5, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
   this->setScale(0.2);
@@ -302,7 +287,7 @@ void Gift::Element::onCreate()
   );
 }
 
-void Gift::Element::onDestroy(bool action)
+void Gift::Diamond::onDestroy(bool action)
 {
   Entity3D::onDestroy(action);
 }
@@ -312,7 +297,7 @@ void Gift::Element::onDestroy(bool action)
  *
  *
  */
-void Gift::Element::update(float time)
+void Gift::Diamond::update(float time)
 {
   auto x = this->getPositionX();
   auto y = this->getPositionY();
@@ -332,7 +317,74 @@ void Gift::Element::update(float time)
  *
  *
  */
-Gift::Element* Gift::Element::deepCopy()
+Gift::Diamond* Gift::Diamond::deepCopy()
 {
-  return new Gift::Element;
+  return new Gift::Diamond;
+}
+
+/**
+ * Tooflya Inc. Development
+ *
+ * @author Igor Mats from Tooflya Inc.
+ * @copyright (c) 2015 by Igor Mats
+ * http://www.tooflya.com/development/
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ * @version of cocos2d is 3.5
+ *
+ */
+
+Gift::Element::Element(Node* parent)
+: Entity3D(parent)
+{
+}
+
+Gift::Element::~Element()
+{
+  this->window = BillBoard::create();
+  this->window->_destroy();
+  this->getParent()->addChild(this->window);
+
+  this->glow = new Entity("ui/glow.png", this->window, true);
+  this->glow->setScale(0.011);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Gift::Element::onCreate()
+{
+  Entity3D::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  this->setPosition3D(Vec3(0.0, 0.0, 0.0));
+  this->setRotation3D(Vec3(0.0, 0.0, 0.0));
+}
+
+void Gift::Element::onDestroy(bool action)
+{
+  Entity3D::onDestroy(action);
 }

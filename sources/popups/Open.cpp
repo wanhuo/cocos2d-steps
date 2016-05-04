@@ -46,7 +46,7 @@ Open* Open::getInstance()
  *
  */
 Open::Open()
-: Popup("ui/present-background-texture.png")
+: Popup("ui/store-background-texture.png")
 {
   instance = this;
 

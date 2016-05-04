@@ -45,7 +45,7 @@ class Gift : public Button3D
    *
    */
   public:
-  class Element : public Entity3D
+  class Diamond : public Entity3D
   {
     /**
      *
@@ -62,15 +62,45 @@ class Gift : public Button3D
      *
      */
     public:
-    Element();
-  ~Element();
+    Diamond();
+  ~Diamond();
 
    virtual void onCreate();
    virtual void onDestroy(bool action = false);
 
    virtual void update(float time);
 
-   virtual Element* deepCopy();
+   virtual Diamond* deepCopy();
+  };
+
+  /**
+   *
+   *
+   *
+   */
+  public:
+  class Element : public Entity3D
+  {
+    /**
+     *
+     *
+     *
+     */
+    protected:
+    BillBoard* window;
+    Entity* glow;
+
+    /**
+     *
+     *
+     *
+     */
+    public:
+    Element(Node* parent);
+  ~Element();
+
+   virtual void onCreate();
+   virtual void onDestroy(bool action = false);
   };
 
   /**
@@ -114,6 +144,7 @@ class Gift : public Button3D
  ~Gift();
 
   Pool* elements;
+  Element* element;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);

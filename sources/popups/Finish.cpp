@@ -50,18 +50,18 @@ Finish::Finish()
 {
   instance = this;
 
-  this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onLike, Application), true);
-  this->buttons.rate = new Button("rate-button.png", 2, 1, this, std::bind(&Game::onRate, Application), true);
+  this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onLike, Application));
+  this->buttons.rate = new Button("rate-button.png", 2, 1, this, std::bind(&Game::onRate, Application));
   this->buttons.share = new Button("share-button.png", 2, 1, this, std::bind([=] () {
     this->hide([=] () {
       Store::getInstance()->show();
     });
-  }), true);
-  this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application), true);
-  this->buttons.video = new Video(this);
-  this->buttons.unlock = new Unlock(this);
+  }));
+  this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application));
+  //this->buttons.video = new Video(this);
+  //this->buttons.unlock = new Unlock(this);
 
-  this->texts.tap = new Text("finish-tap", this, true);
+  this->texts.tap = new Text("finish-tap", this);
   this->texts.tap->setPosition(Application->getCenter().x, 230);
 }
 
@@ -78,41 +78,15 @@ void Finish::onShow()
 {
   Popup::onShow();
 
-  Events::onScreenChanged("Finish");
+  this->buttons.like->_create()->setCameraMask(4);
+  this->buttons.rate->_create()->setCameraMask(4);
+  this->buttons.share->_create()->setCameraMask(4);
+  this->buttons.leaderboards->_create()->setCameraMask(4);
 
   this->buttons.like->setPosition(Application->getCenter().x - 250, -100);
   this->buttons.rate->setPosition(Application->getCenter().x - 85, -100);
   this->buttons.share->setPosition(Application->getCenter().x + 85, -100);
   this->buttons.leaderboards->setPosition(Application->getCenter().x + 250, -100);
-}
-
-void Finish::onHide(Callback callback)
-{
-  Popup::onHide(callback);
-}
-
-/**
- *
- *
- *
- */
-void Finish::onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e)
-{
-  this->hide([=] () {
-    Application->changeState(Game::MENU);
-  });
-}
-
-/**
- *
- *
- *
- */
-void Finish::show()
-{
-  Popup::show();
-
-  this->setOpacity(255);
 
   this->buttons.leaderboards->runAction(
     Sequence::create(
@@ -151,6 +125,7 @@ void Finish::show()
     )
   );
 
+  this->texts.tap->_create()->setCameraMask(4);
   this->texts.tap->setOpacity(0);
   this->texts.tap->runAction(
     Sequence::create(
@@ -171,6 +146,45 @@ void Finish::show()
       nullptr
     )
   );
+}
+
+void Finish::onHide(Callback callback)
+{
+  Popup::onHide(callback);
+
+  /**
+   *
+   *
+   *
+   */
+  this->buttons.like->_destroy();
+  this->buttons.rate->_destroy();
+  this->buttons.share->_destroy();
+  this->buttons.leaderboards->_destroy();
+
+  this->texts.tap->_destroy();
+}
+
+/**
+ *
+ *
+ *
+ */
+void Finish::onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e)
+{
+  this->hide([=] () {
+    Application->changeState(Game::MENU);
+  });
+}
+
+/**
+ *
+ *
+ *
+ */
+void Finish::show()
+{
+  Popup::show();
 }
 
 void Finish::hide(Callback callback)
