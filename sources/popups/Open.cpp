@@ -21,9 +21,6 @@
  *
  */
 
-#ifndef _COUNTER_H_
-#define _COUNTER_H_
-
 #include "Game.h"
 
 /**
@@ -31,83 +28,87 @@
  *
  *
  */
-class Counter : public Background
+Open* Open::instance;
+
+/**
+ *
+ *
+ *
+ */
+Open* Open::getInstance()
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  struct Texts {
-    Text* name;
-    Text* score;
-    Text* coins;
-    Text* best1;
-    Text* best2;
-    Text* bonus;
-  };
+  return instance;
+}
+
+/**
+ *
+ *
+ *
+ */
+Open::Open()
+: Popup("ui/present-background-texture.png")
+{
+  instance = this;
+
+  this->element = new Unlock(this);
+}
+
+Open::~Open()
+{
+}
+
+/**
+ *
+ *
+ *
+ */
+void Open::onShow()
+{
+  Popup::onShow();
 
   /**
    *
    *
    *
    */
-  protected:
-  Texts texts;
+  this->element->_create();
+}
 
-  BackgroundColor* holder;
-  CameraEntity3D* icon;
-
-  Entity* starBackground;
-  Entity* bonusBackground;
-
-  ProgressTimer* starAction;
-
-  struct Values {
-    int current = 0;
-    int best = 0;
-    int bonus = 0;
-
-    int start = 0;
-
-    int coins = 0;
-  };
+void Open::onHide(Callback callback)
+{
+  Popup::onHide(callback);
 
   /**
    *
    *
    *
    */
-  public:
-  Counter(Node* parent);
- ~Counter();
+  this->element->_destroy();
+}
 
-  Values values;
+/**
+ *
+ *
+ *
+ */
+void Open::onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e)
+{
+  this->hide([=] () {
+    Application->changeState(Game::FINISH);
+  });
+}
 
-  virtual void onMenu();
-  virtual void onGame();
-  virtual void onFinish();
-  virtual void onLose();
-  virtual void onStore();
-  virtual void onMissions();
-  virtual void onPresent();
-  virtual void onOpen();
+/**
+ *
+ *
+ *
+ */
+void Open::show()
+{
+  Popup::show();
+}
 
-  virtual void onStarStart();
-  virtual void onStarFinish();
-  virtual void onStarUpdate();
-
-  virtual void onCount();
-  virtual void onCoins();
-
-  virtual void onBest();
-  virtual void onRegular();
-
-  virtual void reset();
-  virtual void save();
-
-  virtual void update();
-};
-
-#endif
+void Open::hide(Callback callback)
+{
+  Popup::hide(callback);
+}

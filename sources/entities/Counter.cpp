@@ -231,6 +231,10 @@ void Counter::onPresent()
 {
 }
 
+void Counter::onOpen()
+{
+}
+
 /**
  *
  *
@@ -393,6 +397,7 @@ void Counter::reset()
   this->values.start = 0;
   this->values.current = 0;
   this->values.best = Storage::get("application.score.best");
+  this->values.coins = Storage::get("application.coins");
 }
 
 void Counter::save()

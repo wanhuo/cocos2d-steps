@@ -127,6 +127,14 @@ void Environment::create()
   this->plane->addChild(this->light.character);
 }
 
+void Environment::reset()
+{
+  this->generator->reset();
+
+  this->platesTime = 1.0;
+  this->platesTimeElapsed = 0;
+}
+
 /**
  *
  *
@@ -246,6 +254,10 @@ void Environment::onGame()
   this->onTurn();
 }
 
+void Environment::onFinish()
+{
+}
+
 void Environment::onLose()
 {
   this->finishStar();
@@ -263,12 +275,8 @@ void Environment::onPresent()
 {
 }
 
-void Environment::onFinish()
+void Environment::onOpen()
 {
-  //this->generator->reset(); // ?
-
-  this->platesTime = 1.0;
-  this->platesTimeElapsed = 0;
 }
 
 void Environment::onCopter()

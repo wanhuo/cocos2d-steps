@@ -92,6 +92,7 @@
 
 #include "Menu.h"
 #include "Finish.h"
+#include "Open.h"
 #include "Store.h"
 #include "Present.h"
 #include "Missions.h"
@@ -167,7 +168,8 @@ class Game : public Screen
     LOSE,
     STORE,
     MISSIONS,
-    PRESENT
+    PRESENT,
+    OPEN
   };
 
   /**
@@ -234,6 +236,7 @@ class Game : public Screen
   virtual void onStore();
   virtual void onMissions();
   virtual void onPresent();
+  virtual void onOpen();
 
   virtual void onNoad();
 
@@ -249,6 +252,7 @@ class Game : public Screen
   virtual void updateMissions(float time);
   virtual void updatePresent(float time);
   virtual void updateFinish(float time);
+  virtual void updateOpen(float time);
 
   virtual void updateStates(float time);
 

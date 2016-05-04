@@ -955,7 +955,7 @@ void Character::onFinish()
       DelayTime::create(1.1),
       FadeIn::create(0.5),
       CallFunc::create([=] () {
-        Application->changeState(Game::FINISH);
+        Application->environment->reset();
       }),
       FadeOut::create(0.5),
       nullptr

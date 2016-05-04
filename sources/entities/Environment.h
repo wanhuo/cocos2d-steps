@@ -149,6 +149,7 @@ class Environment : public Background
   BackgroundColor* characterAction;
 
   virtual void create();
+  virtual void reset();
 
   virtual Entity3D* createParticle(float x, float y, float z);
 
@@ -164,11 +165,12 @@ class Environment : public Background
 
   virtual void onMenu();
   virtual void onGame();
+  virtual void onFinish();
   virtual void onLose();
   virtual void onStore();
   virtual void onMissions();
   virtual void onPresent();
-  virtual void onFinish();
+  virtual void onOpen();
   virtual void onCopter();
 
   virtual void startStar();

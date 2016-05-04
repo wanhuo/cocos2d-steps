@@ -46,7 +46,7 @@ Present* Present::getInstance()
  *
  */
 Present::Present()
-: Popup("ui/gift-background-texture.png")
+: Popup("ui/present-background-texture.png")
 {
   instance = this;
 

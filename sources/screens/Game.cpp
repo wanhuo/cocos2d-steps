@@ -320,28 +320,24 @@ void Game::onLose()
   {
     this->changeState(FINISH); // TODO: Create video.
   }
+  else if(Application->parameters.showPresent)
+  {
+    this->changeState(PRESENT);
+  }
+  else if(Application->counter->values.coins >= 100)
+  {
+    this->changeState(OPEN);
+  }
   else
   {
-    if(Application->parameters.showPresent)
-    {
-      this->changeState(PRESENT);
-    }
-    else
-    {
-      this->changeState(FINISH);
+    this->changeState(FINISH);
+  }
 
-      if(Application->counter->values.coins >= 100)
-      {
-        // TODO: Create unlock.
-      }
+  if(this->parameters.elapsed.ad >= this->parameters.ad)
+  {
+    this->parameters.elapsed.ad = 0;
 
-      if(this->parameters.elapsed.ad >= this->parameters.ad)
-      {
-        this->parameters.elapsed.ad = 0;
-
-        Heyzap::show(Config::AD_TYPE_INTERSTITIAL);
-      }
-    }
+    Heyzap::show(Config::AD_TYPE_INTERSTITIAL);
   }
 }
 
@@ -369,6 +365,14 @@ void Game::onPresent()
   Application->parameters.showPresent = false;
 
   Present::getInstance()->show();
+}
+
+void Game::onOpen()
+{
+  this->counter->onOpen();
+  this->environment->onOpen();
+
+  Open::getInstance()->show();
 }
 
 /**
@@ -399,6 +403,9 @@ void Game::changeState(State state)
       case GAME:
       this->onGame();
       break;
+      case FINISH:
+      this->onFinish();
+      break;
       case LOSE:
       this->onLose();
       break;
@@ -411,8 +418,8 @@ void Game::changeState(State state)
       case PRESENT:
       this->onPresent();
       break;
-      case FINISH:
-      this->onFinish();
+      case OPEN:
+      this->onOpen();
       break;
     }
   }
@@ -428,6 +435,10 @@ void Game::updateMenu(float time)
 }
 
 void Game::updateGame(float time)
+{
+}
+
+void Game::updateFinish(float time)
 {
 }
 
@@ -447,7 +458,7 @@ void Game::updatePresent(float time)
 {
 }
 
-void Game::updateFinish(float time)
+void Game::updateOpen(float time)
 {
 }
 
@@ -466,6 +477,9 @@ void Game::updateStates(float time)
     case GAME:
     this->updateGame(time);
     break;
+    case FINISH:
+    this->updateFinish(time);
+    break;
     case LOSE:
     this->updateLose(time);
     break;
@@ -478,8 +492,8 @@ void Game::updateStates(float time)
     case PRESENT:
     this->updatePresent(time);
     break;
-    case FINISH:
-    this->updateFinish(time);
+    case OPEN:
+    this->updateOpen(time);
     break;
   }
 

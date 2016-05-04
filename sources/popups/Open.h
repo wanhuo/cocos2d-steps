@@ -21,17 +21,17 @@
  *
  */
 
-#ifndef _COUNTER_H_
-#define _COUNTER_H_
+#ifndef _OPEN_H_
+#define _OPEN_H_
 
-#include "Game.h"
+#include "Popup.h"
 
 /**
  *
  *
  *
  */
-class Counter : public Background
+class Open : public Popup
 {
   /**
    *
@@ -39,14 +39,7 @@ class Counter : public Background
    *
    */
   private:
-  struct Texts {
-    Text* name;
-    Text* score;
-    Text* coins;
-    Text* best1;
-    Text* best2;
-    Text* bonus;
-  };
+  static Open* instance;
 
   /**
    *
@@ -54,24 +47,7 @@ class Counter : public Background
    *
    */
   protected:
-  Texts texts;
-
-  BackgroundColor* holder;
-  CameraEntity3D* icon;
-
-  Entity* starBackground;
-  Entity* bonusBackground;
-
-  ProgressTimer* starAction;
-
-  struct Values {
-    int current = 0;
-    int best = 0;
-    int bonus = 0;
-
-    int start = 0;
-
-    int coins = 0;
+  struct Texts {
   };
 
   /**
@@ -80,34 +56,22 @@ class Counter : public Background
    *
    */
   public:
-  Counter(Node* parent);
- ~Counter();
+  static Open* getInstance();
 
-  Values values;
+  Open();
+ ~Open();
 
-  virtual void onMenu();
-  virtual void onGame();
-  virtual void onFinish();
-  virtual void onLose();
-  virtual void onStore();
-  virtual void onMissions();
-  virtual void onPresent();
-  virtual void onOpen();
+  Texts texts;
 
-  virtual void onStarStart();
-  virtual void onStarFinish();
-  virtual void onStarUpdate();
+  Unlock* element;
 
-  virtual void onCount();
-  virtual void onCoins();
+  virtual void onShow();
+  virtual void onHide(Callback callback = NULL);
 
-  virtual void onBest();
-  virtual void onRegular();
+  virtual void onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e);
 
-  virtual void reset();
-  virtual void save();
-
-  virtual void update();
+  virtual void show();
+  virtual void hide(Callback callback = NULL);
 };
 
 #endif
