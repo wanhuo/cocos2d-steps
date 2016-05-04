@@ -31,8 +31,6 @@
 Presention::Presention()
 : Pickup("gift.obj")
 {
-  this->glow->setColor(Color3B::WHITE);
-  this->glow->setScale(0.006);
 }
 
 Presention::~Presention()
@@ -55,9 +53,14 @@ void Presention::onCreate()
    */
   this->texture = this->textures.at(random(0, (int) this->textures.size() - 1));
 
-  for(auto child : this->getChildren()) { static_cast<Sprite3D*>(child)->setTexture(this->texture); }
+  for(auto child : this->getChildren())
+  {
+    static_cast<Sprite3D*>(child)->setTexture(this->texture);
+    static_cast<Sprite3D*>(child)->setLightMask(this->getLightMask());
+  }
 
   Application->parameters.elapsed.present = 0;
+  Application->parameters.presentTexture = this->texture;
 }
 
 void Presention::onDestroy(bool action)
@@ -96,7 +99,7 @@ void Presention::setPlate(Plate* plate, bool animated)
    *
    *
    */
-  this->setPositionY(this->getPositionY() + 1.0f);
+  this->setPositionY(this->getPositionY() + 0.7);
 }
 
 /**

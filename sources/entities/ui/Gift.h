@@ -81,7 +81,6 @@ class Gift : public Button3D
   private:
   string texture;
   vector<string> textures = {
-    "ui/gift-texture-1.png",
     "ui/gift-texture-2.png",
     "ui/gift-texture-3.png",
     "ui/gift-texture-4.png",
