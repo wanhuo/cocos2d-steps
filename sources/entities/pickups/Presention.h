@@ -48,6 +48,7 @@ class Presention : public Pickup
   protected:
   string texture;
   vector<string> textures = {
+    "ui/gift-texture-1.png",
     "ui/gift-texture-2.png",
     "ui/gift-texture-3.png",
     "ui/gift-texture-4.png",
@@ -60,8 +61,7 @@ class Presention : public Pickup
     "ui/gift-texture-11.png",
     "ui/gift-texture-12.png",
     "ui/gift-texture-13.png",
-    "ui/gift-texture-14.png",
-    "ui/gift-texture-15.png"
+    "ui/gift-texture-14.png"
   };
 
   /**
