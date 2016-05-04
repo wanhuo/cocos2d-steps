@@ -52,7 +52,6 @@ class Button3D : public CameraEntity3D
    *
    */
   protected:
-  string texture;
 
   /**
    *
@@ -60,7 +59,7 @@ class Button3D : public CameraEntity3D
    *
    */
   public:
-  Button3D(string file, string texture, Node* parent, CameraStruct camera, const vector<LightStruct> vec);
+  Button3D(string file, Node* parent, CameraStruct camera, const vector<LightStruct> vec);
  ~Button3D();
 
   virtual void onCreate();

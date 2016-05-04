@@ -21,67 +21,90 @@
  *
  */
 
-#ifndef _FINISH_H_
-#define _FINISH_H_
-
-#include "Popup.h"
+#include "Game.h"
 
 /**
  *
  *
  *
  */
-class Finish : public Popup
+Presention::Presention()
+: Pickup("gift.obj")
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  static Finish* instance;
+  this->glow->setColor(Color3B::WHITE);
+  this->glow->setScale(0.006);
+}
 
-  struct Buttons {
-    Button* like;
-    Button* rate;
-    Button* share;
-    Button* leaderboards;
+Presention::~Presention()
+{
+}
 
-    Video* video;
-    Unlock* unlock;
-  };
-
-  struct Texts {
-    Text* tap;
-  };
+/**
+ *
+ *
+ *
+ */
+void Presention::onCreate()
+{
+  Pickup::onCreate();
 
   /**
    *
    *
    *
    */
-  protected:
-  Texts texts;
-  Buttons buttons;
+  this->texture = this->textures.at(random(0, (int) this->textures.size() - 1));
+
+  for(auto child : this->getChildren()) { static_cast<Sprite3D*>(child)->setTexture(this->texture); }
+
+  Application->parameters.elapsed.present = 0;
+}
+
+void Presention::onDestroy(bool action)
+{
+  Pickup::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Presention::onPickup()
+{
+  Pickup::onPickup();
 
   /**
    *
    *
    *
    */
-  public:
-  static Finish* getInstance();
+  Application->parameters.showPresent = true;
+}
 
-  Finish();
- ~Finish();
+/**
+ *
+ *
+ *
+ */
+void Presention::setPlate(Plate* plate, bool animated)
+{
+  Decoration::setPlate(plate, animated);
 
-  virtual void onShow();
-  virtual void onHide(Callback callback = NULL);
+  /**
+   *
+   *
+   *
+   */
+  this->setPositionY(this->getPositionY() + 1.0f);
+}
 
-  virtual void onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e);
-
-  virtual void show();
-  virtual void hide(Callback callback = NULL);
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+Presention* Presention::deepCopy()
+{
+  return new Presention;
+}

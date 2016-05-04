@@ -35,7 +35,7 @@
  *
  */
 Video::Video(Node* parent)
-: Button3D("", "", parent, {
+: Button3D("", parent, {
     Camera::createOrthographic(Application->getFrustumWidth(), Application->getFrustumHeight(), 1, 100),
     Vec3(0, 0, 2),
     Vec3(0, 0, 0),
@@ -61,13 +61,6 @@ Video::~Video()
 void Video::onCreate()
 {
   Button3D::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  Finish::getInstance()->parameters.elapsed.video = 0;
 }
 
 void Video::onDestroy(bool action)

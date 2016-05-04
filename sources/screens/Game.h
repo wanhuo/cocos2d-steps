@@ -61,6 +61,7 @@
 #include "Heart.h"
 #include "Star.h"
 #include "Color.h"
+#include "Presention.h"
 
 #include "Start.h"
 #include "Spikes.h"
@@ -125,6 +126,23 @@ class Game : public Screen
     Camera* s;
     Camera* e;
   };
+  
+  struct Elapsed {
+    int ad = -1;
+    int video = 0;
+    int present = random(0, 15);
+  };
+
+  struct Parameters {
+    bool showPresent = false;
+    bool showVideo = false;
+
+    int ad = 4;
+    int video = 4;
+    int present = 15;
+
+    Elapsed elapsed;
+  };
 
   const static int SCALE_FACTOR = 70;
 
@@ -175,6 +193,8 @@ class Game : public Screen
   Game();
  ~Game();
 
+  Parameters parameters;
+
   BackgroundColor* s;
 
   Environment* environment;
@@ -207,11 +227,11 @@ class Game : public Screen
 
   virtual void onMenu();
   virtual void onGame();
+  virtual void onFinish();
   virtual void onLose();
   virtual void onStore();
   virtual void onMissions();
   virtual void onPresent();
-  virtual void onFinish();
 
   virtual void onNoad();
 

@@ -103,6 +103,8 @@
 		7855460C1CD91F7E00B58ED0 /* Button3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546091CD91F7E00B58ED0 /* Button3D.cpp */; };
 		785546101CD9CDC900B58ED0 /* Present.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7855460E1CD9CDC900B58ED0 /* Present.cpp */; };
 		785546111CD9CDC900B58ED0 /* Present.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7855460E1CD9CDC900B58ED0 /* Present.cpp */; };
+		785546151CD9F97700B58ED0 /* Presention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546131CD9F97700B58ED0 /* Presention.cpp */; };
+		785546161CD9F97700B58ED0 /* Presention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546131CD9F97700B58ED0 /* Presention.cpp */; };
 		7857E2B91C65733F0020AAEA /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2B61C65733F0020AAEA /* Menu.cpp */; };
 		7857E2BA1C6573F70020AAEA /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2B61C65733F0020AAEA /* Menu.cpp */; };
 		7857E2C11C65B9D80020AAEA /* Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2BE1C65B9D80020AAEA /* Store.cpp */; };
@@ -387,6 +389,8 @@
 		7855460A1CD91F7E00B58ED0 /* Button3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Button3D.h; sourceTree = "<group>"; };
 		7855460E1CD9CDC900B58ED0 /* Present.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Present.cpp; sourceTree = "<group>"; };
 		7855460F1CD9CDC900B58ED0 /* Present.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Present.h; sourceTree = "<group>"; };
+		785546131CD9F97700B58ED0 /* Presention.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Presention.cpp; sourceTree = "<group>"; };
+		785546141CD9F97700B58ED0 /* Presention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Presention.h; sourceTree = "<group>"; };
 		7857E2B61C65733F0020AAEA /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
 		7857E2B71C65733F0020AAEA /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		7857E2BE1C65B9D80020AAEA /* Store.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Store.cpp; sourceTree = "<group>"; };
@@ -1104,6 +1108,8 @@
 				78B4B6D21CBD751D00F2D8A7 /* Star.h */,
 				789E71781CD2621500BDCDC7 /* Color.cpp */,
 				789E71791CD2621500BDCDC7 /* Color.h */,
+				785546131CD9F97700B58ED0 /* Presention.cpp */,
+				785546141CD9F97700B58ED0 /* Presention.h */,
 			);
 			path = pickups;
 			sourceTree = "<group>";
@@ -1452,6 +1458,7 @@
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
 				7857E2C21C65BA940020AAEA /* Store.cpp in Sources */,
 				78B4B6DD1CBD751D00F2D8A7 /* Pickup.cpp in Sources */,
+				785546161CD9F97700B58ED0 /* Presention.cpp in Sources */,
 				789E71A91CD39D0D00BDCDC7 /* TypeMoved3.cpp in Sources */,
 				78B4B7071CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */,
 				78B4B6F61CBF911800F2D8A7 /* Spikes.cpp in Sources */,
@@ -1548,6 +1555,7 @@
 				7843ACA51C2242AA0011F47C /* Reachability.m in Sources */,
 				786696CA1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				7847CDF51AB184820014E3F3 /* NSAnalytics.mm in Sources */,
+				785546151CD9F97700B58ED0 /* Presention.cpp in Sources */,
 				78B4B6F51CBF911800F2D8A7 /* Spikes.cpp in Sources */,
 				78809FA71B11D36B002397E7 /* NSHeyzap.mm in Sources */,
 				785545F51CD8D61E00B58ED0 /* TypeBest.cpp in Sources */,

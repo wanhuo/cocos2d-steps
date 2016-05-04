@@ -79,6 +79,24 @@ class Gift : public Button3D
    *
    */
   private:
+  string texture;
+  vector<string> textures = {
+    "ui/gift-texture-1.png",
+    "ui/gift-texture-2.png",
+    "ui/gift-texture-3.png",
+    "ui/gift-texture-4.png",
+    "ui/gift-texture-5.png",
+    "ui/gift-texture-6.png",
+    "ui/gift-texture-7.png",
+    "ui/gift-texture-8.png",
+    "ui/gift-texture-9.png",
+    "ui/gift-texture-10.png",
+    "ui/gift-texture-11.png",
+    "ui/gift-texture-12.png",
+    "ui/gift-texture-13.png",
+    "ui/gift-texture-14.png",
+    "ui/gift-texture-15.png"
+  };
 
   /**
    *

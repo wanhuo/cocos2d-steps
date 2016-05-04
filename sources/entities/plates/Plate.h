@@ -89,7 +89,9 @@ class Plate : public Cube
     MOVED1, // 20
     MOVED2, // 21
     MOVED3, // 22
-    MOVED4 // 23
+    MOVED4, // 23,
+
+    PRESENTION // 24
   };
 
   enum Side {

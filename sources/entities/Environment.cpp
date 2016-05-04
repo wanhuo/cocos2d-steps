@@ -72,6 +72,7 @@ void Environment::create()
   this->stars = new Pool(new Star, this->plane);
   this->hearts = new Pool(new Heart, this->plane);
   this->colors = new Pool(new Color, this->plane);
+  this->presentions = new Pool(new Presention, this->plane);
 
   this->particles = new Pool(new Particle, this->plane);
 
@@ -250,16 +251,28 @@ void Environment::onLose()
   this->finishStar();
 }
 
-void Environment::onCopter()
+void Environment::onStore()
+{
+}
+
+void Environment::onMissions()
+{
+}
+
+void Environment::onPresent()
 {
 }
 
 void Environment::onFinish()
 {
-  this->generator->reset();
+  //this->generator->reset(); // ?
 
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;
+}
+
+void Environment::onCopter()
+{
 }
 
 /**

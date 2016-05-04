@@ -285,6 +285,14 @@ void Game::onGame()
   this->counter->onGame();
 }
 
+void Game::onFinish()
+{
+  this->counter->onFinish();
+  this->environment->onFinish();
+
+  Finish::getInstance()->show();
+}
+
 void Game::onLose()
 {
   this->runAction(
@@ -304,20 +312,43 @@ void Game::onLose()
 
   this->counter->save();
 
-  if(true)
+  this->parameters.elapsed.ad++;
+  this->parameters.elapsed.present++;
+  this->parameters.elapsed.video++;
+
+  if(Heyzap::available(Config::AD_TYPE_VIDEO) && this->parameters.elapsed.video >= this->parameters.video)
   {
-    this->changeState(PRESENT);
+    this->changeState(FINISH); // TODO: Create video.
   }
   else
   {
-    this->changeState(FINISH);
+    if(Application->parameters.showPresent)
+    {
+      this->changeState(PRESENT);
+    }
+    else
+    {
+      this->changeState(FINISH);
+
+      if(Application->counter->values.coins >= 100)
+      {
+        // TODO: Create unlock.
+      }
+
+      if(this->parameters.elapsed.ad >= this->parameters.ad)
+      {
+        this->parameters.elapsed.ad = 0;
+
+        Heyzap::show(Config::AD_TYPE_INTERSTITIAL);
+      }
+    }
   }
 }
 
 void Game::onStore()
 {
   this->counter->onStore();
-  //this->environment->onStore();
+  this->environment->onStore();
 
   Store::getInstance()->show();
 }
@@ -325,25 +356,19 @@ void Game::onStore()
 void Game::onMissions()
 {
   this->counter->onMissions();
-  //this->environment->onMissions();
+  this->environment->onMissions();
 
   Missions::getInstance()->show();
 }
 
 void Game::onPresent()
 {
-  //this->counter->onPresent();
-  //this->environment->onPresent();
+  this->counter->onPresent();
+  this->environment->onPresent();
+
+  Application->parameters.showPresent = false;
 
   Present::getInstance()->show();
-}
-
-void Game::onFinish()
-{
-  this->counter->onFinish();
-  this->environment->onFinish();
-
-  Finish::getInstance()->show();
 }
 
 /**

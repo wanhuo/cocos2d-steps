@@ -233,6 +233,14 @@ void Plate::setType(int type, bool animated)
       this->special->setRotation3D(Vec3(0, this->direction ? 180 : -90, 0));
     }
     break;
+    case PRESENTION:
+    {
+      auto decoration = static_cast<Decoration*>(Application->environment->presentions->_create());
+      decoration->setPlate(this, animated);
+
+      this->getDecorations().push_back(decoration);
+    }
+    break;
     case SPIKES:
     {
       this->setVisible(false);

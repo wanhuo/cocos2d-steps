@@ -227,6 +227,10 @@ void Counter::onMissions()
 {
 }
 
+void Counter::onPresent()
+{
+}
+
 /**
  *
  *

@@ -138,6 +138,7 @@ class Environment : public Background
   Pool* stars;
   Pool* hearts;
   Pool* colors;
+  Pool* presentions;
 
   Pool* particles;
 
@@ -164,8 +165,11 @@ class Environment : public Background
   virtual void onMenu();
   virtual void onGame();
   virtual void onLose();
-  virtual void onCopter();
+  virtual void onStore();
+  virtual void onMissions();
+  virtual void onPresent();
   virtual void onFinish();
+  virtual void onCopter();
 
   virtual void startStar();
   virtual void finishStar();

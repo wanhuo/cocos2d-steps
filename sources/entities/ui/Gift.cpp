@@ -35,7 +35,7 @@
  *
  */
 Gift::Gift(Node* parent)
-: Button3D("gift.obj", "ui/gift-texture.png", parent, {
+: Button3D("gift.obj", parent, {
     Camera::createPerspective(60, Application->getWidth() / Application->getHeight(), 1, 100),
     Vec3(0, 0, 2),
     Vec3(0, 0, 0),
@@ -62,6 +62,21 @@ Gift::~Gift()
 void Gift::onCreate()
 {
   Button3D::onCreate();
+
+  this->texture = this->textures.at(random(0, (int) this->textures.size() - 1));
+
+  for(auto child : this->getChildren())
+  {
+    static_cast<Sprite3D*>(child)->setTexture(this->texture);
+    static_cast<Sprite3D*>(child)->setLightMask(this->index);
+
+    static_cast<Sprite3D*>(child)->setPosition3D(Vec3(0.0, 0.0, 0.0));
+    static_cast<Sprite3D*>(child)->setRotation3D(Vec3(0.0, 0.0, 0.0));
+
+    static_cast<Sprite3D*>(child)->getMesh()->getTexture()->setAliasTexParameters();
+  }
+
+  this->setCameraMask(this->index);
 
   /**
    *

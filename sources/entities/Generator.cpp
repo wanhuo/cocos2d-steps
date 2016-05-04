@@ -342,6 +342,10 @@ void Generator::createGeneralElement(Plate* plate)
   {
     plate->setType(Plate::START);
   }
+  else if(this->index == 3 && Application->parameters.elapsed.present >= Application->parameters.present)
+  {
+    plate->setType(Plate::PRESENTION);
+  }
   else
   {
     /**

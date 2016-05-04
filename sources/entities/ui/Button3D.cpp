@@ -34,14 +34,9 @@
  *
  *
  */
-Button3D::Button3D(string file, string texture, Node* parent, CameraStruct camera, const vector<LightStruct> vec)
+Button3D::Button3D(string file, Node* parent, CameraStruct camera, const vector<LightStruct> vec)
 : CameraEntity3D(file, parent, false, camera, vec)
 {
-  this->texture = texture;
-
-  this->setTexture(this->texture);
-
-  this->bind(true);
 }
 
 Button3D::~Button3D()
@@ -57,17 +52,11 @@ void Button3D::onCreate()
 {
   CameraEntity3D::onCreate();
 
-  /**
-   *
-   *
-   *
-   */
+  this->bind(true);
+
   for(auto child : this->getChildren())
   {
     child->_create();
-
-    static_cast<Sprite3D*>(child)->setTexture(this->texture);
-    static_cast<Sprite3D*>(child)->setLightMask(this->index);
   }
 
   this->setCameraMask(this->index);
@@ -76,16 +65,6 @@ void Button3D::onCreate()
 void Button3D::onDestroy(bool action)
 {
   CameraEntity3D::onDestroy(action);
-
-  /**
-   *
-   *
-   *
-   */
-  for(auto child : this->getChildren())
-  {
-    child->_destroy();
-  }
 }
 
 /**
@@ -95,12 +74,12 @@ void Button3D::onDestroy(bool action)
  */
 void Button3D::onTouchStart(cocos2d::Touch* touch, Event* e)
 {
-  this->stopActionByTag(101);
+  /*this->stopActionByTag(101);
   this->Node::runAction(
     EaseSineIn::create(
       ScaleTo::create(0.2, 0.9)
     ), 101
-  );
+  );*/
 
   /**
    *
@@ -112,12 +91,12 @@ void Button3D::onTouchStart(cocos2d::Touch* touch, Event* e)
 
 void Button3D::onTouchFinish(cocos2d::Touch* touch, Event* e)
 {
-  this->stopActionByTag(101);
+  /*this->stopActionByTag(101);
   this->Node::runAction(
     EaseSineIn::create(
       ScaleTo::create(0.2, 1.0)
     ), 101
-  );
+  );*/
 
   /**
    *
@@ -129,12 +108,12 @@ void Button3D::onTouchFinish(cocos2d::Touch* touch, Event* e)
 
 void Button3D::onTouchCancelled(cocos2d::Touch* touch, Event* e)
 {
-  this->stopActionByTag(101);
+  /*this->stopActionByTag(101);
   this->Node::runAction(
     EaseSineIn::create(
       ScaleTo::create(0.2, 1.0)
     ), 101
-  );
+  );*/
 
   /**
    *

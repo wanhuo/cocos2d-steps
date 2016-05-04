@@ -21,17 +21,17 @@
  *
  */
 
-#ifndef _FINISH_H_
-#define _FINISH_H_
+#ifndef _PRESENTION_H_
+#define _PRESENTION_H_
 
-#include "Popup.h"
+#include "Game.h"
 
 /**
  *
  *
  *
  */
-class Finish : public Popup
+class Presention : public Pickup
 {
   /**
    *
@@ -39,21 +39,6 @@ class Finish : public Popup
    *
    */
   private:
-  static Finish* instance;
-
-  struct Buttons {
-    Button* like;
-    Button* rate;
-    Button* share;
-    Button* leaderboards;
-
-    Video* video;
-    Unlock* unlock;
-  };
-
-  struct Texts {
-    Text* tap;
-  };
 
   /**
    *
@@ -61,8 +46,24 @@ class Finish : public Popup
    *
    */
   protected:
-  Texts texts;
-  Buttons buttons;
+  string texture;
+  vector<string> textures = {
+    "ui/gift-texture-1.png",
+    "ui/gift-texture-2.png",
+    "ui/gift-texture-3.png",
+    "ui/gift-texture-4.png",
+    "ui/gift-texture-5.png",
+    "ui/gift-texture-6.png",
+    "ui/gift-texture-7.png",
+    "ui/gift-texture-8.png",
+    "ui/gift-texture-9.png",
+    "ui/gift-texture-10.png",
+    "ui/gift-texture-11.png",
+    "ui/gift-texture-12.png",
+    "ui/gift-texture-13.png",
+    "ui/gift-texture-14.png",
+    "ui/gift-texture-15.png"
+  };
 
   /**
    *
@@ -70,18 +71,17 @@ class Finish : public Popup
    *
    */
   public:
-  static Finish* getInstance();
+  Presention();
+ ~Presention();
 
-  Finish();
- ~Finish();
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
-  virtual void onShow();
-  virtual void onHide(Callback callback = NULL);
+  virtual void onPickup();
 
-  virtual void onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e);
+  virtual void setPlate(Plate* plate, bool animated = true);
 
-  virtual void show();
-  virtual void hide(Callback callback = NULL);
+  Presention* deepCopy();
 };
 
 #endif

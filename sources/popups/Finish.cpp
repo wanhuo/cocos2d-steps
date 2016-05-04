@@ -171,37 +171,6 @@ void Finish::show()
       nullptr
     )
   );
-
-  this->parameters.elapsed.video++;
-  this->parameters.elapsed.gift++;
-  this->parameters.elapsed.ad++;
-
-  if(Heyzap::available(Config::AD_TYPE_VIDEO) && this->parameters.elapsed.video >= this->parameters.video)
-  {
-    // TODO: Create video.
-  }
-  else
-  {
-    if(this->parameters.elapsed.gift >= this->parameters.gift)
-    {
-      // TODO: Create gift.
-      this->parameters.elapsed.gift = 0;
-    }
-    else
-    {
-      if(Application->counter->values.coins >= 100)
-      {
-        // TODO: Create unlock.
-      }
-
-      if(this->parameters.elapsed.ad >= this->parameters.ad)
-      {
-        this->parameters.elapsed.ad = 0;
-
-        Heyzap::show(Config::AD_TYPE_INTERSTITIAL);
-      }
-    }
-  }
 }
 
 void Finish::hide(Callback callback)
