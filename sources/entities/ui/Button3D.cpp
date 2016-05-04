@@ -87,3 +87,74 @@ void Button3D::onDestroy(bool action)
     child->_destroy();
   }
 }
+
+/**
+ *
+ *
+ *
+ */
+void Button3D::onTouchStart(cocos2d::Touch* touch, Event* e)
+{
+  this->stopActionByTag(101);
+  this->Node::runAction(
+    EaseSineIn::create(
+      ScaleTo::create(0.2, 0.9)
+    ), 101
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  Node::onTouchStart(touch, e);
+}
+
+void Button3D::onTouchFinish(cocos2d::Touch* touch, Event* e)
+{
+  this->stopActionByTag(101);
+  this->Node::runAction(
+    EaseSineIn::create(
+      ScaleTo::create(0.2, 1.0)
+    ), 101
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  Node::onTouchFinish(touch, e);
+}
+
+void Button3D::onTouchCancelled(cocos2d::Touch* touch, Event* e)
+{
+  this->stopActionByTag(101);
+  this->Node::runAction(
+    EaseSineIn::create(
+      ScaleTo::create(0.2, 1.0)
+    ), 101
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  Node::onTouchCancelled(touch, e);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Button3D::onTouch(cocos2d::Touch* touch, Event* e)
+{
+  /**
+   *
+   *
+   *
+   */
+  Sound->play("touch");
+}

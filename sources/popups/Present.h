@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _FINISH_H_
-#define _FINISH_H_
+#ifndef _PRESENT_H_
+#define _PRESENT_H_
 
 #include "Popup.h"
 
@@ -31,7 +31,7 @@
  *
  *
  */
-class Finish : public Popup
+class Present : public Popup
 {
   /**
    *
@@ -39,35 +39,7 @@ class Finish : public Popup
    *
    */
   private:
-  static Finish* instance;
-  
-  struct Elapsed {
-    int video = 0;
-    int gift = random(0, 15);
-    int ad = -1;
-  };
-
-  struct Parameters {
-    int video = 4;
-    int gift = 15;
-    int ad = 4;
-
-    Elapsed elapsed;
-  };
-
-  struct Buttons {
-    Button* like;
-    Button* rate;
-    Button* share;
-    Button* leaderboards;
-
-    Video* video;
-    Unlock* unlock;
-  };
-
-  struct Texts {
-    Text* tap;
-  };
+  static Present* instance;
 
   /**
    *
@@ -75,8 +47,10 @@ class Finish : public Popup
    *
    */
   protected:
-  Texts texts;
-  Buttons buttons;
+  struct Texts {
+    Text* claim;
+    Text* con;
+  };
 
   /**
    *
@@ -84,12 +58,14 @@ class Finish : public Popup
    *
    */
   public:
-  static Finish* getInstance();
+  static Present* getInstance();
 
-  Finish();
- ~Finish();
+  Present();
+ ~Present();
 
-  Parameters parameters;
+  Texts texts;
+
+  Gift* element;
 
   virtual void onShow();
   virtual void onHide(Callback callback = NULL);

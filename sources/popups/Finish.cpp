@@ -58,7 +58,6 @@ Finish::Finish()
     });
   }), true);
   this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application), true);
-  this->buttons.gift = new Gift(this);
   this->buttons.video = new Video(this);
   this->buttons.unlock = new Unlock(this);
 
@@ -186,6 +185,7 @@ void Finish::show()
     if(this->parameters.elapsed.gift >= this->parameters.gift)
     {
       // TODO: Create gift.
+      this->parameters.elapsed.gift = 0;
     }
     else
     {
@@ -202,13 +202,6 @@ void Finish::show()
       }
     }
   }
-
-  /**
-   *
-   *
-   *
-   */
-  this->buttons.gift->_create();
 }
 
 void Finish::hide(Callback callback)

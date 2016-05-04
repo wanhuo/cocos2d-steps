@@ -44,6 +44,40 @@ class Gift : public Button3D
    *
    *
    */
+  public:
+  class Element : public Entity3D
+  {
+    /**
+     *
+     *
+     *
+     */
+    protected:
+    Vec3 direction;
+    Vec3 speed;
+
+    /**
+     *
+     *
+     *
+     */
+    public:
+    Element();
+  ~Element();
+
+   virtual void onCreate();
+   virtual void onDestroy(bool action = false);
+
+   virtual void update(float time);
+
+   virtual Element* deepCopy();
+  };
+
+  /**
+   *
+   *
+   *
+   */
   private:
 
   /**
@@ -62,8 +96,12 @@ class Gift : public Button3D
   Gift(Node* parent);
  ~Gift();
 
+  Pool* elements;
+
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
+
+  virtual void onTouch(cocos2d::Touch* touch, Event* e);
 };
 
 #endif

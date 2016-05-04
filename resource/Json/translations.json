@@ -105,6 +105,20 @@
         "size": 24
       }
     ],
+    "present-claim": [
+      {
+        "title": "TAP TO GET YOUR GIFT",
+        "font": "Consolasb",
+        "size": 54
+      }
+    ],
+    "present-con": [
+      {
+        "title": "TAP TO CONTINUE",
+        "font": "Consolasb",
+        "size": 54
+      }
+    ],
     "vote-title": [
       {
         "title": "Please rate us",

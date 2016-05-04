@@ -42,6 +42,7 @@ Popup::Popup(const char* textureFilename)
 : Popup()
 {
   this->background = new Entity(textureFilename, this, true);
+  this->background->setLocalZOrder(-1);
   this->background->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
 
   this->background->setPosition(Application->getCenter().x, Application->getCenter().y);

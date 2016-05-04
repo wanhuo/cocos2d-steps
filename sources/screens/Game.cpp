@@ -302,14 +302,22 @@ void Game::onLose()
   this->environment->onLose();
   this->counter->onLose();
 
-  Finish::getInstance()->show();
-
   this->counter->save();
+
+  if(true)
+  {
+    this->changeState(PRESENT);
+  }
+  else
+  {
+    this->changeState(FINISH);
+  }
 }
 
 void Game::onStore()
 {
   this->counter->onStore();
+  //this->environment->onStore();
 
   Store::getInstance()->show();
 }
@@ -317,14 +325,25 @@ void Game::onStore()
 void Game::onMissions()
 {
   this->counter->onMissions();
+  //this->environment->onMissions();
 
   Missions::getInstance()->show();
+}
+
+void Game::onPresent()
+{
+  //this->counter->onPresent();
+  //this->environment->onPresent();
+
+  Present::getInstance()->show();
 }
 
 void Game::onFinish()
 {
   this->counter->onFinish();
   this->environment->onFinish();
+
+  Finish::getInstance()->show();
 }
 
 /**
@@ -364,6 +383,9 @@ void Game::changeState(State state)
       case MISSIONS:
       this->onMissions();
       break;
+      case PRESENT:
+      this->onPresent();
+      break;
       case FINISH:
       this->onFinish();
       break;
@@ -396,6 +418,10 @@ void Game::updateMissions(float time)
 {
 }
 
+void Game::updatePresent(float time)
+{
+}
+
 void Game::updateFinish(float time)
 {
 }
@@ -423,6 +449,9 @@ void Game::updateStates(float time)
     break;
     case MISSIONS:
     this->updateMissions(time);
+    break;
+    case PRESENT:
+    this->updatePresent(time);
     break;
     case FINISH:
     this->updateFinish(time);
