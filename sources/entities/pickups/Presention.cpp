@@ -31,6 +31,8 @@
 Presention::Presention()
 : Pickup("gift.obj")
 {
+  this->glow->setColor(Color3B::WHITE);
+  this->glow->setScale(0);
 }
 
 Presention::~Presention()
