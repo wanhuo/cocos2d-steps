@@ -133,7 +133,7 @@ class Game : public Screen
   struct Elapsed {
     int ad = -1;
     int video = 0;
-    int present = random(0, 15);
+    int present = random(0, 5);
   };
 
   struct Parameters {
@@ -144,7 +144,7 @@ class Game : public Screen
 
     int ad = 4;
     int video = 4;
-    int present = 15;
+    int present = 5;
 
     Elapsed elapsed;
   };

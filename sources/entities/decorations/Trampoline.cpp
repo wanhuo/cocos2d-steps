@@ -81,7 +81,7 @@ void Trampoline::onPickup()
     {
       if(i >= count - 1)
       {
-        if(Application->environment->generator->create(true))
+        Application->environment->generator->create(true);
         {
           count++;
           remove++;

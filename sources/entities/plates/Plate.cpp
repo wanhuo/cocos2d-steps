@@ -568,7 +568,7 @@ bool Plate::conditions(int type)
     result = conditions->s2 < 1;
     break;
     case TRAMPOLINE:
-    result = conditions->s2 < 1 && (size - index) > 20;
+    result = conditions->s8 < 1 && (size - index) > 5;
     break;
     case DOWN:
     result = conditions->s2 < 1 && conditions->s7 < 1;
@@ -633,6 +633,7 @@ bool Plate::conditions(int type)
       conditions->s1 = 2;
       conditions->s2 = 2;
       conditions->s6 = 15;
+      conditions->s8 = 5;
       break;
       case DOWN:
       conditions->s1 = 2;

@@ -37,8 +37,8 @@
 	},
 	"levels": [
 		{
-			"name": "LEVEL 1",
-			"size": 25,
+			"index": "1",
+			"size": 10,
 			"save": 5,
 			"start": 12,
 			"route": {
@@ -46,7 +46,7 @@
 				"min": 3
 			},
 			"bonus": {
-				"size": 25
+				"size": 10
 			},
 			"plates": {
 				"probability": 100,
@@ -57,18 +57,17 @@
 			"pickups": {
 				"probability": 100,
 				"elements": [
-					{"type": 5, "probability": 20}
 				]
 			}
 		},
 		{
-			"name": "LEVEL 2",
-			"size": 150,
+			"name": "2",
+			"size": 20,
 			"save": 10,
 			"start": 12,
 			"route": {
-				"max": 10,
-				"min": 5
+				"max": 5,
+				"min": 3
 			},
 			"bonus": {
 				"size": 50
@@ -76,7 +75,8 @@
 			"plates": {
 				"probability": 100,
 				"elements": [
-					{"type": 11, "probability": 20}
+					{"type": 11, "probability": 100},
+					{"type": 12, "probability": 100}
 				]
 			},
 			"pickups": {

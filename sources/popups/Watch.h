@@ -46,7 +46,7 @@ class Watch : public Finish
    *
    *
    */
-  protected:
+  public:
   BackgroundColor* background;
 
   /**

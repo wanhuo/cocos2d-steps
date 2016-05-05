@@ -56,7 +56,6 @@ class Video : public Button3D
     struct Animations
     {
       SpineAnimation animation;
-      SpineAnimation click;
     };
 
     /**
@@ -69,6 +68,8 @@ class Video : public Button3D
 
     Element(Node* parent);
    ~Element();
+
+    Entity3D* plane;
 
     virtual void onCreate();
     virtual void onDestroy(bool action = false);

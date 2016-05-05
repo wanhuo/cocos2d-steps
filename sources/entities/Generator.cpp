@@ -438,6 +438,7 @@ Plate* Generator::update(bool post)
     this->conditions.s5--;
     this->conditions.s6--;
     this->conditions.s7--;
+    this->conditions.s8--;
 
     if(this->direction)
     {
@@ -603,4 +604,5 @@ void Generator::reset()
   this->conditions.s5 = 0;
   this->conditions.s6 = 0;
   this->conditions.s7 = 0;
+  this->conditions.s8 = 0;
 }

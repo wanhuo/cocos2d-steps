@@ -82,8 +82,8 @@ void Video::onCreate()
       this->runAction(
         RepeatForever::create(
           Sequence::create(
-            RotateBy::create(2.0, Vec3(0.0, 90.0, 0.0)),
-            RotateBy::create(2.0, Vec3(0.0, -90.0, 0.0)),
+            RotateBy::create(2.0, Vec3(0.0, 30.0, 0.0)),
+            RotateBy::create(2.0, Vec3(0.0, -30.0, 0.0)),
             nullptr
           )
         )
@@ -117,15 +117,14 @@ void Video::onTouch(cocos2d::Touch* touch, Event* e)
    *
    *
    */
+  this->_destroy(); // REMOVE IT
+  Watch::getInstance()->background->setOpacity(0);
+
   Heyzap::show(Config::AD_TYPE_VIDEO, [=] (bool state) {
     Application->parameters.elapsed.ad = 0;
 
-    this->element->setAnimation(this->element->animations.click);
-
-    if(state)
-    {
-      // Add reward.
-    }
+    this->_destroy();
+    Watch::getInstance()->background->setOpacity(0);
   });
 
   Analytics::sendEvent("Application", "application.events.onVideoButtonPressed", "Application onVideoButtonPressed event");
@@ -161,12 +160,14 @@ void Video::onTouch(cocos2d::Touch* touch, Event* e)
  */
 
 Video::Element::Element(Node* parent)
-: Spine("video.json", "video.atlas", 1.0, parent)
+: Spine("video.json", "video.atlas", 1.0)
 {
-  this->animations.animation = {1, "animation", true};
-  this->animations.click = {2, "click", false};
+  this->plane = new Entity3D(parent, true);
+  this->plane->setPosition3D(Vec3(0.0, 0.0, 0.25));
 
-  this->setContentSize(Size(200, 200));
+  this->animations.animation = {1, "animation", true};
+
+  this->plane->addChild(this);
 }
 
 Video::Element::~Element()
@@ -187,8 +188,8 @@ void Video::Element::onCreate()
    *
    *
    */
-  this->setScale(0.003);
-  this->setPosition(0, 0.6);
+  this->setScale(0.0025);
+  this->setPosition(0, 0.643567);
 
   this->setAnimation(this->animations.animation);
 }

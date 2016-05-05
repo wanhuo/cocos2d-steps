@@ -420,14 +420,14 @@ void Counter::reset()
   this->values.start = 0;
   this->values.current = 0;
   this->values.best = Storage::get("application.score.best");
-  this->values.coins = Storage::get("application.coins") + 200;
+  this->values.coins = Storage::get("application.coins");
 }
 
 void Counter::save()
 {
   if(Application->environment->generator->bonus)
   {
-    Storage::set("generator.bonus.skip." + to_string(Application->environment->level), Application->environment->character->plates.current->getIndex());
+    Storage::set("generator.bonus.skip." + to_string(Application->environment->level), max(Storage::get("generator.bonus.skip." + to_string(Application->environment->level)), Application->environment->character->plates.current->getIndex()));
   }
 
   Storage::set("application.score.best", this->values.best);
