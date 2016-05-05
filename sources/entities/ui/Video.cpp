@@ -62,11 +62,11 @@ void Video::onCreate()
    */
   this->setScale(0);
 
-  this->setPosition3D(Vec3(0, -2.0, -3.0));
+  this->setPosition3D(Vec3(0, -0.7, -3.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
   this->camera->setPosition3D(Vec3(0.0, 0.0, 0.0));
-  this->camera->setRotation3D(Vec3(-20.0, 0.0, 0.0));
+  this->camera->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
   this->runAction(
     Sequence::create(
@@ -198,8 +198,8 @@ void Video::Element::onCreate()
    *
    *
    */
-  this->setScale(0.001);
-  this->setPosition(0, 0.5);
+  this->setScale(0.003);
+  this->setPosition(0, 0.6);
 
   this->setAnimation(this->animations.animation);
 }
