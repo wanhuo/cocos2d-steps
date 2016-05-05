@@ -35,6 +35,7 @@
 #include "BackgroundColor.h"
 #include "Screen.h"
 #include "Pool.h"
+#include "Spine.h"
 
 #include "Button3D.h"
 #include "Gift.h"

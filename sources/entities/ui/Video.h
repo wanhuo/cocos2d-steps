@@ -44,6 +44,41 @@ class Video : public Button3D
    *
    *
    */
+  public:
+  class Element : public Spine
+  {
+    /**
+     *
+     *
+     *
+     */
+    private:
+    struct Animations
+    {
+      SpineAnimation animation;
+      SpineAnimation click;
+    };
+
+    /**
+     *
+     *
+     *
+     */
+    public:
+    Animations animations;
+
+    Element(Node* parent);
+   ~Element();
+
+    virtual void onCreate();
+    virtual void onDestroy(bool action = false);
+  };
+
+  /**
+   *
+   *
+   *
+   */
   private:
 
   /**
@@ -61,6 +96,8 @@ class Video : public Button3D
   public:
   Video(Node* parent);
  ~Video();
+
+  Element* element;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);

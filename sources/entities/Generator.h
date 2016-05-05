@@ -130,6 +130,8 @@ class Generator : public Ref
   bool direction;
   bool bonus;
 
+  int bonusSkip;
+
   virtual Plate* create(bool animated = false);
   virtual Plate* destroy(bool manual = false);
 

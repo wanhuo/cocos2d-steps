@@ -66,7 +66,6 @@ class Counter : public Background
   struct Values {
     int current = 0;
     int best = 0;
-    int bonus = 0;
 
     int start = 0;
 

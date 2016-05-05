@@ -98,10 +98,10 @@ class Gift : public Button3D
      */
     public:
     Element(Node* parent);
-  ~Element();
+   ~Element();
 
-   virtual void onCreate();
-   virtual void onDestroy(bool action = false);
+    virtual void onCreate();
+    virtual void onDestroy(bool action = false);
   };
 
   /**

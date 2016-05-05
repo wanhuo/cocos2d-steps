@@ -203,7 +203,7 @@ string Environment::getTextureState2()
  */
 void Environment::updateData()
 {
-  this->level = 1;//max(1, Storage::get("application.current.level"));
+  this->level = max(1, Storage::get("application.current.level"));
   this->pack = max(1, Storage::get("store.texture.selected"));
 
   Director::getInstance()->getTextureCache()->addImageAsync(this->getTextureState1(), nullptr);

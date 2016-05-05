@@ -312,10 +312,11 @@ void Game::onLose()
    */
   this->parameters.elapsed.ad++;
   this->parameters.elapsed.present++;
-  this->parameters.elapsed.video++;this->changeState(PRESENT);return;
+  this->parameters.elapsed.video++;this->changeState(WATCH);return;
 
   if(Heyzap::available(Config::AD_TYPE_VIDEO) && this->parameters.elapsed.video >= this->parameters.video)
   {
+    this->parameters.elapsed.video = 0;
     this->changeState(WATCH);
   }
   else if(Application->parameters.showPresent)

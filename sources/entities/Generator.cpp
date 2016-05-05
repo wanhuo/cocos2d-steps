@@ -320,7 +320,11 @@ void Generator::createBonusElement(Plate* plate)
     }
     else
     {
-      plate->setType(Plate::DIAMOND);
+      if(this->bonusSkip-- <= 0)
+      {
+        plate->setType(Plate::DIAMOND);
+      }
+
       plate->setType(Plate::BONUS);
 
       if(plate->conditions(Plate::CUB))
@@ -529,6 +533,8 @@ void Generator::reset()
 
     this->direction = true;
     this->bonus = true;
+
+    this->bonusSkip =  Storage::get("generator.bonus.skip." + to_string(Application->environment->level));
   }
 
   /**

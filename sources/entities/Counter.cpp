@@ -137,8 +137,6 @@ void Counter::onMenu()
 
 void Counter::onGame()
 {
-  this->values.bonus = Application->environment->generator->size;
-
   if(!Application->environment->generator->bonus)
   {
     this->bonusBackground->stopAllActions();
@@ -168,6 +166,22 @@ void Counter::onFinish()
 {
   if(Application->environment->generator->bonus)
   {
+    this->bonusBackground->stopAllActions();
+    this->bonusBackground->runAction(
+      Spawn::create(
+        DelayTime::create(0.5),
+        FadeTo::create(0.2, 255),
+        Sequence::create(
+          DelayTime::create(0.5),
+          CallFunc::create([=] () {
+            this->bonusBackground->setVisible(true);
+          }),
+          MoveTo::create(0.2, Vec2(0, -80)),
+          nullptr
+        ),
+        nullptr
+      )
+    );
   }
   else
   {
@@ -408,6 +422,11 @@ void Counter::reset()
 
 void Counter::save()
 {
+  if(Application->environment->generator->bonus)
+  {
+    Storage::set("generator.bonus.skip." + to_string(Application->environment->level), Application->environment->character->plates.current->getIndex());
+  }
+
   Storage::set("application.score.best", this->values.best);
   Storage::set("application.coins", this->values.coins);
   Storage::set("character.color", 1);
@@ -425,8 +444,8 @@ void Counter::save()
  */
 void Counter::update()
 {
+  this->texts.bonus->data(Application->environment->generator->size - (Application->environment->character->plates.current ? Application->environment->character->plates.current->getIndex() : 0));
   this->texts.score->data(this->values.current);
-  this->texts.bonus->data(this->values.bonus - (Application->environment->character->plates.current ? Application->environment->character->plates.current->getIndex() : 0));
   this->texts.best->data(this->values.best);
   this->texts.coins->data(this->values.coins);
   this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() / 2 - 60, Application->getHeight() - 60);

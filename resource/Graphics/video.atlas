@@ -1,0 +1,62 @@
+
+video.png
+size: 1213,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg
+  rotate: false
+  xy: 2, 3
+  size: 250, 251
+  orig: 250, 251
+  offset: 0, 0
+  index: -1
+click-bg
+  rotate: false
+  xy: 254, 4
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+star
+  rotate: false
+  xy: 758, 18
+  size: 236, 236
+  orig: 236, 236
+  offset: 0, 0
+  index: -1
+text-30
+  rotate: false
+  xy: 996, 148
+  size: 215, 106
+  orig: 215, 106
+  offset: 0, 0
+  index: -1
+text-coins
+  rotate: false
+  xy: 506, 4
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+video frame 1
+  rotate: false
+  xy: 996, 2
+  size: 162, 144
+  orig: 162, 144
+  offset: 0, 0
+  index: -1
+video frame 2
+  rotate: false
+  xy: 1160, 60
+  size: 28, 44
+  orig: 28, 44
+  offset: 0, 0
+  index: -1
+video frame 3
+  rotate: false
+  xy: 1160, 106
+  size: 34, 40
+  orig: 34, 40
+  offset: 0, 0
+  index: -1
