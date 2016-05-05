@@ -57,9 +57,27 @@ void Unlock::onCreate()
    *
    *
    */
+  static_cast<Sprite3D*>(this->getChildByName("box"))->setTexture("ui/video-texture.png");
+  static_cast<Sprite3D*>(this->getChildByName("box"))->setLightMask(this->index);
+
+  static_cast<Sprite3D*>(this->getChildByName("door"))->setTexture("ui/video-texture.png");
+  static_cast<Sprite3D*>(this->getChildByName("door"))->setLightMask(this->index);
+
+  static_cast<Sprite3D*>(this->getChildByName("plate"))->setTexture("textures/4/textures-state-1.png");
+  static_cast<Sprite3D*>(this->getChildByName("plate"))->setLightMask(this->index);
+
+  static_cast<Sprite3D*>(this->getChildByName("box"))->setPosition3D(Vec3(0.0, 0.0, 0.0));
+  static_cast<Sprite3D*>(this->getChildByName("box"))->setRotation3D(Vec3(0.0, 0.0, 0.0));
+
+  static_cast<Sprite3D*>(this->getChildByName("door"))->setPosition3D(Vec3(0.0, 0.0, 0.0));
+  static_cast<Sprite3D*>(this->getChildByName("door"))->setRotation3D(Vec3(0.0, 0.0, 0.0));
+
+  static_cast<Sprite3D*>(this->getChildByName("plate"))->setPosition3D(Vec3(0.0, 0.0, 0.0));
+  static_cast<Sprite3D*>(this->getChildByName("plate"))->setRotation3D(Vec3(0.0, 0.0, 0.0));
+
   this->setScale(0);
 
-  this->setPosition3D(Vec3(0, -1.5, -3.0));
+  this->setPosition3D(Vec3(0, -7.0, -15.0));
   this->setRotation3D(Vec3(0.0, 30.0, 0.0));
 
   this->camera->setPosition3D(Vec3(0.0, 0.0, 0.0));
@@ -84,20 +102,11 @@ void Unlock::onCreate()
   );
 
   this->runAction(
-    Sequence::create(
-      RotateBy::create(0.4, Vec3(0.0, 90.0, 0.0)),
-      CallFunc::create([=] () {
-      this->runAction(
-        RepeatForever::create(
-          Sequence::create(
-            RotateBy::create(3.0, Vec3(0.0, 30.0, 0.0)),
-            RotateBy::create(3.0, Vec3(0.0, -30.0, 0.0)),
-            nullptr
-          )
-        )
-      );
-      }),
-      nullptr
+    RepeatForever::create(
+      Sequence::create(
+        RotateBy::create(0.5, Vec3(0.0, 30.0, 0.0)),
+        nullptr
+      )
     )
   );
 
@@ -123,5 +132,31 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
    *
    *
    */
-  Open::getInstance()->Finish::onShow();
+  this->runAction(
+    Spawn::create(
+      Repeat::create(
+        Sequence::create(
+          ScaleBy::create(0.05, 1.1),
+          ScaleBy::create(0.05, 0.9),
+          nullptr
+        ), 6),
+      Sequence::create(
+        DelayTime::create(0.5),
+        CallFunc::create([=] () {
+        this->getChildByName("door")->runAction(
+          Sequence::create(
+            EaseSineIn::create(
+              MoveBy::create(0.35, Vec3(0, 5.0, 0))
+            ),
+            nullptr
+          )
+        );
+        }),
+        nullptr
+      ),
+      nullptr
+    )
+  );
+
+  Sound->play("gift-open");
 }

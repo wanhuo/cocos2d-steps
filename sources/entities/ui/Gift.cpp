@@ -100,20 +100,11 @@ void Gift::onCreate()
   );
 
   this->runAction(
-    Sequence::create(
-      RotateBy::create(0.4, Vec3(0.0, 90.0, 0.0)),
-      CallFunc::create([=] () {
-      this->runAction(
-        RepeatForever::create(
-          Sequence::create(
-            RotateBy::create(3.0, Vec3(0.0, 30.0, 0.0)),
-            RotateBy::create(3.0, Vec3(0.0, -30.0, 0.0)),
-            nullptr
-          )
-        )
-      );
-      }),
-      nullptr
+    RepeatForever::create(
+      Sequence::create(
+        RotateBy::create(0.5, Vec3(0.0, 30.0, 0.0)),
+        nullptr
+      )
     )
   );
 
