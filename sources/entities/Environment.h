@@ -171,6 +171,7 @@ class Environment : public Background
   virtual void onMissions();
   virtual void onPresent();
   virtual void onOpen();
+  virtual void onWatch();
   virtual void onCopter();
 
   virtual void startStar();

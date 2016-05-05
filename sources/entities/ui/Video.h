@@ -64,6 +64,8 @@ class Video : public Button3D
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
+
+  virtual void onTouch(cocos2d::Touch* touch, Event* e);
 };
 
 #endif

@@ -237,6 +237,10 @@ void Counter::onOpen()
 {
 }
 
+void Counter::onWatch()
+{
+}
+
 /**
  *
  *

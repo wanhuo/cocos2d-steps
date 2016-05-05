@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _OPEN_H_
-#define _OPEN_H_
+#ifndef _WATCH_H_
+#define _WATCH_H_
 
 #include "Popup.h"
 
@@ -31,7 +31,7 @@
  *
  *
  */
-class Open : public Finish
+class Watch : public Finish
 {
   /**
    *
@@ -39,7 +39,7 @@ class Open : public Finish
    *
    */
   private:
-  static Open* instance;
+  static Watch* instance;
 
   /**
    *
@@ -55,12 +55,12 @@ class Open : public Finish
    *
    */
   public:
-  static Open* getInstance();
+  static Watch* getInstance();
 
-  Open();
- ~Open();
+  Watch();
+ ~Watch();
 
-  Unlock* element;
+  Video* element;
 
   virtual void onShow();
   virtual void onHide(Callback callback = NULL);

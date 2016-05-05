@@ -35,17 +35,7 @@
  *
  */
 Unlock::Unlock(Node* parent)
-: Button3D("", parent, {
-    Camera::createOrthographic(Application->getFrustumWidth(), Application->getFrustumHeight(), 1, 100),
-    Vec3(0, 0, 2),
-    Vec3(0, 0, 0),
-    Application,
-    3
-  },
-  {
-    {DirectionLight::create(Vec3(1.0, -1.0, -1.0), Color3B(200, 200, 200)), Application},
-    {AmbientLight::create(Color3B(120, 120, 120)), Application}
-  })
+: Button3D("unlock.obj", parent)
 {
 }
 
@@ -67,9 +57,71 @@ void Unlock::onCreate()
    *
    *
    */
+  this->setScale(0);
+
+  this->setPosition3D(Vec3(0, -1.5, -3.0));
+  this->setRotation3D(Vec3(0.0, 30.0, 0.0));
+
+  this->camera->setPosition3D(Vec3(0.0, 0.0, 0.0));
+  this->camera->setRotation3D(Vec3(-20.0, 0.0, 0.0));
+
+  this->runAction(
+    Sequence::create(
+      ScaleTo::create(0.4, 1.0),
+      CallFunc::create([=] () {
+        this->runAction(
+          RepeatForever::create(
+            Sequence::create(
+              ScaleTo::create(0.3, 1.05),
+              ScaleTo::create(0.3, 1.0),
+              nullptr
+            )
+          )
+        );
+      }),
+      nullptr
+    )
+  );
+
+  this->runAction(
+    Sequence::create(
+      RotateBy::create(0.4, Vec3(0.0, 90.0, 0.0)),
+      CallFunc::create([=] () {
+      this->runAction(
+        RepeatForever::create(
+          Sequence::create(
+            RotateBy::create(3.0, Vec3(0.0, 30.0, 0.0)),
+            RotateBy::create(3.0, Vec3(0.0, -30.0, 0.0)),
+            nullptr
+          )
+        )
+      );
+      }),
+      nullptr
+    )
+  );
+
+  this->setCameraMask(this->index);
 }
 
 void Unlock::onDestroy(bool action)
 {
   Button3D::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
+{
+  Button3D::onTouch(touch, e);
+
+  /**
+   *
+   *
+   *
+   */
+  Open::getInstance()->Finish::onShow();
 }

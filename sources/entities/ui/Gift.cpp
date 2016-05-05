@@ -35,17 +35,7 @@
  *
  */
 Gift::Gift(Node* parent)
-: Button3D("gift.obj", parent, {
-    Camera::createPerspective(60, Application->getWidth() / Application->getHeight(), 1, 100),
-    Vec3(0, 0, 2),
-    Vec3(0, 0, 0),
-    Application,
-    5
-  },
-  {
-    {DirectionLight::create(Vec3(1.0, -1.0, -1.0), Color3B(200, 200, 200)), Application},
-    {AmbientLight::create(Color3B(120, 120, 120)), Application}
-  })
+: Button3D("gift.obj", parent)
 {
   this->element = new Gift::Element(this);
   this->elements = new Pool(new Gift::Diamond, this);
@@ -154,10 +144,11 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
 {
   Button3D::onTouch(touch, e);
 
-  this->bind(false);
-
-  this->stopAllActions();
-
+  /**
+   *
+   *
+   *
+   */
   this->runAction(
     Spawn::create(
       Repeat::create(
@@ -363,16 +354,15 @@ Gift::Element::Element(Node* parent)
   this->window = BillBoard::create();
   this->addChild(this->window);
 
+  this->text = new Text("present", this->window, true);
+  this->text->setScale(0.008);
+  this->text->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(-10, 0.0), 0);
+  this->text->setPosition(-this->text->getWidthScaled() / 2 + 0.2, 0);
+
   this->diamond = new Entity3D("diamond.obj", this->window, true);
   this->diamond->setTexture(Application->environment->getTextureState1());
   this->diamond->setColor(Color3B(0.0, 243.0, 120.0));
   this->diamond->setScale(0.5);
-
-  this->text = new Text("present", this->window, true);
-  this->text->setScale(0.008);
-  this->text->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(-10, 0.0), 0);
-
-  this->text->setPosition(-this->text->getWidthScaled() / 2 + 0.2, 0);
   this->diamond->setPosition(this->text->getWidthScaled()  / 2, 0.1);
 }
 

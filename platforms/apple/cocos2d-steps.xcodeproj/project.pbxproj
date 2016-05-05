@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		781B06801BD26FC70072FB24 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 781B067F1BD26FC70072FB24 /* config.json */; };
 		781B06811BD26FC70072FB24 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 781B067F1BD26FC70072FB24 /* config.json */; };
+		781DA8801CDB3B95005BEB98 /* Watch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 781DA87E1CDB3B95005BEB98 /* Watch.cpp */; };
+		781DA8811CDB3B95005BEB98 /* Watch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 781DA87E1CDB3B95005BEB98 /* Watch.cpp */; };
 		7823C8921CD4DFE200703A34 /* Missions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7823C8901CD4DFE200703A34 /* Missions.cpp */; };
 		7823C8931CD4DFE200703A34 /* Missions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7823C8901CD4DFE200703A34 /* Missions.cpp */; };
 		7823FBC61ABDC0F900447F0A /* NSBatch.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7823FBC51ABDC0F900447F0A /* NSBatch.mm */; };
@@ -277,6 +279,8 @@
 		781B06A51BD2B4D20072FB24 /* NSSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSSocial.h; sourceTree = "<group>"; };
 		781B06D81BD37E410072FB24 /* NSBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBatch.h; sourceTree = "<group>"; };
 		781B06D91BD37F950072FB24 /* NSHeyzap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSHeyzap.h; sourceTree = "<group>"; };
+		781DA87E1CDB3B95005BEB98 /* Watch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Watch.cpp; sourceTree = "<group>"; };
+		781DA87F1CDB3B95005BEB98 /* Watch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Watch.h; sourceTree = "<group>"; };
 		7823C8901CD4DFE200703A34 /* Missions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Missions.cpp; sourceTree = "<group>"; };
 		7823C8911CD4DFE200703A34 /* Missions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missions.h; sourceTree = "<group>"; };
 		7823FBC51ABDC0F900447F0A /* NSBatch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSBatch.mm; sourceTree = "<group>"; };
@@ -1048,6 +1052,8 @@
 				7855460F1CD9CDC900B58ED0 /* Present.h */,
 				785546181CDA13B600B58ED0 /* Open.cpp */,
 				785546191CDA13B600B58ED0 /* Open.h */,
+				781DA87E1CDB3B95005BEB98 /* Watch.cpp */,
+				781DA87F1CDB3B95005BEB98 /* Watch.h */,
 			);
 			name = popups;
 			path = ../../sources/popups;
@@ -1491,6 +1497,7 @@
 				785545FA1CD8D61E00B58ED0 /* TypeFinish.cpp in Sources */,
 				785546111CD9CDC900B58ED0 /* Present.cpp in Sources */,
 				78CA6D0D1C20645200BF8416 /* Environment.cpp in Sources */,
+				781DA8811CDB3B95005BEB98 /* Watch.cpp in Sources */,
 				78B4B6FC1CBF91E000F2D8A7 /* Door.cpp in Sources */,
 				789E71AB1CD39D0D00BDCDC7 /* TypeMoved4.cpp in Sources */,
 				78DE4C8B1C4DA0990080F105 /* Decoration.cpp in Sources */,
@@ -1523,6 +1530,7 @@
 				7843ACA41C2242AA0011F47C /* Interstitiel.m in Sources */,
 				7894C0331BC9282F00363FC9 /* Game.cpp in Sources */,
 				78E33FD11C4A84080021272D /* Particle.cpp in Sources */,
+				781DA8801CDB3B95005BEB98 /* Watch.cpp in Sources */,
 				789E719E1CD39A4A00BDCDC7 /* TypeMoved1.cpp in Sources */,
 				7823C8921CD4DFE200703A34 /* Missions.cpp in Sources */,
 				7857E2C11C65B9D80020AAEA /* Store.cpp in Sources */,

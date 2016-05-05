@@ -92,6 +92,7 @@ class Counter : public Background
   virtual void onMissions();
   virtual void onPresent();
   virtual void onOpen();
+  virtual void onWatch();
 
   virtual void onStarStart();
   virtual void onStarFinish();

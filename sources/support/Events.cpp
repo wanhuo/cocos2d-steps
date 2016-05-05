@@ -38,6 +38,7 @@ void Events::onStart()
   new Store;
   new Open;
   new Present;
+  new Watch;
   new Missions;
 
   Director::getInstance()->runWithScene(Application);

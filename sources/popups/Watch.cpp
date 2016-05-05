@@ -21,54 +21,95 @@
  *
  */
 
-#ifndef _OPEN_H_
-#define _OPEN_H_
-
-#include "Popup.h"
+#include "Game.h"
 
 /**
  *
  *
  *
  */
-class Open : public Finish
+Watch* Watch::instance;
+
+/**
+ *
+ *
+ *
+ */
+Watch* Watch::getInstance()
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  static Open* instance;
+  return instance;
+}
+
+/**
+ *
+ *
+ *
+ */
+Watch::Watch()
+: Finish()
+{
+  instance = this;
+
+  this->background = new BackgroundColor(this, Color4B(0.0, 0.0, 0.0, 200.0));
+  this->background->setLocalZOrder(-1);
+
+  this->element = new Video(this);
+}
+
+Watch::~Watch()
+{
+}
+
+/**
+ *
+ *
+ *
+ */
+void Watch::onShow()
+{
+  Finish::onShow();
 
   /**
    *
    *
    *
    */
-  protected:
-  BackgroundColor* background;
+  this->element->_create();
+}
+
+void Watch::onHide(Callback callback)
+{
+  Finish::onHide(callback);
 
   /**
    *
    *
    *
    */
-  public:
-  static Open* getInstance();
+  this->element->_destroy();
+}
 
-  Open();
- ~Open();
+/**
+ *
+ *
+ *
+ */
+void Watch::onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e)
+{
+  Finish::onTouchStart(touch, e);
+}
 
-  Unlock* element;
+/**
+ *
+ *
+ *
+ */
+void Watch::show()
+{
+  Finish::show();
+}
 
-  virtual void onShow();
-  virtual void onHide(Callback callback = NULL);
-
-  virtual void onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e);
-
-  virtual void show();
-  virtual void hide(Callback callback = NULL);
-};
-
-#endif
+void Watch::hide(Callback callback)
+{
+  Finish::hide(callback);
+}

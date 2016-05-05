@@ -95,6 +95,7 @@
 #include "Open.h"
 #include "Store.h"
 #include "Present.h"
+#include "Watch.h"
 #include "Missions.h"
 
 #include "RotateGlobalBy.h"
@@ -169,7 +170,8 @@ class Game : public Screen
     STORE,
     MISSIONS,
     PRESENT,
-    OPEN
+    OPEN,
+    WATCH
   };
 
   /**
@@ -237,6 +239,7 @@ class Game : public Screen
   virtual void onMissions();
   virtual void onPresent();
   virtual void onOpen();
+  virtual void onWatch();
 
   virtual void onNoad();
 
@@ -253,6 +256,7 @@ class Game : public Screen
   virtual void updatePresent(float time);
   virtual void updateFinish(float time);
   virtual void updateOpen(float time);
+  virtual void updateWatch(float time);
 
   virtual void updateStates(float time);
 

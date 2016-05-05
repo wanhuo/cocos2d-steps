@@ -279,6 +279,10 @@ void Environment::onOpen()
 {
 }
 
+void Environment::onWatch()
+{
+}
+
 void Environment::onCopter()
 {
 }

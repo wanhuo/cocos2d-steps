@@ -183,13 +183,6 @@ void Game::onEnter()
    */
   Internal::onStart();
 
-  /**
-   *
-   *
-   *
-   */
-  Events::onScreenChanged("Game");
-
   this->changeState(MENU);
 }
 
@@ -312,13 +305,18 @@ void Game::onLose()
 
   this->counter->save();
 
+  /**
+   *
+   *
+   *
+   */
   this->parameters.elapsed.ad++;
   this->parameters.elapsed.present++;
-  this->parameters.elapsed.video++;
+  this->parameters.elapsed.video++;//this->changeState(WATCH);return;
 
   if(Heyzap::available(Config::AD_TYPE_VIDEO) && this->parameters.elapsed.video >= this->parameters.video)
   {
-    this->changeState(FINISH); // TODO: Create video.
+    this->changeState(WATCH);
   }
   else if(Application->parameters.showPresent)
   {
@@ -375,6 +373,14 @@ void Game::onOpen()
   Open::getInstance()->show();
 }
 
+void Game::onWatch()
+{
+  this->counter->onWatch();
+  this->environment->onWatch();
+
+  Watch::getInstance()->show();
+}
+
 /**
  *
  *
@@ -421,6 +427,9 @@ void Game::changeState(State state)
       case OPEN:
       this->onOpen();
       break;
+      case WATCH:
+      this->onWatch();
+      break;
     }
   }
 }
@@ -462,6 +471,10 @@ void Game::updateOpen(float time)
 {
 }
 
+void Game::updateWatch(float time)
+{
+}
+
 /**
  *
  *
@@ -494,6 +507,9 @@ void Game::updateStates(float time)
     break;
     case OPEN:
     this->updateOpen(time);
+    break;
+    case WATCH:
+    this->updateWatch(time);
     break;
   }
 

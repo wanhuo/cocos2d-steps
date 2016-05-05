@@ -46,9 +46,12 @@ Open* Open::getInstance()
  *
  */
 Open::Open()
-: Popup("ui/store-background-texture.png")
+: Finish()
 {
   instance = this;
+
+  this->background = new BackgroundColor(this, Color4B(0.0, 0.0, 0.0, 200.0));
+  this->background->setLocalZOrder(-1);
 
   this->element = new Unlock(this);
 }
@@ -76,7 +79,7 @@ void Open::onShow()
 
 void Open::onHide(Callback callback)
 {
-  Popup::onHide(callback);
+  Finish::onHide(callback);
 
   /**
    *
@@ -93,9 +96,10 @@ void Open::onHide(Callback callback)
  */
 void Open::onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e)
 {
-  this->hide([=] () {
-    Application->changeState(Game::FINISH);
-  });
+  if(!this->element->touch->binded)
+  {
+    Finish::onTouchStart(touch, e);
+  }
 }
 
 /**
@@ -105,10 +109,10 @@ void Open::onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e)
  */
 void Open::show()
 {
-  Popup::show();
+  Finish::show();
 }
 
 void Open::hide(Callback callback)
 {
-  Popup::hide(callback);
+  Finish::hide(callback);
 }

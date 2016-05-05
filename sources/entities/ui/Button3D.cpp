@@ -34,8 +34,18 @@
  *
  *
  */
-Button3D::Button3D(string file, Node* parent, CameraStruct camera, const vector<LightStruct> vec)
-: CameraEntity3D(file, parent, false, camera, vec)
+Button3D::Button3D(string file, Node* parent)
+: CameraEntity3D(file, parent, false, {
+    Camera::createPerspective(60, Application->getWidth() / Application->getHeight(), 1, 100),
+    Vec3(0, 0, 2),
+    Vec3(0, 0, 0),
+    Application,
+    5
+  },
+  {
+    {DirectionLight::create(Vec3(1.0, -1.0, -1.0), Color3B(200, 200, 200)), Application},
+    {AmbientLight::create(Color3B(120, 120, 120)), Application}
+  })
 {
 }
 
@@ -130,6 +140,9 @@ void Button3D::onTouchCancelled(cocos2d::Touch* touch, Event* e)
  */
 void Button3D::onTouch(cocos2d::Touch* touch, Event* e)
 {
+  this->stopAllActions();
+  this->bind(false);
+
   /**
    *
    *
