@@ -129,6 +129,8 @@ void Environment::create()
 
 void Environment::reset()
 {
+  Application->counter->onFinish();
+
   this->generator->reset();
 
   this->platesTime = 1.0;
