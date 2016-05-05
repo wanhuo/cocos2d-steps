@@ -34,11 +34,11 @@ void Events::onStart()
 {
   new Game;
   new Menu;
-  new Finish;
-  new Store;
   new Open;
   new Present;
   new Watch;
+  new Finish;
+  new Store;
   new Missions;
 
   Director::getInstance()->runWithScene(Application);

@@ -48,7 +48,7 @@ class Store : public Popup
      *
      *
      */
-    private:
+    public:
     enum State {
       NONE,
       MISSIONS,
@@ -74,7 +74,7 @@ class Store : public Popup
      *
      *
      */
-    protected:
+    public:
     int state;
 
     Parameters parameters;
@@ -162,6 +162,8 @@ class Store : public Popup
 
   virtual void onEnter();
   virtual void onExit();
+
+  virtual int nextTexture(bool action = false);
 
   virtual void update();
 };

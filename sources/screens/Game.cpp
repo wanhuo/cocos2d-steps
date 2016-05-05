@@ -312,7 +312,7 @@ void Game::onLose()
    */
   this->parameters.elapsed.ad++;
   this->parameters.elapsed.present++;
-  this->parameters.elapsed.video++;this->changeState(OPEN);return;
+  this->parameters.elapsed.video++;this->changeState(WATCH);return;
 
   if(Heyzap::available(Config::AD_TYPE_VIDEO) && this->parameters.elapsed.video >= this->parameters.video)
   {
@@ -323,7 +323,7 @@ void Game::onLose()
   {
     this->changeState(PRESENT);
   }
-  else if(Application->counter->values.coins >= 100)
+  else if(Application->counter->values.coins >= 100 && Store::getInstance()->nextTexture())
   {
     this->changeState(OPEN);
   }

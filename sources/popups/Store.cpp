@@ -187,6 +187,49 @@ void Store::update()
 }
 
 /**
+ *
+ *
+ *
+ */
+int Store::nextTexture(bool action)
+{
+  Position* position = nullptr;
+  vector<Position*> positions;
+
+  /**
+   *
+   *
+   *
+   */
+  for(auto p : this->positions)
+  {
+    if(p->state == Position::DIAMONDS)
+    {
+      positions.push_back(p);
+    }
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  if(positions.size())
+  {
+    position = positions.at(random(0, (int) positions.size() - 1));
+
+    if(action)
+    {
+      position->onSelect();
+    }
+
+    return position->parameters.index;
+  }
+
+  return 0;
+}
+
+/**
  * Tooflya Inc. Development
  *
  * @author Igor Mats from Tooflya Inc.
@@ -331,7 +374,7 @@ void Store::Position::onEnter()
     }
     else
     {
-      if(MissionsFactory::getInstance()->getCompletedMissionsCount() < this->parameters.missions&&false)
+      if(MissionsFactory::getInstance()->getCompletedMissionsCount() < this->parameters.missions)
       {
         this->state = MISSIONS;
       }

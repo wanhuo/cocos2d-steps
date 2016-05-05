@@ -46,9 +46,6 @@ class Finish : public Popup
     Button* rate;
     Button* share;
     Button* leaderboards;
-
-    Video* video;
-    Unlock* unlock;
   };
 
   struct Texts {

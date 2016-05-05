@@ -63,7 +63,7 @@ void Video::onCreate()
   this->setScale(0);
 
   this->setPosition3D(Vec3(0, -0.7, -3.0));
-  this->setRotation3D(Vec3(0.0, 0.0, 0.0));
+  this->setRotation3D(Vec3(0.0, -15.0, 0.0));
 
   this->camera->setPosition3D(Vec3(0.0, 0.0, 0.0));
   this->camera->setRotation3D(Vec3(0.0, 0.0, 0.0));
@@ -71,30 +71,19 @@ void Video::onCreate()
   this->runAction(
     Sequence::create(
       ScaleTo::create(0.4, 1.0),
-      CallFunc::create([=] () {
-        this->runAction(
-          RepeatForever::create(
-            Sequence::create(
-              ScaleTo::create(0.3, 1.05),
-              ScaleTo::create(0.3, 1.0),
-              nullptr
-            )
-          )
-        );
-      }),
       nullptr
     )
   );
 
-  /*this->runAction(
+  this->runAction(
     Sequence::create(
-      RotateBy::create(0.4, Vec3(0.0, 90.0, 0.0)),
+      DelayTime::create(0.4),
       CallFunc::create([=] () {
       this->runAction(
         RepeatForever::create(
           Sequence::create(
-            RotateBy::create(3.0, Vec3(0.0, 30.0, 0.0)),
-            RotateBy::create(3.0, Vec3(0.0, -30.0, 0.0)),
+            RotateBy::create(2.0, Vec3(0.0, 90.0, 0.0)),
+            RotateBy::create(2.0, Vec3(0.0, -90.0, 0.0)),
             nullptr
           )
         )
@@ -102,7 +91,7 @@ void Video::onCreate()
       }),
       nullptr
     )
-  );*/
+  );
 
   this->element->_create();
 

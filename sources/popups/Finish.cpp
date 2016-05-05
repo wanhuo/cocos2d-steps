@@ -58,8 +58,6 @@ Finish::Finish()
     });
   }));
   this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application));
-  //this->buttons.video = new Video(this);
-  //this->buttons.unlock = new Unlock(this);
 
   this->texts.tap = new Text("finish-tap", this);
   this->texts.tap->setPosition(Application->getCenter().x, 230);

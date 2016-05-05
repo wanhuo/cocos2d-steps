@@ -59,9 +59,6 @@ void Presention::onCreate()
     static_cast<Sprite3D*>(child)->setTexture(this->texture);
     static_cast<Sprite3D*>(child)->setLightMask(this->getLightMask());
   }
-
-  Application->parameters.elapsed.present = 0;
-  Application->parameters.presentTexture = this->texture;
 }
 
 void Presention::onDestroy(bool action)
@@ -83,6 +80,8 @@ void Presention::onPickup()
    *
    *
    */
+  Application->parameters.elapsed.present = 0;
+  Application->parameters.presentTexture = this->texture;
   Application->parameters.showPresent = true;
 
   Sound->play("pickup-gift");

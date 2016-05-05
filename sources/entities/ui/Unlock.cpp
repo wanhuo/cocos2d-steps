@@ -63,7 +63,7 @@ void Unlock::onCreate()
   static_cast<Sprite3D*>(this->getChildByName("door"))->setTexture("ui/video-texture.png");
   static_cast<Sprite3D*>(this->getChildByName("door"))->setLightMask(this->index);
 
-  static_cast<Sprite3D*>(this->getChildByName("plate"))->setTexture("textures/4/textures-state-1.png");
+  static_cast<Sprite3D*>(this->getChildByName("plate"))->setTexture("ui/video-texture.png");
   static_cast<Sprite3D*>(this->getChildByName("plate"))->setLightMask(this->index);
 
   static_cast<Sprite3D*>(this->getChildByName("box"))->setPosition3D(Vec3(0.0, 0.0, 0.0));
@@ -77,7 +77,7 @@ void Unlock::onCreate()
 
   this->setScale(0);
 
-  this->setPosition3D(Vec3(0, -1.5, -3.0));
+  this->setPosition3D(Vec3(0, -1.7, -3.0));
   this->setRotation3D(Vec3(0.0, 30.0, 0.0));
 
   this->camera->setPosition3D(Vec3(0.0, 0.0, 0.0));
@@ -132,6 +132,20 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
    *
    *
    */
+  Store::getInstance()->nextTexture(true);
+
+  /**
+   *
+   *
+   *
+   */
+  static_cast<Sprite3D*>(this->getChildByName("plate"))->setTexture(Application->environment->getTextureState1());
+
+  /**
+   *
+   *
+   *
+   */
   this->runAction(
     Spawn::create(
       Repeat::create(
@@ -143,6 +157,8 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
       Sequence::create(
         DelayTime::create(0.5),
         CallFunc::create([=] () {
+        Open::getInstance()->Finish::onShow();
+
         this->getChildByName("door")->runAction(
           Sequence::create(
             EaseSineIn::create(
@@ -155,6 +171,25 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
         nullptr
       ),
       nullptr
+    )
+  );
+
+  this->getChildByName("plate")->runAction(
+    Sequence::create(
+      DelayTime::create(0.7),
+      EaseSineIn::create(
+        MoveBy::create(0.2, Vec3(0.0, 0.6, 0.0))
+      ),
+      nullptr
+    )
+  );
+
+  this->getChildByName("plate")->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        RotateBy::create(0.5, Vec3(0.0, 30.0, 0.0)),
+        nullptr
+      )
     )
   );
 

@@ -164,41 +164,44 @@ void Counter::onGame()
 
 void Counter::onFinish()
 {
-  if(Application->environment->generator->bonus)
+  if(Application->state != Game::FINISH)
   {
-    this->bonusBackground->stopAllActions();
-    this->bonusBackground->runAction(
-      Spawn::create(
-        DelayTime::create(0.5),
-        FadeTo::create(0.2, 255),
-        Sequence::create(
+    if(Application->environment->generator->bonus)
+    {
+      this->bonusBackground->stopAllActions();
+      this->bonusBackground->runAction(
+        Spawn::create(
           DelayTime::create(0.5),
-          CallFunc::create([=] () {
-            this->bonusBackground->setVisible(true);
-          }),
-          MoveTo::create(0.2, Vec2(0, -80)),
+          FadeTo::create(0.2, 255),
+          Sequence::create(
+            DelayTime::create(0.5),
+            CallFunc::create([=] () {
+              this->bonusBackground->setVisible(true);
+            }),
+            MoveTo::create(0.2, Vec2(0, -80)),
+            nullptr
+          ),
           nullptr
-        ),
-        nullptr
-      )
-    );
-  }
-  else
-  {
-    this->bonusBackground->stopAllActions();
-    this->bonusBackground->runAction(
-      Spawn::create(
-        FadeTo::create(0.2, 0),
-        Sequence::create(
-          MoveTo::create(0.2, Vec2(0, 0)),
-          CallFunc::create([=] () {
-            this->bonusBackground->setVisible(false);
-          }),
+        )
+      );
+    }
+    else
+    {
+      this->bonusBackground->stopAllActions();
+      this->bonusBackground->runAction(
+        Spawn::create(
+          FadeTo::create(0.2, 0),
+          Sequence::create(
+            MoveTo::create(0.2, Vec2(0, 0)),
+            CallFunc::create([=] () {
+              this->bonusBackground->setVisible(false);
+            }),
+            nullptr
+          ),
           nullptr
-        ),
-        nullptr
-      )
-    );
+        )
+      );
+    }
   }
 }
 
@@ -417,7 +420,7 @@ void Counter::reset()
   this->values.start = 0;
   this->values.current = 0;
   this->values.best = Storage::get("application.score.best");
-  this->values.coins = Storage::get("application.coins");
+  this->values.coins = Storage::get("application.coins") + 200;
 }
 
 void Counter::save()
