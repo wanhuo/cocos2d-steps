@@ -77,7 +77,7 @@ void Unlock::onCreate()
 
   this->setScale(0);
 
-  this->setPosition3D(Vec3(0, -7.0, -15.0));
+  this->setPosition3D(Vec3(0, -1.5, -3.0));
   this->setRotation3D(Vec3(0.0, 30.0, 0.0));
 
   this->camera->setPosition3D(Vec3(0.0, 0.0, 0.0));
