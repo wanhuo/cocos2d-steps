@@ -380,11 +380,15 @@ void Gift::Element::onCreate()
   this->setPosition3D(Vec3(0.0, 0.0, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
-  this->setScale(0);
+  this->setScale(0.5);
+  this->setVisible(false);
 
   this->runAction(
     Sequence::create(
-      ScaleTo::create(0.4, 1.0),
+      DelayTime::create(0.4),
+      CallFunc::create([=] () {
+        this->setVisible(true);
+      }),
       nullptr
     )
   );
