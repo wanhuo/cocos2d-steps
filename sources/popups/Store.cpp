@@ -278,6 +278,32 @@ Store::Position::Position(Node* parent, Json* parameters)
   this->texture->setCurrentFrameIndex(this->parameters.index - 1);
 
   this->bind(true, false);
+
+  /**
+   *
+   *
+   *
+   */
+  this->state = Storage::get(this->parameters.id);
+
+  if(!this->state)
+  {
+    if(this->parameters.index == 1)
+    {
+      this->state = SELECTED;
+    }
+    else
+    {
+      if(MissionsFactory::getInstance()->getCompletedMissionsCount() < this->parameters.missions)
+      {
+        this->state = MISSIONS;
+      }
+      else
+      {
+        this->state = DIAMONDS;
+      }
+    }
+  }
 }
 
 Store::Position::~Position()
@@ -369,27 +395,6 @@ void Store::Position::onEnter()
   this->setScale(1.0);
 
   this->Node::state->create = true;
-
-  this->state = Storage::get(this->parameters.id);
-
-  if(!this->state)
-  {
-    if(this->parameters.index == 1)
-    {
-      this->state = SELECTED;
-    }
-    else
-    {
-      if(MissionsFactory::getInstance()->getCompletedMissionsCount() < this->parameters.missions)
-      {
-        this->state = MISSIONS;
-      }
-      else
-      {
-        this->state = DIAMONDS;
-      }
-    }
-  }
 
   this->updateState();
 }

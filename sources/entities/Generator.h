@@ -128,6 +128,7 @@ class Generator : public Ref
   int count;
   int index;
   int length;
+  int general;
 
   bool direction;
   bool bonus;

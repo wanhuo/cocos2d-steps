@@ -108,7 +108,6 @@ void TypeMoveUp::start()
           this->plate->runAction(action->clone());
           this->plate->moved = true;
           this->plate->blocked = true;
-          this->decoration->setColor(Color3B::RED);
 
           if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual())
           {
@@ -141,7 +140,6 @@ void TypeMoveUp::start()
               CallFunc::create([=] () {
                 this->plate->moved = false;
                 this->plate->blocked = false;
-          this->decoration->setColor(Color3B::GREEN);
               }),
               nullptr
             )

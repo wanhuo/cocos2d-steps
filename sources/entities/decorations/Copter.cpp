@@ -59,12 +59,12 @@ void Copter::onCreate()
   this->runAction(
     RepeatForever::create(
       Sequence::create(
-      CallFunc::create([=] () {
-        Sound->play("decoration-copter", this, [=] () -> float {
-          return this->getParent()->getPosition3D().distance(Application->environment->character->getPosition3D());
-        }, Game::SOUND_DISTANCE);
-        this->enable = true;
-      }),
+        CallFunc::create([=] () {
+          this->sound = Sound->play("decoration-copter", this->getParent(), [=] () -> float {
+            return this->getParent()->getPosition3D().distance(Application->environment->character->getPosition3D());
+          }, Game::SOUND_DISTANCE);
+          this->enable = true;
+        }),
         EaseSineInOut::create(
           RotateBy::create(2.0, Vec3(0, 900, 0))
         ),
@@ -81,6 +81,13 @@ void Copter::onCreate()
 void Copter::onDestroy(bool action)
 {
   Decoration::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  Sound->stop(this->sound);
 }
 
 /**
@@ -106,6 +113,20 @@ Character::Crash Copter::status()
     this->runAction(
       RepeatForever::create(
         RotateBy::create(1.0, Vec3(0, 900, 0))
+      )
+    );
+    this->runAction(
+      RepeatForever::create(
+        Sequence::create(
+          CallFunc::create([=] () {
+            this->sound = Sound->play("decoration-copter", this->getParent(), [=] () -> float {
+              return this->getParent()->getPosition3D().distance(Application->environment->character->getPosition3D());
+            }, Game::SOUND_DISTANCE);
+            this->enable = true;
+          }),
+          DelayTime::create(1.0),
+          nullptr
+        )
       )
     );
 

@@ -39,6 +39,7 @@ class Copter : public Decoration
    *
    */
   private:
+  int sound;
 
   /**
    *

@@ -39,6 +39,12 @@ class TypeBest : public Special
    *
    */
   private:
+  struct Texts {
+    Text* a;
+    Text* b;
+    Text* as;
+    Text* bs;
+  };
 
   /**
    *
@@ -46,6 +52,9 @@ class TypeBest : public Special
    *
    */
   protected:
+  Texts texts;
+
+  Entity3D* plane;
 
   /**
    *
@@ -55,6 +64,11 @@ class TypeBest : public Special
   public:
   TypeBest();
  ~TypeBest();
+
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
+
+  virtual void setPlate(Plate* plate);
 
   TypeBest* deepCopy();
 };

@@ -116,7 +116,7 @@ class Environment : public Background
   Decorations decorations;
   Pickups pickups;
 
-  bool star;
+  bool star = false;
 
   float starTime;
   float starTimeElapsed;

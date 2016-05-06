@@ -332,11 +332,11 @@ void Game::onLose()
   {
     this->changeState(OPEN);
   }
-  else if(Heyzap::available(Config::AD_TYPE_VIDEO) && this->parameters.elapsed.video >= this->parameters.video)
+  /*else if(Heyzap::available(Config::AD_TYPE_VIDEO) && this->parameters.elapsed.video >= this->parameters.video)
   {
     this->parameters.elapsed.video = 0;
     this->changeState(WATCH);
-  }
+  }*/
   else
   {
     this->changeState(FINISH);

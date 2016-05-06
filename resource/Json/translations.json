@@ -105,6 +105,20 @@
         "size": 24
       }
     ],
+    "best-word-a": [
+      {
+        "title": "NEW",
+        "font": "Consolasb",
+        "size": 48
+      }
+    ],
+    "best-word-b": [
+      {
+        "title": "BEST",
+        "font": "Consolasb",
+        "size": 48
+      }
+    ],
     "vote-title": [
       {
         "title": "Please rate us",

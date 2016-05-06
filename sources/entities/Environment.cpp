@@ -241,6 +241,8 @@ void Environment::onMenu()
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;
 
+  this->generator->general = 1;
+
   this->character->reset();
 
   this->ground->reset();

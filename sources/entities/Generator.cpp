@@ -367,6 +367,18 @@ void Generator::createGeneralElement(Plate* plate)
   }
   else
   {
+    bool action = true;
+
+    if(this->general == Application->counter->values.best + 1)
+    {
+      if(Application->counter->values.best > 1)
+      {
+        action = false;
+
+        plate->setType(Plate::BEST);
+      }
+    }
+
     /**
      *
      * Check if plates length is more that save plates count.
@@ -374,11 +386,6 @@ void Generator::createGeneralElement(Plate* plate)
      */
     if(this->index >= this->save)
     {
-      if(this->index == Application->counter->values.best + 1)
-      {
-        plate->setType(Plate::BEST);
-      }
-      else
       {
         /**
          *
@@ -389,7 +396,7 @@ void Generator::createGeneralElement(Plate* plate)
         {
           plate->setType(Plate::FINISH);
         }
-        else
+        else if(action)
         {
           /**
            *
@@ -444,6 +451,11 @@ Plate* Generator::update(bool post)
    */
   if(post)
   {
+    if(!this->bonus)
+    {
+      this->general++;
+    }
+
     this->index++;
 
     this->conditions.s1--;

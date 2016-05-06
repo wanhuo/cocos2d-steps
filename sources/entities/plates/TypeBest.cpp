@@ -31,10 +31,142 @@
 TypeBest::TypeBest()
 : Special("plate-type-best.obj")
 {
+  /*this->plane = new Entity3D(this, true);
+  this->plane->setRotation3D(Vec3(-90.0, 0.0, 0.0));
+  this->plane->setPosition3D(Vec3(0.0, 0.45, 0.0));
+
+  this->texts.a = new Text("best-word-a", this->plane, true);
+  this->texts.b = new Text("best-word-b", this->plane, true);
+
+  this->texts.as = new Text("best-word-a", this->plane, true);
+  this->texts.bs = new Text("best-word-b", this->plane, true);
+
+  this->texts.a->setScale(0.02);
+  this->texts.b->setScale(0.02);
+
+  this->texts.as->setScale(0.02);
+  this->texts.bs->setScale(0.02);
+
+  this->texts.a->setPosition3D(Vec3(-this->texts.b->getWidthScaled(), 0.0, 0.0));
+  this->texts.b->setPosition3D(Vec3(this->texts.b->getWidthScaled(), 0.0, 0.0));
+
+  this->texts.as->setPosition3D(Vec3(-this->texts.bs->getWidthScaled() - 0.4, -0.1, 0.0));
+  this->texts.bs->setPosition3D(Vec3(this->texts.bs->getWidthScaled() - 0.4, -0.1, 0.0));
+
+  this->texts.a->setColor(Color3B::RED);
+  this->texts.b->setColor(Color3B::RED);
+
+  this->texts.as->setColor(Color3B::BLACK);
+  this->texts.bs->setColor(Color3B::BLACK);
+
+  this->texts.as->setGlobalZOrder(-50);
+  this->texts.bs->setGlobalZOrder(-50);
+
+  this->texts.as->setOpacity(30);
+  this->texts.bs->setOpacity(30);*/
 }
 
 TypeBest::~TypeBest()
 {
+}
+
+/**
+ *
+ *
+ *
+ */
+void TypeBest::onCreate()
+{
+  Special::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  /*this->texts.a->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        EaseSineInOut::create(
+          MoveBy::create(0.5, Vec3(-1.0, 0.0, 0.0))
+        ),
+        EaseSineInOut::create(
+          MoveBy::create(0.5, Vec3(1.0, 0.0, 0.0))
+        ),
+        nullptr
+      )
+    )
+  );
+
+  this->texts.b->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        EaseSineInOut::create(
+          MoveBy::create(0.5, Vec3(1.0, 0.0, 0.0))
+        ),
+        EaseSineInOut::create(
+          MoveBy::create(0.5, Vec3(-1.0, 0.0, 0.0))
+        ),
+        nullptr
+      )
+    )
+  );
+
+  this->texts.as->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        EaseSineInOut::create(
+          MoveBy::create(0.5, Vec3(-1.0, 0.0, 0.0))
+        ),
+        EaseSineInOut::create(
+          MoveBy::create(0.5, Vec3(1.0, 0.0, 0.0))
+        ),
+        nullptr
+      )
+    )
+  );
+
+  this->texts.bs->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        EaseSineInOut::create(
+          MoveBy::create(0.5, Vec3(1.0, 0.0, 0.0))
+        ),
+        EaseSineInOut::create(
+          MoveBy::create(0.5, Vec3(-1.0, 0.0, 0.0))
+        ),
+        nullptr
+      )
+    )
+  );*/
+}
+
+void TypeBest::onDestroy(bool action)
+{
+  Special::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+}
+
+/**
+ *
+ *
+ *
+ */
+void TypeBest::setPlate(Plate* plate)
+{
+  Special::setPlate(plate);
+
+  /**
+   *
+   *
+   *
+   */
+  //this->setRotation3D(Vec3(0.0, this->plate->getDirection() ? 270.0 : 0.0, 0.0));
 }
 
 /**

@@ -406,6 +406,11 @@ void Counter::onCount()
     this->values.start += (Application->environment->star ? 2 : 1);
     this->values.current += (Application->environment->star ? 2 : 1);
 
+    if(Application->environment->star)
+    {
+      Application->environment->generator->general++;
+    }
+
     if(this->values.current > this->values.best)
     {
       if(!this->values.newBest && this->values.best > 1)
@@ -463,7 +468,7 @@ void Counter::reset(bool init)
   this->values.newBest = false;
 
   this->values.start = 0;
-  this->values.current = 0;
+  this->values.current = 1;
 
   if(init)
   {

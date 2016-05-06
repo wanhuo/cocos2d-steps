@@ -89,22 +89,22 @@ void Trampoline::onPickup()
       }
     }
 
-      if(i >= count - 1)
-      {
-      }
-      else
-      {
-        element->runAction(
-          Sequence::create(
-            DelayTime::create(time * i),
-            CallFunc::create(CC_CALLBACK_0(Plate::onCount, element)),
-            CallFunc::create(CC_CALLBACK_0(Character::onSound, Application->environment->character, "character-jump")),
-            CallFunc::create(CC_CALLBACK_0(Counter::onCount, Application->counter)),
-            nullptr
-          )
-        );
-      }
+    if(i >= count - 1)
+    {
     }
+    else
+    {
+      this->runAction(
+        Sequence::create(
+          DelayTime::create(time * i),
+          CallFunc::create(CC_CALLBACK_0(Plate::onCount, element)),
+          CallFunc::create(CC_CALLBACK_0(Character::onSound, Application->environment->character, "character-jump")),
+          CallFunc::create(CC_CALLBACK_0(Counter::onCount, Application->counter)),
+          nullptr
+        )
+      );
+    }
+  }
 
   Application->environment->character->setManual(false);
   Application->environment->character->plane->runAction(

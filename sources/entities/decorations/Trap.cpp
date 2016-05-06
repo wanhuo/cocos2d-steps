@@ -97,7 +97,10 @@ void Trap::onCreate()
     RepeatForever::create(
       Sequence::create(
         CallFunc::create([=] () {
-        this->enable = true;
+          Sound->play("decoration-spike", this, [=] () -> float {
+            return this->getParent()->getPosition3D().distance(Application->environment->character->getPosition3D());
+          }, Game::SOUND_DISTANCE);
+          this->enable = true;
         }),
         DelayTime::create(0.45),
         CallFunc::create([=] () {

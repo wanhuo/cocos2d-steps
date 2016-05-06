@@ -4,13 +4,13 @@
 			"id": "items.textures.1",
 			"index": 1,
 			"missions": 0,
-			"diamonds": 200
+			"diamonds": 0
 		},
 		{
 			"id": "items.textures.2",
 			"index": 2,
 			"missions": 0,
-			"diamonds": 200
+			"diamonds": 50
 		},
 		{
 			"id": "items.textures.3",

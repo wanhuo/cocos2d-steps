@@ -667,9 +667,6 @@ bool Plate::conditions(int type)
       conditions->s1 = 2;
       conditions->s2 = 2;
       conditions->s5 = 10;
-
-      Application->environment->generator->length++;
-      Application->environment->generator->length++;
       break;
       case TRAP:
       conditions->s1 = 2;
