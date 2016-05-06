@@ -223,8 +223,7 @@ Plate* Generator::create(bool animated)
 
     if(animated)
     {
-      //plate->prepare();
-      plate->start();
+      plate->prepare();
     }
     else
     {
@@ -375,7 +374,7 @@ void Generator::createGeneralElement(Plate* plate)
      */
     if(this->index >= this->save)
     {
-      if(this->index == Application->counter->values.best)
+      if(this->index == Application->counter->values.best + 1)
       {
         plate->setType(Plate::BEST);
       }

@@ -468,8 +468,11 @@ void Plate::prepare()
 
   for(auto decoration : this->getDecorations())
   {
-    decoration->setPosition3D(Vec3(decoration->getPositionX() + (this->direction ? 10.0 : 0.0), decoration->getPositionY(), decoration->getPositionZ() - (this->direction ? 0.0 : 10.0)));
-    decoration->runAction(action->clone());
+    if(decoration->getParent() == Application->environment->plane)
+    {
+      decoration->setPosition3D(Vec3(decoration->getPositionX() + (this->direction ? 10.0 : 0.0), decoration->getPositionY(), decoration->getPositionZ() - (this->direction ? 0.0 : 10.0)));
+      decoration->runAction(action->clone());
+    }
   }
 }
 
@@ -494,22 +497,25 @@ void Plate::remove(bool complete)
 
   for(auto decoration : this->getDecorations())
   {
-    if(decoration->shadow)
+    if(decoration->getParent() == Application->environment->plane)
     {
-      decoration->shadow->_destroy();
-    }
+      /*if(decoration->shadow)
+      {
+        decoration->shadow->_destroy();
+      }*/
 
-    decoration->runAction(
-      Spawn::create(
-        Sequence::create(
-          EaseSineIn::create(
-            MoveBy::create(0.2, Vec3(this->direction ? -10 : 0, 0, this->direction ? 0 : 10))
+      decoration->runAction(
+        Spawn::create(
+          Sequence::create(
+            EaseSineIn::create(
+              MoveBy::create(0.2, Vec3(this->direction ? -10 : 0, 0, this->direction ? 0 : 10))
+            ),
+            nullptr
           ),
           nullptr
-        ),
-        nullptr
-      )
-    );
+        )
+      );
+    }
   }
 }
 

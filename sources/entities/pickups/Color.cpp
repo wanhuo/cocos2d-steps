@@ -91,6 +91,8 @@ void Color::onPickup()
   Application->environment->character->runAction(
     TintTo::create(0.5, this->getColor())
   );
+
+  Sound->play("pickup-color");
 }
 
 /**

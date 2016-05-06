@@ -49,6 +49,8 @@ Game::Game()
 {
   instance = this;
 
+  Modal::show();
+
   this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(EventListenerAcceleration::create([=] (Acceleration* acceleration, Event* e) {
     this->environment->onAccelerate(acceleration, e);
   }), this);
@@ -99,8 +101,6 @@ Game::Game()
 
   this->s = new BackgroundColor(this, Color4B(255, 255, 255, 0));
   this->s->setCameraMask(8);
-
-  Music->play("music-1");
 }
 
 Game::~Game()
@@ -184,6 +184,16 @@ void Game::onEnter()
   Internal::onStart();
 
   this->changeState(MENU);
+
+  this->runAction(
+    Sequence::create(
+      DelayTime::create(2.0),
+      CallFunc::create([=] () {
+      Music->play("music-1");
+      }),
+      nullptr
+    )
+  );
 }
 
 void Game::onExit()

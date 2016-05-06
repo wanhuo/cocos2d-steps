@@ -79,12 +79,14 @@ Counter::Counter(Node* parent)
   );
 
   this->texts.name = new Text("name", this, true);
+  this->texts.stage = new Text("stage", this, true);
   this->texts.score = new Text("counter-score", this->holder, true);
   this->texts.coins = new Text("counter-coins", this, true);
   this->texts.best = new Text("counter-best", this, true);
   this->texts.bonus = new Text("counter-bonus", this->bonusBackground, true);
 
   this->texts.name->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -10), 0);
+  this->texts.stage->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
   this->texts.score->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
   this->texts.best->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
   this->texts.coins->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
@@ -92,6 +94,7 @@ Counter::Counter(Node* parent)
   this->texts.best->setPosition(Application->getCenter().x, Application->getHeight() - 300);
 
   this->holder->setOpacity(0);
+  this->texts.stage->setOpacity(0);
   this->texts.best->setOpacity(0);
 
   this->setCameraMask(4);
@@ -107,6 +110,7 @@ Counter::Counter(Node* parent)
   this->texts.score->setGlobalZOrder(100);
   this->texts.best->setGlobalZOrder(100);
   this->texts.coins->setGlobalZOrder(100);
+  this->texts.stage->setGlobalZOrder(100);
 }
 
 Counter::~Counter()
@@ -133,12 +137,39 @@ void Counter::onMenu()
   this->texts.best->runAction(
     FadeTo::create(0.2, 0)
   );
+
+  this->texts.stage->runAction(
+    FadeTo::create(0.2, 0)
+  );
 }
 
 void Counter::onGame()
 {
+  this->texts.stage->setOpacity(0);
+  this->bonusBackground->setOpacity(0);
+
   if(!Application->environment->generator->bonus)
   {
+    this->texts.stage->setText("stage");
+    this->texts.stage->data(Application->environment->level);
+
+    this->texts.stage->setPosition(Application->getCenter().x, Application->getHeight() - 370);
+
+    this->runAction(
+      Sequence::create(
+        CallFunc::create([=] () {
+          this->texts.stage->runAction(
+            Sequence::create(
+              DelayTime::create(1.0),
+              FadeOut::create(0.2),
+              nullptr
+            )
+          );
+        }),
+        nullptr
+      )
+    );
+
     this->bonusBackground->stopAllActions();
     this->bonusBackground->runAction(
       Spawn::create(
@@ -153,7 +184,15 @@ void Counter::onGame()
         nullptr
       )
     );
+
+    this->holder->runAction(
+      FadeTo::create(0.2, 255)
+    );
   }
+
+  this->texts.stage->runAction(
+    FadeTo::create(0.2, 255)
+  );
 
   this->update();
 
@@ -166,47 +205,39 @@ void Counter::onFinish()
 {
   if(Application->state != Game::FINISH)
   {
-    if(Application->environment->generator->bonus)
+    this->bonusBackground->stopAllActions();
+    this->bonusBackground->setOpacity(0);
+    this->holder->stopAllActions();
+    this->holder->setOpacity(0);
+    this->texts.stage->stopAllActions();
+    this->texts.stage->setOpacity(0);
+
+    this->onStarFinish();
+
+    if(!Application->environment->generator->bonus)
     {
-      this->bonusBackground->stopAllActions();
-      this->bonusBackground->runAction(
-        Spawn::create(
-          DelayTime::create(0.5),
-          FadeTo::create(0.2, 255),
-          Sequence::create(
-            DelayTime::create(0.5),
-            CallFunc::create([=] () {
-              this->bonusBackground->setVisible(true);
-            }),
-            MoveTo::create(0.2, Vec2(0, -80)),
-            nullptr
-          ),
-          nullptr
-        )
-      );
+      this->onGame();
     }
     else
     {
-      this->bonusBackground->stopAllActions();
-      this->bonusBackground->runAction(
-        Spawn::create(
-          FadeTo::create(0.2, 0),
-          Sequence::create(
-            MoveTo::create(0.2, Vec2(0, 0)),
-            CallFunc::create([=] () {
-              this->bonusBackground->setVisible(false);
-            }),
-            nullptr
-          ),
-          nullptr
-        )
-      );
+      this->texts.stage->setText("stage-bonus");
+      this->texts.stage->setPosition(Application->getCenter().x, Application->getHeight() - 200);
     }
+
+    this->texts.stage->runAction(
+      FadeTo::create(0.2, 255)
+    );
   }
 }
 
 void Counter::onLose()
 {
+  this->stopAllActions();
+
+  this->texts.stage->runAction(
+    FadeOut::create(0.2)
+  );
+
   this->bonusBackground->stopAllActions();
   this->bonusBackground->runAction(
     Spawn::create(
@@ -370,27 +401,24 @@ void Counter::onStarUpdate()
  */
 void Counter::onCount()
 {
-  if(this->values.current < 1) {
-    this->holder->runAction(
-      FadeTo::create(0.2, 255)
-    );
-  }
-
-  this->values.start += (Application->environment->star ? 2 : 1);
-  this->values.current += (Application->environment->star ? 2 : 1);
-
-  if(this->values.current > this->values.best)
+  if(!Application->environment->generator->bonus)
   {
-    if(!this->values.newBest && this->values.best > 1)
+    this->values.start += (Application->environment->star ? 2 : 1);
+    this->values.current += (Application->environment->star ? 2 : 1);
+
+    if(this->values.current > this->values.best)
     {
-      Sound->play("best");
+      if(!this->values.newBest && this->values.best > 1)
+      {
+        Sound->play("best");
+      }
+
+      this->values.best = this->values.current;
+      this->values.newBest = true;
     }
 
-    this->values.best = this->values.current;
-    this->values.newBest = true;
+    this->update();
   }
-
-  this->update();
 }
 
 void Counter::onCoins()
@@ -407,6 +435,15 @@ void Counter::onCoins()
  */
 void Counter::onBest()
 {
+  this->texts.stage->setText("stage");
+  this->texts.stage->data(Application->environment->level);
+
+ this->texts.stage->setPosition(Application->getCenter().x, Application->getHeight() - 370);
+
+  this->texts.stage->runAction(
+    FadeTo::create(0.2, 255)
+  );
+
   this->texts.best->runAction(
     FadeTo::create(0.2, 255)
   );

@@ -75,6 +75,8 @@ void Character::reset()
   this->plane->setPosition3D(Vec3(0.0, 0.0, 0.0));
   this->plane->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
+  this->plane->setScale(1.0);
+
   this->plane->stopAllActions();
 
   this->plane->runAction(
@@ -120,6 +122,8 @@ void Character::reset()
 
   this->plates.current = nullptr;
   this->plates.previous = nullptr;
+
+  this->setScale(1.0);
 
   this->setPosition3D(Vec3(0.0, 1.3, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
@@ -209,8 +213,6 @@ void Character::onTurn(bool action, bool set)
 
       if(this->turns < STATE_COPTER_TURNS)
       {
-        Application->counter->onCount();  
-
         this->onSound();
 
         return;
@@ -744,13 +746,10 @@ void Character::onCrash(Crash crash)
     case CATCH:
     this->runAction(
       Spawn::create(
-        MoveTo::create(0.1, Vec3(this->getPositionX(), 0.9, this->getPositionZ())),
-        RotateGlobalBy::create(0.3, Vec3((this->plates.current->getDirection() ? 0 : 20), 0, (this->plates.current->getDirection() ? 20 : 0))),
         Sequence::create(
-          EaseSineOut::create(
-            MoveBy::create(0.5, Vec3(0, -1, 0))
+          EaseSineIn::create(
+            MoveBy::create(0.2, Vec3(this->plates.current->getDirection() ? -10 : 0, 0, this->plates.current->getDirection() ? 0 : 10))
           ),
-          DelayTime::create(1.0),
           CallFunc::create([=] () {
             this->_destroy();
             Application->changeState(Game::LOSE);

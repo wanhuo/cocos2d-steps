@@ -80,7 +80,7 @@ void Special::onDestroy(bool action)
  */
 vector<Decoration*> &Special::getDecorations()
 {
-  return this->decorations;
+  return this->Special::decorations;
 }
 
 /**

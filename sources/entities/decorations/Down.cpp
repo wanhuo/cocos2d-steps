@@ -31,6 +31,9 @@
 Down::Down()
 : Decoration("plate-down.obj")
 {
+  this->shadow = new Shadow("plate-shadow.obj");
+  this->setScheduleUpdate(true);
+
   this->removable = false;
 }
 

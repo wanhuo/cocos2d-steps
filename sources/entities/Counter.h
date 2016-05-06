@@ -41,6 +41,7 @@ class Counter : public Background
   private:
   struct Texts {
     Text* name;
+    Text* stage;
     Text* score;
     Text* coins;
     Text* best;
