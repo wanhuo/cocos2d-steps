@@ -579,6 +579,6 @@ void Store::Position::onPurchase()
   }
   else
   {
-    Sound->play("character-hit");
+    Sound->play("fail-purchase");
   }
 }

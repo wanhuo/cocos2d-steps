@@ -380,7 +380,14 @@ void Gift::Element::onCreate()
   this->setPosition3D(Vec3(0.0, 0.0, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
-  this->setScale(0.5);
+  this->setScale(0);
+
+  this->runAction(
+    Sequence::create(
+      ScaleTo::create(0.4, 1.0),
+      nullptr
+    )
+  );
 
   this->diamond->runAction(
     RepeatForever::create(
