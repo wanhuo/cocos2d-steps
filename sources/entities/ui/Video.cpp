@@ -117,11 +117,9 @@ void Video::onTouch(cocos2d::Touch* touch, Event* e)
    *
    *
    */
-  this->_destroy(); // REMOVE IT
-  Watch::getInstance()->background->setOpacity(0);
-
   Heyzap::show(Config::AD_TYPE_VIDEO, [=] (bool state) {
     Application->parameters.elapsed.ad = 0;
+    Application->counter->add(30);
 
     this->_destroy();
     Watch::getInstance()->background->setOpacity(0);

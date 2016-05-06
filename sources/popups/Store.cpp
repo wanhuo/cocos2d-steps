@@ -205,7 +205,10 @@ int Store::nextTexture(bool action)
   {
     if(p->state == Position::DIAMONDS)
     {
-      positions.push_back(p);
+       if(Application->counter->values.coins >= p->parameters.diamonds)
+       {
+        positions.push_back(p);
+      }
     }
   }
 
@@ -362,6 +365,9 @@ void Store::Position::onEnter()
    *
    *
    */
+  this->stopAllActions();
+  this->setScale(1.0);
+
   this->Node::state->create = true;
 
   this->state = Storage::get(this->parameters.id);
@@ -484,19 +490,7 @@ void Store::Position::onTouch(cocos2d::Touch* touch, Event* e)
     this->onPurchase();
     break;
     case UNLOCKED:
-    this->onSelect();
-    break;
-    case SELECTED:
-    break;
-  }
-
-  switch(this->state)
-  {
-    case MISSIONS:
-    break;
-    case DIAMONDS:
-    break;
-    case UNLOCKED:
+    this->onSelect(true);
     break;
     case SELECTED:
     break;
@@ -508,7 +502,7 @@ void Store::Position::onTouch(cocos2d::Touch* touch, Event* e)
  *
  *
  */
-void Store::Position::onSelect()
+void Store::Position::onSelect(bool sound)
 {
   for(auto position : Store::getInstance()->positions)
   {
@@ -533,16 +527,26 @@ void Store::Position::onSelect()
     )
   );
 
+  if(this->state == DIAMONDS)
+  {
+    Application->counter->remove(this->parameters.diamonds);
+  }
+
   this->setState(SELECTED);
 
   Storage::set("store.texture.selected", this->parameters.index);
 
   Application->environment->updateData();
+
+  if(sound)
+  {
+    Sound->play("select");
+  }
 }
 
 void Store::Position::onPurchase()
 {
-  if(true)
+  if(Application->counter->values.coins >= this->parameters.diamonds)
   {
     this->runAction(
       Sequence::create(
@@ -552,11 +556,11 @@ void Store::Position::onPurchase()
         }),
         Repeat::create(
           Sequence::create(
-            ScaleTo::create(0.05, 0.9),
-            ScaleTo::create(0.05, 1.1),
+            ScaleTo::create(0.05, 0.95),
+            ScaleTo::create(0.05, 1.05),
             nullptr
           ),
-          12
+          6
         ),
         ScaleTo::create(0.05, 1.0),
         CallFunc::create([=] () {
@@ -570,8 +574,11 @@ void Store::Position::onPurchase()
         nullptr
       )
     );
+
+    Sound->play("open");
   }
   else
   {
+    Sound->play("character-hit");
   }
 }

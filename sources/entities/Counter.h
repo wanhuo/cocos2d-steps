@@ -47,6 +47,11 @@ class Counter : public Background
     Text* bonus;
   };
 
+  struct Count {
+    int add = 0;
+    int remove = 0;
+  };
+
   /**
    *
    *
@@ -54,6 +59,7 @@ class Counter : public Background
    */
   protected:
   Texts texts;
+  Count count;
 
   BackgroundColor* holder;
   CameraEntity3D* icon;
@@ -64,11 +70,11 @@ class Counter : public Background
   ProgressTimer* starAction;
 
   struct Values {
+    bool newBest = false;
+
     int current = 0;
     int best = 0;
-
     int start = 0;
-
     int coins = 0;
   };
 
@@ -103,8 +109,11 @@ class Counter : public Background
   virtual void onBest();
   virtual void onRegular();
 
-  virtual void reset();
+  virtual void reset(bool init = false);
   virtual void save();
+
+  virtual void add(int count);
+  virtual void remove(int count);
 
   virtual void update();
 };

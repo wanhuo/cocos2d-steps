@@ -101,7 +101,7 @@ Counter::Counter(Node* parent)
   this->texts.score->setPosition(0, 0);
   this->texts.bonus->setPosition(this->bonusBackground->getWidth() / 2, this->bonusBackground->getHeight() / 2 - 12);
 
-  this->reset();
+  this->reset(true);
 
   this->icon->setGlobalZOrder(100);
   this->texts.score->setGlobalZOrder(100);
@@ -381,7 +381,13 @@ void Counter::onCount()
 
   if(this->values.current > this->values.best)
   {
+    if(!this->values.newBest && this->values.best > 1)
+    {
+      Sound->play("best");
+    }
+
     this->values.best = this->values.current;
+    this->values.newBest = true;
   }
 
   this->update();
@@ -415,12 +421,18 @@ void Counter::onRegular()
  *
  *
  */
-void Counter::reset()
+void Counter::reset(bool init)
 {
+  this->values.newBest = false;
+
   this->values.start = 0;
   this->values.current = 0;
-  this->values.best = Storage::get("application.score.best");
-  this->values.coins = Storage::get("application.coins");
+
+  if(init)
+  {
+    this->values.best = Storage::get("application.score.best");
+    this->values.coins = Storage::get("application.coins");
+  }
 }
 
 void Counter::save()
@@ -428,6 +440,11 @@ void Counter::save()
   if(Application->environment->generator->bonus)
   {
     Storage::set("generator.bonus.skip." + to_string(Application->environment->level), max(Storage::get("generator.bonus.skip." + to_string(Application->environment->level)), Application->environment->character->plates.current->getIndex()));
+  }
+
+  if(this->values.newBest)
+  {
+    Sound->play("best");
   }
 
   Storage::set("application.score.best", this->values.best);
@@ -445,15 +462,58 @@ void Counter::save()
  *
  *
  */
+void Counter::add(int count)
+{
+  this->values.coins += count;
+  this->count.add += count;
+
+  this->runAction(
+    Repeat::create(
+      Sequence::create(
+        CallFunc::create([=] () {
+          this->count.add--;
+
+          this->update();
+        }),
+        DelayTime::create(0.01),
+        nullptr
+      ),
+      count
+    )
+  );
+}
+
+void Counter::remove(int count)
+{
+  this->values.coins -= count;
+  this->count.remove += count;
+
+  this->runAction(
+    Repeat::create(
+      Sequence::create(
+        CallFunc::create([=] () {
+          this->count.remove--;
+
+          this->update();
+        }),
+        DelayTime::create(0.01),
+        nullptr
+      ),
+      count
+    )
+  );
+}
+
+/**
+ *
+ *
+ *
+ */
 void Counter::update()
 {
   this->texts.bonus->data(Application->environment->generator->size - (Application->environment->character->plates.current ? Application->environment->character->plates.current->getIndex() : 0));
   this->texts.score->data(this->values.current);
   this->texts.best->data(this->values.best);
-  this->texts.coins->data(this->values.coins);
+  this->texts.coins->data(this->values.coins - this->count.add + this->count.remove);
   this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() / 2 - 60, Application->getHeight() - 60);
-
-  if(this->values.current > this->values.best)
-  {
-  }
 }

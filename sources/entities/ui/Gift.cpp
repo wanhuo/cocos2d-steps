@@ -165,6 +165,8 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
       Sequence::create(
         DelayTime::create(0.65),
         CallFunc::create([=] () {
+        Application->counter->add(50);
+
         Present::getInstance()->time = 1.0;
 
         for(int i = 0; i < 40; i++)
@@ -200,7 +202,7 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
     )
   );
 
-  Sound->play("gift-open");
+  Sound->play("open");
 }
 
 /**

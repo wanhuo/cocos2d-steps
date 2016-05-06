@@ -60,7 +60,7 @@ Finish::Finish()
   this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application));
 
   this->texts.tap = new Text("finish-tap", this);
-  this->texts.tap->setPosition(Application->getCenter().x, 230);
+  this->texts.tap->setPosition(Application->getCenter().x, 330);
 }
 
 Finish::~Finish()
@@ -81,10 +81,10 @@ void Finish::onShow()
   this->buttons.share->_create()->setCameraMask(4);
   this->buttons.leaderboards->_create()->setCameraMask(4);
 
-  this->buttons.like->setPosition(Application->getCenter().x - 250, -100);
-  this->buttons.rate->setPosition(Application->getCenter().x - 85, -100);
-  this->buttons.share->setPosition(Application->getCenter().x + 85, -100);
-  this->buttons.leaderboards->setPosition(Application->getCenter().x + 250, -100);
+  this->buttons.like->setPosition(Application->getCenter().x - 250, 0);
+  this->buttons.rate->setPosition(Application->getCenter().x - 85, 0);
+  this->buttons.share->setPosition(Application->getCenter().x + 85, 0);
+  this->buttons.leaderboards->setPosition(Application->getCenter().x + 250, 0);
 
   this->buttons.leaderboards->runAction(
     Sequence::create(

@@ -60,9 +60,9 @@ void Saw::onCreate()
       Sequence::create(
         DelayTime::create(0.25f),
         CallFunc::create([=] () {
-          Sound->play("decoration-saw", this, [=] () -> float {
+          /*Sound->play("decoration-saw", this, [=] () -> float {
             return this->getParent()->getPosition3D().distance(Application->environment->character->getPosition3D());
-          }, Game::SOUND_DISTANCE);
+          }, Game::SOUND_DISTANCE);*/
           this->enable = true;
         }),
         DelayTime::create(0.5f),
@@ -71,9 +71,9 @@ void Saw::onCreate()
         }),
         DelayTime::create(1.0f),
         CallFunc::create([=] () {
-          Sound->play("decoration-saw", this, [=] () -> float {
+          /*Sound->play("decoration-saw", this, [=] () -> float {
             return this->getParent()->getPosition3D().distance(Application->environment->character->getPosition3D());
-          }, Game::SOUND_DISTANCE);
+          }, Game::SOUND_DISTANCE);*/
 
           this->enable = true;
         }),

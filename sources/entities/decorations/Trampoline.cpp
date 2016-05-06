@@ -89,22 +89,28 @@ void Trampoline::onPickup()
       }
     }
 
-    element->runAction(
-      Sequence::create(
-        DelayTime::create(time * i),
-        CallFunc::create(CC_CALLBACK_0(Plate::onCount, element)),
-        CallFunc::create(CC_CALLBACK_0(Character::onSound, Application->environment->character, "character-jump")),
-        CallFunc::create(CC_CALLBACK_0(Counter::onCount, Application->counter)),
-        nullptr
-      )
-    );
-  }
+      if(i >= count - 1)
+      {
+      }
+      else
+      {
+        element->runAction(
+          Sequence::create(
+            DelayTime::create(time * i),
+            CallFunc::create(CC_CALLBACK_0(Plate::onCount, element)),
+            CallFunc::create(CC_CALLBACK_0(Character::onSound, Application->environment->character, "character-jump")),
+            CallFunc::create(CC_CALLBACK_0(Counter::onCount, Application->counter)),
+            nullptr
+          )
+        );
+      }
+    }
 
   Application->environment->character->setManual(false);
   Application->environment->character->plane->runAction(
     Sequence::create(
-      ScaleTo::create(time * count / 2, 0.8, 1.4, 0.8),
-      ScaleTo::create(time * count / 2, 1.0, 1.0, 1.0),
+      ScaleTo::create(time * (count - 1) / 2, 0.8, 1.4, 0.8),
+      ScaleTo::create(time * (count - 1) / 2, 1.0, 1.0, 1.0),
       nullptr
     )
   );
@@ -114,22 +120,22 @@ void Trampoline::onPickup()
         CallFunc::create([=] () {
            Application->environment->plane->runAction(
             EaseSineIn::create(
-              MoveBy::create(time* count / 2, Vec3(-0.75 * l, 0, 0.75 * r))
+              MoveBy::create(time* (count - 1) / 2, Vec3(-0.75 * l, 0, 0.75 * r))
             )
           );
         }),
         EaseSineIn::create(
-          MoveBy::create(time * count / 2, Vec3(0.75 * l, 1.0 + 0.2 * remove, -0.75 * r))
+          MoveBy::create(time * (count - 1) / 2, Vec3(0.75 * l, 1.0 + 0.2 * remove, -0.75 * r))
         ),
         CallFunc::create([=] () {
           Application->environment->plane->runAction(
             EaseSineIn::create(
-              MoveBy::create(time * count / 2, Vec3(-0.75 * l, 0, 0.75 * r))
+              MoveBy::create(time * (count - 1) / 2, Vec3(-0.75 * l, 0, 0.75 * r))
             )
           );
         }),
         EaseSineIn::create(
-          MoveBy::create(time * count / 2, Vec3(0.75 * l, -1.0 - 0.2 * remove, -0.75 * r))
+          MoveBy::create(time * (count - 1) / 2, Vec3(0.75 * l, -1.0 - 0.2 * remove, -0.75 * r))
         ),
         CallFunc::create([=] () {
           Application->environment->character->setManual(true);
@@ -146,13 +152,13 @@ void Trampoline::onPickup()
         nullptr
       ),
       Sequence::create(
-        RotateGlobalBy::create(time * count, Vec3(0, 90 * count * (probably(50) ? 1 : -1), 0)),
+        RotateGlobalBy::create(time * (count - 1), Vec3(0, 90 * (count - 1) * (probably(50) ? 1 : -1), 0)),
         nullptr
       ),
       nullptr
     )
   );
-  Application->environment->character->runAction(
+  Application->environment->runAction(
     Repeat::create(
       Sequence::create(
         DelayTime::create(time),

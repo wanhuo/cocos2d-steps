@@ -193,5 +193,5 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
     )
   );
 
-  Sound->play("gift-open");
+  Sound->play("open");
 }

@@ -552,7 +552,7 @@ bool Plate::conditions(int type)
     result = true;
     break;
     case ENERGY:
-    result = (size - index) > 20;
+    result = conditions->s8 < 1 && conditions->s9 < 1 && (size - index) > 10;
     break;
     case STAR:
     result = conditions->s4 < 0 && (size - index) > 10;
@@ -583,7 +583,7 @@ bool Plate::conditions(int type)
     result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1 && conditions->s7 < 1;
     break;
     case COPTER:
-    result = conditions->s5 < 1;
+    result = conditions->s2 < 1 && conditions->s5 < 1;
     break;
     case TRAP:
     result = conditions->s2 < 1;
@@ -616,6 +616,7 @@ bool Plate::conditions(int type)
       break;
       case ENERGY:
       conditions->s7 = 20;
+      conditions->s9 = 15;
       break;
       case STAR:
       conditions->s4 = 20;

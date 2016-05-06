@@ -223,7 +223,8 @@ Plate* Generator::create(bool animated)
 
     if(animated)
     {
-      plate->prepare();
+      //plate->prepare();
+      plate->start();
     }
     else
     {
@@ -247,6 +248,7 @@ Plate* Generator::destroy(bool manual)
     {
       if(Application->environment->character->plates.current)
       {
+        vector<Plate*> v;
         int counter = 0;
 
         for(int i = 0; i < Application->environment->plates.normal->count; i++)
@@ -255,11 +257,22 @@ Plate* Generator::destroy(bool manual)
 
           if(element->getIndex() < Application->environment->character->plates.current->getIndex() - 5)
           {
-            Application->environment->runAction(
+            v.push_back(element);
+          }
+}
+          sort(v.begin(), v.end(),
+              []( Plate* a,  Plate* b) -> bool
+          { 
+              return a->getIndex() < b->getIndex();
+          });
+
+          for(auto p : v)
+          {
+            p->runAction(
               Sequence::create(
                 DelayTime::create(counter * 0.1),
                 CallFunc::create([=] () {
-                  element->remove();
+                  p->remove();
                 }),
                 nullptr
               )
@@ -267,7 +280,10 @@ Plate* Generator::destroy(bool manual)
 
             counter++;
           }
-        }
+
+
+
+
       }
     }
     else
@@ -439,6 +455,7 @@ Plate* Generator::update(bool post)
     this->conditions.s6--;
     this->conditions.s7--;
     this->conditions.s8--;
+    this->conditions.s9--;
 
     if(this->direction)
     {
@@ -605,4 +622,5 @@ void Generator::reset()
   this->conditions.s6 = 0;
   this->conditions.s7 = 0;
   this->conditions.s8 = 0;
+  this->conditions.s9 = 0;
 }

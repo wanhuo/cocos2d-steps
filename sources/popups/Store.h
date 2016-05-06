@@ -113,7 +113,7 @@ class Store : public Popup
 
     virtual void onTouch(cocos2d::Touch* touch, Event* e);
 
-    virtual void onSelect();
+    virtual void onSelect(bool sound = false);
     virtual void onPurchase();
   };
 

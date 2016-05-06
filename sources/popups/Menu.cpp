@@ -65,7 +65,7 @@ Menu::Menu()
     });
   }), true);
 
-  this->texts.tap->setPosition(Application->getCenter().x, 230);
+  this->texts.tap->setPosition(Application->getCenter().x, 330);
 
   this->setCascadeOpacityEnabled(true);
 
@@ -89,10 +89,10 @@ void Menu::onShow()
 
   Events::onScreenChanged("Menu");
 
-  this->buttons.store->setPosition(Application->getCenter().x - 250, -100);
-  this->buttons.missions->setPosition(Application->getCenter().x - 85, -100);
-  this->buttons.sound->setPosition(Application->getCenter().x + 85, -100);
-  this->buttons.leaderboards->setPosition(Application->getCenter().x + 250, -100);
+  this->buttons.store->setPosition(Application->getCenter().x - 250, 0);
+  this->buttons.missions->setPosition(Application->getCenter().x - 85, 0);
+  this->buttons.sound->setPosition(Application->getCenter().x + 85, 0);
+  this->buttons.leaderboards->setPosition(Application->getCenter().x + 250, 0);
 }
 
 void Menu::onHide(Callback callback)
