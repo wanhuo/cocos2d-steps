@@ -37,6 +37,8 @@
 #include "Pool.h"
 #include "Spine.h"
 
+#include "Counter.h"
+#include "Handler.h"
 #include "Button3D.h"
 #include "Gift.h"
 #include "Video.h"
@@ -88,8 +90,6 @@
 #include "TypeMoved2.h"
 #include "TypeMoved3.h"
 #include "TypeMoved4.h"
-
-#include "Counter.h"
 
 #include "Menu.h"
 #include "Finish.h"

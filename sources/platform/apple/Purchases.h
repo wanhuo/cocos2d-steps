@@ -28,6 +28,6 @@
 @implementation Purchases
 
 + (NSSet<NSString *> *) getIdentifiers {
-  return [NSSet setWithObjects: @"com.ketchapp.exodus.remove.ads", @"com.ketchapp.exodus.coins.200", @"com.ketchapp.exodus.coins.500", @"com.ketchapp.exodus.coins.1000", nil];
+  return [NSSet setWithObjects: nil];
 }
 @end

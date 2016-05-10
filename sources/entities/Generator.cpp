@@ -467,6 +467,8 @@ Plate* Generator::update(bool post)
     this->conditions.s7--;
     this->conditions.s8--;
     this->conditions.s9--;
+    this->conditions.s10--;
+    this->conditions.s11--;
 
     if(this->direction)
     {
@@ -527,7 +529,7 @@ Plate* Generator::update(bool post)
  *
  *
  */
-void Generator::reset()
+void Generator::reset(bool complete)
 {
   Application->environment->plates.normal->clear(true);
 
@@ -594,6 +596,7 @@ void Generator::reset()
     else
     {
       this->parameters.current = this->parameters.general;
+      this->parameters.current.size = Application->environment->level * 50; // ?
     }
 
     this->index = 0;
@@ -605,6 +608,11 @@ void Generator::reset()
 
     this->direction = true;
     this->bonus = false;
+  }
+
+  if(complete)
+  {
+    this->general= 1;
   }
 
   Application->environment->character->plates.current = nullptr;
@@ -634,4 +642,6 @@ void Generator::reset()
   this->conditions.s7 = 0;
   this->conditions.s8 = 0;
   this->conditions.s9 = 0;
+  this->conditions.s10 = 0;
+  this->conditions.s11 = 0;
 }

@@ -781,7 +781,7 @@ void Character::onCrash(Crash crash)
   {
     case FAIL:
     case SPIKES:
-    Sound->play("character-destroy-spikes");
+    Sound->play("character-destroy-smash");
     break;
     case DOWN:
     Sound->play("character-destroy-smash");

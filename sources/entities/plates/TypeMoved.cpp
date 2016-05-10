@@ -38,6 +38,11 @@ TypeMoved::TypeMoved()
   this->plane = new Decoration("decoration-move-plane.obj", Application->environment->plane);
   this->spikes = new Decoration("decoration-move-spikes.obj", Application->environment->plane);
 
+  this->plane->setTexture(Application->environment->getTextureState1());
+  this->spikes->setTexture(Application->environment->getTextureState1());
+
+  this->spikes->setColor(Color3B(255.0, 60.0, 60.0));
+
   this->plane->unremovable = true;
   this->spikes->unremovable = true;
 

@@ -552,7 +552,7 @@ bool Plate::conditions(int type)
   switch(type)
   {
     case DIAMOND:
-    result = true;
+    result = conditions->s10 < 1;
     break;
     case CRYSTAL:
     result = true;
@@ -567,7 +567,7 @@ bool Plate::conditions(int type)
     result = false;
     break;
     case COLOR:
-    result = true;
+    result = conditions->s11 < 1;
     break;
 
     case SPIKES:
@@ -602,13 +602,13 @@ bool Plate::conditions(int type)
     result = (length - count) > 1 && direction && conditions->s2 < 0 && conditions->s7 < 1;
     break;
     case MOVED2:
-    result = (length - count) > 1 && direction && conditions->s2 < 0 && conditions->s7 < 1;
+    result = (length - count) > 1 && !direction && conditions->s2 < 0 && conditions->s7 < 1;
     break;
     case MOVED3:
     result = (count >= length) && direction && conditions->s2 < 0 && conditions->s7 < 1;
     break;
     case MOVED4:
-    result = (count >= length) && direction && conditions->s2 < 0 && conditions->s7 < 1;
+    result = (count >= length) && !direction && conditions->s2 < 0 && conditions->s7 < 1;
     break;
   }
 
@@ -623,6 +623,7 @@ bool Plate::conditions(int type)
       case ENERGY:
       conditions->s7 = 20;
       conditions->s9 = 15;
+      conditions->s10 = 7;
       break;
       case STAR:
       conditions->s4 = 20;
@@ -630,6 +631,7 @@ bool Plate::conditions(int type)
       case HEART:
       break;
       case COLOR:
+      conditions->s11 = 50;
       break;
 
       case SPIKES:

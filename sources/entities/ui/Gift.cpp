@@ -149,6 +149,9 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
           nullptr
         ), 6),
       Sequence::create(
+        CallFunc::create([=] () {
+        Modal::block();
+        }),
         DelayTime::create(0.5),
         CallFunc::create([=] () {
         this->getChildByName("door")->runAction(
@@ -159,6 +162,10 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
             nullptr
           )
         );
+        }),
+        DelayTime::create(1.0),
+        CallFunc::create([=] () {
+        Modal::hide();
         }),
         nullptr
       ),

@@ -102,11 +102,11 @@ void Trap::onCreate()
           }, Game::SOUND_DISTANCE);
           this->enable = true;
         }),
-        DelayTime::create(0.45),
+        DelayTime::create(0.3),
         CallFunc::create([=] () {
         this->enable = false;
         }),
-        DelayTime::create(1.2),
+        DelayTime::create(1.35),
         nullptr
       )
     )

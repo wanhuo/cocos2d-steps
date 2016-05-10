@@ -101,6 +101,8 @@ class Generator : public Ref
     int s7;
     int s8;
     int s9;
+    int s10;
+    int s11;
   };
 
   Parameters parameters;
@@ -143,7 +145,7 @@ class Generator : public Ref
 
   virtual Plate* update(bool post);
 
-  virtual void reset();
+  virtual void reset(bool complete = false);
 };
 
 #endif

@@ -202,6 +202,7 @@
             <filename>../Graphics/ui/store-position-lock.png</filename>
             <filename>../Graphics/ui/diamond.png</filename>
             <filename>../Graphics/ui/counter-bonus.png</filename>
+            <filename>../Graphics/ui/handler.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -16,19 +16,19 @@
 			"id": "items.textures.3",
 			"index": 3,
 			"missions": 0,
-			"diamonds": 200
+			"diamonds": 50
 		},
 		{
 			"id": "items.textures.4",
 			"index": 4,
 			"missions": 0,
-			"diamonds": 200
+			"diamonds": 50
 		},
 		{
 			"id": "items.textures.5",
 			"index": 5,
-			"missions": 10,
-			"diamonds": 200
+			"missions": 0,
+			"diamonds": 50
 		},
 		{
 			"id": "items.textures.6",

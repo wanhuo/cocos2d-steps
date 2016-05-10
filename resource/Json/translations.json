@@ -119,6 +119,13 @@
         "size": 48
       }
     ],
+    "handler": [
+      {
+        "title": "$1",
+        "font": "Consolasb",
+        "size": 42
+      }
+    ],
     "vote-title": [
       {
         "title": "Please rate us",

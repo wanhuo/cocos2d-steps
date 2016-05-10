@@ -53,9 +53,9 @@ Finish::Finish()
   this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onLike, Application));
   this->buttons.rate = new Button("rate-button.png", 2, 1, this, std::bind(&Game::onRate, Application));
   this->buttons.share = new Button("share-button.png", 2, 1, this, std::bind([=] () {
-    this->hide([=] () {
+    /*this->hide([=] () {
       Store::getInstance()->show();
-    });
+    });*/
   }));
   this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application));
 
@@ -81,6 +81,11 @@ void Finish::onShow()
   this->buttons.share->_create()->setCameraMask(4);
   this->buttons.leaderboards->_create()->setCameraMask(4);
 
+  this->buttons.like->bind(false);
+  this->buttons.rate->bind(false);
+  this->buttons.share->bind(false);
+  this->buttons.leaderboards->bind(false);
+
   this->buttons.like->setPosition(Application->getCenter().x - 250, 0);
   this->buttons.rate->setPosition(Application->getCenter().x - 85, 0);
   this->buttons.share->setPosition(Application->getCenter().x + 85, 0);
@@ -92,6 +97,9 @@ void Finish::onShow()
       EaseSineOut::create(
         MoveBy::create(0.2, Vec2(0, 200))
       ),
+      CallFunc::create([=] () {
+      this->buttons.leaderboards->bind(true);
+      }),
       nullptr
     )
   );
@@ -101,6 +109,9 @@ void Finish::onShow()
       EaseSineOut::create(
         MoveBy::create(0.2, Vec2(0, 200))
       ),
+      CallFunc::create([=] () {
+      this->buttons.share->bind(true);
+      }),
       nullptr
     )
   );
@@ -110,6 +121,9 @@ void Finish::onShow()
       EaseSineOut::create(
         MoveBy::create(0.2, Vec2(0, 200))
       ),
+      CallFunc::create([=] () {
+      this->buttons.rate->bind(true);
+      }),
       nullptr
     )
   );
@@ -119,6 +133,9 @@ void Finish::onShow()
       EaseSineOut::create(
         MoveBy::create(0.2, Vec2(0, 200))
       ),
+      CallFunc::create([=] () {
+      this->buttons.like->bind(true);
+      }),
       nullptr
     )
   );

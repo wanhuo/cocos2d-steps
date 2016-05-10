@@ -65,6 +65,9 @@ Menu::Menu()
     });
   }), true);
 
+  this->buttons.store->addChild(new StoreHandler);
+  this->buttons.missions->addChild(new MissionsHandler);
+
   this->texts.tap->setPosition(Application->getCenter().x, 330);
 
   this->setCascadeOpacityEnabled(true);
@@ -88,6 +91,11 @@ void Menu::onShow()
   this->updateSoundState();
 
   Events::onScreenChanged("Menu");
+
+  this->buttons.store->bind(false);
+  this->buttons.missions->bind(false);
+  this->buttons.sound->bind(false);
+  this->buttons.leaderboards->bind(false);
 
   this->buttons.store->setPosition(Application->getCenter().x - 250, 0);
   this->buttons.missions->setPosition(Application->getCenter().x - 85, 0);
@@ -134,6 +142,9 @@ void Menu::show()
       EaseSineOut::create(
         MoveBy::create(0.2, Vec2(0, 200))
       ),
+      CallFunc::create([=] () {
+      this->buttons.store->bind(true);
+      }),
       nullptr
     )
   );
@@ -143,6 +154,9 @@ void Menu::show()
       EaseSineOut::create(
         MoveBy::create(0.2, Vec2(0, 200))
       ),
+      CallFunc::create([=] () {
+      this->buttons.missions->bind(true);
+      }),
       nullptr
     )
   );
@@ -152,6 +166,9 @@ void Menu::show()
       EaseSineOut::create(
         MoveBy::create(0.2, Vec2(0, 200))
       ),
+      CallFunc::create([=] () {
+      this->buttons.sound->bind(true);
+      }),
       nullptr
     )
   );
@@ -161,6 +178,9 @@ void Menu::show()
       EaseSineOut::create(
         MoveBy::create(0.2, Vec2(0, 200))
       ),
+      CallFunc::create([=] () {
+      this->buttons.leaderboards->bind(true);
+      }),
       nullptr
     )
   );

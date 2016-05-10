@@ -203,7 +203,7 @@ string Environment::getTextureState2()
  */
 void Environment::updateData()
 {
-  this->level = max(1, Storage::get("application.current.level"));
+  this->level = 1;//max(1, Storage::get("application.current.level"));
   this->pack = max(1, Storage::get("store.texture.selected"));
 
   Director::getInstance()->getTextureCache()->addImageAsync(this->getTextureState1(), nullptr);
@@ -212,6 +212,8 @@ void Environment::updateData()
 
 void Environment::updateLevel()
 {
+  Analytics::sendEvent("Application", "application.events.onStagePassed", ("Stage passed: " + patch::to_string(this->level)).c_str());
+
   Storage::set("application.current.level", ++this->level);
 }
 
@@ -241,15 +243,12 @@ void Environment::onMenu()
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;
 
-  this->generator->general = 1;
-
   this->character->reset();
 
   this->ground->reset();
-  this->generator->reset();
+  this->generator->reset(true);
 
   this->setPosition3D(Vec3(0, 0, 0));
-
   this->plane->setPosition3D(Vec3(0, 0, 0));
 }
 

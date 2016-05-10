@@ -20,7 +20,7 @@
             <key>counter-bonus.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1521,215},{55,56}}</string>
+                <string>{{1553,85},{55,56}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>counter-star.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1455,215},{56,56}}</string>
+                <string>{{1535,215},{56,56}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>diamond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1553,85},{15,20}}</string>
+                <string>{{1553,151},{15,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -55,6 +55,19 @@
                 <string>{{0,0},{15,20}}</string>
                 <key>sourceSize</key>
                 <string>{15,20}</string>
+            </dict>
+            <key>handler.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1455,215},{70,70}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{70,70}}</string>
+                <key>sourceSize</key>
+                <string>{70,70}</string>
             </dict>
             <key>leaderboard-button.png</key>
             <dict>
@@ -194,9 +207,9 @@
             <key>realTextureFileName</key>
             <string>ui.png</string>
             <key>size</key>
-            <string>{1600,300}</string>
+            <string>{1613,300}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6a74a73fdc3e7247355d8849a76600e7:74c0042132005a02b8213182fd988ba2:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
+            <string>$TexturePacker:SmartUpdate:b8008bde33ab47f5edd1c74ce22281d0:6f92783699808fa26ea8fbd7f561b582:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
             <key>textureFileName</key>
             <string>ui.png</string>
         </dict>

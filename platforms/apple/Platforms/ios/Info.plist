@@ -53,12 +53,12 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.ketchapp.exodus</string>
+				<string>com.ketchapp.steps</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>422</string>
+	<string>440</string>
 	<key>FacebookAppID</key>
 	<string>0</string>
 	<key>FacebookDisplayName</key>
