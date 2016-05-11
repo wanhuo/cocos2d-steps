@@ -200,7 +200,7 @@ void Plate::setType(int type, bool animated)
   {
     case START:
     {
-      auto decoration = static_cast<Decoration*>(Application->environment->starts->_create());
+      auto decoration = static_cast<Decoration*>(Application->environment->decorations.starts->_create());
       decoration->setPlate(this, animated);
       decoration->setRotation3D(Vec3(0, 0, 0));
 
@@ -235,7 +235,7 @@ void Plate::setType(int type, bool animated)
     break;
     case PRESENTION:
     {
-      auto decoration = static_cast<Decoration*>(Application->environment->presentions->_create());
+      auto decoration = static_cast<Decoration*>(Application->environment->pickups.presentions->_create());
       decoration->setPlate(this, animated);
 
       this->getDecorations().push_back(decoration);
@@ -289,7 +289,7 @@ void Plate::setType(int type, bool animated)
     break;
     case DOWN:
     {
-      auto decoration = static_cast<Decoration*>(Application->environment->downs->_create());
+      auto decoration = static_cast<Decoration*>(Application->environment->decorations.downs->_create());
       decoration->setPlate(this, animated);
 
       this->getDecorations().push_back(decoration);
@@ -297,7 +297,7 @@ void Plate::setType(int type, bool animated)
     break;
     case CUB:
     {
-      auto decoration = static_cast<Decoration*>(Application->environment->cubs->_create());
+      auto decoration = static_cast<Decoration*>(Application->environment->decorations.cubs->_create());
       decoration->setPlate(this, animated);
 
       this->getDecorations().push_back(decoration);
@@ -305,7 +305,7 @@ void Plate::setType(int type, bool animated)
     break;
     case COLOR:
     {
-      auto decoration = static_cast<Decoration*>(Application->environment->colors->_create());
+      auto decoration = static_cast<Decoration*>(Application->environment->pickups.colors->_create());
       decoration->setPlate(this, animated);
 
       this->getDecorations().push_back(decoration);
@@ -313,7 +313,7 @@ void Plate::setType(int type, bool animated)
     break;
     case DIAMOND:
     {
-      auto decoration = static_cast<Decoration*>(Application->environment->diamonds->_create());
+      auto decoration = static_cast<Decoration*>(Application->environment->pickups.diamonds->_create());
       decoration->setPlate(this, animated);
 
       this->getDecorations().push_back(decoration);
@@ -321,7 +321,7 @@ void Plate::setType(int type, bool animated)
     break;
     case CRYSTAL:
     {
-      auto decoration = static_cast<Decoration*>(Application->environment->crystals->_create());
+      auto decoration = static_cast<Decoration*>(Application->environment->pickups.crystals->_create());
       decoration->setPlate(this, animated);
 
       this->getDecorations().push_back(decoration);
@@ -329,7 +329,7 @@ void Plate::setType(int type, bool animated)
     break;
     case ENERGY:
     {
-      auto decoration = static_cast<Decoration*>(Application->environment->energies->_create());
+      auto decoration = static_cast<Decoration*>(Application->environment->pickups.energies->_create());
       decoration->setPlate(this, animated);
 
       this->getDecorations().push_back(decoration);
@@ -337,7 +337,7 @@ void Plate::setType(int type, bool animated)
     break;
     case STAR:
     {
-      auto decoration = static_cast<Decoration*>(Application->environment->stars->_create());
+      auto decoration = static_cast<Decoration*>(Application->environment->pickups.stars->_create());
       decoration->setPlate(this, animated);
 
       this->getDecorations().push_back(decoration);
@@ -345,7 +345,7 @@ void Plate::setType(int type, bool animated)
     break;
     case HEART:
     {
-      auto decoration = static_cast<Decoration*>(Application->environment->hearts->_create());
+      auto decoration = static_cast<Decoration*>(Application->environment->pickups.hearts->_create());
       decoration->setPlate(this, animated);
 
       this->getDecorations().push_back(decoration);

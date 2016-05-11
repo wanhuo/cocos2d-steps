@@ -48,7 +48,7 @@ class Store : public Popup
      *
      *
      */
-    public:
+    public:Entity3D* test;
     enum State {
       NONE,
       MISSIONS,

@@ -28,13 +28,18 @@
  *
  *
  */
-Shadow::Shadow(const char* file)
-: Entity3D(file, Application->environment->plane)
+Shadow::Shadow(const char* file, Node* parent)
+: Entity3D(file, parent)
 {
   this->setColor(Color3B(0, 0, 0));
   this->setOpacity(30);
 
   this->setLightMask(2048);
+}
+
+Shadow::Shadow(const char* file)
+: Shadow(file, Application->environment->plane)
+{
 }
 
 Shadow::~Shadow()

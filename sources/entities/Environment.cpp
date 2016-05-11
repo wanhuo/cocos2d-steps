@@ -63,19 +63,6 @@ void Environment::create()
 
   this->ground = new Ground(this);
 
-  this->starts = new Pool(new Start, this->plane);
-  this->downs = new Pool(new Down, this->plane);
-  this->cubs = new Pool(new Cub, this->plane);
-  this->diamonds = new Pool(new Diamond, this->plane);
-  this->crystals = new Pool(new Crystal, this->plane);
-  this->energies = new Pool(new Energy, this->plane);
-  this->stars = new Pool(new Star, this->plane);
-  this->hearts = new Pool(new Heart, this->plane);
-  this->colors = new Pool(new Color, this->plane);
-  this->presentions = new Pool(new Presention, this->plane);
-
-  this->particles = new Pool(new Particle, this->plane);
-
   this->plates.normal = new Pool(new Plate, this->plane);
   this->plates.finish = new Pool(new TypeFinish, this->plane);
   this->plates.best = new Pool(new TypeBest, this->plane);
@@ -91,6 +78,20 @@ void Environment::create()
   this->plates.moved2 = new Pool(new TypeMoved2, this->plane);
   this->plates.moved3 = new Pool(new TypeMoved3, this->plane);
   this->plates.moved4 = new Pool(new TypeMoved4, this->plane);
+
+  this->pickups.diamonds = new Pool(new Diamond, this->plane);
+  this->pickups.crystals = new Pool(new Crystal, this->plane);
+  this->pickups.energies = new Pool(new Energy, this->plane);
+  this->pickups.stars = new Pool(new Star, this->plane);
+  this->pickups.hearts = new Pool(new Heart, this->plane);
+  this->pickups.colors = new Pool(new Color, this->plane);
+  this->pickups.presentions = new Pool(new Presention, this->plane);
+
+  this->decorations.downs = new Pool(new Down, this->plane);
+  this->decorations.starts = new Pool(new Start, this->plane);
+  this->decorations.cubs = new Pool(new Cub, this->plane);
+
+  this->particles = new Pool(new Particle, this->plane);
 
   this->character = new Character;
   this->generator = new Generator;
@@ -116,8 +117,6 @@ void Environment::create()
   this->characterActionHolder->setScale(0);
   this->characterActionHolder->setOpacity(0);
 
-  this->onGame();
-
   this->light.natural = AmbientLight::create(Color3B(150, 150, 150));
   this->light.environment = DirectionLight::create(Vec3(0.5, -1.0, 0.0), Color3B(120, 120, 120));
   this->light.character = SpotLight::create(Vec3(0, 0, 0), Vec3(0, 0, 0), Color3B(255, 255, 255), 320.0f, 0.0f, 20.0f);
@@ -125,6 +124,26 @@ void Environment::create()
   this->plane->addChild(this->light.environment);
   this->plane->addChild(this->light.natural);
   this->plane->addChild(this->light.character);
+
+  /**
+   *
+   *
+   *
+   */
+  this->store.controller = new EnvironmentStoreBar();
+
+  auto rootJsonData = Json_create(FileUtils::getInstance()->getStringFromFile("store.json").c_str());
+  auto charactersJsonData = Json_getItem(rootJsonData, "characters");
+  auto texturesJsonData = Json_getItem(rootJsonData, "textures");
+
+  for(auto characterJsonData = charactersJsonData->child; characterJsonData; characterJsonData = characterJsonData->next) this->store.characters.elements.push_back(new EnvironmentStoreCharacter(characterJsonData));
+  for(auto textureJsonData = texturesJsonData->child; textureJsonData; textureJsonData = textureJsonData->next) this->store.textures.elements.push_back(new EnvironmentStoreTexture(textureJsonData));
+
+  /**
+   *
+   *
+   *
+   */
 }
 
 void Environment::reset()
@@ -203,7 +222,7 @@ string Environment::getTextureState2()
  */
 void Environment::updateData()
 {
-  this->level = 1;//max(1, Storage::get("application.current.level"));
+  this->stage = max(1, Storage::get("application.current.level"));
   this->pack = max(1, Storage::get("store.texture.selected"));
 
   Director::getInstance()->getTextureCache()->addImageAsync(this->getTextureState1(), nullptr);
@@ -212,9 +231,9 @@ void Environment::updateData()
 
 void Environment::updateLevel()
 {
-  Analytics::sendEvent("Application", "application.events.onStagePassed", ("Stage passed: " + patch::to_string(this->level)).c_str());
+  Analytics::sendEvent("Application", "application.events.onStagePassed", ("Stage passed: " + patch::to_string(this->stage)).c_str());
 
-  Storage::set("application.current.level", ++this->level);
+  Storage::set("application.current.level", ++this->stage);
 }
 
 /**
@@ -268,6 +287,16 @@ void Environment::onLose()
 
 void Environment::onStore()
 {
+  Application->s->runAction(
+    Sequence::create(
+      FadeIn::create(0.2),
+      CallFunc::create([=] () {
+      this->store.controller->_create();
+      }),
+      FadeOut::create(0.2),
+      nullptr
+    )
+  );
 }
 
 void Environment::onMissions()

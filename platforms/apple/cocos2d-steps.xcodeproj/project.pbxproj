@@ -28,6 +28,14 @@
 		78283FB21CE1FE7E0010CAB7 /* Missions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FAD1CE1FE7E0010CAB7 /* Missions.cpp */; };
 		78283FB31CE1FE7E0010CAB7 /* Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FAF1CE1FE7E0010CAB7 /* Store.cpp */; };
 		78283FB41CE1FE7E0010CAB7 /* Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FAF1CE1FE7E0010CAB7 /* Store.cpp */; };
+		78283FBC1CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FB61CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp */; };
+		78283FBD1CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FB61CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp */; };
+		78283FBE1CE21DF00010CAB7 /* EnvironmentStoreItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FB81CE21DF00010CAB7 /* EnvironmentStoreItem.cpp */; };
+		78283FBF1CE21DF00010CAB7 /* EnvironmentStoreItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FB81CE21DF00010CAB7 /* EnvironmentStoreItem.cpp */; };
+		78283FC01CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FBA1CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp */; };
+		78283FC11CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FBA1CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp */; };
+		78283FC41CE248DB0010CAB7 /* EnvironmentStoreBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FC21CE248DB0010CAB7 /* EnvironmentStoreBar.cpp */; };
+		78283FC51CE248DB0010CAB7 /* EnvironmentStoreBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FC21CE248DB0010CAB7 /* EnvironmentStoreBar.cpp */; };
 		7828A0AF1A1F87BA0079492B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7828A0A71A1F87BA0079492B /* main.cpp */; };
 		782C44961BD2495E00A7DD46 /* NSInternal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 782C44951BD2495E00A7DD46 /* NSInternal.mm */; };
 		78382F811C2469B90001B3F1 /* NSVote.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78382F801C2469B90001B3F1 /* NSVote.mm */; };
@@ -295,6 +303,14 @@
 		78283FAE1CE1FE7E0010CAB7 /* Missions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missions.h; sourceTree = "<group>"; };
 		78283FAF1CE1FE7E0010CAB7 /* Store.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Store.cpp; sourceTree = "<group>"; };
 		78283FB01CE1FE7E0010CAB7 /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
+		78283FB61CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentStoreCharacter.cpp; sourceTree = "<group>"; };
+		78283FB71CE21DF00010CAB7 /* EnvironmentStoreCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentStoreCharacter.h; sourceTree = "<group>"; };
+		78283FB81CE21DF00010CAB7 /* EnvironmentStoreItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentStoreItem.cpp; sourceTree = "<group>"; };
+		78283FB91CE21DF00010CAB7 /* EnvironmentStoreItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentStoreItem.h; sourceTree = "<group>"; };
+		78283FBA1CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentStoreTexture.cpp; sourceTree = "<group>"; };
+		78283FBB1CE21DF00010CAB7 /* EnvironmentStoreTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentStoreTexture.h; sourceTree = "<group>"; };
+		78283FC21CE248DB0010CAB7 /* EnvironmentStoreBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentStoreBar.cpp; sourceTree = "<group>"; };
+		78283FC31CE248DB0010CAB7 /* EnvironmentStoreBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentStoreBar.h; sourceTree = "<group>"; };
 		7828A0491A1F86C80079492B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7828A04C1A1F86C80079492B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7828A0881A1F86F40079492B /* prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = prefix.pch; path = "../../../../../cocos2d-apple-library/Platforms/ios/prefix.pch"; sourceTree = "<group>"; };
@@ -638,6 +654,21 @@
 				781B06D81BD37E410072FB24 /* NSBatch.h */,
 			);
 			path = batch;
+			sourceTree = "<group>";
+		};
+		78283FB51CE21DF00010CAB7 /* store */ = {
+			isa = PBXGroup;
+			children = (
+				78283FB81CE21DF00010CAB7 /* EnvironmentStoreItem.cpp */,
+				78283FB91CE21DF00010CAB7 /* EnvironmentStoreItem.h */,
+				78283FB61CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp */,
+				78283FB71CE21DF00010CAB7 /* EnvironmentStoreCharacter.h */,
+				78283FBA1CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp */,
+				78283FBB1CE21DF00010CAB7 /* EnvironmentStoreTexture.h */,
+				78283FC21CE248DB0010CAB7 /* EnvironmentStoreBar.cpp */,
+				78283FC31CE248DB0010CAB7 /* EnvironmentStoreBar.h */,
+			);
+			path = store;
 			sourceTree = "<group>";
 		};
 		7828A0471A1F86C80079492B /* Platforms */ = {
@@ -999,6 +1030,7 @@
 				78B4B6C61CBD751D00F2D8A7 /* pickups */,
 				78B4B6D31CBD751D00F2D8A7 /* plates */,
 				785545FC1CD91D8B00B58ED0 /* ui */,
+				78283FB51CE21DF00010CAB7 /* store */,
 				78CA6D061C20645200BF8416 /* Environment.cpp */,
 				78CA6D071C20645200BF8416 /* Environment.h */,
 				789E71741CD1086200BDCDC7 /* Ground.cpp */,
@@ -1436,14 +1468,17 @@
 				785546041CD91D8B00B58ED0 /* Gift.cpp in Sources */,
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
 				789E71971CD393D800BDCDC7 /* Special.cpp in Sources */,
+				78283FC51CE248DB0010CAB7 /* EnvironmentStoreBar.cpp in Sources */,
 				78B4B6F41CBF911800F2D8A7 /* Saw.cpp in Sources */,
 				78B4B6D71CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
 				78283FB41CE1FE7E0010CAB7 /* Store.cpp in Sources */,
 				78B4B6D91CBD751D00F2D8A7 /* Energy.cpp in Sources */,
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
+				78283FBF1CE21DF00010CAB7 /* EnvironmentStoreItem.cpp in Sources */,
 				785545F61CD8D61E00B58ED0 /* TypeBest.cpp in Sources */,
 				789809621CC51C0A00E3CF28 /* Start.cpp in Sources */,
+				78283FBD1CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp in Sources */,
 				78E33FD21C4A84080021272D /* Particle.cpp in Sources */,
 				789E71931CD3653E00BDCDC7 /* TypeMoveUp.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
@@ -1476,6 +1511,7 @@
 				785545F81CD8D61E00B58ED0 /* TypeBonus.cpp in Sources */,
 				78B4B70B1CBFB51F00F2D8A7 /* Copter.cpp in Sources */,
 				785545FA1CD8D61E00B58ED0 /* TypeFinish.cpp in Sources */,
+				78283FC11CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp in Sources */,
 				785546111CD9CDC900B58ED0 /* Present.cpp in Sources */,
 				78CA6D0D1C20645200BF8416 /* Environment.cpp in Sources */,
 				781DA8811CDB3B95005BEB98 /* Watch.cpp in Sources */,
@@ -1496,6 +1532,7 @@
 				789E71B31CD3DAF800BDCDC7 /* Trap.cpp in Sources */,
 				789E717E1CD3429E00BDCDC7 /* Plate.cpp in Sources */,
 				78E33FD91C4AA4440021272D /* Generator.cpp in Sources */,
+				78283FC41CE248DB0010CAB7 /* EnvironmentStoreBar.cpp in Sources */,
 				789E717A1CD2621500BDCDC7 /* Color.cpp in Sources */,
 				782C44961BD2495E00A7DD46 /* NSInternal.mm in Sources */,
 				785546101CD9CDC900B58ED0 /* Present.cpp in Sources */,
@@ -1510,6 +1547,7 @@
 				78283F991CE0ABC40010CAB7 /* Handler.cpp in Sources */,
 				781DA8801CDB3B95005BEB98 /* Watch.cpp in Sources */,
 				789E719E1CD39A4A00BDCDC7 /* TypeMoved1.cpp in Sources */,
+				78283FBE1CE21DF00010CAB7 /* EnvironmentStoreItem.cpp in Sources */,
 				78283FB31CE1FE7E0010CAB7 /* Store.cpp in Sources */,
 				78B4B70A1CBFB51F00F2D8A7 /* Copter.cpp in Sources */,
 				7823FBC61ABDC0F900447F0A /* NSBatch.mm in Sources */,
@@ -1546,6 +1584,7 @@
 				7857E2B91C65733F0020AAEA /* Menu.cpp in Sources */,
 				789E71A61CD39D0D00BDCDC7 /* TypeMoved2.cpp in Sources */,
 				78B4B6DA1CBD751D00F2D8A7 /* Heart.cpp in Sources */,
+				78283FBC1CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp in Sources */,
 				78283FB11CE1FE7E0010CAB7 /* Missions.cpp in Sources */,
 				786696CA1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				7847CDF51AB184820014E3F3 /* NSAnalytics.mm in Sources */,
@@ -1556,6 +1595,7 @@
 				785545F51CD8D61E00B58ED0 /* TypeBest.cpp in Sources */,
 				78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */,
 				789E71AF1CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */,
+				78283FC01CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp in Sources */,
 				789E71921CD3653E00BDCDC7 /* TypeMoveUp.cpp in Sources */,
 				789E718A1CD34AFB00BDCDC7 /* Trampoline.cpp in Sources */,
 				78B4B6DE1CBD751D00F2D8A7 /* Star.cpp in Sources */,

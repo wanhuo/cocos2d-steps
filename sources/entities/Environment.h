@@ -26,6 +26,8 @@
 
 #include "Game.h"
 
+#include "ui/UIListView.h"
+
 /**
  *
  *
@@ -34,6 +36,11 @@
 class Character;
 class Ground;
 class Decoration;
+
+class EnvironmentStoreItem;
+class EnvironmentStoreCharacter;
+class EnvironmentStoreTexture;
+class EnvironmentStoreBar;
 
 /**
  *
@@ -73,9 +80,30 @@ class Environment : public Background
   };
 
   struct Decorations {
+    Pool* starts;
+    Pool* downs;
+    Pool* cubs;
   };
 
   struct Pickups {
+    Pool* diamonds;
+    Pool* crystals;
+    Pool* energies;
+    Pool* stars;
+    Pool* hearts;
+    Pool* colors;
+    Pool* presentions;
+  };
+
+  struct Element {
+    cocos2d::ui::ListView* plane;
+    vector<EnvironmentStoreItem*> elements;
+  };
+
+  struct Store {
+    EnvironmentStoreBar* controller;
+    Element characters;
+    Element textures;
   };
 
   /**
@@ -107,38 +135,29 @@ class Environment : public Background
   const static int STAR_TIME = 5;
 
   Environment(Node* parent);
- ~Environment();
+~Environment();
 
-  int level;
-  int pack;
-
-  Plates plates;
   Decorations decorations;
   Pickups pickups;
+  Plates plates;
+
+  Store store;
+
+  Light light;
+
+  int stage;
+  int pack;
 
   bool star = false;
 
   float starTime;
   float starTimeElapsed;
 
-  Light light;
-
   Character* character;
 
   Generator* generator = nullptr;
 
   Entity3D* plane;
-
-  Pool* starts;
-  Pool* downs;
-  Pool* cubs;
-  Pool* diamonds;
-  Pool* crystals;
-  Pool* energies;
-  Pool* stars;
-  Pool* hearts;
-  Pool* colors;
-  Pool* presentions;
 
   Pool* particles;
 

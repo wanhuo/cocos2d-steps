@@ -60,16 +60,19 @@ Game::Game()
   SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ui/ui.plist");
 
   this->cameras.d = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
+  this->cameras.c = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
   this->cameras.s = Camera::create();
   this->cameras.e = Camera::create();
 
   this->cameras.d->setCameraFlag(1);
   this->cameras.s->setCameraFlag(4);
   this->cameras.e->setCameraFlag(8);
+  this->cameras.c->setCameraFlag(16);
 
   this->cameras.d->setDepth(1);
   this->cameras.s->setDepth(2);
   this->cameras.e->setDepth(4);
+  this->cameras.c->setDepth(8);
 
   float x = -(this->getWidth() / SCALE_FACTOR) / 2 - 39.35;
   float y = -(this->getHeight() / SCALE_FACTOR) / 2 + 55;
@@ -90,9 +93,13 @@ Game::Game()
   this->cameras.d->setPosition3D(Vec3(x, y, z));
   this->cameras.d->setRotation3D(Vec3(rx, ry, rz));
 
+  this->cameras.c->setPosition3D(Vec3(0, 0, 2));
+  this->cameras.c->setRotation3D(Vec3(0, 0, 0));
+
   this->addChild(this->cameras.d);
   this->addChild(this->cameras.s);
   this->addChild(this->cameras.e);
+  this->addChild(this->cameras.c);
 
   this->environment = new Environment(this);
   this->environment->create();
@@ -354,16 +361,12 @@ void Game::onStore()
 {
   this->counter->onStore();
   this->environment->onStore();
-
-  Store::getInstance()->show();
 }
 
 void Game::onMissions()
 {
   this->counter->onMissions();
   this->environment->onMissions();
-
-  Missions::getInstance()->show();
 }
 
 void Game::onPresent()

@@ -105,6 +105,20 @@
         "size": 24
       }
     ],
+    "store-characters": [
+      {
+        "title": "Characters",
+        "font": "Consolasb",
+        "size": 36
+      }
+    ],
+    "store-textures": [
+      {
+        "title": "Textures",
+        "font": "Consolasb",
+        "size": 36
+      }
+    ],
     "best-word-a": [
       {
         "title": "NEW",

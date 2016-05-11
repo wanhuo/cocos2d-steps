@@ -1,4 +1,60 @@
 {
+	"characters": [
+		{
+			"id": "items.characters.1",
+			"index": 1,
+			"missions": 0,
+			"diamonds": 0
+		},
+		{
+			"id": "items.characters.2",
+			"index": 2,
+			"missions": 0,
+			"diamonds": 0
+		},
+		{
+			"id": "items.characters.3",
+			"index": 3,
+			"missions": 0,
+			"diamonds": 0
+		},
+		{
+			"id": "items.characters.4",
+			"index": 4,
+			"missions": 0,
+			"diamonds": 0
+		},
+		{
+			"id": "items.characters.5",
+			"index": 5,
+			"missions": 0,
+			"diamonds": 0
+		},
+		{
+			"id": "items.characters.6",
+			"index": 6,
+			"missions": 0,
+			"diamonds": 0
+		},
+		{
+			"id": "items.characters.7",
+			"index": 7,
+			"missions": 0,
+			"diamonds": 0
+		},
+		{
+			"id": "items.characters.8",
+			"index": 8,
+			"missions": 0,
+			"diamonds": 0
+		},
+		{
+			"id": "items.characters.9",
+			"index": 9,
+			"missions": 0,
+			"diamonds": 0
+		}
+	],
 	"textures": [
 		{
 			"id": "items.textures.1",

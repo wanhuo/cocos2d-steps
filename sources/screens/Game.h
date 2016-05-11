@@ -99,6 +99,11 @@
 #include "Watch.h"
 #include "Missions.h"
 
+#include "EnvironmentStoreItem.h"
+#include "EnvironmentStoreCharacter.h"
+#include "EnvironmentStoreTexture.h"
+#include "EnvironmentStoreBar.h"
+
 #include "RotateGlobalBy.h"
 #include "Shake.h"
 
@@ -128,6 +133,7 @@ class Game : public Screen
     Camera* d;
     Camera* s;
     Camera* e;
+    Camera* c;
   };
   
   struct Elapsed {

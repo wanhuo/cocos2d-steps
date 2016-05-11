@@ -56,7 +56,7 @@ void Ground::reset()
 {
   this->texture->setTexture("textures/" + to_string(Application->environment->pack) + "/ground-texture.png");
   this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
-  this->texture->getTexture()->setAliasTexParameters();
+  this->texture->getTexture()->setAliasTexParameters();this->update(0);
 }
 
 /**
@@ -68,6 +68,9 @@ void Ground::update(float time)
 {
   auto x = -Application->environment->plane->getPositionX() / this->texture->getScale();
   auto z = -Application->environment->plane->getPositionZ() / this->texture->getScale();
+
+  x += Application->state == Game::STORE ? 0.75 : 0.0;
+  z += 0.0;
 
   this->texture->setTextureRect(Rect(x, z, 50, 50));
 }

@@ -90,12 +90,10 @@ void Menu::onShow()
 
   this->updateSoundState();
 
-  Events::onScreenChanged("Menu");
-
-  this->buttons.store->bind(false);
-  this->buttons.missions->bind(false);
-  this->buttons.sound->bind(false);
-  this->buttons.leaderboards->bind(false);
+  this->buttons.store->setOpacity(0);
+  this->buttons.missions->setOpacity(0);
+  this->buttons.sound->setOpacity(0);
+  this->buttons.leaderboards->setOpacity(0);
 
   this->buttons.store->setPosition(Application->getCenter().x - 250, 0);
   this->buttons.missions->setPosition(Application->getCenter().x - 85, 0);
@@ -137,50 +135,81 @@ void Menu::show()
   this->setOpacity(255);
 
   this->buttons.store->runAction(
-    Sequence::create(
-      DelayTime::create(0),
-      EaseSineOut::create(
-        MoveBy::create(0.2, Vec2(0, 200))
+    Spawn::create(
+      Sequence::create(
+        DelayTime::create(0),
+        EaseSineOut::create(
+          FadeIn::create(0.2)
+        ),
+        nullptr
       ),
-      CallFunc::create([=] () {
-      this->buttons.store->bind(true);
-      }),
+      Sequence::create(
+        DelayTime::create(0),
+        EaseSineOut::create(
+          MoveBy::create(0.2, Vec2(0, 200))
+        ),
+        nullptr
+      ),
       nullptr
     )
   );
+
   this->buttons.missions->runAction(
-    Sequence::create(
-      DelayTime::create(0.1),
-      EaseSineOut::create(
-        MoveBy::create(0.2, Vec2(0, 200))
+    Spawn::create(
+      Sequence::create(
+        DelayTime::create(0.05),
+        EaseSineOut::create(
+          FadeIn::create(0.2)
+        ),
+        nullptr
       ),
-      CallFunc::create([=] () {
-      this->buttons.missions->bind(true);
-      }),
+      Sequence::create(
+        DelayTime::create(0.05),
+        EaseSineOut::create(
+          MoveBy::create(0.2, Vec2(0, 200))
+        ),
+        nullptr
+      ),
       nullptr
     )
   );
+
   this->buttons.sound->runAction(
-    Sequence::create(
-      DelayTime::create(0.2),
-      EaseSineOut::create(
-        MoveBy::create(0.2, Vec2(0, 200))
+    Spawn::create(
+      Sequence::create(
+        DelayTime::create(0.1),
+        EaseSineOut::create(
+          FadeIn::create(0.2)
+        ),
+        nullptr
       ),
-      CallFunc::create([=] () {
-      this->buttons.sound->bind(true);
-      }),
+      Sequence::create(
+        DelayTime::create(0.1),
+        EaseSineOut::create(
+          MoveBy::create(0.2, Vec2(0, 200))
+        ),
+        nullptr
+      ),
       nullptr
     )
   );
+
   this->buttons.leaderboards->runAction(
-    Sequence::create(
-      DelayTime::create(0.3),
-      EaseSineOut::create(
-        MoveBy::create(0.2, Vec2(0, 200))
+    Spawn::create(
+      Sequence::create(
+        DelayTime::create(0.15),
+        EaseSineOut::create(
+          FadeIn::create(0.2)
+        ),
+        nullptr
       ),
-      CallFunc::create([=] () {
-      this->buttons.leaderboards->bind(true);
-      }),
+      Sequence::create(
+        DelayTime::create(0.15),
+        EaseSineOut::create(
+          MoveBy::create(0.2, Vec2(0, 200))
+        ),
+        nullptr
+      ),
       nullptr
     )
   );
@@ -209,7 +238,93 @@ void Menu::show()
 
 void Menu::hide(Callback callback)
 {
-  Popup::hide(callback);
+  this->buttons.store->runAction(
+    Spawn::create(
+      Sequence::create(
+        DelayTime::create(0),
+        EaseSineOut::create(
+          FadeOut::create(0.2)
+        ),
+        nullptr
+      ),
+      Sequence::create(
+        DelayTime::create(0),
+        EaseSineOut::create(
+          MoveBy::create(0.2, Vec2(0, -200))
+        ),
+        nullptr
+      ),
+      nullptr
+    )
+  );
+
+  this->buttons.missions->runAction(
+    Spawn::create(
+      Sequence::create(
+        DelayTime::create(0.05),
+        EaseSineOut::create(
+          FadeOut::create(0.2)
+        ),
+        nullptr
+      ),
+      Sequence::create(
+        DelayTime::create(0.05),
+        EaseSineOut::create(
+          MoveBy::create(0.2, Vec2(0, -200))
+        ),
+        nullptr
+      ),
+      nullptr
+    )
+  );
+
+  this->buttons.sound->runAction(
+    Spawn::create(
+      Sequence::create(
+        DelayTime::create(0.1),
+        EaseSineOut::create(
+          FadeOut::create(0.2)
+        ),
+        nullptr
+      ),
+      Sequence::create(
+        DelayTime::create(0.1),
+        EaseSineOut::create(
+          MoveBy::create(0.2, Vec2(0, -200))
+        ),
+        nullptr
+      ),
+      nullptr
+    )
+  );
+
+  this->buttons.leaderboards->runAction(
+    Spawn::create(
+      Sequence::create(
+        DelayTime::create(0.15),
+        EaseSineOut::create(
+          FadeOut::create(0.2)
+        ),
+        nullptr
+      ),
+      Sequence::create(
+        DelayTime::create(0.15),
+        EaseSineOut::create(
+          MoveBy::create(0.2, Vec2(0, -200))
+        ),
+        CallFunc::create([=] () {
+        Popup::hide(callback);
+        }),
+        nullptr
+      ),
+      nullptr
+    )
+  );
+
+  this->texts.tap->stopAllActions();
+  this->texts.tap->runAction(
+    FadeOut::create(0.5)
+  );
 }
 
 /**

@@ -70,7 +70,7 @@ Store::Store()
    *
    *
    */
-  auto rootJsonData = Json_create(FileUtils::getInstance()->getStringFromFile("items.json").c_str());
+  auto rootJsonData = Json_create(FileUtils::getInstance()->getStringFromFile("store.json").c_str());
   auto texturesJsonData = Json_getItem(rootJsonData, "textures");
 
   /**
