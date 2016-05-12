@@ -60,6 +60,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
     }
 
     Application->environment->store.characters.elements.at(index)->changePosition(EnvironmentStoreItem::Position::POSITION_UP);
+    Application->environment->parameters.texture = index + 1;
   });
   Application->environment->store.characters.plane->_destroy();
   Application->environment->plane->addChild(Application->environment->store.characters.plane);
@@ -86,10 +87,22 @@ EnvironmentStoreBar::EnvironmentStoreBar()
       }
     }
 
-    Application->environment->store.textures.elements.at(index)->changePosition(EnvironmentStoreItem::Position::POSITION_UP);
+    if(Application->environment->store.textures.elements.at(index)->position == EnvironmentStoreItem::Position::POSITION_NORMAL)
+    {
+      switch(index)
+      {
+        case 0:
+        Application->environment->parameters.texture = Application->environment->store.controller->randomTexture();
+        break;
+        default:
+        Application->environment->parameters.texture = index + 1;
+        break;
+      }
 
-    Application->environment->pack = index + 1;
-    Application->environment->ground->reset();
+      Application->environment->ground->reset();
+    }
+
+    Application->environment->store.textures.elements.at(index)->changePosition(EnvironmentStoreItem::Position::POSITION_UP);
   });
   Application->environment->store.textures.plane->_destroy();
   Application->environment->plane->addChild(Application->environment->store.textures.plane);
@@ -236,6 +249,57 @@ void EnvironmentStoreBar::onChange(int index)
     this->onCreateTextures();
     break;
   }
+}
+
+/**
+ *
+ *
+ *
+ */
+int EnvironmentStoreBar::randomCharacter()
+{
+  vector<EnvironmentStoreItem*> candidates;
+
+  for(auto element : Application->environment->store.characters.elements)
+  {
+    if(element->parameters.index > 1)
+    {
+      if(element->state == EnvironmentStoreItem::STATE_UNLOCKED || element->state == EnvironmentStoreItem::STATE_SELECTED)
+      {
+        candidates.push_back(element);
+      }
+    }
+  }
+
+  if(candidates.size())
+  {
+    return candidates.at(random(0, (int) candidates.size() - 1))->parameters.index;
+  }
+
+  return 0;
+}
+
+int EnvironmentStoreBar::randomTexture()
+{
+  vector<EnvironmentStoreItem*> candidates;
+
+  for(auto element : Application->environment->store.textures.elements)
+  {
+    if(element->parameters.index > 1)
+    {
+      if(element->state == EnvironmentStoreItem::STATE_UNLOCKED || element->state == EnvironmentStoreItem::STATE_SELECTED)
+      {
+        candidates.push_back(element);
+      }
+    }
+  }
+
+  if(candidates.size())
+  {
+    return candidates.at(random(0, (int) candidates.size() - 1))->parameters.index;
+  }
+
+  return 0;
 }
 
 /**

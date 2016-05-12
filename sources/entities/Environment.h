@@ -55,6 +55,13 @@ class Environment : public Background
    *
    */
   private:
+  struct Parameters {
+    int stage;
+
+    int texture;
+    int character;
+  };
+
   struct Light {
     BaseLight* environment;
     BaseLight* natural;
@@ -137,6 +144,8 @@ class Environment : public Background
   Environment(Node* parent);
 ~Environment();
 
+  Parameters parameters;
+
   Decorations decorations;
   Pickups pickups;
   Plates plates;
@@ -144,9 +153,6 @@ class Environment : public Background
   Store store;
 
   Light light;
-
-  int stage;
-  int pack;
 
   bool star = false;
 

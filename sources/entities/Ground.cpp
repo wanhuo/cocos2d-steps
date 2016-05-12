@@ -54,9 +54,11 @@ Ground::~Ground()
  */
 void Ground::reset()
 {
-  this->texture->setTexture("textures/" + to_string(Application->environment->pack) + "/ground-texture.png");
+  this->texture->setTexture("textures/" + to_string(Application->environment->parameters.texture) + "/ground-texture.png");
   this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
-  this->texture->getTexture()->setAliasTexParameters();this->update(0);
+  this->texture->getTexture()->setAliasTexParameters();
+
+  this->update(0);
 }
 
 /**

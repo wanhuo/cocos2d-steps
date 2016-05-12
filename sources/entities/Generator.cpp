@@ -565,7 +565,7 @@ void Generator::reset(bool complete)
     this->direction = true;
     this->bonus = true;
 
-    this->bonusSkip =  Storage::get("generator.bonus.skip." + to_string(Application->environment->stage));
+    this->bonusSkip =  Storage::get("generator.bonus.skip." + to_string(Application->environment->parameters.stage));
   }
 
   /**
@@ -589,14 +589,14 @@ void Generator::reset(bool complete)
      * Get parameters of current level.
      *
      */
-    if(this->levels.size() >= Application->environment->stage)
+    if(this->levels.size() >= Application->environment->parameters.stage)
     {
-      this->parameters.current = this->levels.at(Application->environment->stage - 1);
+      this->parameters.current = this->levels.at(Application->environment->parameters.stage - 1);
     }
     else
     {
       this->parameters.current = this->parameters.general;
-      this->parameters.current.size = Application->environment->stage * 50;
+      this->parameters.current.size = Application->environment->parameters.stage * 50;
     }
 
     this->index = 0;

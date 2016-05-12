@@ -151,7 +151,7 @@ void Counter::onGame()
   if(!Application->environment->generator->bonus)
   {
     this->texts.stage->setText("stage");
-    this->texts.stage->data(Application->environment->stage);
+    this->texts.stage->data(Application->environment->parameters.stage);
 
     this->texts.stage->setPosition(Application->getCenter().x, Application->getHeight() - 370);
 
@@ -444,7 +444,7 @@ void Counter::onCoins()
 void Counter::onBest()
 {
   this->texts.stage->setText("stage");
-  this->texts.stage->data(Application->environment->stage);
+  this->texts.stage->data(Application->environment->parameters.stage);
 
  this->texts.stage->setPosition(Application->getCenter().x, Application->getHeight() - 370);
 
@@ -484,7 +484,7 @@ void Counter::save()
 {
   if(Application->environment->generator->bonus)
   {
-    Storage::set("generator.bonus.skip." + to_string(Application->environment->stage), max(Storage::get("generator.bonus.skip." + to_string(Application->environment->stage)), Application->environment->character->plates.current->getIndex()));
+    Storage::set("generator.bonus.skip." + to_string(Application->environment->parameters.stage), max(Storage::get("generator.bonus.skip." + to_string(Application->environment->parameters.stage)), Application->environment->character->plates.current->getIndex()));
   }
 
   if(this->values.newBest)

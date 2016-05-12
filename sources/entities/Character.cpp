@@ -29,7 +29,7 @@
  *
  */
 Character::Character()
-: Cube("character.obj")
+: Cube("character-" + to_string(Application->environment->parameters.character) + ".obj")
 {
   this->shadow = new Shadow("character-shadow.obj");
   this->shadow->setMaxScale(Vec3(2.5, 2.5, 2.5));

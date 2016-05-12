@@ -161,6 +161,9 @@ class EnvironmentStoreBar : public Background
   virtual void onCreateTextures();
 
   virtual void onChange(int index);
+
+  virtual int randomCharacter();
+  virtual int randomTexture();
 };
 
 #endif

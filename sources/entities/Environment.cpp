@@ -207,12 +207,12 @@ Entity3D* Environment::createParticle(float x, float y, float z)
  */
 string Environment::getTextureState1()
 {
-  return "textures/" + to_string(this->pack) + "/textures-state-1.png";
+  return "textures/" + to_string(this->parameters.texture) + "/textures-state-1.png";
 }
 
 string Environment::getTextureState2()
 {
-  return "textures/" + to_string(this->pack) + "/textures-state-2.png";
+  return "textures/" + to_string(this->parameters.texture) + "/textures-state-2.png";
 }
 
 /**
@@ -222,8 +222,10 @@ string Environment::getTextureState2()
  */
 void Environment::updateData()
 {
-  this->stage = max(1, Storage::get("application.current.level"));
-  this->pack = max(1, Storage::get("store.texture.selected"));
+  this->parameters.stage = max(1, Storage::get("application.current.level"));
+
+  this->parameters.character = max(2, Storage::get("store.character.selected"));
+  this->parameters.texture = max(2, Storage::get("store.texture.selected"));
 
   Director::getInstance()->getTextureCache()->addImageAsync(this->getTextureState1(), nullptr);
   Director::getInstance()->getTextureCache()->addImageAsync(this->getTextureState2(), nullptr);
@@ -231,9 +233,9 @@ void Environment::updateData()
 
 void Environment::updateLevel()
 {
-  Analytics::sendEvent("Application", "application.events.onStagePassed", ("Stage passed: " + patch::to_string(this->stage)).c_str());
+  Analytics::sendEvent("Application", "application.events.onStagePassed", ("Stage passed: " + patch::to_string(this->parameters.stage)).c_str());
 
-  Storage::set("application.current.level", ++this->stage);
+  Storage::set("application.current.level", ++this->parameters.stage);
 }
 
 /**
