@@ -82,9 +82,8 @@ EnvironmentStoreBar::EnvironmentStoreBar()
       }
     }
 
-    if(Application->environment->store.characters.elements.at(index)->position == EnvironmentStoreItem::Position::POSITION_NORMAL)
+    if(Application->environment->store.characters.elements.at(index)->position == EnvironmentStoreItem::Position::POSITION_NORMAL && Application->environment->store.characters.elements.at(index)->state == EnvironmentStoreItem::STATE_UNLOCKED)
     {
-      Application->environment->store.characters.elements.at(index)->changePosition(EnvironmentStoreItem::Position::POSITION_UP);
       Application->environment->parameters.character = index + 1;
       Application->environment->parameters.random.character = index == 0;
 
@@ -99,6 +98,8 @@ EnvironmentStoreBar::EnvironmentStoreBar()
         this->buttons.lock->setVisible(true);
       }
     }
+
+    Application->environment->store.characters.elements.at(index)->changePosition(EnvironmentStoreItem::Position::POSITION_UP);
   });
   Application->environment->store.characters.plane->_destroy();
   Application->environment->plane->addChild(Application->environment->store.characters.plane);

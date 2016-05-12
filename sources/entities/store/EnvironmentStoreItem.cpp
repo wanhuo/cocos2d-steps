@@ -124,6 +124,9 @@ void EnvironmentStoreItem::onEnter()
   this->setPosition3D(this->positions);
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
+  this->lock->setPosition3D(Vec3(0.0, 0.0, 0.75));
+  this->lock->setRotation3D(Vec3(0.0, 0.0, 0.00));
+
   this->position = POSITION_NORMAL;
 
   this->updateState();
@@ -205,14 +208,13 @@ void EnvironmentStoreItem::changePosition(Position position)
       break;
       case POSITION_UP:
       this->stopAllActions();
+      this->lock->stopAllActions();
 
-      this->runAction(
-        MoveTo::create(0.2, this->positions)
-      );
+      this->runAction(MoveTo::create(0.2, this->positions));
+      this->lock->runAction(MoveTo::create(0.2, Vec3(0.0, 0.0, 0.75)));
 
-      this->runAction(
-        RotateTo::create(0.2, Vec3(0.0, 0.0, 0.0))
-      );
+      this->runAction(RotateTo::create(0.2, Vec3(0.0, 0.0, 0.0)));
+      this->lock->runAction(RotateTo::create(0.2, Vec3(0.0, 0.0, 0.0)));
       break;
     }
     break;
@@ -223,11 +225,20 @@ void EnvironmentStoreItem::changePosition(Position position)
       case POSITION_NORMAL:
       Sound->play("touch");
 
-      this->runAction(
-        MoveTo::create(0.2, this->positions + Vec3(0.0, 1.0, 0.0))
-      );
+      this->runAction(MoveTo::create(0.2, this->positions + Vec3(0.0, 1.0, 0.0)));
+      this->lock->runAction(MoveTo::create(0.2, Vec3(0.0, 1.0, 0.75)));
 
       this->runAction(
+        RepeatForever::create(
+          Sequence::create(
+            RotateBy::create(2.0, Vec3(0.0, 360.0, 0.0)),
+            RotateBy::create(0.0, Vec3(0.0, 0.0, 0.0)),
+            nullptr
+          )
+        )
+      );
+
+      this->lock->runAction(
         RepeatForever::create(
           Sequence::create(
             RotateBy::create(2.0, Vec3(0.0, 360.0, 0.0)),

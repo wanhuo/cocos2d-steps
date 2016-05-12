@@ -17,7 +17,8 @@
 			"file": "character-3",
 			"index": 3,
 			"missions": 0,
-			"diamonds": 0
+			"diamonds": 0,
+			"facebook": 1
 		},
 		{
 			"id": "items.characters.4",
