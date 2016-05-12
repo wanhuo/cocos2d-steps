@@ -47,8 +47,8 @@ EnvironmentStoreItem::EnvironmentStoreItem(Json* parameters)
   this->shadow->setMaxScale(Vec3(1.2, 1.0, 1.0));
   this->shadow->setOffset(Vec3(0.15, 0.0, 0.4));
 
-  this->lock = new Entity3D("unlock.obj", false);
-  this->lock->setTexture("video-texture.png");
+  this->lock = new Entity3D("store-unlock.obj", false);
+  this->lock->setTexture("ui/video-texture.png");
 
   this->setScheduleUpdate(true);
 
