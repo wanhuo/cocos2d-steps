@@ -35,11 +35,28 @@
  *
  */
 EnvironmentStoreTexture::EnvironmentStoreTexture(Json* parameters)
-: EnvironmentStoreItem("plate.obj", nullptr, parameters)
+: EnvironmentStoreItem(parameters)
 {
-  this->positions = Vec3(0.0, 0.40, 0.75);
+  switch(this->parameters.index)
+  {
+    default:
+    this->setTexture("textures/" + to_string(this->parameters.index) + "/textures-plate.png");
+    break;
+    case 1:
+    this->setTexture("textures/random.png");
+    break;
+  }
 
-  this->setTexture("textures/" + to_string(Json_getInt(parameters, "index", 0)) + "/textures-state-1.png");
+  switch(this->parameters.index)
+  {
+    default:
+    this->positions = Vec3(0.0, 0.40, 0.75);
+    break;
+    case 1:
+    this->positions = Vec3(0.0, 0.75, 0.75);
+    this->setScale(1.5);
+    break;
+  }
 
   auto plane = cocos2d::ui::Layout::create();
   plane->setContentSize(Size(3.0, 10.0));

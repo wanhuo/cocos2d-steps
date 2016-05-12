@@ -34,8 +34,8 @@
  *
  *
  */
-EnvironmentStoreItem::EnvironmentStoreItem(string file, Node* parent, Json* parameters)
-: Cube(file, parent)
+EnvironmentStoreItem::EnvironmentStoreItem(Json* parameters)
+: Cube(patch::to_string(Json_getString(parameters, "file", "")) + ".obj", nullptr)
 {
   this->parameters.id = Json_getString(parameters, "id", "");
   this->parameters.index = Json_getInt(parameters, "index", 0);
@@ -72,7 +72,11 @@ void EnvironmentStoreItem::onCreate()
 
   if(!this->state)
   {
-    if(this->parameters.index == 1)
+    if(this->parameters.index == 0)
+    {
+      this->state = STATE_UNLOCKED;
+    }
+    else if(this->parameters.index == 1)
     {
       this->state = STATE_SELECTED;
     }
@@ -183,6 +187,8 @@ void EnvironmentStoreItem::changePosition(Position position)
     switch(this->position)
     {
       case POSITION_NORMAL:
+      Sound->play("touch");
+
       this->runAction(
         MoveTo::create(0.2, this->positions + Vec3(0.0, 1.0, 0.0))
       );

@@ -76,7 +76,7 @@ class EnvironmentStoreItem : public Cube
    *
    */
   public:
-  EnvironmentStoreItem(string file, Node* parent, Json* parameters);
+  EnvironmentStoreItem(Json* parameters);
  ~EnvironmentStoreItem();
 
   Vec3 positions;

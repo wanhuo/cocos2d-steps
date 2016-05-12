@@ -35,12 +35,20 @@
  *
  */
 EnvironmentStoreCharacter::EnvironmentStoreCharacter(Json* parameters)
-: EnvironmentStoreItem("character.obj", nullptr, parameters)
+: EnvironmentStoreItem(parameters)
 {
-  this->positions = Vec3(0.0, 0.75, 0.75);
+  switch(this->parameters.index)
+  {
+    default:
+    this->setTexture(Application->environment->getTextureState1());
+    this->setColor(Application->environment->character->getColor());
+    break;
+    case 1:
+    this->setTexture("textures/random.png");
+    break;
+  }
 
-  this->setTexture(Application->environment->getTextureState1());
-  this->setColor(Application->environment->character->getColor());
+  this->positions = Vec3(0.0, 0.75, 0.75);
 
   this->setScale(1.5);
 

@@ -349,7 +349,7 @@ void Environment::finishStar()
 void Environment::updateLight(float time)
 {
   auto x = this->character->getPositionX();
-  auto y = 20.0f;
+  auto y = 200.0f;
   auto z = this->character->getPositionZ();
 
   this->light.character->setPosition3D(Vec3(x, y, z));

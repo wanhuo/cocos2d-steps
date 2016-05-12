@@ -31,7 +31,7 @@
 Ground::Ground(Node* parent)
 : Entity3D(parent, true)
 {
-  this->texture = new Entity("textures/1/ground-texture.png", this, true);
+  this->texture = new Entity("textures/2/ground-texture.png", this, true);
   this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
   this->texture->getTexture()->setAliasTexParameters();
   this->texture->setScale(0.75);
