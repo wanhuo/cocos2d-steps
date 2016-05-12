@@ -6,83 +6,83 @@
 			"index": 1
 		},
 		{
+			"id": "items.characters.1",
+			"file": "character-1",
+			"index": 2
+		},
+		{
 			"id": "items.characters.2",
 			"file": "character-2",
-			"index": 2
+			"index": 3,
+			"missions": 0,
+			"diamonds": 0
 		},
 		{
 			"id": "items.characters.3",
 			"file": "character-3",
-			"index": 3,
+			"index": 4,
 			"missions": 0,
 			"diamonds": 0
 		},
 		{
 			"id": "items.characters.4",
 			"file": "character-4",
-			"index": 4,
+			"index": 5,
 			"missions": 0,
 			"diamonds": 0
 		},
 		{
 			"id": "items.characters.5",
 			"file": "character-5",
-			"index": 5,
+			"index": 6,
 			"missions": 0,
 			"diamonds": 0
 		},
 		{
 			"id": "items.characters.6",
 			"file": "character-6",
-			"index": 6,
+			"index": 7,
 			"missions": 0,
 			"diamonds": 0
 		},
 		{
 			"id": "items.characters.7",
 			"file": "character-7",
-			"index": 7,
+			"index": 8,
 			"missions": 0,
 			"diamonds": 0
 		},
 		{
 			"id": "items.characters.8",
 			"file": "character-8",
-			"index": 8,
+			"index": 9,
 			"missions": 0,
 			"diamonds": 0
 		},
 		{
 			"id": "items.characters.9",
 			"file": "character-9",
-			"index": 9,
+			"index": 10,
 			"missions": 0,
 			"diamonds": 0
 		},
 		{
 			"id": "items.characters.10",
 			"file": "character-10",
-			"index": 10,
+			"index": 11,
 			"missions": 0,
 			"diamonds": 0
 		},
 		{
 			"id": "items.characters.11",
 			"file": "character-11",
-			"index": 11,
+			"index": 12,
 			"missions": 0,
 			"diamonds": 0
 		},
 		{
 			"id": "items.characters.12",
 			"file": "character-12",
-			"index": 12,
-			"missions": 0,
-			"diamonds": 0
-		},
-		{
-			"id": "items.characters.13",
-			"file": "character-13",
 			"index": 13,
 			"missions": 0,
 			"diamonds": 0

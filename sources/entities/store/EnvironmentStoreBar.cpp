@@ -61,6 +61,8 @@ EnvironmentStoreBar::EnvironmentStoreBar()
 
     Application->environment->store.characters.elements.at(index)->changePosition(EnvironmentStoreItem::Position::POSITION_UP);
     Application->environment->parameters.texture = index + 1;
+
+    log("%f", Application->environment->store.characters.plane->getInnerContainer()->getPositionX());
   });
   Application->environment->store.characters.plane->_destroy();
   Application->environment->plane->addChild(Application->environment->store.characters.plane);
@@ -168,7 +170,7 @@ void EnvironmentStoreBar::onCreateCharacters()
   Application->environment->store.characters.plane->getInnerContainer()->setPositionX(20.0);
   Application->environment->store.characters.plane->getInnerContainer()->runAction(
     Sequence::create(
-      MoveTo::create(0.5, Vec3(9.0 - 3.0 * 0, 0.0, 0.0)),
+      MoveTo::create(0.5, Vec3(9.0 - 3.0 * Application->environment->parameters.character, 0.0, 0.0)),
       CallFunc::create([=] () {
       Application->environment->store.characters.plane->ScrollView::_eventCallback(Application->environment->store.characters.plane, cocos2d::ui::ScrollView::EventType::AUTOSCROLL_ENDED);
       }),
@@ -204,7 +206,7 @@ void EnvironmentStoreBar::onCreateTextures()
   Application->environment->store.textures.plane->getInnerContainer()->setPositionX(20.0);
   Application->environment->store.textures.plane->getInnerContainer()->runAction(
     Sequence::create(
-      MoveTo::create(0.5, Vec3(9.0 - 3.0 * 0, 0.0, 0.0)),
+      MoveTo::create(0.5, Vec3(9.0 - 3.0 * Application->environment->parameters.texture, 0.0, 0.0)),
       CallFunc::create([=] () {
       Application->environment->store.textures.plane->ScrollView::_eventCallback(Application->environment->store.textures.plane, cocos2d::ui::ScrollView::EventType::AUTOSCROLL_ENDED);
       }),
