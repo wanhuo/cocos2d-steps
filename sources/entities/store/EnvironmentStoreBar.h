@@ -135,6 +135,7 @@ class EnvironmentStoreBar : public Background
   struct Buttons {
     Button* play;
     Button* lock;
+    Button* facebook;
   };
 
   /**
@@ -166,6 +167,10 @@ class EnvironmentStoreBar : public Background
   virtual void onCreateTextures();
 
   virtual void onChange(int index);
+
+  virtual void onSelect(EnvironmentStoreItem* element);
+  virtual void onSelectCharacter(int index);
+  virtual void onSelectTexture(int index);
 
   virtual int randomCharacter();
   virtual int randomTexture();

@@ -41,6 +41,7 @@ EnvironmentStoreItem::EnvironmentStoreItem(Json* parameters)
   this->parameters.index = Json_getInt(parameters, "index", 0);
   this->parameters.missions = Json_getInt(parameters, "missions", 0);
   this->parameters.diamonds = Json_getInt(parameters, "diamonds", 0);
+  this->parameters.facebook = Json_getInt(parameters, "facebook", 0);
 
   this->shadow = new Shadow("plate-bottom-shadow.obj", nullptr);
   this->shadow->setMinScale(Vec3(1.2, 1.0, 1.0));
@@ -62,13 +63,20 @@ EnvironmentStoreItem::EnvironmentStoreItem(Json* parameters)
     }
     else
     {
-      if(MissionsFactory::getInstance()->getCompletedMissionsCount() < this->parameters.missions)
+      if(this->parameters.facebook)
       {
-        this->state = STATE_MISSIONS;
+        this->state = STATE_FACEBOOK;
       }
       else
       {
-        this->state = STATE_DIAMONDS;
+        if(MissionsFactory::getInstance()->getCompletedMissionsCount() < this->parameters.missions)
+        {
+          this->state = STATE_MISSIONS;
+        }
+        else
+        {
+          this->state = STATE_DIAMONDS;
+        }
       }
     }
   }

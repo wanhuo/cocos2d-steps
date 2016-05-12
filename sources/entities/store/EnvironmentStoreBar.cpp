@@ -51,14 +51,22 @@ EnvironmentStoreBar::EnvironmentStoreBar()
       )
     );
   }), true);
+  this->buttons.facebook = new Button("lock-facebook-button.png", 2, 1, this, std::bind([=] () {
+  }), true);
   this->buttons.lock = new Button("lock-button.png", 2, 1, this, std::bind([=] () {
   }), true);
 
   this->buttons.play->setPosition(0, -700);
   this->buttons.lock->setPosition(0, -700);
+  this->buttons.facebook->setPosition(0, -700);
 
   this->buttons.play->setCameraMask(4);
   this->buttons.lock->setCameraMask(4);
+  this->buttons.facebook->setCameraMask(4);
+
+  this->buttons.play->setVisible(false);
+  this->buttons.lock->setVisible(false);
+  this->buttons.facebook->setVisible(false);
 
   Application->environment->store.characters.plane = cocos2d::ui::ListView::create();
   Application->environment->store.characters.plane->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
@@ -74,32 +82,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
      *
      *
      */
-    for(auto element : Application->environment->store.characters.elements)
-    {
-      if(index != element->parameters.index - 1)
-      {
-        element->changePosition(EnvironmentStoreItem::Position::POSITION_NORMAL);
-      }
-    }
-
-    if(Application->environment->store.characters.elements.at(index)->position == EnvironmentStoreItem::Position::POSITION_NORMAL && Application->environment->store.characters.elements.at(index)->state == EnvironmentStoreItem::STATE_UNLOCKED)
-    {
-      Application->environment->parameters.character = index + 1;
-      Application->environment->parameters.random.character = index == 0;
-
-      if(Application->environment->store.characters.elements.at(index)->state == EnvironmentStoreItem::STATE_UNLOCKED)
-      {
-        this->buttons.play->setVisible(true);
-        this->buttons.lock->setVisible(false);
-      }
-      else
-      {
-        this->buttons.play->setVisible(false);
-        this->buttons.lock->setVisible(true);
-      }
-    }
-
-    Application->environment->store.characters.elements.at(index)->changePosition(EnvironmentStoreItem::Position::POSITION_UP);
+    this->onSelectCharacter(index);
   });
   Application->environment->store.characters.plane->_destroy();
   Application->environment->plane->addChild(Application->environment->store.characters.plane);
@@ -118,41 +101,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
      *
      *
      */
-    for(auto element : Application->environment->store.textures.elements)
-    {
-      if(index != element->parameters.index - 1)
-      {
-        element->changePosition(EnvironmentStoreItem::Position::POSITION_NORMAL);
-      }
-    }
-
-    if(Application->environment->store.textures.elements.at(index)->position == EnvironmentStoreItem::Position::POSITION_NORMAL && Application->environment->store.textures.elements.at(index)->state == EnvironmentStoreItem::STATE_UNLOCKED)
-    {
-      switch(index)
-      {
-        case 0:
-        Application->environment->parameters.texture = Application->environment->store.controller->randomTexture();
-        break;
-        default:
-        Application->environment->parameters.texture = index + 1;
-        break;
-      }
-      Application->environment->parameters.random.texture = index == 0;
-      Application->environment->ground->reset();
-    }
-
-    if(Application->environment->store.textures.elements.at(index)->state == EnvironmentStoreItem::STATE_UNLOCKED)
-    {
-      this->buttons.play->setVisible(true);
-      this->buttons.lock->setVisible(false);
-    }
-    else
-    {
-      this->buttons.play->setVisible(false);
-      this->buttons.lock->setVisible(true);
-    }
-
-    Application->environment->store.textures.elements.at(index)->changePosition(EnvironmentStoreItem::Position::POSITION_UP);
+    this->onSelectTexture(index);
   });
   Application->environment->store.textures.plane->_destroy();
   Application->environment->plane->addChild(Application->environment->store.textures.plane);
@@ -300,6 +249,87 @@ void EnvironmentStoreBar::onChange(int index)
     this->onCreateTextures();
     break;
   }
+}
+
+/**
+ *
+ *
+ *
+ */
+void EnvironmentStoreBar::onSelect(EnvironmentStoreItem* element)
+{
+  this->buttons.play->setVisible(false);
+  this->buttons.lock->setVisible(false);
+  this->buttons.facebook->setVisible(false);
+
+  switch(element->state)
+  {
+    case EnvironmentStoreItem::STATE_UNLOCKED:
+    this->buttons.play->setVisible(true);
+    break;
+    case EnvironmentStoreItem::STATE_MISSIONS:
+    this->buttons.lock->setVisible(true);
+    break;
+    case EnvironmentStoreItem::STATE_DIAMONDS:
+    this->buttons.lock->setVisible(true);
+    break;
+    case EnvironmentStoreItem::STATE_FACEBOOK:
+    this->buttons.facebook->setVisible(true);
+    break;
+  }
+
+  element->changePosition(EnvironmentStoreItem::Position::POSITION_UP);
+}
+
+void EnvironmentStoreBar::onSelectCharacter(int index)
+{
+  auto element = Application->environment->store.characters.elements.at(index);
+
+  for(auto element : Application->environment->store.characters.elements)
+  {
+    if(index != element->parameters.index - 1)
+    {
+      element->changePosition(EnvironmentStoreItem::Position::POSITION_NORMAL);
+    }
+  }
+
+  if(element->position == EnvironmentStoreItem::Position::POSITION_NORMAL && element->state == EnvironmentStoreItem::STATE_UNLOCKED)
+  {
+    Application->environment->parameters.character = index + 1;
+    Application->environment->parameters.random.character = index == 0;
+  }
+
+  this->onSelect(element);
+}
+
+void EnvironmentStoreBar::onSelectTexture(int index)
+{
+  auto element = Application->environment->store.textures.elements.at(index);
+
+  for(auto element : Application->environment->store.textures.elements)
+  {
+    if(index != element->parameters.index - 1)
+    {
+      element->changePosition(EnvironmentStoreItem::Position::POSITION_NORMAL);
+    }
+  }
+
+  if(element->position == EnvironmentStoreItem::Position::POSITION_NORMAL && element->state == EnvironmentStoreItem::STATE_UNLOCKED)
+  {
+    switch(index)
+    {
+      case 0:
+      Application->environment->parameters.texture = Application->environment->store.controller->randomTexture();
+      break;
+      default:
+      Application->environment->parameters.texture = index + 1;
+      break;
+    }
+    Application->environment->parameters.random.texture = index == 0;
+    Application->environment->ground->reset();
+  }
+
+  this->onSelect(element);
 }
 
 /**

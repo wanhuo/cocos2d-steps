@@ -55,15 +55,17 @@ class EnvironmentStoreItem : public Cube
   public:
   struct Parameters {
     const char* id;
+
     int index;
     int missions;
     int diamonds;
+    int facebook;
   };
 
   enum States {
-    STATE_NONE,
     STATE_MISSIONS,
     STATE_DIAMONDS,
+    STATE_FACEBOOK,
     STATE_UNLOCKED
   };
 
