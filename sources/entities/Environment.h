@@ -55,11 +55,18 @@ class Environment : public Background
    *
    */
   private:
+  struct Random {
+    bool texture;
+    bool character;
+  };
+
   struct Parameters {
     int stage;
 
     int texture;
     int character;
+
+    Random random;
   };
 
   struct Light {
@@ -108,7 +115,7 @@ class Environment : public Background
   };
 
   struct Store {
-    EnvironmentStoreBar* controller;
+    EnvironmentStoreBar* controller = nullptr;
     Element characters;
     Element textures;
   };

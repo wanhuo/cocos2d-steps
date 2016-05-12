@@ -24,10 +24,6 @@
 		78283FA01CE1CDA40010CAB7 /* Ketchapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78283F9F1CE1CDA40010CAB7 /* Ketchapp.framework */; };
 		78283FA21CE1D53A0010CAB7 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78283FA11CE1D53A0010CAB7 /* SafariServices.framework */; };
 		78283FA41CE1D5750010CAB7 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78283FA31CE1D5750010CAB7 /* CoreBluetooth.framework */; };
-		78283FB11CE1FE7E0010CAB7 /* Missions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FAD1CE1FE7E0010CAB7 /* Missions.cpp */; };
-		78283FB21CE1FE7E0010CAB7 /* Missions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FAD1CE1FE7E0010CAB7 /* Missions.cpp */; };
-		78283FB31CE1FE7E0010CAB7 /* Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FAF1CE1FE7E0010CAB7 /* Store.cpp */; };
-		78283FB41CE1FE7E0010CAB7 /* Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FAF1CE1FE7E0010CAB7 /* Store.cpp */; };
 		78283FBC1CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FB61CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp */; };
 		78283FBD1CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FB61CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp */; };
 		78283FBE1CE21DF00010CAB7 /* EnvironmentStoreItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FB81CE21DF00010CAB7 /* EnvironmentStoreItem.cpp */; };
@@ -299,10 +295,6 @@
 		78283F9F1CE1CDA40010CAB7 /* Ketchapp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Ketchapp.framework; sourceTree = "<group>"; };
 		78283FA11CE1D53A0010CAB7 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/SafariServices.framework; sourceTree = DEVELOPER_DIR; };
 		78283FA31CE1D5750010CAB7 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
-		78283FAD1CE1FE7E0010CAB7 /* Missions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Missions.cpp; sourceTree = "<group>"; };
-		78283FAE1CE1FE7E0010CAB7 /* Missions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Missions.h; sourceTree = "<group>"; };
-		78283FAF1CE1FE7E0010CAB7 /* Store.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Store.cpp; sourceTree = "<group>"; };
-		78283FB01CE1FE7E0010CAB7 /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
 		78283FB61CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentStoreCharacter.cpp; sourceTree = "<group>"; };
 		78283FB71CE21DF00010CAB7 /* EnvironmentStoreCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentStoreCharacter.h; sourceTree = "<group>"; };
 		78283FB81CE21DF00010CAB7 /* EnvironmentStoreItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentStoreItem.cpp; sourceTree = "<group>"; };
@@ -1059,10 +1051,6 @@
 				7857E2B71C65733F0020AAEA /* Menu.h */,
 				788F17C61CA308B000F4E5D6 /* Finish.cpp */,
 				788F17C71CA308B000F4E5D6 /* Finish.h */,
-				78283FAF1CE1FE7E0010CAB7 /* Store.cpp */,
-				78283FB01CE1FE7E0010CAB7 /* Store.h */,
-				78283FAD1CE1FE7E0010CAB7 /* Missions.cpp */,
-				78283FAE1CE1FE7E0010CAB7 /* Missions.h */,
 				7855460E1CD9CDC900B58ED0 /* Present.cpp */,
 				7855460F1CD9CDC900B58ED0 /* Present.h */,
 				785546181CDA13B600B58ED0 /* Open.cpp */,
@@ -1471,7 +1459,6 @@
 				78283FC51CE248DB0010CAB7 /* EnvironmentStoreBar.cpp in Sources */,
 				78B4B6F41CBF911800F2D8A7 /* Saw.cpp in Sources */,
 				78B4B6D71CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
-				78283FB41CE1FE7E0010CAB7 /* Store.cpp in Sources */,
 				78B4B6D91CBD751D00F2D8A7 /* Energy.cpp in Sources */,
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
@@ -1491,7 +1478,6 @@
 				7855460C1CD91F7E00B58ED0 /* Button3D.cpp in Sources */,
 				78B4B6DF1CBD751D00F2D8A7 /* Star.cpp in Sources */,
 				78B4B6DB1CBD751D00F2D8A7 /* Heart.cpp in Sources */,
-				78283FB21CE1FE7E0010CAB7 /* Missions.cpp in Sources */,
 				7855461B1CDA13B600B58ED0 /* Open.cpp in Sources */,
 				78283F921CE0A8A10010CAB7 /* Decoration.cpp in Sources */,
 				785546061CD91D8B00B58ED0 /* Unlock.cpp in Sources */,
@@ -1548,7 +1534,6 @@
 				781DA8801CDB3B95005BEB98 /* Watch.cpp in Sources */,
 				789E719E1CD39A4A00BDCDC7 /* TypeMoved1.cpp in Sources */,
 				78283FBE1CE21DF00010CAB7 /* EnvironmentStoreItem.cpp in Sources */,
-				78283FB31CE1FE7E0010CAB7 /* Store.cpp in Sources */,
 				78B4B70A1CBFB51F00F2D8A7 /* Copter.cpp in Sources */,
 				7823FBC61ABDC0F900447F0A /* NSBatch.mm in Sources */,
 				7894C01A1BC9245800363FC9 /* Events.cpp in Sources */,
@@ -1585,7 +1570,6 @@
 				789E71A61CD39D0D00BDCDC7 /* TypeMoved2.cpp in Sources */,
 				78B4B6DA1CBD751D00F2D8A7 /* Heart.cpp in Sources */,
 				78283FBC1CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp in Sources */,
-				78283FB11CE1FE7E0010CAB7 /* Missions.cpp in Sources */,
 				786696CA1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				7847CDF51AB184820014E3F3 /* NSAnalytics.mm in Sources */,
 				785546151CD9F97700B58ED0 /* Presention.cpp in Sources */,

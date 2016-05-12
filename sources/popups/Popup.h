@@ -46,8 +46,6 @@ class Popup : public Background
    *
    */
   private:
-  float backgroundPosition = 0.0;
-  float backgroundSpeed = 1.0;
 
   /**
    *
@@ -63,7 +61,6 @@ class Popup : public Background
    *
    */
   public:
-  Popup(const char* textureFilename);
   Popup();
  ~Popup();
 
@@ -74,8 +71,6 @@ class Popup : public Background
   virtual void hide(Callback callback = NULL);
 
   virtual bool containsTouchLocation(cocos2d::Touch* touch);
-
-  virtual void update(float time);
 };
 
 #endif

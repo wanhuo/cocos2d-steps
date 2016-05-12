@@ -45,6 +45,14 @@ class EnvironmentStoreItem : public Cube
    *
    */
   public:
+  Entity3D* lock;
+
+  /**
+   *
+   *
+   *
+   */
+  public:
   struct Parameters {
     const char* id;
     int index;
@@ -56,8 +64,7 @@ class EnvironmentStoreItem : public Cube
     STATE_NONE,
     STATE_MISSIONS,
     STATE_DIAMONDS,
-    STATE_UNLOCKED,
-    STATE_SELECTED
+    STATE_UNLOCKED
   };
 
   enum Position {
@@ -84,13 +91,20 @@ class EnvironmentStoreItem : public Cube
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
+  virtual void onEnter();
+  virtual void onExit();
+
   virtual void onTouchStart(cocos2d::Touch* touch, Event* e);
   virtual void onTouchFinish(cocos2d::Touch* touch, Event* e);
   virtual void onTouchCancelled(cocos2d::Touch* touch, Event* e);
 
   virtual void onTouch(cocos2d::Touch* touch, Event* e);
 
+  virtual void changeState(State state);
   virtual void changePosition(Position position);
+
+  virtual void saveState();
+  virtual void updateState();
 
   virtual void update(float time);
 };

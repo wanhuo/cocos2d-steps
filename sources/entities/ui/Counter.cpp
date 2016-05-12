@@ -499,7 +499,11 @@ void Counter::save()
   Storage::set("character.color.g", Application->environment->character->getColor().g);
   Storage::set("character.color.b", Application->environment->character->getColor().b);
 
-  Analytics::sendEvent("Application", "application.events.onLose", ("User is lost: (" + patch::to_string(this->values.current) + "/" + patch::to_string(this->values.best) + ")").c_str());
+  Storage::set("store.character.selected", Application->environment->parameters.character);
+  Storage::set("store.texture.selected", Application->environment->parameters.texture);
+
+  Storage::set("store.character.random", Application->environment->parameters.random.character);
+  Storage::set("store.texture.random", Application->environment->parameters.random.texture);
 }
 
 /**

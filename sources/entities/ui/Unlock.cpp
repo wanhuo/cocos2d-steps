@@ -132,7 +132,7 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
    *
    *
    */
-  Store::getInstance()->nextTexture(true);
+  //Store::getInstance()->nextTexture(true);
 
   /**
    *

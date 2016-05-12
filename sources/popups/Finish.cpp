@@ -28,7 +28,7 @@
  *
  *
  */
-Finish* Finish::instance;
+Finish* Finish::instance = nullptr;
 
 /**
  *
@@ -48,7 +48,7 @@ Finish* Finish::getInstance()
 Finish::Finish()
 : Popup()
 {
-  instance = this;
+  if(!instance) instance = this;
 
   this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onLike, Application));
   this->buttons.rate = new Button("rate-button.png", 2, 1, this, std::bind(&Game::onRate, Application));

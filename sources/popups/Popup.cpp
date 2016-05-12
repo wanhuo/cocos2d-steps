@@ -34,18 +34,6 @@ Popup::Popup()
   this->bind(true);
 
   this->state->create = true;
-
-  this->setScheduleUpdate(true);
-}
-
-Popup::Popup(const char* textureFilename)
-: Popup()
-{
-  this->background = new Entity(textureFilename, this, true);
-  this->background->setLocalZOrder(-1);
-  this->background->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
-
-  this->background->setPosition(Application->getCenter().x, Application->getCenter().y);
 }
 
 Popup::~Popup()
@@ -59,7 +47,6 @@ Popup::~Popup()
  */
 void Popup::onShow()
 {
-  this->backgroundPosition = 0;
 }
 
 void Popup::onHide(Callback callback)
@@ -98,20 +85,4 @@ void Popup::hide(Callback callback)
 bool Popup::containsTouchLocation(cocos2d::Touch* touch)
 {
   return true;
-}
-
-/**
- *
- *
- *
- */
-void Popup::update(float time)
-{
-  if(this->background)
-  {
-    this->backgroundPosition += this->backgroundSpeed;
-    this->background->setTextureRect(Rect(this->backgroundPosition, this->backgroundPosition, Application->getWidth(), Application->getHeight()));
-
-    // TODO: Check 64-bit proccessors for large number penalty.
-  }
 }

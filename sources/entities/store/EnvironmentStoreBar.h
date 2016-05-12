@@ -132,6 +132,10 @@ class EnvironmentStoreBar : public Background
    *
    */
   private:
+  struct Buttons {
+    Button* play;
+    Button* lock;
+  };
 
   /**
    *
@@ -139,6 +143,7 @@ class EnvironmentStoreBar : public Background
    *
    */
   protected:
+  Buttons buttons;
 
   /**
    *

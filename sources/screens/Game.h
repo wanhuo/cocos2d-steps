@@ -94,10 +94,8 @@
 #include "Menu.h"
 #include "Finish.h"
 #include "Open.h"
-#include "Store.h"
 #include "Present.h"
 #include "Watch.h"
-#include "Missions.h"
 
 #include "EnvironmentStoreItem.h"
 #include "EnvironmentStoreCharacter.h"

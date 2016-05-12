@@ -227,6 +227,15 @@ void Environment::updateData()
   this->parameters.character = max(2, Storage::get("store.character.selected"));
   this->parameters.texture = max(2, Storage::get("store.texture.selected"));
 
+  this->parameters.random.character = Storage::get("store.character.random");
+  this->parameters.random.texture = Storage::get("store.texture.random");
+
+  if(this->store.controller)
+  {
+    if(this->parameters.random.character) this->parameters.character = this->store.controller->randomCharacter();
+    if(this->parameters.random.texture) this->parameters.texture = this->store.controller->randomTexture();
+  }
+
   Director::getInstance()->getTextureCache()->addImageAsync(this->getTextureState1(), nullptr);
   Director::getInstance()->getTextureCache()->addImageAsync(this->getTextureState2(), nullptr);
 }
@@ -257,6 +266,8 @@ void Environment::onTurn(bool action)
  */
 void Environment::onMenu()
 {
+  this->store.controller->_destroy();
+
   this->updateData();
 
   this->finishStar();
@@ -264,7 +275,10 @@ void Environment::onMenu()
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;
 
-  this->character->reset();
+  this->character->_destroy();
+  this->character->release();
+  this->character = new Character;
+  this->character->_create();
 
   this->ground->reset();
   this->generator->reset(true);

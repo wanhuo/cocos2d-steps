@@ -37,6 +37,29 @@
 EnvironmentStoreBar::EnvironmentStoreBar()
 : Background(Application)
 {
+  this->buttons.play = new Button("play-button.png", 2, 1, this, std::bind([=] () {
+    Application->counter->save();
+
+    Application->s->runAction(
+      Sequence::create(
+        FadeIn::create(0.2),
+        CallFunc::create([=] () {
+        Application->changeState(Game::MENU);
+        }),
+        FadeOut::create(0.2),
+        nullptr
+      )
+    );
+  }), true);
+  this->buttons.lock = new Button("lock-button.png", 2, 1, this, std::bind([=] () {
+  }), true);
+
+  this->buttons.play->setPosition(0, -700);
+  this->buttons.lock->setPosition(0, -700);
+
+  this->buttons.play->setCameraMask(4);
+  this->buttons.lock->setCameraMask(4);
+
   Application->environment->store.characters.plane = cocos2d::ui::ListView::create();
   Application->environment->store.characters.plane->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
   Application->environment->store.characters.plane->setBounceEnabled(true);
@@ -59,10 +82,23 @@ EnvironmentStoreBar::EnvironmentStoreBar()
       }
     }
 
-    Application->environment->store.characters.elements.at(index)->changePosition(EnvironmentStoreItem::Position::POSITION_UP);
-    Application->environment->parameters.texture = index + 1;
+    if(Application->environment->store.characters.elements.at(index)->position == EnvironmentStoreItem::Position::POSITION_NORMAL)
+    {
+      Application->environment->store.characters.elements.at(index)->changePosition(EnvironmentStoreItem::Position::POSITION_UP);
+      Application->environment->parameters.character = index + 1;
+      Application->environment->parameters.random.character = index == 0;
 
-    log("%f", Application->environment->store.characters.plane->getInnerContainer()->getPositionX());
+      if(Application->environment->store.characters.elements.at(index)->state == EnvironmentStoreItem::STATE_UNLOCKED)
+      {
+        this->buttons.play->setVisible(true);
+        this->buttons.lock->setVisible(false);
+      }
+      else
+      {
+        this->buttons.play->setVisible(false);
+        this->buttons.lock->setVisible(true);
+      }
+    }
   });
   Application->environment->store.characters.plane->_destroy();
   Application->environment->plane->addChild(Application->environment->store.characters.plane);
@@ -89,7 +125,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
       }
     }
 
-    if(Application->environment->store.textures.elements.at(index)->position == EnvironmentStoreItem::Position::POSITION_NORMAL)
+    if(Application->environment->store.textures.elements.at(index)->position == EnvironmentStoreItem::Position::POSITION_NORMAL && Application->environment->store.textures.elements.at(index)->state == EnvironmentStoreItem::STATE_UNLOCKED)
     {
       switch(index)
       {
@@ -100,8 +136,19 @@ EnvironmentStoreBar::EnvironmentStoreBar()
         Application->environment->parameters.texture = index + 1;
         break;
       }
-
+      Application->environment->parameters.random.texture = index == 0;
       Application->environment->ground->reset();
+    }
+
+    if(Application->environment->store.textures.elements.at(index)->state == EnvironmentStoreItem::STATE_UNLOCKED)
+    {
+      this->buttons.play->setVisible(true);
+      this->buttons.lock->setVisible(false);
+    }
+    else
+    {
+      this->buttons.play->setVisible(false);
+      this->buttons.lock->setVisible(true);
     }
 
     Application->environment->store.textures.elements.at(index)->changePosition(EnvironmentStoreItem::Position::POSITION_UP);
@@ -132,9 +179,6 @@ void EnvironmentStoreBar::onCreate()
 
   this->onChange(0);
 
-  this->characters->_create();
-  this->textures->_create();
-
   Application->environment->character->_destroy();
   Application->environment->plates.normal->clear();
 
@@ -150,8 +194,8 @@ void EnvironmentStoreBar::onDestroy(bool action)
    *
    *
    */
-  this->characters->_destroy();
-  this->textures->_destroy();
+  Application->environment->store.characters.plane->_destroy(action);
+  Application->environment->store.textures.plane->_destroy(action);
 }
 
 /**
@@ -166,11 +210,13 @@ void EnvironmentStoreBar::onCreateCharacters()
   Application->environment->store.characters.plane->_create();
   Application->environment->store.characters.plane->setPosition3D(Vec3(-9.75, -12, 0.0));
 
+  Application->environment->store.characters.plane->stopAutoScroll();
+  Application->environment->store.characters.plane->stopAllActions();
   Application->environment->store.characters.plane->getInnerContainer()->stopAllActions();
   Application->environment->store.characters.plane->getInnerContainer()->setPositionX(20.0);
   Application->environment->store.characters.plane->getInnerContainer()->runAction(
     Sequence::create(
-      MoveTo::create(0.5, Vec3(9.0 - 3.0 * Application->environment->parameters.character, 0.0, 0.0)),
+      MoveTo::create(0.5, Vec3(9.0 - 3.0 * (Application->environment->parameters.random.character ? 0 : Application->environment->parameters.character - 1), 0.0, 0.0)),
       CallFunc::create([=] () {
       Application->environment->store.characters.plane->ScrollView::_eventCallback(Application->environment->store.characters.plane, cocos2d::ui::ScrollView::EventType::AUTOSCROLL_ENDED);
       }),
@@ -202,11 +248,13 @@ void EnvironmentStoreBar::onCreateTextures()
   Application->environment->store.textures.plane->_create();
   Application->environment->store.textures.plane->setPosition3D(Vec3(-9.75, -12, 0.0));
 
+  Application->environment->store.textures.plane->stopAutoScroll();
+  Application->environment->store.textures.plane->stopAllActions();
   Application->environment->store.textures.plane->getInnerContainer()->stopAllActions();
   Application->environment->store.textures.plane->getInnerContainer()->setPositionX(20.0);
   Application->environment->store.textures.plane->getInnerContainer()->runAction(
     Sequence::create(
-      MoveTo::create(0.5, Vec3(9.0 - 3.0 * Application->environment->parameters.texture, 0.0, 0.0)),
+      MoveTo::create(0.5, Vec3(9.0 - 3.0 * (Application->environment->parameters.random.texture ? 0 : Application->environment->parameters.texture - 1), 0.0, 0.0)),
       CallFunc::create([=] () {
       Application->environment->store.textures.plane->ScrollView::_eventCallback(Application->environment->store.textures.plane, cocos2d::ui::ScrollView::EventType::AUTOSCROLL_ENDED);
       }),
@@ -266,7 +314,7 @@ int EnvironmentStoreBar::randomCharacter()
   {
     if(element->parameters.index > 1)
     {
-      if(element->state == EnvironmentStoreItem::STATE_UNLOCKED || element->state == EnvironmentStoreItem::STATE_SELECTED)
+      if(element->state == EnvironmentStoreItem::STATE_UNLOCKED)
       {
         candidates.push_back(element);
       }
@@ -278,7 +326,7 @@ int EnvironmentStoreBar::randomCharacter()
     return candidates.at(random(0, (int) candidates.size() - 1))->parameters.index;
   }
 
-  return 0;
+  return -1;
 }
 
 int EnvironmentStoreBar::randomTexture()
@@ -289,7 +337,7 @@ int EnvironmentStoreBar::randomTexture()
   {
     if(element->parameters.index > 1)
     {
-      if(element->state == EnvironmentStoreItem::STATE_UNLOCKED || element->state == EnvironmentStoreItem::STATE_SELECTED)
+      if(element->state == EnvironmentStoreItem::STATE_UNLOCKED)
       {
         candidates.push_back(element);
       }
@@ -301,7 +349,7 @@ int EnvironmentStoreBar::randomTexture()
     return candidates.at(random(0, (int) candidates.size() - 1))->parameters.index;
   }
 
-  return 0;
+  return -1;
 }
 
 /**
@@ -341,7 +389,7 @@ EnvironmentStoreBar::EnvironmentStoreBarButton::EnvironmentStoreBarButton(Node* 
 
   this->bind(true);
 
-  this->_destroy();
+  this->state->create = true;
 }
 
 EnvironmentStoreBar::EnvironmentStoreBarButton::~EnvironmentStoreBarButton()
@@ -390,7 +438,6 @@ void EnvironmentStoreBar::EnvironmentStoreBarButton::onTouchCancelled(cocos2d::T
  */
 void EnvironmentStoreBar::EnvironmentStoreBarButton::onTouch(cocos2d::Touch* touch, Event* e)
 {
-  if(!Application->environment->store.characters.plane->numberOfRunningActions() && !Application->environment->store.textures.plane->numberOfRunningActions())
   {
     if(Application->environment->store.controller->index != this->index)
     {

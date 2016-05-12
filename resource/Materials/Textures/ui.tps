@@ -203,6 +203,8 @@
             <filename>../Graphics/ui/diamond.png</filename>
             <filename>../Graphics/ui/counter-bonus.png</filename>
             <filename>../Graphics/ui/handler.png</filename>
+            <filename>../Graphics/ui/play-button.png</filename>
+            <filename>../Graphics/ui/lock-button.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

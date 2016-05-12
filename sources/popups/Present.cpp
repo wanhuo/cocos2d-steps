@@ -28,7 +28,7 @@
  *
  *
  */
-Present* Present::instance;
+Present* Present::instance = nullptr;
 
 /**
  *
@@ -48,7 +48,7 @@ Present* Present::getInstance()
 Present::Present()
 : Finish()
 {
-  instance = this;
+  if(!instance) instance = this;
 
   this->background = new BackgroundColor(this, Color4B(0.0, 0.0, 0.0, 200.0));
   this->background->setLocalZOrder(-1);

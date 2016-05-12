@@ -47,7 +47,31 @@ EnvironmentStoreItem::EnvironmentStoreItem(Json* parameters)
   this->shadow->setMaxScale(Vec3(1.2, 1.0, 1.0));
   this->shadow->setOffset(Vec3(0.15, 0.0, 0.4));
 
+  this->lock = new Entity3D("unlock.obj", false);
+  this->lock->setTexture("video-texture.png");
+
   this->setScheduleUpdate(true);
+
+  this->state = Storage::get(this->parameters.id);
+
+  if(!this->state)
+  {
+    if(this->parameters.index <= 2)
+    {
+      this->state = STATE_UNLOCKED;
+    }
+    else
+    {
+      if(MissionsFactory::getInstance()->getCompletedMissionsCount() < this->parameters.missions)
+      {
+        this->state = STATE_MISSIONS;
+      }
+      else
+      {
+        this->state = STATE_DIAMONDS;
+      }
+    }
+  }
 }
 
 EnvironmentStoreItem::~EnvironmentStoreItem()
@@ -68,40 +92,46 @@ void EnvironmentStoreItem::onCreate()
    *
    *
    */
-  this->state = Storage::get(this->parameters.id);
-
-  if(!this->state)
-  {
-    if(this->parameters.index == 0)
-    {
-      this->state = STATE_UNLOCKED;
-    }
-    else if(this->parameters.index == 1)
-    {
-      this->state = STATE_SELECTED;
-    }
-    else
-    {
-      if(MissionsFactory::getInstance()->getCompletedMissionsCount() < this->parameters.missions)
-      {
-        this->state = STATE_MISSIONS;
-      }
-      else
-      {
-        this->state = STATE_DIAMONDS;
-      }
-    }
-  }
-
-  this->setPosition3D(this->positions);
-  this->setRotation3D(Vec3(0.0, 0.0, 0.0));
-
-  this->position = POSITION_NORMAL;
+  this->lock->_create();
 }
 
 void EnvironmentStoreItem::onDestroy(bool action)
 {
   Cube::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  this->lock->_destroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void EnvironmentStoreItem::onEnter()
+{
+  Cube::onEnter();
+
+  /**
+   *
+   *
+   *
+   */
+  this->setPosition3D(this->positions);
+  this->setRotation3D(Vec3(0.0, 0.0, 0.0));
+
+  this->position = POSITION_NORMAL;
+
+  this->updateState();
+}
+
+void EnvironmentStoreItem::onExit()
+{
+  Cube::onExit();
 }
 
 /**
@@ -159,6 +189,10 @@ void EnvironmentStoreItem::onTouch(cocos2d::Touch* touch, Event* e)
  *
  *
  */
+void EnvironmentStoreItem::changeState(State state)
+{
+}
+
 void EnvironmentStoreItem::changePosition(Position position)
 {
   switch(position)
@@ -210,6 +244,41 @@ void EnvironmentStoreItem::changePosition(Position position)
   }
 
   this->position = position;
+}
+
+/**
+ *
+ *
+ *
+ */
+void EnvironmentStoreItem::updateState()
+{
+  switch(this->state)
+  {
+    case STATE_DIAMONDS:
+    case STATE_MISSIONS:
+    this->setVisible(false);
+    this->lock->setVisible(true);
+    break;
+    case STATE_UNLOCKED:
+    this->setVisible(true);
+    this->lock->setVisible(false);
+    break;
+  }
+
+  switch(this->state)
+  {
+    case STATE_DIAMONDS:
+    break;
+    case STATE_MISSIONS:
+    break;
+    case STATE_UNLOCKED:
+    break;
+  }
+}
+
+void EnvironmentStoreItem::saveState()
+{
 }
 
 /**

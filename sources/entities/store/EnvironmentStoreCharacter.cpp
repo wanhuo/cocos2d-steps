@@ -55,6 +55,7 @@ EnvironmentStoreCharacter::EnvironmentStoreCharacter(Json* parameters)
   auto plane = cocos2d::ui::Layout::create();
   plane->setContentSize(Size(3.0, 10.0));
   plane->addChild(this);
+  plane->addChild(this->lock);
   plane->addChild(this->shadow);
 
   Application->environment->store.characters.plane->pushBackCustomItem(plane);
