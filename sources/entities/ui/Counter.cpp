@@ -496,9 +496,9 @@ void Counter::save()
   Storage::set("application.score.best", this->values.best);
   Storage::set("application.coins", this->values.coins);
   Storage::set("character.color", 1);
-  Storage::set("character.color.r", Application->environment->character->getColor().r);
-  Storage::set("character.color.g", Application->environment->character->getColor().g);
-  Storage::set("character.color.b", Application->environment->character->getColor().b);
+  Storage::set("character.color.r", Application->environment->character->color.r);
+  Storage::set("character.color.g", Application->environment->character->color.g);
+  Storage::set("character.color.b", Application->environment->character->color.b);
 
   Storage::set("store.character.selected", Application->environment->parameters.character);
   Storage::set("store.texture.selected", Application->environment->parameters.texture);

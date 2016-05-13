@@ -48,6 +48,17 @@ EnvironmentStoreCharacter::EnvironmentStoreCharacter(Json* parameters)
     break;
   }
 
+  switch(this->parameters.index)
+  {
+    default:
+    this->setColor(Color3B(0.0, 207.0, 255.0));
+    break;
+    case 1:
+    case 3:
+    this->setColor(Color3B(255.0, 255.0, 255.0));
+    break;
+  }
+
   this->positions = Vec3(0.0, 0.75, 0.75);
 
   this->setScale(1.5);

@@ -51,7 +51,6 @@ Character::Character()
   }
 
   this->setTexture(Application->environment->getTextureState1());
-  this->setColor(this->color);
 
   this->setScheduleUpdate(true);
 }
@@ -129,6 +128,16 @@ void Character::reset()
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
   this->stopAllActions();
+
+  switch(Application->environment->parameters.character)
+  {
+    default:
+    this->setColor(this->color);
+    break;
+    case 3:
+    this->setColor(Color3B(255.0, 255.0, 255.0));
+    break;
+  }
 }
 
 /**

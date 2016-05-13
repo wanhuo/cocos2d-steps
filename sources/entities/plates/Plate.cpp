@@ -567,7 +567,7 @@ bool Plate::conditions(int type)
     result = false;
     break;
     case COLOR:
-    result = conditions->s11 < 1;
+    result = conditions->s11 < 1 && Application->environment->parameters.character != 3;
     break;
 
     case SPIKES:
