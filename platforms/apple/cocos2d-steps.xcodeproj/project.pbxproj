@@ -210,6 +210,8 @@
 		78CA6D0B1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
 		78CA6D0D1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
+		78CF5D541CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
+		78CF5D551CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
 		78DEED691B1A911E0093CB64 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DEED531B1A911E0093CB64 /* Default-568h@2x.png */; };
 		78DEED6A1B1A911E0093CB64 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DEED541B1A911E0093CB64 /* Default.png */; };
 		78DEED6B1B1A911E0093CB64 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DEED551B1A911E0093CB64 /* Default@2x.png */; };
@@ -487,6 +489,7 @@
 		78CA6D061C20645200BF8416 /* Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Environment.cpp; sourceTree = "<group>"; };
 		78CA6D071C20645200BF8416 /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		78CA6DC21B56786D00F2525F /* Framework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Framework.xcodeproj; path = ../../../cocos2d/build/Framework.xcodeproj; sourceTree = "<group>"; };
+		78CF5D531CE5E1900039FB70 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ../../resource/Shaders; sourceTree = "<group>"; };
 		78DEED531B1A911E0093CB64 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		78DEED541B1A911E0093CB64 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		78DEED551B1A911E0093CB64 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -594,6 +597,7 @@
 				7894C01C1BC9258B00363FC9 /* Fonts */,
 				7894C01D1BC9258B00363FC9 /* Graphics */,
 				785545EC1CD8CA2F00B58ED0 /* Models */,
+				78CF5D531CE5E1900039FB70 /* Shaders */,
 				7894C01E1BC9258B00363FC9 /* Manifests */,
 				7894C01F1BC9258B00363FC9 /* Music */,
 				7894C0201BC9258B00363FC9 /* Sound */,
@@ -1345,6 +1349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7894C02D1BC925FA00363FC9 /* Json in Resources */,
+				78CF5D551CE5E1900039FB70 /* Shaders in Resources */,
 				781B06811BD26FC70072FB24 /* config.json in Resources */,
 				7894C02A1BC9258B00363FC9 /* Sound in Resources */,
 				785545EE1CD8CA2F00B58ED0 /* Models in Resources */,
@@ -1369,6 +1374,7 @@
 				7843ACAC1C2242AA0011F47C /* vg_close.png in Resources */,
 				7894C0291BC9258B00363FC9 /* Sound in Resources */,
 				7843ACB01C2242AA0011F47C /* vg_privacy.png in Resources */,
+				78CF5D541CE5E1900039FB70 /* Shaders in Resources */,
 				7894C02C1BC925FA00363FC9 /* Json in Resources */,
 				7894C0231BC9258B00363FC9 /* Graphics in Resources */,
 				7843ACAF1C2242AA0011F47C /* vg_mute_on.png in Resources */,
