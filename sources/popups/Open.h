@@ -62,6 +62,9 @@ class Open : public Finish
 
   Unlock* element;
 
+  Text* text;
+  CameraEntity3D* diamond;
+
   virtual void onShow();
   virtual void onHide(Callback callback = NULL);
 

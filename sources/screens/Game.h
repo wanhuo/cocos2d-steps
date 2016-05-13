@@ -38,6 +38,7 @@
 #include "Spine.h"
 
 #include "Counter.h"
+#include "Capture.h"
 #include "Button3D.h"
 #include "Gift.h"
 #include "Video.h"
@@ -211,6 +212,7 @@ class Game : public Screen
   Cameras cameras;
 
   Counter* counter;
+  Capture* capture;
 
   State state = NONE;
 

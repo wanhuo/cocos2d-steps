@@ -212,6 +212,8 @@
 		78CA6D0D1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
 		78CF5D541CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
 		78CF5D551CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
+		78D21BC21CE624B0007B0682 /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D21BC01CE624B0007B0682 /* Capture.cpp */; };
+		78D21BC31CE624B0007B0682 /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D21BC01CE624B0007B0682 /* Capture.cpp */; };
 		78DEED691B1A911E0093CB64 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DEED531B1A911E0093CB64 /* Default-568h@2x.png */; };
 		78DEED6A1B1A911E0093CB64 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DEED541B1A911E0093CB64 /* Default.png */; };
 		78DEED6B1B1A911E0093CB64 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DEED551B1A911E0093CB64 /* Default@2x.png */; };
@@ -490,6 +492,8 @@
 		78CA6D071C20645200BF8416 /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		78CA6DC21B56786D00F2525F /* Framework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Framework.xcodeproj; path = ../../../cocos2d/build/Framework.xcodeproj; sourceTree = "<group>"; };
 		78CF5D531CE5E1900039FB70 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ../../resource/Shaders; sourceTree = "<group>"; };
+		78D21BC01CE624B0007B0682 /* Capture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Capture.cpp; sourceTree = "<group>"; };
+		78D21BC11CE624B0007B0682 /* Capture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Capture.h; sourceTree = "<group>"; };
 		78DEED531B1A911E0093CB64 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		78DEED541B1A911E0093CB64 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		78DEED551B1A911E0093CB64 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -961,6 +965,8 @@
 				785546001CD91D8B00B58ED0 /* Unlock.h */,
 				785546011CD91D8B00B58ED0 /* Video.cpp */,
 				785546021CD91D8B00B58ED0 /* Video.h */,
+				78D21BC01CE624B0007B0682 /* Capture.cpp */,
+				78D21BC11CE624B0007B0682 /* Capture.h */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -1476,6 +1482,7 @@
 				78B4B6F61CBF911800F2D8A7 /* Spikes.cpp in Sources */,
 				789E71871CD343FC00BDCDC7 /* TypeTrampoline.cpp in Sources */,
 				7855460C1CD91F7E00B58ED0 /* Button3D.cpp in Sources */,
+				78D21BC31CE624B0007B0682 /* Capture.cpp in Sources */,
 				78B4B6DF1CBD751D00F2D8A7 /* Star.cpp in Sources */,
 				78B4B6DB1CBD751D00F2D8A7 /* Heart.cpp in Sources */,
 				7855461B1CDA13B600B58ED0 /* Open.cpp in Sources */,
@@ -1539,6 +1546,7 @@
 				7847CDF71AB184820014E3F3 /* main.m in Sources */,
 				7847CDF81AB184820014E3F3 /* NSMedia.mm in Sources */,
 				789809611CC51C0A00E3CF28 /* Start.cpp in Sources */,
+				78D21BC21CE624B0007B0682 /* Capture.cpp in Sources */,
 				7855461A1CDA13B600B58ED0 /* Open.cpp in Sources */,
 				789809651CC53A8B00E3CF28 /* Cub.cpp in Sources */,
 				785546051CD91D8B00B58ED0 /* Unlock.cpp in Sources */,

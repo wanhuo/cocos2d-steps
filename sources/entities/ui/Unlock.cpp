@@ -139,6 +139,14 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
    *
    *
    */
+  Open::getInstance()->text->_destroy();
+  Open::getInstance()->diamond->_destroy();
+
+  /**
+   *
+   *
+   *
+   */
   EnvironmentStoreBar::Element next = Application->environment->store.controller->nextElement();
   EnvironmentStoreItem* element = nullptr;
 

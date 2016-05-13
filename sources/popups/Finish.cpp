@@ -52,11 +52,7 @@ Finish::Finish()
 
   this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onLike, Application));
   this->buttons.rate = new Button("rate-button.png", 2, 1, this, std::bind(&Game::onRate, Application));
-  this->buttons.share = new Button("share-button.png", 2, 1, this, std::bind([=] () {
-    /*this->hide([=] () {
-      Store::getInstance()->show();
-    });*/
-  }));
+  this->buttons.share = new Button("share-button.png", 2, 1, this, std::bind(&Game::onShare, Application));
   this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application));
 
   this->texts.tap = new Text("finish-tap", this);

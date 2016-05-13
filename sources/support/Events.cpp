@@ -155,15 +155,10 @@ void Events::onShare()
 {
   Analytics::sendEvent("Application", "application.events.onShare", "Application onShare event");
 
-  Modal::show();
-  Screenshot::save([&] (bool a, string b)
-  {
-    auto text = new Text("share-message");
-    auto size = Director::getInstance()->getOpenGLView()->getFrameSize();
+  auto text = new Text("share-message");
+  auto size = Director::getInstance()->getOpenGLView()->getFrameSize();
 
-    Social::share(size.width, size.width, 0, 0, text->data(0), Config::link);
-    Modal::hide();
-  });
+  Social::share(size.width, size.width, 0, 0, text->data(0), Config::link);
 }
 
 /**

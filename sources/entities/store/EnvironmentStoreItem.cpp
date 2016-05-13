@@ -221,7 +221,7 @@ void EnvironmentStoreItem::changeState(int state)
 {
   this->state = state;
 
-  //this->saveState();
+  this->saveState();
   this->updateState();
 }
 

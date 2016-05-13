@@ -684,6 +684,23 @@ void Character::onFall()
 
 void Character::onCrash(Crash crash)
 {
+   Screenshot::save([&] (bool a, string texture)
+  {
+    switch(Application->state)
+    {
+      case Game::FINISH:
+      Application->capture->_create();
+      break;
+    }
+    /*auto size = Director::getInstance()->getOpenGLView()->getFrameSize();
+
+    auto test = new Entity(texture.c_str(), Application, true);
+    test->setScale(0.25);
+    test->setTextureRect(Rect(0, size.height - size.width, size.width, size.width));
+    test->setPosition(Application->getWidth() / 2, Application->getHeight() / 2);
+    test->setCameraMask(4);*/
+  });
+
   Application->environment->characterActionHolder->runAction(
     Spawn::create(
       EaseSineInOut::create(
