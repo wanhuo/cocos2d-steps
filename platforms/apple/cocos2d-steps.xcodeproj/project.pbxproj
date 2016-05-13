@@ -18,8 +18,6 @@
 		78283F921CE0A8A10010CAB7 /* Decoration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283F8F1CE0A8A10010CAB7 /* Decoration.cpp */; };
 		78283F951CE0AAE00010CAB7 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283F931CE0AAE00010CAB7 /* Counter.cpp */; };
 		78283F961CE0AAE00010CAB7 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283F931CE0AAE00010CAB7 /* Counter.cpp */; };
-		78283F991CE0ABC40010CAB7 /* Handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283F971CE0ABC40010CAB7 /* Handler.cpp */; };
-		78283F9A1CE0ABC40010CAB7 /* Handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283F971CE0ABC40010CAB7 /* Handler.cpp */; };
 		78283F9E1CE1C8F70010CAB7 /* facebook_like_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 78283F9C1CE1C8F70010CAB7 /* facebook_like_button.png */; };
 		78283FA01CE1CDA40010CAB7 /* Ketchapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78283F9F1CE1CDA40010CAB7 /* Ketchapp.framework */; };
 		78283FA21CE1D53A0010CAB7 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78283FA11CE1D53A0010CAB7 /* SafariServices.framework */; };
@@ -289,8 +287,6 @@
 		78283F901CE0A8A10010CAB7 /* Decoration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoration.h; sourceTree = "<group>"; };
 		78283F931CE0AAE00010CAB7 /* Counter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Counter.cpp; sourceTree = "<group>"; };
 		78283F941CE0AAE00010CAB7 /* Counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Counter.h; sourceTree = "<group>"; };
-		78283F971CE0ABC40010CAB7 /* Handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Handler.cpp; sourceTree = "<group>"; };
-		78283F981CE0ABC40010CAB7 /* Handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Handler.h; sourceTree = "<group>"; };
 		78283F9C1CE1C8F70010CAB7 /* facebook_like_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_like_button.png; sourceTree = "<group>"; };
 		78283F9F1CE1CDA40010CAB7 /* Ketchapp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Ketchapp.framework; sourceTree = "<group>"; };
 		78283FA11CE1D53A0010CAB7 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/SafariServices.framework; sourceTree = DEVELOPER_DIR; };
@@ -953,8 +949,6 @@
 			children = (
 				78283F931CE0AAE00010CAB7 /* Counter.cpp */,
 				78283F941CE0AAE00010CAB7 /* Counter.h */,
-				78283F971CE0ABC40010CAB7 /* Handler.cpp */,
-				78283F981CE0ABC40010CAB7 /* Handler.h */,
 				785546091CD91F7E00B58ED0 /* Button3D.cpp */,
 				7855460A1CD91F7E00B58ED0 /* Button3D.h */,
 				785545FD1CD91D8B00B58ED0 /* Gift.cpp */,
@@ -1503,7 +1497,6 @@
 				781DA8811CDB3B95005BEB98 /* Watch.cpp in Sources */,
 				78B4B6FC1CBF91E000F2D8A7 /* Door.cpp in Sources */,
 				789E71AB1CD39D0D00BDCDC7 /* TypeMoved4.cpp in Sources */,
-				78283F9A1CE0ABC40010CAB7 /* Handler.cpp in Sources */,
 				789E717F1CD3429E00BDCDC7 /* Plate.cpp in Sources */,
 				7828A0AF1A1F87BA0079492B /* main.cpp in Sources */,
 				789E71771CD1086200BDCDC7 /* Ground.cpp in Sources */,
@@ -1530,7 +1523,6 @@
 				78CA6D0A1C20645200BF8416 /* Character.cpp in Sources */,
 				7894C0331BC9282F00363FC9 /* Game.cpp in Sources */,
 				78E33FD11C4A84080021272D /* Particle.cpp in Sources */,
-				78283F991CE0ABC40010CAB7 /* Handler.cpp in Sources */,
 				781DA8801CDB3B95005BEB98 /* Watch.cpp in Sources */,
 				789E719E1CD39A4A00BDCDC7 /* TypeMoved1.cpp in Sources */,
 				78283FBE1CE21DF00010CAB7 /* EnvironmentStoreItem.cpp in Sources */,

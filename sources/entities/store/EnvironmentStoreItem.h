@@ -45,7 +45,6 @@ class EnvironmentStoreItem : public Cube
    *
    */
   public:
-  Entity3D* lock;
 
   /**
    *
@@ -60,6 +59,13 @@ class EnvironmentStoreItem : public Cube
     int missions;
     int diamonds;
     int facebook;
+  };
+
+  struct Elements {
+    cocos2d::ui::Layout* plane;
+
+    Entity3D* lock;
+    Entity3D* facebook;
   };
 
   enum States {
@@ -78,6 +84,7 @@ class EnvironmentStoreItem : public Cube
   int position;
 
   Parameters parameters;
+  Elements elements;
 
   /**
    *
@@ -102,7 +109,7 @@ class EnvironmentStoreItem : public Cube
 
   virtual void onTouch(cocos2d::Touch* touch, Event* e);
 
-  virtual void changeState(State state);
+  virtual void changeState(int state);
   virtual void changePosition(Position position);
 
   virtual void saveState();

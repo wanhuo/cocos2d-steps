@@ -52,6 +52,12 @@ EnvironmentStoreBar::EnvironmentStoreBar()
     );
   }), true);
   this->buttons.facebook = new Button("lock-facebook-button.png", 2, 1, this, std::bind([=] () {
+    Application->onLike();
+
+    this->selectedCharacter->position = EnvironmentStoreItem::Position::POSITION_NORMAL;
+
+    this->selectedCharacter->changeState(EnvironmentStoreItem::STATE_UNLOCKED);
+    this->onSelectCharacter(this->selectedCharacter->parameters.index - 1);
   }), true);
   this->buttons.lock = new Button("lock-button.png", 2, 1, this, std::bind([=] () {
   }), true);
@@ -67,6 +73,62 @@ EnvironmentStoreBar::EnvironmentStoreBar()
   this->buttons.play->setVisible(false);
   this->buttons.lock->setVisible(false);
   this->buttons.facebook->setVisible(false);
+
+  this->backgrounds.missions = new Background(this);
+  this->backgrounds.diamonds = new Background(this);
+  this->backgrounds.random = new Background(this);
+  this->backgrounds.facebook = new Background(this);
+
+  this->texts.missions = new Text("store-state-1", this->backgrounds.missions, true);
+  this->texts.diamonds = new Text("store-state-2", this->backgrounds.diamonds, true);
+  this->texts.facebook = new Text("store-state-3", this->backgrounds.facebook, true);
+  this->texts.random = new Text("store-random", this->backgrounds.random, true);
+
+  this->texts.missions->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
+  this->texts.diamonds->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
+  this->texts.facebook->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
+  this->texts.random->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
+
+  this->backgrounds.missions->setPosition(0, -100);
+  this->backgrounds.diamonds->setPosition(0, -100);
+  this->backgrounds.facebook->setPosition(0, -100);
+  this->backgrounds.random->setPosition(0, -100);
+
+  this->backgrounds.missions->setCameraMask(4);
+  this->backgrounds.diamonds->setCameraMask(4);
+  this->backgrounds.facebook->setCameraMask(4);
+  this->backgrounds.random->setCameraMask(4);
+
+  this->backgrounds.missions->setVisible(false);
+  this->backgrounds.diamonds->setVisible(false);
+  this->backgrounds.facebook->setVisible(false);
+  this->backgrounds.random->setVisible(false);
+
+  this->texts.diamonds->setPosition(-20, 0);
+
+  this->diamond = new CameraEntity3D("diamond.obj", Application, true,
+  {
+    Camera::createOrthographic(Application->getFrustumWidth(), Application->getFrustumHeight(), 1, 100),
+    Vec3(0, 0, 2),
+    Vec3(0, 0, 0),
+    Application,
+    3
+  },
+  {
+    {DirectionLight::create(Vec3(1.0, -1.0, -1.0), Color3B(200, 200, 200)), Application},
+    {AmbientLight::create(Color3B(120, 120, 120)), Application}
+  });
+  this->diamond->setTexture(Application->environment->getTextureState1());
+  this->diamond->setPosition3D(Vec3(Application->getFrustumWidth() / 2 + 0.6, Application->getFrustumHeight() / 2 + 3.5, 0));
+  this->diamond->setRotation3D(Vec3(0, 0, 0));
+  this->diamond->setColor(Color3B(0.0, 243.0, 120.0));
+  this->diamond->setScale(0.7);
+  this->diamond->setVisible(false);
+  this->diamond->runAction(
+    RepeatForever::create(
+      RotateBy::create(1.0, Vec3(0, 100, 0))
+    )
+  );
 
   Application->environment->store.characters.plane = cocos2d::ui::ListView::create();
   Application->environment->store.characters.plane->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
@@ -177,7 +239,7 @@ void EnvironmentStoreBar::onCreateCharacters()
   Application->environment->store.textures.plane->runAction(
     Sequence::create(
       EaseSineOut::create(
-        MoveBy::create(0.5, Vec3(0, 0, 10))
+        MoveBy::create(0.5, Vec3(0, 0, 20))
       ),
       CallFunc::create([=] () {
       for(auto element : Application->environment->store.textures.elements) element->_destroy();
@@ -187,8 +249,8 @@ void EnvironmentStoreBar::onCreateCharacters()
     )
   );
 
-  this->characters->setOpacity(255);
-  this->textures->setOpacity(155);
+  this->characters->setColor(Color3B(71.0, 132.0, 164.0));
+  this->textures->setColor(Color3B(95.0, 165.0, 196.0));
 }
 
 void EnvironmentStoreBar::onCreateTextures()
@@ -215,7 +277,7 @@ void EnvironmentStoreBar::onCreateTextures()
   Application->environment->store.characters.plane->runAction(
     Sequence::create(
       EaseSineOut::create(
-        MoveBy::create(0.5, Vec3(0, 0, 10))
+        MoveBy::create(0.5, Vec3(0, 0, 20))
       ),
       CallFunc::create([=] () {
       for(auto element : Application->environment->store.characters.elements) element->_destroy();
@@ -225,8 +287,8 @@ void EnvironmentStoreBar::onCreateTextures()
     )
   );
 
-  this->characters->setOpacity(155);
-  this->textures->setOpacity(255);
+  this->textures->setColor(Color3B(71.0, 132.0, 164.0));
+  this->characters->setColor(Color3B(95.0, 165.0, 196.0));
 
   for(auto element : Application->environment->store.textures.elements) element->_create()->setPosition3D(Vec3(0.0, 0.4, 0.75));
 }
@@ -278,6 +340,37 @@ void EnvironmentStoreBar::onSelect(EnvironmentStoreItem* element)
     break;
   }
 
+  this->backgrounds.missions->setVisible(false);
+  this->backgrounds.diamonds->setVisible(false);
+  this->backgrounds.facebook->setVisible(false);
+  this->backgrounds.random->setVisible(false);
+
+  this->diamond->setVisible(false);
+
+  switch(element->state)
+  {
+    case EnvironmentStoreItem::STATE_UNLOCKED:
+    break;
+    case EnvironmentStoreItem::STATE_MISSIONS:
+    this->backgrounds.missions->setVisible(true);
+    this->texts.missions->data(element->parameters.missions);
+    break;
+    case EnvironmentStoreItem::STATE_DIAMONDS:
+    this->diamond->setVisible(true);
+
+    this->backgrounds.diamonds->setVisible(true);
+    this->texts.diamonds->data(element->parameters.diamonds);
+    break;
+    case EnvironmentStoreItem::STATE_FACEBOOK:
+    this->backgrounds.facebook->setVisible(true);
+    break;
+  }
+
+  if(element->parameters.index == 1)
+  {
+    this->backgrounds.random->setVisible(true);
+  }
+
   element->changePosition(EnvironmentStoreItem::Position::POSITION_UP);
 }
 
@@ -300,6 +393,8 @@ void EnvironmentStoreBar::onSelectCharacter(int index)
   }
 
   this->onSelect(element);
+
+  this->selectedCharacter = element;
 }
 
 void EnvironmentStoreBar::onSelectTexture(int index)
@@ -330,6 +425,8 @@ void EnvironmentStoreBar::onSelectTexture(int index)
   }
 
   this->onSelect(element);
+
+  this->selectedTexture = element;
 }
 
 /**
@@ -337,7 +434,7 @@ void EnvironmentStoreBar::onSelectTexture(int index)
  *
  *
  */
-int EnvironmentStoreBar::randomCharacter()
+int EnvironmentStoreBar::randomCharacter(bool locked)
 {
   vector<EnvironmentStoreItem*> candidates;
 
@@ -345,9 +442,19 @@ int EnvironmentStoreBar::randomCharacter()
   {
     if(element->parameters.index > 1)
     {
-      if(element->state == EnvironmentStoreItem::STATE_UNLOCKED)
+      if(locked)
       {
-        candidates.push_back(element);
+        if(element->state == EnvironmentStoreItem::STATE_DIAMONDS && Application->counter->values.coins >= element->parameters.diamonds)
+        {
+          candidates.push_back(element);
+        }
+      }
+      else
+      {
+        if(element->state == EnvironmentStoreItem::STATE_UNLOCKED)
+        {
+          candidates.push_back(element);
+        }
       }
     }
   }
@@ -357,10 +464,10 @@ int EnvironmentStoreBar::randomCharacter()
     return candidates.at(random(0, (int) candidates.size() - 1))->parameters.index;
   }
 
-  return -1;
+  return 0;
 }
 
-int EnvironmentStoreBar::randomTexture()
+int EnvironmentStoreBar::randomTexture(bool locked)
 {
   vector<EnvironmentStoreItem*> candidates;
 
@@ -368,9 +475,19 @@ int EnvironmentStoreBar::randomTexture()
   {
     if(element->parameters.index > 1)
     {
-      if(element->state == EnvironmentStoreItem::STATE_UNLOCKED)
+      if(locked)
       {
-        candidates.push_back(element);
+        if(element->state == EnvironmentStoreItem::STATE_DIAMONDS && Application->counter->values.coins >= element->parameters.diamonds)
+        {
+          candidates.push_back(element);
+        }
+      }
+      else
+      {
+        if(element->state == EnvironmentStoreItem::STATE_UNLOCKED)
+        {
+          candidates.push_back(element);
+        }
       }
     }
   }
@@ -380,7 +497,40 @@ int EnvironmentStoreBar::randomTexture()
     return candidates.at(random(0, (int) candidates.size() - 1))->parameters.index;
   }
 
-  return -1;
+  return 0;
+}
+
+/**
+ *
+ *
+ *
+ */
+EnvironmentStoreBar::Element EnvironmentStoreBar::nextElement()
+{
+  auto character = this->randomCharacter(true);
+  auto texture = this->randomTexture(true);
+
+  if(character && texture)
+  {
+    if(probably(50))
+    {
+      return {1, character - 1};
+    }
+    else
+    {
+      return {2, texture - 1};
+    }
+  }
+  else
+  {
+    if(character) return {1, character - 1};
+    if(texture) return  {2, texture - 1};
+  }
+
+  return {
+    0,
+    0
+  };
 }
 
 /**
@@ -517,7 +667,7 @@ EnvironmentStoreBar::EnvironmentStoreBarButtonCharacters::EnvironmentStoreBarBut
 : EnvironmentStoreBarButton(parent)
 {
   this->text = new Text("store-characters", this, true);
-  this->text->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
+  this->text->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 5.0);
   this->text->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
 
   this->setPosition(-300, 0);
@@ -562,7 +712,7 @@ EnvironmentStoreBar::EnvironmentStoreBarButtonTextures::EnvironmentStoreBarButto
 : EnvironmentStoreBarButton(parent)
 {
   this->text = new Text("store-textures", this, true);
-  this->text->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
+  this->text->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 5.0);
   this->text->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
 
   this->setPosition(0, 0);

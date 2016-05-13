@@ -161,6 +161,9 @@ class Environment : public Background
 
   Light light;
 
+  int nextCharacter = 0;
+  int nextTexture = 0;
+
   bool star = false;
 
   float starTime;

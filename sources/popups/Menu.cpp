@@ -65,9 +65,6 @@ Menu::Menu()
     });
   }), true);
 
-  this->buttons.store->addChild(new StoreHandler);
-  this->buttons.missions->addChild(new MissionsHandler);
-
   this->texts.tap->setPosition(Application->getCenter().x, 330);
 
   this->setCascadeOpacityEnabled(true);

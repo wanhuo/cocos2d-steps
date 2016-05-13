@@ -38,7 +38,6 @@
 #include "Spine.h"
 
 #include "Counter.h"
-#include "Handler.h"
 #include "Button3D.h"
 #include "Gift.h"
 #include "Video.h"

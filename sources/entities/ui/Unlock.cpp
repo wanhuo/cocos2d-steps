@@ -116,6 +116,19 @@ void Unlock::onCreate()
 void Unlock::onDestroy(bool action)
 {
   Button3D::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->element)
+  {
+    this->element->_destroy();
+    this->element->release();
+
+    this->element = nullptr;
+  }
 }
 
 /**
@@ -132,14 +145,38 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
    *
    *
    */
-  //Store::getInstance()->nextTexture(true);
+  EnvironmentStoreBar::Element next = Application->environment->store.controller->nextElement();
+  EnvironmentStoreItem* element = nullptr;
 
-  /**
-   *
-   *
-   *
-   */
-  static_cast<Sprite3D*>(this->getChildByName("plate"))->setTexture(Application->environment->getTextureState1());
+  switch(next.type)
+  {
+    case 1:
+    element = Application->environment->store.characters.elements.at(next.index - 1);
+    break;
+    case 2:
+    element = Application->environment->store.textures.elements.at(next.index - 1);
+    break;
+  }
+
+  element->changeState(EnvironmentStoreItem::STATE_UNLOCKED);
+
+  switch(next.type)
+  {
+    case 1:
+    this->element = new Entity3D("character-" + patch::to_string(next.index) + ".obj", this, true);
+    this->element->setColor(Application->environment->character->getColor());
+    this->element->setScale(0.45);
+
+    Application->environment->nextCharacter = next.index;
+    break;
+    case 2:
+    this->element = new Entity3D("plate.obj", this, true);
+    this->element->setTexture("textures/" + to_string(next.index) + "/textures-state-1.png");
+    this->element->setScale(0.25);
+
+    Application->environment->nextTexture = next.index;
+    break;
+  }
 
   /**
    *
@@ -156,6 +193,9 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
         ), 6),
       Sequence::create(
         CallFunc::create([=] () {
+        this->element->setCameraMask(this->getCameraMask());
+        this->element->setLightMask(this->getLightMask());
+
         Modal::block();
         }),
         DelayTime::create(0.5),
@@ -173,6 +213,8 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
         }),
         DelayTime::create(1.0),
         CallFunc::create([=] () {
+        Application->counter->remove(element->parameters.diamonds);
+
         Modal::hide();
         }),
         nullptr
@@ -181,17 +223,17 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
     )
   );
 
-  this->getChildByName("plate")->runAction(
+  this->element->runAction(
     Sequence::create(
       DelayTime::create(0.7),
       EaseSineIn::create(
-        MoveBy::create(0.2, Vec3(0.0, 0.6, 0.0))
+        MoveBy::create(0.2, Vec3(0.0, 1.0, 0.0))
       ),
       nullptr
     )
   );
 
-  this->getChildByName("plate")->runAction(
+  this->element->runAction(
     RepeatForever::create(
       Sequence::create(
         RotateBy::create(0.5, Vec3(0.0, 30.0, 0.0)),

@@ -138,13 +138,34 @@ class EnvironmentStoreBar : public Background
     Button* facebook;
   };
 
+  struct Backgrounds {
+    Background* missions;
+    Background* diamonds;
+    Background* facebook;
+    Background* random;
+  };
+
+  struct Texts {
+    Text* missions;
+    Text* diamonds;
+    Text* facebook;
+    Text* random;
+  };
+
+  EnvironmentStoreItem* selectedCharacter;
+  EnvironmentStoreItem* selectedTexture;
+
   /**
    *
    *
    *
    */
   protected:
+  Backgrounds backgrounds;
   Buttons buttons;
+  Texts texts;
+
+  CameraEntity3D* diamond;
 
   /**
    *
@@ -154,6 +175,11 @@ class EnvironmentStoreBar : public Background
   public:
   EnvironmentStoreBar();
  ~EnvironmentStoreBar();
+
+  struct Element {
+    int type;
+    int index;
+  };
 
   int index;
 
@@ -172,8 +198,10 @@ class EnvironmentStoreBar : public Background
   virtual void onSelectCharacter(int index);
   virtual void onSelectTexture(int index);
 
-  virtual int randomCharacter();
-  virtual int randomTexture();
+  virtual int randomCharacter(bool locked = false);
+  virtual int randomTexture(bool locked = false);
+
+  virtual Element nextElement();
 };
 
 #endif

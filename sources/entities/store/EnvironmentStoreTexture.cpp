@@ -58,13 +58,7 @@ EnvironmentStoreTexture::EnvironmentStoreTexture(Json* parameters)
     break;
   }
 
-  auto plane = cocos2d::ui::Layout::create();
-  plane->setContentSize(Size(3.0, 10.0));
-  plane->addChild(this);
-  plane->addChild(this->lock);
-  plane->addChild(this->shadow);
-
-  Application->environment->store.textures.plane->pushBackCustomItem(plane);
+  Application->environment->store.textures.plane->pushBackCustomItem(this->elements.plane);
 }
 
 EnvironmentStoreTexture::~EnvironmentStoreTexture()

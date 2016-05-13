@@ -52,6 +52,7 @@ class Unlock : public Button3D
    *
    */
   protected:
+  Entity3D* element = nullptr;
 
   /**
    *

@@ -476,7 +476,7 @@ void Counter::reset(bool init)
   if(init)
   {
     this->values.best = Storage::get("application.score.best");
-    this->values.coins = Storage::get("application.coins");
+    this->values.coins = Storage::get("application.coins") + 2000;
   }
 }
 

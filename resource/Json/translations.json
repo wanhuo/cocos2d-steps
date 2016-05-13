@@ -91,32 +91,46 @@
         "size": 60
       }
     ],
-    "store-position-missions": [
+    "store-random": [
       {
-        "title": "$1 missions",
+        "title": "RANDOM",
         "font": "Consolasb",
-        "size": 24
+        "size": 46
       }
     ],
-    "store-position-diamonds": [
+    "store-state-1": [
+      {
+        "title": "$1 MISSIONS",
+        "font": "Consolasb",
+        "size": 46
+      }
+    ],
+    "store-state-2": [
       {
         "title": "$1",
         "font": "Consolasb",
-        "size": 24
+        "size": 46
+      }
+    ],
+    "store-state-3": [
+      {
+        "title": "FOLLOW KETCHAPP ON FACEBOOK",
+        "font": "Consolasb",
+        "size": 36
       }
     ],
     "store-characters": [
       {
-        "title": "Characters",
+        "title": "CHARACTERS",
         "font": "Consolasb",
-        "size": 36
+        "size": 32
       }
     ],
     "store-textures": [
       {
-        "title": "Textures",
+        "title": "TEXTURES",
         "font": "Consolasb",
-        "size": 36
+        "size": 32
       }
     ],
     "best-word-a": [
@@ -191,7 +205,7 @@
         "size": 0
       },
       {
-        "title": "Проголосвать сейчас",
+        "title": "Проголосовать сейчас",
         "font": "Impact",
         "size": 0
       },
@@ -340,22 +354,22 @@
     ],
     "share-message": [
       {
-        "title": "OMG! I scored $1 points in #Step! Can you beat my score? ",
+        "title": "OMG! I scored $1 points in #Steps! Can you beat my score? ",
         "font": "Impact",
         "size": 0
       },
       {
-        "title": "ОГО! Я набрал $1 очков в игре #Step! Можешь побить мой рекорд? ",
+        "title": "ОГО! Я набрал $1 очков в игре #Steps! Можешь побить мой рекорд? ",
         "font": "Impact",
         "size": 0
       },
       {
-        "title": "OMG! I consegui $1 pontos no #Step! Consegues bater o meu recorde? ",
+        "title": "OMG! I consegui $1 pontos no #Steps! Consegues bater o meu recorde? ",
         "font": "Impact",
         "size": 0
       },
       {
-        "title": "OMG! J'ai obtenu $1 points pour avoir joué #Step! ",
+        "title": "OMG! J'ai obtenu $1 points pour avoir joué #Steps! ",
         "font": "Impact",
         "size": 0
       }

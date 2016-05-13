@@ -335,10 +335,10 @@ void Game::onLose()
   {
     this->changeState(PRESENT);
   }
-  /*else if(Store::getInstance()->nextTexture())
+  else if(this->environment->store.controller->nextElement().type)
   {
     this->changeState(OPEN);
-  }*/
+  }
   /*else if(Heyzap::available(Config::AD_TYPE_VIDEO) && this->parameters.elapsed.video >= this->parameters.video)
   {
     this->parameters.elapsed.video = 0;

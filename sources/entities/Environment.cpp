@@ -230,10 +230,37 @@ void Environment::updateData()
   this->parameters.random.character = Storage::get("store.character.random");
   this->parameters.random.texture = Storage::get("store.texture.random");
 
+  /**
+   *
+   * Check is random choose of character and texture are enabled.
+   *
+   */
   if(this->store.controller)
   {
     if(this->parameters.random.character) this->parameters.character = this->store.controller->randomCharacter();
     if(this->parameters.random.texture) this->parameters.texture = this->store.controller->randomTexture();
+  }
+
+  /**
+   *
+   * Check is next character is setted up manually.
+   *
+   */
+  if(this->nextCharacter)
+  {
+    this->parameters.character = this->nextCharacter;
+    this->nextCharacter = 0;
+  }
+
+  /**
+   *
+   * Check is next texture is setted up manually.
+   *
+   */
+  if(this->nextTexture)
+  {
+    this->parameters.texture = this->nextTexture;
+    this->nextTexture = 0;
   }
 
   Director::getInstance()->getTextureCache()->addImageAsync(this->getTextureState1(), nullptr);

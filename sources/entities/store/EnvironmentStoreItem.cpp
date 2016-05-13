@@ -44,12 +44,24 @@ EnvironmentStoreItem::EnvironmentStoreItem(Json* parameters)
   this->parameters.facebook = Json_getInt(parameters, "facebook", 0);
 
   this->shadow = new Shadow("plate-bottom-shadow.obj", nullptr);
-  this->shadow->setMinScale(Vec3(1.2, 1.0, 1.0));
-  this->shadow->setMaxScale(Vec3(1.2, 1.0, 1.0));
-  this->shadow->setOffset(Vec3(0.15, 0.0, 0.4));
+  this->shadow->setMinScale(Vec3(1.2, 1.0, 1.2));
+  this->shadow->setMaxScale(Vec3(1.2, 1.0, 1.2));
+  this->shadow->setOffset(Vec3(0.15, 0.0, 0.15));
 
-  this->lock = new Entity3D("store-unlock.obj", false);
-  this->lock->setTexture("ui/video-texture.png");
+  this->elements.lock = new Entity3D("store-unlock.obj", false);
+  this->elements.facebook = new Entity3D("store-plate.obj", false);
+
+  this->elements.lock->setTexture("ui/video-texture.png");
+  this->elements.facebook->setTexture("ui/facebook-texture.png");
+
+  this->elements.facebook->setScale(0.5);
+
+  this->elements.plane = cocos2d::ui::Layout::create();
+  this->elements.plane->setContentSize(Size(3.0, 10.0));
+  this->elements.plane->addChild(this);
+  this->elements.plane->addChild(this->shadow);
+  this->elements.plane->addChild(this->elements.lock);
+  this->elements.plane->addChild(this->elements.facebook);
 
   this->setScheduleUpdate(true);
 
@@ -100,7 +112,8 @@ void EnvironmentStoreItem::onCreate()
    *
    *
    */
-  this->lock->_create();
+  this->elements.lock->_create();
+  this->elements.facebook->_create();
 }
 
 void EnvironmentStoreItem::onDestroy(bool action)
@@ -112,7 +125,8 @@ void EnvironmentStoreItem::onDestroy(bool action)
    *
    *
    */
-  this->lock->_destroy(action);
+  this->elements.lock->_destroy(action);
+  this->elements.facebook->_destroy(action);
 }
 
 /**
@@ -132,8 +146,11 @@ void EnvironmentStoreItem::onEnter()
   this->setPosition3D(this->positions);
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
-  this->lock->setPosition3D(Vec3(0.0, 0.0, 0.75));
-  this->lock->setRotation3D(Vec3(0.0, 0.0, 0.00));
+  this->elements.lock->setPosition3D(Vec3(0.0, 0.0, 0.75));
+  this->elements.lock->setRotation3D(Vec3(0.0, 0.0, 0.00));
+
+  this->elements.facebook->setPosition3D(Vec3(0.0, 3.0, 0.75));
+  this->elements.facebook->setRotation3D(Vec3(0.0, 0.0, 0.00));
 
   this->position = POSITION_NORMAL;
 
@@ -200,8 +217,12 @@ void EnvironmentStoreItem::onTouch(cocos2d::Touch* touch, Event* e)
  *
  *
  */
-void EnvironmentStoreItem::changeState(State state)
+void EnvironmentStoreItem::changeState(int state)
 {
+  this->state = state;
+
+  //this->saveState();
+  this->updateState();
 }
 
 void EnvironmentStoreItem::changePosition(Position position)
@@ -216,13 +237,16 @@ void EnvironmentStoreItem::changePosition(Position position)
       break;
       case POSITION_UP:
       this->stopAllActions();
-      this->lock->stopAllActions();
+      this->elements.lock->stopAllActions();
+      this->elements.facebook->stopAllActions();
 
       this->runAction(MoveTo::create(0.2, this->positions));
-      this->lock->runAction(MoveTo::create(0.2, Vec3(0.0, 0.0, 0.75)));
+      this->elements.lock->runAction(MoveTo::create(0.2, Vec3(0.0, 0.0, 0.75)));
+      this->elements.facebook->runAction(MoveTo::create(0.2, Vec3(0.0, 3.0, 0.75)));
 
       this->runAction(RotateTo::create(0.2, Vec3(0.0, 0.0, 0.0)));
-      this->lock->runAction(RotateTo::create(0.2, Vec3(0.0, 0.0, 0.0)));
+      this->elements.lock->runAction(RotateTo::create(0.2, Vec3(0.0, 0.0, 0.0)));
+      this->elements.facebook->runAction(RotateTo::create(0.2, Vec3(0.0, 0.0, 0.0)));
       break;
     }
     break;
@@ -234,7 +258,8 @@ void EnvironmentStoreItem::changePosition(Position position)
       Sound->play("touch");
 
       this->runAction(MoveTo::create(0.2, this->positions + Vec3(0.0, 1.0, 0.0)));
-      this->lock->runAction(MoveTo::create(0.2, Vec3(0.0, 1.0, 0.75)));
+      this->elements.lock->runAction(MoveTo::create(0.2, Vec3(0.0, 1.0, 0.75)));
+      this->elements.facebook->runAction(MoveTo::create(0.2, Vec3(0.0, 4.0, 0.75)));
 
       this->runAction(
         RepeatForever::create(
@@ -246,7 +271,17 @@ void EnvironmentStoreItem::changePosition(Position position)
         )
       );
 
-      this->lock->runAction(
+      this->elements.lock->runAction(
+        RepeatForever::create(
+          Sequence::create(
+            RotateBy::create(2.0, Vec3(0.0, 360.0, 0.0)),
+            RotateBy::create(0.0, Vec3(0.0, 0.0, 0.0)),
+            nullptr
+          )
+        )
+      );
+
+      this->elements.facebook->runAction(
         RepeatForever::create(
           Sequence::create(
             RotateBy::create(2.0, Vec3(0.0, 360.0, 0.0)),
@@ -277,27 +312,26 @@ void EnvironmentStoreItem::updateState()
     case STATE_DIAMONDS:
     case STATE_MISSIONS:
     this->setVisible(false);
-    this->lock->setVisible(true);
+
+    this->elements.lock->setVisible(true);
+    this->elements.facebook->setVisible(false);
     break;
     case STATE_UNLOCKED:
     this->setVisible(true);
-    this->lock->setVisible(false);
+    this->elements.lock->setVisible(false);
+    this->elements.facebook->setVisible(false);
     break;
-  }
-
-  switch(this->state)
-  {
-    case STATE_DIAMONDS:
-    break;
-    case STATE_MISSIONS:
-    break;
-    case STATE_UNLOCKED:
+    case STATE_FACEBOOK:
+    this->setVisible(false);
+    this->elements.lock->setVisible(true);
+    this->elements.facebook->setVisible(true);
     break;
   }
 }
 
 void EnvironmentStoreItem::saveState()
 {
+  Storage::set(this->parameters.id, this->state);
 }
 
 /**
