@@ -812,13 +812,13 @@ void Character::onCrash(Crash crash)
     case SPIKES:
     case DOWN:
     case CATCH:
-    case GATE:
+    case GATE:this->setVisible(false);
     Screenshot::save([&] (bool a, string texture)
     {
       switch(Application->state)
       {
         case Game::FINISH:
-        case Game::GAME:
+        case Game::GAME:this->setVisible(true);
         Application->capture->screenshot(texture);
         break;
       }
