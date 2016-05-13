@@ -37,15 +37,8 @@
  *
  *
  */
-class Capture : public Entity3D
+class Capture : public Entity
 {
-  /**
-   *
-   *
-   *
-   */
-  public:
-
   /**
    *
    *
@@ -59,6 +52,7 @@ class Capture : public Entity3D
    *
    */
   protected:
+  Entity* element;
 
   /**
    *
@@ -72,7 +66,13 @@ class Capture : public Entity3D
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
+  virtual void onTouchStart(cocos2d::Touch* touch, Event* e);
+  virtual void onTouchFinish(cocos2d::Touch* touch, Event* e);
+  virtual void onTouchCancelled(cocos2d::Touch* touch, Event* e);
+
   virtual void onTouch(cocos2d::Touch* touch, Event* e);
+
+  virtual void screenshot(string texture);
 };
 
 #endif

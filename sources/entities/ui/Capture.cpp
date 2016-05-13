@@ -37,6 +37,12 @@
 Capture::Capture(Node* parent)
 : Entity("capture.png", parent)
 {
+  this->element = new Entity(this, true);
+  this->element->setLocalZOrder(-1);
+
+  this->setPosition(Application->getWidth() / 2, Application->getHeight() / 2);
+  this->setCameraMask(4);
+  this->bind(true);
 }
 
 Capture::~Capture()
@@ -57,11 +63,85 @@ void Capture::onCreate()
    *
    *
    */
+  this->setRotation(0);
+  this->setScale(1.5);
+
+  this->runAction(
+    Spawn::create(
+      ScaleTo::create(0.2, 1.0),
+      RotateTo::create(0.2, - 15.0),
+      nullptr
+    )
+  );
+
+  Sound->play("capture");
 }
 
 void Capture::onDestroy(bool action)
 {
   Entity::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+}
+
+/**
+ *
+ *
+ *
+ */
+void Capture::onTouchStart(cocos2d::Touch* touch, Event* e)
+{
+  this->stopActionByTag(101);
+  this->Node::runAction(
+    EaseSineIn::create(
+      ScaleTo::create(0.2, 0.9)
+    ), 101
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  Node::onTouchStart(touch, e);
+}
+
+void Capture::onTouchFinish(cocos2d::Touch* touch, Event* e)
+{
+  this->stopActionByTag(101);
+  this->Node::runAction(
+    EaseSineIn::create(
+      ScaleTo::create(0.2, 1.0)
+    ), 101
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  Node::onTouchFinish(touch, e);
+}
+
+void Capture::onTouchCancelled(cocos2d::Touch* touch, Event* e)
+{
+  this->stopActionByTag(101);
+  this->Node::runAction(
+    EaseSineIn::create(
+      ScaleTo::create(0.2, 1.0)
+    ), 101
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  Node::onTouchCancelled(touch, e);
 }
 
 /**
@@ -78,4 +158,51 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
    *
    *
    */
+  this->runAction(
+    Spawn::create(
+      ScaleTo::create(0.2, 2.0),
+      RotateTo::create(0.2, 0),
+      Sequence::create(
+        DelayTime::create(0.2),
+        CallFunc::create([=] () {
+        }),
+        nullptr
+      ),
+      nullptr
+    )
+  );
+}
+
+/**
+ *
+ *
+ *
+ */
+void Capture::screenshot(string texture)
+{
+  auto size = Director::getInstance()->getOpenGLView()->getFrameSize();
+
+  /**
+   *
+   *
+   *
+   */
+  Director::getInstance()->getTextureCache()->removeTextureForKey(texture.c_str());
+
+  /**
+   *
+   *
+   *
+   */
+  this->element->setTexture(texture.c_str());
+  this->element->setScale(this->getWidth() / size.width);
+  this->element->setTextureRect(Rect(0, size.height - size.width, size.width, size.width));
+  this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2);
+
+  /**
+   *
+   *
+   *
+   */
+  this->_create();
 }

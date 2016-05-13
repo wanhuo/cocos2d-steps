@@ -283,6 +283,7 @@ void Game::onMenu()
   Menu::getInstance()->show();
 
   this->counter->reset();
+  this->capture->_destroy();
 }
 
 void Game::onGame()
