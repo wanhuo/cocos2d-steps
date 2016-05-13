@@ -24,360 +24,360 @@
     "name": [
       {
         "title": "STEPS",
-        "font": "Impact",
+        "font": "makhina",
         "size": 200
       }
     ],
     "stage": [
       {
         "title": "STAGE $1",
-        "font": "Impact",
+        "font": "makhina",
         "size": 50
       }
     ],
     "stage-bonus": [
       {
         "title": "BONUS STAGE",
-        "font": "Impact",
+        "font": "makhina",
         "size": 50
       }
     ],
     "counter-score": [
       {
         "title": "$1",
-        "font": "Impact",
+        "font": "makhina",
         "size": 120
       }
     ],
     "counter-coins": [
       {
         "title": "$1",
-        "font": "Impact",
+        "font": "makhina",
         "size": 60
       }
     ],
     "counter-best": [
       {
         "title": "BEST $1",
-        "font": "Impact",
+        "font": "makhina",
         "size": 80
       }
     ],
     "counter-bonus": [
       {
         "title": "$1",
-        "font": "Impact",
+        "font": "makhina",
         "size": 20
       }
     ],
     "menu-tap": [
       {
         "title": "TAP TO PLAY",
-        "font": "Impact",
+        "font": "makhina",
         "size": 40
       }
     ],
     "finish-tap": [
       {
         "title": "TAP TO RESTART",
-        "font": "Impact",
+        "font": "makhina",
         "size": 40
       }
     ],
     "present": [
       {
         "title": "+50",
-        "font": "Impact",
+        "font": "makhina",
         "size": 60
       }
     ],
     "store-random": [
       {
         "title": "RANDOM",
-        "font": "Impact",
+        "font": "makhina",
         "size": 46
       }
     ],
     "store-state-1": [
       {
         "title": "$1 MISSIONS",
-        "font": "Impact",
+        "font": "makhina",
         "size": 46
       }
     ],
     "store-state-2": [
       {
         "title": "$1",
-        "font": "Impact",
+        "font": "makhina",
         "size": 46
       }
     ],
     "store-state-3": [
       {
         "title": "FOLLOW KETCHAPP ON FACEBOOK",
-        "font": "Impact",
+        "font": "makhina",
         "size": 36
       }
     ],
     "store-characters": [
       {
         "title": "CHARACTERS",
-        "font": "Impact",
+        "font": "makhina",
         "size": 32
       }
     ],
     "store-textures": [
       {
         "title": "TEXTURES",
-        "font": "Impact",
+        "font": "makhina",
         "size": 32
       }
     ],
     "price": [
       {
         "title": "200",
-        "font": "Impact",
+        "font": "makhina",
         "size": 46
       }
     ],
     "best-word-a": [
       {
         "title": "NEW",
-        "font": "Impact",
+        "font": "makhina",
         "size": 48
       }
     ],
     "best-word-b": [
       {
         "title": "BEST",
-        "font": "Impact",
+        "font": "makhina",
         "size": 48
       }
     ],
     "handler": [
       {
         "title": "$1",
-        "font": "Impact",
+        "font": "makhina",
         "size": 42
       }
     ],
     "vote-title": [
       {
         "title": "Please rate us",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Пожалуйста проголосуйте за нас",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Avalia-nos",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Veuillez nous noter",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       }
     ],
     "vote-description": [
       {
         "title": "If you enjoy this game, would you mind taking a moment to rate it? It won't take more than a minute.\nThanks for your support!",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Если вам понравилась эта игра, пожалуйста проголосуйте за нас! Это не займет больше минуты.\nБольшое спасибо за поддержку!",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Se gostas deste jogo, avalia-o já! Não demora mais do que 1 minuto! Agradecemos o teu apoio!",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Si vous aimez ce jeu, pourriez-vous prendre un moment pour le noter? Cela ne prendra pas plus d'une minute. Merci de votre aide!",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       }
     ],
     "vote-1": [
       {
         "title": "Rate It Now",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Проголосовать сейчас",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Avalia já",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Notez-le maintenant",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       }
     ],
     "vote-2": [
       {
         "title": "Remind Me Later",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Напомнить позже",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Lembra-me mais tarde",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Me le rappeler plus tard",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       }
     ],
     "vote-3": [
       {
         "title": "No, Thanks",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Нет, спасибо",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Não, obrigado",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Non merci",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       }
     ],
     "purchases-error-title": [
       {
         "title": "In-App Purchases",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Внутриигровые покупки",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Compras de In-App",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Achats intégrés dans l'appli",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       }
     ],
     "purchases-error-message": [
       {
         "title": "Sorry, but no in-app purchases available now. Please try again later.",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Извините, но в данный момент невозможно выполнить внутриигровую покупку. Пожалуйста, попробуйте позже.",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Pedimos desculpa, mas não existem comrpas de In-App disponíveis de momento. Tente mais tarde.",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Désolé, mais il n'y a pas d'achats intégrés dans l'appli disponibles maintenant. Veuillez réessayer plus tard.",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       }
     ],
     "restore-purchases-successful-message": [
       {
         "title": "Your previous purchases was successful restored!",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Ваши предыдущие внутриигровые покупки были успешно восстановлены!",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "As suas compras foram recuperadas com sucesso!",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Vos achats précédents ont été restaurés avec succès!",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       }
     ],
     "restore-purchases-error-message": [
       {
         "title": "Sorry, no previous purchases could be restored.",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Извините, но предыдущие внутриигровые покупки не могут быть восстановлены.",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Pedimos desculpa, não foi possível recuperar as compras.",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "Désolé, les achats précédents n'ont pas pu être restaurés.",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       }
     ],
     "share-message": [
       {
         "title": "OMG! I scored $1 points in #Steps! Can you beat my score? ",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "ОГО! Я набрал $1 очков в игре #Steps! Можешь побить мой рекорд? ",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "OMG! I consegui $1 pontos no #Steps! Consegues bater o meu recorde? ",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       },
       {
         "title": "OMG! J'ai obtenu $1 points pour avoir joué #Steps! ",
-        "font": "Impact",
+        "font": "makhina",
         "size": 0
       }
     ]
