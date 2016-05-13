@@ -41,7 +41,7 @@ EnvironmentStoreCharacter::EnvironmentStoreCharacter(Json* parameters)
   {
     default:
     this->setTexture(Application->environment->getTextureState1());
-    this->setColor(Application->environment->character->getColor());
+    this->setColor(Color3B(0.0, 207.0, 255.0));
     break;
     case 1:
     this->setTexture("textures/random.png");

@@ -133,6 +133,13 @@
         "size": 32
       }
     ],
+    "price": [
+      {
+        "title": "200",
+        "font": "Consolasb",
+        "size": 46
+      }
+    ],
     "best-word-a": [
       {
         "title": "NEW",

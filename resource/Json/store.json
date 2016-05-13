@@ -87,6 +87,20 @@
 			"index": 13,
 			"missions": 10,
 			"diamonds": 200
+		},
+		{
+			"id": "items.characters.14",
+			"file": "character-14",
+			"index": 14,
+			"missions": 10,
+			"diamonds": 200
+		},
+		{
+			"id": "items.characters.15",
+			"file": "character-15",
+			"index": 15,
+			"missions": 10,
+			"diamonds": 200
 		}
 	],
 	"textures": [

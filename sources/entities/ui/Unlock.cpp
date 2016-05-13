@@ -63,17 +63,11 @@ void Unlock::onCreate()
   static_cast<Sprite3D*>(this->getChildByName("door"))->setTexture("ui/video-texture.png");
   static_cast<Sprite3D*>(this->getChildByName("door"))->setLightMask(this->index);
 
-  static_cast<Sprite3D*>(this->getChildByName("plate"))->setTexture("ui/video-texture.png");
-  static_cast<Sprite3D*>(this->getChildByName("plate"))->setLightMask(this->index);
-
   static_cast<Sprite3D*>(this->getChildByName("box"))->setPosition3D(Vec3(0.0, 0.0, 0.0));
   static_cast<Sprite3D*>(this->getChildByName("box"))->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
   static_cast<Sprite3D*>(this->getChildByName("door"))->setPosition3D(Vec3(0.0, 0.0, 0.0));
   static_cast<Sprite3D*>(this->getChildByName("door"))->setRotation3D(Vec3(0.0, 0.0, 0.0));
-
-  static_cast<Sprite3D*>(this->getChildByName("plate"))->setPosition3D(Vec3(0.0, 0.0, 0.0));
-  static_cast<Sprite3D*>(this->getChildByName("plate"))->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
   this->setScale(0);
 
@@ -164,8 +158,10 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
   {
     case 1:
     this->element = new Entity3D("character-" + patch::to_string(next.index) + ".obj", this, true);
-    this->element->setColor(Application->environment->character->getColor());
+    this->element->setTexture(Application->environment->getTextureState1());
+    this->element->setColor(Color3B(0.0, 207.0, 255.0));
     this->element->setScale(0.45);
+    this->element->setPosition3D(Vec3(0.0, 0.5, 0.0));
 
     Application->environment->nextCharacter = next.index;
     break;
@@ -173,6 +169,7 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
     this->element = new Entity3D("plate.obj", this, true);
     this->element->setTexture("textures/" + to_string(next.index) + "/textures-state-1.png");
     this->element->setScale(0.25);
+    this->element->setPosition3D(Vec3(0.0, 0.5, 0.0));
 
     Application->environment->nextTexture = next.index;
     break;
@@ -193,8 +190,8 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
         ), 6),
       Sequence::create(
         CallFunc::create([=] () {
-        this->element->setCameraMask(this->getCameraMask());
-        this->element->setLightMask(this->getLightMask());
+        this->element->setCameraMask(this->index);
+        this->element->setLightMask(this->index);
 
         Modal::block();
         }),
@@ -227,7 +224,7 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
     Sequence::create(
       DelayTime::create(0.7),
       EaseSineIn::create(
-        MoveBy::create(0.2, Vec3(0.0, 1.0, 0.0))
+        MoveBy::create(0.2, Vec3(0.0, 0.5, 0.0))
       ),
       nullptr
     )

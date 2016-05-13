@@ -170,6 +170,13 @@ EnvironmentStoreBar::EnvironmentStoreBar()
 
   this->characters = new EnvironmentStoreBarButtonCharacters(this);
   this->textures = new EnvironmentStoreBarButtonTextures(this);
+  this->toogle = new EnvironmentStoreBarButton(this);
+
+  this->toogle->bind(false);
+  this->toogle->setColor(Color3B(95.0, 165.0, 196.0));
+
+  this->characters->setColor(Color3B(71.0, 132.0, 164.0));
+  this->textures->setColor(Color3B(71.0, 132.0, 164.0));
 
   this->setPosition(Application->getWidth() / 2, Application->getHeight() - 300);
 
@@ -249,8 +256,9 @@ void EnvironmentStoreBar::onCreateCharacters()
     )
   );
 
-  this->characters->setColor(Color3B(71.0, 132.0, 164.0));
-  this->textures->setColor(Color3B(95.0, 165.0, 196.0));
+  this->toogle->runAction(
+    MoveTo::create(0.2, Vec2(-300.0, 0.0))
+  );
 }
 
 void EnvironmentStoreBar::onCreateTextures()
@@ -287,8 +295,9 @@ void EnvironmentStoreBar::onCreateTextures()
     )
   );
 
-  this->textures->setColor(Color3B(71.0, 132.0, 164.0));
-  this->characters->setColor(Color3B(95.0, 165.0, 196.0));
+  this->toogle->runAction(
+    MoveTo::create(0.2, Vec2(0.0, 0.0))
+  );
 
   for(auto element : Application->environment->store.textures.elements) element->_create()->setPosition3D(Vec3(0.0, 0.4, 0.75));
 }
@@ -565,7 +574,7 @@ EnvironmentStoreBar::Element EnvironmentStoreBar::nextElement()
 EnvironmentStoreBar::EnvironmentStoreBarButton::EnvironmentStoreBarButton(Node* parent)
 : BackgroundColor(parent, Color4B(255.0, 255.0, 255.0, 255.0))
 {
-  this->setContentSize(Size(300, 50));
+  this->setContentSize(Size(300, 100));
   this->setCascadeOpacityEnabled(false);
 
   this->bind(true);
@@ -667,6 +676,7 @@ EnvironmentStoreBar::EnvironmentStoreBarButtonCharacters::EnvironmentStoreBarBut
 : EnvironmentStoreBarButton(parent)
 {
   this->text = new Text("store-characters", this, true);
+  this->text->setGlobalZOrder(10);
   this->text->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 5.0);
   this->text->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
 
@@ -712,6 +722,7 @@ EnvironmentStoreBar::EnvironmentStoreBarButtonTextures::EnvironmentStoreBarButto
 : EnvironmentStoreBarButton(parent)
 {
   this->text = new Text("store-textures", this, true);
+  this->text->setGlobalZOrder(10);
   this->text->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 5.0);
   this->text->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
 

@@ -185,6 +185,7 @@ class EnvironmentStoreBar : public Background
 
   EnvironmentStoreBarButton* characters;
   EnvironmentStoreBarButton* textures;
+  EnvironmentStoreBarButton* toogle;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
