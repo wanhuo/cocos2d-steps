@@ -119,7 +119,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
     {AmbientLight::create(Color3B(120, 120, 120)), Application}
   });
   this->diamond->setTexture(Application->environment->getTextureState1());
-  this->diamond->setPosition3D(Vec3(Application->getFrustumWidth() / 2 + 0.6, Application->getFrustumHeight() / 2 + 3.5, 0));
+  this->diamond->setPosition3D(Vec3(Application->getFrustumWidth() / 2 + 0.7, Application->getFrustumHeight() / 2 + 3.4, 0));
   this->diamond->setRotation3D(Vec3(0, 0, 0));
   this->diamond->setColor(Color3B(0.0, 243.0, 120.0));
   this->diamond->setScale(0.7);

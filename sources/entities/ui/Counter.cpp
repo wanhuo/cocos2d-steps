@@ -71,6 +71,7 @@ Counter::Counter(Node* parent)
   this->icon->setTexture(Application->environment->getTextureState1());
   this->icon->setPosition3D(Vec3(Application->getFrustumWidth() - 0.4, Application->getFrustumHeight() - 0.7, 0));
   this->icon->setRotation3D(Vec3(0, 0, 0));
+  this->icon->setScale(0.8);
   this->icon->setColor(Color3B(0.0, 243.0, 120.0));
   this->icon->runAction(
     RepeatForever::create(
@@ -101,8 +102,8 @@ Counter::Counter(Node* parent)
 
   this->holder->setPosition(Application->getCenter().x, Application->getHeight() - 200);
   this->texts.name->setPosition(Application->getCenter().x, Application->getHeight() - 300);
-  this->texts.score->setPosition(0, 0);
-  this->texts.bonus->setPosition(this->bonusBackground->getWidth() / 2, this->bonusBackground->getHeight() / 2 - 12);
+  this->texts.score->setPosition(0, 20);
+  this->texts.bonus->setPosition(this->bonusBackground->getWidth() / 2 + 1.0, this->bonusBackground->getHeight() / 2 - 10.0);
 
   this->reset(true);
 
@@ -564,5 +565,5 @@ void Counter::update()
   this->texts.score->data(this->values.current);
   this->texts.best->data(this->values.best);
   this->texts.coins->data(this->values.coins - this->count.add + this->count.remove);
-  this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() / 2 - 60, Application->getHeight() - 60);
+  this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() / 2 - 50, Application->getHeight() - 50);
 }

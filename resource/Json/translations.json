@@ -46,7 +46,7 @@
       {
         "title": "$1",
         "font": "square",
-        "size": 120
+        "size": 110
       }
     ],
     "counter-coins": [
@@ -88,7 +88,7 @@
       {
         "title": "+50",
         "font": "square",
-        "size": 60
+        "size": 42
       }
     ],
     "store-random": [

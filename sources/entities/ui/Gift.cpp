@@ -362,8 +362,8 @@ Gift::Element::Element(Node* parent)
   this->diamond = new Entity3D("diamond.obj", this->window, true);
   this->diamond->setTexture(Application->environment->getTextureState1());
   this->diamond->setColor(Color3B(0.0, 243.0, 120.0));
-  this->diamond->setScale(0.5);
-  this->diamond->setPosition(this->text->getWidthScaled()  / 2, 0.1);
+  this->diamond->setScale(0.4);
+  this->diamond->setPosition(this->text->getWidthScaled()  / 2, 0.0);
 }
 
 Gift::Element::~Element()
