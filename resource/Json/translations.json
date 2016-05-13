@@ -24,140 +24,140 @@
     "name": [
       {
         "title": "STEPS",
-        "font": "Consolasb",
+        "font": "Impact",
         "size": 200
       }
     ],
     "stage": [
       {
         "title": "STAGE $1",
-        "font": "Consolasb",
+        "font": "Impact",
         "size": 50
       }
     ],
     "stage-bonus": [
       {
         "title": "BONUS STAGE",
-        "font": "Consolasb",
+        "font": "Impact",
         "size": 50
       }
     ],
     "counter-score": [
       {
         "title": "$1",
-        "font": "Consolas",
+        "font": "Impact",
         "size": 120
       }
     ],
     "counter-coins": [
       {
         "title": "$1",
-        "font": "Consolas",
+        "font": "Impact",
         "size": 60
       }
     ],
     "counter-best": [
       {
         "title": "BEST $1",
-        "font": "Consolas",
+        "font": "Impact",
         "size": 80
       }
     ],
     "counter-bonus": [
       {
         "title": "$1",
-        "font": "Consolas",
+        "font": "Impact",
         "size": 20
       }
     ],
     "menu-tap": [
       {
         "title": "TAP TO PLAY",
-        "font": "Consolas",
+        "font": "Impact",
         "size": 40
       }
     ],
     "finish-tap": [
       {
         "title": "TAP TO RESTART",
-        "font": "Consolas",
+        "font": "Impact",
         "size": 40
       }
     ],
     "present": [
       {
         "title": "+50",
-        "font": "Consolas",
+        "font": "Impact",
         "size": 60
       }
     ],
     "store-random": [
       {
         "title": "RANDOM",
-        "font": "Consolasb",
+        "font": "Impact",
         "size": 46
       }
     ],
     "store-state-1": [
       {
         "title": "$1 MISSIONS",
-        "font": "Consolasb",
+        "font": "Impact",
         "size": 46
       }
     ],
     "store-state-2": [
       {
         "title": "$1",
-        "font": "Consolasb",
+        "font": "Impact",
         "size": 46
       }
     ],
     "store-state-3": [
       {
         "title": "FOLLOW KETCHAPP ON FACEBOOK",
-        "font": "Consolasb",
+        "font": "Impact",
         "size": 36
       }
     ],
     "store-characters": [
       {
         "title": "CHARACTERS",
-        "font": "Consolasb",
+        "font": "Impact",
         "size": 32
       }
     ],
     "store-textures": [
       {
         "title": "TEXTURES",
-        "font": "Consolasb",
+        "font": "Impact",
         "size": 32
       }
     ],
     "price": [
       {
         "title": "200",
-        "font": "Consolasb",
+        "font": "Impact",
         "size": 46
       }
     ],
     "best-word-a": [
       {
         "title": "NEW",
-        "font": "Consolasb",
+        "font": "Impact",
         "size": 48
       }
     ],
     "best-word-b": [
       {
         "title": "BEST",
-        "font": "Consolasb",
+        "font": "Impact",
         "size": 48
       }
     ],
     "handler": [
       {
         "title": "$1",
-        "font": "Consolasb",
+        "font": "Impact",
         "size": 42
       }
     ],
