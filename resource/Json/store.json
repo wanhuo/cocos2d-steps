@@ -129,6 +129,13 @@
 			"index": 19,
 			"missions": 10,
 			"diamonds": 200
+		},
+		{
+			"id": "items.characters.20",
+			"file": "character-20",
+			"index": 20,
+			"missions": 10,
+			"diamonds": 200
 		}
 	],
 	"textures": [
