@@ -88,7 +88,6 @@ void Character::reset()
     )
   );
 
-
   /**
    *
    *
@@ -811,17 +810,23 @@ void Character::onCrash(Crash crash)
     case DOWN:
     case CATCH:
     case GATE:
-    this->setVisible(false);
     Screenshot::save([&] (bool a, string texture)
     {
-      this->setVisible(true);
-      switch(Application->state)
-      {
-        case Game::FINISH:
-        case Game::GAME:
-        Application->capture->screenshot(texture);
-        break;
-      }
+      this->runAction(
+        Sequence::create(
+        DelayTime::create(1.5),
+        CallFunc::create([=] () {
+        switch(Application->state)
+        {
+          case Game::FINISH:
+          case Game::GAME:
+          Application->capture->screenshot(texture);
+          break;
+        }
+        }),
+        nullptr
+        )
+      );
     });
     break;
     case COPTER:

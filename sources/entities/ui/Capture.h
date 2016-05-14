@@ -45,6 +45,10 @@ class Capture : public Entity
    *
    */
   private:
+  enum State {
+    STATE_NORMAL,
+    STATE_ACTIVE
+  };
 
   /**
    *
@@ -63,6 +67,8 @@ class Capture : public Entity
   Capture(Node* parent);
  ~Capture();
 
+  int state;
+
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
@@ -73,6 +79,8 @@ class Capture : public Entity
   virtual void onTouch(cocos2d::Touch* touch, Event* e);
 
   virtual void screenshot(string texture);
+
+  virtual bool containsTouchLocation(cocos2d::Touch* touch);
 };
 
 #endif

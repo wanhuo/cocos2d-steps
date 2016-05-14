@@ -207,6 +207,7 @@ class Game : public Screen
   Parameters parameters;
 
   BackgroundColor* s;
+  BackgroundColor* d;
 
   Environment* environment;
   Cameras cameras;
@@ -267,17 +268,6 @@ class Game : public Screen
   virtual void updateStates(float time);
 
   virtual void update(float time);
-
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  CustomCommand drawCommand;
-
-	virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags);
-	virtual void onDraw(Renderer *renderer, const Mat4& transform, uint32_t flags);
 };
 
 #endif

@@ -31,6 +31,7 @@
 Particle::Particle()
 : Cube("particle.obj")
 {
+  this->setTexture("textures/particle-texture.png");
   this->setLightMask(0);
 }
 

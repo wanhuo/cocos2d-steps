@@ -108,7 +108,10 @@ Game::Game()
   this->capture = new Capture(this);
 
   this->s = new BackgroundColor(this, Color4B(255, 255, 255, 0));
+  this->d = new BackgroundColor(this, Color4B(0, 0, 0, 0));
+
   this->s->setCameraMask(8);
+  this->d->setCameraMask(8);
 }
 
 Game::~Game()
@@ -547,46 +550,4 @@ void Game::update(float time)
    *
    */
   this->updateStates(time);
-}
-
-/**
- *
- *
- *
- */
-void Game::draw(Renderer *renderer, const Mat4& transform, uint32_t flags)
-{
-  this->drawCommand.init(100);
-  this->drawCommand.func = CC_CALLBACK_0(Game::onDraw, this, renderer, transform, flags);
-
-  renderer->addCommand(&this->drawCommand);
-}
-
-void Game::onDraw(Renderer *renderer, const Mat4& transform, uint32_t flags)
-{
- /*GLuint FramebufferName = 0;
- glGenFramebuffers(1, &FramebufferName);
- glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
-
- GLuint depthTexture;
- glGenTextures(1, &depthTexture);
- glBindTexture(GL_TEXTURE_2D, depthTexture);
- glTexImage2D(GL_TEXTURE_2D, 0,GL_DEPTH_COMPONENT16, 1024, 1024, 0,GL_DEPTH_COMPONENT, GL_FLOAT, 0);
- glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
- glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
- glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
- glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
- glFramebufferTextureEXT(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0);
-
- glDrawBuffer(GL_NONE); // No color buffer is drawn to.
-
- if(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE)
- {
-  log("A");
- }
- else
- {
-  log("B");
- }*/
 }

@@ -202,7 +202,6 @@
             <filename>../Graphics/ui/store-position-lock.png</filename>
             <filename>../Graphics/ui/diamond.png</filename>
             <filename>../Graphics/ui/counter-bonus.png</filename>
-            <filename>../Graphics/ui/handler.png</filename>
             <filename>../Graphics/ui/play-button.png</filename>
             <filename>../Graphics/ui/lock-button.png</filename>
             <filename>../Graphics/ui/lock-facebook-button.png</filename>

@@ -38,11 +38,12 @@ Capture::Capture(Node* parent)
 : Entity("capture.png", parent)
 {
   this->element = new Entity(this, true);
+  this->element->setGlobalZOrder(1000);
   this->element->setLocalZOrder(-1);
 
   this->setPosition(Application->getWidth() / 2, Application->getHeight() / 2);
-  this->setGlobalZOrder(100);
-  this->setCameraMask(4);
+  this->setGlobalZOrder(1000);
+  this->setCameraMask(8);
   this->bind(true);
 }
 
@@ -64,13 +65,20 @@ void Capture::onCreate()
    *
    *
    */
+  this->state = STATE_NORMAL;
+
+  /**
+   *
+   *
+   *
+   */
   this->setRotation(0);
-  this->setScale(1.5);
+  this->setScale(1.0);
 
   this->runAction(
     Spawn::create(
-      ScaleTo::create(0.2, 1.0),
-      RotateTo::create(0.2, - 15.0),
+      ScaleTo::create(0.2, 0.5),
+      RotateTo::create(0.2, -15.0),
       nullptr
     )
   );
@@ -81,12 +89,6 @@ void Capture::onCreate()
 void Capture::onDestroy(bool action)
 {
   Entity::onDestroy(action);
-
-  /**
-   *
-   *
-   *
-   */
 }
 
 /**
@@ -96,10 +98,12 @@ void Capture::onDestroy(bool action)
  */
 void Capture::onTouchStart(cocos2d::Touch* touch, Event* e)
 {
+  if(this->getActionByTag(1)) return;
+
   this->stopActionByTag(101);
   this->Node::runAction(
     EaseSineIn::create(
-      ScaleTo::create(0.2, 0.9)
+      ScaleTo::create(0.1, this->state == STATE_NORMAL ? 0.45 : 1.25)
     ), 101
   );
 
@@ -116,7 +120,7 @@ void Capture::onTouchFinish(cocos2d::Touch* touch, Event* e)
   this->stopActionByTag(101);
   this->Node::runAction(
     EaseSineIn::create(
-      ScaleTo::create(0.2, 1.0)
+      ScaleTo::create(0.1, this->state == STATE_NORMAL ? 0.5 : 1.3)
     ), 101
   );
 
@@ -133,7 +137,7 @@ void Capture::onTouchCancelled(cocos2d::Touch* touch, Event* e)
   this->stopActionByTag(101);
   this->Node::runAction(
     EaseSineIn::create(
-      ScaleTo::create(0.2, 1.0)
+      ScaleTo::create(0.1, this->state == STATE_NORMAL ? 0.5 : 1.3)
     ), 101
   );
 
@@ -159,19 +163,44 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
    *
    *
    */
-  this->runAction(
-    Spawn::create(
-      ScaleTo::create(0.2, 2.0),
-      RotateTo::create(0.2, 0),
-      Sequence::create(
-        DelayTime::create(0.2),
-        CallFunc::create([=] () {
-        }),
+  switch(this->state)
+  {
+    case STATE_NORMAL:
+    this->state = STATE_ACTIVE;
+
+    this->runAction(
+      Spawn::create(
+        ScaleTo::create(0.2, 1.3),
+        RotateTo::create(0.2, 0),
+        Sequence::create(
+          DelayTime::create(0.2),
+          CallFunc::create([=] () {
+          Application->onShare();
+          }),
+          nullptr
+        ),
         nullptr
-      ),
-      nullptr
-    )
-  );
+      ), 1
+    );
+    Application->d->runAction(
+      FadeTo::create(0.2, 200)
+    );
+    break;
+    case STATE_ACTIVE:
+    this->state = STATE_NORMAL;
+
+    this->runAction(
+      Spawn::create(
+        ScaleTo::create(0.2, 0.5),
+        RotateTo::create(0.2, -15.0),
+        nullptr
+      ), 1
+    );
+    Application->d->runAction(
+      FadeTo::create(0.2, 0)
+    );
+    break;
+  }
 }
 
 /**
@@ -181,7 +210,7 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
  */
 void Capture::screenshot(string texture)
 {
-  auto size = Director::getInstance()->getOpenGLView()->getFrameSize();
+  this->_create();
 
   /**
    *
@@ -196,17 +225,26 @@ void Capture::screenshot(string texture)
    *
    */
   this->element->setTexture(texture.c_str());
-  this->element->setScale(this->getWidth() / size.width);
-  this->element->setTextureRect(Rect(0, size.height - size.width, size.width, size.width));
+  this->element->setScale(this->getWidth() / this->element->getWidth());
   this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2);
+}
 
-  /**
-   *
-   *
-   *
-   */
-  this->_create();
+/**
+ *
+ *
+ *
+ */
+bool Capture::containsTouchLocation(cocos2d::Touch* touch)
+{
+  switch(this->state)
+  {
+    case STATE_NORMAL:
+    return Entity::containsTouchLocation(touch);
+    break;
+    case STATE_ACTIVE:
+    return true;
+    break;
+  }
 
-
-
+  return false;
 }
