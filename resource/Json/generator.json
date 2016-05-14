@@ -31,7 +31,7 @@
 		"pickups": {
 			"probability": 20,
 			"elements": [
-				{"type": 5, "probability": 30},
+				{"type": 5, "probability": 60},
 				{"type": 6, "probability": 10},
 				{"type": 7, "probability": 100},
 				{"type": 8, "probability": 10},
@@ -117,13 +117,13 @@
 					{"type": 22, "probability": 80},
 					{"type": 23, "probability": 80},
 					{"type": 16, "probability": 100},
-					{"type": 17, "probability": 80}
+					{"type": 17, "probability": 50}
 				]
 			},
 			"pickups": {
 				"probability": 20,
 				"elements": [
-					{"type": 5, "probability": 30},
+					{"type": 5, "probability": 60},
 					{"type": 6, "probability": 10},
 					{"type": 7, "probability": 100}
 				]
@@ -151,7 +151,7 @@
 					{"type": 22, "probability": 80},
 					{"type": 23, "probability": 80},
 					{"type": 16, "probability": 100},
-					{"type": 17, "probability": 80},
+					{"type": 17, "probability": 50},
 					{"type": 13, "probability": 80},
 					{"type": 19, "probability": 80}
 				]
@@ -159,7 +159,7 @@
 			"pickups": {
 				"probability": 20,
 				"elements": [
-					{"type": 5, "probability": 30},
+					{"type": 5, "probability": 60},
 					{"type": 6, "probability": 10},
 					{"type": 7, "probability": 100},
 					{"type": 8, "probability": 10},

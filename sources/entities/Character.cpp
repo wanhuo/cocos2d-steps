@@ -94,16 +94,7 @@ void Character::reset()
    *
    *
    */
-  this->changeState(NORMAL);
-
-  this->botEnabled = false;
-  this->botWait = false;
-
-  this->botTime = 0.00;
-  this->botTimeElapsed = 0;
-
-  this->botWaitTime = 0.2;
-  this->botWaitTimeElapsed = 0;
+  this->changeState(STATE_NORMAL);
 
   this->autoTurnLeft = false;
   this->autoTurnRight = false;
@@ -167,9 +158,9 @@ void Character::onDestroy(bool action)
  *
  *
  */
-void Character::onSound(string file)
+void Character::onSound()
 {
-  Sound->play(file, false, this->sound, 1.0);
+  Sound->play("character-jump", false, this->sound, 1.0);
 
   this->soundTimeElapsed = 0;
 
@@ -196,8 +187,8 @@ bool Character::onTouch()
 
     switch(this->state)
     {
-      case NORMAL:
-      this->changeState(JUMP);
+      case STATE_NORMAL:
+      this->changeState(STATE_JUMP);
 
       return true;
       break;
@@ -244,7 +235,7 @@ void Character::onTurn(bool action, bool set)
 
         this->updateStates(0);
 
-        this->changeState(NORMAL);
+        this->changeState(STATE_NORMAL);
       }
     }
 
@@ -298,7 +289,7 @@ void Character::onTurnLeft(bool action, bool set)
                 next->resumeSchedulerAndActions();
               }
 
-              this->changeState(NORMAL);
+              this->changeState(STATE_NORMAL);
 
               this->onTurn(LEFT);
             }),
@@ -376,7 +367,7 @@ void Character::onTurnRight(bool action, bool set)
                 next->resumeSchedulerAndActions();
               }
 
-              this->changeState(NORMAL);
+              this->changeState(STATE_NORMAL);
 
               this->onTurn(RIGHT);
             }),
@@ -589,6 +580,13 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   {
     this->changeState(STATE_FINISH);
   }
+  else
+  {
+    if(this->steps >= 10)
+    {
+      //this->changeState(STATE_INSANE);
+    }
+  }
 }
 
 void Character::onLandFail(Turn turn, Plate* plate)
@@ -597,7 +595,7 @@ void Character::onLandFail(Turn turn, Plate* plate)
   auto y = this->getPositionY();
   auto z = this->getPositionZ();
 
-  this->changeState(FALL);
+  this->changeState(STATE_FALL);
 
   switch(turn)
   {
@@ -606,7 +604,7 @@ void Character::onLandFail(Turn turn, Plate* plate)
       Spawn::create(
         MoveBy::create(0.1, Vec3(0, -0.8, 0.0)),
         CallFunc::create([=] () {
-          this->changeState(CRASH, Crash::FAIL);
+          this->changeState(STATE_CRASH, Crash::FAIL);
         }),
         nullptr
       )
@@ -617,7 +615,7 @@ void Character::onLandFail(Turn turn, Plate* plate)
       Spawn::create(
         MoveBy::create(0.1, Vec3(0.0, -0.8, 0)),
         CallFunc::create([=] () {
-          this->changeState(CRASH, Crash::FAIL);
+          this->changeState(STATE_CRASH, Crash::FAIL);
         }),
         nullptr
       )
@@ -812,13 +810,15 @@ void Character::onCrash(Crash crash)
     case SPIKES:
     case DOWN:
     case CATCH:
-    case GATE:this->setVisible(false);
+    case GATE:
+    this->setVisible(false);
     Screenshot::save([&] (bool a, string texture)
     {
+      this->setVisible(true);
       switch(Application->state)
       {
         case Game::FINISH:
-        case Game::GAME:this->setVisible(true);
+        case Game::GAME:
         Application->capture->screenshot(texture);
         break;
       }
@@ -961,7 +961,7 @@ void Character::onFinish()
             Shake::create(0.5, 0.2)
           );
 
-          this->changeState(NORMAL);
+          this->changeState(STATE_NORMAL);
           this->onLandSuccessful(NONE, this->plates.current);
 
           Sound->play("landing-" + patch::to_string(random(1, 4)));
@@ -992,6 +992,10 @@ void Character::onFinish()
       nullptr
     )
   );
+}
+
+void Character::onInsane()
+{
 }
 
 /**
@@ -1172,19 +1176,19 @@ void Character::changeState(State state, Crash crash)
 
     switch(this->state)
     {
-      case NORMAL:
+      case STATE_NORMAL:
       this->onNormal();
       break;
-      case JUMP:
+      case STATE_JUMP:
       this->onJump();
       break;
-      case FALL:
+      case STATE_FALL:
       this->onFall();
       break;
-      case CRASH:
+      case STATE_CRASH:
       this->onCrash(crash);
       break;
-      case HIT:
+      case STATE_HIT:
       this->onHit();
       break;
       case STATE_COPTER:
@@ -1192,6 +1196,9 @@ void Character::changeState(State state, Crash crash)
       break;
       case STATE_FINISH:
       this->onFinish();
+      break;
+      case STATE_INSANE:
+      this->onInsane();
       break;
     }
   }
@@ -1217,11 +1224,11 @@ void Character::updateNormal(float time)
   
         if(--this->lives < 0)
         {
-          this->changeState(CRASH, decoration->status());
+          this->changeState(STATE_CRASH, decoration->status());
         }
         else
         {
-          this->changeState(HIT);
+          this->changeState(STATE_HIT);
         }
       } 
     }
@@ -1244,6 +1251,10 @@ void Character::updateHit(float time)
 {
 }
 
+void Character::updateFinish(float time)
+{
+}
+
 void Character::updateCopter(float time)
 {
   this->turns -= 0.01;
@@ -1251,7 +1262,7 @@ void Character::updateCopter(float time)
   Application->environment->characterAction->setScaleX(min(1.0f, max(0.0f, this->turns / STATE_COPTER_TURNS)));
 }
 
-void Character::updateFinish(float time)
+void Character::updateInsane(float time)
 {
 }
 
@@ -1264,19 +1275,19 @@ void Character::updateStates(float time)
 {
   switch(this->state)
   {
-    case NORMAL:
+    case STATE_NORMAL:
     this->updateNormal(time);
     break;
-    case JUMP:
+    case STATE_JUMP:
     this->updateJump(time);
     break;
-    case FALL:
+    case STATE_FALL:
     this->updateFall(time);
     break;
-    case CRASH:
+    case STATE_CRASH:
     this->updateCrash(time);
     break;
-    case HIT:
+    case STATE_HIT:
     this->updateHit(time);
     break;
     case STATE_COPTER:
@@ -1284,6 +1295,9 @@ void Character::updateStates(float time)
     break;
     case STATE_FINISH:
     this->updateFinish(time);
+    break;
+    case STATE_INSANE:
+    this->updateInsane(time);
     break;
   }
 }
@@ -1315,71 +1329,6 @@ void Character::update(float time)
   {
     this->steps = 0;
     this->sound = 1;
-  }
-
-  /**
-   *
-   *
-   *
-   */
-  if(this->botEnabled)
-  {
-    this->botTimeElapsed += time;
-
-    if(this->botTimeElapsed >= this->botTime)
-    {
-      this->botTimeElapsed = this->state == STATE_COPTER ? -0.1 : 0.0;
-
-      if(Application->environment->character->plates.current)
-      {
-        auto element = Application->environment->character->plates.current;
-        auto plates = Application->environment->character->getPlatesNear(element);
-
-        if(plates.plates[Plate::LEFT])
-        {
-          element = plates.plates[Plate::LEFT];
-        }
-        else
-        {
-          element = plates.plates[Plate::RIGHT];
-        }
-
-        if(element)
-        {
-          for(auto decoration : element->getDecorations())
-          {
-            if((decoration->enable || element->moved) && element->type != Plate::COPTER)
-            {
-              return;
-            }
-          }
-
-          if(element->getDecorations().size())
-          {
-            if(!this->botWait && this->plates.previous)
-            {
-              if(this->plates.previous->getDecorations().size()) this->botWait = true;
-            }
-          }
-
-          if(this->botWait)
-          {
-            this->botWaitTimeElapsed += time;
-
-            if(this->botWaitTimeElapsed >= this->botWaitTime)
-            {
-              this->botWaitTimeElapsed = 0;
-              this->botWait = false;
-            }
-          }
-
-          if((this->state == NORMAL || this->state == STATE_COPTER) && !this->botWait)
-          {
-            this->onTurn();
-          }
-        }
-      }
-    }
   }
 }
 

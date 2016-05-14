@@ -34,7 +34,7 @@ Shadow::Shadow(const char* file, Node* parent)
   this->setColor(Color3B(0, 0, 0));
   this->setOpacity(30);
 
-  this->setLightMask(2048);
+  this->setLightMask(0);
 }
 
 Shadow::Shadow(const char* file)

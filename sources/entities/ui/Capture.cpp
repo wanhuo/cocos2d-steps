@@ -190,21 +190,12 @@ void Capture::screenshot(string texture)
    */
   Director::getInstance()->getTextureCache()->removeTextureForKey(texture.c_str());
 
-
-
-Director::getInstance()->setNextDeltaTimeZero(true);
-auto renderTexture = RenderTexture::create(size.width, size.height);
-renderTexture->begin();
-this->visit();
-renderTexture->end();
-
   /**
    *
    *
    *
    */
-  this->element->setTexture(renderTexture->getSprite()->getTexture());
-  //this->element->setTexture(texture.c_str());
+  this->element->setTexture(texture.c_str());
   this->element->setScale(this->getWidth() / size.width);
   this->element->setTextureRect(Rect(0, size.height - size.width, size.width, size.width));
   this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2);
@@ -215,4 +206,7 @@ renderTexture->end();
    *
    */
   this->_create();
+
+
+
 }

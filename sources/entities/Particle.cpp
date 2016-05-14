@@ -31,42 +31,11 @@
 Particle::Particle()
 : Cube("particle.obj")
 {
+  this->setLightMask(0);
 }
 
 Particle::~Particle()
 {
-}
-
-/**
- *
- *
- *
- */
-void Particle::onCreate()
-{
-  Cube::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setColor(Color3B::WHITE);
-}
-
-void Particle::onDestroy(bool action)
-{
-  Cube::onDestroy(action);
-}
-
-/**
- *
- *
- *
- */
-void Particle::update(float time)
-{
-  Cube::update(time);
 }
 
 /**

@@ -119,11 +119,9 @@ void Environment::create()
 
   this->light.natural = AmbientLight::create(Color3B(150, 150, 150));
   this->light.environment = DirectionLight::create(Vec3(0.5, -1.0, 0.0), Color3B(120, 120, 120));
-  this->light.character = SpotLight::create(Vec3(0, 0, 0), Vec3(0, 0, 0), Color3B(255, 255, 255), 320.0f, 0.0f, 20.0f);
 
   this->plane->addChild(this->light.environment);
   this->plane->addChild(this->light.natural);
-  this->plane->addChild(this->light.character);
 
   /**
    *
@@ -389,20 +387,6 @@ void Environment::finishStar()
  *
  *
  */
-void Environment::updateLight(float time)
-{
-  auto x = this->character->getPositionX();
-  auto y = 200.0f;
-  auto z = this->character->getPositionZ();
-
-  this->light.character->setPosition3D(Vec3(x, y, z));
-}
-
-/**
- *
- *
- *
- */
 void Environment::updateMenu(float time)
 {
 }
@@ -413,8 +397,12 @@ void Environment::updateLose(float time)
 
 void Environment::updateGame(float time)
 {
-  if(this->character->state != Character::CRASH)
+  switch(this->character->state)
   {
+    case Character::STATE_CRASH:
+    case Character::STATE_INSANE:
+    break;
+    default:
     this->platesTimeElapsed += time;
 
     if(this->platesTimeElapsed >= this->platesTime)
@@ -424,6 +412,7 @@ void Environment::updateGame(float time)
 
       this->generator->destroy();
     }
+    break;
   }
 }
 
@@ -467,6 +456,5 @@ void Environment::update(float time)
     break;
   }
 
-  this->updateLight(time);
   this->updateStar(time);
 }

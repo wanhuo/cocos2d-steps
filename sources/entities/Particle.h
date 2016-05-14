@@ -56,11 +56,6 @@ class Particle : public Cube
   Particle();
  ~Particle();
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
-
-  virtual void update(float time);
-
   Particle* deepCopy();
 };
 

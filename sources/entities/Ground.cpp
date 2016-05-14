@@ -40,6 +40,8 @@ Ground::Ground(Node* parent)
 
   this->setRotation3D(Vec3(-90, 0, 0));
 
+  this->setLightMask(0);
+
   this->setScheduleUpdate(true);
 }
 

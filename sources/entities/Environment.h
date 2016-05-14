@@ -72,7 +72,6 @@ class Environment : public Background
   struct Light {
     BaseLight* environment;
     BaseLight* natural;
-    BaseLight* character;
   };
 
   struct Plates {
@@ -211,8 +210,6 @@ class Environment : public Background
 
   virtual void startStar();
   virtual void finishStar();
-
-  virtual void updateLight(float time);
 
   virtual void updateStar(float time);
 

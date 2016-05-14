@@ -47,21 +47,12 @@ class Character : public Cube
    *
    */
   protected:
-  bool botEnabled;
-  bool botWait;
-
   bool autoTurnLeft;
   bool autoTurnRight;
   bool manual;
 
   float soundTime;
   float soundTimeElapsed;
-
-  float botTime;
-  float botTimeElapsed;
-
-  float botWaitTime;
-  float botWaitTimeElapsed;
 
   float sound;
   float time;
@@ -80,13 +71,14 @@ class Character : public Cube
   Entity3D* plane;
 
   enum State {
-    NORMAL,
-    JUMP,
-    FALL,
-    CRASH,
-    HIT,
+    STATE_NORMAL,
+    STATE_JUMP,
+    STATE_FALL,
+    STATE_CRASH,
+    STATE_HIT,
     STATE_COPTER,
-    STATE_FINISH
+    STATE_FINISH,
+    STATE_INSANE
   };
 
   enum Crash {
@@ -149,15 +141,16 @@ class Character : public Cube
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
-  virtual void onSound(string file = "character-jump");
+  virtual void onSound();
 
   virtual void onNormal();
   virtual void onJump();
   virtual void onFall();
   virtual void onCrash(Crash crash = UNDEFINED);
   virtual void onHit();
-  virtual void onCopter();
   virtual void onFinish();
+  virtual void onCopter();
+  virtual void onInsane();
 
   virtual bool onTouch();
 
@@ -203,8 +196,9 @@ class Character : public Cube
   virtual void updateFall(float time);
   virtual void updateCrash(float time);
   virtual void updateHit(float time);
-  virtual void updateCopter(float time);
   virtual void updateFinish(float time);
+  virtual void updateCopter(float time);
+  virtual void updateInsane(float time);
 
   virtual void updateStates(float time);
 
