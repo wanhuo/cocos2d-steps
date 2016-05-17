@@ -64,6 +64,7 @@ EnvironmentMissionsBar::EnvironmentMissionsBar()
   this->buttons.lock->setVisible(false);
 
   this->popup = new EnvironmentMissionsPopup(this);
+  this->notify = new EnvironmentMissionsNotify();
 
   Application->environment->missions.missions.plane = cocos2d::ui::ListView::create();
   Application->environment->missions.missions.plane->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);

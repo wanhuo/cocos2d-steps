@@ -206,6 +206,8 @@
 		78B4B7071CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B7041CBFB40700F2D8A7 /* TypeCopter.cpp */; };
 		78B4B70A1CBFB51F00F2D8A7 /* Copter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B7081CBFB51F00F2D8A7 /* Copter.cpp */; };
 		78B4B70B1CBFB51F00F2D8A7 /* Copter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B7081CBFB51F00F2D8A7 /* Copter.cpp */; };
+		78BADD6E1CEB57800077B673 /* EnvironmentMissionsNotify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78BADD6C1CEB57800077B673 /* EnvironmentMissionsNotify.cpp */; };
+		78BADD6F1CEB57800077B673 /* EnvironmentMissionsNotify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78BADD6C1CEB57800077B673 /* EnvironmentMissionsNotify.cpp */; };
 		78C72BB61CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */; };
 		78C72BB71CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */; };
 		78C72BB81CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB41CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp */; };
@@ -491,6 +493,8 @@
 		78B4B7051CBFB40700F2D8A7 /* TypeCopter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeCopter.h; sourceTree = "<group>"; };
 		78B4B7081CBFB51F00F2D8A7 /* Copter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Copter.cpp; sourceTree = "<group>"; };
 		78B4B7091CBFB51F00F2D8A7 /* Copter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Copter.h; sourceTree = "<group>"; };
+		78BADD6C1CEB57800077B673 /* EnvironmentMissionsNotify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsNotify.cpp; sourceTree = "<group>"; };
+		78BADD6D1CEB57800077B673 /* EnvironmentMissionsNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsNotify.h; sourceTree = "<group>"; };
 		78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsBar.cpp; sourceTree = "<group>"; };
 		78C72BB31CE9D2E700D8EB11 /* EnvironmentMissionsBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsBar.h; sourceTree = "<group>"; };
 		78C72BB41CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsItem.cpp; sourceTree = "<group>"; };
@@ -1196,6 +1200,8 @@
 				78C72BB51CE9D2E700D8EB11 /* EnvironmentMissionsItem.h */,
 				78C72BBA1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp */,
 				78C72BBB1CE9F49600D8EB11 /* EnvironmentMissionsPopup.h */,
+				78BADD6C1CEB57800077B673 /* EnvironmentMissionsNotify.cpp */,
+				78BADD6D1CEB57800077B673 /* EnvironmentMissionsNotify.h */,
 				78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */,
 				78C72BB31CE9D2E700D8EB11 /* EnvironmentMissionsBar.h */,
 			);
@@ -1504,6 +1510,7 @@
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
 				78B4B6DD1CBD751D00F2D8A7 /* Pickup.cpp in Sources */,
 				785546161CD9F97700B58ED0 /* Presention.cpp in Sources */,
+				78BADD6F1CEB57800077B673 /* EnvironmentMissionsNotify.cpp in Sources */,
 				789E71A91CD39D0D00BDCDC7 /* TypeMoved3.cpp in Sources */,
 				78B4B7071CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */,
 				78B4B6F61CBF911800F2D8A7 /* Spikes.cpp in Sources */,
@@ -1566,6 +1573,7 @@
 				7894C0331BC9282F00363FC9 /* Game.cpp in Sources */,
 				78E33FD11C4A84080021272D /* Particle.cpp in Sources */,
 				781DA8801CDB3B95005BEB98 /* Watch.cpp in Sources */,
+				78BADD6E1CEB57800077B673 /* EnvironmentMissionsNotify.cpp in Sources */,
 				789E719E1CD39A4A00BDCDC7 /* TypeMoved1.cpp in Sources */,
 				78283FBE1CE21DF00010CAB7 /* EnvironmentStoreItem.cpp in Sources */,
 				78B4B70A1CBFB51F00F2D8A7 /* Copter.cpp in Sources */,

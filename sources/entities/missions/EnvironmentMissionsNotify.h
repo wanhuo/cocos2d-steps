@@ -27,8 +27,8 @@
  *
  */
 
-#ifndef _ENVIRONMENTPOPUPBAR_H_
-#define _ENVIRONMENTPOPUPBAR_H_
+#ifndef _ENVIRONMENTMISSIONSNOTIFY_H_
+#define _ENVIRONMENTMISSIONSNOTIFY_H_
 
 #include "Game.h"
 
@@ -37,56 +37,15 @@
  *
  *
  */
-class EnvironmentMissionsPopup : public BackgroundColor
+class EnvironmentMissionsNotify : public BackgroundColor
 {
   /**
    *
    *
    *
    */
-  public:
-  class MissionTask : public Entity
-  {
-    /**
-     *
-     *
-     *
-     */
-    public:
-    MissionTask(Node* parent);
-   ~MissionTask();
-
-    Text* text;
-    Entity* element;
-
-    virtual void onCreate();
-    virtual void onDestroy(bool action = false);
-
-    virtual void updateData(int mission);
-  };
-
-  /**
-   *
-   *
-   *
-   */
-  private:
-  struct Texts {
-    Text* background;
-    Text* mission;
-  };
-
-  vector<MissionTask*> missions;
-
-  /**
-   *
-   *
-   *
-   */
   protected:
-  Texts texts;
-
-  BackgroundColor* background;
+  Text* text;
 
   /**
    *
@@ -94,16 +53,14 @@ class EnvironmentMissionsPopup : public BackgroundColor
    *
    */
   public:
-  EnvironmentMissionsPopup(Node* parent);
- ~EnvironmentMissionsPopup();
+  EnvironmentMissionsNotify();
+ ~EnvironmentMissionsNotify();
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
   virtual void onEnter();
   virtual void onExit();
-
-  virtual void updateData(int index);
 };
 
 #endif

@@ -27,9 +27,6 @@
  *
  */
 
-#ifndef _ENVIRONMENTPOPUPBAR_H_
-#define _ENVIRONMENTPOPUPBAR_H_
-
 #include "Game.h"
 
 /**
@@ -37,73 +34,54 @@
  *
  *
  */
-class EnvironmentMissionsPopup : public BackgroundColor
+EnvironmentMissionsNotify::EnvironmentMissionsNotify()
+: BackgroundColor(nullptr, Color4B(255.0, 255.0, 255.0, 255.0))
 {
-  /**
-   *
-   *
-   *
-   */
-  public:
-  class MissionTask : public Entity
-  {
-    /**
-     *
-     *
-     *
-     */
-    public:
-    MissionTask(Node* parent);
-   ~MissionTask();
+  this->setIgnoreAnchorPointForPosition(false);
 
-    Text* text;
-    Entity* element;
+  this->setAnchorPoint(Vec2(0.5, 1.0));
+  this->setContentSize(Size(Application->getWidth(), 100));
+  this->setPosition(Application->getWidth() / 2, Application->getHeight());
 
-    virtual void onCreate();
-    virtual void onDestroy(bool action = false);
+  this->text = new Text("missions-complete", this, true);
+  this->text->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
 
-    virtual void updateData(int mission);
-  };
+  Director::getInstance()->setNotificationNode(this);
 
-  /**
-   *
-   *
-   *
-   */
-  private:
-  struct Texts {
-    Text* background;
-    Text* mission;
-  };
+  this->_create();
+  this->setCameraMask(4);
+}
 
-  vector<MissionTask*> missions;
+EnvironmentMissionsNotify::~EnvironmentMissionsNotify()
+{
+}
 
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  Texts texts;
+/**
+ *
+ *
+ *
+ */
+void EnvironmentMissionsNotify::onCreate()
+{
+  BackgroundColor::onCreate();
+}
 
-  BackgroundColor* background;
+void EnvironmentMissionsNotify::onDestroy(bool action)
+{
+  BackgroundColor::onDestroy(action);
+}
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  EnvironmentMissionsPopup(Node* parent);
- ~EnvironmentMissionsPopup();
+/**
+ *
+ *
+ *
+ */
+void EnvironmentMissionsNotify::onEnter()
+{
+  BackgroundColor::onEnter();
+}
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
-
-  virtual void onEnter();
-  virtual void onExit();
-
-  virtual void updateData(int index);
-};
-
-#endif
+void EnvironmentMissionsNotify::onExit()
+{
+  BackgroundColor::onExit();
+}

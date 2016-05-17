@@ -168,6 +168,22 @@
         "size": 24
       }
     ],
+    "missions-data": [
+      {
+        "title": "$1/$2",
+        "font": "square",
+        "size": 42,
+        "color": [71.0, 132.0, 164.0]
+      }
+    ],
+    "missions-complete": [
+      {
+        "title": "MISSION COMPLETE!",
+        "font": "square",
+        "size": 42,
+        "color": [71.0, 132.0, 164.0]
+      }
+    ],
     "best-word-a": [
       {
         "title": "NEW",
@@ -407,34 +423,6 @@
         "title": "OMG! J'ai obtenu $1 points pour avoir joué #Steps! ",
         "font": "square",
         "size": 0
-      }
-    ],
-
-
-
-
-
-
-    
-    "mission": [
-      {
-        "title": "",
-        "font": "square",
-        "size": 42
-      }
-    ],
-    "mission-1-1": [
-      {
-        "title": "COLLECT 10",
-        "font": "square",
-        "size": 36
-      }
-    ],
-    "mission-1-2": [
-      {
-        "title": "GET 10 DIAMONDS IN ONE GAME",
-        "font": "square",
-        "size": 32
       }
     ]
   }

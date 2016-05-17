@@ -58,6 +58,7 @@ class EnvironmentMissionsBar : public Background
   };
 
   EnvironmentMissionsPopup* popup;
+  EnvironmentMissionsNotify* notify;
 
   /**
    *

@@ -103,8 +103,9 @@
 #include "EnvironmentStoreBar.h"
 
 #include "EnvironmentMissionsItem.h"
-#include "EnvironmentMissionsBar.h"
 #include "EnvironmentMissionsPopup.h"
+#include "EnvironmentMissionsNotify.h"
+#include "EnvironmentMissionsBar.h"
 
 #include "RotateGlobalBy.h"
 #include "Shake.h"

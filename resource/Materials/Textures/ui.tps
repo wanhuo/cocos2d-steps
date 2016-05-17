@@ -206,6 +206,7 @@
             <filename>../Graphics/ui/lock-button.png</filename>
             <filename>../Graphics/ui/lock-facebook-button.png</filename>
             <filename>../Graphics/ui/capture.png</filename>
+            <filename>../Graphics/ui/missions-background.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

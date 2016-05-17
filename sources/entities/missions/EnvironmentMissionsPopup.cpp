@@ -136,7 +136,25 @@ void EnvironmentMissionsPopup::updateData(int index)
   for(auto condition : Application->environment->missions.controller->selectedMission->mission->complete)
   {
     this->missions.at(counter)->_create();
-    this->missions.at(counter)->updateData(++counter);
+    this->missions.at(counter)->updateData(counter);
+
+    counter++;
+  }
+
+  switch(Application->environment->missions.controller->selectedMission->mission->complete.size())
+  {
+    case 1:
+    this->missions.at(0)->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 50);
+    break;
+    case 2:
+    this->missions.at(0)->setPosition(this->getContentSize().width / 2 - 100, this->getContentSize().height / 2 - 50);
+    this->missions.at(1)->setPosition(this->getContentSize().width / 2 + 100, this->getContentSize().height / 2 - 50);
+    break;
+    case 3:
+    this->missions.at(0)->setPosition(this->getContentSize().width / 2 - 200, this->getContentSize().height / 2 - 50);
+    this->missions.at(1)->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 50);
+    this->missions.at(2)->setPosition(this->getContentSize().width / 2 + 200, this->getContentSize().height / 2 - 50);
+    break;
   }
 
   this->setCameraMask(4);
@@ -171,11 +189,15 @@ void EnvironmentMissionsPopup::updateData(int index)
  *
  */
 EnvironmentMissionsPopup::MissionTask::MissionTask(Node* parent)
-: Background(parent)
+: Entity("missions-background.png", parent)
 {
-  this->setIgnoreAnchorPointForPosition(false);
-  this->setContentSize(Size(50, 50));
-  this->setAnchorPoint(Vec2(0.5, 0.5));
+  this->text = new Text("missions-data", this, true);
+  this->text->setPosition(this->getWidth() / 2, 40);
+
+  this->element = new Entity("missions-background.png", this, true);
+  this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2 + 25);
+
+  this->setScale(0.5);
 }
 
 EnvironmentMissionsPopup::MissionTask::~MissionTask()
@@ -189,12 +211,12 @@ EnvironmentMissionsPopup::MissionTask::~MissionTask()
  */
 void EnvironmentMissionsPopup::MissionTask::onCreate()
 {
-  Background::onCreate();
+  Entity::onCreate();
 }
 
 void EnvironmentMissionsPopup::MissionTask::onDestroy(bool action)
 {
-  Background::onDestroy(action);
+  Entity::onDestroy(action);
 }
 
 /**
@@ -204,12 +226,6 @@ void EnvironmentMissionsPopup::MissionTask::onDestroy(bool action)
  */
 void EnvironmentMissionsPopup::MissionTask::updateData(int mission)
 {
-  Background::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setPosition(60, this->getParent()->getContentSize().height - 100 * mission);
+  this->element->setTexture(Application->environment->missions.controller->selectedMission->mission->complete.at(mission).preview);
+  this->text->data(Application->environment->missions.controller->selectedMission->mission->complete.at(mission).elapsed, Application->environment->missions.controller->selectedMission->mission->complete.at(mission).target);
 }

@@ -3,10 +3,19 @@
 		{
 			"type": 2,
 			"index": 1,
-			"diamonds": 5,
 			"complete": [
-				{"coins": 10},
-				{"coins": 30}
+				{"coins": 10, "preview": "missions-diamonds.png"},
+				{"coins": 10, "preview": "missions-plate-saw.png"},
+				{"coins": 10, "preview": "missions-plate-trap.png"}
+			]
+		},
+		{
+			"type": 2,
+			"index": 2,
+			"complete": [
+				{"coins": 10, "preview": "missions-diamonds.png"},
+				{"coins": 10, "preview": "missions-plate-saw.png"},
+				{"coins": 10, "preview": "missions-plate-trap.png"}
 			]
 		}
 	]
