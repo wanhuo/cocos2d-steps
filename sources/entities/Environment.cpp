@@ -340,6 +340,8 @@ void Environment::onMenu()
 
 void Environment::onGame()
 {
+  MissionsFactory::getInstance()->startListen();
+
   this->onTurn();
 }
 

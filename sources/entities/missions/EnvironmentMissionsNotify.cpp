@@ -41,14 +41,13 @@ EnvironmentMissionsNotify::EnvironmentMissionsNotify()
 
   this->setAnchorPoint(Vec2(0.5, 1.0));
   this->setContentSize(Size(Application->getWidth(), 100));
-  this->setPosition(Application->getWidth() / 2, Application->getHeight());
+  this->setPosition(Application->getWidth() / 2, Application->getHeight() + 100);
 
   this->text = new Text("missions-complete", this, true);
   this->text->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
 
   Director::getInstance()->setNotificationNode(this);
 
-  this->_create();
   this->setCameraMask(4);
 }
 
@@ -64,6 +63,23 @@ EnvironmentMissionsNotify::~EnvironmentMissionsNotify()
 void EnvironmentMissionsNotify::onCreate()
 {
   BackgroundColor::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  this->runAction(
+    Sequence::create(
+      MoveBy::create(0.2, Vec2(0, -100)),
+      DelayTime::create(1.0),
+      MoveBy::create(0.2, Vec2(0, 100)),
+      CallFunc::create([=] () {
+      this->_destroy(true);
+      }),
+      nullptr
+    )
+  );
 }
 
 void EnvironmentMissionsNotify::onDestroy(bool action)

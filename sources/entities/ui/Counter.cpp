@@ -481,6 +481,17 @@ void Counter::reset(bool init)
   {
     this->values.best = Storage::get("application.score.best");
     this->values.coins = Storage::get("application.coins");
+
+    this->missionUpdateProgress.coins = Storage::get("values.missions.progress.coins");
+    this->missionUpdateProgress.points = Storage::get("values.missions.progress.points");
+    this->missionUpdateProgress.games = Storage::get("values.missions.progress.games");
+    this->missionUpdateProgress.gifts = Storage::get("values.missions.progress.gifts");
+
+    this->missionUpdateProgress.special_progress_1 = Storage::get("values.missions.progress.special_progress_1");
+    this->missionUpdateProgress.special_progress_2 = Storage::get("values.missions.progress.special_progress_2");
+    this->missionUpdateProgress.special_progress_3 = Storage::get("values.missions.progress.special_progress_3");
+    this->missionUpdateProgress.special_progress_4 = Storage::get("values.missions.progress.special_progress_4");
+    this->missionUpdateProgress.special_progress_5 = Storage::get("values.missions.progress.special_progress_5");
   }
 }
 
@@ -569,4 +580,55 @@ void Counter::update()
   this->texts.best->data(this->values.best);
   this->texts.coins->data(this->values.coins - this->count.add + this->count.remove);
   this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() / 2 - 50, Application->getHeight() - 50);
+}
+
+/**
+ *
+ *
+ *
+ */
+MissionUpdate Counter::getMissionsUpdate() const
+{
+  MissionUpdate update;
+
+  update.o = this->missionUpdateOnce;
+  update.p = this->missionUpdateProgress;
+
+  return update;
+}
+
+void Counter::resetMissionsUpdate()
+{
+  this->resetOnceMissionsUpdate();
+  this->resetProgressMissionsUpdate();
+}
+
+void Counter::resetOnceMissionsUpdate()
+{
+  this->missionUpdateOnce.coins = 0;
+  this->missionUpdateOnce.points = 0;
+  this->missionUpdateOnce.points_best = this->values.best;
+
+  this->missionUpdateOnce.special_once_1 = 0;
+  this->missionUpdateOnce.special_once_2 = 0;
+}
+
+void Counter::resetProgressMissionsUpdate()
+{
+  this->missionUpdateProgress.coins = 0;
+  this->missionUpdateProgress.points = 0;
+  this->missionUpdateProgress.games = 0;
+  this->missionUpdateProgress.gifts = 0;
+}
+
+/**
+ *
+ *
+ *
+ */
+void Counter::onMissionComplete()
+{
+  this->resetMissionsUpdate();
+
+  Application->environment->missions.controller->notify->_create();
 }

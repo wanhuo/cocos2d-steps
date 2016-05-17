@@ -57,7 +57,7 @@ class EnvironmentMissionsPopup : public BackgroundColor
    ~MissionTask();
 
     Text* text;
-    Entity* element;
+    TiledEntity* element;
 
     virtual void onCreate();
     virtual void onDestroy(bool action = false);

@@ -90,6 +90,9 @@ class Counter : public Background
 
   Values values;
 
+  MissionUpdateOnce missionUpdateOnce;
+  MissionUpdateProgress missionUpdateProgress;
+
   virtual void onMenu();
   virtual void onGame();
   virtual void onFinish();
@@ -117,6 +120,14 @@ class Counter : public Background
   virtual void remove(int count);
 
   virtual void update();
+
+  virtual MissionUpdate getMissionsUpdate() const;
+  virtual void resetMissionsUpdate();
+
+  void resetOnceMissionsUpdate();
+  void resetProgressMissionsUpdate();
+
+  virtual void onMissionComplete();
 };
 
 #endif

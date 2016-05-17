@@ -194,7 +194,7 @@ EnvironmentMissionsPopup::MissionTask::MissionTask(Node* parent)
   this->text = new Text("missions-data", this, true);
   this->text->setPosition(this->getWidth() / 2, 40);
 
-  this->element = new Entity("missions-background.png", this, true);
+  this->element = new TiledEntity("missions-star.png", 4, 1, this, true);
   this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2 + 25);
 
   this->setScale(0.5);
@@ -226,6 +226,31 @@ void EnvironmentMissionsPopup::MissionTask::onDestroy(bool action)
  */
 void EnvironmentMissionsPopup::MissionTask::updateData(int mission)
 {
-  this->element->setTexture(Application->environment->missions.controller->selectedMission->mission->complete.at(mission).preview);
-  this->text->data(Application->environment->missions.controller->selectedMission->mission->complete.at(mission).elapsed, Application->environment->missions.controller->selectedMission->mission->complete.at(mission).target);
+  auto m = Application->environment->missions.controller->selectedMission->mission->complete.at(mission);
+
+  this->element->setTexture(m.preview);
+  this->text->data(m.elapsed, m.target);
+
+  switch(Application->environment->missions.controller->selectedMission->mission->state)
+  {
+    case MissionStruct::STATE_CURRENT:
+    case MissionStruct::STATE_CLAIM:
+    case MissionStruct::STATE_FINISHED:
+    if(m.elapsed >= m.target)
+    {
+      this->element->setCurrentFrameIndex(2);
+    }
+    else if(m.elapsed > 0)
+    {
+      this->element->setCurrentFrameIndex(1);
+    }
+    else
+    {
+      this->element->setCurrentFrameIndex(0);
+    }
+    break;
+    case MissionStruct::STATE_LOCKED:
+    this->element->setCurrentFrameIndex(3);
+    break;
+  }
 }

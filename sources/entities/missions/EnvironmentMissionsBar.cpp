@@ -184,16 +184,7 @@ void EnvironmentMissionsBar::onSelect(EnvironmentMissionsItem* element)
     break;
   }
 
-  switch(element->mission->state)
-  {
-    case MissionStruct::STATE_CURRENT:
-    this->popup->updateData(element->parameters.index);
-    break;
-    case MissionStruct::STATE_CLAIM:
-    case MissionStruct::STATE_LOCKED:
-    this->popup->setVisible(false);
-    break;
-  }
+  this->popup->updateData(element->parameters.index);
 
   element->changePosition(EnvironmentMissionsItem::Position::POSITION_UP);
 }

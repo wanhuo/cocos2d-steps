@@ -1,20 +1,18 @@
 {
 	"missions": [
 		{
-			"type": 2,
+			"type": 1,
 			"index": 1,
 			"complete": [
-				{"coins": 10, "preview": "missions-diamonds.png"},
-				{"coins": 10, "preview": "missions-plate-saw.png"},
-				{"coins": 10, "preview": "missions-plate-trap.png"}
+				{"coins": 1, "preview": "missions-diamonds.png"}
 			]
 		},
 		{
 			"type": 2,
 			"index": 2,
 			"complete": [
-				{"coins": 10, "preview": "missions-diamonds.png"},
-				{"coins": 10, "preview": "missions-plate-saw.png"},
+				{"coins": 10, "preview": "missions-star.png"},
+				{"coins": 10, "preview": "missions-plate-gate.png"},
 				{"coins": 10, "preview": "missions-plate-trap.png"}
 			]
 		}

@@ -57,9 +57,6 @@ class EnvironmentMissionsBar : public Background
     Button* lock;
   };
 
-  EnvironmentMissionsPopup* popup;
-  EnvironmentMissionsNotify* notify;
-
   /**
    *
    *
@@ -83,6 +80,9 @@ class EnvironmentMissionsBar : public Background
   };
 
   EnvironmentMissionsItem* selectedMission;
+
+  EnvironmentMissionsPopup* popup;
+  EnvironmentMissionsNotify* notify;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);

@@ -116,6 +116,24 @@ void Plate::onRemove(bool complete)
 
 void Plate::onCount()
 {
+  if(MissionsFactory::getInstance()->isListenen())
+  {  
+    switch(this->type)
+    {
+      case DIAMOND:
+      Application->counter->missionUpdateOnce.coins++;
+      Application->counter->missionUpdateProgress.coins++;
+      break;
+    }
+
+    Events::updateMissions();
+  }
+
+  /**
+   *
+   *
+   *
+   */
   this->setTexture(Application->environment->getTextureState2());
 }
 
