@@ -59,7 +59,6 @@ class Counter : public Background
    *
    */
   protected:
-  Texts texts;
   Count count;
 
   BackgroundColor* holder;
@@ -85,6 +84,7 @@ class Counter : public Background
    *
    */
   public:
+  Texts texts;
   Counter(Node* parent);
  ~Counter();
 

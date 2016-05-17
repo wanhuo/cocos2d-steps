@@ -224,6 +224,16 @@ void Capture::screenshot(string texture)
    *
    *
    */
+   Application->counter->texts.name->setOpacity(255);
+  auto image = cocos2d::utils::captureNode(Application->counter->texts.name);
+  image->saveToFile(FileUtils::getInstance()->getWritablePath() + "a.png", true);
+   Application->counter->texts.name->setOpacity(0);
+
+  /**
+   *
+   *
+   *
+   */
   this->element->setTexture(texture.c_str());
   this->element->setScale(this->getWidth() / this->element->getWidth());
   this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2);

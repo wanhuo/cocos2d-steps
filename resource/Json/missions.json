@@ -1,67 +1,13 @@
 {
 	"missions": [
 		{
-			"type": 1,
+			"type": 2,
 			"index": 1,
 			"diamonds": 5,
-			"complete": {
-			}
-		},
-		{
-			"type": 1,
-			"index": 1,
-			"diamonds": 5,
-			"complete": {
-			}
-		},
-		{
-			"type": 1,
-			"index": 1,
-			"diamonds": 5,
-			"complete": {
-			}
-		},
-		{
-			"type": 1,
-			"index": 1,
-			"diamonds": 5,
-			"complete": {
-			}
-		},
-		{
-			"type": 1,
-			"index": 1,
-			"diamonds": 5,
-			"complete": {
-			}
-		},
-		{
-			"type": 1,
-			"index": 1,
-			"diamonds": 5,
-			"complete": {
-			}
-		},
-		{
-			"type": 1,
-			"index": 1,
-			"diamonds": 5,
-			"complete": {
-			}
-		},
-		{
-			"type": 1,
-			"index": 1,
-			"diamonds": 5,
-			"complete": {
-			}
-		},
-		{
-			"type": 1,
-			"index": 1,
-			"diamonds": 5,
-			"complete": {
-			}
+			"complete": [
+				{"coins": 10},
+				{"coins": 30}
+			]
 		}
 	]
 }

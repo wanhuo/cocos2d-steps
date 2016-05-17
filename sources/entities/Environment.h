@@ -42,6 +42,9 @@ class EnvironmentStoreCharacter;
 class EnvironmentStoreTexture;
 class EnvironmentStoreBar;
 
+class EnvironmentMissionsItem;
+class EnvironmentMissionsBar;
+
 /**
  *
  *
@@ -108,15 +111,25 @@ class Environment : public Background
     Pool* presentions;
   };
 
-  struct Element {
+  struct StoreElement {
     cocos2d::ui::ListView* plane;
     vector<EnvironmentStoreItem*> elements;
   };
 
+  struct MissionsElement {
+    cocos2d::ui::ListView* plane;
+    vector<EnvironmentMissionsItem*> elements;
+  };
+
   struct Store {
     EnvironmentStoreBar* controller = nullptr;
-    Element characters;
-    Element textures;
+    StoreElement characters;
+    StoreElement textures;
+  };
+
+  struct Missions {
+    EnvironmentMissionsBar* controller = nullptr;
+    MissionsElement missions;
   };
 
   /**
@@ -148,7 +161,7 @@ class Environment : public Background
   const static int STAR_TIME = 5;
 
   Environment(Node* parent);
-~Environment();
+ ~Environment();
 
   Parameters parameters;
 
@@ -157,6 +170,7 @@ class Environment : public Background
   Plates plates;
 
   Store store;
+  Missions missions;
 
   Light light;
 

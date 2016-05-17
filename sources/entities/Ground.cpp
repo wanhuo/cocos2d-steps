@@ -73,8 +73,11 @@ void Ground::update(float time)
   auto x = -Application->environment->plane->getPositionX() / this->texture->getScale();
   auto z = -Application->environment->plane->getPositionZ() / this->texture->getScale();
 
-  x += Application->environment->store.controller->state->create ? 0.75 : 0.0;
-  z += 0.0;
+  x += Application->environment->store.controller->state->create? 0.9 : 0.0;
+  z -= Application->environment->store.controller->state->create ? 0.1 : 0.0;
+
+  x += Application->environment->missions.controller->state->create ? 0.95 : 0.0;
+  z += Application->environment->missions.controller->state->create ? 1.25 : 0.0;
 
   this->texture->setTextureRect(Rect(x, z, 50, 50));
 }

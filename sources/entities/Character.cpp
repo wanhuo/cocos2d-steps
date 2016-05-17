@@ -809,7 +809,7 @@ void Character::onCrash(Crash crash)
     case SPIKES:
     case DOWN:
     case CATCH:
-    case GATE:
+    case GATE:Application->counter->texts.name->setVisible(false);
     Screenshot::save([&] (bool a, string texture)
     {
       this->runAction(

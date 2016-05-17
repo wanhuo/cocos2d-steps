@@ -206,6 +206,12 @@
 		78B4B7071CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B7041CBFB40700F2D8A7 /* TypeCopter.cpp */; };
 		78B4B70A1CBFB51F00F2D8A7 /* Copter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B7081CBFB51F00F2D8A7 /* Copter.cpp */; };
 		78B4B70B1CBFB51F00F2D8A7 /* Copter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B7081CBFB51F00F2D8A7 /* Copter.cpp */; };
+		78C72BB61CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */; };
+		78C72BB71CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */; };
+		78C72BB81CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB41CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp */; };
+		78C72BB91CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB41CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp */; };
+		78C72BBC1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BBA1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp */; };
+		78C72BBD1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BBA1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp */; };
 		78CA6D0A1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78CA6D0B1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
@@ -485,6 +491,12 @@
 		78B4B7051CBFB40700F2D8A7 /* TypeCopter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeCopter.h; sourceTree = "<group>"; };
 		78B4B7081CBFB51F00F2D8A7 /* Copter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Copter.cpp; sourceTree = "<group>"; };
 		78B4B7091CBFB51F00F2D8A7 /* Copter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Copter.h; sourceTree = "<group>"; };
+		78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsBar.cpp; sourceTree = "<group>"; };
+		78C72BB31CE9D2E700D8EB11 /* EnvironmentMissionsBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsBar.h; sourceTree = "<group>"; };
+		78C72BB41CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsItem.cpp; sourceTree = "<group>"; };
+		78C72BB51CE9D2E700D8EB11 /* EnvironmentMissionsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsItem.h; sourceTree = "<group>"; };
+		78C72BBA1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsPopup.cpp; sourceTree = "<group>"; };
+		78C72BBB1CE9F49600D8EB11 /* EnvironmentMissionsPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsPopup.h; sourceTree = "<group>"; };
 		78CA6D031C202CAB00BF8416 /* Purchases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchases.h; sourceTree = "<group>"; };
 		78CA6D041C20645200BF8416 /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
 		78CA6D051C20645200BF8416 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
@@ -1027,6 +1039,7 @@
 				78B4B6D31CBD751D00F2D8A7 /* plates */,
 				785545FC1CD91D8B00B58ED0 /* ui */,
 				78283FB51CE21DF00010CAB7 /* store */,
+				78C72BB11CE9D2E700D8EB11 /* missions */,
 				78CA6D061C20645200BF8416 /* Environment.cpp */,
 				78CA6D071C20645200BF8416 /* Environment.h */,
 				789E71741CD1086200BDCDC7 /* Ground.cpp */,
@@ -1174,6 +1187,19 @@
 				789E71A51CD39D0D00BDCDC7 /* TypeMoved4.h */,
 			);
 			path = plates;
+			sourceTree = "<group>";
+		};
+		78C72BB11CE9D2E700D8EB11 /* missions */ = {
+			isa = PBXGroup;
+			children = (
+				78C72BB41CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp */,
+				78C72BB51CE9D2E700D8EB11 /* EnvironmentMissionsItem.h */,
+				78C72BBA1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp */,
+				78C72BBB1CE9F49600D8EB11 /* EnvironmentMissionsPopup.h */,
+				78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */,
+				78C72BB31CE9D2E700D8EB11 /* EnvironmentMissionsBar.h */,
+			);
+			path = missions;
 			sourceTree = "<group>";
 		};
 		78DEED521B1A911E0093CB64 /* Resource */ = {
@@ -1464,6 +1490,7 @@
 				789E71971CD393D800BDCDC7 /* Special.cpp in Sources */,
 				78283FC51CE248DB0010CAB7 /* EnvironmentStoreBar.cpp in Sources */,
 				78B4B6F41CBF911800F2D8A7 /* Saw.cpp in Sources */,
+				78C72BBD1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp in Sources */,
 				78B4B6D71CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
 				78B4B6D91CBD751D00F2D8A7 /* Energy.cpp in Sources */,
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
@@ -1491,10 +1518,12 @@
 				786696CB1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				789E71B41CD3DAF800BDCDC7 /* Trap.cpp in Sources */,
 				78B4B6ED1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */,
+				78C72BB91CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */,
 				78283F961CE0AAE00010CAB7 /* Counter.cpp in Sources */,
 				789E718B1CD34AFB00BDCDC7 /* Trampoline.cpp in Sources */,
 				789E71851CD343FC00BDCDC7 /* TypeSpikes.cpp in Sources */,
 				789E717B1CD2621500BDCDC7 /* Color.cpp in Sources */,
+				78C72BB71CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */,
 				789E71B01CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */,
 				78B4B6E31CBD817900F2D8A7 /* Shadow.cpp in Sources */,
 				789E719F1CD39A4A00BDCDC7 /* TypeMoved1.cpp in Sources */,
@@ -1562,6 +1591,7 @@
 				78B4B6D61CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
 				78B4B6DC1CBD751D00F2D8A7 /* Pickup.cpp in Sources */,
 				78283F911CE0A8A10010CAB7 /* Decoration.cpp in Sources */,
+				78C72BB81CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */,
 				78DF453F1BBAA54F004E4570 /* NSPurchase.mm in Sources */,
 				789E71A81CD39D0D00BDCDC7 /* TypeMoved3.cpp in Sources */,
 				789E71861CD343FC00BDCDC7 /* TypeTrampoline.cpp in Sources */,
@@ -1575,6 +1605,7 @@
 				7857E2B91C65733F0020AAEA /* Menu.cpp in Sources */,
 				789E71A61CD39D0D00BDCDC7 /* TypeMoved2.cpp in Sources */,
 				78B4B6DA1CBD751D00F2D8A7 /* Heart.cpp in Sources */,
+				78C72BB61CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */,
 				78283FBC1CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp in Sources */,
 				786696CA1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				7847CDF51AB184820014E3F3 /* NSAnalytics.mm in Sources */,
@@ -1582,6 +1613,7 @@
 				78B4B6F51CBF911800F2D8A7 /* Spikes.cpp in Sources */,
 				78809FA71B11D36B002397E7 /* NSHeyzap.mm in Sources */,
 				78283F951CE0AAE00010CAB7 /* Counter.cpp in Sources */,
+				78C72BBC1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp in Sources */,
 				785545F51CD8D61E00B58ED0 /* TypeBest.cpp in Sources */,
 				78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */,
 				789E71AF1CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */,

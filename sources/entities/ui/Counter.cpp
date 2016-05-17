@@ -279,6 +279,9 @@ void Counter::onStore()
 
 void Counter::onMissions()
 {
+  this->texts.name->runAction(
+    FadeTo::create(0.2, 0)
+  );
 }
 
 void Counter::onPresent()

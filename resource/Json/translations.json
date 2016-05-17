@@ -140,6 +140,34 @@
         "size": 46
       }
     ],
+    "missions-title": [
+      {
+        "title": "MISSION $1/$2",
+        "font": "square",
+        "size": 42
+      }
+    ],
+    "missions-mission": [
+      {
+        "title": "",
+        "font": "square",
+        "size": 24
+      }
+    ],
+    "missions-mission-1": [
+      {
+        "title": "COMPLETE IN A ONE GAME",
+        "font": "square",
+        "size": 24
+      }
+    ],
+    "missions-mission-2": [
+      {
+        "title": "COMPLETE IN A FEW GAMES",
+        "font": "square",
+        "size": 24
+      }
+    ],
     "best-word-a": [
       {
         "title": "NEW",
@@ -379,6 +407,34 @@
         "title": "OMG! J'ai obtenu $1 points pour avoir joué #Steps! ",
         "font": "square",
         "size": 0
+      }
+    ],
+
+
+
+
+
+
+    
+    "mission": [
+      {
+        "title": "",
+        "font": "square",
+        "size": 42
+      }
+    ],
+    "mission-1-1": [
+      {
+        "title": "COLLECT 10",
+        "font": "square",
+        "size": 36
+      }
+    ],
+    "mission-1-2": [
+      {
+        "title": "GET 10 DIAMONDS IN ONE GAME",
+        "font": "square",
+        "size": 32
       }
     ]
   }

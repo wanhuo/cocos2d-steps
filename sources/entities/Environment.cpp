@@ -129,7 +129,23 @@ void Environment::create()
    *
    */
   this->store.controller = new EnvironmentStoreBar();
+  this->missions.controller = new EnvironmentMissionsBar();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///
   auto rootJsonData = Json_create(FileUtils::getInstance()->getStringFromFile("store.json").c_str());
   auto charactersJsonData = Json_getItem(rootJsonData, "characters");
   auto texturesJsonData = Json_getItem(rootJsonData, "textures");
@@ -142,6 +158,15 @@ void Environment::create()
    *
    *
    */
+
+     int counter = 0;
+
+  for(auto m : MissionsFactory::getInstance()->getMissions())
+  {
+    this->missions.missions.elements.push_back(new EnvironmentMissionsItem(counter));
+
+    counter++;
+  }
 }
 
 void Environment::reset()
@@ -292,6 +317,7 @@ void Environment::onTurn(bool action)
 void Environment::onMenu()
 {
   this->store.controller->_destroy();
+  this->missions.controller->_destroy();
 
   this->updateData();
 
@@ -342,6 +368,16 @@ void Environment::onStore()
 
 void Environment::onMissions()
 {
+  Application->s->runAction(
+    Sequence::create(
+      FadeIn::create(0.2),
+      CallFunc::create([=] () {
+      this->missions.controller->_create();
+      }),
+      FadeOut::create(0.2),
+      nullptr
+    )
+  );
 }
 
 void Environment::onPresent()

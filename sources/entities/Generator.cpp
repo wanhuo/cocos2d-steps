@@ -240,80 +240,88 @@ Plate* Generator::create(bool animated)
 
 Plate* Generator::destroy(bool manual)
 {
-  switch(Application->state)
+  switch(Application->environment->character->state)
   {
-    case Game::GAME:
-    if(manual)
+    default:
+    switch(Application->state)
     {
-      if(Application->environment->character->plates.current)
+      case Game::GAME:
+      if(manual)
       {
-        vector<Plate*> v;
-        int counter = 0;
-
-        for(int i = 0; i < Application->environment->plates.normal->count; i++)
+        if(Application->environment->character->plates.current)
         {
-          Plate* element = static_cast<Plate*>(Application->environment->plates.normal->element(i));
+          vector<Plate*> v;
+          int counter = 0;
 
-          if(element->getIndex() < Application->environment->character->plates.current->getIndex() - 5)
+          for(int i = 0; i < Application->environment->plates.normal->count; i++)
           {
-            v.push_back(element);
-          }
-}
-          sort(v.begin(), v.end(),
-              []( Plate* a,  Plate* b) -> bool
-          { 
-              return a->getIndex() < b->getIndex();
-          });
+            Plate* element = static_cast<Plate*>(Application->environment->plates.normal->element(i));
 
-          for(auto p : v)
-          {
-            p->runAction(
-              Sequence::create(
-                DelayTime::create(counter * 0.1),
-                CallFunc::create([=] () {
-                  p->remove();
-                }),
-                nullptr
-              )
-            );
+            if(element->getIndex() < Application->environment->character->plates.current->getIndex() - 5)
+            {
+              v.push_back(element);
+            }
+  }
+            sort(v.begin(), v.end(),
+                []( Plate* a,  Plate* b) -> bool
+            { 
+                return a->getIndex() < b->getIndex();
+            });
 
-            counter++;
-          }
+            for(auto p : v)
+            {
+              p->runAction(
+                Sequence::create(
+                  DelayTime::create(counter * 0.1),
+                  CallFunc::create([=] () {
+                    p->remove();
+                  }),
+                  nullptr
+                )
+              );
+
+              counter++;
+            }
 
 
 
 
+        }
       }
-    }
-    else
-    {
-      if(Application->counter->values.start >= this->save)
+      else
       {
-        Plate* plate = nullptr;
-
-        for(int i = 0; i < Application->environment->plates.normal->count; i++)
+        if(Application->counter->values.start >= this->save)
         {
-          Plate* element = static_cast<Plate*>(Application->environment->plates.normal->element(i));
+          Plate* plate = nullptr;
 
-          if(!plate)
+          for(int i = 0; i < Application->environment->plates.normal->count; i++)
           {
-            plate = element;
-          }
-          else
-          {
-            if(element->getIndex() < plate->getIndex())
+            Plate* element = static_cast<Plate*>(Application->environment->plates.normal->element(i));
+
+            if(!plate)
             {
               plate = element;
             }
+            else
+            {
+              if(element->getIndex() < plate->getIndex())
+              {
+                plate = element;
+              }
+            }
+          }
+
+          if(plate)
+          {
+            plate->remove();
           }
         }
-
-        if(plate)
-        {
-          plate->remove();
-        }
       }
+      break;
     }
+    break;
+    case Character::STATE_INSANE:
+    case Character::STATE_FINISH:
     break;
   }
 
