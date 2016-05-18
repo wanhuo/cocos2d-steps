@@ -62,7 +62,7 @@ class EnvironmentMissionsPopup : public BackgroundColor
     virtual void onCreate();
     virtual void onDestroy(bool action = false);
 
-    virtual void updateData(int mission);
+    virtual void updateData(int mission, MissionStruct* structure = nullptr);
   };
 
   /**

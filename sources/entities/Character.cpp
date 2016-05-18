@@ -578,6 +578,21 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   if(plate->type == Plate::FINISH)
   {
     this->changeState(STATE_FINISH);
+
+    /**
+     *
+     * @Missions
+     * Update missions with stages.
+     *
+     */
+    if(Application->environment->generator->bonus)
+    if(MissionsFactory::getInstance()->isListenen())
+    {
+      Application->counter->missionUpdateOnce.special_once_14++;
+      Application->counter->missionUpdateProgress.special_progress_14++;
+
+      Events::updateMissions();
+    }
   }
   else
   {
@@ -681,6 +696,11 @@ void Character::onFall()
 
 void Character::onCrash(Crash crash)
 {
+  if(this->plates.current)
+  {
+    this->plates.current->onUncount();
+  }
+
   Application->environment->characterActionHolder->runAction(
     Spawn::create(
       EaseSineInOut::create(
@@ -801,7 +821,6 @@ void Character::onCrash(Crash crash)
     case COPTER:
     break;
   }
-  
 
   switch(crash)
   {
@@ -812,7 +831,7 @@ void Character::onCrash(Crash crash)
     case GATE:
     Screenshot::save([&] (bool a, string texture)
     {
-      this->runAction(
+      Application->runAction(
         Sequence::create(
         DelayTime::create(1.5),
         CallFunc::create([=] () {

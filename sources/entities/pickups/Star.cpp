@@ -50,6 +50,20 @@ void Star::onPickup()
 
   /**
    *
+   * @Missions
+   * Update missions with star.
+   *
+   */
+  if(MissionsFactory::getInstance()->isListenen())
+  {
+    Application->counter->missionUpdateOnce.special_once_3++;
+    Application->counter->missionUpdateProgress.special_progress_3++;
+
+    Events::updateMissions();
+  }
+
+  /**
+   *
    *
    *
    */

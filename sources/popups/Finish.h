@@ -31,6 +31,13 @@
  *
  *
  */
+class EnvironmentMissionsFinish;
+
+/**
+ *
+ *
+ *
+ */
 class Finish : public Popup
 {
   /**
@@ -44,12 +51,8 @@ class Finish : public Popup
   struct Buttons {
     Button* like;
     Button* rate;
-    Button* share;
+    Button* restart;
     Button* leaderboards;
-  };
-
-  struct Texts {
-    Text* tap;
   };
 
   /**
@@ -58,7 +61,6 @@ class Finish : public Popup
    *
    */
   protected:
-  Texts texts;
   Buttons buttons;
 
   /**
@@ -72,10 +74,10 @@ class Finish : public Popup
   Finish();
  ~Finish();
 
+  EnvironmentMissionsFinish* missions;
+
   virtual void onShow();
   virtual void onHide(Callback callback = NULL);
-
-  virtual void onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e);
 
   virtual void show();
   virtual void hide(Callback callback = NULL);

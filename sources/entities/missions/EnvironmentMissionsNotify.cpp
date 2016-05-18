@@ -44,7 +44,10 @@ EnvironmentMissionsNotify::EnvironmentMissionsNotify()
   this->setPosition(Application->getWidth() / 2, Application->getHeight() + 100);
 
   this->text = new Text("missions-complete", this, true);
-  this->text->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
+  this->text->setPosition(this->getContentSize().width / 2 + 20, this->getContentSize().height / 2);
+
+  this->element = new Entity("missions-notification.png", this->text, true);
+  this->element->setPosition(-40, this->text->getHeight() / 2);
 
   Director::getInstance()->setNotificationNode(this);
 
@@ -80,6 +83,13 @@ void EnvironmentMissionsNotify::onCreate()
       nullptr
     )
   );
+
+  /**
+   *
+   *
+   *
+   */
+  this->text->data(MissionsFactory::getInstance()->getPreviousMission()->id);
 }
 
 void EnvironmentMissionsNotify::onDestroy(bool action)

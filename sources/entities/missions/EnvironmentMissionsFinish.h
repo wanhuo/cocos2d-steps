@@ -27,8 +27,8 @@
  *
  */
 
-#ifndef _GIFT_H_
-#define _GIFT_H_
+#ifndef _ENVIRONMENTMISSIONSFINISH_H_
+#define _ENVIRONMENTMISSIONSFINISH_H_
 
 #include "Game.h"
 
@@ -37,103 +37,17 @@
  *
  *
  */
-class Gift : public Button3D
+class EnvironmentMissionsFinish : public BackgroundColor
 {
   /**
    *
    *
    *
    */
-  public:
-  class Diamond : public Entity3D
-  {
-    /**
-     *
-     *
-     *
-     */
-    protected:
-    Vec3 direction;
-    Vec3 speed;
-
-    /**
-     *
-     *
-     *
-     */
-    public:
-    Diamond();
-  ~Diamond();
-
-   virtual void onCreate();
-   virtual void onDestroy(bool action = false);
-
-   virtual void update(float time);
-
-   virtual Diamond* deepCopy();
-  };
-
-  /**
-   *
-   *
-   *
-   */
-  public:
-  class Element : public Entity3D
-  {
-    /**
-     *
-     *
-     *
-     */
-    public:
-    BillBoard* window;
-    Entity3D* diamond;
-    Text* text;
-
-    /**
-     *
-     *
-     *
-     */
-    public:
-    Element(Node* parent);
-   ~Element();
-
-    virtual void onCreate();
-    virtual void onDestroy(bool action = false);
-  };
-
-  /**
-   *
-   *
-   *
-   */
-  private:
-  string texture;
-  vector<string> textures = {
-    "ui/gift-texture-1.png",
-    "ui/gift-texture-2.png",
-    "ui/gift-texture-3.png",
-    "ui/gift-texture-4.png",
-    "ui/gift-texture-5.png",
-    "ui/gift-texture-6.png",
-    "ui/gift-texture-7.png",
-    "ui/gift-texture-8.png",
-    "ui/gift-texture-9.png",
-    "ui/gift-texture-10.png",
-    "ui/gift-texture-11.png",
-    "ui/gift-texture-12.png",
-    "ui/gift-texture-13.png",
-    "ui/gift-texture-14.png"
-  };
-
-  /**
-   *
-   *
-   *
-   */
   protected:
+  BackgroundColor* background;
+
+  vector<Entity*> missions;
 
   /**
    *
@@ -141,16 +55,16 @@ class Gift : public Button3D
    *
    */
   public:
-  Gift(Node* parent);
- ~Gift();
+  EnvironmentMissionsFinish(Node* parent);
+ ~EnvironmentMissionsFinish();
 
-  Pool* elements;
-  Element* element;
+  Text* text;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
-  virtual void onTouch(cocos2d::Touch* touch, Event* e);
+  virtual void onEnter();
+  virtual void onExit();
 };
 
 #endif

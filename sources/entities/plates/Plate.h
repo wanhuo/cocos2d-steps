@@ -130,6 +130,7 @@ class Plate : public Cube
   virtual void onRemove(bool complete = true);
 
   virtual void onCount();
+  virtual void onUncount();
 
   virtual bool getDirection();
   virtual int getIndex();

@@ -208,6 +208,8 @@
 		78B4B70B1CBFB51F00F2D8A7 /* Copter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B7081CBFB51F00F2D8A7 /* Copter.cpp */; };
 		78BADD6E1CEB57800077B673 /* EnvironmentMissionsNotify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78BADD6C1CEB57800077B673 /* EnvironmentMissionsNotify.cpp */; };
 		78BADD6F1CEB57800077B673 /* EnvironmentMissionsNotify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78BADD6C1CEB57800077B673 /* EnvironmentMissionsNotify.cpp */; };
+		78BADD731CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78BADD711CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp */; };
+		78BADD741CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78BADD711CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp */; };
 		78C72BB61CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */; };
 		78C72BB71CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */; };
 		78C72BB81CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB41CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp */; };
@@ -495,6 +497,8 @@
 		78B4B7091CBFB51F00F2D8A7 /* Copter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Copter.h; sourceTree = "<group>"; };
 		78BADD6C1CEB57800077B673 /* EnvironmentMissionsNotify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsNotify.cpp; sourceTree = "<group>"; };
 		78BADD6D1CEB57800077B673 /* EnvironmentMissionsNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsNotify.h; sourceTree = "<group>"; };
+		78BADD711CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsFinish.cpp; sourceTree = "<group>"; };
+		78BADD721CEBA6C20077B673 /* EnvironmentMissionsFinish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsFinish.h; sourceTree = "<group>"; };
 		78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsBar.cpp; sourceTree = "<group>"; };
 		78C72BB31CE9D2E700D8EB11 /* EnvironmentMissionsBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsBar.h; sourceTree = "<group>"; };
 		78C72BB41CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsItem.cpp; sourceTree = "<group>"; };
@@ -1204,6 +1208,8 @@
 				78BADD6D1CEB57800077B673 /* EnvironmentMissionsNotify.h */,
 				78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */,
 				78C72BB31CE9D2E700D8EB11 /* EnvironmentMissionsBar.h */,
+				78BADD711CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp */,
+				78BADD721CEBA6C20077B673 /* EnvironmentMissionsFinish.h */,
 			);
 			path = missions;
 			sourceTree = "<group>";
@@ -1528,6 +1534,7 @@
 				78C72BB91CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */,
 				78283F961CE0AAE00010CAB7 /* Counter.cpp in Sources */,
 				789E718B1CD34AFB00BDCDC7 /* Trampoline.cpp in Sources */,
+				78BADD741CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp in Sources */,
 				789E71851CD343FC00BDCDC7 /* TypeSpikes.cpp in Sources */,
 				789E717B1CD2621500BDCDC7 /* Color.cpp in Sources */,
 				78C72BB71CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */,
@@ -1600,6 +1607,7 @@
 				78B4B6DC1CBD751D00F2D8A7 /* Pickup.cpp in Sources */,
 				78283F911CE0A8A10010CAB7 /* Decoration.cpp in Sources */,
 				78C72BB81CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */,
+				78BADD731CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp in Sources */,
 				78DF453F1BBAA54F004E4570 /* NSPurchase.mm in Sources */,
 				789E71A81CD39D0D00BDCDC7 /* TypeMoved3.cpp in Sources */,
 				789E71861CD343FC00BDCDC7 /* TypeTrampoline.cpp in Sources */,

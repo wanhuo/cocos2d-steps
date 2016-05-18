@@ -46,6 +46,20 @@ Energy::~Energy()
  */
 void Energy::onPickup()
 {
+  /**
+   *
+   * @Missions
+   * Update missions with energy.
+   *
+   */
+  if(MissionsFactory::getInstance()->isListenen())
+  {
+    Application->counter->missionUpdateOnce.special_once_2++;
+    Application->counter->missionUpdateProgress.special_progress_2++;
+
+    Events::updateMissions();
+  }
+
   this->onClear();
 
   this->count = 0;

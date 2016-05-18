@@ -77,6 +77,19 @@ void Presention::onPickup()
 
   /**
    *
+   * @Missions
+   * Update missions with presents.
+   *
+   */
+  if(MissionsFactory::getInstance()->isListenen())
+  {
+    Application->counter->missionUpdateProgress.gifts++;
+
+    Events::updateMissions();
+  }
+
+  /**
+   *
    *
    *
    */

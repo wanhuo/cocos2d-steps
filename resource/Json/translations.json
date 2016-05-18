@@ -86,7 +86,7 @@
     ],
     "present": [
       {
-        "title": "+50",
+        "title": "+$1",
         "font": "square",
         "size": 42
       }
@@ -178,10 +178,24 @@
     ],
     "missions-complete": [
       {
-        "title": "MISSION COMPLETE!",
+        "title": "MISSION $1 COMPLETED",
         "font": "square",
         "size": 42,
         "color": [71.0, 132.0, 164.0]
+      }
+    ],
+    "missions-finish": [
+      {
+        "title": "MISSION $1 PROGRESS",
+        "font": "square",
+        "size": 26
+      }
+    ],
+    "missions-finish-complete": [
+      {
+        "title": "MISSION $1 COMPLETED",
+        "font": "square",
+        "size": 26
       }
     ],
     "best-word-a": [

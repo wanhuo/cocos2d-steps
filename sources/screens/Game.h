@@ -106,6 +106,7 @@
 #include "EnvironmentMissionsPopup.h"
 #include "EnvironmentMissionsNotify.h"
 #include "EnvironmentMissionsBar.h"
+#include "EnvironmentMissionsFinish.h"
 
 #include "RotateGlobalBy.h"
 #include "Shake.h"
@@ -149,7 +150,7 @@ class Game : public Screen
     bool showPresent = false;
     bool showVideo = false;
 
-    string presentTexture;
+    string presentTexture = "ui/gift-texture-1.png";
 
     int ad = 4;
     int video = 4;
@@ -181,7 +182,8 @@ class Game : public Screen
     MISSIONS,
     PRESENT,
     OPEN,
-    WATCH
+    WATCH,
+    MISSION_COMPLETE
   };
 
   /**
@@ -252,6 +254,7 @@ class Game : public Screen
   virtual void onPresent();
   virtual void onOpen();
   virtual void onWatch();
+  virtual void onMissionComplete();
 
   virtual void onNoad();
 
@@ -269,6 +272,7 @@ class Game : public Screen
   virtual void updateFinish(float time);
   virtual void updateOpen(float time);
   virtual void updateWatch(float time);
+  virtual void updateMissionComplete(float time);
 
   virtual void updateStates(float time);
 

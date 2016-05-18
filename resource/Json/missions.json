@@ -3,17 +3,19 @@
 		{
 			"type": 1,
 			"index": 1,
+			"coins" : 10,
 			"complete": [
-				{"coins": 1, "preview": "missions-diamonds.png"}
+				{"special_once_14": 1, "preview": "missions-14.png"}
 			]
 		},
 		{
 			"type": 2,
 			"index": 2,
+			"coins" : 10,
 			"complete": [
-				{"coins": 10, "preview": "missions-star.png"},
-				{"coins": 10, "preview": "missions-plate-gate.png"},
-				{"coins": 10, "preview": "missions-plate-trap.png"}
+				{"special_progress_14": 1, "preview": "missions-14.png"},
+				{"special_progress_15": 5, "preview": "missions-15.png"},
+				{"special_progress_5": 5, "preview": "missions-5.png"}
 			]
 		}
 	]

@@ -377,7 +377,16 @@ void Generator::createGeneralElement(Plate* plate)
   {
     bool action = true;
 
-    if(this->general == Application->counter->values.best + 1)
+    /**
+     *
+     * Check if there is a finish plate.
+     *
+     */
+    if(this->index == this->size)
+    {
+      plate->setType(Plate::FINISH);
+    }
+    else if(this->general == Application->counter->values.best + 1)
     {
       if(Application->counter->values.best > 1)
       {
@@ -402,7 +411,6 @@ void Generator::createGeneralElement(Plate* plate)
          */
         if(this->index == this->size)
         {
-          plate->setType(Plate::FINISH);
         }
         else if(action)
         {

@@ -46,7 +46,19 @@ Crystal::~Crystal()
  */
 void Crystal::onPickup()
 {
-  Sound->play("pickup-diamond");
+  /**
+   *
+   * @Missions
+   * Update missions with crystals.
+   *
+   */
+  if(MissionsFactory::getInstance()->isListenen())
+  {
+    Application->counter->missionUpdateOnce.special_once_1++;
+    Application->counter->missionUpdateProgress.special_progress_1++;
+
+    Events::updateMissions();
+  }
 
   auto current = Application->environment->character->plates.current;
   auto next = Application->environment->character->plates.current;
@@ -79,6 +91,8 @@ void Crystal::onPickup()
       return;
     }
   }
+
+  Sound->play("pickup-diamond");
 }
 
 /**

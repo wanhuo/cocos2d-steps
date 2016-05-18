@@ -37,7 +37,7 @@ Present* Present::instance = nullptr;
  */
 Present* Present::getInstance()
 {
-  return instance;
+  return Present::instance;
 }
 
 /**
@@ -48,7 +48,7 @@ Present* Present::getInstance()
 Present::Present()
 : Finish()
 {
-  if(!instance) instance = this;
+  if(!Present::instance) Present::instance = this;
 
   this->background = new BackgroundColor(this, Color4B(0.0, 0.0, 0.0, 200.0));
   this->background->setLocalZOrder(-1);
@@ -74,6 +74,29 @@ void Present::onShow()
    *
    *
    */
+  switch(Application->state)
+  {
+    case Game::PRESENT:
+    break;
+    case Game::MISSION_COMPLETE:
+    this->missions->_create();
+    this->missions->setPosition(Application->getWidth() / 2, Application->getHeight() / 2 - 930);
+    this->missions->runAction(
+      EaseSineOut::create(
+        MoveBy::create(0.5, Vec2(0, 500))
+      )
+    );
+
+    this->missions->text->setText("missions-finish-complete");
+    this->missions->text->data(MissionsFactory::getInstance()->getPreviousMission()->id);
+    break;
+  }
+
+  /**
+   *
+   *
+   *
+   */
   this->element->_create();
 }
 
@@ -87,32 +110,4 @@ void Present::onHide(Callback callback)
    *
    */
   this->element->_destroy();
-}
-
-/**
- *
- *
- *
- */
-void Present::onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e)
-{
-  if(!this->element->touch->binded)
-  {
-    Finish::onTouchStart(touch, e);
-  }
-}
-
-/**
- *
- *
- *
- */
-void Present::show()
-{
-  Finish::show();
-}
-
-void Present::hide(Callback callback)
-{
-  Finish::hide(callback);
 }

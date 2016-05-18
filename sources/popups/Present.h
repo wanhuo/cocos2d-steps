@@ -66,11 +66,6 @@ class Present : public Finish
 
   virtual void onShow();
   virtual void onHide(Callback callback = NULL);
-
-  virtual void onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e);
-
-  virtual void show();
-  virtual void hide(Callback callback = NULL);
 };
 
 #endif

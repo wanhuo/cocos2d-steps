@@ -260,7 +260,22 @@ void Counter::onLose()
     FadeTo::create(0.2, 255)
   );
 
-  if(true)
+  this->texts.stage->setText("stage");
+  this->texts.stage->data(Application->environment->parameters.stage);
+
+ this->texts.stage->setPosition(Application->getCenter().x, Application->getHeight() - 370);
+
+  this->texts.stage->runAction(
+    FadeTo::create(0.2, 255)
+  );
+
+  this->texts.best->stopAllActions();
+  this->texts.best->setScale(1.0);
+  this->texts.best->runAction(
+    FadeTo::create(0.2, 255)
+  );
+
+  if(this->values.b.best)
   {
     this->onBest();
   }
@@ -420,13 +435,26 @@ void Counter::onCount()
 
     if(this->values.current > this->values.best)
     {
-      if(!this->values.newBest && this->values.best > 1)
+      if(!this->values.b.best && this->values.best > 1)
       {
         Sound->play("best");
+
+        /**
+         *
+         * @Missions
+         * Update missions with best.
+         *
+         */
+        if(MissionsFactory::getInstance()->isListenen())
+        {
+          Application->counter->missionUpdateOnce.points_best++;
+
+          Events::updateMissions();
+        }
       }
 
       this->values.best = this->values.current;
-      this->values.newBest = true;
+      this->values.b.best = true;
     }
 
     this->update();
@@ -447,17 +475,14 @@ void Counter::onCoins()
  */
 void Counter::onBest()
 {
-  this->texts.stage->setText("stage");
-  this->texts.stage->data(Application->environment->parameters.stage);
-
- this->texts.stage->setPosition(Application->getCenter().x, Application->getHeight() - 370);
-
-  this->texts.stage->runAction(
-    FadeTo::create(0.2, 255)
-  );
-
   this->texts.best->runAction(
-    FadeTo::create(0.2, 255)
+    RepeatForever::create(
+      Sequence::create(
+        ScaleTo::create(0.25, 1.05),
+        ScaleTo::create(0.25, 0.95),
+        nullptr
+      )
+    )
   );
 }
 
@@ -472,7 +497,8 @@ void Counter::onRegular()
  */
 void Counter::reset(bool init)
 {
-  this->values.newBest = false;
+  this->values.b.best = false;
+  this->values.b.mission = false;
 
   this->values.start = 0;
   this->values.current = 1;
@@ -502,7 +528,7 @@ void Counter::save()
     Storage::set("generator.bonus.skip." + to_string(Application->environment->parameters.stage), max(Storage::get("generator.bonus.skip." + to_string(Application->environment->parameters.stage)), Application->environment->character->plates.current->getIndex()));
   }
 
-  if(this->values.newBest)
+  if(this->values.b.best)
   {
     Sound->play("best");
   }
@@ -611,6 +637,19 @@ void Counter::resetOnceMissionsUpdate()
 
   this->missionUpdateOnce.special_once_1 = 0;
   this->missionUpdateOnce.special_once_2 = 0;
+  this->missionUpdateOnce.special_once_3 = 0;
+  this->missionUpdateOnce.special_once_4 = 0;
+  this->missionUpdateOnce.special_once_5 = 0;
+  this->missionUpdateOnce.special_once_6 = 0;
+  this->missionUpdateOnce.special_once_7 = 0;
+  this->missionUpdateOnce.special_once_8 = 0;
+  this->missionUpdateOnce.special_once_9 = 0;
+  this->missionUpdateOnce.special_once_10 = 0;
+  this->missionUpdateOnce.special_once_11 = 0;
+  this->missionUpdateOnce.special_once_12 = 0;
+  this->missionUpdateOnce.special_once_13 = 0;
+  this->missionUpdateOnce.special_once_14 = 0;
+  this->missionUpdateOnce.special_once_15 = 0;
 }
 
 void Counter::resetProgressMissionsUpdate()
@@ -619,6 +658,22 @@ void Counter::resetProgressMissionsUpdate()
   this->missionUpdateProgress.points = 0;
   this->missionUpdateProgress.games = 0;
   this->missionUpdateProgress.gifts = 0;
+
+  this->missionUpdateProgress.special_progress_1 = 0;
+  this->missionUpdateProgress.special_progress_2 = 0;
+  this->missionUpdateProgress.special_progress_3 = 0;
+  this->missionUpdateProgress.special_progress_4 = 0;
+  this->missionUpdateProgress.special_progress_5 = 0;
+  this->missionUpdateProgress.special_progress_6 = 0;
+  this->missionUpdateProgress.special_progress_7 = 0;
+  this->missionUpdateProgress.special_progress_8 = 0;
+  this->missionUpdateProgress.special_progress_9 = 0;
+  this->missionUpdateProgress.special_progress_10 = 0;
+  this->missionUpdateProgress.special_progress_11 = 0;
+  this->missionUpdateProgress.special_progress_12 = 0;
+  this->missionUpdateProgress.special_progress_13 = 0;
+  this->missionUpdateProgress.special_progress_14 = 0;
+  this->missionUpdateProgress.special_progress_15 = 0;
 }
 
 /**
@@ -628,7 +683,11 @@ void Counter::resetProgressMissionsUpdate()
  */
 void Counter::onMissionComplete()
 {
+  this->values.b.mission = true;
+
   this->resetMissionsUpdate();
 
   Application->environment->missions.controller->notify->_create();
+  Application->environment->missions.missions.elements.erase(Application->environment->missions.missions.elements.begin());
+  Application->environment->missions.missions.plane->removeItem(0);
 }

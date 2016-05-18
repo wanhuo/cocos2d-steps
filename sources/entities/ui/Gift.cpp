@@ -140,6 +140,35 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
    *
    *
    */
+  int count = 10;
+
+  /**
+   *
+   *
+   *
+   */
+  switch(Application->state)
+  {
+    case Game::PRESENT:
+    count *= random(1, 5);
+    break;
+    case Game::MISSION_COMPLETE:
+    count = MissionsFactory::getInstance()->getPreviousMission()->coins;
+    break;
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  this->element->text->data(count);
+
+  /**
+   *
+   *
+   *
+   */
   this->runAction(
     Spawn::create(
       Repeat::create(
@@ -172,7 +201,7 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
       Sequence::create(
         DelayTime::create(0.65),
         CallFunc::create([=] () {
-        Application->counter->add(50);
+        Application->counter->add(count);
 
         Present::getInstance()->time = 1.0;
 
@@ -190,8 +219,27 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
         }),
         DelayTime::create(0.5),
         CallFunc::create([=] () {
-        Present::getInstance()->time = 1.0;
-        Present::getInstance()->Finish::onShow();
+        switch(Application->state)
+        {
+          case Game::PRESENT:
+          Present::getInstance()->time = 1.0;
+          Present::getInstance()->Finish::onShow();
+          break;
+          case Game::MISSION_COMPLETE:
+          Present::getInstance()->missions->runAction(
+            Sequence::create(
+              EaseSineOut::create(
+                MoveBy::create(0.5, Vec2(0, -500))
+              ),
+              CallFunc::create([=] () {
+              Present::getInstance()->time = 1.0;
+              Present::getInstance()->Finish::onShow();
+              }),
+              nullptr
+            )
+          );
+          break;
+        }
         }),
         nullptr
       ),

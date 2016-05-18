@@ -41,7 +41,6 @@ Capture::Capture(Node* parent)
   this->element->setGlobalZOrder(1000);
   this->element->setLocalZOrder(-1);
 
-  this->setPosition(Application->getWidth() / 2, Application->getHeight() / 2);
   this->setGlobalZOrder(1000);
   this->setCameraMask(8);
   this->bind(true);
@@ -72,16 +71,25 @@ void Capture::onCreate()
    *
    *
    */
-  this->setRotation(0);
+  this->setPosition(Application->getWidth() / 2, Application->getHeight() / 2 + 70);
+  this->setRotation(3.0);
   this->setScale(1.0);
 
   this->runAction(
-    Spawn::create(
-      ScaleTo::create(0.2, 0.5),
-      RotateTo::create(0.2, -15.0),
-      nullptr
+    ScaleTo::create(0.2, 0.5)
+  );
+
+  this->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        RotateTo::create(0.5, -3.0),
+        RotateTo::create(0.5, 3.0),
+        nullptr
+      )
     )
   );
+
+  Finish::getInstance()->missions->_create();
 
   Sound->play("capture");
 }
@@ -168,10 +176,12 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
     case STATE_NORMAL:
     this->state = STATE_ACTIVE;
 
+    this->stopAllActions();
     this->runAction(
       Spawn::create(
         ScaleTo::create(0.2, 1.3),
         RotateTo::create(0.2, 0),
+        MoveTo::create(0.2, Vec2(Application->getWidth() / 2, Application->getHeight() / 2)),
         Sequence::create(
           DelayTime::create(0.2),
           CallFunc::create([=] () {
@@ -189,10 +199,27 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
     case STATE_ACTIVE:
     this->state = STATE_NORMAL;
 
+    this->stopAllActions();
     this->runAction(
       Spawn::create(
         ScaleTo::create(0.2, 0.5),
-        RotateTo::create(0.2, -15.0),
+        RotateTo::create(0.2, 3.0),
+        MoveTo::create(0.2, Vec2(Application->getWidth() / 2, Application->getHeight() / 2 + 70)),
+        Sequence::create(
+          DelayTime::create(0.2),
+          CallFunc::create([=] () {
+          this->runAction(
+            RepeatForever::create(
+              Sequence::create(
+                RotateTo::create(0.5, -3.0),
+                RotateTo::create(0.5, 3.0),
+                nullptr
+              )
+            )
+          );
+          }),
+          nullptr
+        ),
         nullptr
       ), 1
     );
@@ -201,6 +228,13 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
     );
     break;
   }
+
+  /**
+   *
+   *
+   *
+   */
+  Sound->play("touch");
 }
 
 /**

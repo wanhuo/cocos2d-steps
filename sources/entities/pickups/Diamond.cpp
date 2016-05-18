@@ -46,6 +46,20 @@ Diamond::~Diamond()
  */
 void Diamond::onPickup()
 {
+  /**
+   *
+   * @Missions
+   * Update missions with coins.
+   *
+   */
+  if(MissionsFactory::getInstance()->isListenen())
+  {
+    Application->counter->missionUpdateOnce.coins++;
+    Application->counter->missionUpdateProgress.coins++;
+
+    Events::updateMissions();
+  }
+
   Application->counter->onCoins();
 
   Sound->play("pickup-diamond");

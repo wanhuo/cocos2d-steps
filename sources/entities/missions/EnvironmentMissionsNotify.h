@@ -47,6 +47,8 @@ class EnvironmentMissionsNotify : public BackgroundColor
   protected:
   Text* text;
 
+  Entity* element;
+
   /**
    *
    *

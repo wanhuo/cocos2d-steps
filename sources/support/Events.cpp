@@ -32,7 +32,9 @@
  */
 void Events::onStart()
 {
-  new Game;
+  //Storage::clear();
+
+  new Game;    
   new Menu;
   new Finish;
 
@@ -274,7 +276,7 @@ void Events::updateMissions()
 
   if(MissionsFactory::getInstance()->updateCurrentMission(update))
   {
-    Events::onMissionComplete(MissionsFactory::getInstance()->getCurrentMission()->id);
+    Events::onMissionComplete(MissionsFactory::getInstance()->getPreviousMission()->id);
   }
 }
 

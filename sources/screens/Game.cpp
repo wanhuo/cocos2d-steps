@@ -298,6 +298,19 @@ void Game::onGame()
 
   this->environment->onGame();
   this->counter->onGame();
+
+  /**
+   *
+   * @Missions
+   * Update missions with games.
+   *
+   */
+  if(MissionsFactory::getInstance()->isListenen())
+  {
+    Application->counter->missionUpdateProgress.games++;
+
+    Events::updateMissions();
+  }
 }
 
 void Game::onFinish()
@@ -336,7 +349,11 @@ void Game::onLose()
   this->parameters.elapsed.present++;
   this->parameters.elapsed.video++;
 
-  if(Application->parameters.showPresent)
+  if(this->counter->values.b.mission)
+  {
+    this->changeState(MISSION_COMPLETE);
+  }
+  else if(Application->parameters.showPresent)
   {
     this->changeState(PRESENT);
   }
@@ -356,7 +373,7 @@ void Game::onLose()
 
   if(this->parameters.elapsed.ad >= this->parameters.ad)
   {
-    this->parameters.elapsed.ad = 0;
+    this->parameters.elapsed.ad = -1;
 
     Heyzap::show(Config::AD_TYPE_INTERSTITIAL);
   }
@@ -398,6 +415,13 @@ void Game::onWatch()
   this->environment->onWatch();
 
   Watch::getInstance()->show();
+}
+
+void Game::onMissionComplete()
+{
+  this->environment->onMissionComplete();
+
+  Present::getInstance()->show();
 }
 
 /**
@@ -449,6 +473,9 @@ void Game::changeState(State state)
       case WATCH:
       this->onWatch();
       break;
+      case MISSION_COMPLETE:
+      this->onMissionComplete();
+      break;
     }
   }
 }
@@ -494,6 +521,10 @@ void Game::updateWatch(float time)
 {
 }
 
+void Game::updateMissionComplete(float time)
+{
+}
+
 /**
  *
  *
@@ -529,6 +560,9 @@ void Game::updateStates(float time)
     break;
     case WATCH:
     this->updateWatch(time);
+    break;
+    case MISSION_COMPLETE:
+    this->updateMissionComplete(time);
     break;
   }
 

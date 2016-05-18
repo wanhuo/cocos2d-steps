@@ -84,6 +84,20 @@ void Color::onPickup()
 
   /**
    *
+   * @Missions
+   * Update missions with color.
+   *
+   */
+  if(MissionsFactory::getInstance()->isListenen())
+  {
+    Application->counter->missionUpdateOnce.special_once_4++;
+    Application->counter->missionUpdateProgress.special_progress_4++;
+
+    Events::updateMissions();
+  }
+
+  /**
+   *
    *
    *
    */

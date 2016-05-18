@@ -117,12 +117,54 @@ void Plate::onRemove(bool complete)
 void Plate::onCount()
 {
   if(MissionsFactory::getInstance()->isListenen())
-  {  
+  {
+    Application->counter->missionUpdateOnce.points++;
+    Application->counter->missionUpdateProgress.points++;
+
     switch(this->type)
     {
-      case DIAMOND:
-      Application->counter->missionUpdateOnce.coins++;
-      Application->counter->missionUpdateProgress.coins++;
+      case SPIKES:
+      Application->counter->missionUpdateOnce.special_once_5++;
+      Application->counter->missionUpdateProgress.special_progress_5++;
+      break;
+      case TRAMPOLINE:
+      Application->counter->missionUpdateOnce.special_once_6++;
+      Application->counter->missionUpdateProgress.special_progress_6++;
+      break;
+      case DOWN:
+      Application->counter->missionUpdateOnce.special_once_7++;
+      Application->counter->missionUpdateProgress.special_progress_7++;
+      break;
+      case CUB:
+      Application->counter->missionUpdateOnce.special_once_8++;
+      Application->counter->missionUpdateProgress.special_progress_8++;
+      break;
+      case SAW:
+      Application->counter->missionUpdateOnce.special_once_9++;
+      Application->counter->missionUpdateProgress.special_progress_9++;
+      break;
+      case GATE:
+      Application->counter->missionUpdateOnce.special_once_10++;
+      Application->counter->missionUpdateProgress.special_progress_10++;
+      break;
+      case COPTER:
+      Application->counter->missionUpdateOnce.special_once_11++;
+      Application->counter->missionUpdateProgress.special_progress_11++;
+      break;
+      case TRAP:
+      Application->counter->missionUpdateOnce.special_once_12++;
+      Application->counter->missionUpdateProgress.special_progress_12++;
+      break;
+      case MOVE_UP:
+      Application->counter->missionUpdateOnce.special_once_13++;
+      Application->counter->missionUpdateProgress.special_progress_13++;
+      break;
+      case MOVED1:
+      case MOVED2:
+      case MOVED3:
+      case MOVED4:
+      Application->counter->missionUpdateOnce.special_once_15++;
+      Application->counter->missionUpdateProgress.special_progress_15++;
       break;
     }
 
@@ -135,6 +177,61 @@ void Plate::onCount()
    *
    */
   this->setTexture(Application->environment->getTextureState2());
+}
+
+void Plate::onUncount()
+{
+  if(MissionsFactory::getInstance()->isListenen())
+  {
+    switch(this->type)
+    {
+      case SPIKES:
+      Application->counter->missionUpdateOnce.special_once_5--;
+      Application->counter->missionUpdateProgress.special_progress_5--;
+      break;
+      case TRAMPOLINE:
+      Application->counter->missionUpdateOnce.special_once_6--;
+      Application->counter->missionUpdateProgress.special_progress_6--;
+      break;
+      case DOWN:
+      Application->counter->missionUpdateOnce.special_once_7--;
+      Application->counter->missionUpdateProgress.special_progress_7--;
+      break;
+      case CUB:
+      Application->counter->missionUpdateOnce.special_once_8--;
+      Application->counter->missionUpdateProgress.special_progress_8--;
+      break;
+      case SAW:
+      Application->counter->missionUpdateOnce.special_once_9--;
+      Application->counter->missionUpdateProgress.special_progress_9--;
+      break;
+      case GATE:
+      Application->counter->missionUpdateOnce.special_once_10--;
+      Application->counter->missionUpdateProgress.special_progress_10--;
+      break;
+      case COPTER:
+      Application->counter->missionUpdateOnce.special_once_11--;
+      Application->counter->missionUpdateProgress.special_progress_11--;
+      break;
+      case TRAP:
+      Application->counter->missionUpdateOnce.special_once_12--;
+      Application->counter->missionUpdateProgress.special_progress_12--;
+      break;
+      case MOVE_UP:
+      Application->counter->missionUpdateOnce.special_once_13--;
+      Application->counter->missionUpdateProgress.special_progress_13--;
+      break;
+      case MOVED1:
+      case MOVED2:
+      case MOVED3:
+      case MOVED4:
+      Application->counter->missionUpdateOnce.special_once_15--;
+      Application->counter->missionUpdateProgress.special_progress_15--;
+      break;
+    }
+
+    Events::updateMissions();
+  }
 }
 
 /**

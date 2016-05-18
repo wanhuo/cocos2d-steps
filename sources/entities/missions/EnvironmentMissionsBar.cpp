@@ -136,24 +136,30 @@ void EnvironmentMissionsBar::onDestroy(bool action)
  */
 void EnvironmentMissionsBar::onCreateMissions()
 {
-  for(auto element : Application->environment->missions.missions.elements) element->_create()->setPosition3D(Vec3(0.0, 0.75, 0.75));
+  if(Application->environment->missions.missions.elements.size())
+  {
+    for(auto element : Application->environment->missions.missions.elements) element->_create()->setPosition3D(Vec3(0.0, 0.75, 0.75));
 
-  Application->environment->missions.missions.plane->_create();
-  Application->environment->missions.missions.plane->setPosition3D(Vec3(-9.75, -12, 0.0));
+    Application->environment->missions.missions.plane->_create();
+    Application->environment->missions.missions.plane->setPosition3D(Vec3(-9.75, -12, 0.0));
 
-  Application->environment->missions.missions.plane->getInnerContainer()->setPositionX(20.0);
-  Application->environment->missions.missions.plane->stopAutoScroll();
-  Application->environment->missions.missions.plane->stopAllActions();
-  Application->environment->missions.missions.plane->getInnerContainer()->stopAllActions();
-  Application->environment->missions.missions.plane->getInnerContainer()->runAction(
-    Sequence::create(
-      MoveTo::create(0.5, Vec3(9.5, 0.0, 0.0)),
-      CallFunc::create([=] () {
-      Application->environment->missions.missions.plane->ScrollView::_eventCallback(Application->environment->missions.missions.plane, cocos2d::ui::ScrollView::EventType::AUTOSCROLL_ENDED);
-      }),
-      nullptr
-    )
-  );
+    Application->environment->missions.missions.plane->getInnerContainer()->setPositionX(20.0);
+    Application->environment->missions.missions.plane->stopAutoScroll();
+    Application->environment->missions.missions.plane->stopAllActions();
+    Application->environment->missions.missions.plane->getInnerContainer()->stopAllActions();
+    Application->environment->missions.missions.plane->getInnerContainer()->runAction(
+      Sequence::create(
+        MoveTo::create(0.5, Vec3(9.5, 0.0, 0.0)),
+        CallFunc::create([=] () {
+        Application->environment->missions.missions.plane->ScrollView::_eventCallback(Application->environment->missions.missions.plane, cocos2d::ui::ScrollView::EventType::AUTOSCROLL_ENDED);
+        }),
+        nullptr
+      )
+    );
+  }
+  else
+  {
+  }
 
   this->selectedMission = nullptr;
 }

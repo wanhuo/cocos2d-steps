@@ -69,8 +69,13 @@ class Counter : public Background
 
   ProgressTimer* starAction;
 
+  struct BoolValues {
+    bool mission = false;
+    bool best = false;
+  };
+
   struct Values {
-    bool newBest = false;
+    BoolValues b;
 
     int current = 0;
     int best = 0;
@@ -102,6 +107,7 @@ class Counter : public Background
   virtual void onPresent();
   virtual void onOpen();
   virtual void onWatch();
+  virtual void onMissionComplete();
 
   virtual void onStarStart();
   virtual void onStarFinish();
@@ -126,8 +132,6 @@ class Counter : public Background
 
   void resetOnceMissionsUpdate();
   void resetProgressMissionsUpdate();
-
-  virtual void onMissionComplete();
 };
 
 #endif

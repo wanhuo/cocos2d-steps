@@ -194,7 +194,7 @@ EnvironmentMissionsPopup::MissionTask::MissionTask(Node* parent)
   this->text = new Text("missions-data", this, true);
   this->text->setPosition(this->getWidth() / 2, 40);
 
-  this->element = new TiledEntity("missions-star.png", 4, 1, this, true);
+  this->element = new TiledEntity("missions-1.png", 4, 1, this, true);
   this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2 + 25);
 
   this->setScale(0.5);
@@ -224,23 +224,24 @@ void EnvironmentMissionsPopup::MissionTask::onDestroy(bool action)
  *
  *
  */
-void EnvironmentMissionsPopup::MissionTask::updateData(int mission)
+void EnvironmentMissionsPopup::MissionTask::updateData(int mission, MissionStruct* structure)
 {
-  auto m = Application->environment->missions.controller->selectedMission->mission->complete.at(mission);
+  auto m = structure ? structure : Application->environment->missions.controller->selectedMission->mission;
+  auto c = m->complete.at(mission);
 
-  this->element->setTexture(m.preview);
-  this->text->data(m.elapsed, m.target);
+  this->element->setTexture(c.preview);
+  this->text->data(min(c.elapsed, c.target), c.target);
 
-  switch(Application->environment->missions.controller->selectedMission->mission->state)
+  switch(m->state)
   {
     case MissionStruct::STATE_CURRENT:
     case MissionStruct::STATE_CLAIM:
     case MissionStruct::STATE_FINISHED:
-    if(m.elapsed >= m.target)
+    if(c.elapsed >= c.target)
     {
       this->element->setCurrentFrameIndex(2);
     }
-    else if(m.elapsed > 0)
+    else if(c.elapsed > 0)
     {
       this->element->setCurrentFrameIndex(1);
     }
