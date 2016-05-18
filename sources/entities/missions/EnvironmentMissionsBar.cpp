@@ -109,6 +109,7 @@ void EnvironmentMissionsBar::onCreate()
    *
    */
   this->onCreateMissions();
+  this->onSelectMission(0);
 
   Application->environment->character->_destroy();
   Application->environment->plates.normal->clear();
@@ -197,21 +198,24 @@ void EnvironmentMissionsBar::onSelect(EnvironmentMissionsItem* element)
 
 void EnvironmentMissionsBar::onSelectMission(int index)
 {
-  auto element = Application->environment->missions.missions.elements.at(index);
-
-  for(auto element : Application->environment->missions.missions.elements)
+  if(Application->environment->missions.missions.elements.size() >= index + 1)
   {
-    if(index != element->parameters.index - 1)
+    auto element = Application->environment->missions.missions.elements.at(index);
+
+    for(auto element : Application->environment->missions.missions.elements)
     {
-      element->changePosition(EnvironmentMissionsItem::Position::POSITION_NORMAL);
+      if(index != element->parameters.index - 1)
+      {
+        element->changePosition(EnvironmentMissionsItem::Position::POSITION_NORMAL);
+      }
     }
+
+    /*if(element->position == EnvironmentMissionsItem::Position::POSITION_NORMAL && element->state == EnvironmentMissionsItem::STATE_UNLOCKED)
+    {
+      Application->environment->parameters.character = index + 1;
+      Application->environment->parameters.random.character = index == 0;
+    }*/
+
+    this->onSelect(element);
   }
-
-  /*if(element->position == EnvironmentMissionsItem::Position::POSITION_NORMAL && element->state == EnvironmentMissionsItem::STATE_UNLOCKED)
-  {
-    Application->environment->parameters.character = index + 1;
-    Application->environment->parameters.random.character = index == 0;
-  }*/
-
-  this->onSelect(element);
 }

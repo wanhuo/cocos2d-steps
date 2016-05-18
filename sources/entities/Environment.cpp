@@ -158,15 +158,25 @@ void Environment::create()
    *
    *
    */
+  //this->missions.missions.elements.push_back(new EnvironmentMissionsItem(-2));
+  //this->missions.missions.elements.push_back(new EnvironmentMissionsItem(-1));
 
      int counter = 0;
 
   for(auto m : MissionsFactory::getInstance()->getMissions())
   {
-    this->missions.missions.elements.push_back(new EnvironmentMissionsItem(counter));
+    switch(m->state)
+    {
+      case MissionStruct::STATE_CURRENT:
+      case MissionStruct::STATE_LOCKED:
+      this->missions.missions.elements.push_back(new EnvironmentMissionsItem(counter));
+      break;
+    }
 
     counter++;
   }
+
+  //this->missions.missions.elements.push_back(new EnvironmentMissionsItem(0));
 }
 
 void Environment::reset()

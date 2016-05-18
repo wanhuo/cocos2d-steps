@@ -237,6 +237,8 @@ void EnvironmentMissionsPopup::MissionTask::updateData(int mission, MissionStruc
     case MissionStruct::STATE_CURRENT:
     case MissionStruct::STATE_CLAIM:
     case MissionStruct::STATE_FINISHED:
+    this->text->setVisible(true);
+
     if(c.elapsed >= c.target)
     {
       this->element->setCurrentFrameIndex(2);
@@ -251,6 +253,8 @@ void EnvironmentMissionsPopup::MissionTask::updateData(int mission, MissionStruc
     }
     break;
     case MissionStruct::STATE_LOCKED:
+    this->text->setVisible(false);
+
     this->element->setCurrentFrameIndex(3);
     break;
   }
