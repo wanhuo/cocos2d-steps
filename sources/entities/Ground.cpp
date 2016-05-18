@@ -56,9 +56,20 @@ Ground::~Ground()
  */
 void Ground::reset()
 {
-  this->texture->setTexture("textures/" + to_string(Application->environment->parameters.texture) + "/ground-texture.png");
+  this->texture->setTexture("textures/" + (!Application->environment->generator->bonus ? (to_string(Application->environment->parameters.texture) + "/ground-texture.png") : "ground-bonus-texture.png"));
   this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
   this->texture->getTexture()->setAliasTexParameters();
+
+  if(!Application->environment->generator->bonus)
+  {
+    this->size = Vec2(50.0, 50.0);
+    this->texture->setScale(0.75);
+  }
+  else
+  {
+    this->size = Vec2(50.0 * 16, 50.0 * 16);
+    this->texture->setScale(0.75 / 16.0);
+  }
 
   this->update(0);
 }
@@ -79,5 +90,5 @@ void Ground::update(float time)
   x += Application->environment->missions.controller->state->create ? 0.95 : 0.0;
   z += Application->environment->missions.controller->state->create ? 1.25 : 0.0;
 
-  this->texture->setTextureRect(Rect(x, z, 50, 50));
+  this->texture->setTextureRect(Rect(x, z, this->size.x, this->size.y));
 }

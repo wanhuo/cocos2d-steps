@@ -39,6 +39,8 @@ class Ground : public Entity3D
    *
    */
   protected:
+  Vec2 size;
+
   Entity* texture;
 
   /**

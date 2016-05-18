@@ -660,4 +660,6 @@ void Generator::reset(bool complete)
   this->conditions.s9 = 0;
   this->conditions.s10 = 0;
   this->conditions.s11 = 0;
+
+  Application->environment->ground->reset();
 }
