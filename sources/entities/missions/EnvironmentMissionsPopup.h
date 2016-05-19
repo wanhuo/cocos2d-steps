@@ -58,9 +58,13 @@ class EnvironmentMissionsPopup : public BackgroundColor
 
     Text* text;
     TiledEntity* element;
+    TiledEntity* element2;
 
     virtual void onCreate();
     virtual void onDestroy(bool action = false);
+
+    virtual void onEnter();
+    virtual void onExit();
 
     virtual void updateData(int mission, MissionStruct* structure = nullptr);
   };

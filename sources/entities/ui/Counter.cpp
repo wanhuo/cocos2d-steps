@@ -519,6 +519,10 @@ void Counter::reset(bool init)
     this->missionUpdateProgress.special_progress_4 = Storage::get("values.missions.progress.special_progress_4");
     this->missionUpdateProgress.special_progress_5 = Storage::get("values.missions.progress.special_progress_5");
   }
+  else
+  {
+    this->resetOnceMissionsUpdate();
+  }
 }
 
 void Counter::save()
@@ -650,6 +654,8 @@ void Counter::resetOnceMissionsUpdate()
   this->missionUpdateOnce.special_once_13 = 0;
   this->missionUpdateOnce.special_once_14 = 0;
   this->missionUpdateOnce.special_once_15 = 0;
+
+  Events::updateMissions();
 }
 
 void Counter::resetProgressMissionsUpdate()
@@ -674,6 +680,8 @@ void Counter::resetProgressMissionsUpdate()
   this->missionUpdateProgress.special_progress_13 = 0;
   this->missionUpdateProgress.special_progress_14 = 0;
   this->missionUpdateProgress.special_progress_15 = 0;
+
+  Events::updateMissions();
 }
 
 /**

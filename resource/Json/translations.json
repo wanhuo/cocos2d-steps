@@ -158,21 +158,21 @@
       {
         "title": "COMPLETE IN A ONE GAME",
         "font": "square",
-        "size": 24
+        "size": 30
       }
     ],
     "missions-mission-2": [
       {
         "title": "COMPLETE IN A FEW GAMES",
         "font": "square",
-        "size": 24
+        "size": 30
       }
     ],
     "missions-data": [
       {
         "title": "$1/$2",
         "font": "square",
-        "size": 42,
+        "size": 22,
         "color": [71.0, 132.0, 164.0]
       }
     ],
@@ -189,6 +189,20 @@
         "title": "MISSION $1 PROGRESS",
         "font": "square",
         "size": 26
+      }
+    ],
+    "missions-finish-1": [
+      {
+        "title": "COMPLETE IN A ONE GAME",
+        "font": "square",
+        "size": 24
+      }
+    ],
+    "missions-finish-2": [
+      {
+        "title": "COMPLETE IN A FEW GAMES",
+        "font": "square",
+        "size": 24
       }
     ],
     "missions-finish-complete": [

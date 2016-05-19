@@ -32,7 +32,7 @@
  */
 void Events::onStart()
 {
-  //Storage::clear();
+  Storage::clear();
 
   new Game;    
   new Menu;

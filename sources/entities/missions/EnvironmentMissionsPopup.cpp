@@ -192,12 +192,14 @@ EnvironmentMissionsPopup::MissionTask::MissionTask(Node* parent)
 : Entity("missions-background.png", parent)
 {
   this->text = new Text("missions-data", this, true);
-  this->text->setPosition(this->getWidth() / 2, 40);
+  this->text->setPosition(this->getWidth() / 2, 20);
 
   this->element = new TiledEntity("missions-1.png", 4, 1, this, true);
-  this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2 + 25);
+  this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2 + 11.5);
 
-  this->setScale(0.5);
+  this->element2 = new TiledEntity("missions-1.png", 4, 1, this);
+  this->element2->setAnchorPoint(Vec2(0.5, 0.0));
+  this->element2->setPosition(this->getWidth() / 2, this->getHeight() / 2 + 11.5 - this->element2->getHeight() / 2);
 }
 
 EnvironmentMissionsPopup::MissionTask::~MissionTask()
@@ -224,12 +226,35 @@ void EnvironmentMissionsPopup::MissionTask::onDestroy(bool action)
  *
  *
  */
+void EnvironmentMissionsPopup::MissionTask::onEnter()
+{
+  Entity::onEnter();
+}
+
+void EnvironmentMissionsPopup::MissionTask::onExit()
+{
+  Entity::onExit();
+
+  /**
+   *
+   *
+   *
+   */
+  this->element2->_destroy();
+}
+
+/**
+ *
+ *
+ *
+ */
 void EnvironmentMissionsPopup::MissionTask::updateData(int mission, MissionStruct* structure)
 {
   auto m = structure ? structure : Application->environment->missions.controller->selectedMission->mission;
   auto c = m->complete.at(mission);
 
-  this->element->setTexture(c.preview);
+  this->element->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(c.preview));
+  this->element->updateTexturePoistion();
   this->text->data(min(c.elapsed, c.target), c.target);
 
   switch(m->state)
@@ -256,6 +281,68 @@ void EnvironmentMissionsPopup::MissionTask::updateData(int mission, MissionStruc
     this->text->setVisible(false);
 
     this->element->setCurrentFrameIndex(3);
+    break;
+  }
+
+  switch(m->state)
+  {
+    case MissionStruct::STATE_CURRENT:
+    switch(m->type)
+    {
+      case MissionStruct::TYPE_ONCE:
+      if(c.elapsed > 0)
+      {
+        this->element->setCurrentFrameIndex(0);
+
+        auto constant = this->element2->getHeight();
+        auto time = random(0.02, 0.06);
+
+        this->element2->data = 100;
+
+        this->element2->_create();
+        this->element2->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(c.preview));
+        this->element2->updateTexturePoistion();
+        this->element2->setCurrentFrameIndex(1);
+
+        this->element2->stopAllActions();
+        this->element2->runAction(
+          Repeat::create(
+            Sequence::create(
+              DelayTime::create(time),
+              CallFunc::create([=] () {
+              this->element2->setTextureRect(Rect(
+                this->element2->getFramesCoordinatesX()[1],
+                this->element2->getFramesCoordinatesY()[1] - (this->element2->getTextureRect().size.height - constant),
+                this->element2->getWidth(),
+                this->element2->getHeight() / 100 * --this->element2->data
+              ));
+
+              if(this->element2->data <= 0)
+              {
+                this->element2->_destroy();
+              }
+              }),
+              nullptr
+            ),
+            101
+          )
+        );
+        this->element2->runAction(
+          Repeat::create(
+            Sequence::create(
+              DelayTime::create(((time * 100) / c.elapsed) - 0.02),
+              CallFunc::create([=] () {
+              this->text->data(max(0.0f, min(--m->complete.at(mission).elapsed, c.target)), c.target);
+              }),
+              nullptr
+            ), c.elapsed
+          )
+        );
+      }
+      break;
+      case MissionStruct::TYPE_PROGRESS:
+      break;
+    }
     break;
   }
 }
