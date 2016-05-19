@@ -209,6 +209,25 @@
             <filename>../Graphics/ui/missions-background.png</filename>
             <filename>../Graphics/ui/restart-button.png</filename>
             <filename>../Graphics/ui/missions-notification.png</filename>
+            <filename>../Graphics/ui/missions-1.png</filename>
+            <filename>../Graphics/ui/missions-2.png</filename>
+            <filename>../Graphics/ui/missions-3.png</filename>
+            <filename>../Graphics/ui/missions-4.png</filename>
+            <filename>../Graphics/ui/missions-5.png</filename>
+            <filename>../Graphics/ui/missions-6.png</filename>
+            <filename>../Graphics/ui/missions-7.png</filename>
+            <filename>../Graphics/ui/missions-9.png</filename>
+            <filename>../Graphics/ui/missions-10.png</filename>
+            <filename>../Graphics/ui/missions-11.png</filename>
+            <filename>../Graphics/ui/missions-12.png</filename>
+            <filename>../Graphics/ui/missions-13.png</filename>
+            <filename>../Graphics/ui/missions-14.png</filename>
+            <filename>../Graphics/ui/missions-15.png</filename>
+            <filename>../Graphics/ui/missions-best.png</filename>
+            <filename>../Graphics/ui/missions-coins.png</filename>
+            <filename>../Graphics/ui/missions-games.png</filename>
+            <filename>../Graphics/ui/missions-gifts.png</filename>
+            <filename>../Graphics/ui/missions-points.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

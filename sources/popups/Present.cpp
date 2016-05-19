@@ -87,6 +87,7 @@ void Present::onShow()
       )
     );
 
+    this->missions->text->stopAllActions();
     this->missions->text->setText("missions-finish-complete");
     this->missions->text->data(MissionsFactory::getInstance()->getPreviousMission()->id);
     break;

@@ -91,6 +91,8 @@ class EnvironmentMissionsBar : public Background
 
   virtual void onSelect(EnvironmentMissionsItem* element);
   virtual void onSelectMission(int index);
+
+  virtual void update(float time);
 };
 
 #endif

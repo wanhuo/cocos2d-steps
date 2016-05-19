@@ -87,6 +87,7 @@ EnvironmentMissionsBar::EnvironmentMissionsBar()
 
   this->setPosition(Application->getWidth() / 2, Application->getHeight() - 300);
 
+  this->setScheduleUpdate(true);
   this->_destroy();
 }
 
@@ -204,7 +205,7 @@ void EnvironmentMissionsBar::onSelectMission(int index)
 
     for(auto element : Application->environment->missions.missions.elements)
     {
-      if(index != element->parameters.index - 1)
+      if(index != element->parameters.index - 1 - MissionsFactory::getInstance()->getCompletedMissionsCount())
       {
         element->changePosition(EnvironmentMissionsItem::Position::POSITION_NORMAL);
       }
@@ -217,5 +218,21 @@ void EnvironmentMissionsBar::onSelectMission(int index)
     }*/
 
     this->onSelect(element);
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void EnvironmentMissionsBar::update(float time)
+{
+  //log("%f", Application->environment->missions.missions.plane->getInnerContainer()->getPositionX());
+
+  if(Application->environment->missions.missions.plane->getInnerContainer()->getPositionX() <= -9)
+  {
+    //Application->environment->missions.missions.plane->getInnerContainer()->setPositionX(-9);
+    Application->environment->missions.missions.plane->ListView::startMagneticScroll();
   }
 }
