@@ -27,8 +27,8 @@
  *
  */
 
-#ifndef _ENVIRONMENTMISSIONSBAR_H_
-#define _ENVIRONMENTMISSIONSBAR_H_
+#ifndef _ENVIRONMENTMISSIONSKETCHAPPPOPUP_H_
+#define _ENVIRONMENTMISSIONSKETCHAPPPOPUP_H_
 
 #include "Game.h"
 
@@ -37,14 +37,7 @@
  *
  *
  */
-class EnvironmentMissionsPopup;
-
-/**
- *
- *
- *
- */
-class EnvironmentMissionsBar : public Background
+class EnvironmentMissionsKetchappPopup : public BackgroundColor
 {
   /**
    *
@@ -52,15 +45,6 @@ class EnvironmentMissionsBar : public Background
    *
    */
   private:
-  struct Buttons {
-    Button* play;
-    Button* lock;
-  };
-
-  struct Popups {
-    EnvironmentMissionsPopup* general;
-    EnvironmentMissionsKetchappPopup* ketchapp;
-  };
 
   /**
    *
@@ -68,8 +52,8 @@ class EnvironmentMissionsBar : public Background
    *
    */
   protected:
-  Buttons buttons;
-  Popups popups;
+  Entity* text;
+  BackgroundColor* background;
 
   /**
    *
@@ -77,26 +61,14 @@ class EnvironmentMissionsBar : public Background
    *
    */
   public:
-  EnvironmentMissionsBar();
- ~EnvironmentMissionsBar();
-
-  struct Element {
-    int type;
-    int index;
-  };
-
-  EnvironmentMissionsItem* selectedMission;
-  EnvironmentMissionsNotify* notify;
+  EnvironmentMissionsKetchappPopup(Node* parent);
+ ~EnvironmentMissionsKetchappPopup();
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
-  virtual void onCreateMissions();
-
-  virtual void onSelect(EnvironmentMissionsItem* element);
-  virtual void onSelectMission(int index);
-
-  virtual void update(float time);
+  virtual void onEnter();
+  virtual void onExit();
 };
 
 #endif

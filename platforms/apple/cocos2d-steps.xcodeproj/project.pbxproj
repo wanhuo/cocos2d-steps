@@ -117,6 +117,8 @@
 		7857E2BA1C6573F70020AAEA /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2B61C65733F0020AAEA /* Menu.cpp */; };
 		786696CA1C4A47FF00A256FC /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786696C91C4A47FF00A256FC /* Cube.cpp */; };
 		786696CB1C4A47FF00A256FC /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786696C91C4A47FF00A256FC /* Cube.cpp */; };
+		786F79671CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786F79651CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.cpp */; };
+		786F79681CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786F79651CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.cpp */; };
 		78809FA71B11D36B002397E7 /* NSHeyzap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78809FA61B11D36B002397E7 /* NSHeyzap.mm */; };
 		78817A761BBDAFD3008BA961 /* Icon-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 78817A751BBDAFD3008BA961 /* Icon-512.png */; };
 		788F17C81CA308B000F4E5D6 /* Finish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17C61CA308B000F4E5D6 /* Finish.cpp */; };
@@ -416,6 +418,8 @@
 		7857E2B71C65733F0020AAEA /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		786696C81C4A47FF00A256FC /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
 		786696C91C4A47FF00A256FC /* Cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cube.cpp; sourceTree = "<group>"; };
+		786F79651CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsKetchappPopup.cpp; sourceTree = "<group>"; };
+		786F79661CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsKetchappPopup.h; sourceTree = "<group>"; };
 		78809FA61B11D36B002397E7 /* NSHeyzap.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSHeyzap.mm; sourceTree = "<group>"; };
 		78817A751BBDAFD3008BA961 /* Icon-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-512.png"; sourceTree = "<group>"; };
 		788F17C61CA308B000F4E5D6 /* Finish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Finish.cpp; sourceTree = "<group>"; };
@@ -1204,6 +1208,8 @@
 				78C72BB51CE9D2E700D8EB11 /* EnvironmentMissionsItem.h */,
 				78C72BBA1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp */,
 				78C72BBB1CE9F49600D8EB11 /* EnvironmentMissionsPopup.h */,
+				786F79651CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.cpp */,
+				786F79661CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.h */,
 				78BADD6C1CEB57800077B673 /* EnvironmentMissionsNotify.cpp */,
 				78BADD6D1CEB57800077B673 /* EnvironmentMissionsNotify.h */,
 				78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */,
@@ -1537,6 +1543,7 @@
 				78BADD741CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp in Sources */,
 				789E71851CD343FC00BDCDC7 /* TypeSpikes.cpp in Sources */,
 				789E717B1CD2621500BDCDC7 /* Color.cpp in Sources */,
+				786F79681CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.cpp in Sources */,
 				78C72BB71CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */,
 				789E71B01CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */,
 				78B4B6E31CBD817900F2D8A7 /* Shadow.cpp in Sources */,
@@ -1582,6 +1589,7 @@
 				781DA8801CDB3B95005BEB98 /* Watch.cpp in Sources */,
 				78BADD6E1CEB57800077B673 /* EnvironmentMissionsNotify.cpp in Sources */,
 				789E719E1CD39A4A00BDCDC7 /* TypeMoved1.cpp in Sources */,
+				786F79671CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.cpp in Sources */,
 				78283FBE1CE21DF00010CAB7 /* EnvironmentStoreItem.cpp in Sources */,
 				78B4B70A1CBFB51F00F2D8A7 /* Copter.cpp in Sources */,
 				7823FBC61ABDC0F900447F0A /* NSBatch.mm in Sources */,

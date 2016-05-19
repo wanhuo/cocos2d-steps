@@ -158,10 +158,10 @@ void Environment::create()
    *
    *
    */
-  //this->missions.missions.elements.push_back(new EnvironmentMissionsItem(-2));
-  //this->missions.missions.elements.push_back(new EnvironmentMissionsItem(-1));
+  this->missions.missions.elements.push_back(new EnvironmentMissionsItem(-2));
+  this->missions.missions.elements.push_back(new EnvironmentMissionsItem(-1));
 
-     int counter = 0;
+  int counter = 0;
 
   for(auto m : MissionsFactory::getInstance()->getMissions())
   {

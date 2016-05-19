@@ -37,7 +37,10 @@
 EnvironmentMissionsItem::EnvironmentMissionsItem(int index)
 : Cube("gift-missions.obj", nullptr)
 {
-  this->mission = MissionsFactory::getInstance()->getMission(index);
+  if(index >= 0)
+  {
+    this->mission = MissionsFactory::getInstance()->getMission(index);
+  }
 
   this->parameters.index = index + 1;
 
@@ -59,17 +62,14 @@ EnvironmentMissionsItem::EnvironmentMissionsItem(int index)
 
   switch(this->parameters.index)
   {
-    case 1:
+    case -1:
     this->setTexture("ui/gift-texture-1.png");
     break;
-    case 2:
+    case 0:
     this->setTexture("ui/gift-texture-2.png");
     break;
-    case 3:
-    this->setTexture("ui/gift-texture-3.png");
-    break;
     default:
-    this->setTexture("ui/gift-texture-4.png");
+    this->setTexture("ui/gift-texture-3.png");
     break;
   }
 
@@ -271,15 +271,22 @@ void EnvironmentMissionsItem::updateState()
   this->setVisible(false);
   this->elements.lock->setVisible(false);
 
-  switch(this->mission->state)
+  if(this->mission)
   {
-    case MissionStruct::STATE_CURRENT:
-    case MissionStruct::STATE_CLAIM:
+    switch(this->mission->state)
+    {
+      case MissionStruct::STATE_CURRENT:
+      case MissionStruct::STATE_CLAIM:
+      this->setVisible(true);
+      break;
+      case MissionStruct::STATE_LOCKED:
+      this->elements.lock->setVisible(true);
+      break;
+    }
+  }
+  else
+  {
     this->setVisible(true);
-    break;
-    case MissionStruct::STATE_LOCKED:
-    this->elements.lock->setVisible(true);
-    break;
   }
 }
 

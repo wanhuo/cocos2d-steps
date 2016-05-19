@@ -27,8 +27,8 @@
  *
  */
 
-#ifndef _ENVIRONMENTPOPUPBAR_H_
-#define _ENVIRONMENTPOPUPBAR_H_
+#ifndef _ENVIRONMENTMISSIONSPOPUP_H_
+#define _ENVIRONMENTMISSIONSPOPUP_H_
 
 #include "Game.h"
 

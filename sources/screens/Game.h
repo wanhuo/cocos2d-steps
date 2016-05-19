@@ -104,6 +104,7 @@
 
 #include "EnvironmentMissionsItem.h"
 #include "EnvironmentMissionsPopup.h"
+#include "EnvironmentMissionsKetchappPopup.h"
 #include "EnvironmentMissionsNotify.h"
 #include "EnvironmentMissionsBar.h"
 #include "EnvironmentMissionsFinish.h"

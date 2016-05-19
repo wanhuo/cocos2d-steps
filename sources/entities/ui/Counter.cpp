@@ -696,6 +696,6 @@ void Counter::onMissionComplete()
   this->resetMissionsUpdate();
 
   Application->environment->missions.controller->notify->_create();
-  Application->environment->missions.missions.elements.erase(Application->environment->missions.missions.elements.begin());
-  Application->environment->missions.missions.plane->removeItem(0);
+  Application->environment->missions.missions.elements.erase(Application->environment->missions.missions.elements.begin() + 2);
+  Application->environment->missions.missions.plane->removeItem(2);
 }

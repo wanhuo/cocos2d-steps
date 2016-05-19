@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../sources/entities/missions/EnvironmentMissionsBar.cpp"
-            timestampString = "485294529.539154"
+            filePath = "../../../cocos2d-tooflya-sdk/missions/Missions.cpp"
+            timestampString = "485350080.087827"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "EnvironmentMissionsBar::onSelect(EnvironmentMissionsItem* element)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../sources/entities/missions/EnvironmentMissionsItem.cpp"
-            timestampString = "485294571.478207"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
-            landmarkName = "EnvironmentMissionsItem::changePosition(Position position)"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "MissionsFactory::getCompletedMissionsCount()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

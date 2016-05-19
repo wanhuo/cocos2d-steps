@@ -70,7 +70,7 @@ class EnvironmentMissionsItem : public Cube
 
   int position;
 
-  MissionStruct* mission;
+  MissionStruct* mission = nullptr;
 
   Parameters parameters;
 

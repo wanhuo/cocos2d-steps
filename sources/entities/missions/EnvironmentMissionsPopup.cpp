@@ -115,46 +115,49 @@ void EnvironmentMissionsPopup::updateData(int index)
    *
    *
    */
-  switch(Application->environment->missions.controller->selectedMission->mission->type)
+  if(Application->environment->missions.controller->selectedMission->mission)
   {
-    case framework::MissionStruct::TYPE_ONCE:
-    this->texts.mission->setText("missions-mission-1");
-    break;
-    case framework::MissionStruct::TYPE_PROGRESS:
-    this->texts.mission->setText("missions-mission-2");
-    break;
-  }
+    switch(Application->environment->missions.controller->selectedMission->mission->type)
+    {
+      case framework::MissionStruct::TYPE_ONCE:
+      this->texts.mission->setText("missions-mission-1");
+      break;
+      case framework::MissionStruct::TYPE_PROGRESS:
+      this->texts.mission->setText("missions-mission-2");
+      break;
+    }
 
-  /**
-   *
-   *
-   *
-   */
-  auto counter = 0;
+    /**
+     *
+     *
+     *
+     */
+    auto counter = 0;
 
-  for(int i = 0; i < 3; i++) this->missions.at(i)->_destroy();
-  for(auto condition : Application->environment->missions.controller->selectedMission->mission->complete)
-  {
-    this->missions.at(counter)->_create();
-    this->missions.at(counter)->updateData(counter);
+    for(int i = 0; i < 3; i++) this->missions.at(i)->_destroy();
+    for(auto condition : Application->environment->missions.controller->selectedMission->mission->complete)
+    {
+      this->missions.at(counter)->_create();
+      this->missions.at(counter)->updateData(counter);
 
-    counter++;
-  }
+      counter++;
+    }
 
-  switch(Application->environment->missions.controller->selectedMission->mission->complete.size())
-  {
-    case 1:
-    this->missions.at(0)->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 50);
-    break;
-    case 2:
-    this->missions.at(0)->setPosition(this->getContentSize().width / 2 - 100, this->getContentSize().height / 2 - 50);
-    this->missions.at(1)->setPosition(this->getContentSize().width / 2 + 100, this->getContentSize().height / 2 - 50);
-    break;
-    case 3:
-    this->missions.at(0)->setPosition(this->getContentSize().width / 2 - 200, this->getContentSize().height / 2 - 50);
-    this->missions.at(1)->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 50);
-    this->missions.at(2)->setPosition(this->getContentSize().width / 2 + 200, this->getContentSize().height / 2 - 50);
-    break;
+    switch(Application->environment->missions.controller->selectedMission->mission->complete.size())
+    {
+      case 1:
+      this->missions.at(0)->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 50);
+      break;
+      case 2:
+      this->missions.at(0)->setPosition(this->getContentSize().width / 2 - 100, this->getContentSize().height / 2 - 50);
+      this->missions.at(1)->setPosition(this->getContentSize().width / 2 + 100, this->getContentSize().height / 2 - 50);
+      break;
+      case 3:
+      this->missions.at(0)->setPosition(this->getContentSize().width / 2 - 200, this->getContentSize().height / 2 - 50);
+      this->missions.at(1)->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 50);
+      this->missions.at(2)->setPosition(this->getContentSize().width / 2 + 200, this->getContentSize().height / 2 - 50);
+      break;
+    }
   }
 
   this->setCameraMask(4);

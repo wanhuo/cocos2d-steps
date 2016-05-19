@@ -63,8 +63,10 @@ EnvironmentMissionsBar::EnvironmentMissionsBar()
   this->buttons.play->setVisible(false);
   this->buttons.lock->setVisible(false);
 
-  this->popup = new EnvironmentMissionsPopup(this);
   this->notify = new EnvironmentMissionsNotify();
+
+  this->popups.general = new EnvironmentMissionsPopup(this);
+  this->popups.ketchapp = new EnvironmentMissionsKetchappPopup(this);
 
   Application->environment->missions.missions.plane = cocos2d::ui::ListView::create();
   Application->environment->missions.missions.plane->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
@@ -110,7 +112,7 @@ void EnvironmentMissionsBar::onCreate()
    *
    */
   this->onCreateMissions();
-  this->onSelectMission(0);
+  this->onSelectMission(2);
 
   Application->environment->character->_destroy();
   Application->environment->plates.normal->clear();
@@ -151,7 +153,7 @@ void EnvironmentMissionsBar::onCreateMissions()
     Application->environment->missions.missions.plane->getInnerContainer()->stopAllActions();
     Application->environment->missions.missions.plane->getInnerContainer()->runAction(
       Sequence::create(
-        MoveTo::create(0.5, Vec3(9.5, 0.0, 0.0)),
+        MoveTo::create(0.5, Vec3(9.5 - 6.0, 0.0, 0.0)),
         CallFunc::create([=] () {
         Application->environment->missions.missions.plane->ScrollView::_eventCallback(Application->environment->missions.missions.plane, cocos2d::ui::ScrollView::EventType::AUTOSCROLL_ENDED);
         }),
@@ -180,19 +182,38 @@ void EnvironmentMissionsBar::onSelect(EnvironmentMissionsItem* element)
   this->buttons.play->setVisible(false);
   this->buttons.lock->setVisible(false);
 
-  switch(element->mission->state)
+  if(element->mission)
   {
-    case MissionStruct::STATE_CURRENT:
-    this->buttons.play->setVisible(true);
-    break;
-    case MissionStruct::STATE_LOCKED:
-    this->buttons.lock->setVisible(true);
-    break;
-    case MissionStruct::STATE_CLAIM:
-    break;
-  }
+    this->popups.ketchapp->setVisible(false);
 
-  this->popup->updateData(element->parameters.index);
+    this->popups.general->setVisible(true);
+    this->popups.general->updateData(element->parameters.index);
+
+    switch(element->mission->state)
+    {
+      case MissionStruct::STATE_CURRENT:
+      this->buttons.play->setVisible(true);
+      break;
+      case MissionStruct::STATE_LOCKED:
+      this->buttons.lock->setVisible(true);
+      break;
+      case MissionStruct::STATE_CLAIM:
+      break;
+    }
+  }
+  else
+  {
+    this->popups.general->setVisible(false);
+
+    switch(element->parameters.index)
+    {
+      case -1:
+      this->popups.ketchapp->setVisible(true);
+      break;
+      case 0:
+      break;
+    }
+  }
 
   element->changePosition(EnvironmentMissionsItem::Position::POSITION_UP);
 }
@@ -205,7 +226,7 @@ void EnvironmentMissionsBar::onSelectMission(int index)
 
     for(auto element : Application->environment->missions.missions.elements)
     {
-      if(index != element->parameters.index - 1 - MissionsFactory::getInstance()->getCompletedMissionsCount())
+      if(this->selectedMission && this->selectedMission->parameters.index != element->parameters.index)
       {
         element->changePosition(EnvironmentMissionsItem::Position::POSITION_NORMAL);
       }
@@ -233,6 +254,6 @@ void EnvironmentMissionsBar::update(float time)
   if(Application->environment->missions.missions.plane->getInnerContainer()->getPositionX() <= -9)
   {
     //Application->environment->missions.missions.plane->getInnerContainer()->setPositionX(-9);
-    Application->environment->missions.missions.plane->ListView::startMagneticScroll();
+    //Application->environment->missions.missions.plane->ListView::startMagneticScroll();
   }
 }

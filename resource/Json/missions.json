@@ -5,8 +5,8 @@
 			"index": 1,
 			"coins" : 10,
 			"complete": [
-				{"coins": 10, "preview": "missions-coins.png"},
-				{"points": 110, "preview": "missions-points.png"}
+				{"coins": 1, "preview": "missions-coins.png"},
+				{"points": 1, "preview": "missions-points.png"}
 			]
 		},
 		{
