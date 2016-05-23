@@ -228,6 +228,7 @@
             <filename>../Graphics/ui/missions-games.png</filename>
             <filename>../Graphics/ui/missions-gifts.png</filename>
             <filename>../Graphics/ui/missions-points.png</filename>
+            <filename>../Graphics/ui/ketchapp.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

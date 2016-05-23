@@ -212,6 +212,27 @@
         "size": 26
       }
     ],
+    "missions-ketchapp-1": [
+      {
+        "title": "SPECIAL MISSION",
+        "font": "square",
+        "size": 36
+      }
+    ],
+    "missions-ketchapp-2": [
+      {
+        "title": "CLEAR 8 STAGES TO COMPLETE",
+        "font": "square",
+        "size": 30
+      }
+    ],
+    "missions-daily": [
+      {
+        "title": "DAILY MISSION",
+        "font": "square",
+        "size": 42
+      }
+    ],
     "best-word-a": [
       {
         "title": "NEW",

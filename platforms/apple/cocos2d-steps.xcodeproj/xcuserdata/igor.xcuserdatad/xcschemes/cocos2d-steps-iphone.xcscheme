@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A922753C1517C094001B78AA"
                BuildableName = "application.app"
-               BlueprintName = "ios"
+               BlueprintName = "iphone"
                ReferencedContainer = "container:cocos2d-steps.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A922753C1517C094001B78AA"
             BuildableName = "application.app"
-            BlueprintName = "ios"
+            BlueprintName = "iphone"
             ReferencedContainer = "container:cocos2d-steps.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -61,7 +61,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A922753C1517C094001B78AA"
             BuildableName = "application.app"
-            BlueprintName = "ios"
+            BlueprintName = "iphone"
             ReferencedContainer = "container:cocos2d-steps.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -80,7 +80,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A922753C1517C094001B78AA"
             BuildableName = "application.app"
-            BlueprintName = "ios"
+            BlueprintName = "iphone"
             ReferencedContainer = "container:cocos2d-steps.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

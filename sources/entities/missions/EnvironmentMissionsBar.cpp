@@ -66,6 +66,7 @@ EnvironmentMissionsBar::EnvironmentMissionsBar()
   this->notify = new EnvironmentMissionsNotify();
 
   this->popups.general = new EnvironmentMissionsPopup(this);
+  this->popups.daily = new EnvironmentMissionsDailyPopup(this);
   this->popups.ketchapp = new EnvironmentMissionsKetchappPopup(this);
 
   Application->environment->missions.missions.plane = cocos2d::ui::ListView::create();
@@ -182,10 +183,11 @@ void EnvironmentMissionsBar::onSelect(EnvironmentMissionsItem* element)
   this->buttons.play->setVisible(false);
   this->buttons.lock->setVisible(false);
 
+  this->popups.daily->setVisible(false);
+  this->popups.ketchapp->setVisible(false);
+
   if(element->mission)
   {
-    this->popups.ketchapp->setVisible(false);
-
     this->popups.general->setVisible(true);
     this->popups.general->updateData(element->parameters.index);
 
@@ -211,6 +213,7 @@ void EnvironmentMissionsBar::onSelect(EnvironmentMissionsItem* element)
       this->popups.ketchapp->setVisible(true);
       break;
       case 0:
+      this->popups.daily->setVisible(true);
       break;
     }
   }

@@ -59,6 +59,7 @@ class EnvironmentMissionsBar : public Background
 
   struct Popups {
     EnvironmentMissionsPopup* general;
+    EnvironmentMissionsDailyPopup* daily;
     EnvironmentMissionsKetchappPopup* ketchapp;
   };
 

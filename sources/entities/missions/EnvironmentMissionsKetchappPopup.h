@@ -45,6 +45,10 @@ class EnvironmentMissionsKetchappPopup : public BackgroundColor
    *
    */
   private:
+  struct Texts {
+    Text* text1;
+    Text* text2;
+  };
 
   /**
    *
@@ -54,6 +58,8 @@ class EnvironmentMissionsKetchappPopup : public BackgroundColor
   protected:
   Entity* text;
   BackgroundColor* background;
+
+  Texts texts;
 
   /**
    *
