@@ -229,7 +229,7 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
           Present::getInstance()->missions->runAction(
             Sequence::create(
               EaseSineOut::create(
-                MoveBy::create(0.5, Vec2(0, -500))
+                MoveBy::create(0.5, Vec2(0, -15))
               ),
               CallFunc::create([=] () {
               Present::getInstance()->time = 1.0;

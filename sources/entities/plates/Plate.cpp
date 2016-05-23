@@ -307,7 +307,7 @@ void Plate::setStartPositionZ(float z)
  *
  *
  */
-void Plate::setType(int type, bool animated)
+void Plate::setType(int type, bool animated, char data)
 {
   this->type = static_cast<Type>(type);
 
@@ -520,6 +520,97 @@ void Plate::setType(int type, bool animated)
 
     this->special = static_cast<Special*>(Application->environment->plates.moveups->_create());
     this->special->setPlate(this);
+    break;
+    case LETTER:
+    {
+      Decoration* decoration;
+
+      switch(data)
+      {
+        case 'a':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.a->_create());
+        break;
+        case 'b':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.b->_create());
+        break;
+        case 'c':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.c->_create());
+        break;
+        case 'd':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.d->_create());
+        break;
+        case 'e':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.e->_create());
+        break;
+        case 'f':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.f->_create());
+        break;
+        case 'g':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.g->_create());
+        break;
+        case 'h':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.h->_create());
+        break;
+        case 'i':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.i->_create());
+        break;
+        case 'j':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.j->_create());
+        break;
+        case 'k':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.k->_create());
+        break;
+        case 'l':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.l->_create());
+        break;
+        case 'm':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.m->_create());
+        break;
+        case 'n':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.n->_create());
+        break;
+        case 'o':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.o->_create());
+        break;
+        case 'p':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.p->_create());
+        break;
+        case 'q':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.q->_create());
+        break;
+        case 'r':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.r->_create());
+        break;
+        case 's':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.s->_create());
+        break;
+        case 't':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.t->_create());
+        break;
+        case 'u':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.u->_create());
+        break;
+        case 'v':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.v->_create());
+        break;
+        case 'w':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.w->_create());
+        break;
+        case 'x':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.x->_create());
+        break;
+        case 'y':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.y->_create());
+        break;
+        case 'z':
+        decoration = static_cast<Decoration*>(Application->environment->pickups.letters.z->_create());
+        break;
+      }
+
+      decoration->setPlate(this, animated);
+
+      this->getDecorations().push_back(decoration);
+    }
     break;
   }
 

@@ -58,6 +58,9 @@ EnvironmentMissionsDailyPopup::EnvironmentMissionsDailyPopup(Node* parent)
   this->texts.text2 = new Text("missions-ketchapp-2", this, true);
   this->texts.text2->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 200);
 
+  this->complete = Storage::get("missions.daily.complete");
+  this->task.word = "sosiska";
+
   this->setVisible(false);
 }
 
@@ -93,4 +96,64 @@ void EnvironmentMissionsDailyPopup::onEnter()
 void EnvironmentMissionsDailyPopup::onExit()
 {
   BackgroundColor::onExit();
+}
+
+/**
+ *
+ *
+ *
+ */
+void EnvironmentMissionsDailyPopup::setVisible(bool visible)
+{
+  BackgroundColor::setVisible(visible);
+
+  /**
+   *
+   *
+   *
+   */
+  if(visible)
+  {
+    Application->environment->letters->create("mission");
+
+    /**
+     *
+     *
+     *
+     */
+    int counter = 0;
+
+    for(auto letter : Application->environment->letters->getChildren())
+    {
+      if(this->complete > counter++)
+      {
+        static_cast<Letter*>(letter)->setColor(Color3B(255, 255, 255));
+        static_cast<Letter*>(letter)->action();
+      }
+      else
+      {
+        static_cast<Letter*>(letter)->setColor(Color3B(0, 0, 0));
+      }
+    }
+  }
+  else
+  {
+    Application->environment->letters->destroy();
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void EnvironmentMissionsDailyPopup::update(char letter)
+{
+  Storage::set("missions.letchapp.complete", ++this->complete);
+
+  if(this->complete >= 0)
+  {
+  }
+
+  Finish::getInstance()->missions->notificationDaily = true;
 }

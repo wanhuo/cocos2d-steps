@@ -177,4 +177,14 @@ void Finish::hide(Callback callback)
       nullptr
     )
   );
+
+  this->missions->runAction(
+    Sequence::create(
+      FadeOut::create(0.2),
+      CallFunc::create([=] () {
+      this->missions->_destroy();
+      }),
+      nullptr
+    )
+  );
 }

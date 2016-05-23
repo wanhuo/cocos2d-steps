@@ -339,6 +339,41 @@ void Generator::createBonusElement(Plate* plate)
   {
     if(this->index >= this->size)
     {
+      if(Application->environment->missions.special)
+      {
+        char letter;
+
+        switch(Application->environment->parameters.stage)
+        {
+          case 1:
+          letter = 'k';
+          break;
+          case 2:
+          letter = 'e';
+          break;
+          case 3:
+          letter = 't';
+          break;
+          case 4:
+          letter = 'c';
+          break;
+          case 5:
+          letter = 'h';
+          break;
+          case 6:
+          letter = 'a';
+          break;
+          case 7:
+          letter = 'p';
+          break;
+          case 8:
+          letter = 'p';
+          break;
+        }
+
+        plate->setType(Plate::LETTER, true, letter);
+      }
+
       plate->setType(Plate::FINISH);
     }
     else
@@ -446,6 +481,17 @@ void Generator::createGeneralElement(Plate* plate)
 
               return;
             }
+          }
+
+          /**
+           *
+           *
+           *
+           */
+          if(this->letter < Application->environment->missions.controller->popups.daily->task.word.length())
+          if(probably(0.1))
+          {
+            plate->setType(Plate::LETTER, true, Application->environment->missions.controller->popups.daily->task.word[this->letter++]);
           }
         }
       }
@@ -648,6 +694,8 @@ void Generator::reset(bool complete)
       }), this->start
     )
   );
+
+  this->letter = 0;
 
   this->conditions.s1 = 0;
   this->conditions.s2 = 0;

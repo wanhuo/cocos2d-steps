@@ -68,7 +68,7 @@ class EnvironmentMissionsBar : public Background
    *
    *
    */
-  protected:
+  public:
   Buttons buttons;
   Popups popups;
 

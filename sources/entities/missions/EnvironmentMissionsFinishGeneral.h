@@ -27,17 +27,20 @@
  *
  */
 
-#ifndef _ENVIRONMENTMISSIONSKETCHAPPPOPUP_H_
-#define _ENVIRONMENTMISSIONSKETCHAPPPOPUP_H_
+#ifndef _ENVIRONMENTMISSIONSFINISHGENERAL_H_
+#define _ENVIRONMENTMISSIONSFINISHGENERAL_H_
 
 #include "Game.h"
+
+using namespace cocos2d;
+using namespace ui;
 
 /**
  *
  *
  *
  */
-class EnvironmentMissionsKetchappPopup : public BackgroundColor
+class EnvironmentMissionsFinishGeneral : public Layout
 {
   /**
    *
@@ -45,10 +48,7 @@ class EnvironmentMissionsKetchappPopup : public BackgroundColor
    *
    */
   private:
-  struct Texts {
-    Text* text1;
-    Text* text2;
-  };
+  vector<Entity*> missions;
 
   /**
    *
@@ -56,10 +56,7 @@ class EnvironmentMissionsKetchappPopup : public BackgroundColor
    *
    */
   protected:
-  Entity* text;
   BackgroundColor* background;
-
-  Texts texts;
 
   /**
    *
@@ -67,20 +64,13 @@ class EnvironmentMissionsKetchappPopup : public BackgroundColor
    *
    */
   public:
-  EnvironmentMissionsKetchappPopup(Node* parent);
- ~EnvironmentMissionsKetchappPopup();
+  EnvironmentMissionsFinishGeneral();
+ ~EnvironmentMissionsFinishGeneral();
 
-  int complete;
-
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+  Text* text;
 
   virtual void onEnter();
   virtual void onExit();
-
-  virtual void setVisible(bool visible);
-
-  virtual void update(char letter);
 };
 
 #endif

@@ -58,6 +58,8 @@ EnvironmentMissionsKetchappPopup::EnvironmentMissionsKetchappPopup(Node* parent)
   this->texts.text2 = new Text("missions-ketchapp-2", this, true);
   this->texts.text2->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 150);
 
+  this->complete = Storage::get("missions.ketchapp.complete");
+
   this->setVisible(false);
 }
 
@@ -93,4 +95,67 @@ void EnvironmentMissionsKetchappPopup::onEnter()
 void EnvironmentMissionsKetchappPopup::onExit()
 {
   BackgroundColor::onExit();
+}
+
+/**
+ *
+ *
+ *
+ */
+void EnvironmentMissionsKetchappPopup::setVisible(bool visible)
+{
+  BackgroundColor::setVisible(visible);
+
+  /**
+   *
+   *
+   *
+   */
+  if(visible)
+  {
+    Application->environment->letters->create("ketchapp");
+
+    /**
+     *
+     *
+     *
+     */
+    int counter = 0;
+
+    for(auto letter : Application->environment->letters->getChildren())
+    {
+      if(this->complete > counter++)
+      {
+        static_cast<Letter*>(letter)->setColor(Color3B(255, 255, 255));
+        static_cast<Letter*>(letter)->action();
+      }
+      else
+      {
+        static_cast<Letter*>(letter)->setColor(Color3B(0, 0, 0));
+      }
+    }
+  }
+  else
+  {
+    Application->environment->letters->destroy();
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void EnvironmentMissionsKetchappPopup::update(char letter)
+{
+  Storage::set("missions.letchapp.complete", ++this->complete);
+
+  if(this->complete >= 0)
+  {
+    Application->environment->missions.controller->notify->_create();
+    Application->environment->missions.missions.elements.erase(Application->environment->missions.missions.elements.begin());
+    Application->environment->missions.missions.plane->removeItem(0);
+  }
+
+  Finish::getInstance()->missions->notificationKetchapp = true;
 }

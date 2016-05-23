@@ -32,6 +32,16 @@
 
 #include "Game.h"
 
+using namespace cocos2d;
+using namespace ui;
+
+/**
+ *
+ *
+ *
+ */
+class EnvironmentMissionsFinishGeneral;
+
 /**
  *
  *
@@ -47,8 +57,6 @@ class EnvironmentMissionsFinish : public BackgroundColor
   protected:
   BackgroundColor* background;
 
-  vector<Entity*> missions;
-
   /**
    *
    *
@@ -58,7 +66,14 @@ class EnvironmentMissionsFinish : public BackgroundColor
   EnvironmentMissionsFinish(Node* parent);
  ~EnvironmentMissionsFinish();
 
-  Text* text;
+ bool notificationKetchapp = false;
+ bool notificationDaily = false;
+
+ bool completeKetchapp = false;
+ bool completeDaily = false;
+
+  ListView* plane;
+  EnvironmentMissionsFinishGeneral* general;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);

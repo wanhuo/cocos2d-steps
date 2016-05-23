@@ -87,6 +87,33 @@ void Environment::create()
   this->pickups.colors = new Pool(new Color, this->plane);
   this->pickups.presentions = new Pool(new Presention, this->plane);
 
+  this->pickups.letters.a = new Pool(new Let('a'), this->plane);
+  this->pickups.letters.b = new Pool(new Let('b'), this->plane);
+  this->pickups.letters.c = new Pool(new Let('c'), this->plane);
+  this->pickups.letters.d = new Pool(new Let('d'), this->plane);
+  this->pickups.letters.e = new Pool(new Let('e'), this->plane);
+  this->pickups.letters.f = new Pool(new Let('f'), this->plane);
+  this->pickups.letters.g = new Pool(new Let('g'), this->plane);
+  this->pickups.letters.h = new Pool(new Let('h'), this->plane);
+  this->pickups.letters.i = new Pool(new Let('i'), this->plane);
+  this->pickups.letters.j = new Pool(new Let('j'), this->plane);
+  this->pickups.letters.k = new Pool(new Let('k'), this->plane);
+  this->pickups.letters.l = new Pool(new Let('l'), this->plane);
+  this->pickups.letters.m = new Pool(new Let('m'), this->plane);
+  this->pickups.letters.n = new Pool(new Let('n'), this->plane);
+  this->pickups.letters.o = new Pool(new Let('o'), this->plane);
+  this->pickups.letters.p = new Pool(new Let('p'), this->plane);
+  this->pickups.letters.q = new Pool(new Let('q'), this->plane);
+  this->pickups.letters.r = new Pool(new Let('r'), this->plane);
+  this->pickups.letters.s = new Pool(new Let('s'), this->plane);
+  this->pickups.letters.t = new Pool(new Let('t'), this->plane);
+  this->pickups.letters.u = new Pool(new Let('u'), this->plane);
+  this->pickups.letters.v = new Pool(new Let('v'), this->plane);
+  this->pickups.letters.w = new Pool(new Let('w'), this->plane);
+  this->pickups.letters.x = new Pool(new Let('x'), this->plane);
+  this->pickups.letters.y = new Pool(new Let('y'), this->plane);
+  this->pickups.letters.z = new Pool(new Let('z'), this->plane);
+
   this->decorations.downs = new Pool(new Down, this->plane);
   this->decorations.starts = new Pool(new Start, this->plane);
   this->decorations.cubs = new Pool(new Cub, this->plane);
@@ -95,6 +122,7 @@ void Environment::create()
 
   this->character = new Character;
   this->generator = new Generator;
+  this->letters = new Letters(Application);
 
   this->characterActionHolder = new Background(this);
   this->characterActionHolder->setContentSize(Size(Application->getWidth(), 0));
@@ -130,6 +158,7 @@ void Environment::create()
    */
   this->store.controller = new EnvironmentStoreBar();
   this->missions.controller = new EnvironmentMissionsBar();
+  this->missions.special = this->missions.controller->popups.ketchapp->complete < 8;
 
 
 
@@ -158,7 +187,7 @@ void Environment::create()
    *
    *
    */
-  this->missions.missions.elements.push_back(new EnvironmentMissionsItem(-2));
+  if(Application->environment->missions.special) this->missions.missions.elements.push_back(new EnvironmentMissionsItem(-2));
   this->missions.missions.elements.push_back(new EnvironmentMissionsItem(-1));
 
   int counter = 0;

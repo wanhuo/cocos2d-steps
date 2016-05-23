@@ -129,6 +129,24 @@
 		7891E8A51CF215B6005C238E /* iphone.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7891E8A41CF215B6005C238E /* iphone.xcassets */; };
 		7891E8AA1CF215C8005C238E /* mac.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7891E8A61CF215C6005C238E /* mac.xcassets */; };
 		7891E8AB1CF215CB005C238E /* tv.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7891E8A71CF215C6005C238E /* tv.xcassets */; };
+		7891E8AE1CF30A74005C238E /* Letters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8AC1CF30A74005C238E /* Letters.cpp */; };
+		7891E8AF1CF30A74005C238E /* Letters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8AC1CF30A74005C238E /* Letters.cpp */; };
+		7891E8B01CF30A74005C238E /* Letters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8AC1CF30A74005C238E /* Letters.cpp */; };
+		7891E8B31CF30C0F005C238E /* Letter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8B11CF30C0F005C238E /* Letter.cpp */; };
+		7891E8B41CF30C0F005C238E /* Letter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8B11CF30C0F005C238E /* Letter.cpp */; };
+		7891E8B51CF30C0F005C238E /* Letter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8B11CF30C0F005C238E /* Letter.cpp */; };
+		7891E8B81CF32FF6005C238E /* Let.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8B61CF32FF6005C238E /* Let.cpp */; };
+		7891E8B91CF32FF6005C238E /* Let.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8B61CF32FF6005C238E /* Let.cpp */; };
+		7891E8BA1CF32FF6005C238E /* Let.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8B61CF32FF6005C238E /* Let.cpp */; };
+		7891E8BD1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8BB1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp */; };
+		7891E8BE1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8BB1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp */; };
+		7891E8BF1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8BB1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp */; };
+		7891E8C21CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8C01CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp */; };
+		7891E8C31CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8C01CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp */; };
+		7891E8C41CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8C01CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp */; };
+		7891E8C71CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8C51CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp */; };
+		7891E8C81CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8C51CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp */; };
+		7891E8C91CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8C51CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp */; };
 		7894C0011BC919D400363FC9 /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7883470A1BC917A700DBA14E /* libcocos2d Mac.a */; };
 		7894C01A1BC9245800363FC9 /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0191BC9245800363FC9 /* Events.cpp */; };
 		7894C01B1BC9245800363FC9 /* Events.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0191BC9245800363FC9 /* Events.cpp */; };
@@ -515,6 +533,18 @@
 		7891E8A41CF215B6005C238E /* iphone.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = iphone.xcassets; path = Resource/iphone.xcassets; sourceTree = "<group>"; };
 		7891E8A61CF215C6005C238E /* mac.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = mac.xcassets; path = Resource/mac.xcassets; sourceTree = "<group>"; };
 		7891E8A71CF215C6005C238E /* tv.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = tv.xcassets; path = Resource/tv.xcassets; sourceTree = "<group>"; };
+		7891E8AC1CF30A74005C238E /* Letters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Letters.cpp; sourceTree = "<group>"; };
+		7891E8AD1CF30A74005C238E /* Letters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Letters.h; sourceTree = "<group>"; };
+		7891E8B11CF30C0F005C238E /* Letter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Letter.cpp; sourceTree = "<group>"; };
+		7891E8B21CF30C0F005C238E /* Letter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Letter.h; sourceTree = "<group>"; };
+		7891E8B61CF32FF6005C238E /* Let.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Let.cpp; sourceTree = "<group>"; };
+		7891E8B71CF32FF6005C238E /* Let.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Let.h; sourceTree = "<group>"; };
+		7891E8BB1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsFinishGeneral.cpp; sourceTree = "<group>"; };
+		7891E8BC1CF35009005C238E /* EnvironmentMissionsFinishGeneral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsFinishGeneral.h; sourceTree = "<group>"; };
+		7891E8C01CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsFinishDaily.cpp; sourceTree = "<group>"; };
+		7891E8C11CF3559D005C238E /* EnvironmentMissionsFinishDaily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsFinishDaily.h; sourceTree = "<group>"; };
+		7891E8C51CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsFinishKetchapp.cpp; sourceTree = "<group>"; };
+		7891E8C61CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsFinishKetchapp.h; sourceTree = "<group>"; };
 		7894C0191BC9245800363FC9 /* Events.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Events.cpp; sourceTree = "<group>"; };
 		7894C01C1BC9258B00363FC9 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = ../../resource/Fonts; sourceTree = "<group>"; };
 		7894C01D1BC9258B00363FC9 /* Graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Graphics; path = ../../resource/Graphics; sourceTree = "<group>"; };
@@ -1196,6 +1226,10 @@
 				78B4B6E11CBD817900F2D8A7 /* Shadow.h */,
 				78E33FCE1C4A84080021272D /* Particle.cpp */,
 				78E33FCD1C4A84080021272D /* Particle.h */,
+				7891E8B11CF30C0F005C238E /* Letter.cpp */,
+				7891E8B21CF30C0F005C238E /* Letter.h */,
+				7891E8AC1CF30A74005C238E /* Letters.cpp */,
+				7891E8AD1CF30A74005C238E /* Letters.h */,
 			);
 			name = entities;
 			path = ../../sources/entities;
@@ -1286,6 +1320,8 @@
 				789E71791CD2621500BDCDC7 /* Color.h */,
 				785546131CD9F97700B58ED0 /* Presention.cpp */,
 				785546141CD9F97700B58ED0 /* Presention.h */,
+				7891E8B61CF32FF6005C238E /* Let.cpp */,
+				7891E8B71CF32FF6005C238E /* Let.h */,
 			);
 			path = pickups;
 			sourceTree = "<group>";
@@ -1369,6 +1405,12 @@
 				78C72BB31CE9D2E700D8EB11 /* EnvironmentMissionsBar.h */,
 				78BADD711CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp */,
 				78BADD721CEBA6C20077B673 /* EnvironmentMissionsFinish.h */,
+				7891E8BB1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp */,
+				7891E8BC1CF35009005C238E /* EnvironmentMissionsFinishGeneral.h */,
+				7891E8C51CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp */,
+				7891E8C61CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.h */,
+				7891E8C01CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp */,
+				7891E8C11CF3559D005C238E /* EnvironmentMissionsFinishDaily.h */,
 			);
 			path = missions;
 			sourceTree = "<group>";
@@ -1683,6 +1725,8 @@
 				789E71A71CD39D0D00BDCDC7 /* TypeMoved2.cpp in Sources */,
 				7825DD441C5484CC00708016 /* Popup.cpp in Sources */,
 				789809661CC53A8B00E3CF28 /* Cub.cpp in Sources */,
+				7891E8B91CF32FF6005C238E /* Let.cpp in Sources */,
+				7891E8BE1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp in Sources */,
 				785546081CD91D8B00B58ED0 /* Video.cpp in Sources */,
 				785546041CD91D8B00B58ED0 /* Gift.cpp in Sources */,
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
@@ -1694,6 +1738,7 @@
 				78B4B6D91CBD751D00F2D8A7 /* Energy.cpp in Sources */,
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
+				7891E8AF1CF30A74005C238E /* Letters.cpp in Sources */,
 				78283FBF1CE21DF00010CAB7 /* EnvironmentStoreItem.cpp in Sources */,
 				785545F61CD8D61E00B58ED0 /* TypeBest.cpp in Sources */,
 				789809621CC51C0A00E3CF28 /* Start.cpp in Sources */,
@@ -1720,11 +1765,13 @@
 				789E71B41CD3DAF800BDCDC7 /* Trap.cpp in Sources */,
 				78B4B6ED1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */,
 				78C72BB91CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */,
+				7891E8C31CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp in Sources */,
 				78283F961CE0AAE00010CAB7 /* Counter.cpp in Sources */,
 				789E718B1CD34AFB00BDCDC7 /* Trampoline.cpp in Sources */,
 				78BADD741CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp in Sources */,
 				789E71851CD343FC00BDCDC7 /* TypeSpikes.cpp in Sources */,
 				789E717B1CD2621500BDCDC7 /* Color.cpp in Sources */,
+				7891E8C81CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp in Sources */,
 				786F79681CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.cpp in Sources */,
 				78C72BB71CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */,
 				789E71B01CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */,
@@ -1736,6 +1783,7 @@
 				785545F81CD8D61E00B58ED0 /* TypeBonus.cpp in Sources */,
 				78B4B70B1CBFB51F00F2D8A7 /* Copter.cpp in Sources */,
 				785545FA1CD8D61E00B58ED0 /* TypeFinish.cpp in Sources */,
+				7891E8B41CF30C0F005C238E /* Letter.cpp in Sources */,
 				78283FC11CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp in Sources */,
 				785546111CD9CDC900B58ED0 /* Present.cpp in Sources */,
 				78CA6D0D1C20645200BF8416 /* Environment.cpp in Sources */,
@@ -1759,6 +1807,7 @@
 				78C352C61CEE7DB000F10068 /* EnvironmentStoreBar.cpp in Sources */,
 				78C352C71CEE7DB000F10068 /* Color.cpp in Sources */,
 				78C352C91CEE7DB000F10068 /* Present.cpp in Sources */,
+				7891E8C41CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp in Sources */,
 				78C352CB1CEE7DB000F10068 /* Crystal.cpp in Sources */,
 				78C352CC1CEE7DB000F10068 /* Gift.cpp in Sources */,
 				78C352CD1CEE7DB000F10068 /* TypeMoved4.cpp in Sources */,
@@ -1782,18 +1831,22 @@
 				78C352E21CEE7DB000F10068 /* Unlock.cpp in Sources */,
 				78C352E31CEE7DB000F10068 /* TypeSpikes.cpp in Sources */,
 				78C352E51CEE7DB000F10068 /* Special.cpp in Sources */,
+				7891E8B01CF30A74005C238E /* Letters.cpp in Sources */,
 				78C352E71CEE7DB000F10068 /* TypeCopter.cpp in Sources */,
 				78C352E81CEE7DB000F10068 /* Down.cpp in Sources */,
 				78C352E91CEE7DB000F10068 /* TypeSaw.cpp in Sources */,
 				78C352EA1CEE7DB000F10068 /* Button3D.cpp in Sources */,
 				78C35A571CEE84E200F10068 /* RootViewController.mm in Sources */,
+				7891E8B51CF30C0F005C238E /* Letter.cpp in Sources */,
 				78C35A4F1CEE84E200F10068 /* AppController.mm in Sources */,
 				78C352EC1CEE7DB000F10068 /* Diamond.cpp in Sources */,
 				78C352ED1CEE7DB000F10068 /* Pickup.cpp in Sources */,
 				78C352EE1CEE7DB000F10068 /* Decoration.cpp in Sources */,
 				78C352EF1CEE7DB000F10068 /* EnvironmentMissionsItem.cpp in Sources */,
 				78C352F01CEE7DB000F10068 /* EnvironmentMissionsFinish.cpp in Sources */,
+				7891E8BA1CF32FF6005C238E /* Let.cpp in Sources */,
 				78C352F21CEE7DB000F10068 /* TypeMoved3.cpp in Sources */,
+				7891E8C91CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp in Sources */,
 				78C352F31CEE7DB000F10068 /* TypeTrampoline.cpp in Sources */,
 				78C352F41CEE7DB000F10068 /* TypeBonus.cpp in Sources */,
 				78C352F51CEE7DB000F10068 /* TypeMoved.cpp in Sources */,
@@ -1806,6 +1859,7 @@
 				78C352FC1CEE7DB000F10068 /* TypeMoved2.cpp in Sources */,
 				78C352FD1CEE7DB000F10068 /* Heart.cpp in Sources */,
 				78C352FE1CEE7DB000F10068 /* EnvironmentMissionsBar.cpp in Sources */,
+				7891E8BF1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp in Sources */,
 				78C352FF1CEE7DB000F10068 /* EnvironmentStoreCharacter.cpp in Sources */,
 				78C353001CEE7DB000F10068 /* Cube.cpp in Sources */,
 				78C353021CEE7DB000F10068 /* Presention.cpp in Sources */,
@@ -1836,6 +1890,8 @@
 				7891E88D1CF21293005C238E /* main.m in Sources */,
 				7891E88A1CF21293005C238E /* NSAnalytics.mm in Sources */,
 				78283FC41CE248DB0010CAB7 /* EnvironmentStoreBar.cpp in Sources */,
+				7891E8C21CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp in Sources */,
+				7891E8BD1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp in Sources */,
 				789E717A1CD2621500BDCDC7 /* Color.cpp in Sources */,
 				785546101CD9CDC900B58ED0 /* Present.cpp in Sources */,
 				78B4B6D41CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
@@ -1845,6 +1901,7 @@
 				788F17C81CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78CA6D0A1C20645200BF8416 /* Character.cpp in Sources */,
 				7894C0331BC9282F00363FC9 /* Game.cpp in Sources */,
+				7891E8B31CF30C0F005C238E /* Letter.cpp in Sources */,
 				78E33FD11C4A84080021272D /* Particle.cpp in Sources */,
 				7891E8961CF21293005C238E /* NSVote.mm in Sources */,
 				781DA8801CDB3B95005BEB98 /* Watch.cpp in Sources */,
@@ -1867,9 +1924,11 @@
 				785546051CD91D8B00B58ED0 /* Unlock.cpp in Sources */,
 				789E71841CD343FC00BDCDC7 /* TypeSpikes.cpp in Sources */,
 				789E71961CD393D800BDCDC7 /* Special.cpp in Sources */,
+				7891E8B81CF32FF6005C238E /* Let.cpp in Sources */,
 				78B4B7061CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */,
 				789E718E1CD3646C00BDCDC7 /* Down.cpp in Sources */,
 				78B4B6EC1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */,
+				7891E8AE1CF30A74005C238E /* Letters.cpp in Sources */,
 				7855460B1CD91F7E00B58ED0 /* Button3D.cpp in Sources */,
 				78B4B6D61CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
 				78B4B6DC1CBD751D00F2D8A7 /* Pickup.cpp in Sources */,
@@ -1882,6 +1941,7 @@
 				789E719C1CD39A4A00BDCDC7 /* TypeMoved.cpp in Sources */,
 				78B4B6F31CBF911800F2D8A7 /* Saw.cpp in Sources */,
 				78B4B6E21CBD817900F2D8A7 /* Shadow.cpp in Sources */,
+				7891E8C71CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp in Sources */,
 				789E71761CD1086200BDCDC7 /* Ground.cpp in Sources */,
 				78B4B6FB1CBF91E000F2D8A7 /* Door.cpp in Sources */,
 				785545F91CD8D61E00B58ED0 /* TypeFinish.cpp in Sources */,

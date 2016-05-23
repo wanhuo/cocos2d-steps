@@ -113,7 +113,7 @@ void EnvironmentMissionsBar::onCreate()
    *
    */
   this->onCreateMissions();
-  this->onSelectMission(2);
+  this->onSelectMission(Application->environment->missions.special ? 2 : 1);
 
   Application->environment->character->_destroy();
   Application->environment->plates.normal->clear();
@@ -132,6 +132,9 @@ void EnvironmentMissionsBar::onDestroy(bool action)
    */
   Application->environment->missions.missions.plane->_destroy(action);
   Application->environment->missions.missions.plane->_destroy(action);
+
+  this->popups.daily->setVisible(false);
+  this->popups.ketchapp->setVisible(false);
 }
 
 /**
@@ -154,7 +157,7 @@ void EnvironmentMissionsBar::onCreateMissions()
     Application->environment->missions.missions.plane->getInnerContainer()->stopAllActions();
     Application->environment->missions.missions.plane->getInnerContainer()->runAction(
       Sequence::create(
-        MoveTo::create(0.5, Vec3(9.5 - 6.0, 0.0, 0.0)),
+        MoveTo::create(0.5, Vec3(9.5 - (Application->environment->missions.special ? 6.0 : 3.0), 0.0, 0.0)),
         CallFunc::create([=] () {
         Application->environment->missions.missions.plane->ScrollView::_eventCallback(Application->environment->missions.missions.plane, cocos2d::ui::ScrollView::EventType::AUTOSCROLL_ENDED);
         }),
@@ -211,9 +214,11 @@ void EnvironmentMissionsBar::onSelect(EnvironmentMissionsItem* element)
     {
       case -1:
       this->popups.ketchapp->setVisible(true);
+      this->buttons.play->setVisible(true);
       break;
       case 0:
       this->popups.daily->setVisible(true);
+      this->buttons.play->setVisible(true);
       break;
     }
   }
@@ -234,12 +239,6 @@ void EnvironmentMissionsBar::onSelectMission(int index)
         element->changePosition(EnvironmentMissionsItem::Position::POSITION_NORMAL);
       }
     }
-
-    /*if(element->position == EnvironmentMissionsItem::Position::POSITION_NORMAL && element->state == EnvironmentMissionsItem::STATE_UNLOCKED)
-    {
-      Application->environment->parameters.character = index + 1;
-      Application->environment->parameters.random.character = index == 0;
-    }*/
 
     this->onSelect(element);
   }

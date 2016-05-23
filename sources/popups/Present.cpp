@@ -80,16 +80,17 @@ void Present::onShow()
     break;
     case Game::MISSION_COMPLETE:
     this->missions->_create();
-    this->missions->setPosition(Application->getWidth() / 2, Application->getHeight() / 2 - 930);
+    this->missions->setPosition3D(Vec3(Application->getFrustumWidth() / 2, Application->getFrustumHeight() / 2 - 3.5 - 12.0, 0));
     this->missions->runAction(
       EaseSineOut::create(
-        MoveBy::create(0.5, Vec2(0, 500))
+        MoveBy::create(0.5, Vec2(0, 10))
       )
     );
 
-    this->missions->text->stopAllActions();
-    this->missions->text->setText("missions-finish-complete");
-    this->missions->text->data(MissionsFactory::getInstance()->getPreviousMission()->id);
+    this->missions->plane->setTouchEnabled(false);
+    this->missions->general->text->stopAllActions();
+    this->missions->general->text->setText("missions-finish-complete");
+    this->missions->general->text->data(MissionsFactory::getInstance()->getPreviousMission()->id);
     break;
   }
 

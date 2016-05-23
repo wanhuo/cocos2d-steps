@@ -72,6 +72,35 @@ class Environment : public Background
     Random random;
   };
 
+  struct Lets {
+    Pool* a;
+    Pool* b;
+    Pool* c;
+    Pool* d;
+    Pool* e;
+    Pool* f;
+    Pool* g;
+    Pool* h;
+    Pool* i;
+    Pool* j;
+    Pool* k;
+    Pool* l;
+    Pool* m;
+    Pool* n;
+    Pool* o;
+    Pool* p;
+    Pool* q;
+    Pool* r;
+    Pool* s;
+    Pool* t;
+    Pool* u;
+    Pool* v;
+    Pool* w;
+    Pool* x;
+    Pool* y;
+    Pool* z;
+  };
+
   struct Light {
     BaseLight* environment;
     BaseLight* natural;
@@ -109,6 +138,8 @@ class Environment : public Background
     Pool* hearts;
     Pool* colors;
     Pool* presentions;
+
+    Lets letters;
   };
 
   struct StoreElement {
@@ -130,6 +161,8 @@ class Environment : public Background
   struct Missions {
     EnvironmentMissionsBar* controller = nullptr;
     MissionsElement missions;
+
+    bool special;
   };
 
   /**
@@ -185,6 +218,7 @@ class Environment : public Background
   Character* character;
 
   Generator* generator = nullptr;
+  Letters* letters = nullptr;
 
   Entity3D* plane;
 

@@ -45,6 +45,9 @@
 #include "Unlock.h"
 
 #include "Generator.h"
+#include "Letters.h"
+
+#include "Letter.h"
 
 #include "Environment.h"
 #include "Ground.h"
@@ -65,6 +68,7 @@
 #include "Star.h"
 #include "Color.h"
 #include "Presention.h"
+#include "Let.h"
 
 #include "Start.h"
 #include "Spikes.h"
@@ -109,6 +113,9 @@
 #include "EnvironmentMissionsNotify.h"
 #include "EnvironmentMissionsBar.h"
 #include "EnvironmentMissionsFinish.h"
+#include "EnvironmentMissionsFinishGeneral.h"
+#include "EnvironmentMissionsFinishKetchapp.h"
+#include "EnvironmentMissionsFinishDaily.h"
 
 #include "RotateGlobalBy.h"
 #include "Shake.h"
@@ -140,6 +147,7 @@ class Game : public Screen
     Camera* s;
     Camera* e;
     Camera* c;
+    Camera* u;
   };
   
   struct Elapsed {

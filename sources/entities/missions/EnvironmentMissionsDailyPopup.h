@@ -45,6 +45,10 @@ class EnvironmentMissionsDailyPopup : public BackgroundColor
    *
    */
   private:
+  struct Task {
+    string word;
+  };
+
   struct Texts {
     Text* background;
     Text* text1;
@@ -70,11 +74,18 @@ class EnvironmentMissionsDailyPopup : public BackgroundColor
   EnvironmentMissionsDailyPopup(Node* parent);
  ~EnvironmentMissionsDailyPopup();
 
+  Task task;
+  int complete;
+
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
   virtual void onEnter();
   virtual void onExit();
+
+  virtual void setVisible(bool visible);
+
+  virtual void update(char letter);
 };
 
 #endif

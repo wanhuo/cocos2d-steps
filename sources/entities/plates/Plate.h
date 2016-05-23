@@ -91,7 +91,8 @@ class Plate : public Cube
     MOVED3, // 22
     MOVED4, // 23,
 
-    PRESENTION // 24
+    PRESENTION, // 24
+    LETTER // 25
   };
 
   enum Side {
@@ -148,7 +149,7 @@ class Plate : public Cube
   virtual void setStartPositionY(float y);
   virtual void setStartPositionZ(float z);
 
-  virtual void setType(int type, bool animated = true);
+  virtual void setType(int type, bool animated = true, char data = ' ');
 
   virtual void prepare();
   virtual void remove(bool complete = true);
