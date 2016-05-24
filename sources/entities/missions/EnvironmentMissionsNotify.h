@@ -44,6 +44,18 @@ class EnvironmentMissionsNotify : public BackgroundColor
    *
    *
    */
+  public:
+  enum Type {
+    NONE,
+    SPECIAL,
+    DAILY
+  };
+
+  /**
+   *
+   *
+   *
+   */
   protected:
   Text* text;
 
@@ -63,6 +75,8 @@ class EnvironmentMissionsNotify : public BackgroundColor
 
   virtual void onEnter();
   virtual void onExit();
+
+  virtual void notify(int type);
 };
 
 #endif

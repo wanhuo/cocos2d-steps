@@ -72,6 +72,9 @@ class Counter : public Background
   struct BoolValues {
     bool mission = false;
     bool best = false;
+
+    bool special = false;
+    bool daily = false;
   };
 
   struct Values {

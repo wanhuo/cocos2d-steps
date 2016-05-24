@@ -349,7 +349,7 @@ void Game::onLose()
   this->parameters.elapsed.present++;
   this->parameters.elapsed.video++;
 
-  if(this->counter->values.b.mission)
+  if(this->counter->values.b.mission || this->counter->values.b.special || this->counter->values.b.daily)
   {
     this->changeState(MISSION_COMPLETE);
   }

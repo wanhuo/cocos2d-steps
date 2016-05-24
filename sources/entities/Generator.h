@@ -120,6 +120,8 @@ class Generator : public Ref
   Generator();
  ~Generator();
 
+  string word;
+
   float x;
   float y;
   float z;
@@ -131,7 +133,6 @@ class Generator : public Ref
   int index;
   int length;
   int general;
-  int letter;
 
   bool direction;
   bool bonus;

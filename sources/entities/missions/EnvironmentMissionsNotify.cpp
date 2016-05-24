@@ -83,13 +83,6 @@ void EnvironmentMissionsNotify::onCreate()
       nullptr
     )
   );
-
-  /**
-   *
-   *
-   *
-   */
-  this->text->data(MissionsFactory::getInstance()->getPreviousMission()->id);
 }
 
 void EnvironmentMissionsNotify::onDestroy(bool action)
@@ -110,4 +103,28 @@ void EnvironmentMissionsNotify::onEnter()
 void EnvironmentMissionsNotify::onExit()
 {
   BackgroundColor::onExit();
+}
+
+/**
+ *
+ *
+ *
+ */
+void EnvironmentMissionsNotify::notify(int type)
+{
+  this->_create();
+
+  switch(type)
+  {
+    case NONE:
+    this->text->setText("missions-complete");
+    this->text->data(MissionsFactory::getInstance()->getPreviousMission()->id);
+    break;
+    case SPECIAL:
+    this->text->setText("missions-complete-ketchapp");
+    break;
+    case DAILY:
+    this->text->setText("missions-complete-daily");
+    break;
+  }
 }

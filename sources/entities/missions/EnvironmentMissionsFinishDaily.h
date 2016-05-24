@@ -48,6 +48,11 @@ class EnvironmentMissionsFinishDaily : public Layout
    *
    */
   private:
+  struct Texts {
+    Text* text3;
+    Text* text4;
+  };
+
   Letters* letters;
 
   /**
@@ -58,6 +63,7 @@ class EnvironmentMissionsFinishDaily : public Layout
   protected:
   BackgroundColor* background;
   Text* text;
+  Texts texts;
 
   /**
    *
@@ -70,6 +76,8 @@ class EnvironmentMissionsFinishDaily : public Layout
 
   virtual void onEnter();
   virtual void onExit();
+
+  virtual void update(float time);
 };
 
 #endif

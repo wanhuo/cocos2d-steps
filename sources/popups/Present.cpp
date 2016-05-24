@@ -88,9 +88,13 @@ void Present::onShow()
     );
 
     this->missions->plane->setTouchEnabled(false);
-    this->missions->general->text->stopAllActions();
-    this->missions->general->text->setText("missions-finish-complete");
-    this->missions->general->text->data(MissionsFactory::getInstance()->getPreviousMission()->id);
+
+    if(Application->counter->values.b.mission)
+    {
+      this->missions->general->text->stopAllActions();
+      this->missions->general->text->setText("missions-finish-complete");
+      this->missions->general->text->data(MissionsFactory::getInstance()->getPreviousMission()->id);
+    }
     break;
   }
 

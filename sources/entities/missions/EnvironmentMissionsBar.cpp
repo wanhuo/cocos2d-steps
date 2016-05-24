@@ -157,7 +157,7 @@ void EnvironmentMissionsBar::onCreateMissions()
     Application->environment->missions.missions.plane->getInnerContainer()->stopAllActions();
     Application->environment->missions.missions.plane->getInnerContainer()->runAction(
       Sequence::create(
-        MoveTo::create(0.5, Vec3(9.5 - (Application->environment->missions.special ? 6.0 : 3.0), 0.0, 0.0)),
+        MoveTo::create(0.5, Vec3(9.5 - (Application->environment->missions.special ? (MissionsFactory::getInstance()->getCurrentMission() ? 6.0 : 3.0) : (MissionsFactory::getInstance()->getCurrentMission() ? 3.0 : 0)), 0.0, 0.0)),
         CallFunc::create([=] () {
         Application->environment->missions.missions.plane->ScrollView::_eventCallback(Application->environment->missions.missions.plane, cocos2d::ui::ScrollView::EventType::AUTOSCROLL_ENDED);
         }),

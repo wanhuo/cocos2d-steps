@@ -45,11 +45,11 @@ EnvironmentMissionsFinishKetchapp::EnvironmentMissionsFinishKetchapp()
 
   this->background = new BackgroundColor(this, Color4B(255.0, 0.0, 0.0, 255.0));
   this->background->setIgnoreAnchorPointForPosition(false);
-  this->background->setContentSize(Size(400, 60));
+  this->background->setContentSize(Size(500, 60));
   this->background->setAnchorPoint(Vec2(0.5, 0.5));
   this->background->setPosition(this->getContentSize().width / 2, this->getContentSize().height);
 
-  this->text = new Text("missions-ketchapp-progress", this->background, true);
+  this->text = new Text("missions-ketchapp-progress-1", this->background, true);
   this->text->setPosition(this->background->getContentSize().width / 2, this->background->getContentSize().height / 2);
 
   this->letters = new Letters(this, true);
@@ -93,8 +93,85 @@ void EnvironmentMissionsFinishKetchapp::onEnter()
     }
     else
     {
-      static_cast<Letter*>(letter)->setColor(Color3B(0, 0, 0));
+      static_cast<Letter*>(letter)->setColor(Color3B(95, 165, 200));
     }
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  if(Application->counter->values.b.special)
+  {
+    this->text->stopAllActions();
+    this->text->setScale(1.0);
+    this->text->setText("missions-ketchapp-complete");
+  }
+  else
+  {
+    this->text->setText("missions-ketchapp-progress-1");
+    this->text->setScale(1.0);
+    this->text->setOpacity(255);
+    this->text->runAction(
+      RepeatForever::create(
+        Sequence::create(
+          Repeat::create(
+            Sequence::create(
+            EaseSineInOut::create(
+              ScaleTo::create(0.5, 1.1)
+            ),
+            EaseSineInOut::create(
+              ScaleTo::create(0.5, 1.0)
+            ),
+            nullptr
+            ),
+          3),
+          EaseSineInOut::create(
+            ScaleTo::create(0.5, 1.1)
+          ),
+          EaseSineInOut::create(
+            ScaleTo::create(0.5, 1.0, 0.0)
+          ),
+          CallFunc::create([=] () {
+          this->text->setText("missions-ketchapp-progress-2");
+          }),
+          EaseSineInOut::create(
+            ScaleTo::create(0.5, 1.1)
+          ),
+          EaseSineInOut::create(
+            ScaleTo::create(0.5, 1.0)
+          ),
+          Repeat::create(
+            Sequence::create(
+            EaseSineInOut::create(
+              ScaleTo::create(0.5, 1.1)
+            ),
+            EaseSineInOut::create(
+              ScaleTo::create(0.5, 1.0)
+            ),
+            nullptr
+            ),
+          3),
+          EaseSineInOut::create(
+            ScaleTo::create(0.5, 1.1)
+          ),
+          EaseSineInOut::create(
+            ScaleTo::create(0.5, 1.0, 0.0)
+          ),
+          CallFunc::create([=] () {
+          this->text->setText("missions-ketchapp-progress-1");
+          }),
+          EaseSineInOut::create(
+            ScaleTo::create(0.5, 1.1)
+          ),
+          EaseSineInOut::create(
+            ScaleTo::create(0.5, 1.0)
+          ),
+          nullptr
+        )
+      )
+    );
   }
 }
 

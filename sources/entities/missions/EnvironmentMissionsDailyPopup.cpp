@@ -38,6 +38,7 @@ EnvironmentMissionsDailyPopup::EnvironmentMissionsDailyPopup(Node* parent)
 : BackgroundColor(parent, Color4B(71.0, 132.0, 164.0, 255.0))
 {
   this->setIgnoreAnchorPointForPosition(false);
+  this->setScheduleUpdate(true);
 
   this->setAnchorPoint(Vec2(0.5, 1.0));
   this->setContentSize(Size(650, 400));
@@ -52,16 +53,34 @@ EnvironmentMissionsDailyPopup::EnvironmentMissionsDailyPopup(Node* parent)
   this->texts.background = new Text("missions-daily", this->background, true);
   this->texts.background->setPosition(this->background->getContentSize().width / 2, this->background->getContentSize().height / 2);
 
-  this->texts.text1 = new Text("missions-ketchapp-1", this, true);
+  this->texts.text1 = new Text("missions-daily-1", this);
   this->texts.text1->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 100);
 
-  this->texts.text2 = new Text("missions-ketchapp-2", this, true);
-  this->texts.text2->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 200);
+  this->texts.text2 = new Text("missions-daily-2", this);
+  this->texts.text2->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 150);
 
-  this->complete = Storage::get("missions.daily.complete");
-  this->task.word = "sosiska";
+  this->texts.text3 = new Text("missions-daily-3", this);
+  this->texts.text3->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 100);
 
-  this->setVisible(false);
+  this->texts.text4 = new Text("missions-daily-4", this);
+  this->texts.text4->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 220);
+
+  this->_create();
+
+  /**
+   *
+   *
+   *
+   */
+  auto rootJsonData = Json_create(FileUtils::getInstance()->getStringFromFile("words.json").c_str());
+  auto wordsJsonData = Json_getItem(rootJsonData, "words");
+
+  for(auto wordJsonData = wordsJsonData->child; wordJsonData; wordJsonData = wordJsonData->next)
+  {
+    this->task.words.push_back(wordJsonData->valueString);
+  }
+
+  this->reset();
 }
 
 EnvironmentMissionsDailyPopup::~EnvironmentMissionsDailyPopup()
@@ -103,6 +122,48 @@ void EnvironmentMissionsDailyPopup::onExit()
  *
  *
  */
+string EnvironmentMissionsDailyPopup::getTask()
+{
+  auto ret = this->task.word;
+
+  for(auto c : this->task.collected)
+  {
+    ret.erase(ret.find(c), 1);
+  }
+
+  return ret;
+}
+
+/**
+ *
+ *
+ *
+ */
+void EnvironmentMissionsDailyPopup::reset()
+{
+  string time = Storage::get("missions.daily.time", true);
+  this->task.time = time.length() > 0 ? stol(time.c_str()) : 0;
+  this->task.active = this->task.time < Times::now();
+  this->task.word = Storage::get("missions.daily.word", true);
+  this->task.collected = Storage::get("missions.daily.collected", true);
+
+  if(!Storage::get("missions.daily.reset") && this->task.active)
+  {
+    Storage::set("missions.daily.reset", 1);
+
+    this->task.word = this->task.words.at(random(0, (int) this->task.words.size() - 1));
+    this->task.collected = "";
+  }
+
+  this->setVisible(false);
+  this->setVisible(true);
+}
+
+/**
+ *
+ *
+ *
+ */
 void EnvironmentMissionsDailyPopup::setVisible(bool visible)
 {
   BackgroundColor::setVisible(visible);
@@ -114,32 +175,65 @@ void EnvironmentMissionsDailyPopup::setVisible(bool visible)
    */
   if(visible)
   {
-    Application->environment->letters->create("mission");
-
-    /**
-     *
-     *
-     *
-     */
-    int counter = 0;
-
-    for(auto letter : Application->environment->letters->getChildren())
+    if(this->task.active)
     {
-      if(this->complete > counter++)
+      Application->environment->letters->create(this->task.word);
+      
+      this->texts.text1->_create();
+      this->texts.text2->_create();
+
+      auto counter = 0;
+      auto s = this->task.collected;
+
+      for(auto letter : Application->environment->letters->getChildren())
       {
-        static_cast<Letter*>(letter)->setColor(Color3B(255, 255, 255));
-        static_cast<Letter*>(letter)->action();
+        auto l = static_cast<Letter*>(letter)->letter;
+
+        if(s.find(l) != string::npos)
+        {
+          s.erase(s.find(l), 1);
+
+          static_cast<Letter*>(letter)->setOpacity(255);
+          static_cast<Letter*>(letter)->setColor(Color3B(255, 170, 0));
+          static_cast<Letter*>(letter)->action();
+          static_cast<Letter*>(letter)->none->_destroy();
+        }
+        else
+        {
+          static_cast<Letter*>(letter)->setOpacity(0);
+          static_cast<Letter*>(letter)->none->_create();
+        }
+
+        counter++;
       }
-      else
-      {
-        static_cast<Letter*>(letter)->setColor(Color3B(0, 0, 0));
-      }
+    }
+    else
+    {
+      this->texts.text3->_create();
+      this->texts.text4->_create();
+      this->texts.text4->setScale(1.0);
+      this->texts.text4->runAction(
+        RepeatForever::create(
+          Sequence::create(
+            ScaleTo::create(1.0, 1.1),
+            ScaleTo::create(1.0, 1.0),
+            nullptr
+          )
+        )
+      );
     }
   }
   else
   {
+    this->texts.text1->_destroy();
+    this->texts.text2->_destroy();
+    this->texts.text3->_destroy();
+    this->texts.text4->_destroy();
+
     Application->environment->letters->destroy();
   }
+
+  this->setCameraMask(4);
 }
 
 /**
@@ -149,11 +243,51 @@ void EnvironmentMissionsDailyPopup::setVisible(bool visible)
  */
 void EnvironmentMissionsDailyPopup::update(char letter)
 {
-  Storage::set("missions.letchapp.complete", ++this->complete);
+  this->task.collected += letter;
 
-  if(this->complete >= 0)
+  if(this->task.collected.length() >= this->task.word.length())
   {
+    Application->counter->values.b.daily = true;
+
+    Application->environment->missions.controller->notify->notify(EnvironmentMissionsNotify::DAILY);
+
+    this->task.active = false;
+    this->task.time = Times::now() + Times::minute();// * 60 * 24;
+
+    Storage::set("missions.daily.time", to_string(this->task.time));
+    Storage::set("missions.daily.reset", 0);
   }
 
+  Storage::set("missions.daily.word", this->task.word);
+  Storage::set("missions.daily.collected", this->task.collected);
+
   Finish::getInstance()->missions->notificationDaily = true;
+}
+
+/**
+ *
+ *
+ *
+ */
+void EnvironmentMissionsDailyPopup::update(float time)
+{
+  if(!this->task.active)
+  {
+    int t = this->task.time - Times::now();
+
+    string h = "" + to_string(Times::hours(t));
+    string m = "" + to_string(Times::minutes(t));
+    string s = "" + to_string(Times::seconds(t));
+
+    if(Times::hours(t) < 10) h = "0" + h;
+    if(Times::minutes(t) < 10) m = "0" + m;
+    if(Times::seconds(t) < 10) s = "0" + s;
+
+    this->texts.text4->data(h, m, s);
+
+    if(t <= 0)
+    {
+      this->reset();
+    }
+  }
 }

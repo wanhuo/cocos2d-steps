@@ -46,13 +46,20 @@ class EnvironmentMissionsDailyPopup : public BackgroundColor
    */
   private:
   struct Task {
+    bool active;
+    long time;
     string word;
+    string collected;
+
+    vector<string> words;
   };
 
   struct Texts {
     Text* background;
     Text* text1;
     Text* text2;
+    Text* text3;
+    Text* text4;
   };
 
   /**
@@ -75,7 +82,6 @@ class EnvironmentMissionsDailyPopup : public BackgroundColor
  ~EnvironmentMissionsDailyPopup();
 
   Task task;
-  int complete;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
@@ -83,9 +89,14 @@ class EnvironmentMissionsDailyPopup : public BackgroundColor
   virtual void onEnter();
   virtual void onExit();
 
+  virtual string getTask();
+
   virtual void setVisible(bool visible);
 
+  virtual void reset();
+
   virtual void update(char letter);
+  virtual void update(float time);
 };
 
 #endif

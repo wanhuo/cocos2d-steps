@@ -57,7 +57,11 @@ EnvironmentMissionsFinish::EnvironmentMissionsFinish(Node* parent)
   this->general = new EnvironmentMissionsFinishGeneral;
 
   this->plane->pushBackCustomItem(new EnvironmentMissionsFinishDaily);
-  this->plane->pushBackCustomItem(this->general);
+
+  if(MissionsFactory::getInstance()->getCurrentMission())
+  {
+    this->plane->pushBackCustomItem(this->general);
+  }
 
   if(Application->environment->missions.special)
   {
@@ -90,32 +94,35 @@ void EnvironmentMissionsFinish::onCreate()
   this->setOpacity(255);
   this->setCameraMask(32);
 
-  this->plane->setTouchEnabled(true);
-  this->plane->runAction(
-    Sequence::create(
-      DelayTime::create(2.0),
-      CallFunc::create([=] () {
-      this->plane->scrollToItem(1, Vec2(0, 0), Vec2(0, 0));
-      }),
-      nullptr
-    )
-  );
-
-  if(this->notificationKetchapp)
+  if(MissionsFactory::getInstance()->getCurrentMission() && !Application->counter->values.b.special && !Application->counter->values.b.daily)
   {
-    this->plane->getInnerContainer()->setPosition(Vec2(-Application->getWidth() * 2, 0));
+    this->plane->setTouchEnabled(true);
+    this->plane->runAction(
+      Sequence::create(
+        DelayTime::create(2.0),
+        CallFunc::create([=] () {
+        this->plane->scrollToItem(1, Vec2(0, 0), Vec2(0, 0));
+        }),
+        nullptr
+      )
+    );
   }
-  else if(this->notificationDaily)
+
+  if(Finish::getInstance()->missions->notificationKetchapp || Application->counter->values.b.special)
+  {
+    this->plane->getInnerContainer()->setPosition(Vec2(-Application->getWidth() * ((MissionsFactory::getInstance()->getCurrentMission() || Application->counter->values.b.mission) ? 2 : 1), 0));
+  }
+  else if(Finish::getInstance()->missions->notificationDaily || Application->counter->values.b.daily)
   {
     this->plane->getInnerContainer()->setPosition(Vec2(0, 0));
   }
   else
   {
-    this->plane->getInnerContainer()->setPosition(Vec2(-Application->getWidth(), 0));
+    this->plane->getInnerContainer()->setPosition(Vec2(-Application->getWidth() * ((MissionsFactory::getInstance()->getCurrentMission() || Application->counter->values.b.mission) ? 1 : 0), 0));
   }
 
-  this->notificationKetchapp = false;
-  this->notificationDaily = false;
+  Finish::getInstance()->missions->notificationKetchapp = false;
+  Finish::getInstance()->missions->notificationDaily = false;
 }
 
 void EnvironmentMissionsFinish::onDestroy(bool action)

@@ -499,6 +499,8 @@ void Counter::reset(bool init)
 {
   this->values.b.best = false;
   this->values.b.mission = false;
+  this->values.b.special = false;
+  this->values.b.daily = false;
 
   this->values.start = 0;
   this->values.current = 1;
@@ -695,7 +697,7 @@ void Counter::onMissionComplete()
 
   this->resetMissionsUpdate();
 
-  Application->environment->missions.controller->notify->_create();
+  Application->environment->missions.controller->notify->notify(EnvironmentMissionsNotify::NONE);
   Application->environment->missions.missions.elements.erase(Application->environment->missions.missions.elements.begin() + 2);
   Application->environment->missions.missions.plane->removeItem(2);
 }

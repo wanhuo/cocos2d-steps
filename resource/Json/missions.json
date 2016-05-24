@@ -5,21 +5,12 @@
 			"index": 1,
 			"coins" : 10,
 			"complete": [
-				{"coins": 1, "preview": "missions-coins.png"},
-				{"points": 1, "preview": "missions-points.png"}
-			]
-		},
-		{
-			"type": 1,
-			"index": 2,
-			"coins" : 10,
-			"complete": [
 				{"special_once_14": 1, "preview": "missions-14.png"}
 			]
 		},
 		{
 			"type": 2,
-			"index": 3,
+			"index": 2,
 			"coins" : 10,
 			"complete": [
 				{"special_progress_14": 1, "preview": "missions-14.png"},
@@ -29,7 +20,7 @@
 		},
 		{
 			"type": 2,
-			"index": 4,
+			"index": 3,
 			"coins" : 10,
 			"complete": [
 				{"coins": 10, "preview": "missions-coins.png"},
@@ -39,7 +30,7 @@
 		},
 		{
 			"type": 2,
-			"index": 5,
+			"index": 4,
 			"coins" : 10,
 			"complete": [
 				{"special_progress_3": 1, "preview": "missions-3.png"},
@@ -49,7 +40,7 @@
 		},
 		{
 			"type": 2,
-			"index": 6,
+			"index": 5,
 			"coins" : 10,
 			"complete": [
 				{"special_progress__2": 3, "preview": "missions-2.png"},

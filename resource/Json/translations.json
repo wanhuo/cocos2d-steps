@@ -158,14 +158,14 @@
       {
         "title": "COMPLETE IN A ONE GAME",
         "font": "square",
-        "size": 30
+        "size": 36
       }
     ],
     "missions-mission-2": [
       {
         "title": "COMPLETE IN A FEW GAMES",
         "font": "square",
-        "size": 30
+        "size": 36
       }
     ],
     "missions-data": [
@@ -184,6 +184,22 @@
         "color": [71.0, 132.0, 164.0]
       }
     ],
+    "missions-complete-ketchapp": [
+      {
+        "title": "KETCHAPP MISSION COMPLETED",
+        "font": "square",
+        "size": 34,
+        "color": [71.0, 132.0, 164.0]
+      }
+    ],
+    "missions-complete-daily": [
+      {
+        "title": "DAILY MISSION COMPLETED",
+        "font": "square",
+        "size": 40,
+        "color": [71.0, 132.0, 164.0]
+      }
+    ],
     "missions-finish": [
       {
         "title": "MISSION $1 PROGRESS",
@@ -198,16 +214,44 @@
         "size": 24
       }
     ],
-    "missions-ketchapp-progress": [
+    "missions-ketchapp-progress-1": [
       {
         "title": "KETCHAPP MISSION PROGRESS",
         "font": "square",
         "size": 26
       }
     ],
-    "missions-daily-progress": [
+    "missions-ketchapp-progress-2": [
+      {
+        "title": "CLEAR 8 STAGES",
+        "font": "square",
+        "size": 26
+      }
+    ],
+    "missions-ketchapp-complete": [
+      {
+        "title": "KETCHAPP MISSION COMPLETED",
+        "font": "square",
+        "size": 26
+      }
+    ],
+    "missions-daily-progress-1": [
       {
         "title": "DAILY MISSION PROGRESS",
+        "font": "square",
+        "size": 26
+      }
+    ],
+    "missions-daily-progress-2": [
+      {
+        "title": "COLLECT ALL LETTERS",
+        "font": "square",
+        "size": 26
+      }
+    ],
+    "missions-daily-complete": [
+      {
+        "title": "DAILY MISSION COMPLETED",
         "font": "square",
         "size": 26
       }
@@ -238,6 +282,34 @@
         "title": "CLEAR 8 STAGES TO COMPLETE",
         "font": "square",
         "size": 30
+      }
+    ],
+    "missions-daily-1": [
+      {
+        "title": "COLLECT ALL LETTERS",
+        "font": "square",
+        "size": 36
+      }
+    ],
+    "missions-daily-2": [
+      {
+        "title": "TO COMPLETE",
+        "font": "square",
+        "size": 30
+      }
+    ],
+    "missions-daily-3": [
+      {
+        "title": "NEXT MISSION IN",
+        "font": "square",
+        "size": 30
+      }
+    ],
+    "missions-daily-4": [
+      {
+        "title": "$1:$2:$3",
+        "font": "square",
+        "size": 72
       }
     ],
     "missions-daily": [

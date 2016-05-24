@@ -33,6 +33,12 @@ Letter::Letter(string file)
 {
   this->letter = file;
   this->setTexture("textures/2/textures-state-1.png");
+  this->setCascadeOpacityEnabled(false);
+
+  this->none = new Entity3D("letter-none.obj", this);
+  this->none->setTexture("textures/2/textures-state-1.png");
+  this->none->setPosition3D(Vec3(0, 0, 0));
+  this->none->setLightMask(32);
 }
 
 Letter::~Letter()

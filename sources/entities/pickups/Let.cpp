@@ -33,7 +33,7 @@ Let::Let(char letter)
 {
   this->letter = letter;
 
-  this->setColor(Color3B(255.0, 255.0, 0.0));
+  this->setColor(Color3B(255.0, 170.0, 0.0));
   this->glow->setColor(Color3B(252.0, 252.0, 136.0));
   this->glow->setPosition(0, 0.4);
 }
@@ -56,6 +56,8 @@ void Let::onCreate()
    *
    *
    */
+  this->setColor(Color3B(255.0, 170.0, 0.0));
+  this->glow->setColor(Color3B(252.0, 252.0, 136.0));
   this->setTexture(Application->environment->getTextureState1());
 }
 
@@ -86,6 +88,8 @@ void Let::onPickup()
   {
     Application->environment->missions.controller->popups.daily->update(this->letter);
   }
+
+  Sound->play("pickup-gift");
 }
 
 /**

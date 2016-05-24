@@ -75,70 +75,116 @@ void Finish::onShow()
 {
   Popup::onShow();
 
-  this->buttons.like->_create()->setCameraMask(4);
-  this->buttons.rate->_create()->setCameraMask(4);
-  this->buttons.restart->_create()->setCameraMask(4);
-  this->buttons.leaderboards->_create()->setCameraMask(4);
+  /**
+   *
+   *
+   *
+   */
+  if(Application->counter->values.b.special)
+  {
+    Application->counter->values.b.special = false;
+  }
+  else if(Application->counter->values.b.daily)
+  {
+    Application->counter->values.b.daily = false;
+  }
+  else if(Application->counter->values.b.mission)
+  {
+    Application->counter->values.b.mission = false;
 
-  this->buttons.like->bind(false);
-  this->buttons.rate->bind(false);
-  this->buttons.restart->bind(false);
-  this->buttons.leaderboards->bind(false);
+    if(!MissionsFactory::getInstance()->getCurrentMission())
+    {
+      this->missions->plane->removeItem(1);
+      Finish::getInstance()->missions->plane->removeItem(1);
+    }
+  }
 
-  this->buttons.like->setPosition(80, Application->getHeight() + 120);
-  this->buttons.rate->setPosition(Application->getCenter().x - 200, 0);
-  this->buttons.restart->setPosition(Application->getCenter().x, 0);
-  this->buttons.leaderboards->setPosition(Application->getCenter().x + 200, 0);
+  if(Application->counter->values.b.mission || Application->counter->values.b.special || Application->counter->values.b.daily)
+  {
+    Present::getInstance()->missions->_destroy();
+    Present::getInstance()->element->runAction(
+      Sequence::create(
+        ScaleTo::create(0.5, 0),
+        CallFunc::create([=] () {
+        Present::getInstance()->element->_destroy();
+        Present::getInstance()->onShow();
+        }),
+        nullptr
+      )
+    );
+  }
+  else
+  {
+    /**
+     *
+     *
+     *
+     */
+    this->buttons.like->_create()->setCameraMask(4);
+    this->buttons.rate->_create()->setCameraMask(4);
+    this->buttons.restart->_create()->setCameraMask(4);
+    this->buttons.leaderboards->_create()->setCameraMask(4);
 
-  this->buttons.leaderboards->runAction(
-    Sequence::create(
-      DelayTime::create(0.1),
-      EaseSineOut::create(
-        MoveBy::create(0.2, Vec2(0, 200))
-      ),
-      CallFunc::create([=] () {
-      this->buttons.leaderboards->bind(true);
-      }),
-      nullptr
-    )
-  );
-  this->buttons.restart->runAction(
-    Sequence::create(
-      DelayTime::create(0.0),
-      EaseSineOut::create(
-        MoveBy::create(0.2, Vec2(0, 200))
-      ),
-      CallFunc::create([=] () {
-      this->buttons.restart->bind(true);
-      }),
-      nullptr
-    )
-  );
-  this->buttons.rate->runAction(
-    Sequence::create(
-      DelayTime::create(0.1),
-      EaseSineOut::create(
-        MoveBy::create(0.2, Vec2(0, 200))
-      ),
-      CallFunc::create([=] () {
-      this->buttons.rate->bind(true);
-      }),
-      nullptr
-    )
-  );
+    this->buttons.like->bind(false);
+    this->buttons.rate->bind(false);
+    this->buttons.restart->bind(false);
+    this->buttons.leaderboards->bind(false);
 
-  this->buttons.like->runAction(
-    Sequence::create(
-      DelayTime::create(0.3),
-      EaseSineOut::create(
-        MoveBy::create(0.2, Vec2(0, -200))
-      ),
-      CallFunc::create([=] () {
-      this->buttons.like->bind(true);
-      }),
-      nullptr
-    )
-  );
+    this->buttons.like->setPosition(80, Application->getHeight() + 120);
+    this->buttons.rate->setPosition(Application->getCenter().x - 200, 0);
+    this->buttons.restart->setPosition(Application->getCenter().x, 0);
+    this->buttons.leaderboards->setPosition(Application->getCenter().x + 200, 0);
+
+    this->buttons.leaderboards->runAction(
+      Sequence::create(
+        DelayTime::create(0.1),
+        EaseSineOut::create(
+          MoveBy::create(0.2, Vec2(0, 200))
+        ),
+        CallFunc::create([=] () {
+        this->buttons.leaderboards->bind(true);
+        }),
+        nullptr
+      )
+    );
+    this->buttons.restart->runAction(
+      Sequence::create(
+        DelayTime::create(0.0),
+        EaseSineOut::create(
+          MoveBy::create(0.2, Vec2(0, 200))
+        ),
+        CallFunc::create([=] () {
+        this->buttons.restart->bind(true);
+        }),
+        nullptr
+      )
+    );
+    this->buttons.rate->runAction(
+      Sequence::create(
+        DelayTime::create(0.1),
+        EaseSineOut::create(
+          MoveBy::create(0.2, Vec2(0, 200))
+        ),
+        CallFunc::create([=] () {
+        this->buttons.rate->bind(true);
+        }),
+        nullptr
+      )
+    );
+
+    this->buttons.like->runAction(
+      Sequence::create(
+        DelayTime::create(0.3),
+        EaseSineOut::create(
+          MoveBy::create(0.2, Vec2(0, -200))
+        ),
+        CallFunc::create([=] () {
+        this->buttons.like->bind(true);
+        }),
+        nullptr
+      )
+    );
+  }
 }
 
 void Finish::onHide(Callback callback)

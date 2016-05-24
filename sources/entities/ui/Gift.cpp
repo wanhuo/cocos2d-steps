@@ -153,7 +153,18 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
     count *= random(1, 5);
     break;
     case Game::MISSION_COMPLETE:
-    count = MissionsFactory::getInstance()->getPreviousMission()->coins;
+    if(Application->counter->values.b.special)
+    {
+      count = 1;
+    }
+    else if(Application->counter->values.b.daily)
+    {
+      count = 1;
+    }
+    else
+    {
+      count = MissionsFactory::getInstance()->getPreviousMission()->coins;
+    }
     break;
   }
 

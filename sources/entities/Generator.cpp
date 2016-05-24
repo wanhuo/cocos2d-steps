@@ -372,6 +372,7 @@ void Generator::createBonusElement(Plate* plate)
         }
 
         plate->setType(Plate::LETTER, true, letter);
+        plate->getDecorations()[0]->setColor(Color3B(255, 255, 255));
       }
 
       plate->setType(Plate::FINISH);
@@ -488,10 +489,18 @@ void Generator::createGeneralElement(Plate* plate)
            *
            *
            */
-          if(this->letter < Application->environment->missions.controller->popups.daily->task.word.length())
-          if(probably(0.1))
+          if(this->word.length() >= 1)
           {
-            plate->setType(Plate::LETTER, true, Application->environment->missions.controller->popups.daily->task.word[this->letter++]);
+            if(plate->conditions(Plate::TRAMPOLINE))
+            {
+              if(probably(105))
+              {
+                int index = random(0, (int) this->word.length() - 1);
+                plate->setType(Plate::LETTER, true, this->word[index]);
+
+                this->word.erase(index);
+              }
+            }
           }
         }
       }
@@ -674,6 +683,7 @@ void Generator::reset(bool complete)
 
   if(complete)
   {
+    this->word = Application->environment->missions.controller->popups.daily->getTask();
     this->general= 1;
   }
 
@@ -694,8 +704,6 @@ void Generator::reset(bool complete)
       }), this->start
     )
   );
-
-  this->letter = 0;
 
   this->conditions.s1 = 0;
   this->conditions.s2 = 0;

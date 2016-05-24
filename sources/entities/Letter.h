@@ -38,24 +38,13 @@ class Letter : public Entity3D
    *
    *
    */
-  private:
-  string letter;
-
-  /**
-   *
-   *
-   *
-   */
-  protected:
-
-  /**
-   *
-   *
-   *
-   */
   public:
   Letter(string file);
  ~Letter();
+
+  string letter;
+
+  Entity3D* none;
 
   virtual void onCreate();
   virtual void onDestroy();

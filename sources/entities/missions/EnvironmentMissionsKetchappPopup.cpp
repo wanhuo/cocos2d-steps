@@ -126,12 +126,16 @@ void EnvironmentMissionsKetchappPopup::setVisible(bool visible)
     {
       if(this->complete > counter++)
       {
-        static_cast<Letter*>(letter)->setColor(Color3B(255, 255, 255));
+        static_cast<Letter*>(letter)->setOpacity(255);
+        static_cast<Letter*>(letter)->setColor(Color3B(255, 0, 0));
         static_cast<Letter*>(letter)->action();
+        static_cast<Letter*>(letter)->none->_destroy();
       }
       else
       {
-        static_cast<Letter*>(letter)->setColor(Color3B(0, 0, 0));
+        static_cast<Letter*>(letter)->setOpacity(255);
+        static_cast<Letter*>(letter)->setColor(Color3B(95, 165, 200));
+        static_cast<Letter*>(letter)->none->_destroy();
       }
     }
   }
@@ -150,11 +154,17 @@ void EnvironmentMissionsKetchappPopup::update(char letter)
 {
   Storage::set("missions.letchapp.complete", ++this->complete);
 
-  if(this->complete >= 0)
+  if(this->complete >= 8)
   {
-    Application->environment->missions.controller->notify->_create();
+    Application->counter->values.b.special = true;
+
+    Application->environment->missions.controller->notify->notify(EnvironmentMissionsNotify::SPECIAL);
     Application->environment->missions.missions.elements.erase(Application->environment->missions.missions.elements.begin());
     Application->environment->missions.missions.plane->removeItem(0);
+
+    Finish::getInstance()->missions->plane->removeItem(MissionsFactory::getInstance()->getCurrentMission() ? 2 : 1);
+
+    Application->environment->missions.special = false;
   }
 
   Finish::getInstance()->missions->notificationKetchapp = true;
