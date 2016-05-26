@@ -111,5 +111,5 @@ void Watch::show()
 
 void Watch::hide(Callback callback)
 {
-  Finish::hide(callback);
+  Popup::hide(callback);
 }

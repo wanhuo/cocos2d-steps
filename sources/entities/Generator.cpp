@@ -493,12 +493,12 @@ void Generator::createGeneralElement(Plate* plate)
           {
             if(plate->conditions(Plate::TRAMPOLINE))
             {
-              if(probably(105))
+              if(probably(1))
               {
                 int index = random(0, (int) this->word.length() - 1);
                 plate->setType(Plate::LETTER, true, this->word[index]);
 
-                this->word.erase(index);
+                this->word.erase(index, 1);
               }
             }
           }

@@ -45,7 +45,7 @@ EnvironmentMissionsFinishGeneral::EnvironmentMissionsFinishGeneral()
 
   this->background = new BackgroundColor(this, Color4B(95.0, 165.0, 196.0, 255.0));
   this->background->setIgnoreAnchorPointForPosition(false);
-  this->background->setContentSize(Size(400, 60));
+  this->background->setContentSize(Size(430, 60));
   this->background->setAnchorPoint(Vec2(0.5, 0.5));
   this->background->setPosition(this->getContentSize().width / 2, this->getContentSize().height);
 
@@ -105,16 +105,16 @@ void EnvironmentMissionsFinishGeneral::onEnter()
     switch(structure->complete.size())
     {
       case 1:
-      this->missions.at(0)->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 15);
+      this->missions.at(0)->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 60);
       break;
       case 2:
-      this->missions.at(0)->setPosition(this->getContentSize().width / 2 - 80, this->getContentSize().height / 2 - 15);
-      this->missions.at(1)->setPosition(this->getContentSize().width / 2 + 80, this->getContentSize().height / 2 - 15);
+      this->missions.at(0)->setPosition(this->getContentSize().width / 2 - 80, this->getContentSize().height / 2 - 60);
+      this->missions.at(1)->setPosition(this->getContentSize().width / 2 + 80, this->getContentSize().height / 2 - 60);
       break;
       case 3:
-      this->missions.at(0)->setPosition(this->getContentSize().width / 2 - 160, this->getContentSize().height / 2 - 15);
-      this->missions.at(1)->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 15);
-      this->missions.at(2)->setPosition(this->getContentSize().width / 2 + 160, this->getContentSize().height / 2 - 15);
+      this->missions.at(0)->setPosition(this->getContentSize().width / 2 - 160, this->getContentSize().height / 2 - 60);
+      this->missions.at(1)->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 60);
+      this->missions.at(2)->setPosition(this->getContentSize().width / 2 + 160, this->getContentSize().height / 2 - 60);
       break;
     }
 

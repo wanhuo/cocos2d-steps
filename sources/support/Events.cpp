@@ -32,8 +32,6 @@
  */
 void Events::onStart()
 {
-  Storage::clear();
-
   new Game;    
   new Menu;
   new Finish;
@@ -162,7 +160,7 @@ void Events::onShare()
   auto text = new Text("share-message");
   auto size = Director::getInstance()->getOpenGLView()->getFrameSize();
 
-  Social::share(size.width, size.width, 0, 0, text->data(0), Config::link);
+  Social::share(size.width, size.width, 0, 0, text->data(Application->counter->values.current), Config::link);
 }
 
 /**

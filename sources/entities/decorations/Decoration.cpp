@@ -104,6 +104,15 @@ void Decoration::setPlate(Plate* plate, bool animated)
  *
  *
  */
+void Decoration::start()
+{
+}
+
+/**
+ *
+ *
+ *
+ */
 Character::Crash Decoration::status()
 {
   return Character::Crash::UNDEFINED;

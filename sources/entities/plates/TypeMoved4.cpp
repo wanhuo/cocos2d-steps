@@ -52,7 +52,7 @@ void TypeMoved4::start()
             MoveBy::create(0.15, Vec3(-1.5, 0, 0))
           );
 
-          this->plate->runAction(action->clone());
+          this->runAction(action->clone());
           this->plate->moved = true;
 
           if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual())
@@ -66,8 +66,8 @@ void TypeMoved4::start()
             MoveBy::create(0.15, Vec3(1.5, 0, 0))
           );
 
-          this->plate->runAction(action->clone());
-          this->plate->runAction(
+          this->runAction(action->clone());
+          this->runAction(
             Sequence::create(
               DelayTime::create(0.15),
               CallFunc::create([=] () {

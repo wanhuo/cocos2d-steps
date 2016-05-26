@@ -183,7 +183,7 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
         RotateTo::create(0.2, 0),
         MoveTo::create(0.2, Vec2(Application->getWidth() / 2, Application->getHeight() / 2)),
         Sequence::create(
-          DelayTime::create(0.2),
+          DelayTime::create(0.5),
           CallFunc::create([=] () {
           Application->onShare();
           }),

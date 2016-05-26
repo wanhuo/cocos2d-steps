@@ -169,6 +169,16 @@ void Plate::onCount()
     }
 
     Events::updateMissions();
+
+    /**
+     *
+     *
+     *
+     */
+    if(!Application->environment->generator->bonus)
+    {
+      Music->speed(1.0 + (0.3 / max(200, Application->environment->generator->size)) * this->index);
+    }
   }
 
   /**
@@ -661,16 +671,8 @@ void Plate::prepare()
   );
 
   this->setPosition3D(Vec3(x + (this->direction ? 10.0 : 0.0), y, z - (this->direction ? 0.0 : 10.0)));
-  this->runAction(action);
-
-  this->getActionManager()->addAction(Sequence::create(
-    DelayTime::create(0.6),
-    CallFunc::create([=] () {
-      this->setPosition3D(Vec3(x, y, z));
-      this->start();
-    }),
-    nullptr
-  ), this, false);
+  if(this->special) this->special->runAction(action->clone());
+  this->runAction(action->clone());
 
   for(auto decoration : this->getDecorations())
   {
@@ -680,6 +682,16 @@ void Plate::prepare()
       decoration->runAction(action->clone());
     }
   }
+
+  this->runAction(
+    Sequence::create(
+      DelayTime::create(0.6),
+      CallFunc::create([=] () {
+      this->start();
+      }),
+      nullptr
+    )
+  );
 }
 
 void Plate::remove(bool complete)
@@ -701,15 +713,25 @@ void Plate::remove(bool complete)
     )
   );
 
+  if(this->special)
+  {
+    this->special->runAction(
+      Spawn::create(
+        Sequence::create(
+          EaseSineIn::create(
+            MoveBy::create(0.2, Vec3(this->direction ? -10 : 0, 0, this->direction ? 0 : 10))
+          ),
+          nullptr
+        ),
+        nullptr
+      )
+    );
+  }
+
   for(auto decoration : this->getDecorations())
   {
     if(decoration->getParent() == Application->environment->plane)
     {
-      /*if(decoration->shadow)
-      {
-        decoration->shadow->_destroy();
-      }*/
-
       decoration->runAction(
         Spawn::create(
           Sequence::create(
@@ -735,6 +757,11 @@ void Plate::start()
   if(this->special)
   {
     this->special->start();
+  }
+
+  for(auto decoration : this->getDecorations())
+  {
+    decoration->start();
   }
 }
 
@@ -1041,29 +1068,9 @@ void Plate::setPosition3D(Vec3 position)
    *
    *
    */
-  if(this->special)
+  if(this->special && this->special->numberOfRunningActions() == 0)
   {
     this->special->setPosition3D(position);
-  }
-}
-
-/**
- *
- *
- *
- */
-Action* Plate::runAction(Action* action)
-{
-  Cube::runAction(action);
-
-  /**
-   *
-   *
-   *
-   */
-  if(this->special)
-  {
-    this->special->runAction(action->clone());
   }
 }
 

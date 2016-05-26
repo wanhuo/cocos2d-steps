@@ -54,14 +54,16 @@ EnvironmentMissionsFinishDaily::EnvironmentMissionsFinishDaily()
   this->text->setPosition(this->background->getContentSize().width / 2, this->background->getContentSize().height / 2);
 
   this->texts.text3 = new Text("missions-daily-3", this);
-  this->texts.text3->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 100);
+  this->texts.text3->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 80);
 
   this->texts.text4 = new Text("missions-daily-4", this);
-  this->texts.text4->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 220);
+  this->texts.text4->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 150);
 
   this->letters = new Letters(this, true);
   this->letters->setPosition3D(Vec3(this->getContentSize().width / 2, this->getContentSize().height / 2 - 30.0, 0.0));
   this->letters->setScale(1.0 / 0.015);
+
+  this->_create();
 }
 
 EnvironmentMissionsFinishDaily::~EnvironmentMissionsFinishDaily()
@@ -222,9 +224,6 @@ void EnvironmentMissionsFinishDaily::onExit()
  */
 void EnvironmentMissionsFinishDaily::update(float time)
 {
-  Application->environment->missions.controller->popups.daily->update(time);
-
-  
   if(!Application->environment->missions.controller->popups.daily->task.active)
   {
     int t = Application->environment->missions.controller->popups.daily->task.time - Times::now();
@@ -242,6 +241,8 @@ void EnvironmentMissionsFinishDaily::update(float time)
     if(t <= 0)
     {
       Application->environment->missions.controller->popups.daily->reset();
+      this->onEnter();
     }
   }
+  Application->environment->missions.controller->popups.daily->update(time);
 }

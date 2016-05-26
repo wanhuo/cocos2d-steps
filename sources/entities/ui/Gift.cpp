@@ -155,11 +155,11 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
     case Game::MISSION_COMPLETE:
     if(Application->counter->values.b.special)
     {
-      count = 1;
+      count = 99;
     }
     else if(Application->counter->values.b.daily)
     {
-      count = 1;
+      count = 99;
     }
     else
     {

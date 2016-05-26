@@ -194,6 +194,8 @@ void EnvironmentMissionsPopup::updateData(int index)
 EnvironmentMissionsPopup::MissionTask::MissionTask(Node* parent)
 : Entity("missions-background.png", parent)
 {
+  this->setCascadeOpacityEnabled(true);
+
   this->text = new Text("missions-data", this, true);
   this->text->setPosition(this->getWidth() / 2, 20);
 

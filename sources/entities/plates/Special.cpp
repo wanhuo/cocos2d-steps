@@ -100,6 +100,10 @@ void Special::setPlate(Plate* plate)
  */
 void Special::start()
 {
+  for(auto decoration : this->getDecorations())
+  {
+    decoration->start();
+  }
 }
 
 /**

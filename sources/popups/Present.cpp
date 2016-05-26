@@ -117,3 +117,27 @@ void Present::onHide(Callback callback)
    */
   this->element->_destroy();
 }
+
+/**
+ *
+ *
+ *
+ */
+void Present::show()
+{
+  Popup::show();
+}
+
+void Present::hide(Callback callback)
+{
+    this->missions->_destroy();
+  this->runAction(
+    Sequence::create(
+      FadeOut::create(0.2),
+      CallFunc::create([=] () {
+        Popup::hide(callback);
+      }),
+      nullptr
+    )
+  );
+}

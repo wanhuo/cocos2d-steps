@@ -44,13 +44,14 @@ EnvironmentMissionsFinish::EnvironmentMissionsFinish(Node* parent)
   this->setContentSize(Size(Application->getWidth(), 210));
   this->setScale(0.015);
 
-  this->plane = cocos2d::ui::ListView::create();
-  this->plane->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
+  this->plane = PageView::create();
+  this->plane->setDirection(ScrollView::Direction::HORIZONTAL);
   this->plane->setBounceEnabled(true);
+  this->plane->setCascadeOpacityEnabled(true);
   this->plane->setScrollBarEnabled(false);
   this->plane->setContentSize(Size(Application->getWidth(), 300));
-  this->plane->setPosition(Vec2(0, -45));
-  this->plane->setMagneticType(cocos2d::ui::ListView::MagneticType::CENTER);
+  this->plane->setPosition(Vec2(0, -5));
+  this->plane->setMagneticType(ListView::MagneticType::CENTER);
 
   this->addChild(this->plane);
 
@@ -94,31 +95,50 @@ void EnvironmentMissionsFinish::onCreate()
   this->setOpacity(255);
   this->setCameraMask(32);
 
-  if(MissionsFactory::getInstance()->getCurrentMission() && !Application->counter->values.b.special && !Application->counter->values.b.daily)
+  this->plane->stopAllActions();
+  this->plane->getInnerContainer()->stopAllActions();
+  this->plane->stopAutoScroll();
+
+  if(MissionsFactory::getInstance()->getCurrentMission() && !Application->counter->values.b.mission && !Application->counter->values.b.special && !Application->counter->values.b.daily)
   {
     this->plane->setTouchEnabled(true);
     this->plane->runAction(
       Sequence::create(
         DelayTime::create(2.0),
         CallFunc::create([=] () {
-        this->plane->scrollToItem(1, Vec2(0, 0), Vec2(0, 0));
+        this->plane->scrollToItem(1);
         }),
         nullptr
       )
     );
   }
 
-  if(Finish::getInstance()->missions->notificationKetchapp || Application->counter->values.b.special)
+  if(Application->counter->values.b.special)
   {
     this->plane->getInnerContainer()->setPosition(Vec2(-Application->getWidth() * ((MissionsFactory::getInstance()->getCurrentMission() || Application->counter->values.b.mission) ? 2 : 1), 0));
   }
-  else if(Finish::getInstance()->missions->notificationDaily || Application->counter->values.b.daily)
+  else if(Application->counter->values.b.daily)
   {
     this->plane->getInnerContainer()->setPosition(Vec2(0, 0));
   }
-  else
+  else if(Application->counter->values.b.mission)
   {
     this->plane->getInnerContainer()->setPosition(Vec2(-Application->getWidth() * ((MissionsFactory::getInstance()->getCurrentMission() || Application->counter->values.b.mission) ? 1 : 0), 0));
+  }
+  else
+  {
+    if(Finish::getInstance()->missions->notificationKetchapp)
+    {
+      this->plane->getInnerContainer()->setPosition(Vec2(-Application->getWidth() * ((MissionsFactory::getInstance()->getCurrentMission() || Application->counter->values.b.mission) ? 2 : 1), 0));
+    }
+    else if(Finish::getInstance()->missions->notificationDaily)
+    {
+      this->plane->getInnerContainer()->setPosition(Vec2(0, 0));
+    }
+    else
+    {
+      this->plane->getInnerContainer()->setPosition(Vec2(-Application->getWidth() * ((MissionsFactory::getInstance()->getCurrentMission() || Application->counter->values.b.mission) ? 1 : 0), 0));
+    }
   }
 
   Finish::getInstance()->missions->notificationKetchapp = false;

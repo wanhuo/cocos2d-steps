@@ -62,12 +62,12 @@ void Ground::reset()
 
   if(!Application->environment->generator->bonus)
   {
-    this->size = Vec2(50.0, 50.0);
+    this->size = Vec2(60.0, 60.0);
     this->texture->setScale(0.75);
   }
   else
   {
-    this->size = Vec2(50.0 * 16, 50.0 * 16);
+    this->size = Vec2(60.0 * 16, 60.0 * 16);
     this->texture->setScale(0.75 / 16.0);
   }
 

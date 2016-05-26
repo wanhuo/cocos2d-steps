@@ -1,51 +1,1632 @@
+
 {
-	"missions": [
-		{
-			"type": 1,
-			"index": 1,
-			"coins" : 10,
-			"complete": [
-				{"special_once_14": 1, "preview": "missions-14.png"}
-			]
-		},
-		{
-			"type": 2,
-			"index": 2,
-			"coins" : 10,
-			"complete": [
-				{"special_progress_14": 1, "preview": "missions-14.png"},
-				{"special_progress_15": 5, "preview": "missions-15.png"},
-				{"special_progress_5": 5, "preview": "missions-5.png"}
-			]
-		},
-		{
-			"type": 2,
-			"index": 3,
-			"coins" : 10,
-			"complete": [
-				{"coins": 10, "preview": "missions-coins.png"},
-				{"special_progress_10": 5, "preview": "missions-10.png"},
-				{"special_progress_11": 1, "preview": "missions-11.png"}
-			]
-		},
-		{
-			"type": 2,
-			"index": 4,
-			"coins" : 10,
-			"complete": [
-				{"special_progress_3": 1, "preview": "missions-3.png"},
-				{"special_progress_4": 1, "preview": "missions-4.png"},
-				{"special_progress_7": 10, "preview": "missions-7.png"}
-			]
-		},
-		{
-			"type": 2,
-			"index": 5,
-			"coins" : 10,
-			"complete": [
-				{"special_progress__2": 3, "preview": "missions-2.png"},
-				{"special_progress__12": 7, "preview": "missions-12.png"}
-			]
-		}
-	]
+    "missions": [
+        {
+            "type": 1,
+            "index": 1,
+            "coins": 10,
+            "complete": [
+                {
+                    "special_once_14": 1,
+                    "preview": "missions-14.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 2,
+            "coins": 10,
+            "complete": [
+                {
+                    "special_progress_14": 1,
+                    "preview": "missions-14.png"
+                },
+                {
+                    "special_progress_15": 5,
+                    "preview": "missions-15.png"
+                },
+                {
+                    "special_progress_5": 5,
+                    "preview": "missions-5.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 3,
+            "coins": 10,
+            "complete": [
+                {
+                    "coins": 10,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "special_progress_10": 5,
+                    "preview": "missions-10.png"
+                },
+                {
+                    "special_progress_11": 1,
+                    "preview": "missions-11.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 4,
+            "coins": 10,
+            "complete": [
+                {
+                    "special_progress_3": 1,
+                    "preview": "missions-3.png"
+                },
+                {
+                    "special_progress_4": 1,
+                    "preview": "missions-4.png"
+                },
+                {
+                    "special_progress_7": 10,
+                    "preview": "missions-7.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 5,
+            "coins": 10,
+            "complete": [
+                {
+                    "special_progress_2": 3,
+                    "preview": "missions-2.png"
+                },
+                {
+                    "special_progress_12": 7,
+                    "preview": "missions-12.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 6,
+            "coins": 10,
+            "complete": [
+                {
+                    "coins": 50,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "gifts": 1,
+                    "preview": "missions-gifts.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 7,
+            "coins": 15,
+            "complete": [
+                {
+                    "special_once_2": 5,
+                    "preview": "missions-2.png"
+                },
+                {
+                    "points": 15,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "special_once_9": 15,
+                    "preview": "missions-9.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 8,
+            "coins": 20,
+            "complete": [
+                {
+                    "coins": 15,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "games": 15,
+                    "preview": "missions-games.png"
+                },
+                {
+                    "points": 115,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 9,
+            "coins": 25,
+            "complete": [
+                {
+                    "games": 45,
+                    "preview": "missions-games.png"
+                },
+                {
+                    "coins": 10,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "gifts": 2,
+                    "preview": "missions-gifts.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 10,
+            "coins": 30,
+            "complete": [
+                {
+                    "games": 15,
+                    "preview": "missions-games.png"
+                },
+                {
+                    "points": 225,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "coins": 60,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 11,
+            "coins": 35,
+            "complete": [
+                {
+                    "coins": 45,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 12,
+            "coins": 40,
+            "complete": [
+                {
+                    "games": 15,
+                    "preview": "missions-games.png"
+                },
+                {
+                    "gifts": 5,
+                    "preview": "missions-gifts.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 13,
+            "coins": 45,
+            "complete": [
+                {
+                    "coins": 75,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 14,
+            "coins": 50,
+            "complete": [
+                {
+                    "special_once_10": 10,
+                    "preview": "missions-10.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 15,
+            "coins": 55,
+            "complete": [
+                {
+                    "coins": 80,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "games": 15,
+                    "preview": "missions-games.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 16,
+            "coins": 60,
+            "complete": [
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                },
+                {
+                    "points": 130,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "coins": 50,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 17,
+            "coins": 65,
+            "complete": [
+                {
+                    "coins": 70,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "gifts": 4,
+                    "preview": "missions-gifts.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 18,
+            "coins": 70,
+            "complete": [
+                {
+                    "points": 65,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "games": 20,
+                    "preview": "missions-games.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 19,
+            "coins": 75,
+            "complete": [
+                {
+                    "special_once_2": 10,
+                    "preview": "missions-2.png"
+                },
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                },
+                {
+                    "points": 125,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 20,
+            "coins": 80,
+            "complete": [
+                {
+                    "coins": 65,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 21,
+            "coins": 85,
+            "complete": [
+                {
+                    "gifts": 2,
+                    "preview": "missions-gifts.png"
+                },
+                {
+                    "games": 5,
+                    "preview": "missions-games.png"
+                },
+                {
+                    "coins": 90,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 22,
+            "coins": 90,
+            "complete": [
+                {
+                    "games": 40,
+                    "preview": "missions-games.png"
+                },
+                {
+                    "points": 45,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 23,
+            "coins": 95,
+            "complete": [
+                {
+                    "special_once_9": 20,
+                    "preview": "missions-9.png"
+                },
+                {
+                    "points": 110,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 24,
+            "coins": 100,
+            "complete": [
+                {
+                    "special_once_2": 5,
+                    "preview": "missions-2.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 25,
+            "coins": 105,
+            "complete": [
+                {
+                    "special_once_9": 5,
+                    "preview": "missions-9.png"
+                },
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                },
+                {
+                    "coins": 35,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 26,
+            "coins": 110,
+            "complete": [
+                {
+                    "games": 25,
+                    "preview": "missions-games.png"
+                },
+                {
+                    "points": 120,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 27,
+            "coins": 115,
+            "complete": [
+                {
+                    "points": 240,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "coins": 60,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "gifts": 4,
+                    "preview": "missions-gifts.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 28,
+            "coins": 120,
+            "complete": [
+                {
+                    "special_once_4": 5,
+                    "preview": "missions-4.png"
+                },
+                {
+                    "points": 60,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 29,
+            "coins": 125,
+            "complete": [
+                {
+                    "coins": 55,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 30,
+            "coins": 130,
+            "complete": [
+                {
+                    "gifts": 1,
+                    "preview": "missions-gifts.png"
+                },
+                {
+                    "coins": 45,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 31,
+            "coins": 135,
+            "complete": [
+                {
+                    "coins": 60,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 32,
+            "coins": 140,
+            "complete": [
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 33,
+            "coins": 145,
+            "complete": [
+                {
+                    "coins": 80,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "points": 225,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "gifts": 5,
+                    "preview": "missions-gifts.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 34,
+            "coins": 150,
+            "complete": [
+                {
+                    "special_once_1": 15,
+                    "preview": "missions-1.png"
+                },
+                {
+                    "special_once_5": 10,
+                    "preview": "missions-5.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 35,
+            "coins": 155,
+            "complete": [
+                {
+                    "coins": 35,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "points": 110,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "games": 15,
+                    "preview": "missions-games.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 36,
+            "coins": 160,
+            "complete": [
+                {
+                    "coins": 70,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 37,
+            "coins": 165,
+            "complete": [
+                {
+                    "points": 210,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "games": 40,
+                    "preview": "missions-games.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 38,
+            "coins": 170,
+            "complete": [
+                {
+                    "games": 50,
+                    "preview": "missions-games.png"
+                },
+                {
+                    "gifts": 2,
+                    "preview": "missions-gifts.png"
+                },
+                {
+                    "points": 175,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 39,
+            "coins": 175,
+            "complete": [
+                {
+                    "games": 10,
+                    "preview": "missions-games.png"
+                },
+                {
+                    "coins": 45,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 40,
+            "coins": 180,
+            "complete": [
+                {
+                    "coins": 90,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "special_once_9": 10,
+                    "preview": "missions-9.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 41,
+            "coins": 185,
+            "complete": [
+                {
+                    "coins": 10,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 42,
+            "coins": 190,
+            "complete": [
+                {
+                    "coins": 95,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "special_once_2": 10,
+                    "preview": "missions-2.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 43,
+            "coins": 195,
+            "complete": [
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                },
+                {
+                    "points": 180,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "special_once_1": 5,
+                    "preview": "missions-1.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 44,
+            "coins": 200,
+            "complete": [
+                {
+                    "coins": 65,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "points": 220,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "special_once_4": 5,
+                    "preview": "missions-4.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 45,
+            "coins": 205,
+            "complete": [
+                {
+                    "games": 25,
+                    "preview": "missions-games.png"
+                },
+                {
+                    "gifts": 5,
+                    "preview": "missions-gifts.png"
+                },
+                {
+                    "coins": 40,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 46,
+            "coins": 210,
+            "complete": [
+                {
+                    "points": 125,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "coins": 65,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "games": 30,
+                    "preview": "missions-games.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 47,
+            "coins": 215,
+            "complete": [
+                {
+                    "games": 10,
+                    "preview": "missions-games.png"
+                },
+                {
+                    "points": 145,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 48,
+            "coins": 220,
+            "complete": [
+                {
+                    "coins": 60,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "games": 15,
+                    "preview": "missions-games.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 49,
+            "coins": 225,
+            "complete": [
+                {
+                    "points": 25,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "coins": 25,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "games": 40,
+                    "preview": "missions-games.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 50,
+            "coins": 230,
+            "complete": [
+                {
+                    "points": 235,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "special_once_3": 15,
+                    "preview": "missions-3.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 51,
+            "coins": 235,
+            "complete": [
+                {
+                    "coins": 65,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 52,
+            "coins": 240,
+            "complete": [
+                {
+                    "games": 20,
+                    "preview": "missions-games.png"
+                },
+                {
+                    "coins": 85,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "points": 125,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 53,
+            "coins": 245,
+            "complete": [
+                {
+                    "coins": 20,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 54,
+            "coins": 250,
+            "complete": [
+                {
+                    "coins": 25,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "gifts": 1,
+                    "preview": "missions-gifts.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 55,
+            "coins": 255,
+            "complete": [
+                {
+                    "special_once_6": 15,
+                    "preview": "missions-6.png"
+                },
+                {
+                    "coins": 90,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 56,
+            "coins": 260,
+            "complete": [
+                {
+                    "points": 75,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 57,
+            "coins": 265,
+            "complete": [
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 58,
+            "coins": 270,
+            "complete": [
+                {
+                    "gifts": 4,
+                    "preview": "missions-gifts.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 59,
+            "coins": 275,
+            "complete": [
+                {
+                    "coins": 15,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "gifts": 2,
+                    "preview": "missions-gifts.png"
+                },
+                {
+                    "games": 10,
+                    "preview": "missions-games.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 60,
+            "coins": 280,
+            "complete": [
+                {
+                    "points": 100,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 61,
+            "coins": 285,
+            "complete": [
+                {
+                    "games": 5,
+                    "preview": "missions-games.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 62,
+            "coins": 290,
+            "complete": [
+                {
+                    "special_once_13": 20,
+                    "preview": "missions-13.png"
+                },
+                {
+                    "coins": 40,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "special_once_3": 10,
+                    "preview": "missions-3.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 63,
+            "coins": 295,
+            "complete": [
+                {
+                    "special_once_3": 20,
+                    "preview": "missions-3.png"
+                },
+                {
+                    "special_once_2": 5,
+                    "preview": "missions-2.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 64,
+            "coins": 300,
+            "complete": [
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                },
+                {
+                    "points": 20,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "special_once_2": 20,
+                    "preview": "missions-2.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 65,
+            "coins": 305,
+            "complete": [
+                {
+                    "coins": 100,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 66,
+            "coins": 310,
+            "complete": [
+                {
+                    "coins": 10,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 67,
+            "coins": 315,
+            "complete": [
+                {
+                    "games": 45,
+                    "preview": "missions-games.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 68,
+            "coins": 320,
+            "complete": [
+                {
+                    "special_once_11": 5,
+                    "preview": "missions-11.png"
+                },
+                {
+                    "points": 180,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 69,
+            "coins": 325,
+            "complete": [
+                {
+                    "special_once_13": 10,
+                    "preview": "missions-13.png"
+                },
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 70,
+            "coins": 330,
+            "complete": [
+                {
+                    "special_once_11": 5,
+                    "preview": "missions-11.png"
+                },
+                {
+                    "coins": 5,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "special_once_1": 10,
+                    "preview": "missions-1.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 71,
+            "coins": 335,
+            "complete": [
+                {
+                    "special_once_4": 10,
+                    "preview": "missions-4.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 72,
+            "coins": 340,
+            "complete": [
+                {
+                    "points": 10,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 73,
+            "coins": 345,
+            "complete": [
+                {
+                    "points": 155,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                },
+                {
+                    "special_once_7": 15,
+                    "preview": "missions-7.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 74,
+            "coins": 350,
+            "complete": [
+                {
+                    "special_once_9": 10,
+                    "preview": "missions-9.png"
+                },
+                {
+                    "coins": 65,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "special_once_1": 10,
+                    "preview": "missions-1.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 75,
+            "coins": 355,
+            "complete": [
+                {
+                    "points": 75,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "gifts": 5,
+                    "preview": "missions-gifts.png"
+                },
+                {
+                    "games": 40,
+                    "preview": "missions-games.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 76,
+            "coins": 360,
+            "complete": [
+                {
+                    "coins": 70,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "points": 205,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "special_once_13": 10,
+                    "preview": "missions-13.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 77,
+            "coins": 365,
+            "complete": [
+                {
+                    "gifts": 4,
+                    "preview": "missions-gifts.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 78,
+            "coins": 370,
+            "complete": [
+                {
+                    "gifts": 2,
+                    "preview": "missions-gifts.png"
+                },
+                {
+                    "points": 145,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "coins": 45,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 79,
+            "coins": 375,
+            "complete": [
+                {
+                    "coins": 50,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "gifts": 4,
+                    "preview": "missions-gifts.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 80,
+            "coins": 380,
+            "complete": [
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                },
+                {
+                    "special_once_6": 15,
+                    "preview": "missions-6.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 81,
+            "coins": 385,
+            "complete": [
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                },
+                {
+                    "coins": 80,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "special_once_13": 10,
+                    "preview": "missions-13.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 82,
+            "coins": 390,
+            "complete": [
+                {
+                    "special_once_7": 20,
+                    "preview": "missions-7.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 83,
+            "coins": 395,
+            "complete": [
+                {
+                    "gifts": 1,
+                    "preview": "missions-gifts.png"
+                },
+                {
+                    "coins": 15,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "points": 245,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 84,
+            "coins": 400,
+            "complete": [
+                {
+                    "points": 210,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "coins": 20,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "games": 50,
+                    "preview": "missions-games.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 85,
+            "coins": 405,
+            "complete": [
+                {
+                    "coins": 5,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "games": 5,
+                    "preview": "missions-games.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 86,
+            "coins": 410,
+            "complete": [
+                {
+                    "special_once_4": 10,
+                    "preview": "missions-4.png"
+                },
+                {
+                    "special_once_11": 10,
+                    "preview": "missions-11.png"
+                },
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 87,
+            "coins": 415,
+            "complete": [
+                {
+                    "points": 100,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "gifts": 1,
+                    "preview": "missions-gifts.png"
+                },
+                {
+                    "coins": 15,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 88,
+            "coins": 420,
+            "complete": [
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                },
+                {
+                    "points": 135,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 89,
+            "coins": 425,
+            "complete": [
+                {
+                    "special_once_2": 20,
+                    "preview": "missions-2.png"
+                },
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 90,
+            "coins": 430,
+            "complete": [
+                {
+                    "coins": 25,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                },
+                {
+                    "special_once_7": 10,
+                    "preview": "missions-7.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 91,
+            "coins": 435,
+            "complete": [
+                {
+                    "special_once_12": 15,
+                    "preview": "missions-12.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 92,
+            "coins": 440,
+            "complete": [
+                {
+                    "coins": 65,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 93,
+            "coins": 445,
+            "complete": [
+                {
+                    "points": 220,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "special_once_10": 5,
+                    "preview": "missions-10.png"
+                },
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 94,
+            "coins": 450,
+            "complete": [
+                {
+                    "coins": 25,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 95,
+            "coins": 455,
+            "complete": [
+                {
+                    "coins": 20,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "points": 250,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "special_once_4": 5,
+                    "preview": "missions-4.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 96,
+            "coins": 460,
+            "complete": [
+                {
+                    "special_once_10": 10,
+                    "preview": "missions-10.png"
+                },
+                {
+                    "points": 205,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 97,
+            "coins": 465,
+            "complete": [
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 98,
+            "coins": 470,
+            "complete": [
+                {
+                    "special_once_10": 15,
+                    "preview": "missions-10.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 99,
+            "coins": 475,
+            "complete": [
+                {
+                    "best": 1,
+                    "preview": "missions-best.png"
+                },
+                {
+                    "special_once_3": 20,
+                    "preview": "missions-3.png"
+                },
+                {
+                    "coins": 100,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 100,
+            "coins": 480,
+            "complete": [
+                {
+                    "games": 30,
+                    "preview": "missions-games.png"
+                },
+                {
+                    "points": 65,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "coins": 40,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 101,
+            "coins": 485,
+            "complete": [
+                {
+                    "coins": 100,
+                    "preview": "missions-coins.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 102,
+            "coins": 490,
+            "complete": [
+                {
+                    "points": 155,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "index": 103,
+            "coins": 495,
+            "complete": [
+                {
+                    "coins": 40,
+                    "preview": "missions-coins.png"
+                },
+                {
+                    "special_once_5": 15,
+                    "preview": "missions-5.png"
+                },
+                {
+                    "special_once_9": 20,
+                    "preview": "missions-9.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 104,
+            "coins": 500,
+            "complete": [
+                {
+                    "points": 100,
+                    "preview": "missions-points.png"
+                }
+            ]
+        },
+        {
+            "type": 2,
+            "index": 105,
+            "coins": 505,
+            "complete": [
+                {
+                    "points": 215,
+                    "preview": "missions-points.png"
+                },
+                {
+                    "games": 30,
+                    "preview": "missions-games.png"
+                }
+            ]
+        }
+    ]
 }

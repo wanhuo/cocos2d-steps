@@ -127,7 +127,7 @@ void EnvironmentMissionsKetchappPopup::setVisible(bool visible)
       if(this->complete > counter++)
       {
         static_cast<Letter*>(letter)->setOpacity(255);
-        static_cast<Letter*>(letter)->setColor(Color3B(255, 0, 0));
+        static_cast<Letter*>(letter)->setColor(Color3B(255, 255, 255));
         static_cast<Letter*>(letter)->action();
         static_cast<Letter*>(letter)->none->_destroy();
       }
@@ -152,7 +152,7 @@ void EnvironmentMissionsKetchappPopup::setVisible(bool visible)
  */
 void EnvironmentMissionsKetchappPopup::update(char letter)
 {
-  Storage::set("missions.letchapp.complete", ++this->complete);
+  Storage::set("missions.ketchapp.complete", ++this->complete);
 
   if(this->complete >= 8)
   {

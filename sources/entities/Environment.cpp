@@ -488,7 +488,7 @@ void Environment::updateGame(float time)
 
     if(this->platesTimeElapsed >= this->platesTime)
     {
-      this->platesTime = max(0.3, this->platesTime - 0.01);
+      this->platesTime = max(0.5, this->platesTime - 0.01);
       this->platesTimeElapsed = 0;
 
       this->generator->destroy();

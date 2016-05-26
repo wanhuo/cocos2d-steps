@@ -105,7 +105,7 @@ void TypeMoveUp::start()
             nullptr
           );
 
-          this->plate->runAction(action->clone());
+          this->runAction(action->clone());
           this->plate->moved = true;
           this->plate->blocked = true;
 
@@ -133,8 +133,8 @@ void TypeMoveUp::start()
 
           this->plate->moved = true;
 
-          this->plate->runAction(action->clone());
-          this->plate->runAction(
+          this->runAction(action->clone());
+          this->runAction(
             Sequence::create(
               DelayTime::create(0.15),
               CallFunc::create([=] () {

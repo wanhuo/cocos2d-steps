@@ -58,7 +58,37 @@ void Door::onCreate()
    *
    */
   this->engine->_create()->setPosition3D(Vec3(0.0, 1.15, 1.05));
+}
 
+void Door::onDestroy(bool action)
+{
+  Decoration::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  this->engine->_destroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Door::setPlate(Plate* plate)
+{
+  Decoration::setPlate(plate);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Door::start()
+{
   this->engine->runAction(
     RepeatForever::create(
       Sequence::create(
@@ -90,28 +120,6 @@ void Door::onCreate()
       )
     )
   );
-}
-
-void Door::onDestroy(bool action)
-{
-  Decoration::onDestroy(action);
-
-  /**
-   *
-   *
-   *
-   */
-  this->engine->_destroy(action);
-}
-
-/**
- *
- *
- *
- */
-void Door::setPlate(Plate* plate)
-{
-  Decoration::setPlate(plate);
 }
 
 /**

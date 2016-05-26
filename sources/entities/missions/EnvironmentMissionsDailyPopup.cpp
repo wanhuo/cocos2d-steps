@@ -142,7 +142,7 @@ string EnvironmentMissionsDailyPopup::getTask()
 void EnvironmentMissionsDailyPopup::reset()
 {
   string time = Storage::get("missions.daily.time", true);
-  this->task.time = time.length() > 0 ? stol(time.c_str()) : 0;
+  this->task.time = time.length() > 0 ? stoll(time.c_str()) : 0;
   this->task.active = this->task.time < Times::now();
   this->task.word = Storage::get("missions.daily.word", true);
   this->task.collected = Storage::get("missions.daily.collected", true);
@@ -153,6 +153,9 @@ void EnvironmentMissionsDailyPopup::reset()
 
     this->task.word = this->task.words.at(random(0, (int) this->task.words.size() - 1));
     this->task.collected = "";
+
+    Storage::set("missions.daily.word", this->task.word);
+    Storage::set("missions.daily.collected", this->task.collected);
   }
 
   this->setVisible(false);
@@ -175,9 +178,9 @@ void EnvironmentMissionsDailyPopup::setVisible(bool visible)
    */
   if(visible)
   {
-    if(this->task.active)
+    if(this->task.active && Application->environment->missions.controller)
     {
-      Application->environment->letters->create(this->task.word);
+      if(Application->environment->missions.controller->isVisible()) Application->environment->letters->create(this->task.word);
       
       this->texts.text1->_create();
       this->texts.text2->_create();
@@ -252,7 +255,7 @@ void EnvironmentMissionsDailyPopup::update(char letter)
     Application->environment->missions.controller->notify->notify(EnvironmentMissionsNotify::DAILY);
 
     this->task.active = false;
-    this->task.time = Times::now() + Times::minute();// * 60 * 24;
+    this->task.time = Times::now() + Times::minute() * 5;// * 60 * 24;
 
     Storage::set("missions.daily.time", to_string(this->task.time));
     Storage::set("missions.daily.reset", 0);

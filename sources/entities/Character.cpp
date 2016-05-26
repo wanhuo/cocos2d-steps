@@ -992,11 +992,11 @@ void Character::onFinish()
 
           if(Application->environment->generator->bonus)
           {
-            Music->play("music-3", true);
+            Music->speed(1.3);
           }
           else
           {
-            Music->play("music-2", true);
+            Music->speed(1.0);
           }
         }),
         nullptr

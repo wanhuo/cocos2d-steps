@@ -153,10 +153,10 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
   switch(next.type)
   {
     case 1:
-    element = Application->environment->store.characters.elements.at(next.index - 1);
+    element = Application->environment->store.characters.elements.at(next.index + 0);
     break;
     case 2:
-    element = Application->environment->store.textures.elements.at(next.index - 1);
+    element = Application->environment->store.textures.elements.at(next.index + 0);
     break;
   }
 
@@ -165,21 +165,21 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
   switch(next.type)
   {
     case 1:
-    this->element = new Entity3D("character-" + patch::to_string(next.index) + ".obj", this, true);
+    this->element = new Entity3D("character-" + patch::to_string(next.index + 1) + ".obj", this, true);
     this->element->setTexture(Application->environment->getTextureState1());
     this->element->setColor(Color3B(0.0, 207.0, 255.0));
     this->element->setScale(0.45);
     this->element->setPosition3D(Vec3(0.0, 0.5, 0.0));
 
-    Application->environment->nextCharacter = next.index;
+    Application->environment->nextCharacter = next.index + 1;
     break;
     case 2:
     this->element = new Entity3D("plate.obj", this, true);
-    this->element->setTexture("textures/" + to_string(next.index) + "/textures-state-1.png");
+    this->element->setTexture("textures/" + to_string(next.index + 1) + "/textures-state-1.png");
     this->element->setScale(0.25);
     this->element->setPosition3D(Vec3(0.0, 0.5, 0.0));
 
-    Application->environment->nextTexture = next.index;
+    Application->environment->nextTexture = next.index + 1;
     break;
   }
 

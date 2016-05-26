@@ -47,7 +47,7 @@ class EnvironmentMissionsDailyPopup : public BackgroundColor
   private:
   struct Task {
     bool active;
-    long time;
+    long long time;
     string word;
     string collected;
 

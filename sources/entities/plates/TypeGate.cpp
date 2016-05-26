@@ -86,41 +86,55 @@ void TypeGate::setPlate(Plate* plate)
   decoration1->setRotation3D(Vec3(0, 0, 0));
   decoration2->setRotation3D(Vec3(0, 180, 0));
 
-  decoration1->runAction(
-    RepeatForever::create(
-      Sequence::create(
-        EaseBounceOut::create(
-          MoveBy::create(0.5, Vec3(0, 0, -0.75))
-        ),
-        DelayTime::create(0.5),
-        EaseBounceOut::create(
-          MoveBy::create(0.5, Vec3(0, 0, 0.75))
-        ),
-        DelayTime::create(0.5),
-        nullptr
-      )
-    )
-  );
-
-  decoration2->runAction(
-    RepeatForever::create(
-      Sequence::create(
-        EaseBounceOut::create(
-          MoveBy::create(0.5, Vec3(0, 0, 0.75))
-        ),
-        DelayTime::create(0.5),
-        EaseBounceOut::create(
-          MoveBy::create(0.5, Vec3(0, 0, -0.75))
-        ),
-        DelayTime::create(0.5),
-        nullptr
-      )
-    )
-  );
-
-
   this->getDecorations().push_back(decoration1);
   this->getDecorations().push_back(decoration2);
+}
+
+/**
+ *
+ *
+ *
+ */
+void TypeGate::start()
+{
+  Special::start();
+
+  /**
+   *
+   *
+   *
+   */
+  this->decorations->element(0)->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        EaseBounceOut::create(
+          MoveBy::create(0.5, Vec3(0, 0, -0.75))
+        ),
+        DelayTime::create(0.5),
+        EaseBounceOut::create(
+          MoveBy::create(0.5, Vec3(0, 0, 0.75))
+        ),
+        DelayTime::create(0.5),
+        nullptr
+      )
+    )
+  );
+
+  this->decorations->element(1)->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        EaseBounceOut::create(
+          MoveBy::create(0.5, Vec3(0, 0, 0.75))
+        ),
+        DelayTime::create(0.5),
+        EaseBounceOut::create(
+          MoveBy::create(0.5, Vec3(0, 0, -0.75))
+        ),
+        DelayTime::create(0.5),
+        nullptr
+      )
+    )
+  );
 
   this->runAction(
     RepeatForever::create(

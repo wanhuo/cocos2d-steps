@@ -27,6 +27,7 @@
 #include "Game.h"
 
 #include "ui/UIListView.h"
+#include "ui/UIPageView.h"
 
 /**
  *

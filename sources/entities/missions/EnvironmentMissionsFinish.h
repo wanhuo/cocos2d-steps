@@ -72,7 +72,7 @@ class EnvironmentMissionsFinish : public BackgroundColor
  bool completeKetchapp = false;
  bool completeDaily = false;
 
-  ListView* plane;
+  PageView* plane;
   EnvironmentMissionsFinishGeneral* general;
 
   virtual void onCreate();

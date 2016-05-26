@@ -293,6 +293,7 @@ void Game::onGame()
 {
   this->stopAllActions();
 
+  Music->speed(1.0);
   Music->volume(1.0);
   Music->play("music-2", true);
 

@@ -423,9 +423,10 @@ void Counter::onStarUpdate()
  */
 void Counter::onCount()
 {
+  this->values.start += (Application->environment->star ? 2 : 1);
+
   if(!Application->environment->generator->bonus)
   {
-    this->values.start += (Application->environment->star ? 2 : 1);
     this->values.current += (Application->environment->star ? 2 : 1);
 
     if(Application->environment->star)
@@ -520,6 +521,16 @@ void Counter::reset(bool init)
     this->missionUpdateProgress.special_progress_3 = Storage::get("values.missions.progress.special_progress_3");
     this->missionUpdateProgress.special_progress_4 = Storage::get("values.missions.progress.special_progress_4");
     this->missionUpdateProgress.special_progress_5 = Storage::get("values.missions.progress.special_progress_5");
+    this->missionUpdateProgress.special_progress_6 = Storage::get("values.missions.progress.special_progress_6");
+    this->missionUpdateProgress.special_progress_7 = Storage::get("values.missions.progress.special_progress_7");
+    this->missionUpdateProgress.special_progress_8 = Storage::get("values.missions.progress.special_progress_8");
+    this->missionUpdateProgress.special_progress_9 = Storage::get("values.missions.progress.special_progress_9");
+    this->missionUpdateProgress.special_progress_10 = Storage::get("values.missions.progress.special_progress_10");
+    this->missionUpdateProgress.special_progress_11 = Storage::get("values.missions.progress.special_progress_11");
+    this->missionUpdateProgress.special_progress_12 = Storage::get("values.missions.progress.special_progress_12");
+    this->missionUpdateProgress.special_progress_13 = Storage::get("values.missions.progress.special_progress_13");
+    this->missionUpdateProgress.special_progress_14 = Storage::get("values.missions.progress.special_progress_14");
+    this->missionUpdateProgress.special_progress_15 = Storage::get("values.missions.progress.special_progress_15");
   }
   else
   {
@@ -551,6 +562,27 @@ void Counter::save()
 
   Storage::set("store.character.random", Application->environment->parameters.random.character);
   Storage::set("store.texture.random", Application->environment->parameters.random.texture);
+
+  Storage::set("values.missions.progress.coins",  this->missionUpdateProgress.coins);
+  Storage::set("values.missions.progress.points", this->missionUpdateProgress.points);
+  Storage::set("values.missions.progress.games", this->missionUpdateProgress.points);
+  Storage::set("values.missions.progress.gifts", this->missionUpdateProgress.points);
+
+  Storage::set("values.missions.progress.special_progress_1", this->missionUpdateProgress.special_progress_1);
+  Storage::set("values.missions.progress.special_progress_2", this->missionUpdateProgress.special_progress_2);
+  Storage::set("values.missions.progress.special_progress_3", this->missionUpdateProgress.special_progress_3);
+  Storage::set("values.missions.progress.special_progress_4", this->missionUpdateProgress.special_progress_4);
+  Storage::set("values.missions.progress.special_progress_5", this->missionUpdateProgress.special_progress_5);
+  Storage::set("values.missions.progress.special_progress_6", this->missionUpdateProgress.special_progress_6);
+  Storage::set("values.missions.progress.special_progress_7", this->missionUpdateProgress.special_progress_7);
+  Storage::set("values.missions.progress.special_progress_8", this->missionUpdateProgress.special_progress_8);
+  Storage::set("values.missions.progress.special_progress_9", this->missionUpdateProgress.special_progress_9);
+  Storage::set("values.missions.progress.special_progress_10", this->missionUpdateProgress.special_progress_10);
+  Storage::set("values.missions.progress.special_progress_11", this->missionUpdateProgress.special_progress_11);
+  Storage::set("values.missions.progress.special_progress_12", this->missionUpdateProgress.special_progress_12);
+  Storage::set("values.missions.progress.special_progress_13", this->missionUpdateProgress.special_progress_13);
+  Storage::set("values.missions.progress.special_progress_14", this->missionUpdateProgress.special_progress_14);
+  Storage::set("values.missions.progress.special_progress_15", this->missionUpdateProgress.special_progress_15);
 }
 
 /**

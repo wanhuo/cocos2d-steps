@@ -63,6 +63,8 @@ class TypeGate : public Special
 
   virtual void setPlate(Plate* plate);
 
+  virtual void start();
+
   TypeGate* deepCopy();
 };
 

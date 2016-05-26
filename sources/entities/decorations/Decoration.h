@@ -81,6 +81,8 @@ class Decoration : public Cube
 
   virtual void setPlate(Plate* plate, bool animated = true);
 
+  virtual void start();
+
   virtual Character::Crash status();
 
   virtual Decoration* deepCopy();

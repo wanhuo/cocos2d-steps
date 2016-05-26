@@ -52,7 +52,7 @@ void TypeMoved1::start()
             MoveBy::create(0.15, Vec3(0, 0, -1.5))
           );
 
-          this->plate->runAction(action->clone());
+          this->runAction(action->clone());
           this->plate->moved = true;
 
           if(Application->environment->character->plates.current == this->plate && Application->environment->character->numberOfRunningActions() < 1)
@@ -66,8 +66,8 @@ void TypeMoved1::start()
             MoveBy::create(0.15, Vec3(0, 0, 1.5))
           );
 
-          this->plate->runAction(action->clone());
-          this->plate->runAction(
+          this->runAction(action->clone());
+          this->runAction(
             Sequence::create(
               DelayTime::create(0.15),
               CallFunc::create([=] () {
@@ -89,7 +89,7 @@ void TypeMoved1::start()
             MoveBy::create(0.15, Vec3(0, 0, 1.5))
           );
 
-          this->plate->runAction(action->clone());
+          this->runAction(action->clone());
           this->plate->moved = true;
 
           if(Application->environment->character->plates.current == this->plate && Application->environment->character->numberOfRunningActions() < 1)
@@ -104,8 +104,8 @@ void TypeMoved1::start()
             MoveBy::create(0.15, Vec3(0, 0, -1.5))
           );
 
-          this->plate->runAction(action->clone());
-          this->plate->runAction(
+          this->runAction(action->clone());
+          this->runAction(
             Sequence::create(
               DelayTime::create(0.15),
               CallFunc::create([=] () {
