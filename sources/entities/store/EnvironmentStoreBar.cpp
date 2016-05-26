@@ -137,7 +137,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
   Application->environment->store.characters.plane->setContentSize(Size(21, 42));
   Application->environment->store.characters.plane->setMagneticType(cocos2d::ui::ListView::MagneticType::CENTER);
   Application->environment->store.characters.plane->ScrollView::addEventListener([this](Ref* ref, cocos2d::ui::ScrollView::EventType eventType) {
-    long index = Application->environment->store.characters.plane->getIndex(Application->environment->store.characters.plane->getCenterItemInCurrentView());
+    int index = Application->environment->store.characters.plane->getIndex(Application->environment->store.characters.plane->getCenterItemInCurrentView());
 
     /**
      *
@@ -156,7 +156,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
   Application->environment->store.textures.plane->setContentSize(Size(21, 42));
   Application->environment->store.textures.plane->setMagneticType(cocos2d::ui::ListView::MagneticType::CENTER);
   Application->environment->store.textures.plane->ScrollView::addEventListener([this](Ref* ref, cocos2d::ui::ScrollView::EventType eventType) {
-    long index = Application->environment->store.textures.plane->getIndex(Application->environment->store.textures.plane->getCenterItemInCurrentView());
+    int index = Application->environment->store.textures.plane->getIndex(Application->environment->store.textures.plane->getCenterItemInCurrentView());
 
     /**
      *

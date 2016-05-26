@@ -1477,8 +1477,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78C353371CEE7DB000F10068 /* Music in Resources */,
 				78C3533A1CEE7DB000F10068 /* config.json in Resources */,
+				78C353531CEE7DB000F10068 /* services.json in Resources */,
+				78C353371CEE7DB000F10068 /* Music in Resources */,
 				78C3533E1CEE7DB000F10068 /* Sound in Resources */,
 				78C353401CEE7DB000F10068 /* Shaders in Resources */,
 				78C353411CEE7DB000F10068 /* Json in Resources */,
@@ -1486,7 +1487,6 @@
 				7891E8AB1CF215CB005C238E /* tv.xcassets in Resources */,
 				78C3534B1CEE7DB000F10068 /* Fonts in Resources */,
 				78C3534D1CEE7DB000F10068 /* Manifests in Resources */,
-				78C353531CEE7DB000F10068 /* services.json in Resources */,
 				78C353551CEE7DB000F10068 /* Models in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
