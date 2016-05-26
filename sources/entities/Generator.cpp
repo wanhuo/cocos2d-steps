@@ -245,6 +245,8 @@ Plate* Generator::destroy(bool manual)
     default:
     switch(Application->state)
     {
+      default:
+      break;
       case Game::GAME:
       if(manual)
       {

@@ -135,7 +135,7 @@ void EnvironmentMissionsPopup::updateData(int index)
     auto counter = 0;
 
     for(int i = 0; i < 3; i++) this->missions.at(i)->_destroy();
-    for(auto condition : Application->environment->missions.controller->selectedMission->mission->complete)
+    for(int i = 0; i < Application->environment->missions.controller->selectedMission->mission->complete.size(); i++)
     {
       this->missions.at(counter)->_create();
       this->missions.at(counter)->updateData(counter);

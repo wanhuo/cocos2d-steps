@@ -60,7 +60,6 @@ void Crystal::onPickup()
     Events::updateMissions();
   }
 
-  auto current = Application->environment->character->plates.current;
   auto next = Application->environment->character->plates.current;
 
   for(int i = 0; i < 5; i++)

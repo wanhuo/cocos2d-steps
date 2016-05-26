@@ -127,6 +127,8 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
 {
   switch(this->state)
   {
+    default:
+    break;
     case MENU:
     Menu::getInstance()->hide();
 
@@ -157,6 +159,8 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
 {
   switch(this->state)
   {
+    default:
+    break;
     case LOSE:
     Finish::getInstance()->hide();
 
@@ -447,6 +451,8 @@ void Game::changeState(State state)
 
     switch(this->state)
     {
+      default:
+      break;
       case MENU:
       this->onMenu();
       break;
@@ -535,6 +541,8 @@ void Game::updateStates(float time)
 {
   switch(this->state)
   {
+    default:
+    break;
     case MENU:
     this->updateMenu(time);
     break;

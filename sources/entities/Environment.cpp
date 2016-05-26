@@ -526,6 +526,8 @@ void Environment::update(float time)
 {
   switch(Application->state)
   {
+    default:
+    break;
     case Game::MENU:
     this->updateMenu(time);
     break;

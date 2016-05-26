@@ -149,6 +149,24 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
    */
   switch(Application->state)
   {
+    case Game::NONE:
+    break;
+    case Game::MENU:
+    break;
+    case Game::GAME:
+    break;
+    case Game::STORE:
+    break;
+    case Game::MISSIONS:
+    break;
+    case Game::FINISH:
+    break;
+    case Game::LOSE:
+    break;
+    case Game::OPEN:
+    break;
+    case Game::WATCH:
+    break;
     case Game::PRESENT:
     count *= random(1, 5);
     break;
@@ -232,6 +250,8 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
         CallFunc::create([=] () {
         switch(Application->state)
         {
+          default:
+          break;
           case Game::PRESENT:
           Present::getInstance()->time = 1.0;
           Present::getInstance()->Finish::onShow();

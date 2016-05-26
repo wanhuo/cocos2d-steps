@@ -142,7 +142,7 @@ void Trampoline::onPickup()
           Application->environment->character->plates.current = element;
           Application->environment->character->onLandSuccessful(Character::NONE, element);
 
-          if(Application->environment->numberOfRunningActions() < 2)
+          if(Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment) < 2)
           {
             Application->environment->runAction(
               Shake::create(0.2, 0.2)

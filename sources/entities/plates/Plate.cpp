@@ -123,6 +123,8 @@ void Plate::onCount()
 
     switch(this->type)
     {
+      default:
+      break;
       case SPIKES:
       Application->counter->missionUpdateOnce.special_once_5++;
       Application->counter->missionUpdateProgress.special_progress_5++;
@@ -195,6 +197,8 @@ void Plate::onUncount()
   {
     switch(this->type)
     {
+      default:
+      break;
       case SPIKES:
       Application->counter->missionUpdateOnce.special_once_5--;
       Application->counter->missionUpdateProgress.special_progress_5--;
@@ -323,6 +327,8 @@ void Plate::setType(int type, bool animated, char data)
 
   switch(this->type)
   {
+    default:
+    break;
     case START:
     {
       auto decoration = static_cast<Decoration*>(Application->environment->decorations.starts->_create());
@@ -626,6 +632,8 @@ void Plate::setType(int type, bool animated, char data)
 
   switch(this->type)
   {
+    default:
+    break;
     case SAW:
     case GATE:
     if(this->getDirection())
@@ -1068,7 +1076,7 @@ void Plate::setPosition3D(Vec3 position)
    *
    *
    */
-  if(this->special && this->special->numberOfRunningActions() == 0)
+  if(this->special && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(this->special) == 0)
   {
     this->special->setPosition3D(position);
   }

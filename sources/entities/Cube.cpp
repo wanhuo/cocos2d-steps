@@ -121,7 +121,7 @@ void Cube::update(float time)
     this->shadow->setScaleX(max(this->shadow->getMinScale().x, min(this->shadow->getMaxScale().x, position.y - this->shadow->getPosition())));
     this->shadow->setScaleZ(max(this->shadow->getMinScale().z, min(this->shadow->getMaxScale().z, position.y - this->shadow->getPosition())));
 
-    if(!this->shadow->numberOfRunningActions())
+    if(!Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(this->shadow))
     {
       this->shadow->setOpacity(max(0.0f, min(30.0f, 30.0f - (position.y * this->shadow->getSize()))));
     }

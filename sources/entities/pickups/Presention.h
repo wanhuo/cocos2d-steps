@@ -73,16 +73,16 @@ class Presention : public Pickup
   Presention();
  ~Presention();
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
 
-  virtual void onPickup();
+  virtual void onPickup() override;
 
-  virtual void setPlate(Plate* plate, bool animated = true);
+  virtual void setPlate(Plate* plate, bool animated = true) override;
 
   virtual const Color3B& getColor(void) const override;
 
-  Presention* deepCopy();
+  Presention* deepCopy() override;
 };
 
 #endif

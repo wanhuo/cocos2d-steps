@@ -76,6 +76,8 @@ void Present::onShow()
    */
   switch(Application->state)
   {
+    default:
+    break;
     case Game::PRESENT:
     break;
     case Game::MISSION_COMPLETE:

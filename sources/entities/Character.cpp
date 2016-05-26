@@ -174,7 +174,7 @@ void Character::onSound()
  */
 bool Character::onTouch()
 {
-  if(this->numberOfRunningActions() < 2 && this->manual)
+  if(Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(this) < 2 && this->manual)
   {
     if(this->plates.current)
     {
@@ -186,6 +186,8 @@ bool Character::onTouch()
 
     switch(this->state)
     {
+      default:
+      break;
       case STATE_NORMAL:
       this->changeState(STATE_JUMP);
 
@@ -273,7 +275,8 @@ void Character::onTurnLeft(bool action, bool set)
 
       if(next)
       {
-        next->pauseSchedulerAndActions();
+        Director::getInstance()->getActionManager()->pauseTarget(next);
+        Director::getInstance()->getScheduler()->pauseTarget(next);
       }
 
       this->runAction(
@@ -285,7 +288,8 @@ void Character::onTurnLeft(bool action, bool set)
             CallFunc::create([=] () {
               if(next)
               {
-                next->resumeSchedulerAndActions();
+                Director::getInstance()->getActionManager()->resumeTarget(next);
+                Director::getInstance()->getScheduler()->resumeTarget(next);
               }
 
               this->changeState(STATE_NORMAL);
@@ -351,7 +355,8 @@ void Character::onTurnRight(bool action, bool set)
 
       if(next)
       {
-        next->pauseSchedulerAndActions();
+        Director::getInstance()->getActionManager()->pauseTarget(next);
+        Director::getInstance()->getScheduler()->pauseTarget(next);
       }
 
       this->runAction(
@@ -363,7 +368,8 @@ void Character::onTurnRight(bool action, bool set)
             CallFunc::create([=] () {
               if(next)
               {
-                next->resumeSchedulerAndActions();
+                Director::getInstance()->getActionManager()->resumeTarget(next);
+                Director::getInstance()->getScheduler()->resumeTarget(next);
               }
 
               this->changeState(STATE_NORMAL);
@@ -536,7 +542,7 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
 
   if(plate->behavior == Plate::DYNAMIC)
   {
-    if(plate->numberOfRunningActions() > 1)
+    if(Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(plate) > 1)
     {
       return this->onLandFail(turn, plate);
     }
@@ -605,14 +611,12 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
 
 void Character::onLandFail(Turn turn, Plate* plate)
 {
-  auto x = this->getPositionX();
-  auto y = this->getPositionY();
-  auto z = this->getPositionZ();
-
   this->changeState(STATE_FALL);
 
   switch(turn)
   {
+    default:
+    break;
     case LEFT:
     this->runAction(
       Spawn::create(
@@ -717,6 +721,8 @@ void Character::onCrash(Crash crash)
 
   switch(crash)
   {
+    default:
+    break;
     case FAIL:
     this->plane->runAction(
       Spawn::create(
@@ -805,6 +811,8 @@ void Character::onCrash(Crash crash)
 
   switch(crash)
   {
+    default:
+    break;
     case FAIL:
     case SPIKES:
     Sound->play("character-destroy-smash");
@@ -837,6 +845,8 @@ void Character::onCrash(Crash crash)
         CallFunc::create([=] () {
         switch(Application->state)
         {
+          default:
+          break;
           case Game::FINISH:
           case Game::GAME:
           Application->capture->screenshot(texture);
@@ -849,6 +859,8 @@ void Character::onCrash(Crash crash)
     });
     break;
     case COPTER:
+    break;
+    case UNDEFINED:
     break;
   }
 }
@@ -1038,7 +1050,6 @@ Plate* Character::getPlateRight(Plate* current)
   }
 
   int x = (current ? current->getPositionX() : this->plates.current->getPositionX()) / 1.5;
-  int y = (current ? current->getPositionY() : this->plates.current->getPositionY()) / 1.5;
   int z = (current ? current->getPositionZ() : this->plates.current->getPositionZ()) / 1.5;
 
   for(int i = 0; i < Application->environment->plates.normal->count; i++)
@@ -1047,7 +1058,6 @@ Plate* Character::getPlateRight(Plate* current)
     auto position = plate->getPosition3D();
 
     int px = position.x / 1.5;
-    int py = position.y / 1.5;
     int pz = position.z / 1.5;
 
     if(px == x && pz == z - 1 && !(px == x && pz == z))
@@ -1073,7 +1083,6 @@ Plate* Character::getPlateLeft(Plate* current)
   }
 
   int x = (current ? current->getPositionX() : this->plates.current->getPositionX()) / 1.5;
-  int y = (current ? current->getPositionY() : this->plates.current->getPositionY()) / 1.5;
   int z = (current ? current->getPositionZ() : this->plates.current->getPositionZ()) / 1.5;
 
   for(int i = 0; i < Application->environment->plates.normal->count; i++)
@@ -1082,7 +1091,6 @@ Plate* Character::getPlateLeft(Plate* current)
     auto position = plate->getPosition3D();
 
     int px = position.x / 1.5;
-    int py = position.y / 1.5;
     int pz = position.z / 1.5;
 
     if(px == x + 1 && pz == z && !(px == x && pz == z))
@@ -1108,7 +1116,6 @@ Plate* Character::getPlateRightWithDefaults(Plate* current)
   }
 
   int x = (current ? current->getStartPositionX() : this->plates.current->getStartPositionX()) / 1.5;
-  int y = (current ? current->getStartPositionY() : this->plates.current->getStartPositionY()) / 1.5;
   int z = (current ? current->getStartPositionZ() : this->plates.current->getStartPositionZ()) / 1.5;
 
   for(int i = 0; i < Application->environment->plates.normal->count; i++)
@@ -1117,7 +1124,6 @@ Plate* Character::getPlateRightWithDefaults(Plate* current)
     auto position = Vec3(plate->getStartPositionX(), plate->getStartPositionY(), plate->getStartPositionZ());
 
     int px = position.x / 1.5;
-    int py = position.y / 1.5;
     int pz = position.z / 1.5;
 
     if(px == x && pz == z - 1 && !(px == x && pz == z))
@@ -1143,7 +1149,6 @@ Plate* Character::getPlateLeftWithDefaults(Plate* current)
   }
 
   int x = (current ? current->getStartPositionX() : this->plates.current->getStartPositionX()) / 1.5;
-  int y = (current ? current->getStartPositionY() : this->plates.current->getStartPositionY()) / 1.5;
   int z = (current ? current->getStartPositionZ() : this->plates.current->getStartPositionZ()) / 1.5;
 
   for(int i = 0; i < Application->environment->plates.normal->count; i++)
@@ -1152,7 +1157,6 @@ Plate* Character::getPlateLeftWithDefaults(Plate* current)
     auto position = Vec3(plate->getStartPositionX(), plate->getStartPositionY(), plate->getStartPositionZ());
 
     int px = position.x / 1.5;
-    int py = position.y / 1.5;
     int pz = position.z / 1.5;
 
     if(px == x + 1 && pz == z && !(px == x && pz == z))
