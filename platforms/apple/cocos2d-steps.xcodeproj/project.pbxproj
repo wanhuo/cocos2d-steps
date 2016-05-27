@@ -631,8 +631,8 @@
 			files = (
 				7838FCEA1CF7382D00195856 /* framework.a in Frameworks */,
 				78BF8F7A1CF139E000DBBF62 /* libiconv.2.dylib in Frameworks */,
-				78E24E071CF782F8008B0821 /* StoreKit.framework in Frameworks */,
 				78BF8F791CF139DC00DBBF62 /* libz.1.dylib in Frameworks */,
+				78E24E071CF782F8008B0821 /* StoreKit.framework in Frameworks */,
 				78E24E051CF782F3008B0821 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
