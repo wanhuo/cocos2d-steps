@@ -31,17 +31,11 @@
 TypeMoveUp::TypeMoveUp()
 : Special("plate.obj")
 {
-  this->shadow = new Shadow("plate-bottom-shadow.obj");
-  this->shadow->setMinScale(Vec3(1.0, 1.0, 1.0));
-  this->shadow->setMaxScale(Vec3(1.0, 1.0, 1.0));
-
   this->plane = new Decoration(this);
   this->plane->unremovable = true;
 
   this->decoration = new Decoration("decoration-move-up.obj", this->plane);
   this->decoration->unremovable = true;
-
-  this->setScheduleUpdate(true);
 }
 
 TypeMoveUp::~TypeMoveUp()

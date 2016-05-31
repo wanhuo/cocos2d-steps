@@ -143,6 +143,11 @@ class Environment : public Background
     Lets letters;
   };
 
+  struct Particles {
+    Pool* s;
+    Pool* l;
+  };
+
   struct StoreElement {
     cocos2d::ui::ListView* plane;
     vector<EnvironmentStoreItem*> elements;
@@ -202,6 +207,7 @@ class Environment : public Background
   Decorations decorations;
   Pickups pickups;
   Plates plates;
+  Particles particles;
 
   Store store;
   Missions missions;
@@ -223,8 +229,6 @@ class Environment : public Background
 
   Entity3D* plane;
 
-  Pool* particles;
-
   Ground* ground;
 
   Background* characterActionHolder;
@@ -234,7 +238,7 @@ class Environment : public Background
   virtual void create();
   virtual void reset();
 
-  virtual Entity3D* createParticle(float x, float y, float z);
+  virtual Entity3D* createParticle(int type, float x, float y, float z);
 
   virtual string getTextureState1();
   virtual string getTextureState2();

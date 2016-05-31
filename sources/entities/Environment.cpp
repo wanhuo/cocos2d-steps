@@ -118,7 +118,7 @@ void Environment::create()
   this->decorations.starts = new Pool(new Start, this->plane);
   this->decorations.cubs = new Pool(new Cub, this->plane);
 
-  this->particles = new Pool(new Particle, this->plane);
+  this->particles.s = new Pool(new Particle, this->plane);
 
   this->character = new Character;
   this->generator = new Generator;
@@ -223,41 +223,81 @@ void Environment::reset()
  *
  *
  */
-Entity3D* Environment::createParticle(float x, float y, float z)
+Entity3D* Environment::createParticle(int type, float x, float y, float z)
 {
-  auto particle = static_cast<Entity3D*>(this->particles->_create());
+  auto particle = static_cast<Entity3D*>(this->particles.s->_create());
 
-  particle->setScaleX(random(0.5, 1.5));
-  particle->setScaleY(0.0);
-  particle->setScaleZ(random(0.5, 1.5));
+  switch(type)
+  {
+    case 0:
+    particle->setScaleX(random(0.5, 1.5));
+    particle->setScaleY(0.0);
+    particle->setScaleZ(random(0.5, 1.5));
 
-  particle->setPositionX(x);
-  particle->setPositionY(y);
-  particle->setPositionZ(z);
+    particle->setPositionX(x);
+    particle->setPositionY(y);
+    particle->setPositionZ(z);
 
-  particle->runAction(
-    Spawn::create(
-      Sequence::create(
-        EaseSineOut::create(
-          ScaleTo::create(random(0.2, 0.5), particle->getScaleX(), 1.0, particle->getScaleZ())
+    particle->runAction(
+      Spawn::create(
+        Sequence::create(
+          EaseSineOut::create(
+            ScaleTo::create(random(0.2, 0.5), particle->getScaleX(), 1.0, particle->getScaleZ())
+          ),
+          EaseSineOut::create(
+            ScaleTo::create(random(0.2, 0.5), 0.0)
+          ),
+          CallFunc::create([=] () {
+            particle->_destroy(true);
+          }),
+          nullptr
         ),
-        EaseSineOut::create(
-          ScaleTo::create(random(0.2, 0.5), 0.0)
+        Sequence::create(
+          EaseSineOut::create(
+            MoveBy::create(random(0.2, 0.5), Vec3(random(0.5, 1.2) * (probably(50) ? 1 : -1), 0.0, random(0.5, 1.2) * (probably(50) ? 1 : -1)))
+          ),
+          nullptr
         ),
-        CallFunc::create([=] () {
-          particle->_destroy(true);
-        }),
         nullptr
-      ),
-      Sequence::create(
-        EaseSineOut::create(
-          MoveBy::create(random(0.2, 0.5), Vec3(random(0.5, 1.2) * (probably(50) ? 1 : -1), 0.0, random(0.5, 1.2) * (probably(50) ? 1 : -1)))
+      )
+    );
+    break;
+    case 1:
+    auto s = random(1.0, 1.5);
+
+    particle->setScaleX(s);
+    particle->setScaleY(s);
+    particle->setScaleZ(s);
+
+    particle->setPositionX(x);
+    particle->setPositionY(y);
+    particle->setPositionZ(z);
+
+    particle->runAction(
+      Spawn::create(
+        Sequence::create(
+          EaseSineOut::create(
+            ScaleTo::create(random(0.2, 0.5), s * 1.2)
+          ),
+          EaseSineOut::create(
+            ScaleTo::create(random(1.0, 2.5), 0.0)
+          ),
+          CallFunc::create([=] () {
+            particle->_destroy(true);
+          }),
+          nullptr
+        ),
+        Sequence::create(
+          EaseSineOut::create(
+            MoveBy::create(random(0.2, 0.5), Vec3(random(0.5, 1.5) * (probably(50) ? 1 : -1), random(0.5, 1.5), random(0.5, 1.5) * (probably(50) ? 1 : -1)))
+          ),
+          nullptr
         ),
         nullptr
-      ),
-      nullptr
-    )
-  );
+      )
+    );
+    break;
+  }
 
   return particle;
 }
@@ -365,8 +405,8 @@ void Environment::onMenu()
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;
 
-  this->character->_destroy();
-  this->character->release();
+  this->character->removeFromParent();
+  //this->character->release();
   this->character = new Character;
   this->character->_create();
 
@@ -399,6 +439,11 @@ void Environment::onStore()
     Sequence::create(
       FadeIn::create(0.2),
       CallFunc::create([=] () {
+
+      Application->cameras.d->setScale(1.0);
+      Application->cameras.d->setPosition3D(Vec3(Application->startCameraX, Application->startCameraY, Application->startCameraZ));
+      Application->cameras.d->setRotation3D(Vec3(Application->startCameraRotationX, Application->startCameraRotationY, Application->startCameraRotationZ));
+
       this->store.controller->_create();
       }),
       FadeOut::create(0.2),
@@ -413,6 +458,11 @@ void Environment::onMissions()
     Sequence::create(
       FadeIn::create(0.2),
       CallFunc::create([=] () {
+
+      Application->cameras.d->setScale(1.0);
+      Application->cameras.d->setPosition3D(Vec3(Application->startCameraX, Application->startCameraY, Application->startCameraZ));
+      Application->cameras.d->setRotation3D(Vec3(Application->startCameraRotationX, Application->startCameraRotationY, Application->startCameraRotationZ));
+
       this->missions.controller->_create();
       }),
       FadeOut::create(0.2),
@@ -488,7 +538,7 @@ void Environment::updateGame(float time)
 
     if(this->platesTimeElapsed >= this->platesTime)
     {
-      this->platesTime = max(0.5, this->platesTime - 0.01);
+      this->platesTime = max(0.3 + max(0.0, (0.5 - 0.1 * this->parameters.stage)), this->platesTime - 0.01);
       this->platesTimeElapsed = 0;
 
       this->generator->destroy();

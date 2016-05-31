@@ -49,6 +49,26 @@ Saw::~Saw()
 void Saw::onCreate()
 {
   Decoration::onCreate();
+}
+
+void Saw::onDestroy(bool action)
+{
+  Decoration::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Saw::setPlate(Plate* plate)
+{
+  Decoration::setPlate(plate);
+}
+
+void Saw::start()
+{
+  Decoration::start();
 
   /**
    *
@@ -86,21 +106,6 @@ void Saw::onCreate()
       )
     )
   );
-}
-
-void Saw::onDestroy(bool action)
-{
-  Decoration::onDestroy(action);
-}
-
-/**
- *
- *
- *
- */
-void Saw::setPlate(Plate* plate)
-{
-  Decoration::setPlate(plate);
 }
 
 /**

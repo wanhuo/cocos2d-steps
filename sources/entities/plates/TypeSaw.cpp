@@ -61,6 +61,10 @@ void TypeSaw::onDestroy(bool action)
 void TypeSaw::setPlate(Plate* plate)
 {
   Special::setPlate(plate);
+}
+
+void TypeSaw::start()
+{
 
   /**
    *

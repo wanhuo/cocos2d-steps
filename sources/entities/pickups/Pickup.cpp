@@ -116,6 +116,23 @@ void Pickup::setPlate(Plate* plate, bool animated)
  *
  *
  */
+void Pickup::setVisible(bool visible)
+{
+  Decoration::setVisible(visible);
+
+  /**
+   *
+   *
+   *
+   */
+  this->window->setVisible(visible);
+}
+
+/**
+ *
+ *
+ *
+ */
 void Pickup::update(float time)
 {
   Decoration::update(time);

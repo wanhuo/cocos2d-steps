@@ -571,7 +571,7 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
 
   for(int i = 0; i < 10; i++)
   {
-    auto particle = Application->environment->createParticle(x, y - 0.5, z);
+    auto particle = Application->environment->createParticle(0, x, y - 0.5, z);
 
     particle->setColor(color);
   }
@@ -602,9 +602,12 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   }
   else
   {
-    if(this->steps >= 10)
+    if(!Application->environment->generator->bonus && this->getManual())
     {
-      //this->changeState(STATE_INSANE);
+      if(this->steps >= 40)
+      {
+        this->changeState(STATE_INSANE);
+      }
     }
   }
 }
@@ -647,22 +650,22 @@ void Character::onLandFail(Turn turn, Plate* plate)
  *
  *
  */
-void Character::onMoveLeft()
+void Character::onMoveLeft(float time)
 {
   Application->environment->plane->runAction(
-    MoveBy::create(0.1, Vec3(0, 0, 1.5))
+    MoveBy::create(time, Vec3(0, 0, 1.5))
   );
 
-  this->onEnvironmentMoveLeft();
+  this->onEnvironmentMoveLeft(time);
 }
 
-void Character::onMoveRight()
+void Character::onMoveRight(float time)
 {
   Application->environment->plane->runAction(
-    MoveBy::create(0.1, Vec3(-1.5, 0, 0))
+    MoveBy::create(time, Vec3(-1.5, 0, 0))
   );
 
-  this->onEnvironmentMoveRight();
+  this->onEnvironmentMoveRight(time);
 }
 
 /**
@@ -670,11 +673,11 @@ void Character::onMoveRight()
  *
  *
  */
-void Character::onEnvironmentMoveLeft()
+void Character::onEnvironmentMoveLeft(float time)
 {
 }
 
-void Character::onEnvironmentMoveRight()
+void Character::onEnvironmentMoveRight(float time)
 {
 }
 
@@ -877,7 +880,7 @@ void Character::onHit()
 
   for(int i = 0; i < 10 * 2; i++)
   {
-    Application->environment->createParticle(x, y, z)->setColor(this->getColor());
+    Application->environment->createParticle(0, x, y, z)->setColor(this->getColor());
   }
 
   /*this->runAction(
@@ -1032,6 +1035,267 @@ void Character::onFinish()
 
 void Character::onInsane()
 {
+  this->onInsaneStart();
+}
+
+/**
+ *
+ *
+ *
+ */
+void Character::onInsaneStart()
+{
+  auto x = Application->cameras.d->getRotation3D().x;
+  auto y = Application->cameras.d->getRotation3D().y;
+  auto z = Application->cameras.d->getRotation3D().z;
+
+  auto px = Application->cameras.d->getPosition3D().x;
+  auto py = Application->cameras.d->getPosition3D().y;
+  auto pz = Application->cameras.d->getPosition3D().z;
+
+  this->plane->stopAllActions();
+  this->plane->setScale(1.0);
+
+  Application->cameras.d->runAction(
+    Spawn::create(
+      ScaleTo::create(2.0, 0.6),
+      MoveTo::create(2.0, Vec3(px, py - 20, pz)),
+      RotateTo::create(2.0, Vec3(x + 15, y - 1.8, z)),
+      nullptr
+    )
+  );
+
+  this->setManual(false);
+
+  this->insaneDirection = this->plates.current->getDirection();
+  this->insanePlate = this->plates.current;
+  this->insaneData = 1000;
+  this->insaneCount = 5;
+  this->insaneSpeed = 0.1;
+
+  if(this->insaneDirection)
+  {
+    if(!this->getPlateLeft())
+    {
+      this->insaneDirection = !this->insaneDirection;
+    }
+  }
+  else
+  {
+    if(!this->getPlateRight())
+    {
+      this->insaneDirection = !this->insaneDirection;
+    }
+  }
+
+  if(this->insaneDirection)
+  {
+    this->onMoveLeft();
+  }
+  else
+  {
+    this->onMoveRight();
+  }
+
+  this->runAction(
+    Spawn::create(
+      MoveBy::create(0.1, Vec3(this->insaneDirection ? 0 : 1.5, -0.8, this->insaneDirection ? -1.5 : 0)),
+      RotateGlobalBy::create(0.1, Vec3(this->insaneDirection ? -90.0 : 0, 0, this->insaneDirection ? 0 : -90)),
+      nullptr
+    )
+  );
+
+ this->runAction(
+    Sequence::create(
+      DelayTime::create(0.1),
+      CallFunc::create([=] () {
+      this->onInsaneUpdate();
+      }),
+      nullptr
+    )
+  );
+
+  Music->speed(1.3);
+}
+
+void Character::onInsaneFinish()
+{
+  this->stopAllActions();
+  this->setRotation3D(Vec3(0.0, 0.0, 0.0));
+
+  this->runAction(
+    Spawn::create(
+      RotateGlobalBy::create(0.1, Vec3(this->insaneDirection ? -90.0 : 0, 0, this->insaneDirection ? 0 : -90)),
+      Sequence::create(
+        MoveBy::create(0.1, Vec3(this->insaneDirection ? 1.5 : 0.0, 0.8, this->insaneDirection ? 0 : -1.5)),
+        CallFunc::create([=] () {
+        this->plates.current = this->getPlatesNear(this->insanePlate).next();
+
+        this->changeState(STATE_NORMAL);
+        this->onLandSuccessful(NONE, this->plates.current, true);
+        }),
+        nullptr
+      ),
+      nullptr
+    )
+  );
+
+  Application->cameras.d->stopAllActions();
+  Application->cameras.d->runAction(
+    Spawn::create(
+      ScaleTo::create(0.5, 1.0),
+      MoveTo::create(0.5, Vec3(Application->startCameraX, Application->startCameraY, Application->startCameraZ)),
+      RotateTo::create(0.5, Vec3(Application->startCameraRotationX, Application->startCameraRotationY, Application->startCameraRotationZ)),
+      nullptr
+    )
+  );
+
+  this->steps = 0;
+  this->sound = 1;
+
+  this->setManual(true);
+
+  Music->speed(1.0);
+}
+
+void Character::onInsaneUpdate()
+{
+  switch(--this->insaneData)
+  {
+    case 0:
+    this->insaneCount--;
+    this->insaneDirection = !this->insaneDirection;
+    break;
+  }
+
+  if(this->insaneDirection)
+  {
+    this->onInsaneRight();
+  }
+  else
+  {
+    this->onInsaneLeft();
+  }
+
+  this->insanePlate = this->getPlatesNear(this->insanePlate).next();
+  this->insanePlate->onCount();
+
+  this->onSound();
+
+  Application->counter->onCount();
+
+  Application->environment->generator->create(true);
+
+  switch(this->insanePlate->type)
+  {
+    default:
+    break;
+    case Plate::SAW:
+    this->insanePlate->setVisibility(false);
+    break;
+  }
+
+  this->insaneSpeed = max(this->insaneSpeed - 0.001, 0.075);
+}
+
+void Character::onInsaneRight()
+{
+  this->runAction(
+    Spawn::create(
+      RotateGlobalBy::create(this->insaneSpeed, Vec3(0, 0, -90)),
+      Sequence::create(
+        CallFunc::create([=] () {
+        if(auto plate = this->getPlateLeftWithCoordinates())
+        {
+          if(plate)
+          {
+            if((this->insaneCount > 0 || plate->type == Plate::SPIKES || plate->type == Plate::TRAP || plate->type == Plate::SAW || plate->type == Plate::DOWN || plate->behavior == Plate::DYNAMIC) && plate->type != Plate::FINISH)
+            {
+              plate->setVisibility(false);
+
+              Sound->play("insane-brick-" + to_string(random(1, 3)));
+              /////
+                for(int i = 0; i < 10; i++)
+  {
+    auto particle = Application->environment->createParticle(1, plate->getPositionX(), plate->getPositionY() - 0.5, plate->getPositionZ());
+
+    particle->setColor(Color3B(252, 226, 105));
+  }
+            }
+            else
+            {
+              this->onInsaneFinish();
+            }
+          }
+        }
+        }),
+        MoveBy::create(this->insaneSpeed / 2, Vec3(0.75, 0.0, 0)),
+        MoveBy::create(this->insaneSpeed / 2, Vec3(0.75, 0.0, 0)),
+        CallFunc::create([=] () {
+        if(this->getPlateRightWithCoordinates())
+        {
+          this->insaneData = 2;
+        }
+
+        this->onInsaneUpdate();
+        }),
+        nullptr
+      ),
+      nullptr
+    )
+  );
+
+  this->onMoveRight(this->insaneSpeed);
+}
+
+void Character::onInsaneLeft()
+{
+  this->runAction(
+    Spawn::create(
+      RotateGlobalBy::create(this->insaneSpeed, Vec3(-90, 0, 0)),
+      Sequence::create(
+        CallFunc::create([=] () {
+        if(auto plate = this->getPlateRightWithCoordinates())
+        {
+          if(plate)
+          {
+            if((this->insaneCount > 0 || plate->type == Plate::SPIKES || plate->type == Plate::TRAP || plate->type == Plate::SAW || plate->type == Plate::DOWN || plate->behavior == Plate::DYNAMIC) && plate->type != Plate::FINISH)
+            {
+              plate->setVisibility(false);
+
+              Sound->play("insane-brick-" + to_string(random(1, 3)));
+              /////
+                for(int i = 0; i < 10; i++)
+  {
+    auto particle = Application->environment->createParticle(1, plate->getPositionX(), plate->getPositionY() - 0.5, plate->getPositionZ());
+
+    particle->setColor(Color3B(252, 226, 105));
+  }
+            }
+            else
+            {
+              this->onInsaneFinish();
+            }
+          }
+        }
+        }),
+        MoveBy::create(this->insaneSpeed / 2, Vec3(0.0, 0.0, -0.75)),
+        MoveBy::create(this->insaneSpeed / 2, Vec3(0.0, 0.0, -0.75)),
+        CallFunc::create([=] () {
+        if(this->getPlateLeftWithCoordinates())
+        {
+          this->insaneData = 2;
+        }
+
+        this->onInsaneUpdate();
+        }),
+        nullptr
+      ),
+      nullptr
+    )
+  );
+
+  this->onMoveLeft(this->insaneSpeed);
 }
 
 /**
@@ -1150,6 +1414,56 @@ Plate* Character::getPlateLeftWithDefaults(Plate* current)
 
   int x = (current ? current->getStartPositionX() : this->plates.current->getStartPositionX()) / 1.5;
   int z = (current ? current->getStartPositionZ() : this->plates.current->getStartPositionZ()) / 1.5;
+
+  for(int i = 0; i < Application->environment->plates.normal->count; i++)
+  {
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
+    auto position = Vec3(plate->getStartPositionX(), plate->getStartPositionY(), plate->getStartPositionZ());
+
+    int px = position.x / 1.5;
+    int pz = position.z / 1.5;
+
+    if(px == x + 1 && pz == z && !(px == x && pz == z))
+    {
+      plate->position[Plate::LEFT] = false;
+      plate->position[Plate::RIGHT] = true;
+
+      return plate;
+    }
+  }
+
+  return nullptr;
+}
+
+Plate* Character::getPlateRightWithCoordinates()
+{
+  int x = this->getPositionX() / 1.5;
+  int z = this->getPositionZ() / 1.5;
+
+  for(int i = 0; i < Application->environment->plates.normal->count; i++)
+  {
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
+    auto position = Vec3(plate->getStartPositionX(), plate->getStartPositionY(), plate->getStartPositionZ());
+
+    int px = position.x / 1.5;
+    int pz = position.z / 1.5;
+
+    if(px == x && pz == z - 1 && !(px == x && pz == z))
+    {
+      plate->position[Plate::LEFT] = true;
+      plate->position[Plate::RIGHT] = false;
+
+      return plate;
+    }
+  }
+
+  return nullptr;
+}
+
+Plate* Character::getPlateLeftWithCoordinates()
+{
+  int x = this->getPositionX() / 1.5;
+  int z = this->getPositionZ() / 1.5;
 
   for(int i = 0; i < Application->environment->plates.normal->count; i++)
   {

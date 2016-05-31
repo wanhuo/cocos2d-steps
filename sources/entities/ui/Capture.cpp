@@ -251,6 +251,7 @@ void Capture::screenshot(string texture)
    *
    *
    */
+  Director::getInstance()->getTextureCache()->removeUnusedTextures();
   Director::getInstance()->getTextureCache()->removeTextureForKey(texture.c_str());
 
   /**

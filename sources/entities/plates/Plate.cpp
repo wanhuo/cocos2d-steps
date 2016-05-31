@@ -177,9 +177,12 @@ void Plate::onCount()
      *
      *
      */
-    if(!Application->environment->generator->bonus)
+    if(Application->environment->character->getManual())
     {
-      Music->speed(1.0 + (0.3 / max(200, Application->environment->generator->size)) * this->index);
+      if(!Application->environment->generator->bonus)
+      {
+        Music->speed(1.0 + (0.3 / max(200, Application->environment->generator->size)) * this->index);
+      }
     }
   }
 
@@ -821,7 +824,7 @@ bool Plate::conditions(int type)
     result = conditions->s2 < 1 && conditions->s7 < 1;
     break;
     case CUB:
-    result = Application->environment->generator->bonus && conditions->s1 < 1;
+    result = Application->environment->generator->bonus && conditions->s1 < 1 && count > 2;
     break;
     case SAW:
     result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1;
@@ -890,7 +893,7 @@ bool Plate::conditions(int type)
       conditions->s2 = 2;
       break;
       case CUB:
-      conditions->s1 = random(2, 6);
+      conditions->s1 = random(2, 4);
       break;
       case SAW:
       conditions->s1 = 2;
@@ -1012,6 +1015,42 @@ void Plate::setOpacity(GLubyte opacity)
   }
 }
 
+/**
+ *
+ *
+ *
+ */
+void Plate::setVisibility(bool visible)
+{
+  Cube::setVisible(visible);
+
+  this->shadow->setVisible(visible);
+
+  if(this->special)
+  {
+    this->special->setVisible(visible);
+
+    /**
+     *
+     *
+     *
+     */
+    for(auto decoration : this->special->getDecorations())
+    {
+      decoration->setVisible(visible);
+    }
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  for(auto decoration : this->getDecorations())
+  {
+    decoration->setVisible(visible);
+  }
+}
 /**
  *
  *

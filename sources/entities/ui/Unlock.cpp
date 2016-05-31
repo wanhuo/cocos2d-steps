@@ -172,6 +172,8 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
     this->element->setPosition3D(Vec3(0.0, 0.5, 0.0));
 
     Application->environment->nextCharacter = next.index + 1;
+
+    Analytics::sendEvent("Application", "onCharacterUnlock", "Application onCharacterUnlock event");
     break;
     case 2:
     this->element = new Entity3D("plate.obj", this, true);
@@ -180,6 +182,8 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
     this->element->setPosition3D(Vec3(0.0, 0.5, 0.0));
 
     Application->environment->nextTexture = next.index + 1;
+
+    Analytics::sendEvent("Application", "onTextureUnlock", "Application onTextureUnlock event");
     break;
   }
 

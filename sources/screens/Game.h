@@ -125,6 +125,14 @@
  *
  *
  */
+#define SERVICES_LEADERBOARD_BEST_SCORE 0
+#define SERVICES_LEADERBOARD_STAGES_COUNT 1
+
+/**
+ *
+ *
+ *
+ */
 #define Application Game::getInstance()
 
 /**
@@ -201,7 +209,7 @@ class Game : public Screen
    *
    *
    */
-  private:
+  public:
   float startCameraX;
   float startCameraY;
   float startCameraZ;

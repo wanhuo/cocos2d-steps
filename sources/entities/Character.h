@@ -51,6 +51,8 @@ class Character : public Cube
   bool autoTurnRight;
   bool manual;
 
+  bool insaneDirection;
+
   float soundTime;
   float soundTimeElapsed;
 
@@ -61,6 +63,13 @@ class Character : public Cube
 
   int lives;
   int steps;
+
+  int insaneData;
+  int insaneCount;
+
+  float insaneSpeed;
+
+  Plate* insanePlate;
 
   /**
    *
@@ -165,11 +174,17 @@ class Character : public Cube
   virtual void onLandSuccessful(Turn turn, Plate* plate, bool proceed = true);
   virtual void onLandFail(Turn turn, Plate* plate);
 
-  virtual void onMoveLeft();
-  virtual void onMoveRight();
+  virtual void onMoveLeft(float time = 0.1);
+  virtual void onMoveRight(float time = 0.1);
 
-  virtual void onEnvironmentMoveLeft();
-  virtual void onEnvironmentMoveRight();
+  virtual void onEnvironmentMoveLeft(float time = 0.1);
+  virtual void onEnvironmentMoveRight(float time = 0.1);
+
+  virtual void onInsaneStart();
+  virtual void onInsaneFinish();
+  virtual void onInsaneUpdate();
+  virtual void onInsaneRight();
+  virtual void onInsaneLeft();
 
   virtual bool getManual();
   virtual bool setManual(bool manual);
@@ -185,6 +200,9 @@ class Character : public Cube
 
   virtual Plate* getPlateLeftWithDefaults(Plate* current = nullptr);
   virtual Plate* getPlateRightWithDefaults(Plate* current = nullptr);
+
+  virtual Plate* getPlateLeftWithCoordinates();
+  virtual Plate* getPlateRightWithCoordinates();
 
   virtual Nears getPlatesNear(Plate* current = nullptr);
   virtual Nears getPlatesNearWithDefaults(Plate* current = nullptr);

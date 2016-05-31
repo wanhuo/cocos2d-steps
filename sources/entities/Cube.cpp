@@ -46,6 +46,10 @@ Cube::Cube(Node* parent)
 
 Cube::~Cube()
 {
+  if(this->shadow)
+  {
+    this->shadow->removeFromParent();
+  }
 }
 
 /**
@@ -90,6 +94,7 @@ void Cube::createShadow()
 
     this->shadow->_create();
 
+    this->shadow->setVisible(true);
     this->shadow->setPositionX(position.x);
     this->shadow->setPositionZ(position.z);
   }

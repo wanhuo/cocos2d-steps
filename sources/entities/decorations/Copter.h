@@ -61,6 +61,7 @@ class Copter : public Decoration
   virtual void onDestroy(bool action = false);
 
   virtual void setPlate(Plate* plate);
+  virtual void start() override;
 
   virtual Character::Crash status();
 

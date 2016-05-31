@@ -583,6 +583,9 @@ void Counter::save()
   Storage::set("values.missions.progress.special_progress_13", this->missionUpdateProgress.special_progress_13);
   Storage::set("values.missions.progress.special_progress_14", this->missionUpdateProgress.special_progress_14);
   Storage::set("values.missions.progress.special_progress_15", this->missionUpdateProgress.special_progress_15);
+
+  Services::leaderboards->update(SERVICES_LEADERBOARD_BEST_SCORE, this->values.best);
+  Services::leaderboards->update(SERVICES_LEADERBOARD_STAGES_COUNT, Application->environment->parameters.stage - 1);
 }
 
 /**

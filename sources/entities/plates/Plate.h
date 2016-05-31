@@ -169,6 +169,7 @@ class Plate : public Cube
    *
    */
   virtual void setOpacity(GLubyte opacity);
+  virtual void setVisibility(bool visible);
 
   virtual void setPositionX(float x);
   virtual void setPositionY(float y);

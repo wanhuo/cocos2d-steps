@@ -58,14 +58,15 @@ class Pickup : public Decoration
   Pickup(const char* file);
  ~Pickup();
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
 
-  virtual void onPickup();
+  virtual void onPickup() override;
 
-  virtual void setPlate(Plate* plate, bool animated = true);
+  virtual void setPlate(Plate* plate, bool animated = true) override;
+  virtual void setVisible(bool visible) override;
 
-  virtual void update(float time);
+  virtual void update(float time) override;
 };
 
 #endif

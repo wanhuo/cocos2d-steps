@@ -51,11 +51,11 @@ Game::Game()
 
   Modal::show();
 
-  this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(EventListenerAcceleration::create([=] (Acceleration* acceleration, Event* e) {
+  /*this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(EventListenerAcceleration::create([=] (Acceleration* acceleration, Event* e) {
     this->environment->onAccelerate(acceleration, e);
   }), this);
 
-  Device::setAccelerometerEnabled(true);
+  Device::setAccelerometerEnabled(true);*/
 
   SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ui/ui.plist");
 
@@ -291,6 +291,10 @@ void Game::onMenu()
 
   this->counter->reset();
   this->capture->_destroy();
+
+  this->cameras.d->setScale(0.6);
+  this->cameras.d->setPosition3D(Vec3(this->startCameraX, this->startCameraY - 20, this->startCameraZ));
+  this->cameras.d->setRotation3D(Vec3(this->startCameraRotationX + 15, this->startCameraRotationY - 1.8, this->startCameraRotationZ));
 }
 
 void Game::onGame()
@@ -303,6 +307,15 @@ void Game::onGame()
 
   this->environment->onGame();
   this->counter->onGame();
+
+    Application->cameras.d->runAction(
+    Spawn::create(
+      ScaleTo::create(0.5, 1.0),
+      MoveTo::create(0.5, Vec3(this->startCameraX, this->startCameraY, this->startCameraZ)),
+      RotateTo::create(0.5, Vec3(this->startCameraRotationX, this->startCameraRotationY, this->startCameraRotationZ)),
+      nullptr
+    )
+  );
 
   /**
    *
@@ -382,18 +395,24 @@ void Game::onLose()
 
     Heyzap::show(Config::AD_TYPE_INTERSTITIAL);
   }
+
+  Analytics::sendEvent("Application", "onLose", ("Lose: " + to_string(this->counter->values.current) + " points with " + to_string(this->counter->values.best) + " best points").c_str());
 }
 
 void Game::onStore()
 {
   this->counter->onStore();
   this->environment->onStore();
+
+  Analytics::sendEvent("Application", "onStore", "Application onStore event");
 }
 
 void Game::onMissions()
 {
   this->counter->onMissions();
   this->environment->onMissions();
+
+  Analytics::sendEvent("Application", "onMissions", "Application onMissions event");
 }
 
 void Game::onPresent()

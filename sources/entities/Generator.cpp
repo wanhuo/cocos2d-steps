@@ -562,7 +562,7 @@ Plate* Generator::update(bool post)
    */
   else
   {
-    if(++this->count > this->length)
+    if(++this->count > this->length || this->index >= this->size)
     {
       this->count = 0;
       this->length = random(this->parameters.current.route.min, this->parameters.current.route.max);

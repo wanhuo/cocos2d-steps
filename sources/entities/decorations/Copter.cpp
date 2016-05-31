@@ -50,6 +50,33 @@ Copter::~Copter()
 void Copter::onCreate()
 {
   Decoration::onCreate();
+}
+
+void Copter::onDestroy(bool action)
+{
+  Decoration::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  Sound->stop(this->sound);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Copter::setPlate(Plate* plate)
+{
+  Decoration::setPlate(plate);
+}
+
+void Copter::start()
+{
+  Decoration::start();
 
   /**
    *
@@ -76,28 +103,6 @@ void Copter::onCreate()
       )
     )
   );
-}
-
-void Copter::onDestroy(bool action)
-{
-  Decoration::onDestroy(action);
-
-  /**
-   *
-   *
-   *
-   */
-  Sound->stop(this->sound);
-}
-
-/**
- *
- *
- *
- */
-void Copter::setPlate(Plate* plate)
-{
-  Decoration::setPlate(plate);
 }
 
 /**

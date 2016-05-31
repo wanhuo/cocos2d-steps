@@ -62,6 +62,7 @@ class TypeSaw : public Special
   virtual void onDestroy(bool action = false);
 
   virtual void setPlate(Plate* plate);
+  virtual void start() override;
 
   TypeSaw* deepCopy();
 };

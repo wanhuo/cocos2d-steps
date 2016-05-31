@@ -2,6 +2,8 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
+$(call import-add-path,$(LOCAL_PATH)/../../cocos2d/cocos/prebuilt/android)
+
 LOCAL_MODULE := core_shared
 
 LOCAL_MODULE_FILENAME := libcore
@@ -110,5 +112,3 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../cocos2d/cocos/audio/include \
 LOCAL_STATIC_LIBRARIES := cocos2dx_static
 
 include $(BUILD_SHARED_LIBRARY)
-
-$(call import-module,cocos)
