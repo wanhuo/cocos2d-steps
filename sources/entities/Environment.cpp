@@ -541,7 +541,7 @@ void Environment::updateGame(float time)
       this->platesTime = max(0.3 + max(0.0, (0.5 - 0.1 * this->parameters.stage)), this->platesTime - 0.01);
       this->platesTimeElapsed = 0;
 
-      this->generator->destroy();
+      //this->generator->destroy();
     }
     break;
   }

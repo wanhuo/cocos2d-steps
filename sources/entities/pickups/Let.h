@@ -57,14 +57,14 @@ class Let : public Pickup
   Let(char letter);
  ~Let();
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
 
-  virtual void onPickup();
+  virtual void onPickup() override;
 
-  virtual void setPlate(Plate* plate, bool animated = true);
+  virtual void setPlate(Plate* plate, bool animated = true) override;
 
-  Let* deepCopy();
+  Let* deepCopy() override;
 };
 
 #endif

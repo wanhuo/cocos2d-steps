@@ -99,14 +99,14 @@ void Let::onPickup()
  */
 void Let::setPlate(Plate* plate, bool animated)
 {
-  Decoration::setPlate(plate, animated);
+  Pickup::setPlate(plate, animated);
 
   /**
    *
    *
    *
    */
-  this->setPositionY(this->getPositionY() + 0.8f);
+  this->setPositionY(this->getPositionY() - 0.2f);
 }
 
 /**

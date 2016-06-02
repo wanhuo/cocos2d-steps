@@ -274,6 +274,11 @@ int Plate::getIndex()
   return this->index;
 }
 
+int Plate::getStage()
+{
+  return this->stage;
+}
+
 bool Plate::getDirection()
 {
   return this->direction;
@@ -302,6 +307,11 @@ void Plate::setDirection(bool direction)
 void Plate::setIndex(int index)
 {
   this->index = index;
+}
+
+void Plate::setStage(int stage)
+{
+  this->stage = stage;
 }
 
 void Plate::setStartPositionX(float x)
@@ -827,7 +837,7 @@ bool Plate::conditions(int type)
     result = Application->environment->generator->bonus && conditions->s1 < 1 && count > 2;
     break;
     case SAW:
-    result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1;
+    result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1 && (size - index) > 5;
     break;
     case GATE:
     result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1 && conditions->s7 < 1;

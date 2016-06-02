@@ -62,7 +62,8 @@ class Down : public Decoration
 
   virtual void onSound();
 
-  virtual void setPlate(Plate* plate);
+  virtual void setPlate(Plate* plate, bool animated = true) override;
+  virtual void start();
 
   virtual Character::Crash status();
 

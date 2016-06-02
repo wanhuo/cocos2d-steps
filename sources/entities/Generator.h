@@ -105,6 +105,19 @@ class Generator : public Ref
     int s11;
   };
 
+  struct HeightStruct {
+    int counter;
+    int length;
+  };
+
+  struct Height {
+    int stage;
+    int max = 2;
+
+    HeightStruct up;
+    HeightStruct down;
+  };
+
   Parameters parameters;
 
   vector<Parameter> levels;
@@ -116,6 +129,7 @@ class Generator : public Ref
    */
   public:
   Conditions conditions;
+  Height height;
 
   Generator();
  ~Generator();

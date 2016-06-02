@@ -97,6 +97,7 @@ void Decoration::setPlate(Plate* plate, bool animated)
   this->plate = plate;
 
   this->setPosition3D(plate->getPosition3D());
+  this->setPositionY(this->getPositionY() + plate->getStage() * 0.8);
 }
 
 /**

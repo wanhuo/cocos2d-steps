@@ -109,6 +109,7 @@ void Pickup::setPlate(Plate* plate, bool animated)
    *
    */
   this->setPositionY(this->getPositionY() + 1.2f);
+  this->shadow->setPosition(plate->getStage() * 0.8);
 }
 
 /**

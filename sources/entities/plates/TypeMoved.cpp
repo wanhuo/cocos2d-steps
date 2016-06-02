@@ -33,6 +33,7 @@ TypeMoved::TypeMoved()
 {
   this->shadow = new Shadow("plate-bottom-shadow.obj");
   this->shadow->setMinScale(Vec3(1.0, 1.0, 1.0));
+  this->shadow->setMaxScale(Vec3(1.0, 1.0, 1.0));
   this->shadow->setPosition(0.02);
 
   this->plane = new Decoration("decoration-move-plane.obj", Application->environment->plane);

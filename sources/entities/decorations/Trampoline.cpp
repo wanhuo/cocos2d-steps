@@ -125,7 +125,7 @@ void Trampoline::onPickup()
           );
         }),
         EaseSineIn::create(
-          MoveBy::create(time * (count - 1) / 2, Vec3(0.75 * l, 1.0 + 0.2 * remove, -0.75 * r))
+          MoveBy::create(time * (count - 1) / 2, Vec3(0.75 * l, 1.0 + 0.2 * remove - (Application->environment->character->plates.current->getStage() - element->getStage()) * 0.8, -0.75 * r))
         ),
         CallFunc::create([=] () {
           Application->environment->plane->runAction(

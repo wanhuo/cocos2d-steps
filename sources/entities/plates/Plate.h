@@ -48,6 +48,7 @@ class Plate : public Cube
    */
   protected:
   int index;
+  int stage;
 
   bool direction;
 
@@ -135,6 +136,7 @@ class Plate : public Cube
 
   virtual bool getDirection();
   virtual int getIndex();
+  virtual int getStage();
 
   virtual float getStartPositionX();
   virtual float getStartPositionY();
@@ -150,6 +152,7 @@ class Plate : public Cube
   virtual void setStartPositionZ(float z);
 
   virtual void setType(int type, bool animated = true, char data = ' ');
+  virtual void setStage(int stage);
 
   virtual void prepare();
   virtual void remove(bool complete = true);

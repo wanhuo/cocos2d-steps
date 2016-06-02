@@ -114,14 +114,14 @@ void Color::onPickup()
  */
 void Color::setPlate(Plate* plate, bool animated)
 {
-  Decoration::setPlate(plate, animated);
+  Pickup::setPlate(plate, animated);
 
   /**
    *
    *
    *
    */
-  this->setPositionY(this->getPositionY() + 1.0f);
+  this->setPositionY(this->getPositionY() - 0.2);
 }
 
 /**

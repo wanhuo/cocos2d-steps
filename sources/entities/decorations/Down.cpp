@@ -49,6 +49,50 @@ Down::~Down()
 void Down::onCreate()
 {
   Decoration::onCreate();
+}
+
+void Down::onDestroy(bool action)
+{
+  Decoration::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Down::onSound()
+{
+  Sound->play("decoration-down", this, [=] () -> float {
+    return this->getPosition3D().distance(Application->environment->character->getPosition3D());
+  }, Game::SOUND_DISTANCE);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Down::setPlate(Plate* plate, bool animated)
+{
+  Decoration::setPlate(plate);
+
+  /**
+   *
+   *
+   *
+   */
+  this->shadow->setPosition(plate->getStage() * 0.8);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Down::start()
+{
+  Decoration::start();
 
   /**
    *
@@ -133,33 +177,6 @@ void Down::onCreate()
       nullptr
     )
   );
-}
-
-void Down::onDestroy(bool action)
-{
-  Decoration::onDestroy(action);
-}
-
-/**
- *
- *
- *
- */
-void Down::onSound()
-{
-  Sound->play("decoration-down", this, [=] () -> float {
-    return this->getPosition3D().distance(Application->environment->character->getPosition3D());
-  }, Game::SOUND_DISTANCE);
-}
-
-/**
- *
- *
- *
- */
-void Down::setPlate(Plate* plate)
-{
-  Decoration::setPlate(plate);
 }
 
 /**

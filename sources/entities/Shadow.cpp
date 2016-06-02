@@ -31,7 +31,7 @@
 Shadow::Shadow(const char* file, Node* parent)
 : Entity3D(file, parent)
 {
-  this->setColor(Color3B(0, 0, 0));
+  this->setTexture("textures/shadow-texture.png");
   this->setOpacity(30);
 
   this->setLightMask(0);

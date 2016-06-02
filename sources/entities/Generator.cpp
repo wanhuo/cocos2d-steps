@@ -214,12 +214,14 @@ Plate* Generator::create(bool animated)
     }
 
     plate->setPositionX(this->x);
-    plate->setPositionY(this->y);
+    plate->setPositionY(this->y + this->height.stage * 0.8);
     plate->setPositionZ(this->z);
 
     plate->setStartPositionX(this->x);
-    plate->setStartPositionY(this->y);
+    plate->setStartPositionY(this->y + this->height.stage * 0.8);
     plate->setStartPositionZ(this->z);
+
+    plate->setStage(this->height.stage);
 
     if(animated)
     {
@@ -337,8 +339,10 @@ Plate* Generator::destroy(bool manual)
  */
 void Generator::createBonusElement(Plate* plate)
 {
-  if(this->index >= 1)
+  if(true)
   {
+    plate->setStage(this->height.stage);
+
     if(this->index >= this->size)
     {
       if(Application->environment->missions.special)
@@ -398,6 +402,8 @@ void Generator::createBonusElement(Plate* plate)
 
 void Generator::createGeneralElement(Plate* plate)
 {
+  plate->setStage(this->height.stage);
+
   /**
    *
    * Check if this is a first plate of level.
@@ -452,6 +458,95 @@ void Generator::createGeneralElement(Plate* plate)
         }
         else if(action)
         {
+          /**
+           *
+           * Try to change generator height;
+           *
+           */
+          if(Application->environment->parameters.stage > 1 && Application->environment->character->state != Character::STATE_INSANE)
+          {
+            this->height.up.counter--;
+            this->height.down.counter--;
+
+            this->height.up.length--;
+
+            if(this->height.up.counter == -2)
+            {
+              return;
+            }
+            else if(this->height.down.counter == -2)
+            {
+              return;
+            }
+            else if(this->height.up.counter == -1)
+            {
+              this->height.stage++;
+              return;
+            }
+            else if(this->height.down.counter == -1)
+            {
+              plate->setType(Plate::MOVE_UP);
+              this->height.stage--;
+              this->length++;
+
+              return;
+            }
+            else if(this->height.up.counter == 0)
+            {
+              if(probably(50))
+              {
+                plate->setType(Plate::MOVE_UP);
+              }
+              else
+              {
+                plate->setType(Plate::TRAMPOLINE);
+              }
+
+              this->length++;
+
+              return;
+            }
+            else if(this->height.down.counter == 0)
+            {
+              if(probably(50))
+              {
+                plate->setType(Plate::TRAMPOLINE);
+              }
+
+              return;
+            }
+            else
+            {
+              if(this->height.stage < this->height.max)
+              {
+                if(this->height.stage == 0 || this->height.up.length > 0)
+                {
+                  if(this->height.up.counter < -2 && probably(4 - this->height.stage * 2))
+                  {
+                    this->height.up.counter = 1;
+                    this->height.up.length = random(20, 40);
+                    return;
+                  }
+                }
+                else if(this->height.stage > 0)
+                {
+                  this->height.down.counter = 1;
+                  this->height.up.length = random(20, 40);
+                  return;
+                }
+              }
+              else
+              {
+                if(this->height.stage > 0 && this->height.up.length <= 0)
+                {
+                  this->height.down.counter = 1;
+                  this->height.up.length = random(20, 40);
+                  return;
+                }
+              }
+            }
+          }
+
           /**
            *
            * Try to generate some pickup.
@@ -613,12 +708,22 @@ void Generator::reset(bool complete)
     this->x = Application->environment->character->plates.current->getPositionX();
     this->y = 0.4;
     this->z = Application->environment->character->plates.current->getPositionZ();
+
+    this->height.stage = 0;
+    this->height.up.counter = -2;
+    this->height.down.counter = -2;
+    this->height.up.length = 0;
   }
   else
   {
     this->x = 0.0;
     this->y = 0.4;
     this->z = 0.0;
+
+    this->height.stage = 0;
+    this->height.up.counter = -2;
+    this->height.down.counter = -2;
+    this->height.up.length = 0;
   }
 
   /**
@@ -686,7 +791,7 @@ void Generator::reset(bool complete)
   if(complete)
   {
     this->word = Application->environment->missions.controller->popups.daily->getTask();
-    this->general= 1;
+    this->general = 1;
   }
 
   Application->environment->character->plates.current = nullptr;

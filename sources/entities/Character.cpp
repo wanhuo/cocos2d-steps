@@ -163,8 +163,8 @@ void Character::onSound()
 
   this->soundTimeElapsed = 0;
 
-  this->sound += 0.05f;
-  this->steps++;
+  this->sound += 0.05 * (Application->environment->star ? 2 : 1);
+  this->steps += 1.0 * (Application->environment->star ? 2 : 1);
 }
 
 /**
@@ -275,8 +275,17 @@ void Character::onTurnLeft(bool action, bool set)
 
       if(next)
       {
+        if(this->plates.current->getStage() != next->getStage())
+        {
+          this->changeState(STATE_NORMAL);
+          return;
+        }
+
         Director::getInstance()->getActionManager()->pauseTarget(next);
         Director::getInstance()->getScheduler()->pauseTarget(next);
+
+        Director::getInstance()->getActionManager()->pauseTarget(next->special);
+        Director::getInstance()->getScheduler()->pauseTarget(next->special);
       }
 
       this->runAction(
@@ -284,17 +293,19 @@ void Character::onTurnLeft(bool action, bool set)
           RotateGlobalBy::create(0.1, Vec3(-90, 0, 0)),
           Sequence::create(
             MoveBy::create(0.05, Vec3(0.0, 0.2, -0.75)),
-            MoveBy::create(0.05, Vec3(0.0, -0.2 - (this->getPositionY() - 1.3), -0.75)),
+            MoveBy::create(0.05, Vec3(0.0, -0.2 - (this->getPositionY() - 1.3 - ((next->getStage()) * 0.8)), -0.75)),
             CallFunc::create([=] () {
+              this->changeState(STATE_NORMAL);
+              this->onTurn(LEFT);
+
               if(next)
               {
                 Director::getInstance()->getActionManager()->resumeTarget(next);
                 Director::getInstance()->getScheduler()->resumeTarget(next);
+
+                Director::getInstance()->getActionManager()->resumeTarget(next->special);
+                Director::getInstance()->getScheduler()->resumeTarget(next->special);
               }
-
-              this->changeState(STATE_NORMAL);
-
-              this->onTurn(LEFT);
             }),
 
             /**
@@ -355,8 +366,17 @@ void Character::onTurnRight(bool action, bool set)
 
       if(next)
       {
+        if(this->plates.current->getStage() != next->getStage())
+        {
+          this->changeState(STATE_NORMAL);
+          return;
+        }
+
         Director::getInstance()->getActionManager()->pauseTarget(next);
         Director::getInstance()->getScheduler()->pauseTarget(next);
+
+        Director::getInstance()->getActionManager()->pauseTarget(next->special);
+        Director::getInstance()->getScheduler()->pauseTarget(next->special);
       }
 
       this->runAction(
@@ -364,17 +384,19 @@ void Character::onTurnRight(bool action, bool set)
           RotateGlobalBy::create(0.1, Vec3(0, 0, -90)),
           Sequence::create(
             MoveBy::create(0.05, Vec3(0.75, 0.2, 0)),
-            MoveBy::create(0.05, Vec3(0.75, -0.2 - (this->getPositionY() - 1.3), 0)),
+            MoveBy::create(0.05, Vec3(0.75, -0.2 - (this->getPositionY() - 1.3 - ((next->getStage()) * 0.8)), 0)),
             CallFunc::create([=] () {
+              this->changeState(STATE_NORMAL);
+              this->onTurn(RIGHT);
+
               if(next)
               {
                 Director::getInstance()->getActionManager()->resumeTarget(next);
                 Director::getInstance()->getScheduler()->resumeTarget(next);
+
+                Director::getInstance()->getActionManager()->resumeTarget(next->special);
+                Director::getInstance()->getScheduler()->resumeTarget(next->special);
               }
-
-              this->changeState(STATE_NORMAL);
-
-              this->onTurn(RIGHT);
             }),
 
             /**
@@ -604,12 +626,14 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   {
     if(!Application->environment->generator->bonus && this->getManual())
     {
-      if(this->steps >= 40)
+      if(this->steps >= 10)
       {
         this->changeState(STATE_INSANE);
       }
     }
   }
+
+  this->shadow->setPosition(this->plates.current->getStage() * 0.8);
 }
 
 void Character::onLandFail(Turn turn, Plate* plate)
@@ -623,7 +647,7 @@ void Character::onLandFail(Turn turn, Plate* plate)
     case LEFT:
     this->runAction(
       Spawn::create(
-        MoveBy::create(0.1, Vec3(0, -0.8, 0.0)),
+        MoveTo::create(0.1, Vec3(this->getPositionX(), 0.0, this->getPositionZ())),
         CallFunc::create([=] () {
           this->changeState(STATE_CRASH, Crash::FAIL);
         }),
@@ -634,7 +658,7 @@ void Character::onLandFail(Turn turn, Plate* plate)
     case RIGHT:
     this->runAction(
       Spawn::create(
-        MoveBy::create(0.1, Vec3(0.0, -0.8, 0)),
+        MoveTo::create(0.1, Vec3(this->getPositionX(), 0.0, this->getPositionZ())),
         CallFunc::create([=] () {
           this->changeState(STATE_CRASH, Crash::FAIL);
         }),
@@ -693,7 +717,7 @@ void Character::onNormal()
 
 void Character::onJump()
 {
-  this->plates.current = nullptr;
+  //this->plates.current = nullptr;
   this->stopAllActions();
 }
 
@@ -935,6 +959,8 @@ void Character::onCopter()
 
 void Character::onFinish()
 {
+  int stage = this->plates.current->getStage();
+
   this->plane->stopAllActions();
   this->plane->runAction(
       Sequence::create(
@@ -991,7 +1017,7 @@ void Character::onFinish()
         ),
         DelayTime::create(0.5),
         EaseSineIn::create(
-          MoveBy::create(0.5, Vec3(0, -20, 0))
+          MoveBy::create(0.5, Vec3(0, -20 - (stage * 0.8), 0))
         ),
         CallFunc::create([=] () {
           Application->changeState(Game::GAME);
@@ -1115,24 +1141,39 @@ void Character::onInsaneStart()
     )
   );
 
+  for(int i = 0; i < Application->environment->plates.normal->count; i++)
+  {
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
+
+    plate->runAction(
+      MoveBy::create(0.1, Vec3(0.0, -(plate->getStage() * 0.8), 0.0))
+    );
+  }
+
+  Application->environment->generator->height.stage = 0;
+
   Music->speed(1.3);
 }
 
 void Character::onInsaneFinish()
 {
   this->stopAllActions();
-  this->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
   this->runAction(
     Spawn::create(
-      RotateGlobalBy::create(0.1, Vec3(this->insaneDirection ? -90.0 : 0, 0, this->insaneDirection ? 0 : -90)),
+      RotateGlobalBy::create(0.1, Vec3(this->insaneDirection ? 0.0 : -90.0, 0, this->insaneDirection ? -90.0 : 0.0)),
       Sequence::create(
         MoveBy::create(0.1, Vec3(this->insaneDirection ? 1.5 : 0.0, 0.8, this->insaneDirection ? 0 : -1.5)),
         CallFunc::create([=] () {
-        this->plates.current = this->getPlatesNear(this->insanePlate).next();
+        if(this->plates.current->type != Plate::FINISH)
+        {
+          this->plates.current = this->getPlatesNear(this->insanePlate).next();
+        }
 
         this->changeState(STATE_NORMAL);
         this->onLandSuccessful(NONE, this->plates.current, true);
+
+        this->setRotation3D(Vec3(0.0, 0.0, 0.0));
         }),
         nullptr
       ),
@@ -1192,6 +1233,15 @@ void Character::onInsaneUpdate()
     break;
     case Plate::SAW:
     this->insanePlate->setVisibility(false);
+
+              Sound->play("insane-brick-" + to_string(random(1, 3)));
+              /////
+                for(int i = 0; i < 10; i++)
+  {
+    auto particle = Application->environment->createParticle(1, this->insanePlate->getPositionX(), this->insanePlate->getPositionY() - 0.5, this->insanePlate->getPositionZ());
+
+    particle->setColor(Color3B(252, 226, 105));
+  }
     break;
   }
 
@@ -1232,12 +1282,42 @@ void Character::onInsaneRight()
         MoveBy::create(this->insaneSpeed / 2, Vec3(0.75, 0.0, 0)),
         MoveBy::create(this->insaneSpeed / 2, Vec3(0.75, 0.0, 0)),
         CallFunc::create([=] () {
-        if(this->getPlateRightWithCoordinates())
-        {
-          this->insaneData = 2;
-        }
+        auto plate = this->getPlateRightWithCoordinates();
 
-        this->onInsaneUpdate();
+        if(plate && plate->type == Plate::FINISH)
+        {
+        this->insanePlate = this->getPlatesNear(this->insanePlate).next();
+  this->insanePlate->onCount();
+
+  this->onSound();
+
+  Application->counter->onCount();
+
+
+          this->insaneDirection = !this->insaneDirection;
+          this->plates.current = plate;
+          this->onInsaneFinish();
+
+          
+
+  if(this->insaneDirection)
+  {
+    this->onInsaneRight();
+  }
+  else
+  {
+    this->onInsaneLeft();
+  }
+        }
+        else
+        {
+          if(this->getPlateRightWithCoordinates())
+          {
+            this->insaneData = 2;
+          }
+
+          this->onInsaneUpdate();
+        }
         }),
         nullptr
       ),
@@ -1282,12 +1362,41 @@ void Character::onInsaneLeft()
         MoveBy::create(this->insaneSpeed / 2, Vec3(0.0, 0.0, -0.75)),
         MoveBy::create(this->insaneSpeed / 2, Vec3(0.0, 0.0, -0.75)),
         CallFunc::create([=] () {
-        if(this->getPlateLeftWithCoordinates())
-        {
-          this->insaneData = 2;
-        }
+          auto plate = this->getPlateLeftWithCoordinates();
 
-        this->onInsaneUpdate();
+        if(plate && plate->type == Plate::FINISH)
+        {
+        this->insanePlate = this->getPlatesNear(this->insanePlate).next();
+  this->insanePlate->onCount();
+
+  this->onSound();
+
+  Application->counter->onCount();
+
+
+          this->insaneDirection = !this->insaneDirection;
+          this->plates.current = plate;
+          this->onInsaneFinish();
+          
+
+  if(this->insaneDirection)
+  {
+    this->onInsaneRight();
+  }
+  else
+  {
+    this->onInsaneLeft();
+  }
+        }
+        else
+        {
+          if(this->getPlateLeftWithCoordinates())
+          {
+            this->insaneData = 2;
+          }
+
+          this->onInsaneUpdate();
+        }
         }),
         nullptr
       ),

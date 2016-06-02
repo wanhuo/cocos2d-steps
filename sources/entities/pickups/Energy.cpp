@@ -72,7 +72,7 @@ void Energy::onPickup()
 
     if(next)
     {
-      if(!next->moved && !next->blocked && next->type != Plate::DOWN)
+      if(!next->moved && !next->blocked && next->type != Plate::DOWN && Application->environment->character->plates.current->getStage() == next->getStage())
       {
         float x;
         float z;
