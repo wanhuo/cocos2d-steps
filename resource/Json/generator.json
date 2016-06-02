@@ -55,7 +55,8 @@
 			"plates": {
 				"probability": 100,
 				"elements": [
-					{"type": 11, "probability": 35}
+					{"type": 11, "probability": 35},
+					{"type": 26, "probability": 100}
 				]
 			},
 			"pickups": {

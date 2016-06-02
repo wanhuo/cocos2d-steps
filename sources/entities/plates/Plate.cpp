@@ -495,6 +495,14 @@ void Plate::setType(int type, bool animated, char data)
       this->getDecorations().push_back(decoration);
     }
     break;
+    case PORTAL:
+    {
+      this->setVisible(false);
+
+      this->special = static_cast<TypePortal*>(Application->environment->plates.portals->_create());
+      this->special->setPlate(this);
+    }
+    break;
 
     /**
      *
@@ -848,21 +856,24 @@ bool Plate::conditions(int type)
     case TRAP:
     result = conditions->s2 < 1;
     break;
+    case PORTAL:
+    result = (size - index) > 20;
+    break;
 
     case MOVE_UP:
     result = (count < length) && count > 0 && direction && conditions->s1 < 1 && conditions->s2 < 0 && conditions->s7 < 1;
     break;
     case MOVED1:
-    result = (length - count) > 1 && direction && conditions->s2 < 0 && conditions->s7 < 1;
+    result = (length - count) > 1 && direction && conditions->s2 < 0 && conditions->s7 < 1 && (size - index) > 2;
     break;
     case MOVED2:
-    result = (length - count) > 1 && !direction && conditions->s2 < 0 && conditions->s7 < 1;
+    result = (length - count) > 1 && !direction && conditions->s2 < 0 && conditions->s7 < 1 && (size - index) > 2;
     break;
     case MOVED3:
-    result = (count >= length) && direction && conditions->s2 < 0 && conditions->s7 < 1;
+    result = (count >= length) && direction && conditions->s2 < 0 && conditions->s7 < 1 && (size - index) > 2;
     break;
     case MOVED4:
-    result = (count >= length) && !direction && conditions->s2 < 0 && conditions->s7 < 1;
+    result = (count >= length) && !direction && conditions->s2 < 0 && conditions->s7 < 1 && (size - index) > 2;
     break;
   }
 

@@ -626,9 +626,12 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   {
     if(!Application->environment->generator->bonus && this->getManual())
     {
-      if(this->steps >= 10)
+      if(this->plates.current && !this->plates.current->getStage())
       {
-        this->changeState(STATE_INSANE);
+        if(this->steps >= 30)
+        {
+          this->changeState(STATE_INSANE);
+        }
       }
     }
   }
@@ -1141,17 +1144,6 @@ void Character::onInsaneStart()
     )
   );
 
-  for(int i = 0; i < Application->environment->plates.normal->count; i++)
-  {
-    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
-
-    plate->runAction(
-      MoveBy::create(0.1, Vec3(0.0, -(plate->getStage() * 0.8), 0.0))
-    );
-  }
-
-  Application->environment->generator->height.stage = 0;
-
   Music->speed(1.3);
 }
 
@@ -1259,7 +1251,7 @@ void Character::onInsaneRight()
         {
           if(plate)
           {
-            if((this->insaneCount > 0 || plate->type == Plate::SPIKES || plate->type == Plate::TRAP || plate->type == Plate::SAW || plate->type == Plate::DOWN || plate->behavior == Plate::DYNAMIC) && plate->type != Plate::FINISH)
+            if((this->insaneCount > 0 || plate->type == Plate::SPIKES || plate->type == Plate::TRAP || plate->type == Plate::SAW || plate->type == Plate::DOWN || plate->behavior == Plate::DYNAMIC) && plate->type != Plate::FINISH && plate->getStage() == 0)
             {
               plate->setVisibility(false);
 
@@ -1339,7 +1331,7 @@ void Character::onInsaneLeft()
         {
           if(plate)
           {
-            if((this->insaneCount > 0 || plate->type == Plate::SPIKES || plate->type == Plate::TRAP || plate->type == Plate::SAW || plate->type == Plate::DOWN || plate->behavior == Plate::DYNAMIC) && plate->type != Plate::FINISH)
+            if((this->insaneCount > 0 || plate->type == Plate::SPIKES || plate->type == Plate::TRAP || plate->type == Plate::SAW || plate->type == Plate::DOWN || plate->behavior == Plate::DYNAMIC) && plate->type != Plate::FINISH && plate->getStage() == 0)
             {
               plate->setVisibility(false);
 

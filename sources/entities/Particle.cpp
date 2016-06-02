@@ -28,8 +28,8 @@
  *
  *
  */
-Particle::Particle()
-: Cube("particle.obj")
+Particle::Particle(string file)
+: Cube(file)
 {
   this->setTexture("textures/particle-texture.png");
   this->setLightMask(0);
@@ -46,5 +46,5 @@ Particle::~Particle()
  */
 Particle* Particle::deepCopy()
 {
-  return new Particle;
+  return new Particle(this->textureFileName);
 }

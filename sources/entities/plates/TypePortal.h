@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _PARTICLE_H_
-#define _PARTICLE_H_
+#ifndef _TYPE_PORTAL_H_
+#define _TYPE_PORTAL_H_
 
 #include "Game.h"
 
@@ -31,7 +31,7 @@
  *
  *
  */
-class Particle : public Cube
+class TypePortal : public Special
 {
   /**
    *
@@ -53,10 +53,17 @@ class Particle : public Cube
    *
    */
   public:
-  Particle(string file = "particle.obj");
- ~Particle();
+  TypePortal();
+ ~TypePortal();
 
-  Particle* deepCopy();
+  Portal* portal;
+
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
+
+  virtual void setPlate(Plate* plate);
+
+  TypePortal* deepCopy();
 };
 
 #endif

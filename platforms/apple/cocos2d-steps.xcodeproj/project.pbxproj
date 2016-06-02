@@ -83,6 +83,12 @@
 		7843ACD81C224AAF0011F47C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843ACD71C224AAF0011F47C /* AVFoundation.framework */; };
 		7843ACDA1C224AB60011F47C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843ACD91C224AB60011F47C /* Foundation.framework */; };
 		7843ACDC1C224ABC0011F47C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843ACDB1C224ABC0011F47C /* CoreGraphics.framework */; };
+		784784421D004F9A002C3D23 /* TypePortal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 784784401D004F9A002C3D23 /* TypePortal.cpp */; };
+		784784431D004F9A002C3D23 /* TypePortal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 784784401D004F9A002C3D23 /* TypePortal.cpp */; };
+		784784441D004F9A002C3D23 /* TypePortal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 784784401D004F9A002C3D23 /* TypePortal.cpp */; };
+		784784471D004FB3002C3D23 /* Portal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 784784451D004FB3002C3D23 /* Portal.cpp */; };
+		784784481D004FB3002C3D23 /* Portal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 784784451D004FB3002C3D23 /* Portal.cpp */; };
+		784784491D004FB3002C3D23 /* Portal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 784784451D004FB3002C3D23 /* Portal.cpp */; };
 		785545ED1CD8CA2F00B58ED0 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 785545EC1CD8CA2F00B58ED0 /* Models */; };
 		785545EE1CD8CA2F00B58ED0 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 785545EC1CD8CA2F00B58ED0 /* Models */; };
 		785545F51CD8D61E00B58ED0 /* TypeBest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785545EF1CD8D61E00B58ED0 /* TypeBest.cpp */; };
@@ -425,6 +431,10 @@
 		7843ACDB1C224ABC0011F47C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7843ACE01C224FE30011F47C /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7843ACE11C2250060011F47C /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		784784401D004F9A002C3D23 /* TypePortal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypePortal.cpp; sourceTree = "<group>"; };
+		784784411D004F9A002C3D23 /* TypePortal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypePortal.h; sourceTree = "<group>"; };
+		784784451D004FB3002C3D23 /* Portal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Portal.cpp; sourceTree = "<group>"; };
+		784784461D004FB3002C3D23 /* Portal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Portal.h; sourceTree = "<group>"; };
 		785545EC1CD8CA2F00B58ED0 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = ../../resource/Models; sourceTree = "<group>"; };
 		785545EF1CD8D61E00B58ED0 /* TypeBest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeBest.cpp; sourceTree = "<group>"; };
 		785545F01CD8D61E00B58ED0 /* TypeBest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeBest.h; sourceTree = "<group>"; };
@@ -1216,6 +1226,8 @@
 				78B4B6F01CBF911800F2D8A7 /* Saw.h */,
 				78B4B6F71CBF91E000F2D8A7 /* Door.cpp */,
 				78B4B6F81CBF91E000F2D8A7 /* Door.h */,
+				784784451D004FB3002C3D23 /* Portal.cpp */,
+				784784461D004FB3002C3D23 /* Portal.h */,
 				789E71881CD34AFB00BDCDC7 /* Trampoline.cpp */,
 				789E71891CD34AFB00BDCDC7 /* Trampoline.h */,
 			);
@@ -1270,6 +1282,8 @@
 				789E71811CD343FC00BDCDC7 /* TypeSpikes.h */,
 				789E71AD1CD3D23200BDCDC7 /* TypeTrap.cpp */,
 				789E71AE1CD3D23200BDCDC7 /* TypeTrap.h */,
+				784784401D004F9A002C3D23 /* TypePortal.cpp */,
+				784784411D004F9A002C3D23 /* TypePortal.h */,
 				789E71821CD343FC00BDCDC7 /* TypeTrampoline.cpp */,
 				789E71831CD343FC00BDCDC7 /* TypeTrampoline.h */,
 				789E71901CD3653E00BDCDC7 /* TypeMoveUp.cpp */,
@@ -1613,6 +1627,7 @@
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
 				78B4B6DD1CBD751D00F2D8A7 /* Pickup.cpp in Sources */,
 				785546161CD9F97700B58ED0 /* Presention.cpp in Sources */,
+				784784431D004F9A002C3D23 /* TypePortal.cpp in Sources */,
 				78BADD6F1CEB57800077B673 /* EnvironmentMissionsNotify.cpp in Sources */,
 				789E71A91CD39D0D00BDCDC7 /* TypeMoved3.cpp in Sources */,
 				78B4B7071CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */,
@@ -1652,6 +1667,7 @@
 				785546111CD9CDC900B58ED0 /* Present.cpp in Sources */,
 				78CA6D0D1C20645200BF8416 /* Environment.cpp in Sources */,
 				781DA8811CDB3B95005BEB98 /* Watch.cpp in Sources */,
+				784784481D004FB3002C3D23 /* Portal.cpp in Sources */,
 				786F796D1CEDF3900003D926 /* EnvironmentMissionsDailyPopup.cpp in Sources */,
 				78B4B6FC1CBF91E000F2D8A7 /* Door.cpp in Sources */,
 				789E71AB1CD39D0D00BDCDC7 /* TypeMoved4.cpp in Sources */,
@@ -1670,6 +1686,7 @@
 				78C352C51CEE7DB000F10068 /* Generator.cpp in Sources */,
 				78C352C61CEE7DB000F10068 /* EnvironmentStoreBar.cpp in Sources */,
 				78C352C71CEE7DB000F10068 /* Color.cpp in Sources */,
+				784784491D004FB3002C3D23 /* Portal.cpp in Sources */,
 				78C352C91CEE7DB000F10068 /* Present.cpp in Sources */,
 				7891E8C41CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp in Sources */,
 				78C352CB1CEE7DB000F10068 /* Crystal.cpp in Sources */,
@@ -1731,6 +1748,7 @@
 				78C353051CEE7DB000F10068 /* Counter.cpp in Sources */,
 				78C353061CEE7DB000F10068 /* EnvironmentMissionsPopup.cpp in Sources */,
 				78C353071CEE7DB000F10068 /* TypeBest.cpp in Sources */,
+				784784441D004F9A002C3D23 /* TypePortal.cpp in Sources */,
 				78C353081CEE7DB000F10068 /* Environment.cpp in Sources */,
 				78C353091CEE7DB000F10068 /* TypeTrap.cpp in Sources */,
 				78C3530A1CEE7DB000F10068 /* EnvironmentStoreTexture.cpp in Sources */,
@@ -1780,6 +1798,7 @@
 				7891E88B1CF21293005C238E /* AppController.mm in Sources */,
 				78B4B7011CBF93C500F2D8A7 /* TypeGate.cpp in Sources */,
 				786F796C1CEDF3900003D926 /* EnvironmentMissionsDailyPopup.cpp in Sources */,
+				784784421D004F9A002C3D23 /* TypePortal.cpp in Sources */,
 				789809611CC51C0A00E3CF28 /* Start.cpp in Sources */,
 				78D21BC21CE624B0007B0682 /* Capture.cpp in Sources */,
 				7855461A1CDA13B600B58ED0 /* Open.cpp in Sources */,
@@ -1800,6 +1819,7 @@
 				78C72BB81CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */,
 				78BADD731CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp in Sources */,
 				789E71A81CD39D0D00BDCDC7 /* TypeMoved3.cpp in Sources */,
+				784784471D004FB3002C3D23 /* Portal.cpp in Sources */,
 				789E71861CD343FC00BDCDC7 /* TypeTrampoline.cpp in Sources */,
 				785545F71CD8D61E00B58ED0 /* TypeBonus.cpp in Sources */,
 				789E719C1CD39A4A00BDCDC7 /* TypeMoved.cpp in Sources */,

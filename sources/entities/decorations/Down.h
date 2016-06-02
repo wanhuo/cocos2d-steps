@@ -57,17 +57,17 @@ class Down : public Decoration
   Down();
  ~Down();
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
 
-  virtual void onSound();
+  virtual void onSound() override;
 
   virtual void setPlate(Plate* plate, bool animated = true) override;
-  virtual void start();
+  virtual void start() override;
 
-  virtual Character::Crash status();
+  virtual Character::Crash status() override;
 
-  Down* deepCopy();
+  Down* deepCopy() override;
 };
 
 #endif

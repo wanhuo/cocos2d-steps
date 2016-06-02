@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _PARTICLE_H_
-#define _PARTICLE_H_
+#ifndef _PORTAL_H_
+#define _PORTAL_H_
 
 #include "Game.h"
 
@@ -31,7 +31,7 @@
  *
  *
  */
-class Particle : public Cube
+class Portal : public Decoration
 {
   /**
    *
@@ -53,10 +53,10 @@ class Particle : public Cube
    *
    */
   public:
-  Particle(string file = "particle.obj");
- ~Particle();
+  Portal(Node* parent);
+ ~Portal();
 
-  Particle* deepCopy();
+  virtual void onPickup();
 };
 
 #endif

@@ -69,9 +69,9 @@ void Copter::onDestroy(bool action)
  *
  *
  */
-void Copter::setPlate(Plate* plate)
+void Copter::setPlate(Plate* plate, bool animated)
 {
-  Decoration::setPlate(plate);
+  Decoration::setPlate(plate, animated);
 }
 
 void Copter::start()

@@ -73,6 +73,7 @@ void Environment::create()
   this->plates.gates = new Pool(new TypeGate, this->plane);
   this->plates.copters = new Pool(new TypeCopter, this->plane);
   this->plates.traps = new Pool(new TypeTrap, this->plane);
+  this->plates.portals = new Pool(new TypePortal, this->plane);
   this->plates.moveups = new Pool(new TypeMoveUp, this->plane);
   this->plates.moved1 = new Pool(new TypeMoved1, this->plane);
   this->plates.moved2 = new Pool(new TypeMoved2, this->plane);
@@ -541,7 +542,7 @@ void Environment::updateGame(float time)
       this->platesTime = max(0.3 + max(0.0, (0.5 - 0.1 * this->parameters.stage)), this->platesTime - 0.01);
       this->platesTimeElapsed = 0;
 
-      //this->generator->destroy();
+      this->generator->destroy();
     }
     break;
   }

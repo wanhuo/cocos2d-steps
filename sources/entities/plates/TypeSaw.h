@@ -58,13 +58,13 @@ class TypeSaw : public Special
 
   Pool* saws;
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
 
-  virtual void setPlate(Plate* plate);
+  virtual void setPlate(Plate* plate) override;
   virtual void start() override;
 
-  TypeSaw* deepCopy();
+  TypeSaw* deepCopy() override;
 };
 
 #endif

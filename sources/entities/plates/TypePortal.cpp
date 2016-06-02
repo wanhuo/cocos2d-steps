@@ -21,9 +21,6 @@
  *
  */
 
-#ifndef _PARTICLE_H_
-#define _PARTICLE_H_
-
 #include "Game.h"
 
 /**
@@ -31,32 +28,57 @@
  *
  *
  */
-class Particle : public Cube
+TypePortal::TypePortal()
+: Special("plate-type-portal.obj")
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
+  this->portal = new Portal(this);
+}
+
+TypePortal::~TypePortal()
+{
+}
+
+/**
+ *
+ *
+ *
+ */
+void TypePortal::onCreate()
+{
+  Special::onCreate();
+}
+
+void TypePortal::onDestroy(bool action)
+{
+  Special::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void TypePortal::setPlate(Plate* plate)
+{
+  Special::setPlate(plate);
 
   /**
    *
    *
    *
    */
-  protected:
+  this->portal->_create();
+  this->portal->setPosition3D(Vec3(0, 0, 0));
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Particle(string file = "particle.obj");
- ~Particle();
+  this->getDecorations().push_back(this->portal);
+}
 
-  Particle* deepCopy();
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+TypePortal* TypePortal::deepCopy()
+{
+  return new TypePortal;
+}

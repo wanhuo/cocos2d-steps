@@ -21,9 +21,6 @@
  *
  */
 
-#ifndef _PARTICLE_H_
-#define _PARTICLE_H_
-
 #include "Game.h"
 
 /**
@@ -31,32 +28,21 @@
  *
  *
  */
-class Particle : public Cube
+Portal::Portal(Node* parent)
+: Decoration("", parent)
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
+  this->removable = false;
+}
 
-  /**
-   *
-   *
-   *
-   */
-  protected:
+Portal::~Portal()
+{
+}
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Particle(string file = "particle.obj");
- ~Particle();
-
-  Particle* deepCopy();
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+void Portal::onPickup()
+{
+}

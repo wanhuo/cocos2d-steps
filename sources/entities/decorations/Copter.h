@@ -57,15 +57,15 @@ class Copter : public Decoration
   Copter(Node* parent = nullptr);
  ~Copter();
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
 
-  virtual void setPlate(Plate* plate);
+  virtual void setPlate(Plate* plate, bool animated = true) override;
   virtual void start() override;
 
-  virtual Character::Crash status();
+  virtual Character::Crash status() override;
 
-  Copter* deepCopy();
+  Copter* deepCopy() override;
 };
 
 #endif
