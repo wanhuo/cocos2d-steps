@@ -82,6 +82,8 @@ void Portal::onPickup()
 
     if(Application->environment->character->getManual())
     {
+      Sound->play("portal-in");
+
       Application->environment->character->setManual(false);
       Application->environment->character->plane->stopAllActions();
       Application->environment->character->plane->runAction(
@@ -108,7 +110,7 @@ void Portal::onPickup()
               int r = 0;
               int count = 5;
 
-              float time = 0.02;
+              float time = 0.08;
 
               for(int i = 0; i < count; i++)
               {
@@ -127,15 +129,21 @@ void Portal::onPickup()
 
                 if(element)
                 {
-                  this->runAction(
-                    Sequence::create(
-                      DelayTime::create(time * i),
-                      CallFunc::create(CC_CALLBACK_0(Plate::onCount, element)),
-                      CallFunc::create(CC_CALLBACK_0(Character::onSound, Application->environment->character)),
-                      CallFunc::create(CC_CALLBACK_0(Counter::onCount, Application->counter)),
-                      nullptr
-                    )
-                  );
+                  if(i >= count - 1)
+                  {
+                  }
+                  else
+                  {
+                    this->runAction(
+                      Sequence::create(
+                        DelayTime::create(time * i),
+                        CallFunc::create(CC_CALLBACK_0(Plate::onCount, element)),
+                        CallFunc::create(CC_CALLBACK_0(Character::onSound, Application->environment->character)),
+                        CallFunc::create(CC_CALLBACK_0(Counter::onCount, Application->counter)),
+                        nullptr
+                      )
+                    );
+                  }
                 }
               }
 
@@ -178,6 +186,8 @@ void Portal::onPickup()
                *
                *
                */
+              Sound->play("portal-out");
+
               Application->environment->character->plane->runAction(
                 Spawn::create(
                   MoveBy::create(0.5, Vec3(0.0, 1.0, 0.0)),
