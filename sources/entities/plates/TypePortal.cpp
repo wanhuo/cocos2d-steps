@@ -68,7 +68,7 @@ void TypePortal::setPlate(Plate* plate)
    *
    */
   this->portal->_create();
-  this->portal->setPosition3D(Vec3(0, 0, 0));
+  this->portal->setPosition3D(Vec3(0, 0.4, 0));
 
   this->getDecorations().push_back(this->portal);
 }

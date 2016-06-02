@@ -56,6 +56,9 @@ class Portal : public Decoration
   Portal(Node* parent);
  ~Portal();
 
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
+
   virtual void onPickup();
 };
 

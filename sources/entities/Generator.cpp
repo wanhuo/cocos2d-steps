@@ -458,6 +458,17 @@ void Generator::createGeneralElement(Plate* plate)
         }
         else if(action)
         {
+          /** 
+           *
+           *
+           *
+           */
+          if(--this->portal == 0)
+          {
+            plate->setType(Plate::PORTAL);
+            return;
+          }
+
           /**
            *
            * Try to change generator height;
@@ -823,6 +834,8 @@ void Generator::reset(bool complete)
   this->conditions.s9 = 0;
   this->conditions.s10 = 0;
   this->conditions.s11 = 0;
+
+  this->portal = 0;
 
   Application->environment->ground->reset();
 }

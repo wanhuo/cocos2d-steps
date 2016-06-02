@@ -857,7 +857,7 @@ bool Plate::conditions(int type)
     result = conditions->s2 < 1;
     break;
     case PORTAL:
-    result = (size - index) > 20;
+    result = (size - index) > 2 && Application->environment->generator->portal <= -10;
     break;
 
     case MOVE_UP:
@@ -938,6 +938,9 @@ bool Plate::conditions(int type)
       case TRAP:
       conditions->s1 = 2;
       conditions->s2 = 2;
+      break;
+      case PORTAL:
+      Application->environment->generator->portal = 5;
       break;
 
       case MOVE_UP:

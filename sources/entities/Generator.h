@@ -152,6 +152,7 @@ class Generator : public Ref
   bool bonus;
 
   int bonusSkip;
+  int portal;
 
   virtual Plate* create(bool animated = false);
   virtual Plate* destroy(bool manual = false);
