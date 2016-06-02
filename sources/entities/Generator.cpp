@@ -465,6 +465,12 @@ void Generator::createGeneralElement(Plate* plate)
            */
           if(--this->portal == 0)
           {
+            this->height.up.length += 5;
+            this->height.down.length += 5;
+
+            this->height.up.counter = -2;
+            this->height.down.counter = -2;
+
             plate->setType(Plate::PORTAL);
             return;
           }
@@ -485,32 +491,21 @@ void Generator::createGeneralElement(Plate* plate)
             {
               return;
             }
-            else if(this->height.down.counter == -2)
-            {
-              return;
-            }
             else if(this->height.up.counter == -1)
             {
               this->height.stage++;
               return;
             }
-            else if(this->height.down.counter == -1)
-            {
-              plate->setType(Plate::MOVE_UP);
-              this->height.stage--;
-              this->length++;
-
-              return;
-            }
             else if(this->height.up.counter == 0)
             {
-              if(probably(50))
+              if(probably(50) && plate->conditions(Plate::TRAMPOLINE))
               {
-                plate->setType(Plate::MOVE_UP);
+                plate->setType(Plate::TRAMPOLINE);
+                this->conditions.s8 = 8;
               }
               else
               {
-                plate->setType(Plate::TRAMPOLINE);
+                plate->setType(Plate::MOVE_UP);
               }
 
               this->length++;
@@ -519,10 +514,23 @@ void Generator::createGeneralElement(Plate* plate)
             }
             else if(this->height.down.counter == 0)
             {
-              if(probably(50))
+              if(probably(50) && plate->conditions(Plate::TRAMPOLINE))
               {
                 plate->setType(Plate::TRAMPOLINE);
+                this->conditions.s8 = 8;
               }
+
+              return;
+            }
+            else if(this->height.down.counter == -2)
+            {
+              return;
+            }
+            else if(this->height.down.counter == -1)
+            {
+              plate->setType(Plate::MOVE_UP);
+              this->height.stage--;
+              this->length++;
 
               return;
             }
@@ -719,22 +727,12 @@ void Generator::reset(bool complete)
     this->x = Application->environment->character->plates.current->getPositionX();
     this->y = 0.4;
     this->z = Application->environment->character->plates.current->getPositionZ();
-
-    this->height.stage = 0;
-    this->height.up.counter = -2;
-    this->height.down.counter = -2;
-    this->height.up.length = 0;
   }
   else
   {
     this->x = 0.0;
     this->y = 0.4;
     this->z = 0.0;
-
-    this->height.stage = 0;
-    this->height.up.counter = -2;
-    this->height.down.counter = -2;
-    this->height.up.length = 0;
   }
 
   /**
@@ -822,6 +820,11 @@ void Generator::reset(bool complete)
       }), this->start
     )
   );
+
+  this->height.stage = 0;
+  this->height.up.counter = -2;
+  this->height.down.counter = -2;
+  this->height.up.length = 0;
 
   this->conditions.s1 = 0;
   this->conditions.s2 = 0;

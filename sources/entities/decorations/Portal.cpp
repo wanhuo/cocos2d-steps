@@ -88,12 +88,12 @@ void Portal::onPickup()
       Application->environment->character->plane->stopAllActions();
       Application->environment->character->plane->runAction(
         Spawn::create(
-          MoveBy::create(0.5, Vec3(0.0, -1.0, 0.0)),
+          Repeat::create(
+            RotateBy::create(0.1, Vec3(0.0, 90.0, 0.0)), 5
+          ),
           ScaleTo::create(0.5, 0.5, 0.0, 0.5),
           Sequence::create(
-            Repeat::create(
-              RotateBy::create(0.1, Vec3(0.0, 90.0, 0.0)), 5
-            ),
+            MoveBy::create(0.5, Vec3(0.0, -1.0, 0.0)),
             CallFunc::create([=] () {
               Application->environment->character->setVisible(false);
               Application->environment->character->plane->setVisible(false);
@@ -105,10 +105,11 @@ void Portal::onPickup()
                *
                */
               auto element = Application->environment->character->plates.current;
+              auto stage = element->getStage();
 
               int l = 0;
               int r = 0;
-              int count = 5;
+              int count = 10;
 
               float time = 0.08;
 
@@ -178,9 +179,6 @@ void Portal::onPickup()
               Application->environment->character->plates.current = element;
               Application->environment->character->onLandSuccessful(Character::NONE, element);
 
-              
-
-
               /**
                *
                *
@@ -190,7 +188,7 @@ void Portal::onPickup()
 
               Application->environment->character->plane->runAction(
                 Spawn::create(
-                  MoveBy::create(0.5, Vec3(0.0, 1.0, 0.0)),
+                  MoveBy::create(0.5, Vec3(0.0, 1.0 + (element->getStage() - stage) * 0.8, 0.0)),
                   ScaleTo::create(0.5, 1.0, 1.0, 1.0),
                   Sequence::create(
                     Repeat::create(
@@ -205,10 +203,6 @@ void Portal::onPickup()
                 )
               );
             }),
-            nullptr
-          ),
-          Sequence::create(
-            RotateGlobalBy::create(time * (count - 1), Vec3(0, 90 * (count - 1) * (probably(50) ? 1 : -1), 0)),
             nullptr
           ),
           nullptr

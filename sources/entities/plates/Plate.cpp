@@ -100,7 +100,7 @@ void Plate::onRemove(bool complete)
   {
     auto character = Application->environment->character;
 
-    if(character->plates.current)
+    if(character->plates.current && character->state == Character::STATE_NORMAL)
     {
       if(character->plates.current->getIndex() == this->getIndex())
       {
@@ -857,7 +857,7 @@ bool Plate::conditions(int type)
     result = conditions->s2 < 1;
     break;
     case PORTAL:
-    result = (size - index) > 2 && Application->environment->generator->portal <= -10;
+    result = (size - index) > 20 && conditions->s8 < 1 && Application->environment->generator->portal <= -10;
     break;
 
     case MOVE_UP:
@@ -940,7 +940,7 @@ bool Plate::conditions(int type)
       conditions->s2 = 2;
       break;
       case PORTAL:
-      Application->environment->generator->portal = 5;
+      Application->environment->generator->portal = 10;
       break;
 
       case MOVE_UP:

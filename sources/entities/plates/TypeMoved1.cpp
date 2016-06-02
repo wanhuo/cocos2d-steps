@@ -55,7 +55,7 @@ void TypeMoved1::start()
           this->runAction(action->clone());
           this->plate->moved = true;
 
-          if(Application->environment->character->plates.current == this->plate && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->character) < 1)
+          if(Application->environment->character->plates.current == this->plate && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->character) < 1 && Application->environment->character->state == Character::STATE_NORMAL)
           {
             Application->environment->character->runAction(action->clone());
           }
@@ -77,7 +77,7 @@ void TypeMoved1::start()
             )
           );
 
-          if(Application->environment->character->plates.current == this->plate && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->character) < 1)
+          if(Application->environment->character->plates.current == this->plate && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->character) < 1 && Application->environment->character->state == Character::STATE_NORMAL)
           {
             Application->environment->character->runAction(action->clone());
           }
@@ -92,7 +92,7 @@ void TypeMoved1::start()
           this->runAction(action->clone());
           this->plate->moved = true;
 
-          if(Application->environment->character->plates.current == this->plate && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->character) < 1)
+          if(Application->environment->character->plates.current == this->plate && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->character) < 1 && Application->environment->character->state == Character::STATE_NORMAL)
           {
             Application->environment->character->runAction(action->clone());
           }
@@ -115,7 +115,7 @@ void TypeMoved1::start()
             )
           );
 
-          if(Application->environment->character->plates.current == this->plate && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->character) < 1)
+          if(Application->environment->character->plates.current == this->plate && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->character) < 1 && Application->environment->character->state == Character::STATE_NORMAL)
           {
             Application->environment->character->runAction(action->clone());
           }

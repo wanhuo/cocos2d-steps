@@ -529,22 +529,25 @@ void Environment::updateLose(float time)
 
 void Environment::updateGame(float time)
 {
-  switch(this->character->state)
+  if(this->character->getManual())
   {
-    case Character::STATE_CRASH:
-    case Character::STATE_INSANE:
-    break;
-    default:
-    this->platesTimeElapsed += time;
-
-    if(this->platesTimeElapsed >= this->platesTime)
+    switch(this->character->state)
     {
-      this->platesTime = max(0.3 + max(0.0, (0.5 - 0.1 * this->parameters.stage)), this->platesTime - 0.01);
-      this->platesTimeElapsed = 0;
+      case Character::STATE_CRASH:
+      case Character::STATE_INSANE:
+      break;
+      default:
+      this->platesTimeElapsed += time;
 
-      this->generator->destroy();
+      if(this->platesTimeElapsed >= this->platesTime)
+      {
+        this->platesTime = max(0.3 + max(0.0, (0.5 - 0.1 * this->parameters.stage)), this->platesTime - 0.01);
+        this->platesTimeElapsed = 0;
+
+        this->generator->destroy();
+      }
+      break;
     }
-    break;
   }
 }
 

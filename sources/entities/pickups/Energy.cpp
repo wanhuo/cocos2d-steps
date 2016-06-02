@@ -111,7 +111,7 @@ void Energy::onPickup()
                   }
                 }
 
-                if(((this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::TRAMPOLINE && next->type != Plate::FINISH) || action)
+                if(((this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::TRAMPOLINE && next->type != Plate::PORTAL && next->type != Plate::FINISH) || action)
                 {
                   Application->environment->character->runAction(this->action);
                 }
@@ -126,6 +126,12 @@ void Energy::onPickup()
                       if(next->type != Plate::TRAMPOLINE)
                       {
                         Application->environment->character->setManual(true);
+                      }
+
+                      if(next->type == Plate::PORTAL)
+                      {
+                        next->getDecorations()[0]->enable = true;
+                        next->getDecorations()[0]->onPickup();
                       }
                       }),
                       nullptr

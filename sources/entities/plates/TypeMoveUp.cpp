@@ -96,7 +96,7 @@ void TypeMoveUp::start()
             CallFunc::create([=] () {
             this->plate->setStage(this->plate->getStage() + 2);
 
-                      if(Application->environment->character->plates.current == this->plate)
+          if(Application->environment->character->plates.current == this->plate && Application->environment->character->state == Character::STATE_NORMAL)
           {
             Application->environment->character->plane->runAction(
             Sequence::create(

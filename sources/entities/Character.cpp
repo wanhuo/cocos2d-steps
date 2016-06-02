@@ -630,7 +630,7 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
       {
         if(this->steps >= 30)
         {
-          this->changeState(STATE_INSANE);
+          //this->changeState(STATE_INSANE);
         }
       }
     }
@@ -1766,12 +1766,15 @@ void Character::update(float time)
    *
    *
    */
-  this->soundTimeElapsed += time;
-
-  if(this->soundTimeElapsed >= this->soundTime)
+  if(this->getManual())
   {
-    this->steps = 0;
-    this->sound = 1;
+    this->soundTimeElapsed += time;
+
+    if(this->soundTimeElapsed >= this->soundTime)
+    {
+      this->steps = 0;
+      this->sound = 1;
+    }
   }
 }
 

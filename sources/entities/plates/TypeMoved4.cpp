@@ -55,7 +55,7 @@ void TypeMoved4::start()
           this->runAction(action->clone());
           this->plate->moved = true;
 
-          if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual())
+          if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual() && Application->environment->character->state == Character::STATE_NORMAL)
           {
             Application->environment->character->runAction(action->clone());
           }
@@ -77,7 +77,7 @@ void TypeMoved4::start()
             )
           );
 
-          if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual())
+          if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual() && Application->environment->character->state == Character::STATE_NORMAL)
           {
             Application->environment->character->runAction(action->clone());
           }
