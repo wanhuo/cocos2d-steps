@@ -51,6 +51,11 @@ Shadow::~Shadow()
  *
  *
  */
+void Shadow::setParentCoordinates(bool enable)
+{
+  this->parentCoordinates = enable;
+}
+
 void Shadow::setMaxScale(Vec3 scale)
 {
   this->maxScale = scale;
@@ -84,6 +89,11 @@ Vec3 Shadow::getMaxScale()
 Vec3 Shadow::getMinScale()
 {
   return this->minScale;
+}
+
+bool Shadow::getParentCoordinates()
+{
+  return this->parentCoordinates;
 }
 
 Vec3 Shadow::getOffset()

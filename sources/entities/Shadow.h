@@ -39,6 +39,8 @@ class Shadow : public Entity3D
    *
    */
   protected:
+  bool parentCoordinates = false;
+
   float size = 2.1;
   float position = 0.0;
 
@@ -57,6 +59,7 @@ class Shadow : public Entity3D
   Shadow(const char* file, Node* parent);
  ~Shadow();
 
+  virtual void setParentCoordinates(bool enable);
   virtual void setMaxScale(Vec3 scale);
   virtual void setMinScale(Vec3 scale);
 
@@ -69,6 +72,8 @@ class Shadow : public Entity3D
   virtual Vec3 getMinScale();
 
   virtual Vec3 getOffset();
+
+  virtual bool getParentCoordinates();
 
   virtual float getSize();
   virtual float getPosition();

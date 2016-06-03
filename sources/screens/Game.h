@@ -239,6 +239,8 @@ class Game : public Screen
   BackgroundColor* s;
   BackgroundColor* d;
 
+  Entity* i;
+
   Environment* environment;
   Cameras cameras;
 

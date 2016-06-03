@@ -454,6 +454,14 @@ bool Character::setManual(bool manual)
 {
   this->manual = manual;
 
+  if(!this->manual)
+  {
+    if(Application->environment->insane->state->create && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->insane) <= 1)
+    {
+      Application->environment->insane->onRemove();
+    }
+  }
+
   return this->manual;
 }
 
@@ -625,9 +633,9 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
     {
       if(!Application->environment->generator->bonus && this->getManual())
       {
-        if(this->plates.current && !this->plates.current->getStage())
+        if(this->plates.current && (Application->environment->generator->size - this->plates.current->getIndex()) > 10)
         {
-          if(this->steps >= 10)
+          if(this->steps >= 5)
           {
             auto counter = 5;
             auto element = this->plates.current;
@@ -637,10 +645,22 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
               counter--;
               element = this->getPlatesNearWithDefaults(element).next();
 
-              if(counter < 0 && !element->getDecorations().size())
+              if(!element)
+              {
+                break;
+              }
+
+              if(element->type == Plate::TRAMPOLINE)
+              {
+                break;
+              }
+
+              if(counter < 0 && !element->getDecorations().size() && !element->special)
               {
                 Application->environment->insane->_create();
-                Application->environment->insane->setPlate(element);
+                Application->environment->insane->setPlate(element, false);
+
+                element->getDecorations().push_back(Application->environment->insane);
 
                 break;
               }
@@ -661,6 +681,17 @@ void Character::onLandFail(Turn turn, Plate* plate)
   switch(turn)
   {
     default:
+    break;
+    case NONE:
+    this->runAction(
+      Spawn::create(
+        MoveTo::create(0.1, Vec3(this->getPositionX(), 0.0, this->getPositionZ())),
+        CallFunc::create([=] () {
+          this->changeState(STATE_CRASH, Crash::FAIL);
+        }),
+        nullptr
+      )
+    );
     break;
     case LEFT:
     this->runAction(
@@ -1098,6 +1129,8 @@ void Character::onInsaneStart()
   auto py = Application->cameras.d->getPosition3D().y;
   auto pz = Application->cameras.d->getPosition3D().z;
 
+  this->stopAllActions();
+
   this->plane->stopAllActions();
   this->plane->setScale(1.0);
 
@@ -1144,7 +1177,7 @@ void Character::onInsaneStart()
 
   this->runAction(
     Spawn::create(
-      MoveBy::create(0.1, Vec3(this->insaneDirection ? 0 : 1.5, -0.8, this->insaneDirection ? -1.5 : 0)),
+      MoveBy::create(0.1, Vec3(this->insaneDirection ? 0 : 1.5, -0.8 * (this->plates.current->getStage() + 1), this->insaneDirection ? -1.5 : 0)),
       RotateGlobalBy::create(0.1, Vec3(this->insaneDirection ? -90.0 : 0, 0, this->insaneDirection ? 0 : -90)),
       nullptr
     )
@@ -1160,6 +1193,17 @@ void Character::onInsaneStart()
     )
   );
 
+  Application->i->_create();
+  Application->i->setOpacity(0);
+  Application->i->setScale(1.5);
+  Application->i->runAction(
+    Spawn::create(
+      FadeTo::create(2.5, 200),
+      ScaleTo::create(2.5, 1.0),
+      nullptr
+    )
+  );
+
   Music->speed(1.3);
 }
 
@@ -1167,11 +1211,13 @@ void Character::onInsaneFinish()
 {
   this->stopAllActions();
 
+  auto element = this->getPlatesNear(this->insanePlate).next();
+
   this->runAction(
     Spawn::create(
       RotateGlobalBy::create(0.1, Vec3(this->insaneDirection ? 0.0 : -90.0, 0, this->insaneDirection ? -90.0 : 0.0)),
       Sequence::create(
-        MoveBy::create(0.1, Vec3(this->insaneDirection ? 1.5 : 0.0, 0.8, this->insaneDirection ? 0 : -1.5)),
+        MoveBy::create(0.1, Vec3(this->insaneDirection ? 1.5 : 0.0, (element->getStage() + 1) * 0.8, this->insaneDirection ? 0 : -1.5)),
         CallFunc::create([=] () {
         if(this->plates.current->type != Plate::FINISH)
         {
@@ -1195,6 +1241,16 @@ void Character::onInsaneFinish()
       ScaleTo::create(0.5, 1.0),
       MoveTo::create(0.5, Vec3(Application->startCameraX, Application->startCameraY, Application->startCameraZ)),
       RotateTo::create(0.5, Vec3(Application->startCameraRotationX, Application->startCameraRotationY, Application->startCameraRotationZ)),
+      nullptr
+    )
+  );
+
+  Application->i->runAction(
+    Sequence::create(
+      FadeOut::create(0.5),
+      CallFunc::create([=] () {
+      Application->i->_destroy();
+      }),
       nullptr
     )
   );
@@ -1235,22 +1291,25 @@ void Character::onInsaneUpdate()
 
   Application->environment->generator->create(true);
 
-  switch(this->insanePlate->type)
+  if(!this->insanePlate->getStage())
   {
-    default:
-    break;
-    case Plate::SAW:
-    this->insanePlate->setVisibility(false);
+    switch(this->insanePlate->type)
+    {
+      default:
+      break;
+      case Plate::SAW:
+      this->insanePlate->setVisibility(false);
 
-              Sound->play("insane-brick-" + to_string(random(1, 3)));
-              /////
-                for(int i = 0; i < 10; i++)
-  {
-    auto particle = Application->environment->createParticle(1, this->insanePlate->getPositionX(), this->insanePlate->getPositionY() - 0.5, this->insanePlate->getPositionZ());
+                Sound->play("insane-brick-" + to_string(random(1, 3)));
+                /////
+                  for(int i = 0; i < 10; i++)
+    {
+      auto particle = Application->environment->createParticle(1, this->insanePlate->getPositionX(), this->insanePlate->getPositionY() - 0.5, this->insanePlate->getPositionZ());
 
-    particle->setColor(Color3B(252, 226, 105));
-  }
-    break;
+      particle->setColor(Color3B(252, 226, 105));
+    }
+      break;
+    }
   }
 
   this->insaneSpeed = max(this->insaneSpeed - 0.001, 0.075);
@@ -1267,8 +1326,10 @@ void Character::onInsaneRight()
         {
           if(plate)
           {
-            if((this->insaneCount > 0 || plate->type == Plate::SPIKES || plate->type == Plate::TRAP || plate->type == Plate::SAW || plate->type == Plate::DOWN || plate->behavior == Plate::DYNAMIC) && plate->type != Plate::FINISH && plate->getStage() == 0)
+            if((this->insaneCount > 0 || plate->type == Plate::SPIKES || plate->type == Plate::TRAP || plate->type == Plate::SAW || plate->type == Plate::DOWN || plate->behavior == Plate::DYNAMIC) && plate->type != Plate::FINISH)
             {
+              if(plate->getStage() == 0)
+              {
               plate->setVisibility(false);
 
               Sound->play("insane-brick-" + to_string(random(1, 3)));
@@ -1278,6 +1339,7 @@ void Character::onInsaneRight()
     auto particle = Application->environment->createParticle(1, plate->getPositionX(), plate->getPositionY() - 0.5, plate->getPositionZ());
 
     particle->setColor(Color3B(252, 226, 105));
+  }
   }
             }
             else
@@ -1347,8 +1409,10 @@ void Character::onInsaneLeft()
         {
           if(plate)
           {
-            if((this->insaneCount > 0 || plate->type == Plate::SPIKES || plate->type == Plate::TRAP || plate->type == Plate::SAW || plate->type == Plate::DOWN || plate->behavior == Plate::DYNAMIC) && plate->type != Plate::FINISH && plate->getStage() == 0)
+            if((this->insaneCount > 0 || plate->type == Plate::SPIKES || plate->type == Plate::TRAP || plate->type == Plate::SAW || plate->type == Plate::DOWN || plate->behavior == Plate::DYNAMIC) && plate->type != Plate::FINISH)
             {
+              if(plate->getStage() == 0)
+              {
               plate->setVisibility(false);
 
               Sound->play("insane-brick-" + to_string(random(1, 3)));
@@ -1358,6 +1422,7 @@ void Character::onInsaneLeft()
     auto particle = Application->environment->createParticle(1, plate->getPositionX(), plate->getPositionY() - 0.5, plate->getPositionZ());
 
     particle->setColor(Color3B(252, 226, 105));
+  }
   }
             }
             else
@@ -1790,6 +1855,11 @@ void Character::update(float time)
     {
       this->steps = 0;
       this->sound = 1;
+
+      if(Application->environment->insane->state->create && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->insane) <= 1)
+      {
+        Application->environment->insane->onRemove();
+      }
     }
   }
 }

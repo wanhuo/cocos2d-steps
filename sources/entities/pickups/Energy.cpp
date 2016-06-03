@@ -95,6 +95,12 @@ void Energy::onPickup()
 
         Application->environment->character->plates.current = next;
 
+        Director::getInstance()->getActionManager()->pauseTarget(next);
+        Director::getInstance()->getScheduler()->pauseTarget(next);
+
+        Director::getInstance()->getActionManager()->pauseTarget(next->special);
+        Director::getInstance()->getScheduler()->pauseTarget(next->special);
+
         Application->environment->character->runAction(
           Spawn::create(
             RotateGlobalBy::create(0.1, Vec3(60 * z, 0, -60 * x)),
@@ -102,6 +108,12 @@ void Energy::onPickup()
               MoveBy::create(0.1, Vec3(x, 0, z)),
               CallFunc::create([=] () {
                 bool action = false;
+
+              Director::getInstance()->getActionManager()->resumeTarget(next);
+              Director::getInstance()->getScheduler()->resumeTarget(next);
+
+              Director::getInstance()->getActionManager()->resumeTarget(next->special);
+              Director::getInstance()->getScheduler()->resumeTarget(next->special);
 
                 if(++this->count >= COUNT)
                 {
@@ -121,7 +133,7 @@ void Energy::onPickup()
 
                   Application->environment->character->runAction(
                     Sequence::create(
-                      DelayTime::create(0.1),
+                      //DelayTime::create(0.1),
                       CallFunc::create([=] () {
                       if(next->type != Plate::TRAMPOLINE)
                       {

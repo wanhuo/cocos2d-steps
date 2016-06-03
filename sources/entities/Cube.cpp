@@ -115,10 +115,17 @@ void Cube::destroyShadow()
  */
 void Cube::update(float time)
 {
-  auto position = this->getPosition3D();
-
   if(this->shadow)
   {
+    auto position = this->getPosition3D();
+
+    if(this->shadow->getParentCoordinates())
+    {
+      position.x += this->getParent()->getPositionX();
+      position.y += this->getParent()->getPositionY();
+      position.z += this->getParent()->getPositionZ();
+    }
+
     this->shadow->setPositionX(position.x + this->shadow->getOffset().x);
     this->shadow->setPositionY(this->shadow->getPosition() + this->shadow->getOffset().y);
     this->shadow->setPositionZ(position.z + this->shadow->getOffset().z);

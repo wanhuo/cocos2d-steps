@@ -29,8 +29,24 @@
  *
  */
 TypeMoved5::TypeMoved5()
-: TypeMoved()
+: TypeMoved("")
 {
+  this->destroyShadow();
+
+  this->p = new Decoration("", Application->environment->plane);
+
+  this->l = new Decoration("plate-type-moved-l.obj", this->p);
+  this->r = new Decoration("plate-type-moved-r.obj", this->p);
+
+  this->l->shadow = new Shadow("plate-bottom-shadow.obj", this->p);
+  this->l->shadow->setMinScale(Vec3(0.5, 1.0, 1.2));
+  this->l->shadow->setMaxScale(Vec3(0.5, 1.0, 1.2));
+  this->l->shadow->setOffset(Vec3(0.40, 0.0, -0.23));
+
+  this->r->shadow = new Shadow("plate-bottom-shadow.obj", this->p);
+  this->r->shadow->setMinScale(Vec3(0.5, 1.0, 1.2));
+  this->r->shadow->setMaxScale(Vec3(0.5, 1.0, 1.2));
+  this->r->shadow->setOffset(Vec3(0.40, 0.0, -0.13));
 }
 
 TypeMoved5::~TypeMoved5()
@@ -42,47 +58,94 @@ TypeMoved5::~TypeMoved5()
  *
  *
  */
+void TypeMoved5::onCreate()
+{
+  TypeMoved::onCreate();
+}
+
+void TypeMoved5::onDestroy(bool action)
+{
+  TypeMoved::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void TypeMoved5::setPlate(Plate* plate)
+{
+  TypeMoved::setPlate(plate);
+
+  /**
+   *
+   *
+   *
+   */
+  this->p->_create();
+  this->l->_create();
+  this->r->_create();
+
+  this->l->scheduleUpdate();
+  this->r->scheduleUpdate();
+
+  this->l->shadow->setPosition( - this->plate->getStage() * 0.8 - 0.4 + 0.01);
+  this->r->shadow->setPosition( - this->plate->getStage() * 0.8 - 0.4 + 0.01);
+
+  this->p->setPosition3D(Vec3(this->plate->getPositionX(), 0.4 + (plate->getStage() * 0.8), this->plate->getPositionZ()));
+  this->p->setRotation3D(Vec3(0.0, (this->plate->getDirection() ? 270.0 : 0.0), 0.0));
+  this->l->setPosition3D(Vec3(+ 0.75 / 2, 0, 0));
+  this->r->setPosition3D(Vec3(- 0.75 / 2, 0, 0));
+
+  this->getDecorations().push_back(this->p);
+  this->getDecorations().push_back(this->l);
+  this->getDecorations().push_back(this->r);
+}
+
 void TypeMoved5::start()
 {
-  this->runAction(
+  this->l->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        MoveBy::create(0.15, Vec3(0.75, 0.0, 0.0)),
+        DelayTime::create(0.5),
+        MoveBy::create(0.15, Vec3(-0.75, 0.0, 0.0)),
+        DelayTime::create(0.5),
+        nullptr
+      )
+    )
+  );
+
+  this->r->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        MoveBy::create(0.15, Vec3(-0.75, 0.0, 0.0)),
+        DelayTime::create(0.5),
+        MoveBy::create(0.15, Vec3(0.75, 0.0, 0.0)),
+        DelayTime::create(0.5),
+        nullptr
+      )
+    )
+  );
+
+  this->plate->runAction(
     RepeatForever::create(
       Sequence::create(
         CallFunc::create([=] () {
-          auto action = EaseSineInOut::create(
-            MoveBy::create(0.15, Vec3(-1.5, 0, 0))
-          );
+        this->plate->moved = true;
 
-          this->runAction(action->clone());
-          this->plate->moved = true;
-
-          if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual() && Application->environment->character->state == Character::STATE_NORMAL)
-          {
-            Application->environment->character->runAction(action->clone());
-          }
+        if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual() && Application->environment->character->state == Character::STATE_NORMAL)
+        {
+          Application->environment->character->onLandFail(Character::NONE, this->plate);
+        }
         }),
-        DelayTime::create(0.6),
+        DelayTime::create(0.15),
+        DelayTime::create(0.5),
+        DelayTime::create(0.15),
         CallFunc::create([=] () {
-          auto action = EaseSineInOut::create(
-            MoveBy::create(0.15, Vec3(1.5, 0, 0))
-          );
-
-          this->runAction(action->clone());
-          this->runAction(
-            Sequence::create(
-              DelayTime::create(0.15),
-              CallFunc::create([=] () {
-                this->plate->moved = false;
-              }),
-              nullptr
-            )
-          );
-
-          if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual() && Application->environment->character->state == Character::STATE_NORMAL)
-          {
-            Application->environment->character->runAction(action->clone());
-          }
+        this->plate->moved = false;
         }),
-        DelayTime::create(0.6),
+        DelayTime::create(0.5),
         nullptr
       )
     )

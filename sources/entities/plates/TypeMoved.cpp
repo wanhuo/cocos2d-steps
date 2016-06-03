@@ -28,8 +28,8 @@
  *
  *
  */
-TypeMoved::TypeMoved()
-: Special("plate-type-moved.obj")
+TypeMoved::TypeMoved(string file)
+: Special(file)
 {
   this->shadow = new Shadow("plate-bottom-shadow.obj");
   this->shadow->setMinScale(Vec3(1.0, 1.0, 1.0));

@@ -46,6 +46,10 @@ class TypeMoved5 : public TypeMoved
    *
    */
   protected:
+  Decoration* p;
+
+  Decoration* l;
+  Decoration* r;
 
   /**
    *
@@ -56,9 +60,13 @@ class TypeMoved5 : public TypeMoved
   TypeMoved5();
  ~TypeMoved5();
 
-  virtual void start();
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
 
-  virtual TypeMoved5* deepCopy();
+  virtual void setPlate(Plate* plate) override;
+  virtual void start() override;
+
+  virtual TypeMoved5* deepCopy() override;
 };
 
 #endif

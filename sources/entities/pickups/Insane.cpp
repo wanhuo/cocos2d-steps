@@ -29,10 +29,10 @@
  *
  */
 Insane::Insane()
-: Pickup("insane.obj", Application->environment->plane)
+: Pickup("energy.obj", Application->environment->plane)
 {
-  this->glow->setColor(Color3B::RED);
-  this->glow->setScale(0.006);
+  this->setColor(Color3B(255.0, 55.0, 0.0));
+  this->glow->setColor(Color3B(252.0, 52.0, 136.0));
 }
 
 Insane::~Insane()
@@ -53,7 +53,36 @@ void Insane::onCreate()
    *
    *
    */
-  this->setTexture("textures/insane-texture.png");
+  auto action = EaseBounceOut::create(
+    ScaleTo::create(0.5, 1.0)
+  );
+
+  this->setScale(0);
+  this->window->setScale(0);
+  this->shadow->setScale(0);
+
+  this->glow->setOpacity(150);
+  this->glow->setScale(0.011);
+
+  this->runAction(action->clone());
+  this->window->runAction(action->clone());
+  this->shadow->runAction(action->clone());
+
+  this->setTexture(Application->environment->getTextureState1());
+
+  this->runAction(
+    DelayTime::create(1.0)
+  );
+
+  this->glow->runAction(
+      RepeatForever::create(
+        Sequence::create(
+          ScaleTo::create(0.5, 0.011),
+          ScaleTo::create(0.5, 0.005),
+          nullptr
+        )
+      )
+  );
 }
 
 void Insane::onDestroy(bool action)
@@ -66,6 +95,28 @@ void Insane::onDestroy(bool action)
  *
  *
  */
+void Insane::onRemove()
+{
+  this->runAction(
+    Sequence::create(
+      ScaleTo::create(0.2, 0),
+      CallFunc::create([=] () {
+      this->plate->clearDecorations();
+      }),
+      nullptr
+    )
+  );
+
+  this->glow->stopAllActions();
+  this->glow->runAction(
+    Spawn::create(
+      FadeOut::create(0.2),
+      ScaleTo::create(0.2,  0.040),
+      nullptr
+    )
+  );
+}
+
 void Insane::onPickup()
 {
   Pickup::onPickup();
@@ -76,6 +127,13 @@ void Insane::onPickup()
    *
    */
   Application->environment->character->changeState(Character::STATE_INSANE);
+
+  /**
+   *
+   *
+   *
+   */
+  Sound->play("pickup-insane");
 }
 
 /**
@@ -85,12 +143,13 @@ void Insane::onPickup()
  */
 void Insane::setPlate(Plate* plate, bool animated)
 {
-  Pickup::setPlate(plate, animated);
+  Decoration::setPlate(plate, animated);
 
   /**
    *
    *
    *
    */
-  //
+  this->setPositionY(plate->getStage() * 0.8 + 1.6);
+  this->shadow->setPosition(plate->getStage() * 0.8);
 }

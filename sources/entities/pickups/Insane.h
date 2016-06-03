@@ -59,6 +59,7 @@ class Insane : public Pickup
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
+  virtual void onRemove();
   virtual void onPickup();
 
   virtual void setPlate(Plate* plate, bool animated = true);
