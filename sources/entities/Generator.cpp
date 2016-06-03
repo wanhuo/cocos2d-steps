@@ -436,6 +436,12 @@ void Generator::createGeneralElement(Plate* plate)
       {
         action = false;
 
+        this->height.up.length += 5;
+        this->height.down.length += 5;
+
+        this->height.up.counter = -2;
+        this->height.down.counter = -2;
+
         plate->setType(Plate::BEST);
       }
     }

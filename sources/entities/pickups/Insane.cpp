@@ -21,9 +21,6 @@
  *
  */
 
-#ifndef _PICKUP_H_
-#define _PICKUP_H_
-
 #include "Game.h"
 
 /**
@@ -31,42 +28,69 @@
  *
  *
  */
-class Pickup : public Decoration
+Insane::Insane()
+: Pickup("insane.obj", Application->environment->plane)
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
+  this->glow->setColor(Color3B::RED);
+  this->glow->setScale(0.006);
+}
+
+Insane::~Insane()
+{
+}
+
+/**
+ *
+ *
+ *
+ */
+void Insane::onCreate()
+{
+  Pickup::onCreate();
 
   /**
    *
    *
    *
    */
-  protected:
-  BillBoard* window;
-  Entity* glow;
+  this->setTexture("textures/insane-texture.png");
+}
+
+void Insane::onDestroy(bool action)
+{
+  Pickup::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Insane::onPickup()
+{
+  Pickup::onPickup();
 
   /**
    *
    *
    *
    */
-  public:
-  Pickup(const char* file, Node* parent = nullptr);
- ~Pickup();
+  Application->environment->character->changeState(Character::STATE_INSANE);
+}
 
-  virtual void onCreate() override;
-  virtual void onDestroy(bool action = false) override;
+/**
+ *
+ *
+ *
+ */
+void Insane::setPlate(Plate* plate, bool animated)
+{
+  Pickup::setPlate(plate, animated);
 
-  virtual void onPickup() override;
-
-  virtual void setPlate(Plate* plate, bool animated = true) override;
-  virtual void setVisible(bool visible) override;
-
-  virtual void update(float time) override;
-};
-
-#endif
+  /**
+   *
+   *
+   *
+   */
+  //
+}

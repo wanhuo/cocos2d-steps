@@ -559,7 +559,6 @@ void Character::onTurn(Turn turn)
 void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
 {
   auto x = this->getPositionX();
-  auto y = this->getPositionY();
   auto z = this->getPositionZ();
 
   if(plate->behavior == Plate::DYNAMIC)
@@ -593,9 +592,7 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
 
   for(int i = 0; i < 10; i++)
   {
-    auto particle = Application->environment->createParticle(0, x, y - 0.5, z);
-
-    particle->setColor(color);
+    Application->environment->createParticle(0, x, plate->getPositionY() + 0.4, z)->setColor(color);
   }
 
   Application->environment->generator->create(true);
@@ -624,13 +621,31 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
   }
   else
   {
-    if(!Application->environment->generator->bonus && this->getManual())
+    if(!Application->environment->insane->state->create)
     {
-      if(this->plates.current && !this->plates.current->getStage())
+      if(!Application->environment->generator->bonus && this->getManual())
       {
-        if(this->steps >= 30)
+        if(this->plates.current && !this->plates.current->getStage())
         {
-          //this->changeState(STATE_INSANE);
+          if(this->steps >= 10)
+          {
+            auto counter = 5;
+            auto element = this->plates.current;
+
+            while(true)
+            {
+              counter--;
+              element = this->getPlatesNearWithDefaults(element).next();
+
+              if(counter < 0 && !element->getDecorations().size())
+              {
+                Application->environment->insane->_create();
+                Application->environment->insane->setPlate(element);
+
+                break;
+              }
+            }
+          }
         }
       }
     }
@@ -862,10 +877,11 @@ void Character::onCrash(Crash crash)
 
   switch(crash)
   {
+    case CATCH:
+    Storage::set("application.plates.index." + s(Application->environment->parameters.stage), Application->environment->platesTimeIndex + 1);
     case FAIL:
     case SPIKES:
     case DOWN:
-    case CATCH:
     case GATE:
     Screenshot::save([&] (bool a, string texture)
     {

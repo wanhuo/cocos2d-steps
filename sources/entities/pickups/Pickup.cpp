@@ -28,8 +28,8 @@
  *
  *
  */
-Pickup::Pickup(const char* file)
-: Decoration(file)
+Pickup::Pickup(const char* file, Node* parent)
+: Decoration(file, parent)
 {
   this->shadow = new Shadow("pickup-shadow.obj");
 

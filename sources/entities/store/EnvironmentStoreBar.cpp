@@ -628,7 +628,7 @@ void EnvironmentStoreBar::EnvironmentStoreBarButton::onTouchCancelled(cocos2d::T
  */
 void EnvironmentStoreBar::EnvironmentStoreBarButton::onTouch(cocos2d::Touch* touch, Event* e)
 {
-  if(!Application->environment->store.controller->toogle->numberOfRunningActions())
+  if(!Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->store.controller->toogle))
   {
     if(Application->environment->store.controller->index != this->index)
     {

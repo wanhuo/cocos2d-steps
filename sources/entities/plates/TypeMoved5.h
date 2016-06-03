@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _PICKUP_H_
-#define _PICKUP_H_
+#ifndef _TYPE_MOVED5_H_
+#define _TYPE_MOVED5_H_
 
 #include "Game.h"
 
@@ -31,7 +31,7 @@
  *
  *
  */
-class Pickup : public Decoration
+class TypeMoved5 : public TypeMoved
 {
   /**
    *
@@ -46,8 +46,6 @@ class Pickup : public Decoration
    *
    */
   protected:
-  BillBoard* window;
-  Entity* glow;
 
   /**
    *
@@ -55,18 +53,12 @@ class Pickup : public Decoration
    *
    */
   public:
-  Pickup(const char* file, Node* parent = nullptr);
- ~Pickup();
+  TypeMoved5();
+ ~TypeMoved5();
 
-  virtual void onCreate() override;
-  virtual void onDestroy(bool action = false) override;
+  virtual void start();
 
-  virtual void onPickup() override;
-
-  virtual void setPlate(Plate* plate, bool animated = true) override;
-  virtual void setVisible(bool visible) override;
-
-  virtual void update(float time) override;
+  virtual TypeMoved5* deepCopy();
 };
 
 #endif

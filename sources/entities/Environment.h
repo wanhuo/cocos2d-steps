@@ -36,6 +36,7 @@
  */
 class Character;
 class Ground;
+class Insane;
 class Decoration;
 
 class EnvironmentStoreItem;
@@ -124,6 +125,7 @@ class Environment : public Background
     Pool* moved2;
     Pool* moved3;
     Pool* moved4;
+    Pool* moved5;
   };
 
   struct Decorations {
@@ -189,9 +191,6 @@ class Environment : public Background
   float accelerationY = 0;
   float accelerationZ = 0;
 
-  float platesTime;
-  float platesTimeElapsed;
-
   /**
    *
    *
@@ -223,6 +222,10 @@ class Environment : public Background
   float starTime;
   float starTimeElapsed;
 
+  float platesTime;
+  float platesTimeElapsed;
+  float platesTimeIndex;
+
   Character* character;
 
   Generator* generator = nullptr;
@@ -231,6 +234,7 @@ class Environment : public Background
   Entity3D* plane;
 
   Ground* ground;
+  Insane* insane;
 
   Background* characterActionHolder;
   BackgroundColor* characterActionBackground;

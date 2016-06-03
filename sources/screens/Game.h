@@ -69,6 +69,7 @@
 #include "Star.h"
 #include "Color.h"
 #include "Presention.h"
+#include "Insane.h"
 #include "Let.h"
 
 #include "Start.h"
@@ -96,6 +97,7 @@
 #include "TypeMoved2.h"
 #include "TypeMoved3.h"
 #include "TypeMoved4.h"
+#include "TypeMoved5.h"
 
 #include "Menu.h"
 #include "Finish.h"
@@ -135,6 +137,7 @@
  *
  *
  */
+#define s(a) to_string(a)
 #define Application Game::getInstance()
 
 /**

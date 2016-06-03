@@ -95,7 +95,9 @@ class Plate : public Cube
     PRESENTION, // 24
     LETTER, // 25,
 
-    PORTAL // 26
+    PORTAL, // 26
+
+    MOVED5 // 27
   };
 
   enum Side {

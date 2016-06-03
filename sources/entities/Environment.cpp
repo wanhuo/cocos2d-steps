@@ -62,6 +62,7 @@ void Environment::create()
   this->plane->setPosition3D(Vec3(0, 0, 0));
 
   this->ground = new Ground(this);
+  this->insane = new Insane;
 
   this->plates.normal = new Pool(new Plate, this->plane);
   this->plates.finish = new Pool(new TypeFinish, this->plane);
@@ -79,6 +80,7 @@ void Environment::create()
   this->plates.moved2 = new Pool(new TypeMoved2, this->plane);
   this->plates.moved3 = new Pool(new TypeMoved3, this->plane);
   this->plates.moved4 = new Pool(new TypeMoved4, this->plane);
+  this->plates.moved5 = new Pool(new TypeMoved5, this->plane);
 
   this->pickups.diamonds = new Pool(new Diamond, this->plane);
   this->pickups.crystals = new Pool(new Crystal, this->plane);
@@ -405,6 +407,7 @@ void Environment::onMenu()
 
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;
+  this->platesTimeIndex = Storage::get("application.plates.index." + s(this->parameters.stage));
 
   this->character->removeFromParent();
   //this->character->release();
@@ -541,7 +544,7 @@ void Environment::updateGame(float time)
 
       if(this->platesTimeElapsed >= this->platesTime)
       {
-        this->platesTime = max(0.3 + max(0.0, (0.5 - 0.1 * this->parameters.stage)), this->platesTime - 0.01);
+        this->platesTime = max(0.3 + this->platesTimeIndex * 0.05 + max(0.0, (0.5 - 0.1 * this->parameters.stage)), this->platesTime - 0.01);
         this->platesTimeElapsed = 0;
 
         this->generator->destroy();

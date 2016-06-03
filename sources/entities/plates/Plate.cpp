@@ -552,6 +552,17 @@ void Plate::setType(int type, bool animated, char data)
     }
     break;
 
+
+    case MOVED5:
+    {
+      this->setVisible(false);
+      this->shadow->setVisible(false);
+
+      this->special = static_cast<TypeMoved5*>(Application->environment->plates.moved5->_create());
+      this->special->setPlate(this);
+    }
+    break;
+
     case MOVE_UP:
     this->setVisible(false);
 
@@ -848,7 +859,7 @@ bool Plate::conditions(int type)
     result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1 && (size - index) > 5;
     break;
     case GATE:
-    result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1 && conditions->s7 < 1;
+    result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1 && conditions->s7 < 1 && (size - index) > 2;
     break;
     case COPTER:
     result = conditions->s2 < 1 && conditions->s5 < 1;
@@ -857,11 +868,11 @@ bool Plate::conditions(int type)
     result = conditions->s2 < 1;
     break;
     case PORTAL:
-    result = (size - index) > 20 && conditions->s8 < 1 && Application->environment->generator->portal <= -10;
+    result = (size - index) > 20 && conditions->s10 < 1 && conditions->s8 < 1 && Application->environment->generator->portal <= -10;
     break;
 
     case MOVE_UP:
-    result = (count < length) && count > 0 && direction && conditions->s1 < 1 && conditions->s2 < 0 && conditions->s7 < 1;
+    result = (count < length) && count > 0 && direction && conditions->s1 < 1 && conditions->s2 < 0 && conditions->s7 < 1 && (size - index) > 2;
     break;
     case MOVED1:
     result = (length - count) > 1 && direction && conditions->s2 < 0 && conditions->s7 < 1 && (size - index) > 2;
@@ -874,6 +885,9 @@ bool Plate::conditions(int type)
     break;
     case MOVED4:
     result = (count >= length) && !direction && conditions->s2 < 0 && conditions->s7 < 1 && (size - index) > 2;
+    break;
+    case MOVED5:
+    result = (length - count) > 1 && conditions->s2 < 0 && conditions->s7 < 1 && (size - index) > 2;
     break;
   }
 
@@ -940,6 +954,7 @@ bool Plate::conditions(int type)
       conditions->s2 = 2;
       break;
       case PORTAL:
+      conditions->s8 = 5;
       Application->environment->generator->portal = 10;
       break;
 
@@ -961,6 +976,11 @@ bool Plate::conditions(int type)
       break;
       case MOVED4:
       conditions->s2 = 2;
+      break;
+      case MOVED5:
+      conditions->s2 = 2;
+
+      Application->environment->generator->length++;
       break;
     }
   }

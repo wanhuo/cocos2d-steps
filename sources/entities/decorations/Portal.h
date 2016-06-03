@@ -59,7 +59,7 @@ class Portal : public Decoration
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
-  virtual void onPickup();
+  virtual void onPickup() override;
 };
 
 #endif

@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _PICKUP_H_
-#define _PICKUP_H_
+#ifndef _INSANE_H_
+#define _INSANE_H_
 
 #include "Game.h"
 
@@ -31,7 +31,7 @@
  *
  *
  */
-class Pickup : public Decoration
+class Insane : public Pickup
 {
   /**
    *
@@ -46,8 +46,6 @@ class Pickup : public Decoration
    *
    */
   protected:
-  BillBoard* window;
-  Entity* glow;
 
   /**
    *
@@ -55,18 +53,15 @@ class Pickup : public Decoration
    *
    */
   public:
-  Pickup(const char* file, Node* parent = nullptr);
- ~Pickup();
+  Insane();
+ ~Insane();
 
-  virtual void onCreate() override;
-  virtual void onDestroy(bool action = false) override;
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
-  virtual void onPickup() override;
+  virtual void onPickup();
 
-  virtual void setPlate(Plate* plate, bool animated = true) override;
-  virtual void setVisible(bool visible) override;
-
-  virtual void update(float time) override;
+  virtual void setPlate(Plate* plate, bool animated = true);
 };
 
 #endif
