@@ -48,6 +48,7 @@ class Spikes : public Decoration
    *
    */
   protected:
+  float pause;
 
   /**
    *
@@ -57,6 +58,8 @@ class Spikes : public Decoration
   public:
   Spikes(Node* parent);
  ~Spikes();
+
+  bool e;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);

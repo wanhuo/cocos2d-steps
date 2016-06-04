@@ -458,6 +458,31 @@ void Generator::createGeneralElement()
      */
     if(this->index >= this->save)
     {
+
+      /**
+       *
+       *
+       *
+       */
+      if(--this->portal == 0)
+      {
+        this->height.up.length += 5;
+        this->height.down.length += 5;
+
+        this->height.up.counter = -2;
+        this->height.down.counter = -2;
+
+        this->plate->setType(Plate::PORTAL);
+        return;
+      }
+
+      /**
+       *
+       *
+       *
+       */
+      if(this->updateEpisodes()) return;
+
       {
         /**
          *
@@ -469,30 +494,6 @@ void Generator::createGeneralElement()
         }
         else if(action)
         {
-
-          /**
-           *
-           *
-           *
-           */
-          if(this->updateEpisodes()) return;
-
-          /** 
-           *
-           *
-           *
-           */
-          if(--this->portal == 0)
-          {
-            this->height.up.length += 5;
-            this->height.down.length += 5;
-
-            this->height.up.counter = -2;
-            this->height.down.counter = -2;
-
-            this->plate->setType(Plate::PORTAL);
-            return;
-          }
 
           /**
            *

@@ -63,6 +63,8 @@ class TypeSpikes : public Special
 
   virtual void setPlate(Plate* plate);
 
+  virtual void setEnable();
+
   TypeSpikes* deepCopy();
 };
 

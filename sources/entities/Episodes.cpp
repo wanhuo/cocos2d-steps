@@ -84,7 +84,7 @@ bool Generator::updateEpisode(int episode)
      *
      */
     case EPISODE_WIPE:
-    if(--this->episode.wipe.length < 0 && !this->isEpisodes() && this->portal < -1 && this->direction && this->count == 0 && Application->environment->character->state != Character::STATE_INSANE && probably(4.0))
+    if(--this->episode.wipe.length < 0 && !this->isEpisodes() && this->portal < -10 && this->direction && this->count == 0 && Application->environment->character->state != Character::STATE_INSANE && (this->size - this->index) > 20 && probably(4.0))
     {
       this->episode.wipe.length = random(10, 20);
       this->episode.wipe.index = 0;
@@ -119,7 +119,7 @@ bool Generator::updateEpisode(int episode)
      *
      */
     case EPISODE_DUEL:
-    if(--this->episode.duel.length < 0 && !this->isEpisodes() && this->portal < -1 && !this->direction && this->count == 0 && Application->environment->character->state != Character::STATE_INSANE && probably(400.0))
+    if(--this->episode.duel.length < 0 && !this->isEpisodes() && this->portal < -10 && !this->direction && this->count == 0 && (this->size - this->index) > this->start * 2 && Application->environment->character->state != Character::STATE_INSANE && probably(4.0))
     {
       this->episode.duel.length = this->start * 2;
       this->episode.duel.index = 0;
@@ -154,7 +154,7 @@ bool Generator::updateEpisode(int episode)
      *
      */
     case EPISODE_TRAMPOLINES:
-    if(--this->episode.trampolines.length < 0 && !this->isEpisodes() && this->portal < -1 && Application->environment->character->state != Character::STATE_INSANE && probably(2.0))
+    if(--this->episode.trampolines.length < 0 && !this->isEpisodes() && this->portal < -10 && Application->environment->character->state != Character::STATE_INSANE && (this->size - this->index) > 20 && probably(1.0))
     {
       this->episode.trampolines.length = random(5, 20);
       this->episode.trampolines.index = 0;

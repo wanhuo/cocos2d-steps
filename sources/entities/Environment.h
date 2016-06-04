@@ -112,6 +112,7 @@ class Environment : public Background
   struct Plates {
     Pool* normal;
     Pool* simple;
+    Pool* duel;
     Pool* finish;
     Pool* best;
     Pool* bonus;

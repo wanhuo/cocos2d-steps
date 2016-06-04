@@ -95,6 +95,7 @@ void Environment::create()
 
   this->plates.normal = new Pool(new Plate, this->plane);
   this->plates.simple = new Pool(new TypeSimple, this->plane);
+  this->plates.duel = new Pool(new TypeDuel, this->plane);
   this->plates.finish = new Pool(new TypeFinish, this->plane);
   this->plates.best = new Pool(new TypeBest, this->plane);
   this->plates.bonus = new Pool(new TypeBonus, this->plane);

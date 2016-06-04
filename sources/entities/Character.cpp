@@ -304,23 +304,63 @@ void Character::onTurnLeft(bool action, bool set, bool rotation, float time)
                     Sound->play("insane-brick-" + to_string(random(1, 3)));
                     }),
                     CallFunc::create([=] () {
-                    Application->environment->enemy->onTurn(true, true, false, 0.05);
+                    Application->environment->enemy->onTurn(true, true, true, 0.1);
                     }),
-                    DelayTime::create(0.08),
+                    DelayTime::create(0.15),
                     CallFunc::create([=] () {
-                    Application->environment->enemy->onTurn(true, true, false, 0.05);
+                    Application->environment->enemy->onTurn(true, true, true, 0.1);
                     }),
-                    DelayTime::create(0.08),
+                    DelayTime::create(0.15),
                     CallFunc::create([=] () {
-                    Application->environment->enemy->onTurn(true, true, false, 0.05);
+                    Application->environment->enemy->onTurn(true, true, true, 0.1);
                     }),
-                    DelayTime::create(0.2),
+                    DelayTime::create(0.1),
                     nullptr
                   ), 7
                 );
                 Application->environment->character->plane->Node::runAction(
-                  DelayTime::create(0.3), 7
+                  DelayTime::create(0.4), 7
                 );
+                Application->environment->enemy->setColor(Color3B::WHITE);
+                Application->environment->enemy->plane->runAction(
+                  Sequence::create(
+                    DelayTime::create(0.1),
+                    CallFunc::create([=] () {
+                    Application->environment->enemy->setColor(Application->environment->enemy->color);
+                    }),
+                    nullptr
+                  )
+                );
+
+                if(probably(20))
+                {
+                  Application->environment->enemy->plates.current->setType(Plate::DIAMOND, false);
+                  for(auto decoration : Application->environment->enemy->plates.current->getDecorations())
+                  {
+                    decoration->setPosition3D(Application->environment->enemy->getPosition3D());
+                    decoration->setPositionZ(decoration->getPositionZ() - 0.75);
+                    decoration->runAction(
+                      Spawn::create(
+                        Sequence::create(
+                          EaseSineOut::create(
+                            MoveBy::create(0.15, Vec3(0.0, 3.0, -0.0))
+                          ),
+                          EaseSineIn::create(
+                            MoveBy::create(0.1, Vec3(0.0, -1.0, 0.0))
+                          ),
+                          CallFunc::create([=] () {
+                          decoration->onPickup();
+                          decoration->_destroy();
+                          }),
+                          nullptr
+                        ),
+                        nullptr
+                      )
+                    );
+                  }
+
+                  Application->environment->enemy->plates.current->getDecorations().clear();
+                }
               }
               else if(Application->environment->enemy->state != STATE_CRASH)
               {
@@ -448,23 +488,63 @@ void Character::onTurnRight(bool action, bool set, bool rotation, float time)
                     Sound->play("insane-brick-" + to_string(random(1, 3)));
                     }),
                     CallFunc::create([=] () {
-                    Application->environment->enemy->onTurn(true, true, false, 0.05);
+                    Application->environment->enemy->onTurn(true, true, true, 0.1);
                     }),
-                    DelayTime::create(0.08),
+                    DelayTime::create(0.15),
                     CallFunc::create([=] () {
-                    Application->environment->enemy->onTurn(true, true, false, 0.05);
+                    Application->environment->enemy->onTurn(true, true, true, 0.1);
                     }),
-                    DelayTime::create(0.08),
+                    DelayTime::create(0.15),
                     CallFunc::create([=] () {
-                    Application->environment->enemy->onTurn(true, true, false, 0.05);
+                    Application->environment->enemy->onTurn(true, true, true, 0.1);
                     }),
-                    DelayTime::create(0.2),
+                    DelayTime::create(0.1),
                     nullptr
                   ), 7
                 );
                 Application->environment->character->plane->Node::runAction(
-                  DelayTime::create(0.3), 7
+                  DelayTime::create(0.4), 7
                 );
+                Application->environment->enemy->setColor(Color3B::WHITE);
+                Application->environment->enemy->plane->runAction(
+                  Sequence::create(
+                    DelayTime::create(0.1),
+                    CallFunc::create([=] () {
+                    Application->environment->enemy->setColor(Application->environment->enemy->color);
+                    }),
+                    nullptr
+                  )
+                );
+
+                if(probably(20))
+                {
+                  Application->environment->enemy->plates.current->setType(Plate::DIAMOND, false);
+                  for(auto decoration : Application->environment->enemy->plates.current->getDecorations())
+                  {
+                    decoration->setPosition3D(Application->environment->enemy->getPosition3D());
+                    decoration->setPositionZ(decoration->getPositionZ() - 0.75);
+                    decoration->runAction(
+                      Spawn::create(
+                        Sequence::create(
+                          EaseSineOut::create(
+                            MoveBy::create(0.15, Vec3(0.0, 3.0, -0.0))
+                          ),
+                          EaseSineIn::create(
+                            MoveBy::create(0.1, Vec3(0.0, -1.0, 0.0))
+                          ),
+                          CallFunc::create([=] () {
+                          decoration->onPickup();
+                          decoration->_destroy();
+                          }),
+                          nullptr
+                        ),
+                        nullptr
+                      )
+                    );
+                  }
+
+                  Application->environment->enemy->plates.current->getDecorations().clear();
+                }
               }
               else if(Application->environment->enemy->state != STATE_CRASH)
               {
@@ -644,22 +724,32 @@ void Character::onTurnBackLeft(bool action, bool set, bool rotation, float time)
                   Sound->play("insane-brick-" + to_string(random(1, 3)));
                   }),
                   CallFunc::create([=] () {
-                  Application->environment->character->onTurnBack(true, true, false, 0.05);
+                  Application->environment->character->onTurnBack(true, true, true, 0.1);
                   }),
-                  DelayTime::create(0.08),
+                  DelayTime::create(0.15),
                   CallFunc::create([=] () {
-                  Application->environment->character->onTurnBack(true, true, false, 0.05);
+                  Application->environment->character->onTurnBack(true, true, true, 0.1);
                   }),
-                  DelayTime::create(0.08),
+                  DelayTime::create(0.15),
                   CallFunc::create([=] () {
-                  Application->environment->character->onTurnBack(true, true, false, 0.05);
+                  Application->environment->character->onTurnBack(true, true, true, 0.1);
                   }),
-                  DelayTime::create(0.2),
+                  DelayTime::create(0.1),
                   nullptr
                 ), 7
               );
               Application->environment->enemy->plane->Node::runAction(
-                DelayTime::create(0.3), 7
+                DelayTime::create(0.4), 7
+              );
+              Application->environment->character->setColor(Color3B::WHITE);
+              Application->environment->character->plane->runAction(
+                Sequence::create(
+                  DelayTime::create(0.1),
+                  CallFunc::create([=] () {
+                  Application->environment->character->setColor(Application->environment->character->color);
+                  }),
+                  nullptr
+                )
               );
             }
             else
@@ -753,22 +843,32 @@ void Character::onTurnBackRight(bool action, bool set, bool rotation, float time
                   Sound->play("insane-brick-" + to_string(random(1, 3)));
                   }),
                   CallFunc::create([=] () {
-                  Application->environment->character->onTurnBack(true, true, false, 0.05);
+                  Application->environment->character->onTurnBack(true, true, true, 0.1);
                   }),
-                  DelayTime::create(0.08),
+                  DelayTime::create(0.15),
                   CallFunc::create([=] () {
-                  Application->environment->character->onTurnBack(true, true, false, 0.05);
+                  Application->environment->character->onTurnBack(true, true, true, 0.1);
                   }),
-                  DelayTime::create(0.08),
+                  DelayTime::create(0.15),
                   CallFunc::create([=] () {
-                  Application->environment->character->onTurnBack(true, true, false, 0.05);
+                  Application->environment->character->onTurnBack(true, true, true, 0.1);
                   }),
-                  DelayTime::create(0.2),
+                  DelayTime::create(0.1),
                   nullptr
                 ), 7
               );
               Application->environment->enemy->plane->Node::runAction(
-                DelayTime::create(0.3), 7
+                DelayTime::create(0.4), 7
+              );
+              Application->environment->character->setColor(Color3B::WHITE);
+              Application->environment->character->plane->runAction(
+                Sequence::create(
+                  DelayTime::create(0.1),
+                  CallFunc::create([=] () {
+                  Application->environment->character->setColor(Application->environment->character->color);
+                  }),
+                  nullptr
+                )
               );
             }
             else
@@ -980,18 +1080,21 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
 
   auto color = this->color;
 
-  for(Decoration* decoration : plate->getDecorations())
+  if(!this->getAutomatecally())
   {
-    if(decoration->removable)
+    for(Decoration* decoration : plate->getDecorations())
     {
-      color = decoration->getColor();
-    }
+      if(decoration->removable)
+      {
+        color = decoration->getColor();
+      }
 
-    if(proceed)
-    {
-      decoration->onPickup();
+      if(proceed)
+      {
+        decoration->onPickup();
 
-      plate->clearDecorations();
+        plate->clearDecorations();
+      }
     }
   }
 

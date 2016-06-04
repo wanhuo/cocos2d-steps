@@ -665,10 +665,12 @@ void Plate::setType(int type, bool animated, char data)
       else if(Generators->episode.duel.length == 2)
       {
         this->setType(Plate::SPIKES);
+
+        static_cast<TypeSpikes*>(this->special)->setEnable();
       }
       else if(Generators->episode.duel.length == Generators->start)
       {
-        this->additional = static_cast<TypeSimple*>(Application->environment->plates.simple->_create());
+        this->additional = static_cast<TypeDuel*>(Application->environment->plates.duel->_create());
         this->additional->setPlate(this);
 
         Application->environment->runAction(
@@ -698,13 +700,13 @@ void Plate::setType(int type, bool animated, char data)
       }
       else
       {
-        this->additional = static_cast<TypeSimple*>(Application->environment->plates.simple->_create());
+        this->additional = static_cast<TypeDuel*>(Application->environment->plates.duel->_create());
         this->additional->setPlate(this);
       }
 
       if(this->additional)
       {
-        this->additional->setRotation3D(Vec3(-90.0, 90.0, 0.0));
+        this->additional->setRotation3D(Vec3(0.0, 180.0, -90.0));
         this->additional->setScaleY(0.25);
       }
     }

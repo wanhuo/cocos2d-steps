@@ -21,6 +21,9 @@
  *
  */
 
+#ifndef _TYPE_DUEL_H_
+#define _TYPE_DUEL_H_
+
 #include "Game.h"
 
 /**
@@ -28,74 +31,37 @@
  *
  *
  */
-TypeSpikes::TypeSpikes()
-: Special("plate-type-spikes.obj")
+class TypeDuel : public Special
 {
-  this->decoration = new Spikes(this);
-}
-
-TypeSpikes::~TypeSpikes()
-{
-}
-
-/**
- *
- *
- *
- */
-void TypeSpikes::onCreate()
-{
-  Special::onCreate();
+  /**
+   *
+   *
+   *
+   */
+  private:
 
   /**
    *
    *
    *
    */
-  this->setScale(1.0);
-}
-
-void TypeSpikes::onDestroy(bool action)
-{
-  Special::onDestroy(action);
-}
-
-/**
- *
- *
- *
- */
-void TypeSpikes::setPlate(Plate* plate)
-{
-  Special::setPlate(plate);
+  protected:
 
   /**
    *
    *
    *
    */
-  this->decoration->_create();
-  this->decoration->setPosition3D(Vec3(0, -0.4, 0));
+  public:
+  TypeDuel();
+ ~TypeDuel();
 
-  this->getDecorations().push_back(this->decoration);
-}
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
-/**
- *
- *
- *
- */
-void TypeSpikes::setEnable()
-{
-  this->decoration->e = true;
-}
+  virtual void setPlate(Plate* plate);
 
-/**
- *
- *
- *
- */
-TypeSpikes* TypeSpikes::deepCopy()
-{
-  return new TypeSpikes;
-}
+  TypeDuel* deepCopy();
+};
+
+#endif

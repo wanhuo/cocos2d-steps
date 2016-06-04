@@ -55,6 +55,14 @@ void Spikes::onCreate()
    *
    *
    */
+  this->e = false;
+  this->pause = 0.2;
+
+  /**
+   *
+   *
+   *
+   */
   this->setScale(1.0);
 }
 
@@ -90,9 +98,9 @@ void Spikes::start()
           RepeatForever::create(
             Sequence::create(
               MoveBy::create(0.2, Vec3(0, 0.4, 0)),
-              DelayTime::create(0.2),
+              DelayTime::create(this->pause),
               MoveBy::create(0.2, Vec3(0, -0.4, 0)),
-              DelayTime::create(0.4),
+              DelayTime::create(this->pause * 2),
               nullptr
             )
           )
@@ -115,9 +123,9 @@ void Spikes::start()
             RepeatForever::create(
               Sequence::create(
                 ScaleTo::create(0.2, 1.0, 4.0, 1.0),
-                DelayTime::create(0.2),
+                DelayTime::create(this->pause),
                 ScaleTo::create(0.2, 1.0, 0.0, 1.0),
-                DelayTime::create(0.4),
+                DelayTime::create(this->pause * 2),
                 nullptr
               )
             )
@@ -135,18 +143,18 @@ void Spikes::start()
         this->runAction(
           RepeatForever::create(
             Sequence::create(
-              DelayTime::create(0.1),
+              DelayTime::create(this->pause / 2),
               CallFunc::create([=] () {
                 Sound->play("decoration-spike", this, [=] () -> float {
                   return this->getParent()->getPosition3D().distance(Application->environment->character->getPosition3D());
                 }, Game::SOUND_DISTANCE);
                 this->enable = true;
               }),
-              DelayTime::create(0.5),
+              DelayTime::create(0.4 + this->pause / 2),
               CallFunc::create([=] () {
                 this->enable = false;
               }),
-              DelayTime::create(0.4),
+              DelayTime::create(this->pause * 2),
               nullptr
             )
           )
@@ -164,5 +172,5 @@ void Spikes::start()
  */
 Character::Crash Spikes::status()
 {
-  return this->enable ? Character::Crash::SPIKES : Character::Crash::UNDEFINED;
+  return this->enable || this->e ? Character::Crash::SPIKES : Character::Crash::UNDEFINED;
 }

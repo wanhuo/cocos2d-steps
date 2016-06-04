@@ -83,6 +83,7 @@
 
 #include "Plate.h"
 #include "TypeSimple.h"
+#include "TypeDuel.h"
 #include "TypeBest.h"
 #include "TypeBonus.h"
 #include "TypeFinish.h"
