@@ -119,9 +119,9 @@ bool Generator::updateEpisode(int episode)
      *
      */
     case EPISODE_DUEL:
-    if(--this->episode.duel.length < 0 && !this->isEpisodes() && this->portal < -1 && !this->direction && this->count == 0 && Application->environment->character->state != Character::STATE_INSANE && probably(4.0))
+    if(--this->episode.duel.length < 0 && !this->isEpisodes() && this->portal < -1 && !this->direction && this->count == 0 && Application->environment->character->state != Character::STATE_INSANE && probably(400.0))
     {
-      this->episode.duel.length = this->start;
+      this->episode.duel.length = this->start * 2;
       this->episode.duel.index = 0;
       this->episode.duel.start = false;
       this->episode.duel.finish = false;
@@ -154,7 +154,7 @@ bool Generator::updateEpisode(int episode)
      *
      */
     case EPISODE_TRAMPOLINES:
-    if(--this->episode.trampolines.length < 0 && !this->isEpisodes() && this->portal < -1 && Application->environment->character->state != Character::STATE_INSANE && probably(1.0))
+    if(--this->episode.trampolines.length < 0 && !this->isEpisodes() && this->portal < -1 && Application->environment->character->state != Character::STATE_INSANE && probably(2.0))
     {
       this->episode.trampolines.length = random(5, 20);
       this->episode.trampolines.index = 0;
@@ -273,9 +273,9 @@ void Generator::onEpisodeStart(int episode)
     Application->cameras.d->stopAllActions();
     Application->cameras.d->runAction(
       Spawn::create(
-        ScaleTo::create(0.5, 0.75),
-        MoveTo::create(0.5, Vec3(px + 25.0, py - 17, pz)),
-        RotateTo::create(0.5, Vec3(x + 5, y + 20.0, z)),
+        ScaleTo::create(0.5, 0.8),
+        MoveTo::create(0.5, Vec3(px, py - 22, pz)),
+        RotateTo::create(0.5, Vec3(x + 15, y - 1.8, z)),
         nullptr
       )
     );
@@ -290,9 +290,9 @@ void Generator::onEpisodeStart(int episode)
     Application->cameras.d->stopAllActions();
     Application->cameras.d->runAction(
       Spawn::create(
-        ScaleTo::create(0.5, 0.75),
-        MoveTo::create(0.5, Vec3(px + 23.0, py - 17, pz)),
-        RotateTo::create(0.5, Vec3(x + 5, y + 20.0, z)),
+        ScaleTo::create(0.5, 0.8),
+        MoveTo::create(0.5, Vec3(px, py - 22, pz)),
+        RotateTo::create(0.5, Vec3(x + 15, y - 0.0, z)),
         nullptr
       )
     );

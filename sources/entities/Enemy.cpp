@@ -83,12 +83,19 @@ void Enemy::updateNormal(float time)
    *
    *
    */
-  this->parameters.turnTimeElapsed += time;
-  if(this->parameters.turnTimeElapsed >= this->parameters.turnTime)
+  if(Generators->isEpisode(Generator::EPISODE_DUEL))
   {
-    this->parameters.turnTime = random(this->parameters.turnMinTime, this->parameters.turnMaxTime);
-    this->parameters.turnTimeElapsed = 0;
+    this->parameters.turnTimeElapsed += time;
 
-    this->onTurnBack();
+    if(this->parameters.turnTimeElapsed >= this->parameters.turnTime)
+    {
+      this->parameters.turnTime = random(this->parameters.turnMinTime, this->parameters.turnMaxTime);
+      this->parameters.turnTimeElapsed = 0;
+
+      if(!Director::getInstance()->getActionManager()->getActionByTag(7, this->plane))
+      {
+        this->onTurnBack();
+      }
+    }
   }
 }

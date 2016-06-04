@@ -164,13 +164,13 @@ class Character : public Cube
 
   virtual bool onTouch();
 
-  virtual void onTurn(bool action = true, bool set = true);
-  virtual void onTurnLeft(bool action = true, bool set = true);
-  virtual void onTurnRight(bool action = true, bool set = true);
+  virtual void onTurn(bool action = true, bool set = true, bool rotation = true, float time = 0.1);
+  virtual void onTurnLeft(bool action = true, bool set = true, bool rotation = true, float time = 0.1);
+  virtual void onTurnRight(bool action = true, bool set = true, bool rotation = true, float time = 0.1);
 
-  virtual void onTurnBack(bool action = true, bool set = true);
-  virtual void onTurnBackLeft(bool action = true, bool set = true);
-  virtual void onTurnBackRight(bool action = true, bool set = true);
+  virtual void onTurnBack(bool action = true, bool set = true, bool rotation = true, float time = 0.1);
+  virtual void onTurnBackLeft(bool action = true, bool set = true, bool rotation = true, float time = 0.1);
+  virtual void onTurnBackRight(bool action = true, bool set = true, bool rotation = true, float time = 0.1);
 
   virtual void onTurnUpdate(Plate* custom = nullptr);
   virtual void onTurnUpdate(Turn index, Plate* custom = nullptr);

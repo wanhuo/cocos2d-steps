@@ -205,8 +205,13 @@ bool Character::onTouch()
  *
  *
  */
-void Character::onTurn(bool action, bool set)
+void Character::onTurn(bool action, bool set, bool rotation, float time)
 {
+  if(Director::getInstance()->getActionManager()->getActionByTag(7, this->plane) && !action)
+  {
+    return;
+  }
+
   if(action)
   {
     if(this->state == STATE_COPTER)
@@ -245,21 +250,21 @@ void Character::onTurn(bool action, bool set)
 
     if(this->getPlatesNearWithDefaults().plates[Plate::RIGHT])
     {
-      this->onTurnLeft(action, set);
+      this->onTurnLeft(action, set, rotation, time);
     }
     else
     {
-      this->onTurnRight(action, set);
+      this->onTurnRight(action, set, rotation, time);
     }
   }
   else
   {
-    this->onTurnLeft(action, set);
-    this->onTurnRight(action, set);
+    this->onTurnLeft(action, set, rotation, time);
+    this->onTurnRight(action, set, rotation, time);
   }
 }
 
-void Character::onTurnLeft(bool action, bool set)
+void Character::onTurnLeft(bool action, bool set, bool rotation, float time)
 {
   if(action)
   {
@@ -293,18 +298,28 @@ void Character::onTurnLeft(bool action, bool set)
             {
               if(Application->environment->enemy->state == STATE_NORMAL)
               {
-                Application->environment->enemy->onTurn();
-                Application->environment->enemy->runAction(
+                Application->environment->enemy->plane->Node::runAction(
                   Sequence::create(
                     CallFunc::create([=] () {
                     Sound->play("insane-brick-" + to_string(random(1, 3)));
                     }),
-                    DelayTime::create(0.1),
                     CallFunc::create([=] () {
-                    Application->environment->enemy->onTurn();
+                    Application->environment->enemy->onTurn(true, true, false, 0.05);
                     }),
+                    DelayTime::create(0.08),
+                    CallFunc::create([=] () {
+                    Application->environment->enemy->onTurn(true, true, false, 0.05);
+                    }),
+                    DelayTime::create(0.08),
+                    CallFunc::create([=] () {
+                    Application->environment->enemy->onTurn(true, true, false, 0.05);
+                    }),
+                    DelayTime::create(0.2),
                     nullptr
-                  )
+                  ), 7
+                );
+                Application->environment->character->plane->Node::runAction(
+                  DelayTime::create(0.3), 7
                 );
               }
               else if(Application->environment->enemy->state != STATE_CRASH)
@@ -330,12 +345,14 @@ void Character::onTurnLeft(bool action, bool set)
         Director::getInstance()->getScheduler()->pauseTarget(next->special);
       }
 
+      int stage = next ? next->getStage() : 1;
+
       this->runAction(
         Spawn::create(
-          RotateGlobalBy::create(0.1, Vec3(-90, 0, 0)),
+          RotateGlobalBy::create(time, Vec3(rotation ? -90 : 0, 0, 0)),
           Sequence::create(
-            MoveBy::create(0.05, Vec3(0.0, 0.2, -0.75)),
-            MoveBy::create(0.05, Vec3(0.0, -0.2 - (this->getPositionY() - 1.3 - ((next->getStage()) * 0.8)), -0.75)),
+            MoveBy::create(time / 2, Vec3(0.0, rotation ? 0.2 : 0, -0.75)),
+            MoveBy::create(time / 2, Vec3(0.0, rotation ? (-0.2 - (this->getPositionY() - 1.3 - (stage * 0.8))) : 0, -0.75)),
             CallFunc::create([=] () {
               this->changeState(STATE_NORMAL);
               this->onTurn(LEFT);
@@ -382,7 +399,7 @@ void Character::onTurnLeft(bool action, bool set)
         )
       );
 
-      this->onMoveLeft();
+      this->onMoveLeft(time);
     }
   }
   else
@@ -391,7 +408,7 @@ void Character::onTurnLeft(bool action, bool set)
   }
 }
 
-void Character::onTurnRight(bool action, bool set)
+void Character::onTurnRight(bool action, bool set, bool rotation, float time)
 {
   if(action)
   {
@@ -425,18 +442,28 @@ void Character::onTurnRight(bool action, bool set)
             {
               if(Application->environment->enemy->state == STATE_NORMAL)
               {
-                Application->environment->enemy->onTurn();
-                Application->environment->enemy->runAction(
+                Application->environment->enemy->plane->Node::runAction(
                   Sequence::create(
                     CallFunc::create([=] () {
                     Sound->play("insane-brick-" + to_string(random(1, 3)));
                     }),
-                    DelayTime::create(0.1),
                     CallFunc::create([=] () {
-                    Application->environment->enemy->onTurn();
+                    Application->environment->enemy->onTurn(true, true, false, 0.05);
                     }),
+                    DelayTime::create(0.08),
+                    CallFunc::create([=] () {
+                    Application->environment->enemy->onTurn(true, true, false, 0.05);
+                    }),
+                    DelayTime::create(0.08),
+                    CallFunc::create([=] () {
+                    Application->environment->enemy->onTurn(true, true, false, 0.05);
+                    }),
+                    DelayTime::create(0.2),
                     nullptr
-                  )
+                  ), 7
+                );
+                Application->environment->character->plane->Node::runAction(
+                  DelayTime::create(0.3), 7
                 );
               }
               else if(Application->environment->enemy->state != STATE_CRASH)
@@ -462,12 +489,14 @@ void Character::onTurnRight(bool action, bool set)
         Director::getInstance()->getScheduler()->pauseTarget(next->special);
       }
 
+      int stage = next ? next->getStage() : 1;
+
       this->runAction(
         Spawn::create(
-          RotateGlobalBy::create(0.1, Vec3(0, 0, -90)),
+          RotateGlobalBy::create(time, Vec3(0, 0, rotation ? -90 : 0)),
           Sequence::create(
-            MoveBy::create(0.05, Vec3(0.75, 0.2, 0)),
-            MoveBy::create(0.05, Vec3(0.75, -0.2 - (this->getPositionY() - 1.3 - ((next->getStage()) * 0.8)), 0)),
+            MoveBy::create(time / 2, Vec3(0.75, 0.2, 0)),
+            MoveBy::create(time / 2, Vec3(0.75, -0.2 - (this->getPositionY() - 1.3 - (stage * 0.8)), 0)),
             CallFunc::create([=] () {
               this->changeState(STATE_NORMAL);
               this->onTurn(RIGHT);
@@ -514,7 +543,7 @@ void Character::onTurnRight(bool action, bool set)
         )
       );
 
-      this->onMoveRight();
+      this->onMoveRight(time);
     }
   }
   else
@@ -528,7 +557,7 @@ void Character::onTurnRight(bool action, bool set)
  *
  *
  */
-void Character::onTurnBack(bool action, bool set)
+void Character::onTurnBack(bool action, bool set, bool rotation, float time)
 {
   if(action)
   {
@@ -566,23 +595,23 @@ void Character::onTurnBack(bool action, bool set)
 
     this->turns = 0;
 
-    if(this->getBackPlatesNearWithDefaults().plates[Plate::RIGHT])
+    if(this->plates.current->getDirection())
     {
-      this->onTurnBackLeft(action, set);
+      this->onTurnBackRight(action, set, rotation, time);
     }
     else
     {
-      this->onTurnBackRight(action, set);
+      this->onTurnBackLeft(action, set, rotation, time);
     }
   }
   else
   {
-    this->onTurnBackLeft(action, set);
-    this->onTurnBackRight(action, set);
+    this->onTurnBackLeft(action, set, rotation, time);
+    this->onTurnBackRight(action, set, rotation, time);
   }
 }
 
-void Character::onTurnBackLeft(bool action, bool set)
+void Character::onTurnBackLeft(bool action, bool set, bool rotation, float time)
 {
   if(action)
   {
@@ -598,26 +627,39 @@ void Character::onTurnBackLeft(bool action, bool set)
         {
           if(Application->environment->character->state != STATE_NORMAL)
           {
-            this->changeState(STATE_NORMAL);
-            return;
+            if(abs(Application->environment->enemy->plates.current->getIndex() - this->plates.current->getIndex()) < 3)
+            {
+              this->changeState(STATE_NORMAL);
+              return;
+            }
           }
 
           if(Application->environment->character->plates.current == next || Application->environment->character->plates.current == previous)
           {
             if(Application->environment->character->state == STATE_NORMAL)
             {
-              Application->environment->character->onTurnBack();
-              Application->environment->character->runAction(
+              Application->environment->character->plane->Node::runAction(
                 Sequence::create(
                   CallFunc::create([=] () {
                   Sound->play("insane-brick-" + to_string(random(1, 3)));
                   }),
-                  DelayTime::create(0.1),
                   CallFunc::create([=] () {
-                  Application->environment->character->onTurnBack();
+                  Application->environment->character->onTurnBack(true, true, false, 0.05);
                   }),
+                  DelayTime::create(0.08),
+                  CallFunc::create([=] () {
+                  Application->environment->character->onTurnBack(true, true, false, 0.05);
+                  }),
+                  DelayTime::create(0.08),
+                  CallFunc::create([=] () {
+                  Application->environment->character->onTurnBack(true, true, false, 0.05);
+                  }),
+                  DelayTime::create(0.2),
                   nullptr
-                )
+                ), 7
+              );
+              Application->environment->enemy->plane->Node::runAction(
+                DelayTime::create(0.3), 7
               );
             }
             else
@@ -646,12 +688,14 @@ void Character::onTurnBackLeft(bool action, bool set)
         Director::getInstance()->getScheduler()->pauseTarget(next->special);
       }
 
+      int stage = next ? next->getStage() : 1;
+
       this->runAction(
         Spawn::create(
-          RotateGlobalBy::create(0.1, Vec3(90, 0, 0)),
+          RotateGlobalBy::create(time, Vec3(rotation ? 90 : 0, 0, 0)),
           Sequence::create(
-            MoveBy::create(0.05, Vec3(0.0, 0.2, 0.75)),
-            MoveBy::create(0.05, Vec3(0.0, -0.2 - (this->getPositionY() - 1.3 - ((next->getStage()) * 0.8)), 0.75)),
+            MoveBy::create(time / 2, Vec3(0.0, rotation ? 0.2 : 0, 0.75)),
+            MoveBy::create(time / 2, Vec3(0.0, rotation ? (-0.2 - (this->getPositionY() - 1.3 - (stage * 0.8))) : 0, 0.75)),
             CallFunc::create([=] () {
               this->changeState(STATE_NORMAL);
               this->onTurn(LEFT);
@@ -671,12 +715,12 @@ void Character::onTurnBackLeft(bool action, bool set)
         )
       );
 
-      this->onMoveBackLeft();
+      this->onMoveBackLeft(time);
     }
   }
 }
 
-void Character::onTurnBackRight(bool action, bool set)
+void Character::onTurnBackRight(bool action, bool set, bool rotation, float time)
 {
   if(action)
   {
@@ -692,26 +736,39 @@ void Character::onTurnBackRight(bool action, bool set)
         {
           if(Application->environment->character->state != STATE_NORMAL)
           {
-            this->changeState(STATE_NORMAL);
-            return;
+            if(abs(Application->environment->enemy->plates.current->getIndex() - this->plates.current->getIndex()) < 3)
+            {
+              this->changeState(STATE_NORMAL);
+              return;
+            }
           }
 
           if(Application->environment->character->plates.current == next || Application->environment->character->plates.current == previous)
           {
             if(Application->environment->character->state == STATE_NORMAL)
             {
-              Application->environment->character->onTurnBack();
-              Application->environment->character->runAction(
+              Application->environment->character->plane->Node::runAction(
                 Sequence::create(
                   CallFunc::create([=] () {
                   Sound->play("insane-brick-" + to_string(random(1, 3)));
                   }),
-                  DelayTime::create(0.1),
                   CallFunc::create([=] () {
-                  Application->environment->character->onTurnBack();
+                  Application->environment->character->onTurnBack(true, true, false, 0.05);
                   }),
+                  DelayTime::create(0.08),
+                  CallFunc::create([=] () {
+                  Application->environment->character->onTurnBack(true, true, false, 0.05);
+                  }),
+                  DelayTime::create(0.08),
+                  CallFunc::create([=] () {
+                  Application->environment->character->onTurnBack(true, true, false, 0.05);
+                  }),
+                  DelayTime::create(0.2),
                   nullptr
-                )
+                ), 7
+              );
+              Application->environment->enemy->plane->Node::runAction(
+                DelayTime::create(0.3), 7
               );
             }
             else
@@ -740,12 +797,14 @@ void Character::onTurnBackRight(bool action, bool set)
         Director::getInstance()->getScheduler()->pauseTarget(next->special);
       }
 
+      int stage = next ? next->getStage() : 1;
+
       this->runAction(
         Spawn::create(
-          RotateGlobalBy::create(0.1, Vec3(0, 0, 90)),
+          RotateGlobalBy::create(time, Vec3(0, 0, rotation ? 90 : 0)),
           Sequence::create(
-            MoveBy::create(0.05, Vec3(-0.75, 0.2, 0)),
-            MoveBy::create(0.05, Vec3(-0.75, -0.2 - (this->getPositionY() - 1.3 - ((next->getStage()) * 0.8)), 0)),
+            MoveBy::create(time / 2, Vec3(-0.75, rotation ? 0.2 : 0, 0)),
+            MoveBy::create(time / 2, Vec3(-0.75, rotation ? (-0.2 - (this->getPositionY() - 1.3 - (stage * 0.8))) : 0, 0)),
             CallFunc::create([=] () {
               this->changeState(STATE_NORMAL);
               this->onTurn(RIGHT);
@@ -765,7 +824,7 @@ void Character::onTurnBackRight(bool action, bool set)
         )
       );
 
-      this->onMoveBackRight();
+      this->onMoveBackRight(time);
     }
   }
 }

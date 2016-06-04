@@ -250,11 +250,6 @@ Plate* Generator::create(bool animated)
 
 Plate* Generator::destroy(bool manual)
 {
-  if(this->isEpisodes())
-  {
-    return nullptr;
-  }
-
   switch(Application->environment->character->state)
   {
     default:

@@ -418,7 +418,10 @@ void Environment::onTurn(bool action)
 {
   this->setPosition3D(Vec3(0, 0, 0));
 
-  this->character->onTurn(action);
+  if(!Director::getInstance()->getActionManager()->getActionByTag(7, this->character->plane))
+  {
+    this->character->onTurn(action);
+  }
 }
 
 /**

@@ -328,7 +328,7 @@ bool Plate::isEpisodeStart(int episode)
     return this->episode.wipe.index == 1;
     break;
     case Generator::EPISODE_DUEL:
-    return this->episode.duel.index == 2;
+    return this->episode.duel.index == 3;
     break;
     case Generator::EPISODE_TRAMPOLINES:
     return this->episode.trampolines.index != 0;
@@ -351,7 +351,7 @@ bool Plate::isEpisodeFinish(int episode)
     return this->episode.wipe.index == Generators->episode.wipe.index && this->episode.wipe.index > 0;
     break;
     case Generator::EPISODE_DUEL:
-    return this->episode.duel.index == Generators->episode.duel.index - 1 && this->episode.duel.index > 0;
+    return this->episode.duel.index == Generators->episode.duel.index - 2 && this->episode.duel.index > 0;
     break;
     case Generator::EPISODE_TRAMPOLINES:
     return this->episode.trampolines.index == Generators->episode.trampolines.index && this->episode.trampolines.index > 0;
@@ -654,13 +654,19 @@ void Plate::setType(int type, bool animated, char data)
 
       if(this->episode.duel.index == 1)
       {
+      }
+      else if(this->episode.duel.index == 2)
+      {
         this->setType(Plate::SPIKES);
       }
       else if(Generators->episode.duel.length == 1)
       {
-        this->setType(Plate::SPIKES);
       }
       else if(Generators->episode.duel.length == 2)
+      {
+        this->setType(Plate::SPIKES);
+      }
+      else if(Generators->episode.duel.length == Generators->start)
       {
         this->additional = static_cast<TypeSimple*>(Application->environment->plates.simple->_create());
         this->additional->setPlate(this);
