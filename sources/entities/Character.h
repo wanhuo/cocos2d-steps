@@ -50,6 +50,7 @@ class Character : public Cube
   bool autoTurnLeft;
   bool autoTurnRight;
   bool manual;
+  bool automatecally;
 
   bool insaneDirection;
 
@@ -167,6 +168,10 @@ class Character : public Cube
   virtual void onTurnLeft(bool action = true, bool set = true);
   virtual void onTurnRight(bool action = true, bool set = true);
 
+  virtual void onTurnBack(bool action = true, bool set = true);
+  virtual void onTurnBackLeft(bool action = true, bool set = true);
+  virtual void onTurnBackRight(bool action = true, bool set = true);
+
   virtual void onTurnUpdate(Plate* custom = nullptr);
   virtual void onTurnUpdate(Turn index, Plate* custom = nullptr);
   virtual void onTurn(Turn index);
@@ -177,8 +182,14 @@ class Character : public Cube
   virtual void onMoveLeft(float time = 0.1);
   virtual void onMoveRight(float time = 0.1);
 
+  virtual void onMoveBackLeft(float time = 0.1);
+  virtual void onMoveBackRight(float time = 0.1);
+
   virtual void onEnvironmentMoveLeft(float time = 0.1);
   virtual void onEnvironmentMoveRight(float time = 0.1);
+
+  virtual void onEnvironmentMoveBackLeft(float time = 0.1);
+  virtual void onEnvironmentMoveBackRight(float time = 0.1);
 
   virtual void onInsaneStart();
   virtual void onInsaneFinish();
@@ -189,6 +200,9 @@ class Character : public Cube
   virtual bool getManual();
   virtual bool setManual(bool manual);
 
+  virtual bool getAutomatecally();
+  virtual bool setAutomatecally(bool automatecally);
+
   virtual int addLive(int count = 1);
   virtual int removeLive(int count = 1);
 
@@ -198,14 +212,24 @@ class Character : public Cube
   virtual Plate* getPlateLeft(Plate* current = nullptr);
   virtual Plate* getPlateRight(Plate* current = nullptr);
 
+  virtual Plate* getBackPlateLeft(Plate* current = nullptr);
+  virtual Plate* getBackPlateRight(Plate* current = nullptr);
+
   virtual Plate* getPlateLeftWithDefaults(Plate* current = nullptr);
   virtual Plate* getPlateRightWithDefaults(Plate* current = nullptr);
 
+  virtual Plate* getBackPlateLeftWithDefaults(Plate* current = nullptr);
+  virtual Plate* getBackPlateRightWithDefaults(Plate* current = nullptr);
+
+  virtual Plate* getPlateWithCoordinates();
   virtual Plate* getPlateLeftWithCoordinates();
   virtual Plate* getPlateRightWithCoordinates();
 
   virtual Nears getPlatesNear(Plate* current = nullptr);
   virtual Nears getPlatesNearWithDefaults(Plate* current = nullptr);
+
+  virtual Nears getBackPlatesNear(Plate* current = nullptr);
+  virtual Nears getBackPlatesNearWithDefaults(Plate* current = nullptr);
 
   virtual void changeState(State state, Crash crash = UNDEFINED);
 

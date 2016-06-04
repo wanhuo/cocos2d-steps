@@ -55,6 +55,33 @@ void Spikes::onCreate()
    *
    *
    */
+  this->setScale(1.0);
+}
+
+void Spikes::onDestroy(bool action)
+{
+  Decoration::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Spikes::setPlate(Plate* plate)
+{
+  Decoration::setPlate(plate);
+}
+
+void Spikes::start()
+{
+  Decoration::start();
+
+  /**
+   *
+   *
+   *
+   */
   this->runAction(
     Sequence::create(
       DelayTime::create(0.5),
@@ -62,9 +89,9 @@ void Spikes::onCreate()
         this->runAction(
           RepeatForever::create(
             Sequence::create(
-              MoveBy::create(0.2, Vec3(0, 0.8, 0)),
+              MoveBy::create(0.2, Vec3(0, 0.4, 0)),
               DelayTime::create(0.2),
-              MoveBy::create(0.2, Vec3(0, -0.8, 0)),
+              MoveBy::create(0.2, Vec3(0, -0.4, 0)),
               DelayTime::create(0.4),
               nullptr
             )
@@ -74,6 +101,32 @@ void Spikes::onCreate()
       nullptr
     )
   );
+
+  if(this->getScaleY() == 1.0)
+  {
+  }
+  else
+  {
+    this->runAction(
+      Sequence::create(
+        DelayTime::create(0.5),
+        CallFunc::create([=] () {
+          this->runAction(
+            RepeatForever::create(
+              Sequence::create(
+                ScaleTo::create(0.2, 1.0, 4.0, 1.0),
+                DelayTime::create(0.2),
+                ScaleTo::create(0.2, 1.0, 0.0, 1.0),
+                DelayTime::create(0.4),
+                nullptr
+              )
+            )
+          );
+        }),
+        nullptr
+      )
+    );
+  }
 
   this->runAction(
     Sequence::create(
@@ -102,21 +155,6 @@ void Spikes::onCreate()
       nullptr
     )
   );
-}
-
-void Spikes::onDestroy(bool action)
-{
-  Decoration::onDestroy(action);
-}
-
-/**
- *
- *
- *
- */
-void Spikes::setPlate(Plate* plate)
-{
-  Decoration::setPlate(plate);
 }
 
 /**

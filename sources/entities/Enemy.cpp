@@ -28,13 +28,12 @@
  *
  *
  */
-TypeSpikes::TypeSpikes()
-: Special("plate-type-spikes.obj")
+Enemy::Enemy()
 {
-  this->decoration = new Spikes(this);
+  this->color = Color3B(255.0, 55.0, 0.0);
 }
 
-TypeSpikes::~TypeSpikes()
+Enemy::~Enemy()
 {
 }
 
@@ -43,21 +42,31 @@ TypeSpikes::~TypeSpikes()
  *
  *
  */
-void TypeSpikes::onCreate()
+void Enemy::onCreate()
 {
-  Special::onCreate();
+  Character::onCreate();
+}
+
+void Enemy::onDestroy(bool action)
+{
+  Character::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Enemy::reset()
+{
+  Character::reset();
 
   /**
    *
    *
    *
    */
-  this->setScale(1.0);
-}
-
-void TypeSpikes::onDestroy(bool action)
-{
-  Special::onDestroy(action);
+  this->setAutomatecally(true);
 }
 
 /**
@@ -65,27 +74,21 @@ void TypeSpikes::onDestroy(bool action)
  *
  *
  */
-void TypeSpikes::setPlate(Plate* plate)
+void Enemy::updateNormal(float time)
 {
-  Special::setPlate(plate);
+  Character::updateNormal(time);
 
   /**
    *
    *
    *
    */
-  this->decoration->_create();
-  this->decoration->setPosition3D(Vec3(0, -0.4, 0));
+  this->parameters.turnTimeElapsed += time;
+  if(this->parameters.turnTimeElapsed >= this->parameters.turnTime)
+  {
+    this->parameters.turnTime = random(this->parameters.turnMinTime, this->parameters.turnMaxTime);
+    this->parameters.turnTimeElapsed = 0;
 
-  this->getDecorations().push_back(this->decoration);
-}
-
-/**
- *
- *
- *
- */
-TypeSpikes* TypeSpikes::deepCopy()
-{
-  return new TypeSpikes;
+    this->onTurnBack();
+  }
 }

@@ -62,6 +62,7 @@ class Spikes : public Decoration
   virtual void onDestroy(bool action = false);
 
   virtual void setPlate(Plate* plate);
+  virtual void start();
 
   virtual Character::Crash status();
 };

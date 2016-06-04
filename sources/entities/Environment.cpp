@@ -28,6 +28,35 @@
  *
  *
  */
+const Color3B Environment::COLORS[] = {
+};
+
+const Color3B Environment::TEXTURES_COLORS[] = {
+  Color3B(252, 226, 105),
+  Color3B(231, 223, 194),
+  Color3B(172, 192, 193),
+  Color3B(236, 220, 184),
+  Color3B(184, 235, 252),
+  Color3B(97, 177, 177),
+  Color3B(187, 128, 68),
+  Color3B(172, 192, 193),
+  Color3B(187, 220, 47),
+  Color3B(187, 102, 70),
+  Color3B(115, 205, 75),
+  Color3B(108, 131, 133),
+  Color3B(103, 174, 204),
+  Color3B(193, 159, 240),
+  Color3B(244, 154, 193),
+  Color3B(218, 190, 133),
+  Color3B(150, 165, 212),
+  Color3B(208, 174, 108)
+};
+
+/**
+ *
+ *
+ *
+ */
 Environment::Environment(Node* parent)
 : Background(parent)
 {
@@ -65,6 +94,7 @@ void Environment::create()
   this->insane = new Insane;
 
   this->plates.normal = new Pool(new Plate, this->plane);
+  this->plates.simple = new Pool(new TypeSimple, this->plane);
   this->plates.finish = new Pool(new TypeFinish, this->plane);
   this->plates.best = new Pool(new TypeBest, this->plane);
   this->plates.bonus = new Pool(new TypeBonus, this->plane);
@@ -408,6 +438,12 @@ void Environment::onMenu()
   this->platesTime = 1.0;
   this->platesTimeElapsed = 0;
   this->platesTimeIndex = Storage::get("application.plates.index." + s(this->parameters.stage));
+
+  if(this->enemy)
+  {
+    this->enemy->removeFromParent();
+    this->enemy = nullptr;
+  }
 
   this->character->removeFromParent();
   //this->character->release();

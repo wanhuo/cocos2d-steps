@@ -21,6 +21,9 @@
  *
  */
 
+#ifndef _TYPE_SIMPLE_H_
+#define _TYPE_SIMPLE_H_
+
 #include "Game.h"
 
 /**
@@ -28,64 +31,37 @@
  *
  *
  */
-TypeSpikes::TypeSpikes()
-: Special("plate-type-spikes.obj")
+class TypeSimple : public Special
 {
-  this->decoration = new Spikes(this);
-}
-
-TypeSpikes::~TypeSpikes()
-{
-}
-
-/**
- *
- *
- *
- */
-void TypeSpikes::onCreate()
-{
-  Special::onCreate();
+  /**
+   *
+   *
+   *
+   */
+  private:
 
   /**
    *
    *
    *
    */
-  this->setScale(1.0);
-}
-
-void TypeSpikes::onDestroy(bool action)
-{
-  Special::onDestroy(action);
-}
-
-/**
- *
- *
- *
- */
-void TypeSpikes::setPlate(Plate* plate)
-{
-  Special::setPlate(plate);
+  protected:
 
   /**
    *
    *
    *
    */
-  this->decoration->_create();
-  this->decoration->setPosition3D(Vec3(0, -0.4, 0));
+  public:
+  TypeSimple();
+ ~TypeSimple();
 
-  this->getDecorations().push_back(this->decoration);
-}
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
-/**
- *
- *
- *
- */
-TypeSpikes* TypeSpikes::deepCopy()
-{
-  return new TypeSpikes;
-}
+  virtual void setPlate(Plate* plate);
+
+  TypeSimple* deepCopy();
+};
+
+#endif

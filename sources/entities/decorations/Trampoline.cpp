@@ -75,6 +75,11 @@ void Trampoline::onPickup()
       {
         break;
       }
+
+      if(element->isEpisodeStart())
+      {
+        break;
+      }
     }
 
     if(!element || element == NULL || element->behavior == Plate::DYNAMIC || element->type == Plate::SPIKES || element->type == Plate::GATE || element->type == Plate::SAW || element->type == Plate::DOWN || element->type == Plate::TRAP)
@@ -166,7 +171,7 @@ void Trampoline::onPickup()
           Application->environment->generator->create(true);
         }),
         nullptr
-      ), count - remove
+      ), (l + r) - remove
     )
   );
 

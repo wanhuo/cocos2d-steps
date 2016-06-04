@@ -255,7 +255,7 @@ void EnvironmentMissionsDailyPopup::update(char letter)
     Application->environment->missions.controller->notify->notify(EnvironmentMissionsNotify::DAILY);
 
     this->task.active = false;
-    this->task.time = Times::now() + Times::minute() * 5;// * 60 * 24;
+    this->task.time = Times::now() + Times::minute() * 60 * 24;
 
     Storage::set("missions.daily.time", to_string(this->task.time));
     Storage::set("missions.daily.reset", 0);

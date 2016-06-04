@@ -21,6 +21,9 @@
  *
  */
 
+#ifndef _ENEMY_H_
+#define _ENEMY_H_
+
 #include "Game.h"
 
 /**
@@ -28,64 +31,45 @@
  *
  *
  */
-TypeSpikes::TypeSpikes()
-: Special("plate-type-spikes.obj")
+class Enemy : public Character
 {
-  this->decoration = new Spikes(this);
-}
+  /**
+   *
+   *
+   *
+   */
+  private:
+  struct Parameters {
+    float turnTime = 0.0;
+    float turnTimeElapsed = 0.0;
 
-TypeSpikes::~TypeSpikes()
-{
-}
-
-/**
- *
- *
- *
- */
-void TypeSpikes::onCreate()
-{
-  Special::onCreate();
+    float turnMinTime = 0.0;
+    float turnMaxTime = 0.4;
+  };
 
   /**
    *
    *
    *
    */
-  this->setScale(1.0);
-}
-
-void TypeSpikes::onDestroy(bool action)
-{
-  Special::onDestroy(action);
-}
-
-/**
- *
- *
- *
- */
-void TypeSpikes::setPlate(Plate* plate)
-{
-  Special::setPlate(plate);
+  protected:
+  Parameters parameters;
 
   /**
    *
    *
    *
    */
-  this->decoration->_create();
-  this->decoration->setPosition3D(Vec3(0, -0.4, 0));
+  public:
+  Enemy();
+ ~Enemy();
 
-  this->getDecorations().push_back(this->decoration);
-}
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
 
-/**
- *
- *
- *
- */
-TypeSpikes* TypeSpikes::deepCopy()
-{
-  return new TypeSpikes;
-}
+  virtual void reset() override;
+
+  virtual void updateNormal(float time) override;
+};
+
+#endif

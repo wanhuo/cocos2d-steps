@@ -59,9 +59,15 @@ void Plate::onCreate()
    *
    *
    */
+  this->episode.wipe.index = 0;
+  this->episode.duel.index = 0;
+  this->episode.trampolines.index = 0;
+
   this->moved = false;
   this->avoid = false;
   this->blocked = false;
+  this->started = false;
+  this->counted = false;
 
   this->behavior = STATIC;
 
@@ -82,6 +88,7 @@ void Plate::onDestroy(bool action)
    *
    */
   this->clearSpecial();
+  this->clearAdditional();
   this->clearDecorations();
 }
 
@@ -99,12 +106,22 @@ void Plate::onRemove(bool complete)
   if(complete)
   {
     auto character = Application->environment->character;
+    auto enemy = Application->environment->enemy;
 
     if(character->plates.current && character->state == Character::STATE_NORMAL)
     {
       if(character->plates.current->getIndex() == this->getIndex())
       {
-        Application->environment->character->changeState(Character::STATE_CRASH, Character::Crash::CATCH);
+        character->changeState(Character::STATE_CRASH, Character::Crash::CATCH);
+      }
+    }
+
+    if(enemy && enemy->Node::state->create)
+    {
+      if(enemy->plates.current && enemy->plates.current->getIndex() == this->getIndex())
+      {
+        enemy->changeState(Character::STATE_NORMAL);
+        enemy->changeState(Character::STATE_CRASH, Character::Crash::CATCH);
       }
     }
   }
@@ -116,6 +133,8 @@ void Plate::onRemove(bool complete)
 
 void Plate::onCount()
 {
+  this->counted = true;
+
   if(MissionsFactory::getInstance()->isListenen())
   {
     Application->counter->missionUpdateOnce.points++;
@@ -179,7 +198,7 @@ void Plate::onCount()
      */
     if(Application->environment->character->getManual())
     {
-      if(!Application->environment->generator->bonus)
+      if(!Application->environment->generator->bonus && !Generators->isEpisodes())
       {
         Music->speed(1.0 + (0.3 / max(200, Application->environment->generator->size)) * this->index);
       }
@@ -194,8 +213,10 @@ void Plate::onCount()
   this->setTexture(Application->environment->getTextureState2());
 }
 
-void Plate::onUncount()
+void Plate::onUncount(bool action)
 {
+  this->counted = false;
+
   if(MissionsFactory::getInstance()->isListenen())
   {
     switch(this->type)
@@ -249,6 +270,18 @@ void Plate::onUncount()
 
     Events::updateMissions();
   }
+
+  if(action)
+  {
+    this->setTexture(Application->environment->getTextureState1());
+
+    Generators->skip++;
+
+    Application->counter->values.current--;
+    Application->counter->values.start++;
+
+    Application->counter->update() ;
+  }
 }
 
 /**
@@ -266,7 +299,66 @@ vector<Decoration*> &Plate::getDecorations()
     }
   }
 
+  if(this->additional)
+  {
+    if(this->additional->getDecorations().size())
+    {
+      return this->additional->getDecorations();
+    }
+  }
+
   return this->decorations;
+}
+
+/**
+ *
+ *
+ *
+ */
+bool Plate::isEpisodeStart(int episode)
+{
+  switch(episode)
+  {
+    default:
+    if(this->isEpisodeStart(Generator::EPISODE_WIPE)) return true;
+    if(this->isEpisodeStart(Generator::EPISODE_DUEL)) return true;
+    if(this->isEpisodeStart(Generator::EPISODE_TRAMPOLINES)) return true;
+    break;
+    case Generator::EPISODE_WIPE:
+    return this->episode.wipe.index == 1;
+    break;
+    case Generator::EPISODE_DUEL:
+    return this->episode.duel.index == 2;
+    break;
+    case Generator::EPISODE_TRAMPOLINES:
+    return this->episode.trampolines.index != 0;
+    break;
+  }
+
+  return false;
+}
+
+bool Plate::isEpisodeFinish(int episode)
+{
+  switch(episode)
+  {
+    default:
+    if(this->isEpisodeFinish(Generator::EPISODE_WIPE)) return true;
+    if(this->isEpisodeFinish(Generator::EPISODE_DUEL)) return true;
+    if(this->isEpisodeFinish(Generator::EPISODE_TRAMPOLINES)) return true;
+    break;
+    case Generator::EPISODE_WIPE:
+    return this->episode.wipe.index == Generators->episode.wipe.index && this->episode.wipe.index > 0;
+    break;
+    case Generator::EPISODE_DUEL:
+    return this->episode.duel.index == Generators->episode.duel.index - 1 && this->episode.duel.index > 0;
+    break;
+    case Generator::EPISODE_TRAMPOLINES:
+    return this->episode.trampolines.index == Generators->episode.trampolines.index && this->episode.trampolines.index > 0;
+    break;
+  }
+
+  return false;
 }
 
 int Plate::getIndex()
@@ -503,6 +595,114 @@ void Plate::setType(int type, bool animated, char data)
       this->special->setPlate(this);
     }
     break;
+    case WIPE:
+    {
+      this->episode.wipe.index = Generators->episode.wipe.index;
+
+      if(this->episode.wipe.index > 1)
+      {
+        if(Generators->episode.wipe.next)
+        {
+          if(probably(20))
+          {
+            this->setType(TRAP);
+
+            this->additional = static_cast<TypeSimple*>(Application->environment->plates.simple->_create());
+            this->additional->setPlate(this);
+          }
+          else if(probably(20))
+          {
+            this->setType(MOVED3);
+
+            this->additional = static_cast<TypeSimple*>(Application->environment->plates.simple->_create());
+            this->additional->setPlate(this);
+          }
+          else
+          {
+            this->additional = static_cast<TypeSpikes*>(Application->environment->plates.spikes->_create());
+            this->additional->setPlate(this);
+
+            static_cast<TypeSpikes*>(this->additional)->decoration->setScaleY(0.0);
+          }
+        }
+        else
+        {
+          this->setType(DIAMOND);
+
+          this->additional = static_cast<TypeSimple*>(Application->environment->plates.simple->_create());
+          this->additional->setPlate(this);
+        }
+      }
+      else
+      {
+        this->additional = static_cast<TypeSimple*>(Application->environment->plates.simple->_create());
+        this->additional->setPlate(this);
+      }
+
+      if(this->additional)
+      {
+        this->additional->setRotation3D(Vec3(90.0, 0.0, 0.0));
+        this->additional->setScaleY(0.25);
+      }
+
+      Generators->episode.wipe.next = !Generators->episode.wipe.next;
+    }
+    break;
+    case DUEL:
+    {
+      this->episode.duel.index = Generators->episode.duel.index;
+
+      if(this->episode.duel.index == 1)
+      {
+        this->setType(Plate::SPIKES);
+      }
+      else if(Generators->episode.duel.length == 1)
+      {
+        this->setType(Plate::SPIKES);
+      }
+      else if(Generators->episode.duel.length == 2)
+      {
+        this->additional = static_cast<TypeSimple*>(Application->environment->plates.simple->_create());
+        this->additional->setPlate(this);
+
+        Application->environment->runAction(
+          Sequence::create(
+            DelayTime::create(0.5),
+            CallFunc::create([=] () {
+            if(Application->environment->enemy)
+            {
+              Application->environment->enemy->removeFromParent();
+              //Application->environment->enemy->release();
+            }
+            Application->environment->enemy = new Enemy;
+            Application->environment->enemy->_create();
+            Application->environment->enemy->setPosition3D(Vec3(this->startPositionX, 1.3 + (this->getStage() * 0.8), this->startPositionZ));
+
+              auto test = Application->environment->enemy->getPlateWithCoordinates();
+              Application->environment->enemy->plates.current = test;
+
+              if(test)
+              {
+              Application->environment->enemy->onLandSuccessful(Character::NONE, test);
+              }
+            }),
+            nullptr
+          )
+        );
+      }
+      else
+      {
+        this->additional = static_cast<TypeSimple*>(Application->environment->plates.simple->_create());
+        this->additional->setPlate(this);
+      }
+
+      if(this->additional)
+      {
+        this->additional->setRotation3D(Vec3(-90.0, 90.0, 0.0));
+        this->additional->setScaleY(0.25);
+      }
+    }
+    break;
 
     /**
      *
@@ -710,8 +910,12 @@ void Plate::prepare()
     nullptr
   );
 
-  this->setPosition3D(Vec3(x + (this->direction ? 10.0 : 0.0), y, z - (this->direction ? 0.0 : 10.0)));
+  this->setPositionX(x + (this->direction ? 10.0 : 0.0));
+  this->setPositionY(y);
+  this->setPositionZ(z - (this->direction ? 0.0 : 10.0));
+
   if(this->special) this->special->runAction(action->clone());
+  if(this->additional) this->additional->runAction(action->clone());
   this->runAction(action->clone());
 
   for(auto decoration : this->getDecorations())
@@ -768,6 +972,21 @@ void Plate::remove(bool complete)
     );
   }
 
+  if(this->additional)
+  {
+    this->additional->runAction(
+      Spawn::create(
+        Sequence::create(
+          EaseSineIn::create(
+            MoveBy::create(0.2, Vec3(this->direction ? -10 : 0, 0, this->direction ? 0 : 10))
+          ),
+          nullptr
+        ),
+        nullptr
+      )
+    );
+  }
+
   for(auto decoration : this->getDecorations())
   {
     if(decoration->getParent() == Application->environment->plane)
@@ -794,6 +1013,8 @@ void Plate::remove(bool complete)
  */
 void Plate::start()
 {
+  this->started = true;
+
   if(this->special)
   {
     this->special->start();
@@ -1000,6 +1221,11 @@ void Plate::clearDecorations()
     this->special->clearDecorations();
   }
 
+  if(this->additional)
+  {
+    this->additional->clearDecorations();
+  }
+
   for(auto decoration : this->getDecorations())
   {
     if((decoration->removable && !decoration->unremovable) || !this->state->create)
@@ -1026,6 +1252,15 @@ void Plate::clearSpecial()
   {
     this->special->_destroy(true);
     this->special = nullptr;
+  }
+}
+
+void Plate::clearAdditional()
+{
+  if(this->additional)
+  {
+    this->additional->_destroy(true);
+    this->additional = nullptr;
   }
 }
 
@@ -1056,6 +1291,16 @@ void Plate::setOpacity(GLubyte opacity)
   if(this->special)
   {
     this->special->setOpacity(opacity);
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->additional)
+  {
+    this->additional->setOpacity(opacity);
   }
 }
 
@@ -1113,6 +1358,16 @@ void Plate::setPositionX(float x)
   {
     this->special->setPositionX(x);
   }
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->additional)
+  {
+    this->additional->setPositionX(x + (!this->direction ? 0.85 : 0));
+  }
 }
 
 /**
@@ -1133,6 +1388,16 @@ void Plate::setPositionY(float y)
   {
     this->special->setPositionY(y);
   }
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->additional)
+  {
+    this->additional->setPositionY(y + 1.15);
+  }
 }
 
 void Plate::setPositionZ(float z)
@@ -1148,6 +1413,16 @@ void Plate::setPositionZ(float z)
   {
     this->special->setPositionZ(z);
   }
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->additional)
+  {
+    this->additional->setPositionZ(z - (this->direction ? 0.85 : 0));
+  }
 }
 
 void Plate::setPosition3D(Vec3 position)
@@ -1162,6 +1437,16 @@ void Plate::setPosition3D(Vec3 position)
   if(this->special && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(this->special) == 0)
   {
     this->special->setPosition3D(position);
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->additional && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(this->additional) == 0)
+  {
+    this->additional->setPosition3D(position);
   }
 }
 
@@ -1192,5 +1477,15 @@ void Plate::setTexture(const std::string& texture)
   if(this->special)
   {
     this->special->setTexture(texture);
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->additional)
+  {
+    this->additional->setTexture(texture);
   }
 }

@@ -123,7 +123,7 @@ void Energy::onPickup()
                   }
                 }
 
-                if(((this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::TRAMPOLINE && next->type != Plate::PORTAL && next->type != Plate::FINISH) || action)
+                if(((this->count < COUNT || next->behavior == Plate::DYNAMIC) && next->type != Plate::TRAMPOLINE && next->type != Plate::PORTAL && next->type != Plate::FINISH && !next->isEpisodeStart()) || action)
                 {
                   Application->environment->character->runAction(this->action);
                 }
@@ -133,7 +133,6 @@ void Energy::onPickup()
 
                   Application->environment->character->runAction(
                     Sequence::create(
-                      //DelayTime::create(0.1),
                       CallFunc::create([=] () {
                       if(next->type != Plate::TRAMPOLINE)
                       {

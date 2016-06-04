@@ -97,7 +97,10 @@ class Plate : public Cube
 
     PORTAL, // 26
 
-    MOVED5 // 27
+    MOVED5, // 27
+
+    WIPE, // 28
+    DUEL // 29
   };
 
   enum Side {
@@ -110,6 +113,24 @@ class Plate : public Cube
     DYNAMIC
   };
 
+  struct Wipe {
+    int index;
+  };
+
+  struct Duel {
+    int index;
+  };
+
+  struct Trampolines {
+    int index;
+  };
+
+  struct Episode {
+    Wipe wipe;
+    Duel duel;
+    Trampolines trampolines;
+  };
+
   /**
    *
    *
@@ -120,14 +141,18 @@ class Plate : public Cube
  ~Plate();
 
   Type type;
+  Episode episode;
   Behavior behavior;
 
   bool position[2];
   bool moved;
   bool avoid;
   bool blocked;
+  bool started;
+  bool counted;
 
   Special* special = nullptr;
+  Special* additional = nullptr;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
@@ -136,7 +161,7 @@ class Plate : public Cube
   virtual void onRemove(bool complete = true);
 
   virtual void onCount();
-  virtual void onUncount();
+  virtual void onUncount(bool action = false);
 
   virtual bool getDirection();
   virtual int getIndex();
@@ -147,6 +172,9 @@ class Plate : public Cube
   virtual float getStartPositionZ();
 
   virtual vector<Decoration*> &getDecorations();
+
+  virtual bool isEpisodeStart(int episode = -1);
+  virtual bool isEpisodeFinish(int episode = -1);
 
   virtual void setDirection(bool direction);
   virtual void setIndex(int index);
@@ -166,6 +194,7 @@ class Plate : public Cube
   virtual bool conditions(int type);
 
   virtual void clearDecorations();
+  virtual void clearAdditional();
   virtual void clearSpecial();
 
   Plate* deepCopy();

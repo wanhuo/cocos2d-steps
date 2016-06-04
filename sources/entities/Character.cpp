@@ -99,6 +99,7 @@ void Character::reset()
   this->autoTurnRight = false;
 
   this->manual = true;
+  this->automatecally = false;
 
   this->turns = 0;
   this->time = 0;
@@ -275,6 +276,47 @@ void Character::onTurnLeft(bool action, bool set)
 
       if(next)
       {
+        if(!this->getAutomatecally())
+        {
+          if(Application->environment->enemy && Application->environment->enemy->Node::state->create)
+          {
+            if(Application->environment->enemy->state != STATE_NORMAL && Application->environment->enemy->state != STATE_CRASH)
+            {
+              if(abs(Application->environment->enemy->plates.current->getIndex() - this->plates.current->getIndex()) < 3)
+              {
+                this->changeState(STATE_NORMAL);
+                return;
+              }
+            }
+
+            if(Application->environment->enemy->plates.current == next || Application->environment->enemy->plates.current == previous)
+            {
+              if(Application->environment->enemy->state == STATE_NORMAL)
+              {
+                Application->environment->enemy->onTurn();
+                Application->environment->enemy->runAction(
+                  Sequence::create(
+                    CallFunc::create([=] () {
+                    Sound->play("insane-brick-" + to_string(random(1, 3)));
+                    }),
+                    DelayTime::create(0.1),
+                    CallFunc::create([=] () {
+                    Application->environment->enemy->onTurn();
+                    }),
+                    nullptr
+                  )
+                );
+              }
+              else if(Application->environment->enemy->state != STATE_CRASH)
+              {
+                this->changeState(STATE_NORMAL);
+
+                return;
+              }
+            }
+          }
+        }
+
         if(this->plates.current->getStage() != next->getStage())
         {
           this->changeState(STATE_NORMAL);
@@ -366,6 +408,47 @@ void Character::onTurnRight(bool action, bool set)
 
       if(next)
       {
+        if(!this->getAutomatecally())
+        {
+          if(Application->environment->enemy && Application->environment->enemy->Node::state->create)
+          {
+            if(Application->environment->enemy->state != STATE_NORMAL && Application->environment->enemy->state != STATE_CRASH)
+            {
+              if(abs(Application->environment->enemy->plates.current->getIndex() - this->plates.current->getIndex()) < 3)
+              {
+                this->changeState(STATE_NORMAL);
+                return;
+              }
+            }
+
+            if(Application->environment->enemy->plates.current == next || Application->environment->enemy->plates.current == previous)
+            {
+              if(Application->environment->enemy->state == STATE_NORMAL)
+              {
+                Application->environment->enemy->onTurn();
+                Application->environment->enemy->runAction(
+                  Sequence::create(
+                    CallFunc::create([=] () {
+                    Sound->play("insane-brick-" + to_string(random(1, 3)));
+                    }),
+                    DelayTime::create(0.1),
+                    CallFunc::create([=] () {
+                    Application->environment->enemy->onTurn();
+                    }),
+                    nullptr
+                  )
+                );
+              }
+              else if(Application->environment->enemy->state != STATE_CRASH)
+              {
+                this->changeState(STATE_NORMAL);
+
+                return;
+              }
+            }
+          }
+        }
+
         if(this->plates.current->getStage() != next->getStage())
         {
           this->changeState(STATE_NORMAL);
@@ -445,6 +528,253 @@ void Character::onTurnRight(bool action, bool set)
  *
  *
  */
+void Character::onTurnBack(bool action, bool set)
+{
+  if(action)
+  {
+    if(this->state == STATE_COPTER)
+    {
+      this->turns++;
+
+      if(this->turns < STATE_COPTER_TURNS)
+      {
+        this->onSound();
+
+        return;
+      }
+      else
+      {
+        Sound->play("copter-success");
+
+        Application->environment->characterActionHolder->runAction(
+          Spawn::create(
+            EaseSineInOut::create(
+              ScaleTo::create(0.2, 1.2)
+            ),
+            EaseSineInOut::create(
+              FadeOut::create(0.2)
+            ),
+            nullptr
+          )
+        );
+
+        this->updateStates(0);
+
+        this->changeState(STATE_NORMAL);
+      }
+    }
+
+    this->turns = 0;
+
+    if(this->getBackPlatesNearWithDefaults().plates[Plate::RIGHT])
+    {
+      this->onTurnBackLeft(action, set);
+    }
+    else
+    {
+      this->onTurnBackRight(action, set);
+    }
+  }
+  else
+  {
+    this->onTurnBackLeft(action, set);
+    this->onTurnBackRight(action, set);
+  }
+}
+
+void Character::onTurnBackLeft(bool action, bool set)
+{
+  if(action)
+  {
+    auto previous = this->plates.current;
+
+    if(!this->isPlateRightBlocked() && this->onTouch())
+    {
+      auto next = this->getBackPlateRight(previous);
+
+      if(next)
+      {
+        if(this->getAutomatecally())
+        {
+          if(Application->environment->character->state != STATE_NORMAL)
+          {
+            this->changeState(STATE_NORMAL);
+            return;
+          }
+
+          if(Application->environment->character->plates.current == next || Application->environment->character->plates.current == previous)
+          {
+            if(Application->environment->character->state == STATE_NORMAL)
+            {
+              Application->environment->character->onTurnBack();
+              Application->environment->character->runAction(
+                Sequence::create(
+                  CallFunc::create([=] () {
+                  Sound->play("insane-brick-" + to_string(random(1, 3)));
+                  }),
+                  DelayTime::create(0.1),
+                  CallFunc::create([=] () {
+                  Application->environment->character->onTurnBack();
+                  }),
+                  nullptr
+                )
+              );
+            }
+            else
+            {
+              this->changeState(STATE_NORMAL);
+
+              return;
+            }
+          }
+        }
+        else
+        {
+          this->plates.current->onUncount(true);
+        }
+
+        if(this->plates.current->getStage() != next->getStage())
+        {
+          this->changeState(STATE_NORMAL);
+          return;
+        }
+
+        Director::getInstance()->getActionManager()->pauseTarget(next);
+        Director::getInstance()->getScheduler()->pauseTarget(next);
+
+        Director::getInstance()->getActionManager()->pauseTarget(next->special);
+        Director::getInstance()->getScheduler()->pauseTarget(next->special);
+      }
+
+      this->runAction(
+        Spawn::create(
+          RotateGlobalBy::create(0.1, Vec3(90, 0, 0)),
+          Sequence::create(
+            MoveBy::create(0.05, Vec3(0.0, 0.2, 0.75)),
+            MoveBy::create(0.05, Vec3(0.0, -0.2 - (this->getPositionY() - 1.3 - ((next->getStage()) * 0.8)), 0.75)),
+            CallFunc::create([=] () {
+              this->changeState(STATE_NORMAL);
+              this->onTurn(LEFT);
+
+              if(next)
+              {
+                Director::getInstance()->getActionManager()->resumeTarget(next);
+                Director::getInstance()->getScheduler()->resumeTarget(next);
+
+                Director::getInstance()->getActionManager()->resumeTarget(next->special);
+                Director::getInstance()->getScheduler()->resumeTarget(next->special);
+              }
+            }),
+            nullptr
+          ),
+          nullptr
+        )
+      );
+
+      this->onMoveBackLeft();
+    }
+  }
+}
+
+void Character::onTurnBackRight(bool action, bool set)
+{
+  if(action)
+  {
+    auto previous = this->plates.current;
+
+    if(!this->isPlateLeftBlocked() && this->onTouch())
+    {
+      auto next = this->getBackPlateLeft(previous);
+
+      if(next)
+      {
+        if(this->getAutomatecally())
+        {
+          if(Application->environment->character->state != STATE_NORMAL)
+          {
+            this->changeState(STATE_NORMAL);
+            return;
+          }
+
+          if(Application->environment->character->plates.current == next || Application->environment->character->plates.current == previous)
+          {
+            if(Application->environment->character->state == STATE_NORMAL)
+            {
+              Application->environment->character->onTurnBack();
+              Application->environment->character->runAction(
+                Sequence::create(
+                  CallFunc::create([=] () {
+                  Sound->play("insane-brick-" + to_string(random(1, 3)));
+                  }),
+                  DelayTime::create(0.1),
+                  CallFunc::create([=] () {
+                  Application->environment->character->onTurnBack();
+                  }),
+                  nullptr
+                )
+              );
+            }
+            else
+            {
+              this->changeState(STATE_NORMAL);
+
+              return;
+            }
+          }
+        }
+        else
+        {
+          this->plates.current->onUncount(true);
+        }
+
+        if(this->plates.current->getStage() != next->getStage())
+        {
+          this->changeState(STATE_NORMAL);
+          return;
+        }
+
+        Director::getInstance()->getActionManager()->pauseTarget(next);
+        Director::getInstance()->getScheduler()->pauseTarget(next);
+
+        Director::getInstance()->getActionManager()->pauseTarget(next->special);
+        Director::getInstance()->getScheduler()->pauseTarget(next->special);
+      }
+
+      this->runAction(
+        Spawn::create(
+          RotateGlobalBy::create(0.1, Vec3(0, 0, 90)),
+          Sequence::create(
+            MoveBy::create(0.05, Vec3(-0.75, 0.2, 0)),
+            MoveBy::create(0.05, Vec3(-0.75, -0.2 - (this->getPositionY() - 1.3 - ((next->getStage()) * 0.8)), 0)),
+            CallFunc::create([=] () {
+              this->changeState(STATE_NORMAL);
+              this->onTurn(RIGHT);
+
+              if(next)
+              {
+                Director::getInstance()->getActionManager()->resumeTarget(next);
+                Director::getInstance()->getScheduler()->resumeTarget(next);
+
+                Director::getInstance()->getActionManager()->resumeTarget(next->special);
+                Director::getInstance()->getScheduler()->resumeTarget(next->special);
+              }
+            }),
+            nullptr
+          ),
+          nullptr
+        )
+      );
+
+      this->onMoveBackRight();
+    }
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
 bool Character::getManual()
 {
   return this->manual;
@@ -463,6 +793,18 @@ bool Character::setManual(bool manual)
   }
 
   return this->manual;
+}
+
+bool Character::getAutomatecally()
+{
+  return this->automatecally;
+}
+
+bool Character::setAutomatecally(bool automatecally)
+{
+  this->automatecally = manual;
+
+  return this->automatecally;
 }
 
 /**
@@ -577,10 +919,6 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
     }
   }
 
-  plate->onCount();
-
-  Application->counter->onCount();
-
   auto color = this->color;
 
   for(Decoration* decoration : plate->getDecorations())
@@ -603,72 +941,91 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
     Application->environment->createParticle(0, x, plate->getPositionY() + 0.4, z)->setColor(color);
   }
 
-  Application->environment->generator->create(true);
-  Application->environment->generator->destroy(true);
-
   this->onSound();
 
-  if(plate->type == Plate::FINISH)
+  if(!this->getAutomatecally())
   {
-    this->changeState(STATE_FINISH);
-
-    /**
-     *
-     * @Missions
-     * Update missions with stages.
-     *
-     */
-    if(Application->environment->generator->bonus)
-    if(MissionsFactory::getInstance()->isListenen())
+    if(!plate->counted)
     {
-      Application->counter->missionUpdateOnce.special_once_14++;
-      Application->counter->missionUpdateProgress.special_progress_14++;
+      plate->onCount();
 
-      Events::updateMissions();
+      Application->counter->onCount();
+
+      Application->environment->generator->create(true);
+      Application->environment->generator->destroy(true);
     }
-  }
-  else
-  {
-    if(!Application->environment->insane->state->create)
+
+    if(plate->type == Plate::FINISH)
     {
-      if(!Application->environment->generator->bonus && this->getManual())
+      this->changeState(STATE_FINISH);
+
+      /**
+       *
+       * @Missions
+       * Update missions with stages.
+       *
+       */
+      if(Application->environment->generator->bonus)
       {
-        if(this->plates.current && (Application->environment->generator->size - this->plates.current->getIndex()) > 10)
+        if(MissionsFactory::getInstance()->isListenen())
         {
-          if(this->steps >= 5)
+          Application->counter->missionUpdateOnce.special_once_14++;
+          Application->counter->missionUpdateProgress.special_progress_14++;
+
+          Events::updateMissions();
+        }
+      }
+    }
+    else if(!Generators->isEpisodes())
+    {
+      if(!Application->environment->insane->state->create)
+      {
+        if(!Application->environment->generator->bonus && this->getManual())
+        {
+          if(this->plates.current && (Application->environment->generator->size - this->plates.current->getIndex()) > 10)
           {
-            auto counter = 5;
-            auto element = this->plates.current;
-
-            while(true)
+            if(this->steps >= 30)
             {
-              counter--;
-              element = this->getPlatesNearWithDefaults(element).next();
+              auto counter = 5;
+              auto element = this->plates.current;
 
-              if(!element)
+              while(true)
               {
-                break;
-              }
+                counter--;
+                element = this->getPlatesNearWithDefaults(element).next();
 
-              if(element->type == Plate::TRAMPOLINE)
-              {
-                break;
-              }
+                if(!element)
+                {
+                  break;
+                }
 
-              if(counter < 0 && !element->getDecorations().size() && !element->special)
-              {
-                Application->environment->insane->_create();
-                Application->environment->insane->setPlate(element, false);
+                if(!element->started)
+                {
+                  break;
+                }
 
-                element->getDecorations().push_back(Application->environment->insane);
+                if(element->type == Plate::TRAMPOLINE || element->type == Plate::PORTAL)
+                {
+                  break;
+                }
 
-                break;
+                if(counter < 0 && !element->getDecorations().size() && !element->special)
+                {
+                  Application->environment->insane->_create();
+                  Application->environment->insane->setPlate(element, false);
+
+                  element->getDecorations().push_back(Application->environment->insane);
+
+                  break;
+                }
               }
             }
           }
         }
       }
     }
+
+    Generators->checkEpisodes(plate);
   }
 
   this->shadow->setPosition(this->plates.current->getStage() * 0.8);
@@ -725,20 +1082,55 @@ void Character::onLandFail(Turn turn, Plate* plate)
  */
 void Character::onMoveLeft(float time)
 {
-  Application->environment->plane->runAction(
-    MoveBy::create(time, Vec3(0, 0, 1.5))
-  );
+  if(!this->getAutomatecally())
+  {
+    Application->environment->plane->runAction(
+      MoveBy::create(time, Vec3(0, 0, 1.5))
+    );
 
-  this->onEnvironmentMoveLeft(time);
+    this->onEnvironmentMoveLeft(time);
+  }
 }
 
 void Character::onMoveRight(float time)
 {
-  Application->environment->plane->runAction(
-    MoveBy::create(time, Vec3(-1.5, 0, 0))
-  );
+  if(!this->getAutomatecally())
+  {
+    Application->environment->plane->runAction(
+      MoveBy::create(time, Vec3(-1.5, 0, 0))
+    );
 
-  this->onEnvironmentMoveRight(time);
+    this->onEnvironmentMoveRight(time);
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Character::onMoveBackLeft(float time)
+{
+  if(!this->getAutomatecally())
+  {
+    Application->environment->plane->runAction(
+      MoveBy::create(time, Vec3(0, 0, -1.5))
+    );
+
+    this->onEnvironmentMoveBackLeft(time);
+  }
+}
+
+void Character::onMoveBackRight(float time)
+{
+  if(!this->getAutomatecally())
+  {
+    Application->environment->plane->runAction(
+      MoveBy::create(time, Vec3(1.5, 0, 0))
+    );
+
+    this->onEnvironmentMoveBackRight(time);
+  }
 }
 
 /**
@@ -751,6 +1143,19 @@ void Character::onEnvironmentMoveLeft(float time)
 }
 
 void Character::onEnvironmentMoveRight(float time)
+{
+}
+
+/**
+ *
+ *
+ *
+ */
+void Character::onEnvironmentMoveBackLeft(float time)
+{
+}
+
+void Character::onEnvironmentMoveBackRight(float time)
 {
 }
 
@@ -776,22 +1181,25 @@ void Character::onFall()
 
 void Character::onCrash(Crash crash)
 {
-  if(this->plates.current)
+  if(!this->getAutomatecally())
   {
-    this->plates.current->onUncount();
-  }
+    if(this->plates.current)
+    {
+      this->plates.current->onUncount();
+    }
 
-  Application->environment->characterActionHolder->runAction(
-    Spawn::create(
-      EaseSineInOut::create(
-        ScaleTo::create(0.2, 1.2)
-      ),
-      EaseSineInOut::create(
-        FadeOut::create(0.2)
-      ),
-      nullptr
-    )
-  );
+    Application->environment->characterActionHolder->runAction(
+      Spawn::create(
+        EaseSineInOut::create(
+          ScaleTo::create(0.2, 1.2)
+        ),
+        EaseSineInOut::create(
+          FadeOut::create(0.2)
+        ),
+        nullptr
+      )
+    );
+  }
 
   this->plane->stopAllActions();
 
@@ -806,7 +1214,10 @@ void Character::onCrash(Crash crash)
           ScaleTo::create(0.1, 1.0, 0.2, 1.0),
           DelayTime::create(1.0),
           CallFunc::create([=] () {
+          if(!this->getAutomatecally())
+          {
             Application->changeState(Game::LOSE);
+          }
           }),
           nullptr
         ),
@@ -826,7 +1237,10 @@ void Character::onCrash(Crash crash)
           ),
           DelayTime::create(1.0),
           CallFunc::create([=] () {
+          if(!this->getAutomatecally())
+          {
             Application->changeState(Game::LOSE);
+          }
           }),
           nullptr
         ),
@@ -845,7 +1259,10 @@ void Character::onCrash(Crash crash)
         MoveBy::create(0.1f, Vec3(0.0, -0.9, 0.0)),
         DelayTime::create(1.0),
         CallFunc::create([=] () {
-          Application->changeState(Game::LOSE);
+          if(!this->getAutomatecally())
+          {
+            Application->changeState(Game::LOSE);
+          }
         }),
         nullptr
       )
@@ -859,8 +1276,11 @@ void Character::onCrash(Crash crash)
             MoveBy::create(0.2, Vec3(this->plates.current->getDirection() ? -10 : 0, 0, this->plates.current->getDirection() ? 0 : 10))
           ),
           CallFunc::create([=] () {
-            this->_destroy();
+          this->_destroy();
+          if(!this->getAutomatecally())
+          {
             Application->changeState(Game::LOSE);
+          }
           }),
           nullptr
         ),
@@ -874,14 +1294,20 @@ void Character::onCrash(Crash crash)
         ScaleTo::create(0.1, this->plates.current->getDirection() ? 1.0 : 0.1, 1.0, this->plates.current->getDirection() ? 0.1 : 1.0),
         DelayTime::create(1.0),
         CallFunc::create([=] () {
-          Application->changeState(Game::LOSE);
+          if(!this->getAutomatecally())
+          {
+            Application->changeState(Game::LOSE);
+          }
         }),
         nullptr
       )
     );
     break;
     case COPTER:
+    if(!this->getAutomatecally())
+    {
     this->changeState(STATE_COPTER);
+    }
     break;
   }
 
@@ -897,7 +1323,10 @@ void Character::onCrash(Crash crash)
     Sound->play("character-destroy-smash");
     break;
     case CATCH:
-    Sound->play("character-destroy-catch");
+    if(!this->getAutomatecally())
+    {
+      Sound->play("character-destroy-catch");
+    }
     break;
     case GATE:
     Sound->play("character-destroy-smash");
@@ -906,39 +1335,42 @@ void Character::onCrash(Crash crash)
     break;
   }
 
-  switch(crash)
+  if(!this->getAutomatecally())
   {
-    case CATCH:
-    Storage::set("application.plates.index." + s(Application->environment->parameters.stage), Application->environment->platesTimeIndex + 1);
-    case FAIL:
-    case SPIKES:
-    case DOWN:
-    case GATE:
-    Screenshot::save([&] (bool a, string texture)
+    switch(crash)
     {
-      Application->runAction(
-        Sequence::create(
-        DelayTime::create(1.5),
-        CallFunc::create([=] () {
-        switch(Application->state)
-        {
-          default:
-          break;
-          case Game::FINISH:
-          case Game::GAME:
-          Application->capture->screenshot(texture);
-          break;
-        }
-        }),
-        nullptr
-        )
-      );
-    });
-    break;
-    case COPTER:
-    break;
-    case UNDEFINED:
-    break;
+      case CATCH:
+      Storage::set("application.plates.index." + s(Application->environment->parameters.stage), Application->environment->platesTimeIndex + 1);
+      case FAIL:
+      case SPIKES:
+      case DOWN:
+      case GATE:
+      Screenshot::save([&] (bool a, string texture)
+      {
+        Application->runAction(
+          Sequence::create(
+          DelayTime::create(1.5),
+          CallFunc::create([=] () {
+          switch(Application->state)
+          {
+            default:
+            break;
+            case Game::FINISH:
+            case Game::GAME:
+            Application->capture->screenshot(texture);
+            break;
+          }
+          }),
+          nullptr
+          )
+        );
+      });
+      break;
+      case COPTER:
+      break;
+      case UNDEFINED:
+      break;
+    }
   }
 }
 
@@ -1134,6 +1566,7 @@ void Character::onInsaneStart()
   this->plane->stopAllActions();
   this->plane->setScale(1.0);
 
+  Application->cameras.d->stopAllActions();
   Application->cameras.d->runAction(
     Spawn::create(
       ScaleTo::create(2.0, 0.6),
@@ -1306,7 +1739,7 @@ void Character::onInsaneUpdate()
     {
       auto particle = Application->environment->createParticle(1, this->insanePlate->getPositionX(), this->insanePlate->getPositionY() - 0.5, this->insanePlate->getPositionZ());
 
-      particle->setColor(Color3B(252, 226, 105));
+      particle->setColor(Environment::TEXTURES_COLORS[Application->environment->parameters.texture - 2]);
     }
       break;
     }
@@ -1338,7 +1771,7 @@ void Character::onInsaneRight()
   {
     auto particle = Application->environment->createParticle(1, plate->getPositionX(), plate->getPositionY() - 0.5, plate->getPositionZ());
 
-    particle->setColor(Color3B(252, 226, 105));
+      particle->setColor(Environment::TEXTURES_COLORS[Application->environment->parameters.texture - 2]);
   }
   }
             }
@@ -1421,7 +1854,7 @@ void Character::onInsaneLeft()
   {
     auto particle = Application->environment->createParticle(1, plate->getPositionX(), plate->getPositionY() - 0.5, plate->getPositionZ());
 
-    particle->setColor(Color3B(252, 226, 105));
+      particle->setColor(Environment::TEXTURES_COLORS[Application->environment->parameters.texture - 2]);
   }
   }
             }
@@ -1551,6 +1984,72 @@ Plate* Character::getPlateLeft(Plate* current)
   return this->getPlateLeftWithDefaults(current);
 }
 
+Plate* Character::getBackPlateRight(Plate* current)
+{
+  if(!this->plates.current)
+  {
+    if(!current)
+    {
+      return nullptr;
+    }
+  }
+
+  int x = (current ? current->getPositionX() : this->plates.current->getPositionX()) / 1.5;
+  int z = (current ? current->getPositionZ() : this->plates.current->getPositionZ()) / 1.5;
+
+  for(int i = 0; i < Application->environment->plates.normal->count; i++)
+  {
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
+    auto position = plate->getPosition3D();
+
+    int px = position.x / 1.5;
+    int pz = position.z / 1.5;
+
+    if(px == x && pz == z + 1 && !(px == x && pz == z))
+    {
+      plate->position[Plate::LEFT] = true;
+      plate->position[Plate::RIGHT] = false;
+
+      return plate;
+    }
+  }
+
+  return this->getPlateRightWithDefaults(current);
+}
+
+Plate* Character::getBackPlateLeft(Plate* current)
+{
+  if(!this->plates.current)
+  {
+    if(!current)
+    {
+      return nullptr;
+    }
+  }
+
+  int x = (current ? current->getPositionX() : this->plates.current->getPositionX()) / 1.5;
+  int z = (current ? current->getPositionZ() : this->plates.current->getPositionZ()) / 1.5;
+
+  for(int i = 0; i < Application->environment->plates.normal->count; i++)
+  {
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
+    auto position = plate->getPosition3D();
+
+    int px = position.x / 1.5;
+    int pz = position.z / 1.5;
+
+    if(px == x - 1 && pz == z && !(px == x && pz == z))
+    {
+      plate->position[Plate::LEFT] = false;
+      plate->position[Plate::RIGHT] = true;
+
+      return plate;
+    }
+  }
+
+  return this->getPlateLeftWithDefaults(current);
+}
+
 Plate* Character::getPlateRightWithDefaults(Plate* current)
 {
   if(!this->plates.current)
@@ -1609,6 +2108,98 @@ Plate* Character::getPlateLeftWithDefaults(Plate* current)
     {
       plate->position[Plate::LEFT] = false;
       plate->position[Plate::RIGHT] = true;
+
+      return plate;
+    }
+  }
+
+  return nullptr;
+}
+
+
+Plate* Character::getBackPlateRightWithDefaults(Plate* current)
+{
+  if(!this->plates.current)
+  {
+    if(!current)
+    {
+      return nullptr;
+    }
+  }
+
+  int x = (current ? current->getStartPositionX() : this->plates.current->getStartPositionX()) / 1.5;
+  int z = (current ? current->getStartPositionZ() : this->plates.current->getStartPositionZ()) / 1.5;
+
+  for(int i = 0; i < Application->environment->plates.normal->count; i++)
+  {
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
+    auto position = Vec3(plate->getStartPositionX(), plate->getStartPositionY(), plate->getStartPositionZ());
+
+    int px = position.x / 1.5;
+    int pz = position.z / 1.5;
+
+    if(px == x && pz == z + 1 && !(px == x && pz == z))
+    {
+      plate->position[Plate::LEFT] = true;
+      plate->position[Plate::RIGHT] = false;
+
+      return plate;
+    }
+  }
+
+  return nullptr;
+}
+
+Plate* Character::getBackPlateLeftWithDefaults(Plate* current)
+{
+  if(!this->plates.current)
+  {
+    if(!current)
+    {
+      return nullptr;
+    }
+  }
+
+  int x = (current ? current->getStartPositionX() : this->plates.current->getStartPositionX()) / 1.5;
+  int z = (current ? current->getStartPositionZ() : this->plates.current->getStartPositionZ()) / 1.5;
+
+  for(int i = 0; i < Application->environment->plates.normal->count; i++)
+  {
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
+    auto position = Vec3(plate->getStartPositionX(), plate->getStartPositionY(), plate->getStartPositionZ());
+
+    int px = position.x / 1.5;
+    int pz = position.z / 1.5;
+
+    if(px == x - 1 && pz == z && !(px == x && pz == z))
+    {
+      plate->position[Plate::LEFT] = false;
+      plate->position[Plate::RIGHT] = true;
+
+      return plate;
+    }
+  }
+
+  return nullptr;
+}
+
+Plate* Character::getPlateWithCoordinates()
+{
+  int x = this->getPositionX() / 1.5;
+  int z = this->getPositionZ() / 1.5;
+
+  for(int i = 0; i < Application->environment->plates.normal->count; i++)
+  {
+    auto plate = static_cast<Plate*>(Application->environment->plates.normal->element(i));
+    auto position = Vec3(plate->getStartPositionX(), plate->getStartPositionY(), plate->getStartPositionZ());
+
+    int px = position.x / 1.5;
+    int pz = position.z / 1.5;
+
+    if(px == x && pz == z)
+    {
+      plate->position[Plate::LEFT] = true;
+      plate->position[Plate::RIGHT] = false;
 
       return plate;
     }
@@ -1687,6 +2278,26 @@ Character::Nears Character::getPlatesNearWithDefaults(Plate* current)
   return nears;
 }
 
+Character::Nears Character::getBackPlatesNear(Plate* current)
+{
+  Nears nears;
+
+  nears.plates[Plate::LEFT] = this->getBackPlateLeft(current);
+  nears.plates[Plate::RIGHT] = this->getBackPlateRight(current);
+
+  return nears;
+}
+
+Character::Nears Character::getBackPlatesNearWithDefaults(Plate* current)
+{
+  Nears nears;
+
+  nears.plates[Plate::LEFT] = this->getBackPlateLeftWithDefaults(current);
+  nears.plates[Plate::RIGHT] = this->getBackPlateRightWithDefaults(current);
+
+  return nears;
+}
+
 /**
  *
  *
@@ -1735,6 +2346,17 @@ void Character::changeState(State state, Crash crash)
  */
 void Character::updateNormal(float time)
 {
+  if(!this->getAutomatecally())
+  {
+    if(Application->environment->enemy && Application->environment->enemy->Node::state->create)
+    {
+      if(Application->environment->enemy->plates.current == this->plates.current)
+      {
+        return;
+      }
+    }
+  }
+
   if(this->plates.current && this->manual)
   {
     for(auto decoration : this->plates.current->getDecorations())

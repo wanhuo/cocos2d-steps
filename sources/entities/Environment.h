@@ -35,6 +35,7 @@
  *
  */
 class Character;
+class Enemy;
 class Ground;
 class Insane;
 class Decoration;
@@ -110,6 +111,7 @@ class Environment : public Background
 
   struct Plates {
     Pool* normal;
+    Pool* simple;
     Pool* finish;
     Pool* best;
     Pool* bonus;
@@ -198,6 +200,8 @@ class Environment : public Background
    */
   public:
   const static int STAR_TIME = 5;
+  const static Color3B COLORS[];
+  const static Color3B TEXTURES_COLORS[];
 
   Environment(Node* parent);
  ~Environment();
@@ -227,6 +231,7 @@ class Environment : public Background
   float platesTimeIndex;
 
   Character* character;
+  Enemy* enemy = nullptr;
 
   Generator* generator = nullptr;
   Letters* letters = nullptr;

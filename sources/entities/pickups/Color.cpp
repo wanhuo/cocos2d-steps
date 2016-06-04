@@ -31,8 +31,8 @@
 Color::Color()
 : Pickup("color.obj")
 {
-  this->glow->setColor(Color3B::WHITE);
-  this->glow->setScale(0.006);
+  this->setScale(1.5);
+  this->glow->setVisible(false);
 }
 
 Color::~Color()
@@ -57,11 +57,63 @@ void Color::onCreate()
     RepeatForever::create(
       Sequence::create(
         CallFunc::create([=] () {
-          this->runAction(
-            TintTo::create(0.5, random(0.0, 255.0), random(0.0, 255.0), random(0.0, 255.0))
-          );
+
+  float h = random(0.0, 1.0);
+  float s = 0.5;
+  float v = 0.95;
+  float r = 0;
+  float g = 0;
+  float b = 0;
+
+  int hi = floor(h*6);
+  float f = h*6 - hi;
+  float p = v * (1 - s);
+  float q = v * (1 - f*s);
+  float t = v * (1 - (1 - f) * s);
+	
+	switch (hi) {
+		case 0:
+			r = v;
+			g = t;
+			b = p;
+			break;
+		case 1:
+			r = q;
+			g = v;
+			b = p;
+			break;
+		case 2:
+			r = p;
+			g = v;
+			b = t;
+			break;
+		case 3:
+			r = p;
+			g = q;
+			b = v;
+			break;
+		case 4:
+			r = t;
+			g = p;
+			b = v;
+			break;
+		case 5:
+			r = v;
+			g = p;
+			b = q;
+			break;
+	}
+
+
+
+
+
+
+
+
+          this->setColor(Color3B(r*256, g*256, b*256));
         }),
-        DelayTime::create(0.5),
+        DelayTime::create(0.25),
         nullptr
       )
     )
@@ -121,7 +173,7 @@ void Color::setPlate(Plate* plate, bool animated)
    *
    *
    */
-  this->setPositionY(this->getPositionY() - 0.2);
+  this->setPositionY(this->getPositionY() + 0.2);
 }
 
 /**

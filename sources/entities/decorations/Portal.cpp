@@ -216,7 +216,7 @@ void Portal::onPickup()
               Application->environment->generator->create(true);
             }),
             nullptr
-          ), count
+          ), count - 1
         )
       );
             }),

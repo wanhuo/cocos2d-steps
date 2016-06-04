@@ -28,13 +28,12 @@
  *
  *
  */
-TypeSpikes::TypeSpikes()
-: Special("plate-type-spikes.obj")
+TypeSimple::TypeSimple()
+: Special("plate.obj")
 {
-  this->decoration = new Spikes(this);
 }
 
-TypeSpikes::~TypeSpikes()
+TypeSimple::~TypeSimple()
 {
 }
 
@@ -43,19 +42,12 @@ TypeSpikes::~TypeSpikes()
  *
  *
  */
-void TypeSpikes::onCreate()
+void TypeSimple::onCreate()
 {
   Special::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setScale(1.0);
 }
 
-void TypeSpikes::onDestroy(bool action)
+void TypeSimple::onDestroy(bool action)
 {
   Special::onDestroy(action);
 }
@@ -65,19 +57,9 @@ void TypeSpikes::onDestroy(bool action)
  *
  *
  */
-void TypeSpikes::setPlate(Plate* plate)
+void TypeSimple::setPlate(Plate* plate)
 {
   Special::setPlate(plate);
-
-  /**
-   *
-   *
-   *
-   */
-  this->decoration->_create();
-  this->decoration->setPosition3D(Vec3(0, -0.4, 0));
-
-  this->getDecorations().push_back(this->decoration);
 }
 
 /**
@@ -85,7 +67,7 @@ void TypeSpikes::setPlate(Plate* plate)
  *
  *
  */
-TypeSpikes* TypeSpikes::deepCopy()
+TypeSimple* TypeSimple::deepCopy()
 {
-  return new TypeSpikes;
+  return new TypeSimple;
 }

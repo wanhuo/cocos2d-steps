@@ -187,9 +187,17 @@ Generator::~Generator()
  */
 Plate* Generator::create(bool animated)
 {
+  if(this->skip > 0)
+  {
+    if(this->skip-- >= 0)
+    {
+      return nullptr;
+    }
+  }
+
   if((!this->bonus && this->index <= this->size) || (this->bonus && this->index <= this->size))
   {
-    auto plate = this->update(false);
+    this->plate = this->update(false);
 
     /**
      *
@@ -199,7 +207,7 @@ Plate* Generator::create(bool animated)
      */
     if(this->bonus)
     {
-      this->createBonusElement(plate);
+      this->createBonusElement();
     }
 
     /**
@@ -210,31 +218,31 @@ Plate* Generator::create(bool animated)
      */
     else
     {
-      this->createGeneralElement(plate);
+      this->createGeneralElement();
     }
 
-    plate->setPositionX(this->x);
-    plate->setPositionY(this->y + this->height.stage * 0.8);
-    plate->setPositionZ(this->z);
+    this->plate->setPositionX(this->x);
+    this->plate->setPositionY(this->y + this->height.stage * 0.8);
+    this->plate->setPositionZ(this->z);
 
-    plate->setStartPositionX(this->x);
-    plate->setStartPositionY(this->y + this->height.stage * 0.8);
-    plate->setStartPositionZ(this->z);
+    this->plate->setStartPositionX(this->x);
+    this->plate->setStartPositionY(this->y + this->height.stage * 0.8);
+    this->plate->setStartPositionZ(this->z);
 
-    plate->setStage(this->height.stage);
+    this->plate->setStage(this->height.stage);
 
     if(animated)
     {
-      plate->prepare();
+      this->plate->prepare();
     }
     else
     {
-      plate->start();
+      this->plate->start();
     }
 
     this->update(true);
 
-    return plate;
+    return this->plate;
   }
 
   return nullptr;
@@ -242,6 +250,11 @@ Plate* Generator::create(bool animated)
 
 Plate* Generator::destroy(bool manual)
 {
+  if(this->isEpisodes())
+  {
+    return nullptr;
+  }
+
   switch(Application->environment->character->state)
   {
     default:
@@ -337,72 +350,69 @@ Plate* Generator::destroy(bool manual)
  *
  *
  */
-void Generator::createBonusElement(Plate* plate)
+void Generator::createBonusElement()
 {
-  if(true)
+  this->plate->setStage(this->height.stage);
+
+  if(this->index >= this->size)
   {
-    plate->setStage(this->height.stage);
-
-    if(this->index >= this->size)
+    if(Application->environment->missions.special)
     {
-      if(Application->environment->missions.special)
+      char letter;
+
+      switch(Application->environment->parameters.stage)
       {
-        char letter;
-
-        switch(Application->environment->parameters.stage)
-        {
-          case 1:
-          letter = 'k';
-          break;
-          case 2:
-          letter = 'e';
-          break;
-          case 3:
-          letter = 't';
-          break;
-          case 4:
-          letter = 'c';
-          break;
-          case 5:
-          letter = 'h';
-          break;
-          case 6:
-          letter = 'a';
-          break;
-          case 7:
-          letter = 'p';
-          break;
-          case 8:
-          letter = 'p';
-          break;
-        }
-
-        plate->setType(Plate::LETTER, true, letter);
-        plate->getDecorations()[0]->setColor(Color3B(255, 255, 255));
+        case 1:
+        letter = 'k';
+        break;
+        case 2:
+        letter = 'e';
+        break;
+        case 3:
+        letter = 't';
+        break;
+        case 4:
+        letter = 'c';
+        break;
+        case 5:
+        letter = 'h';
+        break;
+        case 6:
+        letter = 'a';
+        break;
+        case 7:
+        letter = 'p';
+        break;
+        case 8:
+        letter = 'p';
+        break;
       }
 
-      plate->setType(Plate::FINISH);
+      this->plate->setType(Plate::LETTER, true, letter);
+      this->plate->getDecorations()[0]->setColor(Color3B(255, 255, 255));
     }
-    else
+
+    this->plate->setType(Plate::FINISH);
+  }
+  else
+  {
+    if(this->bonusSkip-- <= 0)
     {
-      if(this->bonusSkip-- <= 0)
-      {
-        plate->setType(Plate::DIAMOND);
-      }
+      this->plate->setType(Plate::DIAMOND);
+    }
 
-      plate->setType(Plate::BONUS);
+    this->plate->setType(Plate::BONUS);
 
-      if(plate->conditions(Plate::CUB))
-      {
-        plate->setType(Plate::CUB);
-      }
+    if(this->plate->conditions(Plate::CUB))
+    {
+      this->plate->setType(Plate::CUB);
     }
   }
 }
 
-void Generator::createGeneralElement(Plate* plate)
+void Generator::createGeneralElement()
 {
-  plate->setStage(this->height.stage);
+  this->plate->setStage(this->height.stage);
 
   /**
    *
@@ -411,11 +421,11 @@ void Generator::createGeneralElement(Plate* plate)
    */
   if(this->index == 0)
   {
-    plate->setType(Plate::START);
+    this->plate->setType(Plate::START);
   }
   else if(this->index == 3 && !Application->parameters.showPresent && Application->parameters.elapsed.present >= Application->parameters.present)
   {
-    plate->setType(Plate::PRESENTION);
+    this->plate->setType(Plate::PRESENTION);
   }
   else
   {
@@ -428,7 +438,7 @@ void Generator::createGeneralElement(Plate* plate)
      */
     if(this->index == this->size)
     {
-      plate->setType(Plate::FINISH);
+      this->plate->setType(Plate::FINISH);
     }
     else if(this->general == Application->counter->values.best + 1)
     {
@@ -442,7 +452,7 @@ void Generator::createGeneralElement(Plate* plate)
         this->height.up.counter = -2;
         this->height.down.counter = -2;
 
-        plate->setType(Plate::BEST);
+        this->plate->setType(Plate::BEST);
       }
     }
 
@@ -464,6 +474,14 @@ void Generator::createGeneralElement(Plate* plate)
         }
         else if(action)
         {
+
+          /**
+           *
+           *
+           *
+           */
+          if(this->updateEpisodes()) return;
+
           /** 
            *
            *
@@ -477,7 +495,7 @@ void Generator::createGeneralElement(Plate* plate)
             this->height.up.counter = -2;
             this->height.down.counter = -2;
 
-            plate->setType(Plate::PORTAL);
+            this->plate->setType(Plate::PORTAL);
             return;
           }
 
@@ -504,14 +522,14 @@ void Generator::createGeneralElement(Plate* plate)
             }
             else if(this->height.up.counter == 0)
             {
-              if(probably(50) && plate->conditions(Plate::TRAMPOLINE))
+              if(probably(50) && this->plate->conditions(Plate::TRAMPOLINE))
               {
-                plate->setType(Plate::TRAMPOLINE);
+                this->plate->setType(Plate::TRAMPOLINE);
                 this->conditions.s8 = 8;
               }
               else
               {
-                plate->setType(Plate::MOVE_UP);
+                this->plate->setType(Plate::MOVE_UP);
               }
 
               this->length++;
@@ -520,9 +538,9 @@ void Generator::createGeneralElement(Plate* plate)
             }
             else if(this->height.down.counter == 0)
             {
-              if(probably(50) && plate->conditions(Plate::TRAMPOLINE))
+              if(probably(50) && this->plate->conditions(Plate::TRAMPOLINE))
               {
-                plate->setType(Plate::TRAMPOLINE);
+                this->plate->setType(Plate::TRAMPOLINE);
                 this->conditions.s8 = 8;
               }
 
@@ -534,7 +552,7 @@ void Generator::createGeneralElement(Plate* plate)
             }
             else if(this->height.down.counter == -1)
             {
-              plate->setType(Plate::MOVE_UP);
+              this->plate->setType(Plate::MOVE_UP);
               this->height.stage--;
               this->length++;
 
@@ -546,17 +564,17 @@ void Generator::createGeneralElement(Plate* plate)
               {
                 if(this->height.stage == 0 || this->height.up.length > 0)
                 {
-                  if(this->height.up.counter < -2 && probably(4 - this->height.stage * 2))
+                  if(this->height.up.counter < -2 && probably(2 - this->height.stage))
                   {
                     this->height.up.counter = 1;
-                    this->height.up.length = random(20, 40);
+                    this->height.up.length = random(20, 30);
                     return;
                   }
                 }
                 else if(this->height.stage > 0)
                 {
                   this->height.down.counter = 1;
-                  this->height.up.length = random(20, 40);
+                  this->height.up.length = random(20, 30);
                   return;
                 }
               }
@@ -565,7 +583,7 @@ void Generator::createGeneralElement(Plate* plate)
                 if(this->height.stage > 0 && this->height.up.length <= 0)
                 {
                   this->height.down.counter = 1;
-                  this->height.up.length = random(20, 40);
+                  this->height.up.length = random(20, 30);
                   return;
                 }
               }
@@ -581,9 +599,9 @@ void Generator::createGeneralElement(Plate* plate)
           {
             auto element = this->parameters.current.plates.elements.at(random<int>(0, this->parameters.current.plates.elements.size() - 1));
 
-            if(probably(element.probability) && plate->conditions(element.type))
+            if(probably(element.probability) && this->plate->conditions(element.type))
             {
-              plate->setType(element.type);
+              this->plate->setType(element.type);
 
               return;
             }
@@ -598,9 +616,9 @@ void Generator::createGeneralElement(Plate* plate)
           {
             auto element = this->parameters.current.pickups.elements.at(random<int>(0, this->parameters.current.pickups.elements.size() - 1));
 
-            if(probably(element.probability) && plate->conditions(element.type))
+            if(probably(element.probability) && this->plate->conditions(element.type))
             {
-              plate->setType(element.type);
+              this->plate->setType(element.type);
 
               return;
             }
@@ -613,12 +631,12 @@ void Generator::createGeneralElement(Plate* plate)
            */
           if(this->word.length() >= 1)
           {
-            if(plate->conditions(Plate::TRAMPOLINE))
+            if(this->plate->conditions(Plate::TRAMPOLINE))
             {
               if(probably(1))
               {
                 int index = random(0, (int) this->word.length() - 1);
-                plate->setType(Plate::LETTER, true, this->word[index]);
+                this->plate->setType(Plate::LETTER, true, this->word[index]);
 
                 this->word.erase(index, 1);
               }
@@ -827,6 +845,8 @@ void Generator::reset(bool complete)
     )
   );
 
+  this->cleanEpisodes();
+
   this->height.stage = 0;
   this->height.up.counter = -2;
   this->height.down.counter = -2;
@@ -844,6 +864,7 @@ void Generator::reset(bool complete)
   this->conditions.s10 = 0;
   this->conditions.s11 = 0;
 
+  this->skip = 0;
   this->portal = 0;
 
   Application->environment->ground->reset();

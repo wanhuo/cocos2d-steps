@@ -45,6 +45,18 @@ class Generator : public Ref
    *
    *
    */
+  public:
+  enum {
+    EPISODE_WIPE,
+    EPISODE_DUEL,
+    EPISODE_TRAMPOLINES
+  };
+
+  /**
+   *
+   *
+   *
+   */
   private:
   struct Element {
     int probability;
@@ -118,7 +130,41 @@ class Generator : public Ref
     HeightStruct down;
   };
 
-  Parameters parameters;
+  struct Wipe {
+    bool next = false;
+
+    int index;
+    int length;
+
+    bool start;
+    bool finish;
+  };
+
+  struct Duel {
+    bool next = false;
+
+    int index;
+    int length;
+
+    bool start;
+    bool finish;
+  };
+
+  struct Trampolines {
+    bool next = false;
+
+    int index;
+    int length;
+
+    bool start;
+    bool finish;
+  };
+
+  struct Episode {
+    Wipe wipe;
+    Duel duel;
+    Trampolines trampolines;
+  };
 
   vector<Parameter> levels;
 
@@ -128,13 +174,17 @@ class Generator : public Ref
    *
    */
   public:
+  Parameters parameters;
   Conditions conditions;
+  Episode episode;
   Height height;
 
   Generator();
  ~Generator();
 
   string word;
+
+  Plate* plate;
 
   float x;
   float y;
@@ -152,13 +202,27 @@ class Generator : public Ref
   bool bonus;
 
   int bonusSkip;
+  int skip;
   int portal;
 
   virtual Plate* create(bool animated = false);
   virtual Plate* destroy(bool manual = false);
 
-  virtual void createBonusElement(Plate* plate);
-  virtual void createGeneralElement(Plate* plate);
+  virtual void createBonusElement();
+  virtual void createGeneralElement();
+
+  virtual bool updateEpisode(int episode);
+  virtual bool cleanEpisode(int episode);
+
+  virtual bool updateEpisodes();
+  virtual bool checkEpisodes(Plate* plate);
+  virtual bool cleanEpisodes();
+
+  virtual bool isEpisode(int episode);
+  virtual bool isEpisodes();
+
+  virtual void onEpisodeStart(int episode);
+  virtual void onEpisodeFinish(int episode);
 
   virtual Plate* update(bool post);
 

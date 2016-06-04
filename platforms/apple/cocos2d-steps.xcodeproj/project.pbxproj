@@ -350,6 +350,15 @@
 		78E33FD21C4A84080021272D /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FCE1C4A84080021272D /* Particle.cpp */; };
 		78E33FD91C4AA4440021272D /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FD61C4AA4440021272D /* Generator.cpp */; };
 		78E33FDA1C4AA4440021272D /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FD61C4AA4440021272D /* Generator.cpp */; };
+		78F0C8F71D01EFA500BB0DC3 /* TypeSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C8F51D01EFA500BB0DC3 /* TypeSimple.cpp */; };
+		78F0C8F81D01EFA500BB0DC3 /* TypeSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C8F51D01EFA500BB0DC3 /* TypeSimple.cpp */; };
+		78F0C8F91D01EFA500BB0DC3 /* TypeSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C8F51D01EFA500BB0DC3 /* TypeSimple.cpp */; };
+		78F0C8FB1D02476500BB0DC3 /* Episodes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C8FA1D02476500BB0DC3 /* Episodes.cpp */; };
+		78F0C8FC1D02476500BB0DC3 /* Episodes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C8FA1D02476500BB0DC3 /* Episodes.cpp */; };
+		78F0C8FD1D02476500BB0DC3 /* Episodes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C8FA1D02476500BB0DC3 /* Episodes.cpp */; };
+		78F0C9001D026C3400BB0DC3 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C8FE1D026C3400BB0DC3 /* Enemy.cpp */; };
+		78F0C9011D026C3400BB0DC3 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C8FE1D026C3400BB0DC3 /* Enemy.cpp */; };
+		78F0C9021D026C3400BB0DC3 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C8FE1D026C3400BB0DC3 /* Enemy.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -621,6 +630,11 @@
 		78E33FCE1C4A84080021272D /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
 		78E33FD51C4AA4440021272D /* Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Generator.h; sourceTree = "<group>"; };
 		78E33FD61C4AA4440021272D /* Generator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Generator.cpp; sourceTree = "<group>"; };
+		78F0C8F51D01EFA500BB0DC3 /* TypeSimple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeSimple.cpp; sourceTree = "<group>"; };
+		78F0C8F61D01EFA500BB0DC3 /* TypeSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeSimple.h; sourceTree = "<group>"; };
+		78F0C8FA1D02476500BB0DC3 /* Episodes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Episodes.cpp; sourceTree = "<group>"; };
+		78F0C8FE1D026C3400BB0DC3 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		78F0C8FF1D026C3400BB0DC3 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1159,8 +1173,11 @@
 				789E71751CD1086200BDCDC7 /* Ground.h */,
 				78CA6D041C20645200BF8416 /* Character.cpp */,
 				78CA6D051C20645200BF8416 /* Character.h */,
+				78F0C8FE1D026C3400BB0DC3 /* Enemy.cpp */,
+				78F0C8FF1D026C3400BB0DC3 /* Enemy.h */,
 				78E33FD61C4AA4440021272D /* Generator.cpp */,
 				78E33FD51C4AA4440021272D /* Generator.h */,
+				78F0C8FA1D02476500BB0DC3 /* Episodes.cpp */,
 				786696C91C4A47FF00A256FC /* Cube.cpp */,
 				786696C81C4A47FF00A256FC /* Cube.h */,
 				78B4B6E01CBD817900F2D8A7 /* Shadow.cpp */,
@@ -1278,6 +1295,8 @@
 				789E717D1CD3429E00BDCDC7 /* Plate.h */,
 				789E71941CD393D800BDCDC7 /* Special.cpp */,
 				789E71951CD393D800BDCDC7 /* Special.h */,
+				78F0C8F51D01EFA500BB0DC3 /* TypeSimple.cpp */,
+				78F0C8F61D01EFA500BB0DC3 /* TypeSimple.h */,
 				785545EF1CD8D61E00B58ED0 /* TypeBest.cpp */,
 				785545F01CD8D61E00B58ED0 /* TypeBest.h */,
 				785545F11CD8D61E00B58ED0 /* TypeBonus.cpp */,
@@ -1633,6 +1652,7 @@
 				7891E8AF1CF30A74005C238E /* Letters.cpp in Sources */,
 				78283FBF1CE21DF00010CAB7 /* EnvironmentStoreItem.cpp in Sources */,
 				785545F61CD8D61E00B58ED0 /* TypeBest.cpp in Sources */,
+				78F0C9011D026C3400BB0DC3 /* Enemy.cpp in Sources */,
 				789809621CC51C0A00E3CF28 /* Start.cpp in Sources */,
 				78283FBD1CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp in Sources */,
 				78E33FD21C4A84080021272D /* Particle.cpp in Sources */,
@@ -1669,6 +1689,7 @@
 				78C72BB71CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */,
 				784784521D018ED5002C3D23 /* TypeMoved5.cpp in Sources */,
 				789E71B01CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */,
+				78F0C8FC1D02476500BB0DC3 /* Episodes.cpp in Sources */,
 				78B4B6E31CBD817900F2D8A7 /* Shadow.cpp in Sources */,
 				789E719F1CD39A4A00BDCDC7 /* TypeMoved1.cpp in Sources */,
 				789E718F1CD3646C00BDCDC7 /* Down.cpp in Sources */,
@@ -1686,6 +1707,7 @@
 				784784481D004FB3002C3D23 /* Portal.cpp in Sources */,
 				786F796D1CEDF3900003D926 /* EnvironmentMissionsDailyPopup.cpp in Sources */,
 				78B4B6FC1CBF91E000F2D8A7 /* Door.cpp in Sources */,
+				78F0C8F81D01EFA500BB0DC3 /* TypeSimple.cpp in Sources */,
 				789E71AB1CD39D0D00BDCDC7 /* TypeMoved4.cpp in Sources */,
 				789E717F1CD3429E00BDCDC7 /* Plate.cpp in Sources */,
 				789E71771CD1086200BDCDC7 /* Ground.cpp in Sources */,
@@ -1702,6 +1724,7 @@
 				78C352C51CEE7DB000F10068 /* Generator.cpp in Sources */,
 				78C352C61CEE7DB000F10068 /* EnvironmentStoreBar.cpp in Sources */,
 				78C352C71CEE7DB000F10068 /* Color.cpp in Sources */,
+				78F0C8F91D01EFA500BB0DC3 /* TypeSimple.cpp in Sources */,
 				784784491D004FB3002C3D23 /* Portal.cpp in Sources */,
 				78C352C91CEE7DB000F10068 /* Present.cpp in Sources */,
 				7891E8C41CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp in Sources */,
@@ -1728,6 +1751,7 @@
 				78C352E11CEE7DB000F10068 /* Cub.cpp in Sources */,
 				78C352E21CEE7DB000F10068 /* Unlock.cpp in Sources */,
 				78C352E31CEE7DB000F10068 /* TypeSpikes.cpp in Sources */,
+				78F0C9021D026C3400BB0DC3 /* Enemy.cpp in Sources */,
 				78C352E51CEE7DB000F10068 /* Special.cpp in Sources */,
 				7891E8B01CF30A74005C238E /* Letters.cpp in Sources */,
 				784784531D018ED5002C3D23 /* TypeMoved5.cpp in Sources */,
@@ -1745,6 +1769,7 @@
 				78C352F01CEE7DB000F10068 /* EnvironmentMissionsFinish.cpp in Sources */,
 				7891E8BA1CF32FF6005C238E /* Let.cpp in Sources */,
 				78C352F21CEE7DB000F10068 /* TypeMoved3.cpp in Sources */,
+				78F0C8FD1D02476500BB0DC3 /* Episodes.cpp in Sources */,
 				7891E8C91CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp in Sources */,
 				78C352F31CEE7DB000F10068 /* TypeTrampoline.cpp in Sources */,
 				78C352F41CEE7DB000F10068 /* TypeBonus.cpp in Sources */,
@@ -1785,6 +1810,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				789E71B31CD3DAF800BDCDC7 /* Trap.cpp in Sources */,
+				78F0C8FB1D02476500BB0DC3 /* Episodes.cpp in Sources */,
 				789E717E1CD3429E00BDCDC7 /* Plate.cpp in Sources */,
 				78E33FD91C4AA4440021272D /* Generator.cpp in Sources */,
 				7847844C1D00FA16002C3D23 /* Insane.cpp in Sources */,
@@ -1842,6 +1868,7 @@
 				784784471D004FB3002C3D23 /* Portal.cpp in Sources */,
 				789E71861CD343FC00BDCDC7 /* TypeTrampoline.cpp in Sources */,
 				785545F71CD8D61E00B58ED0 /* TypeBonus.cpp in Sources */,
+				78F0C8F71D01EFA500BB0DC3 /* TypeSimple.cpp in Sources */,
 				789E719C1CD39A4A00BDCDC7 /* TypeMoved.cpp in Sources */,
 				78B4B6F31CBF911800F2D8A7 /* Saw.cpp in Sources */,
 				78B4B6E21CBD817900F2D8A7 /* Shadow.cpp in Sources */,
@@ -1860,6 +1887,7 @@
 				7891E88C1CF21293005C238E /* NSInternal.mm in Sources */,
 				785546151CD9F97700B58ED0 /* Presention.cpp in Sources */,
 				78B4B6F51CBF911800F2D8A7 /* Spikes.cpp in Sources */,
+				78F0C9001D026C3400BB0DC3 /* Enemy.cpp in Sources */,
 				78283F951CE0AAE00010CAB7 /* Counter.cpp in Sources */,
 				78C72BBC1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp in Sources */,
 				785545F51CD8D61E00B58ED0 /* TypeBest.cpp in Sources */,
