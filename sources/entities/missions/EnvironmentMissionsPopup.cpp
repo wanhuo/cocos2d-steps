@@ -201,10 +201,12 @@ EnvironmentMissionsPopup::MissionTask::MissionTask(Node* parent)
 
   this->element = new TiledEntity("missions-1.png", 4, 1, this, true);
   this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2 + 11.5);
+  this->element->setLocalZOrder(-2);
 
   this->element2 = new TiledEntity("missions-1.png", 4, 1, this);
   this->element2->setAnchorPoint(Vec2(0.5, 0.0));
   this->element2->setPosition(this->getWidth() / 2, this->getHeight() / 2 + 11.5 - this->element2->getHeight() / 2);
+  this->element2->setLocalZOrder(-1);
 }
 
 EnvironmentMissionsPopup::MissionTask::~MissionTask()

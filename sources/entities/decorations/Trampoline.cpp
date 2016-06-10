@@ -71,6 +71,11 @@ void Trampoline::onPickup()
 
     if(element)
     {
+      if(element->type == Plate::PORTAL)
+      {
+        break;
+      }
+
       if(element->type == Plate::FINISH)
       {
         break;

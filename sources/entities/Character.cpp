@@ -1138,7 +1138,7 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
         }
       }
     }
-    else if(!Generators->isEpisodes())
+    else if(!Generators->isEpisodes() && !plate->isEpisodes())
     {
       if(!Application->environment->insane->state->create)
       {
@@ -1155,6 +1155,11 @@ void Character::onLandSuccessful(Turn turn, Plate* plate, bool proceed)
               {
                 counter--;
                 element = this->getPlatesNearWithDefaults(element).next();
+
+                if(element->isEpisodes())
+                {
+                  break;
+                }
 
                 if(!element)
                 {
@@ -1507,7 +1512,7 @@ void Character::onCrash(Crash crash)
       case SPIKES:
       case DOWN:
       case GATE:
-      Screenshot::save([&] (bool a, string texture)
+      if(Application->capturing.supported)
       {
         Application->runAction(
           Sequence::create(
@@ -1519,14 +1524,37 @@ void Character::onCrash(Crash crash)
             break;
             case Game::FINISH:
             case Game::GAME:
-            Application->capture->screenshot(texture);
+            Application->capture->animation();
             break;
           }
           }),
           nullptr
           )
         );
-      });
+      }
+      else
+      {
+        Screenshot::save([&] (bool a, string texture)
+        {
+          Application->runAction(
+            Sequence::create(
+            DelayTime::create(1.5),
+            CallFunc::create([=] () {
+            switch(Application->state)
+            {
+              default:
+              break;
+              case Game::FINISH:
+              case Game::GAME:
+              Application->capture->screenshot(texture);
+              break;
+            }
+            }),
+            nullptr
+            )
+          );
+        });
+      }
       break;
       case COPTER:
       break;
@@ -1780,7 +1808,7 @@ void Character::onInsaneStart()
 
  this->runAction(
     Sequence::create(
-      DelayTime::create(0.1),
+      DelayTime::create(0.15),
       CallFunc::create([=] () {
       this->onInsaneUpdate();
       }),
@@ -2618,6 +2646,7 @@ void Character::updateStates(float time)
 void Character::update(float time)
 {
   Cube::update(time);
+
 
   /**
    *

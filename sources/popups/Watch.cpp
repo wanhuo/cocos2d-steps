@@ -106,7 +106,14 @@ void Watch::onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e)
  */
 void Watch::show()
 {
-  Finish::show();
+  Popup::show();
+
+  /**
+   *
+   *
+   *
+   */
+  this->background->setOpacity(200);
 }
 
 void Watch::hide(Callback callback)

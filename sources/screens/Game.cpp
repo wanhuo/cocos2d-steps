@@ -59,20 +59,45 @@ Game::Game()
 
   SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ui/ui.plist");
 
+  auto size = Size(Director::getInstance()->getWinSizeInPixels().width, Director::getInstance()->getWinSizeInPixels().height);
+  this->frameBuffer = FrameBuffer::create(1, size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
+
+    auto rt = RenderTarget::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
+    auto rtDS = RenderTargetDepthStencil::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
+    this->frameBuffer->attachRenderTarget(rt);
+    this->frameBuffer->attachDepthStencilTarget(rtDS);
+    this->frameBuffer->setClearColor(Color4F(1,1,1,1));
+
+  this->generate = Sprite::createWithTexture(this->getFrameBuffer()->getRenderTarget()->getTexture());
+  this->generate->setScaleX(1 * FRAME_BUFFER_FACTOR);
+  this->generate->setScaleY(-1 * FRAME_BUFFER_FACTOR);
+  this->generate->setPosition(size.width/2, size.height/2);
+  this->generate->setCameraMask(2);
+  this->generate->setGlobalZOrder(1);
+  this->addChild(this->generate);
+
   this->cameras.d = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
   this->cameras.c = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
   this->cameras.s = Camera::create();
   this->cameras.e = Camera::create();
+  this->cameras.f = Camera::create();
 
   this->cameras.d->setCameraFlag(1);
+  this->cameras.f->setCameraFlag(2);
   this->cameras.s->setCameraFlag(4);
   this->cameras.e->setCameraFlag(8);
   this->cameras.c->setCameraFlag(16);
 
   this->cameras.d->setDepth(1);
+  this->cameras.f->setDepth(1);
   this->cameras.s->setDepth(2);
   this->cameras.e->setDepth(4);
   this->cameras.c->setDepth(8);
+
+  this->cameras.d->setFrameBufferObject(this->getFrameBuffer());
+  //this->cameras.s->setFrameBufferObject(this->getFrameBuffer());
+  //this->cameras.e->setFrameBufferObject(this->getFrameBuffer());
+  //this->cameras.c->setFrameBufferObject(this->getFrameBuffer());
 
   float x = -(this->getWidth() / SCALE_FACTOR) / 2 - 39.35;
   float y = -(this->getHeight() / SCALE_FACTOR) / 2 + 55;
@@ -100,6 +125,7 @@ Game::Game()
   this->addChild(this->cameras.s);
   this->addChild(this->cameras.e);
   this->addChild(this->cameras.c);
+  this->addChild(this->cameras.f);
 
   this->environment = new Environment(this);
   this->environment->create();
@@ -115,10 +141,36 @@ Game::Game()
   this->s->setCameraMask(8);
   this->d->setCameraMask(8);
   this->i->setCameraMask(8);
+
+  /**
+   *
+   * @Capture
+   *
+   */
+  if(this->capturing.supported)
+  {
+    for(int i = 0; i < CAPTURE_FPS * CAPTURE_TIME; i++)
+    {
+      auto render = RenderTarget::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
+      render->retain();
+
+      this->capturing.targets.push_back(render);
+    }
+  }
 }
 
 Game::~Game()
 {
+}
+
+/**
+ *
+ *
+ *
+ */
+FrameBuffer* Game::getFrameBuffer()
+{
+  return this->frameBuffer;
 }
 
 /**
@@ -255,7 +307,7 @@ void Game::onLike()
 
 void Game::onShare()
 {
-  Events::onShare();
+  Events::onShare(this->capturing.supported);
 }
 
 void Game::onTwitter()
@@ -332,6 +384,19 @@ void Game::onGame()
 
     Events::updateMissions();
   }
+
+  /**
+   *
+   * @Capture
+   *
+   */
+  this->capturing.textures.clear();
+
+  this->capturing.index = 0;
+  this->capturing.frame = 0;
+
+  this->capturing.time = 1.0 / CAPTURE_FPS;
+  this->capturing.timeElapsed = 0;
 }
 
 void Game::onFinish()
@@ -559,8 +624,50 @@ void Game::updateMissionComplete(float time)
  *
  *
  */
+void Game::updateCapture(float time)
+{
+  switch(this->state)
+  {
+    default:
+    break;
+    case GAME:
+    case LOSE:
+    if(!this->capture->Node::state->create)
+    {
+      this->capturing.timeElapsed += time;
+
+      if(this->capturing.timeElapsed >= this->capturing.time)
+      {
+        this->capturing.timeElapsed = 0;
+
+        auto lastRender = this->capturing.targets.at(this->capturing.targets.size() - 1);
+        this->capturing.targets.erase(this->capturing.targets.begin() + this->capturing.targets.size() - 1);
+        this->capturing.targets.insert(this->capturing.targets.begin(), lastRender);
+
+        auto texture = this->getFrameBuffer()->getRenderTarget()->getTexture();
+        auto render = this->capturing.targets.at(0);
+
+        texture->retain();
+
+        this->getFrameBuffer()->attachRenderTarget(render);
+        this->generate->setTexture(render->getTexture());
+
+        this->capturing.textures.push_back(texture);
+      }
+    }
+    break;
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
 void Game::updateStates(float time)
 {
+  this->updateCapture(time);
+
   switch(this->state)
   {
     default:

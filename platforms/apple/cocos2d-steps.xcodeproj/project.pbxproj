@@ -340,6 +340,7 @@
 		78CA6D0B1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
 		78CA6D0D1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
+		78CEEA5E1D0A2700000A85D4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CEEA5D1D0A2700000A85D4 /* ImageIO.framework */; };
 		78CF5D541CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
 		78CF5D551CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
 		78D21BC21CE624B0007B0682 /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D21BC01CE624B0007B0682 /* Capture.cpp */; };
@@ -624,6 +625,7 @@
 		78CA6D051C20645200BF8416 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		78CA6D061C20645200BF8416 /* Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Environment.cpp; sourceTree = "<group>"; };
 		78CA6D071C20645200BF8416 /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
+		78CEEA5D1D0A2700000A85D4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
 		78CF5D531CE5E1900039FB70 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ../../resource/Shaders; sourceTree = "<group>"; };
 		78D21BC01CE624B0007B0682 /* Capture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Capture.cpp; sourceTree = "<group>"; };
 		78D21BC11CE624B0007B0682 /* Capture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Capture.h; sourceTree = "<group>"; };
@@ -680,6 +682,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78CEEA5E1D0A2700000A85D4 /* ImageIO.framework in Frameworks */,
 				7838FCE81CF7381300195856 /* framework.a in Frameworks */,
 				78283FA41CE1D5750010CAB7 /* CoreBluetooth.framework in Frameworks */,
 				78283FA21CE1D53A0010CAB7 /* SafariServices.framework in Frameworks */,
@@ -946,6 +949,7 @@
 		7843ACC31C2246D10011F47C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78CEEA5D1D0A2700000A85D4 /* ImageIO.framework */,
 				78E24E061CF782F8008B0821 /* StoreKit.framework */,
 				78E24E041CF782F3008B0821 /* GameKit.framework */,
 				7843AC621C2242AA0011F47C /* Libraries */,
@@ -1046,8 +1050,8 @@
 		7891E8661CF21293005C238E /* analytics */ = {
 			isa = PBXGroup;
 			children = (
-				7891E8671CF21293005C238E /* NSAnalytics.h */,
 				7891E8681CF21293005C238E /* NSAnalytics.mm */,
+				7891E8671CF21293005C238E /* NSAnalytics.h */,
 			);
 			path = analytics;
 			sourceTree = "<group>";
@@ -1055,8 +1059,8 @@
 		7891E86B1CF21293005C238E /* internal */ = {
 			isa = PBXGroup;
 			children = (
-				7891E86C1CF21293005C238E /* NSInternal.h */,
 				7891E86D1CF21293005C238E /* NSInternal.mm */,
+				7891E86C1CF21293005C238E /* NSInternal.h */,
 			);
 			path = internal;
 			sourceTree = "<group>";
@@ -1064,8 +1068,8 @@
 		7891E86F1CF21293005C238E /* media */ = {
 			isa = PBXGroup;
 			children = (
-				7891E8701CF21293005C238E /* NSMedia.h */,
 				7891E8711CF21293005C238E /* NSMedia.mm */,
+				7891E8701CF21293005C238E /* NSMedia.h */,
 			);
 			path = media;
 			sourceTree = "<group>";
@@ -1073,8 +1077,8 @@
 		7891E8721CF21293005C238E /* modal */ = {
 			isa = PBXGroup;
 			children = (
-				7891E8731CF21293005C238E /* NSModal.h */,
 				7891E8741CF21293005C238E /* NSModal.mm */,
+				7891E8731CF21293005C238E /* NSModal.h */,
 			);
 			path = modal;
 			sourceTree = "<group>";
@@ -1091,8 +1095,8 @@
 		7891E8761CF21293005C238E /* batch */ = {
 			isa = PBXGroup;
 			children = (
-				7891E8771CF21293005C238E /* NSBatch.h */,
 				7891E8781CF21293005C238E /* NSBatch.mm */,
+				7891E8771CF21293005C238E /* NSBatch.h */,
 			);
 			path = batch;
 			sourceTree = "<group>";
@@ -1100,8 +1104,8 @@
 		7891E8791CF21293005C238E /* heyzap */ = {
 			isa = PBXGroup;
 			children = (
-				7891E87A1CF21293005C238E /* NSHeyzap.h */,
 				7891E87B1CF21293005C238E /* NSHeyzap.mm */,
+				7891E87A1CF21293005C238E /* NSHeyzap.h */,
 			);
 			path = heyzap;
 			sourceTree = "<group>";
@@ -1127,8 +1131,8 @@
 		7891E8841CF21293005C238E /* social */ = {
 			isa = PBXGroup;
 			children = (
-				7891E8851CF21293005C238E /* NSSocial.h */,
 				7891E8861CF21293005C238E /* NSSocial.mm */,
+				7891E8851CF21293005C238E /* NSSocial.h */,
 			);
 			path = social;
 			sourceTree = "<group>";

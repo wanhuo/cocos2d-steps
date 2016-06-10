@@ -132,6 +132,14 @@
  *
  *
  */
+using namespace cocos2d;
+using namespace cocos2d::experimental;
+
+/**
+ *
+ *
+ *
+ */
 #define SERVICES_LEADERBOARD_BEST_SCORE 0
 #define SERVICES_LEADERBOARD_STAGES_COUNT 1
 
@@ -159,12 +167,18 @@ class Game : public Screen
   private:
   static Game* instance;
 
+  const static int SCALE_FACTOR = 70;
+
+  const static int NEAR = 1;
+  const static int FAR = 10000;
+
   struct Cameras {
     Camera* d;
     Camera* s;
     Camera* e;
     Camera* c;
     Camera* u;
+    Camera* f;
   };
   
   struct Elapsed {
@@ -186,10 +200,18 @@ class Game : public Screen
     Elapsed elapsed;
   };
 
-  const static int SCALE_FACTOR = 70;
+  struct Capturing {
+    bool supported = true;
 
-  const static int NEAR = 1;
-  const static int FAR = 10000;
+    int index;
+    int frame;
+
+    float time;
+    float timeElapsed;
+
+    vector<RenderTarget*> targets;
+    vector<Texture2D*> textures;
+  };
 
   /**
    *
@@ -198,6 +220,11 @@ class Game : public Screen
    */
   public:
   const static int SOUND_DISTANCE = 5;
+
+  const static int FRAME_BUFFER_FACTOR = 1;
+
+  const static int CAPTURE_TIME = 2;
+  const static int CAPTURE_FPS = 24;
 
   enum State {
     NONE,
@@ -238,20 +265,26 @@ class Game : public Screen
   Game();
  ~Game();
 
+  FrameBuffer* frameBuffer;
+
   Parameters parameters;
 
   BackgroundColor* s;
   BackgroundColor* d;
 
+  Sprite* generate;
   Entity* i;
 
   Environment* environment;
+  Capturing capturing;
   Cameras cameras;
 
   Counter* counter;
   Capture* capture;
 
   State state = NONE;
+
+  virtual FrameBuffer* getFrameBuffer();
 
   virtual void onTouchStart(cocos2d::Touch* touch, Event* event);
   virtual void onTouchFinish(cocos2d::Touch* touch, Event* event);
@@ -301,6 +334,7 @@ class Game : public Screen
   virtual void updateFinish(float time);
   virtual void updateOpen(float time);
   virtual void updateWatch(float time);
+  virtual void updateCapture(float time);
   virtual void updateMissionComplete(float time);
 
   virtual void updateStates(float time);

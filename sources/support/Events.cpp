@@ -153,14 +153,21 @@ void Events::onLike()
  *
  *
  */
-void Events::onShare()
+void Events::onShare(bool animated)
 {
   Analytics::sendEvent("Application", "application.events.onShare", "Application onShare event");
 
   auto text = new Text("share-message");
   auto size = Director::getInstance()->getOpenGLView()->getFrameSize();
 
-  Social::share(size.width, size.width, 0, 0, text->data(Application->counter->values.current), Config::link);
+  if(animated)
+  {
+    Social::share(text->data(Application->counter->values.current), Config::link);
+  }
+  else
+  {
+    Social::share(size.width, size.width, 0, 0, text->data(Application->counter->values.current), Config::link);
+  }
 }
 
 /**

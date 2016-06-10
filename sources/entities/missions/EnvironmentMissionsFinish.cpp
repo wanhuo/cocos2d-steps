@@ -45,15 +45,12 @@ EnvironmentMissionsFinish::EnvironmentMissionsFinish(Node* parent)
   this->setScale(0.015);
 
   this->plane = PageView::create();
-  this->plane->setDirection(ScrollView::Direction::HORIZONTAL);
-  this->plane->setBounceEnabled(true);
+  this->plane->setDirection(PageView::Direction::HORIZONTAL);
+  //this->plane->setBounceEnabled(true);
   this->plane->setCascadeOpacityEnabled(true);
   this->plane->setScrollBarEnabled(false);
   this->plane->setContentSize(Size(Application->getWidth(), 300));
   this->plane->setPosition(Vec2(0, -5));
-  this->plane->setMagneticType(ListView::MagneticType::CENTER);
-
-  this->addChild(this->plane);
 
   this->general = new EnvironmentMissionsFinishGeneral;
 
@@ -68,6 +65,8 @@ EnvironmentMissionsFinish::EnvironmentMissionsFinish(Node* parent)
   {
     this->plane->pushBackCustomItem(new EnvironmentMissionsFinishKetchapp);
   }
+
+  this->addChild(this->plane);
 
   this->_destroy();
 }

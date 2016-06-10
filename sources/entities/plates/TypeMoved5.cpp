@@ -32,6 +32,7 @@ TypeMoved5::TypeMoved5()
 : TypeMoved("")
 {
   this->destroyShadow();
+  this->shadow = nullptr;
 
   this->p = new Decoration("", Application->environment->plane);
 

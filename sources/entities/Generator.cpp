@@ -435,6 +435,18 @@ void Generator::createGeneralElement()
     {
       this->plate->setType(Plate::FINISH);
     }
+    else if(--this->portal == 0)
+    {
+      action = false;
+
+      this->height.up.length += 5;
+      this->height.down.length += 5;
+
+      this->height.up.counter = -2;
+      this->height.down.counter = -2;
+
+      this->plate->setType(Plate::PORTAL);
+    }
     else if(this->general == Application->counter->values.best + 1)
     {
       if(Application->counter->values.best > 1)
@@ -458,23 +470,6 @@ void Generator::createGeneralElement()
      */
     if(this->index >= this->save)
     {
-
-      /**
-       *
-       *
-       *
-       */
-      if(--this->portal == 0)
-      {
-        this->height.up.length += 5;
-        this->height.down.length += 5;
-
-        this->height.up.counter = -2;
-        this->height.down.counter = -2;
-
-        this->plate->setType(Plate::PORTAL);
-        return;
-      }
 
       /**
        *

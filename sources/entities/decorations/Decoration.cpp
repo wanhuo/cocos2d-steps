@@ -124,6 +124,26 @@ Character::Crash Decoration::status()
  *
  *
  */
+void Decoration::setVisible(bool visible)
+{
+  Cube::setVisible(visible);
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->shadow)
+  {
+    this->shadow->_destroy();
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
 Decoration* Decoration::deepCopy()
 {
   return new Decoration(this->textureFileName);

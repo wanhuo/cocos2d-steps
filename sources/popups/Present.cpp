@@ -132,7 +132,7 @@ void Present::show()
 
 void Present::hide(Callback callback)
 {
-    this->missions->_destroy();
+  this->missions->_destroy();
   this->runAction(
     Sequence::create(
       FadeOut::create(0.2),

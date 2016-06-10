@@ -86,6 +86,35 @@ void Cube::onDestroy(bool action)
  *
  *
  */
+void Cube::onEnter()
+{
+  Entity3D::onEnter();
+
+  /**
+   *
+   *
+   *
+   */
+  //this->createShadow();
+}
+
+void Cube::onExit()
+{
+  Entity3D::onExit();
+
+  /**
+   *
+   *
+   *
+   */
+  //this->destroyShadow();
+}
+
+/**
+ *
+ *
+ *
+ */
 void Cube::createShadow()
 {
   if(this->shadow)
@@ -93,6 +122,7 @@ void Cube::createShadow()
     auto position = this->getPosition3D();
 
     this->shadow->_create();
+    this->shadow->setVisible(true);
 
     this->shadow->setVisible(true);
     this->shadow->setPositionX(position.x);
@@ -106,6 +136,16 @@ void Cube::destroyShadow()
   {
     this->shadow->_destroy();
   }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Cube::setVisible(bool visible)
+{
+  Entity3D::setVisible(visible);
 }
 
 /**

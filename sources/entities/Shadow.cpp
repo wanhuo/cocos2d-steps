@@ -32,9 +32,9 @@ Shadow::Shadow(const char* file, Node* parent)
 : Entity3D(file, parent)
 {
   this->setTexture("textures/shadow-texture.png");
-  this->setOpacity(30);
 
   this->setLightMask(0);
+  this->setBlendFunc({GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA});
 }
 
 Shadow::Shadow(const char* file)

@@ -64,10 +64,17 @@ class Capture : public Entity
    *
    */
   public:
+  const static int FRAME_POSITION = 125;
+
   Capture(Node* parent);
  ~Capture();
 
+ bool started;
+ bool finished;
+
   int state;
+
+  Sprite* generate = nullptr;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
@@ -77,8 +84,12 @@ class Capture : public Entity
   virtual void onTouchCancelled(cocos2d::Touch* touch, Event* e);
 
   virtual void onTouch(cocos2d::Touch* touch, Event* e);
+  virtual void onSave(int index);
+
+  virtual void onSaveFinish();
 
   virtual void screenshot(string texture);
+  virtual void animation();
 
   virtual bool containsTouchLocation(cocos2d::Touch* touch);
 };

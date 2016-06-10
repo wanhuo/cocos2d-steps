@@ -175,6 +175,8 @@ class Plate : public Cube
 
   virtual bool isEpisodeStart(int episode = -1);
   virtual bool isEpisodeFinish(int episode = -1);
+  virtual bool isEpisode(int episode = -1);
+  virtual bool isEpisodes();
 
   virtual void setDirection(bool direction);
   virtual void setIndex(int index);

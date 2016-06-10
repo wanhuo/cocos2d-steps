@@ -73,8 +73,8 @@ class Decoration : public Cube
   bool stopable = false;
   bool enable = false;
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
 
   virtual void onPickup();
   virtual void onSound();
@@ -85,7 +85,9 @@ class Decoration : public Cube
 
   virtual Character::Crash status();
 
-  virtual Decoration* deepCopy();
+  virtual void setVisible(bool visible) override;
+
+  virtual Decoration* deepCopy() override;
 };
 
 #endif

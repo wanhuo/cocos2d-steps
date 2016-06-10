@@ -34,8 +34,8 @@ Plate::Plate()
   this->decorations = *new vector<Decoration*>();
 
   this->shadow = new Shadow("plate-bottom-shadow.obj");
-  this->shadow->setMinScale(Vec3(1.0, 1.0, 1.0));
-  this->shadow->setMaxScale(Vec3(1.0, 1.0, 1.0));
+  this->shadow->setMinScale(Vec3(0.995, 1.0, 0.995));
+  this->shadow->setMaxScale(Vec3(0.995, 1.0, 0.995));
   this->shadow->setOffset(Vec3(0.4, 0.0, 0.4));
 
   this->setScheduleUpdate(true);
@@ -108,7 +108,7 @@ void Plate::onRemove(bool complete)
     auto character = Application->environment->character;
     auto enemy = Application->environment->enemy;
 
-    if(character->plates.current && character->state == Character::STATE_NORMAL)
+    if(character->plates.current && (character->state == Character::STATE_NORMAL || character->state == Character::STATE_COPTER))
     {
       if(character->plates.current->getIndex() == this->getIndex())
       {
@@ -357,6 +357,35 @@ bool Plate::isEpisodeFinish(int episode)
     return this->episode.trampolines.index == Generators->episode.trampolines.index && this->episode.trampolines.index > 0;
     break;
   }
+
+  return false;
+}
+
+bool Plate::isEpisode(int episode)
+{
+  switch(episode)
+  {
+    default:
+    break;
+    case Generator::EPISODE_WIPE:
+    return this->episode.wipe.index != 0;
+    break;
+    case Generator::EPISODE_DUEL:
+    return this->episode.duel.index != 0;
+    break;
+    case Generator::EPISODE_TRAMPOLINES:
+    return this->episode.trampolines.index != 0;
+    break;
+  }
+
+  return false;
+}
+
+bool Plate::isEpisodes()
+{
+  if(this->isEpisode(Generator::EPISODE_WIPE)) return true;
+  if(this->isEpisode(Generator::EPISODE_DUEL)) return true;
+  if(this->isEpisode(Generator::EPISODE_TRAMPOLINES)) return true;
 
   return false;
 }
@@ -1336,6 +1365,11 @@ void Plate::setVisibility(bool visible)
     {
       decoration->setVisible(visible);
     }
+  }
+
+  if(this->additional)
+  {
+    this->additional->setVisible(visible);
   }
 
   /**

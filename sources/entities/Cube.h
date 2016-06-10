@@ -72,13 +72,18 @@ class Cube : public Entity3D
 
   Shadow* shadow = nullptr;
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
+
+  virtual void onEnter() override;
+  virtual void onExit() override;
 
   virtual void createShadow();
   virtual void destroyShadow();
 
-  virtual void update(float time);
+  virtual void setVisible(bool visible) override;
+
+  virtual void update(float time) override;
 };
 
 #endif
