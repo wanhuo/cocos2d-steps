@@ -43,6 +43,7 @@ Capture::Capture(Node* parent)
 
   this->setGlobalZOrder(1000);
   this->setCameraMask(8);
+
   this->bind(true);
 }
 
@@ -64,7 +65,6 @@ void Capture::onCreate()
    *
    *
    */
-  this->started = false;
   this->finished = false;
 
   /**
@@ -105,17 +105,6 @@ void Capture::onCreate()
 void Capture::onDestroy(bool action)
 {
   Entity::onDestroy(action);
-
-  /**
-   *
-   *
-   *
-   */
-  if(this->generate)
-  {
-    this->generate->removeFromParent();
-    this->generate = nullptr;
-  }
 }
 
 /**
@@ -210,29 +199,16 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
            * @Capture
            *
            */
-          if(Application->capturing.supported && !this->finished)
+          if(Application->capturing.supported)
           {
-            if(this->generate)
+            if(this->finished)
             {
-              this->generate->removeFromParent();
-              this->generate = nullptr;
+              Application->onShare();
             }
-
-            auto size = Size(Director::getInstance()->getWinSize().width, Director::getInstance()->getWinSize().height);
-
-            this->generate = Sprite::createWithTexture(Application->capturing.textures.at(0));
-
-            this->generate->setPosition(size.width / 4, size.height / 4 - FRAME_POSITION);
-            this->generate->setScaleX(1.0 * Game::FRAME_BUFFER_FACTOR / 2);
-            this->generate->setScaleY(-1.0 * Game::FRAME_BUFFER_FACTOR / 2);
-            this->generate->setCameraMask(2);
-            this->generate->setGlobalZOrder(0);
-
-            Application->addChild(this->generate);
-
-            this->onSave(0);
-
-            this->started = true;
+            else
+            {
+              this->onSave(0);
+            }
           }
           else
           {
@@ -298,23 +274,14 @@ void Capture::onSave(int index)
    * @Capture
    *
    */
-  if(index < min<unsigned long>(Game::CAPTURE_FPS * Game::CAPTURE_TIME, Application->capturing.textures.size() - 1))
+  if(index < Application->capturing.frames)
   {
-    auto size = Size(Director::getInstance()->getWinSize().width, Director::getInstance()->getWinSize().height);
-    auto texture = Application->capturing.textures.at(index);
-
-    auto render = RenderTexture::create(size.width / 2, size.width / 2);
-
-    this->generate->setTexture(texture);
-
-    render->begin();
-    this->generate->visit();
-    render->end();
+    auto render = Application->capturing.textures.at(index);
 
     render->saveToFile(to_string(index) + ".png", true, [=] (RenderTexture *render, const std::string &file) {
       this->runAction(
         Sequence::create(
-          DelayTime::create(0.02),
+          DelayTime::create(0.1),
           CallFunc::create([=] () {
           this->onSave(index + 1);
           }),
@@ -322,8 +289,6 @@ void Capture::onSave(int index)
         )
       );
     });
-
-    // ?
   }
   else
   {
@@ -340,11 +305,7 @@ void Capture::onSaveFinish()
 {
   if(!this->finished)
   {
-    this->started = false;
     this->finished = true;
-
-    this->generate->removeFromParent();
-    this->generate = nullptr;
 
     Application->onShare();
   }
@@ -391,15 +352,7 @@ void Capture::animation()
    *
    *
    */
-  auto size = Size(Director::getInstance()->getWinSizeInPixels().width, Director::getInstance()->getWinSizeInPixels().height);
-
-  /**
-   *
-   *
-   *
-   */
-  this->element->initWithTexture(Application->capturing.textures.at(1));
-  this->element->setTextureRect(Rect(0, FRAME_POSITION, size.width, size.width));
+  this->element->initWithTexture(Application->capturing.textures.at(0)->getSprite()->getTexture());
   this->element->setScale(this->getWidth() / this->element->getWidth());
   this->element->setScaleY(this->element->getScaleY() * -1);
   this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2);
@@ -409,20 +362,15 @@ void Capture::animation()
    *
    *
    */
+  this->unschedule("?");
   this->schedule([=] (float time) {
-
-    /**
-     *
-     * @Capture
-     *
-     */
-    this->element->Sprite::setTexture(Application->capturing.textures.at(Application->capturing.frame++));
-
-    if(Application->capturing.frame > min<unsigned long>(Game::CAPTURE_FPS * Game::CAPTURE_TIME, Application->capturing.textures.size() - 1))
+    if(Application->capturing.frame <= 0)
     {
-      Application->capturing.frame = 0;
+      Application->capturing.frame = Application->capturing.frames;
     }
-  }, 1.0 / Game::CAPTURE_FPS, "Capture?animation");
+
+    this->element->Sprite::setTexture(Application->capturing.textures.at(--Application->capturing.frame)->getSprite()->getTexture());
+  }, 1.0 / 60.0, "?");
 }
 
 /**

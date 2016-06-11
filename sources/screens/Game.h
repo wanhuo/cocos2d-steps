@@ -205,12 +205,12 @@ class Game : public Screen
 
     int index;
     int frame;
+    int frames;
 
     float time;
     float timeElapsed;
 
-    vector<RenderTarget*> targets;
-    vector<Texture2D*> textures;
+    vector<RenderTexture*> textures;
   };
 
   /**
@@ -224,7 +224,9 @@ class Game : public Screen
   const static int FRAME_BUFFER_FACTOR = 1;
 
   const static int CAPTURE_TIME = 2;
-  const static int CAPTURE_FPS = 24;
+  const static int CAPTURE_FPS = 60;
+  const static int CAPTURE_SCALE = 2;
+  const static int CAPTURE_POSITION = 125;
 
   enum State {
     NONE,

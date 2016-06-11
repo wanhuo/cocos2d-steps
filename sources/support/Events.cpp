@@ -162,7 +162,7 @@ void Events::onShare(bool animated)
 
   if(animated)
   {
-    Social::share(text->data(Application->counter->values.current), Config::link);
+    Social::share(Application->capturing.frames, text->data(Application->counter->values.current), Config::link);
   }
   else
   {

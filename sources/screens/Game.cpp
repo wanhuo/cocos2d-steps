@@ -151,10 +151,10 @@ Game::Game()
   {
     for(int i = 0; i < CAPTURE_FPS * CAPTURE_TIME; i++)
     {
-      auto render = RenderTarget::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
+      auto render = RenderTexture::create(size.width / FRAME_BUFFER_FACTOR / CAPTURE_SCALE, size.width / FRAME_BUFFER_FACTOR / CAPTURE_SCALE, Texture2D::PixelFormat::RGB565);
       render->retain();
 
-      this->capturing.targets.push_back(render);
+      this->capturing.textures.push_back(render);
     }
   }
 }
@@ -390,10 +390,9 @@ void Game::onGame()
    * @Capture
    *
    */
-  this->capturing.textures.clear();
-
   this->capturing.index = 0;
-  this->capturing.frame = 0;
+  this->capturing.frame = 1;
+  this->capturing.frames = 0;
 
   this->capturing.time = 1.0 / CAPTURE_FPS;
   this->capturing.timeElapsed = 0;
@@ -640,19 +639,25 @@ void Game::updateCapture(float time)
       {
         this->capturing.timeElapsed = 0;
 
-        auto lastRender = this->capturing.targets.at(this->capturing.targets.size() - 1);
-        this->capturing.targets.erase(this->capturing.targets.begin() + this->capturing.targets.size() - 1);
-        this->capturing.targets.insert(this->capturing.targets.begin(), lastRender);
+        auto lastRender = this->capturing.textures.at(this->capturing.textures.size() - 1);
+        this->capturing.textures.erase(this->capturing.textures.begin() + this->capturing.textures.size() - 1);
+        this->capturing.textures.insert(this->capturing.textures.begin(), lastRender);
 
-        auto texture = this->getFrameBuffer()->getRenderTarget()->getTexture();
-        auto render = this->capturing.targets.at(0);
+        auto render = this->capturing.textures.at(0);
 
-        texture->retain();
+        auto capture = Sprite::createWithTexture(this->generate->getTexture());
+        capture->setScaleX(1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
+        capture->setScaleY(-1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
+        capture->setPosition(this->getWidth() / CAPTURE_SCALE / 2, this->getHeight() / CAPTURE_SCALE / 2 - CAPTURE_POSITION / CAPTURE_SCALE);
+        this->addChild(capture);
 
-        this->getFrameBuffer()->attachRenderTarget(render);
-        this->generate->setTexture(render->getTexture());
+        render->begin();
+        capture->visit();
+        render->end();
 
-        this->capturing.textures.push_back(texture);
+        capture->removeFromParent();
+
+        this->capturing.frames = min<unsigned long>(CAPTURE_FPS * CAPTURE_TIME - 1, this->capturing.frames + 1);
       }
     }
     break;

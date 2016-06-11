@@ -340,7 +340,15 @@
 		78CA6D0B1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
 		78CA6D0D1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
-		78CEEA5E1D0A2700000A85D4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CEEA5D1D0A2700000A85D4 /* ImageIO.framework */; };
+		78CEEA631D0B23D1000A85D4 /* NSSocial.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEA611D0B23CA000A85D4 /* NSSocial.mm */; };
+		78CEEB2C1D0B8FB0000A85D4 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CEEB2B1D0B8FB0000A85D4 /* AssetsLibrary.framework */; };
+		78CEEB2D1D0B8FCD000A85D4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CEEA5D1D0A2700000A85D4 /* ImageIO.framework */; };
+		78CEEB341D0C44CD000A85D4 /* UIImage+ImageScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB331D0C44CD000A85D4 /* UIImage+ImageScale.m */; };
+		78CEEB401D0C44D5000A85D4 /* YYAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB371D0C44D5000A85D4 /* YYAnimatedImageView.m */; };
+		78CEEB411D0C44D5000A85D4 /* YYFrameImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB391D0C44D5000A85D4 /* YYFrameImage.m */; };
+		78CEEB421D0C44D5000A85D4 /* YYImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB3B1D0C44D5000A85D4 /* YYImage.m */; };
+		78CEEB431D0C44D5000A85D4 /* YYImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB3D1D0C44D5000A85D4 /* YYImageCoder.m */; };
+		78CEEB441D0C44D5000A85D4 /* YYSpriteSheetImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB3F1D0C44D5000A85D4 /* YYSpriteSheetImage.m */; };
 		78CF5D541CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
 		78CF5D551CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
 		78D21BC21CE624B0007B0682 /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D21BC01CE624B0007B0682 /* Capture.cpp */; };
@@ -626,6 +634,21 @@
 		78CA6D061C20645200BF8416 /* Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Environment.cpp; sourceTree = "<group>"; };
 		78CA6D071C20645200BF8416 /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		78CEEA5D1D0A2700000A85D4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
+		78CEEA601D0B23CA000A85D4 /* NSSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSSocial.h; sourceTree = "<group>"; };
+		78CEEA611D0B23CA000A85D4 /* NSSocial.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSSocial.mm; sourceTree = "<group>"; };
+		78CEEB2B1D0B8FB0000A85D4 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/AssetsLibrary.framework; sourceTree = DEVELOPER_DIR; };
+		78CEEB321D0C44CD000A85D4 /* UIImage+ImageScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageScale.h"; sourceTree = "<group>"; };
+		78CEEB331D0C44CD000A85D4 /* UIImage+ImageScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageScale.m"; sourceTree = "<group>"; };
+		78CEEB361D0C44D5000A85D4 /* YYAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYAnimatedImageView.h; sourceTree = "<group>"; };
+		78CEEB371D0C44D5000A85D4 /* YYAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYAnimatedImageView.m; sourceTree = "<group>"; };
+		78CEEB381D0C44D5000A85D4 /* YYFrameImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFrameImage.h; sourceTree = "<group>"; };
+		78CEEB391D0C44D5000A85D4 /* YYFrameImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFrameImage.m; sourceTree = "<group>"; };
+		78CEEB3A1D0C44D5000A85D4 /* YYImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYImage.h; sourceTree = "<group>"; };
+		78CEEB3B1D0C44D5000A85D4 /* YYImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYImage.m; sourceTree = "<group>"; };
+		78CEEB3C1D0C44D5000A85D4 /* YYImageCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYImageCoder.h; sourceTree = "<group>"; };
+		78CEEB3D1D0C44D5000A85D4 /* YYImageCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYImageCoder.m; sourceTree = "<group>"; };
+		78CEEB3E1D0C44D5000A85D4 /* YYSpriteSheetImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYSpriteSheetImage.h; sourceTree = "<group>"; };
+		78CEEB3F1D0C44D5000A85D4 /* YYSpriteSheetImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYSpriteSheetImage.m; sourceTree = "<group>"; };
 		78CF5D531CE5E1900039FB70 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ../../resource/Shaders; sourceTree = "<group>"; };
 		78D21BC01CE624B0007B0682 /* Capture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Capture.cpp; sourceTree = "<group>"; };
 		78D21BC11CE624B0007B0682 /* Capture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Capture.h; sourceTree = "<group>"; };
@@ -650,6 +673,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7838FCEC1CF7383900195856 /* framework.a in Frameworks */,
+				7843ACCE1C224A8A0011F47C /* AppKit.framework in Frameworks */,
 				7843ACDC1C224ABC0011F47C /* CoreGraphics.framework in Frameworks */,
 				7843ACDA1C224AB60011F47C /* Foundation.framework in Frameworks */,
 				7843ACD81C224AAF0011F47C /* AVFoundation.framework in Frameworks */,
@@ -657,7 +681,6 @@
 				7843ACD41C224AA00011F47C /* OpenAL.framework in Frameworks */,
 				7843ACD21C224A9B0011F47C /* QuartzCore.framework in Frameworks */,
 				7843ACD01C224A920011F47C /* OpenGL.framework in Frameworks */,
-				7843ACCE1C224A8A0011F47C /* AppKit.framework in Frameworks */,
 				7843ACCC1C224A830011F47C /* IOKit.framework in Frameworks */,
 				7843ACCA1C224A7B0011F47C /* Security.framework in Frameworks */,
 				7843ACC81C224A630011F47C /* libsqlite3.dylib in Frameworks */,
@@ -682,8 +705,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78CEEA5E1D0A2700000A85D4 /* ImageIO.framework in Frameworks */,
 				7838FCE81CF7381300195856 /* framework.a in Frameworks */,
+				78CEEB2C1D0B8FB0000A85D4 /* AssetsLibrary.framework in Frameworks */,
+				78CEEB2D1D0B8FCD000A85D4 /* ImageIO.framework in Frameworks */,
 				78283FA41CE1D5750010CAB7 /* CoreBluetooth.framework in Frameworks */,
 				78283FA21CE1D53A0010CAB7 /* SafariServices.framework in Frameworks */,
 				7843AC9D1C2242AA0011F47C /* libGoogleAnalyticsServices.a in Frameworks */,
@@ -816,6 +840,8 @@
 		7843AC621C2242AA0011F47C /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				78CEEB351D0C44D5000A85D4 /* YYImage */,
+				78CEEB311D0C44CD000A85D4 /* UIImage */,
 				7843AC631C2242AA0011F47C /* AdColony */,
 				7843AC651C2242AA0011F47C /* Batch */,
 				7843AC681C2242AA0011F47C /* ChartBoost */,
@@ -949,10 +975,11 @@
 		7843ACC31C2246D10011F47C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7843AC621C2242AA0011F47C /* Libraries */,
+				78CEEB2B1D0B8FB0000A85D4 /* AssetsLibrary.framework */,
 				78CEEA5D1D0A2700000A85D4 /* ImageIO.framework */,
 				78E24E061CF782F8008B0821 /* StoreKit.framework */,
 				78E24E041CF782F3008B0821 /* GameKit.framework */,
-				7843AC621C2242AA0011F47C /* Libraries */,
 				78283FA31CE1D5750010CAB7 /* CoreBluetooth.framework */,
 				78283FA11CE1D53A0010CAB7 /* SafariServices.framework */,
 				7843ACDB1C224ABC0011F47C /* CoreGraphics.framework */,
@@ -1022,6 +1049,7 @@
 			isa = PBXGroup;
 			children = (
 				7891E8631CF2125F005C238E /* main.cpp */,
+				78CEEA5F1D0B23CA000A85D4 /* social */,
 			);
 			path = mac;
 			sourceTree = "<group>";
@@ -1393,6 +1421,41 @@
 			path = missions;
 			sourceTree = "<group>";
 		};
+		78CEEA5F1D0B23CA000A85D4 /* social */ = {
+			isa = PBXGroup;
+			children = (
+				78CEEA611D0B23CA000A85D4 /* NSSocial.mm */,
+				78CEEA601D0B23CA000A85D4 /* NSSocial.h */,
+			);
+			path = social;
+			sourceTree = "<group>";
+		};
+		78CEEB311D0C44CD000A85D4 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				78CEEB321D0C44CD000A85D4 /* UIImage+ImageScale.h */,
+				78CEEB331D0C44CD000A85D4 /* UIImage+ImageScale.m */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
+		78CEEB351D0C44D5000A85D4 /* YYImage */ = {
+			isa = PBXGroup;
+			children = (
+				78CEEB371D0C44D5000A85D4 /* YYAnimatedImageView.m */,
+				78CEEB361D0C44D5000A85D4 /* YYAnimatedImageView.h */,
+				78CEEB391D0C44D5000A85D4 /* YYFrameImage.m */,
+				78CEEB381D0C44D5000A85D4 /* YYFrameImage.h */,
+				78CEEB3B1D0C44D5000A85D4 /* YYImage.m */,
+				78CEEB3A1D0C44D5000A85D4 /* YYImage.h */,
+				78CEEB3D1D0C44D5000A85D4 /* YYImageCoder.m */,
+				78CEEB3C1D0C44D5000A85D4 /* YYImageCoder.h */,
+				78CEEB3F1D0C44D5000A85D4 /* YYSpriteSheetImage.m */,
+				78CEEB3E1D0C44D5000A85D4 /* YYSpriteSheetImage.h */,
+			);
+			path = YYImage;
+			sourceTree = "<group>";
+		};
 		78F354581A1A0876009CD132 /* Platform */ = {
 			isa = PBXGroup;
 			children = (
@@ -1658,6 +1721,7 @@
 				78C72BBD1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp in Sources */,
 				78B4B6D71CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
 				78B4B6D91CBD751D00F2D8A7 /* Energy.cpp in Sources */,
+				78CEEA631D0B23D1000A85D4 /* NSSocial.mm in Sources */,
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
 				7891E8AF1CF30A74005C238E /* Letters.cpp in Sources */,
@@ -1825,11 +1889,13 @@
 				789E71B31CD3DAF800BDCDC7 /* Trap.cpp in Sources */,
 				78F0C8FB1D02476500BB0DC3 /* Episodes.cpp in Sources */,
 				789E717E1CD3429E00BDCDC7 /* Plate.cpp in Sources */,
+				78CEEB401D0C44D5000A85D4 /* YYAnimatedImageView.m in Sources */,
 				78E33FD91C4AA4440021272D /* Generator.cpp in Sources */,
 				7847844C1D00FA16002C3D23 /* Insane.cpp in Sources */,
 				7891E88D1CF21293005C238E /* main.m in Sources */,
 				7891E88A1CF21293005C238E /* NSAnalytics.mm in Sources */,
 				78283FC41CE248DB0010CAB7 /* EnvironmentStoreBar.cpp in Sources */,
+				78CEEB341D0C44CD000A85D4 /* UIImage+ImageScale.m in Sources */,
 				7891E8C21CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp in Sources */,
 				7891E8BD1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp in Sources */,
 				789E717A1CD2621500BDCDC7 /* Color.cpp in Sources */,
@@ -1877,11 +1943,13 @@
 				78283F911CE0A8A10010CAB7 /* Decoration.cpp in Sources */,
 				78C72BB81CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */,
 				78BADD731CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp in Sources */,
+				78CEEB411D0C44D5000A85D4 /* YYFrameImage.m in Sources */,
 				789E71A81CD39D0D00BDCDC7 /* TypeMoved3.cpp in Sources */,
 				784784471D004FB3002C3D23 /* Portal.cpp in Sources */,
 				789E71861CD343FC00BDCDC7 /* TypeTrampoline.cpp in Sources */,
 				785545F71CD8D61E00B58ED0 /* TypeBonus.cpp in Sources */,
 				78F0C8F71D01EFA500BB0DC3 /* TypeSimple.cpp in Sources */,
+				78CEEB421D0C44D5000A85D4 /* YYImage.m in Sources */,
 				789E719C1CD39A4A00BDCDC7 /* TypeMoved.cpp in Sources */,
 				78B4B6F31CBF911800F2D8A7 /* Saw.cpp in Sources */,
 				78B4B6E21CBD817900F2D8A7 /* Shadow.cpp in Sources */,
@@ -1902,9 +1970,11 @@
 				785546151CD9F97700B58ED0 /* Presention.cpp in Sources */,
 				78B4B6F51CBF911800F2D8A7 /* Spikes.cpp in Sources */,
 				78F0C9001D026C3400BB0DC3 /* Enemy.cpp in Sources */,
+				78CEEB441D0C44D5000A85D4 /* YYSpriteSheetImage.m in Sources */,
 				78283F951CE0AAE00010CAB7 /* Counter.cpp in Sources */,
 				78C72BBC1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp in Sources */,
 				785545F51CD8D61E00B58ED0 /* TypeBest.cpp in Sources */,
+				78CEEB431D0C44D5000A85D4 /* YYImageCoder.m in Sources */,
 				78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */,
 				7891E8941CF21293005C238E /* NSServices.mm in Sources */,
 				789E71AF1CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */,

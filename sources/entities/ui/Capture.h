@@ -64,17 +64,12 @@ class Capture : public Entity
    *
    */
   public:
-  const static int FRAME_POSITION = 125;
-
   Capture(Node* parent);
  ~Capture();
 
- bool started;
  bool finished;
 
   int state;
-
-  Sprite* generate = nullptr;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
