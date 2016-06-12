@@ -65,13 +65,6 @@ void Capture::onCreate()
    *
    *
    */
-  this->finished = false;
-
-  /**
-   *
-   *
-   *
-   */
   this->state = STATE_NORMAL;
 
   /**
@@ -193,32 +186,12 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
         Sequence::create(
           DelayTime::create(0.5),
           CallFunc::create([=] () {
-
-          /**
-           *
-           * @Capture
-           *
-           */
-          if(Application->capturing.supported)
-          {
-            if(this->finished)
-            {
-              Application->onShare();
-            }
-            else
-            {
-              this->onSave(0);
-            }
-          }
-          else
-          {
-            Application->onShare();
-          }
+          Application->onShare();
           }),
           nullptr
         ),
         nullptr
-      ), 1
+      )
     );
     Application->d->runAction(
       FadeTo::create(0.2, 200)
@@ -263,52 +236,6 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
    *
    */
   Sound->play("touch");
-}
-
-void Capture::onSave(int index)
-{
-  if(this->finished) return;
-
-  /**
-   *
-   * @Capture
-   *
-   */
-  if(index < Application->capturing.frames)
-  {
-    auto render = Application->capturing.textures.at(index);
-
-    render->saveToFile(to_string(index) + ".png", true, [=] (RenderTexture *render, const std::string &file) {
-      this->runAction(
-        Sequence::create(
-          DelayTime::create(0.1),
-          CallFunc::create([=] () {
-          this->onSave(index + 1);
-          }),
-          nullptr
-        )
-      );
-    });
-  }
-  else
-  {
-    this->onSaveFinish();
-  }
-}
-
-/**
- *
- *
- *
- */
-void Capture::onSaveFinish()
-{
-  if(!this->finished)
-  {
-    this->finished = true;
-
-    Application->onShare();
-  }
 }
 
 /**

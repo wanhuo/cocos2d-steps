@@ -67,8 +67,6 @@ class Capture : public Entity
   Capture(Node* parent);
  ~Capture();
 
- bool finished;
-
   int state;
 
   virtual void onCreate();
@@ -79,9 +77,6 @@ class Capture : public Entity
   virtual void onTouchCancelled(cocos2d::Touch* touch, Event* e);
 
   virtual void onTouch(cocos2d::Touch* touch, Event* e);
-  virtual void onSave(int index);
-
-  virtual void onSaveFinish();
 
   virtual void screenshot(string texture);
   virtual void animation();

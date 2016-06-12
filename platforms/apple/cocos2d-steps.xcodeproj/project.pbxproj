@@ -349,6 +349,9 @@
 		78CEEB421D0C44D5000A85D4 /* YYImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB3B1D0C44D5000A85D4 /* YYImage.m */; };
 		78CEEB431D0C44D5000A85D4 /* YYImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB3D1D0C44D5000A85D4 /* YYImageCoder.m */; };
 		78CEEB441D0C44D5000A85D4 /* YYSpriteSheetImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB3F1D0C44D5000A85D4 /* YYSpriteSheetImage.m */; };
+		78CEEB4A1D0C79C9000A85D4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CEEB491D0C79C9000A85D4 /* Social.framework */; };
+		78CEEB4C1D0C79CE000A85D4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CEEB4B1D0C79CE000A85D4 /* Accounts.framework */; };
+		78CEEB541D0C93D6000A85D4 /* UIActivityViewController+exclude.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB531D0C93D6000A85D4 /* UIActivityViewController+exclude.m */; };
 		78CF5D541CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
 		78CF5D551CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
 		78D21BC21CE624B0007B0682 /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D21BC01CE624B0007B0682 /* Capture.cpp */; };
@@ -649,6 +652,10 @@
 		78CEEB3D1D0C44D5000A85D4 /* YYImageCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYImageCoder.m; sourceTree = "<group>"; };
 		78CEEB3E1D0C44D5000A85D4 /* YYSpriteSheetImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYSpriteSheetImage.h; sourceTree = "<group>"; };
 		78CEEB3F1D0C44D5000A85D4 /* YYSpriteSheetImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYSpriteSheetImage.m; sourceTree = "<group>"; };
+		78CEEB491D0C79C9000A85D4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Social.framework; sourceTree = DEVELOPER_DIR; };
+		78CEEB4B1D0C79CE000A85D4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Accounts.framework; sourceTree = DEVELOPER_DIR; };
+		78CEEB521D0C93D6000A85D4 /* UIActivityViewController+exclude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityViewController+exclude.h"; sourceTree = "<group>"; };
+		78CEEB531D0C93D6000A85D4 /* UIActivityViewController+exclude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActivityViewController+exclude.m"; sourceTree = "<group>"; };
 		78CF5D531CE5E1900039FB70 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ../../resource/Shaders; sourceTree = "<group>"; };
 		78D21BC01CE624B0007B0682 /* Capture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Capture.cpp; sourceTree = "<group>"; };
 		78D21BC11CE624B0007B0682 /* Capture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Capture.h; sourceTree = "<group>"; };
@@ -706,6 +713,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7838FCE81CF7381300195856 /* framework.a in Frameworks */,
+				78CEEB4C1D0C79CE000A85D4 /* Accounts.framework in Frameworks */,
+				78CEEB4A1D0C79C9000A85D4 /* Social.framework in Frameworks */,
 				78CEEB2C1D0B8FB0000A85D4 /* AssetsLibrary.framework in Frameworks */,
 				78CEEB2D1D0B8FCD000A85D4 /* ImageIO.framework in Frameworks */,
 				78283FA41CE1D5750010CAB7 /* CoreBluetooth.framework in Frameworks */,
@@ -840,6 +849,7 @@
 		7843AC621C2242AA0011F47C /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				78CEEB511D0C93D6000A85D4 /* UIActivityViewController */,
 				78CEEB351D0C44D5000A85D4 /* YYImage */,
 				78CEEB311D0C44CD000A85D4 /* UIImage */,
 				7843AC631C2242AA0011F47C /* AdColony */,
@@ -976,6 +986,8 @@
 			isa = PBXGroup;
 			children = (
 				7843AC621C2242AA0011F47C /* Libraries */,
+				78CEEB4B1D0C79CE000A85D4 /* Accounts.framework */,
+				78CEEB491D0C79C9000A85D4 /* Social.framework */,
 				78CEEB2B1D0B8FB0000A85D4 /* AssetsLibrary.framework */,
 				78CEEA5D1D0A2700000A85D4 /* ImageIO.framework */,
 				78E24E061CF782F8008B0821 /* StoreKit.framework */,
@@ -1454,6 +1466,15 @@
 				78CEEB3E1D0C44D5000A85D4 /* YYSpriteSheetImage.h */,
 			);
 			path = YYImage;
+			sourceTree = "<group>";
+		};
+		78CEEB511D0C93D6000A85D4 /* UIActivityViewController */ = {
+			isa = PBXGroup;
+			children = (
+				78CEEB531D0C93D6000A85D4 /* UIActivityViewController+exclude.m */,
+				78CEEB521D0C93D6000A85D4 /* UIActivityViewController+exclude.h */,
+			);
+			path = UIActivityViewController;
 			sourceTree = "<group>";
 		};
 		78F354581A1A0876009CD132 /* Platform */ = {
@@ -1957,6 +1978,7 @@
 				789E71761CD1086200BDCDC7 /* Ground.cpp in Sources */,
 				78B4B6FB1CBF91E000F2D8A7 /* Door.cpp in Sources */,
 				785545F91CD8D61E00B58ED0 /* TypeFinish.cpp in Sources */,
+				78CEEB541D0C93D6000A85D4 /* UIActivityViewController+exclude.m in Sources */,
 				7891E8921CF21293005C238E /* NSPurchase.mm in Sources */,
 				7857E2B91C65733F0020AAEA /* Menu.cpp in Sources */,
 				789E71A61CD39D0D00BDCDC7 /* TypeMoved2.cpp in Sources */,

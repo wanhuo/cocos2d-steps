@@ -62,16 +62,15 @@ Game::Game()
   auto size = Size(Director::getInstance()->getWinSizeInPixels().width, Director::getInstance()->getWinSizeInPixels().height);
   this->frameBuffer = FrameBuffer::create(1, size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
 
-    auto rt = RenderTarget::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
-    auto rtDS = RenderTargetDepthStencil::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
-    this->frameBuffer->attachRenderTarget(rt);
-    this->frameBuffer->attachDepthStencilTarget(rtDS);
-    this->frameBuffer->setClearColor(Color4F(1,1,1,1));
+  auto rt = RenderTarget::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
+  auto rtDS = RenderTargetDepthStencil::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
+  this->frameBuffer->attachRenderTarget(rt);
+  this->frameBuffer->attachDepthStencilTarget(rtDS);
 
   this->generate = Sprite::createWithTexture(this->getFrameBuffer()->getRenderTarget()->getTexture());
   this->generate->setScaleX(1 * FRAME_BUFFER_FACTOR);
   this->generate->setScaleY(-1 * FRAME_BUFFER_FACTOR);
-  this->generate->setPosition(size.width/2, size.height/2);
+  this->generate->setPosition(size.width / 2, size.height / 2);
   this->generate->setCameraMask(2);
   this->generate->setGlobalZOrder(1);
   this->addChild(this->generate);
