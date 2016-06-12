@@ -27,8 +27,8 @@
  *
  */
 
-#ifndef _CAPTURE_H_
-#define _CAPTURE_H_
+#ifndef _CAPTURES_H_
+#define _CAPTURES_H_
 
 #include "Game.h"
 
@@ -37,7 +37,7 @@
  *
  *
  */
-class Capture : public Entity
+class Captures : public Sprite
 {
   /**
    *
@@ -45,9 +45,8 @@ class Capture : public Entity
    *
    */
   private:
-  enum State {
-    STATE_NORMAL,
-    STATE_ACTIVE
+  struct Texts {
+    Text* score;
   };
 
   /**
@@ -56,7 +55,7 @@ class Capture : public Entity
    *
    */
   protected:
-  Entity* element;
+  Texts texts;
 
   /**
    *
@@ -64,26 +63,11 @@ class Capture : public Entity
    *
    */
   public:
-  Capture(Node* parent);
- ~Capture();
+  Captures();
+ ~Captures();
 
-  int state;
-
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
-
-  virtual void onTouchStart(cocos2d::Touch* touch, Event* e);
-  virtual void onTouchFinish(cocos2d::Touch* touch, Event* e);
-  virtual void onTouchCancelled(cocos2d::Touch* touch, Event* e);
-
-  virtual void onTouch(cocos2d::Touch* touch, Event* e);
-
-  virtual void screenshot(string texture);
-  virtual void animation();
-
-  virtual bool containsTouchLocation(cocos2d::Touch* touch);
-
-  virtual void update(float time);
+  virtual void update();
+  virtual void visit() override;
 };
 
 #endif

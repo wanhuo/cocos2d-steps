@@ -27,9 +27,6 @@
  *
  */
 
-#ifndef _CAPTURE_H_
-#define _CAPTURE_H_
-
 #include "Game.h"
 
 /**
@@ -37,53 +34,59 @@
  *
  *
  */
-class Capture : public Entity
+Captures::Captures()
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  enum State {
-    STATE_NORMAL,
-    STATE_ACTIVE
-  };
+  this->texts.score = new Text("counter-score");
+
+  this->texts.score->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
+
+  this->texts.score->setScale(0.35);
+
+  this->texts.score->_create();
+
+  this->texts.score->retain();
+}
+
+Captures::~Captures()
+{
+}
+
+/**
+ *
+ *
+ *
+ */
+void Captures::update()
+{
+  auto x = this->getPositionX();
+  auto y = this->getPositionY();
+
+  this->texts.score->data(Application->counter->values.current);
+
+  this->texts.score->setPosition(x - 130, y + 50);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Captures::visit()
+{
+  Sprite::visit();
 
   /**
    *
    *
    *
    */
-  protected:
-  Entity* element;
+  auto renderer = _director->getRenderer();
+  auto& transform = _director->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 
   /**
    *
    *
    *
    */
-  public:
-  Capture(Node* parent);
- ~Capture();
-
-  int state;
-
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
-
-  virtual void onTouchStart(cocos2d::Touch* touch, Event* e);
-  virtual void onTouchFinish(cocos2d::Touch* touch, Event* e);
-  virtual void onTouchCancelled(cocos2d::Touch* touch, Event* e);
-
-  virtual void onTouch(cocos2d::Touch* touch, Event* e);
-
-  virtual void screenshot(string texture);
-  virtual void animation();
-
-  virtual bool containsTouchLocation(cocos2d::Touch* touch);
-
-  virtual void update(float time);
-};
-
-#endif
+  this->texts.score->visit(renderer, transform, true);
+}

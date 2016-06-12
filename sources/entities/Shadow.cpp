@@ -34,7 +34,6 @@ Shadow::Shadow(const char* file, Node* parent)
   this->setTexture("textures/shadow-texture.png");
 
   this->setLightMask(0);
-  this->setBlendFunc({GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA});
 }
 
 Shadow::Shadow(const char* file)

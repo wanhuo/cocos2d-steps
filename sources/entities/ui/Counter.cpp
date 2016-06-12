@@ -647,6 +647,8 @@ void Counter::update()
   this->texts.best->data(this->values.best);
   this->texts.coins->data(this->values.coins - this->count.add + this->count.remove);
   this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() / 2 - 50, Application->getHeight() - 50);
+
+  Application->captures->update();
 }
 
 /**

@@ -44,6 +44,7 @@ Capture::Capture(Node* parent)
   this->setGlobalZOrder(1000);
   this->setCameraMask(8);
 
+  this->setScheduleUpdate(true);
   this->bind(true);
 }
 
@@ -186,7 +187,12 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
         Sequence::create(
           DelayTime::create(0.5),
           CallFunc::create([=] () {
-          Application->onShare();
+          Application->onShare([=] (bool state) {
+            if(state)
+            {
+              this->onTouch(NULL, NULL);
+            }
+          });
           }),
           nullptr
         ),
@@ -283,21 +289,6 @@ void Capture::animation()
   this->element->setScale(this->getWidth() / this->element->getWidth());
   this->element->setScaleY(this->element->getScaleY() * -1);
   this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2);
-
-  /**
-   *
-   *
-   *
-   */
-  this->unschedule("?");
-  this->schedule([=] (float time) {
-    if(Application->capturing.frame <= 0)
-    {
-      Application->capturing.frame = Application->capturing.frames;
-    }
-
-    this->element->Sprite::setTexture(Application->capturing.textures.at(--Application->capturing.frame)->getSprite()->getTexture());
-  }, 1.0 / 60.0, "?");
 }
 
 /**
@@ -318,4 +309,19 @@ bool Capture::containsTouchLocation(cocos2d::Touch* touch)
   }
 
   return false;
+}
+
+/**
+ *
+ *
+ *
+ */
+void Capture::update(float time)
+{
+  if(Application->capturing.frame <= 0)
+  {
+    Application->capturing.frame = Application->capturing.frames;
+  }
+
+  this->element->Sprite::setTexture(Application->capturing.textures.at(--Application->capturing.frame)->getSprite()->getTexture());
 }

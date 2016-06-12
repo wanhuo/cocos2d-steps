@@ -39,6 +39,7 @@
 
 #include "Counter.h"
 #include "Capture.h"
+#include "Captures.h"
 #include "Button3D.h"
 #include "Gift.h"
 #include "Video.h"
@@ -284,6 +285,8 @@ class Game : public Screen
   Counter* counter;
   Capture* capture;
 
+  Captures* captures;
+
   State state = NONE;
 
   virtual FrameBuffer* getFrameBuffer();
@@ -303,7 +306,7 @@ class Game : public Screen
   virtual void onAchievements();
   virtual void onRate();
   virtual void onLike();
-  virtual void onShare();
+  virtual void onShare(const std::function<void(bool)>& callback);
   virtual void onTwitter();
   virtual void onFacebook();
   virtual void onMail();

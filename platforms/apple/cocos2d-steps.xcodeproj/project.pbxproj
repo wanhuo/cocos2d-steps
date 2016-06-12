@@ -250,6 +250,9 @@
 		78BADD741CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78BADD711CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp */; };
 		78BF8F791CF139DC00DBBF62 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC491C2240360011F47C /* libz.1.dylib */; };
 		78BF8F7A1CF139E000DBBF62 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC4F1C2240BE0011F47C /* libiconv.2.dylib */; };
+		78C054AF1D0DCFD10084EDD4 /* Captures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C054AD1D0DCFD10084EDD4 /* Captures.cpp */; };
+		78C054B01D0DCFD10084EDD4 /* Captures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C054AD1D0DCFD10084EDD4 /* Captures.cpp */; };
+		78C054B11D0DCFD10084EDD4 /* Captures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C054AD1D0DCFD10084EDD4 /* Captures.cpp */; };
 		78C352C31CEE7DB000F10068 /* Trap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71B11CD3DAF800BDCDC7 /* Trap.cpp */; };
 		78C352C41CEE7DB000F10068 /* Plate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E717C1CD3429E00BDCDC7 /* Plate.cpp */; };
 		78C352C51CEE7DB000F10068 /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FD61C4AA4440021272D /* Generator.cpp */; };
@@ -619,6 +622,8 @@
 		78BADD6D1CEB57800077B673 /* EnvironmentMissionsNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsNotify.h; sourceTree = "<group>"; };
 		78BADD711CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsFinish.cpp; sourceTree = "<group>"; };
 		78BADD721CEBA6C20077B673 /* EnvironmentMissionsFinish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsFinish.h; sourceTree = "<group>"; };
+		78C054AD1D0DCFD10084EDD4 /* Captures.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Captures.cpp; sourceTree = "<group>"; };
+		78C054AE1D0DCFD10084EDD4 /* Captures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Captures.h; sourceTree = "<group>"; };
 		78C353651CEE7DB000F10068 /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C35A2D1CEE84E200F10068 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		78C35A2E1CEE84E200F10068 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
@@ -1044,6 +1049,8 @@
 				785546021CD91D8B00B58ED0 /* Video.h */,
 				78D21BC01CE624B0007B0682 /* Capture.cpp */,
 				78D21BC11CE624B0007B0682 /* Capture.h */,
+				78C054AD1D0DCFD10084EDD4 /* Captures.cpp */,
+				78C054AE1D0DCFD10084EDD4 /* Captures.h */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -1445,8 +1452,8 @@
 		78CEEB311D0C44CD000A85D4 /* UIImage */ = {
 			isa = PBXGroup;
 			children = (
-				78CEEB321D0C44CD000A85D4 /* UIImage+ImageScale.h */,
 				78CEEB331D0C44CD000A85D4 /* UIImage+ImageScale.m */,
+				78CEEB321D0C44CD000A85D4 /* UIImage+ImageScale.h */,
 			);
 			path = UIImage;
 			sourceTree = "<group>";
@@ -1806,6 +1813,7 @@
 				78B4B6FC1CBF91E000F2D8A7 /* Door.cpp in Sources */,
 				78F0C8F81D01EFA500BB0DC3 /* TypeSimple.cpp in Sources */,
 				789E71AB1CD39D0D00BDCDC7 /* TypeMoved4.cpp in Sources */,
+				78C054B01D0DCFD10084EDD4 /* Captures.cpp in Sources */,
 				789E717F1CD3429E00BDCDC7 /* Plate.cpp in Sources */,
 				789E71771CD1086200BDCDC7 /* Ground.cpp in Sources */,
 				78CA6D0B1C20645200BF8416 /* Character.cpp in Sources */,
@@ -1872,6 +1880,7 @@
 				78C352F31CEE7DB000F10068 /* TypeTrampoline.cpp in Sources */,
 				78C352F41CEE7DB000F10068 /* TypeBonus.cpp in Sources */,
 				78C352F51CEE7DB000F10068 /* TypeMoved.cpp in Sources */,
+				78C054B11D0DCFD10084EDD4 /* Captures.cpp in Sources */,
 				78C352F61CEE7DB000F10068 /* Saw.cpp in Sources */,
 				78C352F71CEE7DB000F10068 /* Shadow.cpp in Sources */,
 				78C352F81CEE7DB000F10068 /* Ground.cpp in Sources */,
@@ -1963,6 +1972,7 @@
 				78B4B6DC1CBD751D00F2D8A7 /* Pickup.cpp in Sources */,
 				78283F911CE0A8A10010CAB7 /* Decoration.cpp in Sources */,
 				78C72BB81CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */,
+				78C054AF1D0DCFD10084EDD4 /* Captures.cpp in Sources */,
 				78BADD731CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp in Sources */,
 				78CEEB411D0C44D5000A85D4 /* YYFrameImage.m in Sources */,
 				789E71A81CD39D0D00BDCDC7 /* TypeMoved3.cpp in Sources */,

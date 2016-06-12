@@ -521,7 +521,7 @@ EnvironmentStoreBar::Element EnvironmentStoreBar::nextElement()
 
   if(character && texture)
   {
-    if(probably(50))
+    if(probably(20))
     {
       return {1, character - 1};
     }

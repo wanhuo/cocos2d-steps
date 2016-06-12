@@ -156,6 +156,12 @@ Game::Game()
       this->capturing.textures.push_back(render);
     }
   }
+
+  this->captures = new Captures();
+  this->captures->initWithTexture(this->generate->getTexture());
+  this->captures->setScaleX(1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
+  this->captures->setScaleY(-1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
+  this->captures->setPosition(this->getWidth() / CAPTURE_SCALE / 2, this->getHeight() / CAPTURE_SCALE / 2 - CAPTURE_POSITION / CAPTURE_SCALE);
 }
 
 Game::~Game()
@@ -304,9 +310,9 @@ void Game::onLike()
   Events::onLike();
 }
 
-void Game::onShare()
+void Game::onShare(const std::function<void(bool)>& callback)
 {
-  Events::onShare(this->capturing.supported);
+  Events::onShare(callback, this->capturing.supported);
 }
 
 void Game::onTwitter()
@@ -634,7 +640,7 @@ void Game::updateCapture(float time)
     {
       this->capturing.timeElapsed += time;
 
-      if(this->capturing.timeElapsed >= this->capturing.time)
+      if(this->capturing.timeElapsed >= this->capturing.time || CAPTURE_FPS == 60)
       {
         this->capturing.timeElapsed = 0;
 
@@ -642,19 +648,13 @@ void Game::updateCapture(float time)
         this->capturing.textures.erase(this->capturing.textures.begin() + this->capturing.textures.size() - 1);
         this->capturing.textures.insert(this->capturing.textures.begin(), lastRender);
 
+        this->captures->setTexture(this->generate->getTexture());
+
         auto render = this->capturing.textures.at(0);
 
-        auto capture = Sprite::createWithTexture(this->generate->getTexture());
-        capture->setScaleX(1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
-        capture->setScaleY(-1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
-        capture->setPosition(this->getWidth() / CAPTURE_SCALE / 2, this->getHeight() / CAPTURE_SCALE / 2 - CAPTURE_POSITION / CAPTURE_SCALE);
-        this->addChild(capture);
-
-        render->begin();
-        capture->visit();
+        render->beginWithClear(1, 1, 1, 1);
+        this->captures->visit();
         render->end();
-
-        capture->removeFromParent();
 
         this->capturing.frames = min<unsigned long>(CAPTURE_FPS * CAPTURE_TIME - 1, this->capturing.frames + 1);
       }

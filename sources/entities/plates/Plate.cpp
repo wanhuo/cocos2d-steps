@@ -108,7 +108,7 @@ void Plate::onRemove(bool complete)
     auto character = Application->environment->character;
     auto enemy = Application->environment->enemy;
 
-    if(character->plates.current && (character->state == Character::STATE_NORMAL || character->state == Character::STATE_COPTER))
+    if(character->plates.current && (character->state == Character::STATE_NORMAL || character->state == Character::STATE_JUMP || character->state == Character::STATE_COPTER))
     {
       if(character->plates.current->getIndex() == this->getIndex())
       {
