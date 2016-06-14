@@ -29,6 +29,7 @@
  *
  */
 Enemy::Enemy()
+: Character(2)
 {
   this->color = Color3B(255.0, 55.0, 0.0);
 }

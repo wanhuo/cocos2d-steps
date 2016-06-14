@@ -74,10 +74,10 @@ EnvironmentStoreBar::EnvironmentStoreBar()
       Sequence::create(
         DelayTime::create(0.5),
         CallFunc::create([=] () {
-        this->selectedCharacter->position = EnvironmentStoreItem::Position::POSITION_NORMAL;
+        this->selectedTexture->position = EnvironmentStoreItem::Position::POSITION_NORMAL;
 
-        this->selectedCharacter->changeState(EnvironmentStoreItem::STATE_UNLOCKED);
-        this->onSelectCharacter(this->selectedCharacter->parameters.index - 1);
+        this->selectedTexture->changeState(EnvironmentStoreItem::STATE_UNLOCKED);
+        this->onSelectTexture(this->selectedTexture->parameters.index - 1);
         }),
         nullptr
       )
@@ -325,8 +325,6 @@ void EnvironmentStoreBar::onCreateTextures()
   this->toogle->runAction(
     MoveTo::create(0.2, Vec2(0.0, 0.0))
   );
-
-  for(auto element : Application->environment->store.textures.elements) element->_create()->setPosition3D(Vec3(0.0, 0.4, 0.75));
 }
 
 /**

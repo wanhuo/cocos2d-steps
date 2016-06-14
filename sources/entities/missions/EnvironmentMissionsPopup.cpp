@@ -262,7 +262,7 @@ void EnvironmentMissionsPopup::MissionTask::updateData(int mission, MissionStruc
 
   this->element->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(c.preview));
   this->element->updateTexturePoistion();
-  this->text->data(min(c.elapsed, c.target), c.target);
+  this->text->data(max(0.0f, min(c.elapsed, c.target)), c.target);
 
   switch(m->state)
   {

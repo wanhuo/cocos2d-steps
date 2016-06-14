@@ -134,7 +134,7 @@ Game::Game()
 
   this->s = new BackgroundColor(this, Color4B(255, 255, 255, 0));
   this->d = new BackgroundColor(this, Color4B(0, 0, 0, 0));
-  this->i = new Entity("insane.png", this);
+  this->i = new Entity("insane-background.png", this);
   this->i->setPosition(this->getCenter().x, this->getCenter().y);
 
   this->s->setCameraMask(8);

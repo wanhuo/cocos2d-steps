@@ -138,6 +138,7 @@ class Character : public Cube
    *
    */
   public:
+  Character(int index);
   Character();
  ~Character();
 

@@ -47,7 +47,6 @@ Counter::Counter(Node* parent)
   this->bonusBackground->setCascadeOpacityEnabled(true);
   this->bonusBackground->setOpacity(0);
   this->bonusBackground->setScale(1.5);
-  //this->bonusBackground->setColor(Color3B(252.0, 225.0, 105.0));
 
   this->starAction = ProgressTimer::create(new Entity("counter-star.png"));
   this->starAction->setType(ProgressTimer::Type::RADIAL);

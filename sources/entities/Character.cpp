@@ -28,8 +28,14 @@
  *
  *
  */
+
 Character::Character()
-: Cube("character-" + to_string(Application->environment->parameters.character) + ".obj")
+: Character(Application->environment->parameters.character)
+{
+}
+
+Character::Character(int index)
+: Cube("character-" + to_string(index) + ".obj")
 {
   this->shadow = new Shadow("character-shadow.obj");
   this->shadow->setMaxScale(Vec3(2.5, 2.5, 2.5));
@@ -179,10 +185,10 @@ bool Character::onTouch()
   {
     if(this->plates.current)
     {
-      if(this->plates.current->moved && !this->plates.current->avoid)
+      /*if(this->plates.current->moved && !this->plates.current->avoid)
       {
         return false;
-      }
+      }*/
     }
 
     switch(this->state)
@@ -321,16 +327,19 @@ void Character::onTurnLeft(bool action, bool set, bool rotation, float time)
                 Application->environment->character->plane->Node::runAction(
                   DelayTime::create(0.4), 7
                 );
-                Application->environment->enemy->setColor(Color3B::WHITE);
-                Application->environment->enemy->plane->runAction(
-                  Sequence::create(
-                    DelayTime::create(0.1),
-                    CallFunc::create([=] () {
-                    Application->environment->enemy->setColor(Application->environment->enemy->color);
-                    }),
-                    nullptr
-                  )
-                );
+                if(Application->environment->parameters.character != 3)
+                {
+                  Application->environment->enemy->setColor(Color3B::WHITE);
+                  Application->environment->enemy->plane->runAction(
+                    Sequence::create(
+                      DelayTime::create(0.1),
+                      CallFunc::create([=] () {
+                      Application->environment->enemy->setColor(Application->environment->enemy->color);
+                      }),
+                      nullptr
+                    )
+                  );
+                }
 
                 if(probably(20))
                 {

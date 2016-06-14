@@ -57,7 +57,7 @@ void TypeMoved2::start()
 
           if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual() && Application->environment->character->state == Character::STATE_NORMAL)
           {
-            Application->environment->character->runAction(action->clone());
+            Application->environment->character->plane->runAction(action->clone());
           }
         }),
         DelayTime::create(0.6),
@@ -79,7 +79,7 @@ void TypeMoved2::start()
 
           if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual() && Application->environment->character->state == Character::STATE_NORMAL)
           {
-            Application->environment->character->runAction(action->clone());
+            Application->environment->character->plane->runAction(action->clone());
           }
         }),
         DelayTime::create(0.6),
@@ -93,7 +93,7 @@ void TypeMoved2::start()
 
           if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual() && Application->environment->character->state == Character::STATE_NORMAL)
           {
-            Application->environment->character->runAction(action->clone());
+            Application->environment->character->plane->runAction(action->clone());
           }
 
         }),
@@ -116,7 +116,7 @@ void TypeMoved2::start()
 
           if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual() && Application->environment->character->state == Character::STATE_NORMAL)
           {
-            Application->environment->character->runAction(action->clone());
+            Application->environment->character->plane->runAction(action->clone());
           }
         }),
         DelayTime::create(0.6),

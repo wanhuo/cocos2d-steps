@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.5.3</string>
         <key>fileName</key>
-        <string>/Users/igor/Development/cocos2d-one-more-step/resource/Materials/Textures/ui.tps</string>
+        <string>/Users/igor/Development/cocos2d-steps/resource/Materials/Textures/ui.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -229,6 +229,7 @@
             <filename>../Graphics/ui/missions-gifts.png</filename>
             <filename>../Graphics/ui/missions-points.png</filename>
             <filename>../Graphics/ui/ketchapp.png</filename>
+            <filename>../Graphics/ui/lock-twitter-button.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

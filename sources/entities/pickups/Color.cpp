@@ -57,13 +57,16 @@ void Color::onCreate()
     RepeatForever::create(
       Sequence::create(
         CallFunc::create([=] () {
-
-  float h = random(0.0, 1.0);
-  float s = 0.5;
-  float v = 0.95;
+        
   float r = 0;
   float g = 0;
   float b = 0;
+
+  while(true)
+  {
+  float h = random(0.0, 1.0);
+  float s = 0.5;
+  float v = 0.95;
 
   int hi = floor(h*6);
   float f = h*6 - hi;
@@ -104,14 +107,28 @@ void Color::onCreate()
 			break;
 	}
 
+  r *= 256;
+  g *= 256;
+  b *= 256;
+
+  r = floor(min(r, 255.0f));
+  g = floor(min(g, 255.0f));
+  b = floor(min(b, 255.0f));
+
+if(r == Application->environment->character->getColor().r && g == Application->environment->character->getColor().g && b == Application->environment->character->getColor().b)
+{
+}
+else
+{
+  break;
+}
+
+}
 
 
 
 
-
-
-
-          this->setColor(Color3B(r*256, g*256, b*256));
+          this->setColor(Color3B(r, g, b));
         }),
         DelayTime::create(0.25),
         nullptr
