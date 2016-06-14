@@ -136,20 +136,21 @@ class EnvironmentStoreBar : public Background
     Button* play;
     Button* lock;
     Button* facebook;
+    Button* twitter;
   };
 
   struct Backgrounds {
     Background* missions;
     Background* diamonds;
-    Background* facebook;
     Background* random;
+    Background* facebook;
   };
 
   struct Texts {
     Text* missions;
     Text* diamonds;
-    Text* facebook;
     Text* random;
+    Text* facebook;
   };
 
   EnvironmentStoreItem* selectedCharacter;

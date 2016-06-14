@@ -54,10 +54,34 @@ EnvironmentStoreBar::EnvironmentStoreBar()
   this->buttons.facebook = new Button("lock-facebook-button.png", 2, 1, this, std::bind([=] () {
     Application->onLike();
 
-    this->selectedCharacter->position = EnvironmentStoreItem::Position::POSITION_NORMAL;
+    Application->runAction(
+      Sequence::create(
+        DelayTime::create(0.5),
+        CallFunc::create([=] () {
+        this->selectedCharacter->position = EnvironmentStoreItem::Position::POSITION_NORMAL;
 
-    this->selectedCharacter->changeState(EnvironmentStoreItem::STATE_UNLOCKED);
-    this->onSelectCharacter(this->selectedCharacter->parameters.index - 1);
+        this->selectedCharacter->changeState(EnvironmentStoreItem::STATE_UNLOCKED);
+        this->onSelectCharacter(this->selectedCharacter->parameters.index - 1);
+        }),
+        nullptr
+      )
+    );
+  }), true);
+  this->buttons.twitter = new Button("lock-twitter-button.png", 2, 1, this, std::bind([=] () {
+    Application->onTwitter();
+
+    Application->runAction(
+      Sequence::create(
+        DelayTime::create(0.5),
+        CallFunc::create([=] () {
+        this->selectedCharacter->position = EnvironmentStoreItem::Position::POSITION_NORMAL;
+
+        this->selectedCharacter->changeState(EnvironmentStoreItem::STATE_UNLOCKED);
+        this->onSelectCharacter(this->selectedCharacter->parameters.index - 1);
+        }),
+        nullptr
+      )
+    );
   }), true);
   this->buttons.lock = new Button("lock-button.png", 2, 1, this, std::bind([=] () {
   }), true);
@@ -65,14 +89,17 @@ EnvironmentStoreBar::EnvironmentStoreBar()
   this->buttons.play->setPosition(0, -700);
   this->buttons.lock->setPosition(0, -700);
   this->buttons.facebook->setPosition(0, -700);
+  this->buttons.twitter->setPosition(0, -700);
 
   this->buttons.play->setCameraMask(4);
   this->buttons.lock->setCameraMask(4);
   this->buttons.facebook->setCameraMask(4);
+  this->buttons.twitter->setCameraMask(4);
 
   this->buttons.play->setVisible(false);
   this->buttons.lock->setVisible(false);
   this->buttons.facebook->setVisible(false);
+  this->buttons.twitter->setVisible(false);
 
   this->backgrounds.missions = new Background(this);
   this->backgrounds.diamonds = new Background(this);
@@ -332,6 +359,7 @@ void EnvironmentStoreBar::onSelect(EnvironmentStoreItem* element)
   this->buttons.play->setVisible(false);
   this->buttons.lock->setVisible(false);
   this->buttons.facebook->setVisible(false);
+  this->buttons.twitter->setVisible(false);
 
   switch(element->state)
   {
@@ -346,6 +374,9 @@ void EnvironmentStoreBar::onSelect(EnvironmentStoreItem* element)
     break;
     case EnvironmentStoreItem::STATE_FACEBOOK:
     this->buttons.facebook->setVisible(true);
+    break;
+    case EnvironmentStoreItem::STATE_TWITTER:
+    this->buttons.twitter->setVisible(true);
     break;
   }
 

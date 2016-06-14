@@ -154,7 +154,8 @@
 			"file": "store-plate",
 			"index": 3,
 			"missions": 0,
-			"diamonds": 200
+			"diamonds": 200,
+			"twitter": 1
 		},
 		{
 			"id": "items.textures.4",

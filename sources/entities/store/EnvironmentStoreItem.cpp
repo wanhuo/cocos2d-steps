@@ -42,6 +42,7 @@ EnvironmentStoreItem::EnvironmentStoreItem(Json* parameters)
   this->parameters.missions = Json_getInt(parameters, "missions", 0);
   this->parameters.diamonds = Json_getInt(parameters, "diamonds", 0);
   this->parameters.facebook = Json_getInt(parameters, "facebook", 0);
+  this->parameters.twitter = Json_getInt(parameters, "twitter", 0);
 
   this->shadow = new Shadow("plate-bottom-shadow.obj", nullptr);
   this->shadow->setMinScale(Vec3(1.2, 1.0, 1.2));
@@ -50,11 +51,14 @@ EnvironmentStoreItem::EnvironmentStoreItem(Json* parameters)
 
   this->elements.lock = new Entity3D("store-unlock.obj", false);
   this->elements.facebook = new Entity3D("store-plate.obj", false);
+  this->elements.twitter = new Entity3D("store-plate.obj", false);
 
   this->elements.lock->setTexture("ui/video-texture.png");
   this->elements.facebook->setTexture("ui/facebook-texture.png");
+  this->elements.twitter->setTexture("ui/twitter-texture.png");
 
   this->elements.facebook->setScale(0.5);
+  this->elements.twitter->setScale(0.5);
 
   this->elements.plane = cocos2d::ui::Layout::create();
   this->elements.plane->setContentSize(Size(3.0, 10.0));
@@ -62,6 +66,7 @@ EnvironmentStoreItem::EnvironmentStoreItem(Json* parameters)
   this->elements.plane->addChild(this->shadow);
   this->elements.plane->addChild(this->elements.lock);
   this->elements.plane->addChild(this->elements.facebook);
+  this->elements.plane->addChild(this->elements.twitter);
 
   this->setScheduleUpdate(true);
 
@@ -78,6 +83,10 @@ EnvironmentStoreItem::EnvironmentStoreItem(Json* parameters)
       if(this->parameters.facebook)
       {
         this->state = STATE_FACEBOOK;
+      }
+      else if(this->parameters.twitter)
+      {
+        this->state = STATE_TWITTER;
       }
       else
       {
@@ -114,6 +123,7 @@ void EnvironmentStoreItem::onCreate()
    */
   this->elements.lock->_create();
   this->elements.facebook->_create();
+  this->elements.twitter->_create();
 }
 
 void EnvironmentStoreItem::onDestroy(bool action)
@@ -127,6 +137,7 @@ void EnvironmentStoreItem::onDestroy(bool action)
    */
   this->elements.lock->_destroy(action);
   this->elements.facebook->_destroy(action);
+  this->elements.twitter->_destroy(action);
 }
 
 /**
@@ -151,6 +162,9 @@ void EnvironmentStoreItem::onEnter()
 
   this->elements.facebook->setPosition3D(Vec3(0.0, 3.0, 0.75));
   this->elements.facebook->setRotation3D(Vec3(0.0, 0.0, 0.00));
+
+  this->elements.twitter->setPosition3D(Vec3(0.0, 3.0, 0.75));
+  this->elements.twitter->setRotation3D(Vec3(0.0, 0.0, 0.00));
 
   this->position = POSITION_NORMAL;
 
@@ -239,14 +253,17 @@ void EnvironmentStoreItem::changePosition(Position position)
       this->stopAllActions();
       this->elements.lock->stopAllActions();
       this->elements.facebook->stopAllActions();
+      this->elements.twitter->stopAllActions();
 
       this->runAction(MoveTo::create(0.2, this->positions));
       this->elements.lock->runAction(MoveTo::create(0.2, Vec3(0.0, 0.0, 0.75)));
       this->elements.facebook->runAction(MoveTo::create(0.2, Vec3(0.0, 3.0, 0.75)));
+      this->elements.twitter->runAction(MoveTo::create(0.2, Vec3(0.0, 3.0, 0.75)));
 
       this->runAction(RotateTo::create(0.2, Vec3(0.0, 0.0, 0.0)));
       this->elements.lock->runAction(RotateTo::create(0.2, Vec3(0.0, 0.0, 0.0)));
       this->elements.facebook->runAction(RotateTo::create(0.2, Vec3(0.0, 0.0, 0.0)));
+      this->elements.twitter->runAction(RotateTo::create(0.2, Vec3(0.0, 0.0, 0.0)));
       break;
     }
     break;
@@ -260,6 +277,7 @@ void EnvironmentStoreItem::changePosition(Position position)
       this->runAction(MoveTo::create(0.2, this->positions + Vec3(0.0, 1.0, 0.0)));
       this->elements.lock->runAction(MoveTo::create(0.2, Vec3(0.0, 1.0, 0.75)));
       this->elements.facebook->runAction(MoveTo::create(0.2, Vec3(0.0, 4.0, 0.75)));
+      this->elements.twitter->runAction(MoveTo::create(0.2, Vec3(0.0, 4.0, 0.75)));
 
       this->runAction(
         RepeatForever::create(
@@ -282,6 +300,16 @@ void EnvironmentStoreItem::changePosition(Position position)
       );
 
       this->elements.facebook->runAction(
+        RepeatForever::create(
+          Sequence::create(
+            RotateBy::create(2.0, Vec3(0.0, 360.0, 0.0)),
+            RotateBy::create(0.0, Vec3(0.0, 0.0, 0.0)),
+            nullptr
+          )
+        )
+      );
+
+      this->elements.twitter->runAction(
         RepeatForever::create(
           Sequence::create(
             RotateBy::create(2.0, Vec3(0.0, 360.0, 0.0)),
@@ -315,16 +343,25 @@ void EnvironmentStoreItem::updateState()
 
     this->elements.lock->setVisible(true);
     this->elements.facebook->setVisible(false);
+    this->elements.twitter->setVisible(false);
     break;
     case STATE_UNLOCKED:
     this->setVisible(true);
     this->elements.lock->setVisible(false);
     this->elements.facebook->setVisible(false);
+    this->elements.twitter->setVisible(false);
     break;
     case STATE_FACEBOOK:
     this->setVisible(false);
     this->elements.lock->setVisible(true);
     this->elements.facebook->setVisible(true);
+    this->elements.twitter->setVisible(false);
+    break;
+    case STATE_TWITTER:
+    this->setVisible(false);
+    this->elements.lock->setVisible(true);
+    this->elements.facebook->setVisible(false);
+    this->elements.twitter->setVisible(true);
     break;
   }
 }

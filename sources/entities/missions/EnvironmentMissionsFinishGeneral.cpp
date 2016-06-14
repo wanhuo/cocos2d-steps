@@ -45,7 +45,7 @@ EnvironmentMissionsFinishGeneral::EnvironmentMissionsFinishGeneral()
 
   this->background = new BackgroundColor(this, Color4B(95.0, 165.0, 196.0, 255.0));
   this->background->setIgnoreAnchorPointForPosition(false);
-  this->background->setContentSize(Size(430, 60));
+  this->background->setContentSize(Size(570, 60));
   this->background->setAnchorPoint(Vec2(0.5, 0.5));
   this->background->setPosition(this->getContentSize().width / 2, this->getContentSize().height);
 

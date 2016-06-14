@@ -59,6 +59,7 @@ class EnvironmentStoreItem : public Cube
     int missions;
     int diamonds;
     int facebook;
+    int twitter;
   };
 
   struct Elements {
@@ -66,12 +67,14 @@ class EnvironmentStoreItem : public Cube
 
     Entity3D* lock;
     Entity3D* facebook;
+    Entity3D* twitter;
   };
 
   enum States {
     STATE_MISSIONS,
     STATE_DIAMONDS,
     STATE_FACEBOOK,
+    STATE_TWITTER,
     STATE_UNLOCKED
   };
 
