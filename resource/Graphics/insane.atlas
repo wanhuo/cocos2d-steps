@@ -1,0 +1,20 @@
+
+insane.png
+size: 262,262
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+text-red
+  rotate: false
+  xy: 2, 214
+  size: 258, 46
+  orig: 258, 46
+  offset: 0, 0
+  index: -1
+text-white
+  rotate: false
+  xy: 2, 166
+  size: 258, 46
+  orig: 258, 46
+  offset: 0, 0
+  index: -1
