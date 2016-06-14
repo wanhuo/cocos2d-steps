@@ -41,6 +41,10 @@ Capture::Capture(Node* parent)
   this->element->setGlobalZOrder(1000);
   this->element->setLocalZOrder(-1);
 
+  this->element2 = new Entity(this);
+  this->element2->setGlobalZOrder(1000);
+  this->element2->setLocalZOrder(-2);
+
   this->setGlobalZOrder(1000);
   this->setCameraMask(8);
 
@@ -164,6 +168,13 @@ void Capture::onTouchCancelled(cocos2d::Touch* touch, Event* e)
  *
  *
  */
+static int animationCounter;
+
+/**
+ *
+ *
+ *
+ */
 void Capture::onTouch(cocos2d::Touch* touch, Event* e)
 {
   Entity::onTouch(touch, e);
@@ -185,14 +196,52 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
         RotateTo::create(0.2, 0),
         MoveTo::create(0.2, Vec2(Application->getWidth() / 2, Application->getHeight() / 2)),
         Sequence::create(
-          DelayTime::create(0.5),
+          DelayTime::create(0.2),
           CallFunc::create([=] () {
-          Application->onShare([=] (bool state) {
-            if(state)
-            {
-              this->onTouch(NULL, NULL);
-            }
-          });
+          animationCounter = 50;
+
+          this->element->runAction(
+            Sequence::create(
+              Repeat::create(
+                Sequence::create(
+                  CallFunc::create([=] () {
+                    animationCounter--;
+
+                    this->element->setTextureRect(
+                      Rect(
+                        0,
+                        0,
+                        this->element->getTextureRect().size.width,
+                        this->element2->getTextureRect().size.height / 50 * animationCounter
+                      )
+                    );
+                  }),
+                  DelayTime::create(1.0 / 60.0),
+                  nullptr
+                ), 50
+              ),
+              CallFunc::create([=] () {
+                Application->onShare(
+                  [=] (bool state) {
+                  if(state)
+                  {
+                    this->onTouch(NULL, NULL);
+                  }
+                  },
+                  [=] (int state) {
+                    this->element->setTextureRect(
+                      Rect(
+                        0,
+                        0,
+                        this->element->getTextureRect().size.width,
+                        this->element2->getTextureRect().size.height * state / 100
+                      )
+                    );
+                });
+              }),
+              nullptr
+            )
+          );
           }),
           nullptr
         ),
@@ -288,7 +337,33 @@ void Capture::animation()
   this->element->initWithTexture(Application->capturing.textures.at(0)->getSprite()->getTexture());
   this->element->setScale(this->getWidth() / this->element->getWidth());
   this->element->setScaleY(this->element->getScaleY() * -1);
-  this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2);
+  this->element->setPosition(this->getWidth() / 2, 0);
+  this->element->setAnchorPoint(Vec2(0.5, 1.0));
+
+  /**
+   *
+   *
+   *
+   */
+  this->element2->_create();
+  this->element2->initWithTexture(Application->capturing.textures.at(0)->getSprite()->getTexture());
+  this->element2->setScale(this->getWidth() / this->element->getWidth());
+  this->element2->setScaleY(this->element2->getScaleY() * -1);
+  this->element2->setPosition(this->getWidth() / 2, 0);
+  this->element2->setAnchorPoint(Vec2(0.5, 1.0));
+
+  /**
+   *
+   *
+   *
+   */
+   GLProgram *shader = new GLProgram();
+   shader->initWithFilenames("Shaders/grayscale.vsh", "Shaders/grayscale.fsh");
+   shader->link();
+   shader->updateUniforms();
+
+   auto state = GLProgramState::getOrCreateWithGLProgram(shader);
+   this->element2->setGLProgramState(state);
 }
 
 /**
@@ -323,5 +398,8 @@ void Capture::update(float time)
     Application->capturing.frame = Application->capturing.frames;
   }
 
-  this->element->Sprite::setTexture(Application->capturing.textures.at(--Application->capturing.frame)->getSprite()->getTexture());
+  Application->capturing.frame--;
+
+  this->element->Sprite::setTexture(Application->capturing.textures.at(Application->capturing.frame)->getSprite()->getTexture());
+  this->element2->Sprite::setTexture(Application->capturing.textures.at(Application->capturing.frame)->getSprite()->getTexture());
 }

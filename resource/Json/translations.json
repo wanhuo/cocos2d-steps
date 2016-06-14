@@ -156,14 +156,14 @@
     ],
     "missions-mission-1": [
       {
-        "title": "COMPLETE IN A ONE GAME",
+        "title": "COMPLETE IN ONE GAME",
         "font": "square",
         "size": 36
       }
     ],
     "missions-mission-2": [
       {
-        "title": "COMPLETE IN A FEW GAMES",
+        "title": "COMPLETE THROOGH MULTIPLE GAMES",
         "font": "square",
         "size": 36
       }
@@ -209,7 +209,7 @@
     ],
     "missions-finish-1": [
       {
-        "title": "COMPLETE IN A ONE GAME",
+        "title": "COMPLETE IN ONE GAME",
         "font": "square",
         "size": 24
       }
@@ -258,7 +258,7 @@
     ],
     "missions-finish-2": [
       {
-        "title": "COMPLETE IN A FEW GAMES",
+        "title": "COMPLETE THROOGH MULTIPLE GAMES",
         "font": "square",
         "size": 24
       }

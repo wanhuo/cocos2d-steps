@@ -310,9 +310,9 @@ void Game::onLike()
   Events::onLike();
 }
 
-void Game::onShare(const std::function<void(bool)>& callback)
+void Game::onShare(const std::function<void(bool)>& callback, const std::function<void(int)>& update)
 {
-  Events::onShare(callback, this->capturing.supported);
+  Events::onShare(callback, update, this->capturing.supported);
 }
 
 void Game::onTwitter()

@@ -57,6 +57,7 @@ class Capture : public Entity
    */
   protected:
   Entity* element;
+  Entity* element2;
 
   /**
    *
