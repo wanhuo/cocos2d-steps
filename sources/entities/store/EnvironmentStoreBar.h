@@ -137,6 +137,7 @@ class EnvironmentStoreBar : public Background
     Button* lock;
     Button* facebook;
     Button* twitter;
+    Button* back;
   };
 
   struct Backgrounds {

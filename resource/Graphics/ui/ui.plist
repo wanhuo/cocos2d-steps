@@ -7,15 +7,15 @@
             <key>back-button.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{5,1829},{140,70}}</string>
+                <string>{{1021,796},{312,61}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{140,70}}</string>
+                <string>{{0,0},{312,61}}</string>
                 <key>sourceSize</key>
-                <string>{140,70}</string>
+                <string>{312,61}</string>
             </dict>
             <key>capture.png</key>
             <dict>
@@ -46,7 +46,7 @@
             <key>counter-star.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1414,5},{56,53}}</string>
+                <string>{{1441,745},{56,53}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>diamond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1481,1781},{15,20}}</string>
+                <string>{{5,1829},{15,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -540,7 +540,7 @@
             <key>store-position-lock.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1208,745},{88,120}}</string>
+                <string>{{1343,745},{88,120}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -560,7 +560,7 @@
             <key>size</key>
             <string>{1502,1926}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:393c95f55252ad48d31d66b0c4206c2e:4d05673ea1fdb8a4b9ad306d00b0dcd8:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
+            <string>$TexturePacker:SmartUpdate:375c1b3a247451264084f003c8924234:9ab66dc7877f940e929b72691deea0b1:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
             <key>textureFileName</key>
             <string>ui.png</string>
         </dict>

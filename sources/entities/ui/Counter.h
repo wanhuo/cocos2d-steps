@@ -61,11 +61,7 @@ class Counter : public Background
   protected:
   Count count;
 
-  BackgroundColor* holder;
   CameraEntity3D* icon;
-
-  Entity* starBackground;
-  Entity* bonusBackground;
 
   ProgressTimer* starAction;
 
@@ -92,14 +88,19 @@ class Counter : public Background
    *
    */
   public:
-  Texts texts;
   Counter(Node* parent);
  ~Counter();
 
+  Texts texts;
   Values values;
 
   MissionUpdateOnce missionUpdateOnce;
   MissionUpdateProgress missionUpdateProgress;
+
+  BackgroundColor* holder;
+
+  Entity* starBackground;
+  Entity* bonusBackground;
 
   virtual void onMenu();
   virtual void onGame();

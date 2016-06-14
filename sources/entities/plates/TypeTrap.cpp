@@ -68,10 +68,11 @@ void TypeTrap::setPlate(Plate* plate)
    *
    */
   this->decoration->_create();
+  this->decoration->setPlate(plate);
   this->decoration->setPosition3D(Vec3(0.0, 0.0, 0.0));
   this->decoration->setRotation3D(Vec3(0.0, this->plate->getDirection() ? 90.0 : 0.0, 0.0));
 
-  this->getDecorations().push_back(this->decoration);
+  this->Special::getDecorations().push_back(this->decoration);
 }
 
 /**

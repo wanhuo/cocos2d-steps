@@ -29,6 +29,9 @@
 		78283FC11CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FBA1CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp */; };
 		78283FC41CE248DB0010CAB7 /* EnvironmentStoreBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FC21CE248DB0010CAB7 /* EnvironmentStoreBar.cpp */; };
 		78283FC51CE248DB0010CAB7 /* EnvironmentStoreBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FC21CE248DB0010CAB7 /* EnvironmentStoreBar.cpp */; };
+		7832A67A1D1040700059BFE3 /* Rampage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7832A6781D1040700059BFE3 /* Rampage.cpp */; };
+		7832A67B1D1040700059BFE3 /* Rampage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7832A6781D1040700059BFE3 /* Rampage.cpp */; };
+		7832A67C1D1040700059BFE3 /* Rampage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7832A6781D1040700059BFE3 /* Rampage.cpp */; };
 		7838FCE81CF7381300195856 /* framework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7838FCE71CF7381300195856 /* framework.a */; };
 		7838FCEA1CF7382D00195856 /* framework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7838FCE91CF7382D00195856 /* framework.a */; };
 		7838FCEC1CF7383900195856 /* framework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7838FCEB1CF7383900195856 /* framework.a */; };
@@ -401,6 +404,8 @@
 		78283FBB1CE21DF00010CAB7 /* EnvironmentStoreTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentStoreTexture.h; sourceTree = "<group>"; };
 		78283FC21CE248DB0010CAB7 /* EnvironmentStoreBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentStoreBar.cpp; sourceTree = "<group>"; };
 		78283FC31CE248DB0010CAB7 /* EnvironmentStoreBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentStoreBar.h; sourceTree = "<group>"; };
+		7832A6781D1040700059BFE3 /* Rampage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rampage.cpp; sourceTree = "<group>"; };
+		7832A6791D1040700059BFE3 /* Rampage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rampage.h; sourceTree = "<group>"; };
 		7838FCE71CF7381300195856 /* framework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = framework.a; path = Platforms/iphone/framework.a; sourceTree = SOURCE_ROOT; };
 		7838FCE91CF7382D00195856 /* framework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = framework.a; sourceTree = "<group>"; };
 		7838FCEB1CF7383900195856 /* framework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = framework.a; path = Platforms/mac/framework.a; sourceTree = SOURCE_ROOT; };
@@ -1051,6 +1056,8 @@
 				78D21BC11CE624B0007B0682 /* Capture.h */,
 				78C054AD1D0DCFD10084EDD4 /* Captures.cpp */,
 				78C054AE1D0DCFD10084EDD4 /* Captures.h */,
+				7832A6781D1040700059BFE3 /* Rampage.cpp */,
+				7832A6791D1040700059BFE3 /* Rampage.h */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -1746,6 +1753,7 @@
 				789E71971CD393D800BDCDC7 /* Special.cpp in Sources */,
 				78283FC51CE248DB0010CAB7 /* EnvironmentStoreBar.cpp in Sources */,
 				78B4B6F41CBF911800F2D8A7 /* Saw.cpp in Sources */,
+				7832A67B1D1040700059BFE3 /* Rampage.cpp in Sources */,
 				78C72BBD1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp in Sources */,
 				78B4B6D71CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
 				78B4B6D91CBD751D00F2D8A7 /* Energy.cpp in Sources */,
@@ -1849,6 +1857,7 @@
 				78C352D61CEE7DB000F10068 /* EnvironmentStoreItem.cpp in Sources */,
 				78C352D71CEE7DB000F10068 /* Copter.cpp in Sources */,
 				78C352D91CEE7DB000F10068 /* Events.cpp in Sources */,
+				7832A67C1D1040700059BFE3 /* Rampage.cpp in Sources */,
 				78C352DA1CEE7DB000F10068 /* TypeGate.cpp in Sources */,
 				78C352DC1CEE7DB000F10068 /* EnvironmentMissionsDailyPopup.cpp in Sources */,
 				78C352DE1CEE7DB000F10068 /* Start.cpp in Sources */,
@@ -1957,6 +1966,7 @@
 				789809611CC51C0A00E3CF28 /* Start.cpp in Sources */,
 				78D21BC21CE624B0007B0682 /* Capture.cpp in Sources */,
 				7855461A1CDA13B600B58ED0 /* Open.cpp in Sources */,
+				7832A67A1D1040700059BFE3 /* Rampage.cpp in Sources */,
 				7891E88F1CF21293005C238E /* NSModal.mm in Sources */,
 				789809651CC53A8B00E3CF28 /* Cub.cpp in Sources */,
 				785546051CD91D8B00B58ED0 /* Unlock.cpp in Sources */,

@@ -58,12 +58,12 @@ class TypeTrap : public Special
 
   Decoration* decoration;
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
 
-  virtual void setPlate(Plate* plate);
+  virtual void setPlate(Plate* plate) override;
 
-  TypeTrap* deepCopy();
+  TypeTrap* deepCopy() override;
 };
 
 #endif

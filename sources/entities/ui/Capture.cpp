@@ -39,11 +39,11 @@ Capture::Capture(Node* parent)
 {
   this->element = new Entity(this, true);
   this->element->setGlobalZOrder(1000);
-  this->element->setLocalZOrder(-1);
+  this->element->setLocalZOrder(1);
 
   this->element2 = new Entity(this);
   this->element2->setGlobalZOrder(1000);
-  this->element2->setLocalZOrder(-2);
+  this->element2->setLocalZOrder(2);
 
   this->setGlobalZOrder(1000);
   this->setCameraMask(8);
@@ -78,21 +78,10 @@ void Capture::onCreate()
    *
    */
   this->setPosition(Application->getWidth() / 2, Application->getHeight() / 2 + 70);
-  this->setRotation(3.0);
   this->setScale(1.0);
 
   this->runAction(
-    ScaleTo::create(0.2, 0.5)
-  );
-
-  this->runAction(
-    RepeatForever::create(
-      Sequence::create(
-        RotateTo::create(0.5, -3.0),
-        RotateTo::create(0.5, 3.0),
-        nullptr
-      )
-    )
+    ScaleTo::create(0.2, 0.63)
   );
 
   Finish::getInstance()->missions->_create();
@@ -258,21 +247,11 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
     this->stopAllActions();
     this->runAction(
       Spawn::create(
-        ScaleTo::create(0.2, 0.5),
-        RotateTo::create(0.2, 3.0),
+        ScaleTo::create(0.2, 0.63),
         MoveTo::create(0.2, Vec2(Application->getWidth() / 2, Application->getHeight() / 2 + 70)),
         Sequence::create(
           DelayTime::create(0.2),
           CallFunc::create([=] () {
-          this->runAction(
-            RepeatForever::create(
-              Sequence::create(
-                RotateTo::create(0.5, -3.0),
-                RotateTo::create(0.5, 3.0),
-                nullptr
-              )
-            )
-          );
           }),
           nullptr
         ),
@@ -335,9 +314,9 @@ void Capture::animation()
    *
    */
   this->element->initWithTexture(Application->capturing.textures.at(0)->getSprite()->getTexture());
-  this->element->setScale(this->getWidth() / this->element->getWidth());
+  this->element->setScale(407 / this->element->getWidth());
   this->element->setScaleY(this->element->getScaleY() * -1);
-  this->element->setPosition(this->getWidth() / 2, 0);
+  this->element->setPosition(this->getWidth() / 2, 71);
   this->element->setAnchorPoint(Vec2(0.5, 1.0));
 
   /**
@@ -347,9 +326,9 @@ void Capture::animation()
    */
   this->element2->_create();
   this->element2->initWithTexture(Application->capturing.textures.at(0)->getSprite()->getTexture());
-  this->element2->setScale(this->getWidth() / this->element->getWidth());
+  this->element2->setScale(407 / this->element->getWidth());
   this->element2->setScaleY(this->element2->getScaleY() * -1);
-  this->element2->setPosition(this->getWidth() / 2, 0);
+  this->element2->setPosition(this->getWidth() / 2, 71);
   this->element2->setAnchorPoint(Vec2(0.5, 1.0));
 
   /**

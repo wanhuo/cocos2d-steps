@@ -170,7 +170,7 @@ void Environment::create()
   this->characterActionBackground->setPosition(Vec2(50, 10));
   this->characterActionBackground->setCameraMask(4);
 
-  this->characterAction = new BackgroundColor(this->characterActionHolder, Color4B(255, 255, 255, 150));
+  this->characterAction = new BackgroundColor(this->characterActionHolder, Color4B(255, 0, 0, 150));
   this->characterAction->setContentSize(Size(Application->getWidth() - 110, 30));
   this->characterAction->setAnchorPoint(Vec2(0, 0));
   this->characterAction->setPosition(Vec2(55, 15));

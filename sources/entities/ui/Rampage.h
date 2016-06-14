@@ -27,8 +27,8 @@
  *
  */
 
-#ifndef _ENVIRONMENTMISSIONSBAR_H_
-#define _ENVIRONMENTMISSIONSBAR_H_
+#ifndef _RAMPAGE_H_
+#define _RAMPAGE_H_
 
 #include "Game.h"
 
@@ -37,14 +37,7 @@
  *
  *
  */
-class EnvironmentMissionsPopup;
-
-/**
- *
- *
- *
- */
-class EnvironmentMissionsBar : public Background
+class Rampage : public Spine
 {
   /**
    *
@@ -52,16 +45,9 @@ class EnvironmentMissionsBar : public Background
    *
    */
   private:
-  struct Buttons {
-    Button* play;
-    Button* lock;
-    Button* back;
-  };
-
-  struct Popups {
-    EnvironmentMissionsPopup* general;
-    EnvironmentMissionsDailyPopup* daily;
-    EnvironmentMissionsKetchappPopup* ketchapp;
+  struct Animations
+  {
+    SpineAnimation animation;
   };
 
   /**
@@ -70,35 +56,15 @@ class EnvironmentMissionsBar : public Background
    *
    */
   public:
-  Buttons buttons;
-  Popups popups;
+  Animations animations;
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  EnvironmentMissionsBar();
- ~EnvironmentMissionsBar();
+  Rampage(Node* parent);
+ ~Rampage();
 
-  struct Element {
-    int type;
-    int index;
-  };
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
 
-  EnvironmentMissionsItem* selectedMission;
-  EnvironmentMissionsNotify* notify;
-
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
-
-  virtual void onCreateMissions();
-
-  virtual void onSelect(EnvironmentMissionsItem* element);
-  virtual void onSelectMission(int index);
-
-  virtual void update(float time);
+  virtual void onAnimationFinish(int index) override;
 };
 
 #endif

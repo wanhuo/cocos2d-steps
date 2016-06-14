@@ -68,6 +68,46 @@ void Trap::onCreate()
 
   decoration1->setRotation3D(Vec3(0.0, 0.0, 0.0));
   decoration2->setRotation3D(Vec3(0.0, 180.0, 0.0));
+}
+
+void Trap::onDestroy(bool action)
+{
+  Decoration::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  this->decorations->clear(true);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Trap::setPlate(Plate* plate, bool animated)
+{
+  this->plate = plate;
+}
+
+/**
+ *
+ *
+ *
+ */
+void Trap::start()
+{
+  Decoration::start();
+
+  /**
+   *
+   *
+   *
+   */
+  auto decoration1 = static_cast<Decoration*>(this->decorations->element(0));
+  auto decoration2 = static_cast<Decoration*>(this->decorations->element(1));
 
   decoration1->runAction(
     RepeatForever::create(
@@ -101,38 +141,18 @@ void Trap::onCreate()
             return this->getParent()->getPosition3D().distance(Application->environment->character->getPosition3D());
           }, Game::SOUND_DISTANCE);
           this->enable = true;
+          this->plate->blocked = true;
         }),
         DelayTime::create(0.3),
         CallFunc::create([=] () {
-        this->enable = false;
+          this->enable = false;
+          this->plate->blocked = false;
         }),
         DelayTime::create(1.35),
         nullptr
       )
     )
   );
-}
-
-void Trap::onDestroy(bool action)
-{
-  Decoration::onDestroy(action);
-
-  /**
-   *
-   *
-   *
-   */
-  this->decorations->clear(true);
-}
-
-/**
- *
- *
- *
- */
-void Trap::setPlate(Plate* plate)
-{
-  Decoration::setPlate(plate);
 }
 
 /**
@@ -142,5 +162,5 @@ void Trap::setPlate(Plate* plate)
  */
 Character::Crash Trap::status()
 {
-  return this->enable ? Character::Crash::SPIKES : Character::Crash::UNDEFINED;
+  return this->enable ? Character::Crash::TRAP : Character::Crash::UNDEFINED;
 }

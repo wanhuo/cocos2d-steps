@@ -1404,6 +1404,7 @@ void Character::onCrash(Crash crash)
     this->shadow->setVisible(false);
     break;
     case SPIKES:
+    case TRAP:
     this->runAction(
       Spawn::create(
         Sequence::create(
@@ -1482,7 +1483,7 @@ void Character::onCrash(Crash crash)
     case COPTER:
     if(!this->getAutomatecally())
     {
-    this->changeState(STATE_COPTER);
+      this->changeState(STATE_COPTER);
     }
     break;
   }
@@ -1493,6 +1494,7 @@ void Character::onCrash(Crash crash)
     break;
     case FAIL:
     case SPIKES:
+    case TRAP:
     Sound->play("character-destroy-smash");
     break;
     case DOWN:
@@ -1521,6 +1523,7 @@ void Character::onCrash(Crash crash)
       case SPIKES:
       case DOWN:
       case GATE:
+      case TRAP:
       if(Application->capturing.supported)
       {
         Application->runAction(
@@ -1609,7 +1612,7 @@ void Character::onCopter()
   Application->environment->characterActionHolder->setScale(0);
   Application->environment->characterActionHolder->runAction(
     EaseSineInOut::create(
-      ScaleTo::create(0.5, 1.0)
+      ScaleTo::create(0.1, 1.0)
     )
   );
 
@@ -1636,6 +1639,8 @@ void Character::onCopter()
       nullptr
     )
   );
+
+  this->turns = STATE_COPTER_TURNS / 2;
 }
 
 void Character::onFinish()
@@ -1752,6 +1757,13 @@ void Character::onInsane()
  */
 void Character::onInsaneStart()
 {
+  Application->rampage->_create();
+
+  Application->environment->generator->height.stage = 0;
+  Application->environment->generator->height.up.counter = -2;
+  Application->environment->generator->height.down.counter = -2;
+  Application->environment->generator->height.up.length = 0;
+
   auto x = Application->cameras.d->getRotation3D().x;
   auto y = Application->cameras.d->getRotation3D().y;
   auto z = Application->cameras.d->getRotation3D().z;
@@ -1841,6 +1853,8 @@ void Character::onInsaneStart()
 
 void Character::onInsaneFinish()
 {
+  Application->rampage->_destroy();
+
   this->stopAllActions();
 
   auto element = this->getPlatesNear(this->insanePlate).next();
@@ -2602,7 +2616,8 @@ void Character::updateFinish(float time)
 
 void Character::updateCopter(float time)
 {
-  this->turns -= 0.01;
+  this->turns -= 0.06;
+  this->turns = max(0.0f, this->turns);
 
   Application->environment->characterAction->setScaleX(min(1.0f, max(0.0f, this->turns / STATE_COPTER_TURNS)));
 }

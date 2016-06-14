@@ -53,12 +53,28 @@ EnvironmentMissionsBar::EnvironmentMissionsBar()
   }), true);
   this->buttons.lock = new Button("lock-button.png", 2, 1, this, std::bind([=] () {
   }), true);
+  this->buttons.back = new Button("back-button.png", 2, 1, this, std::bind([=] () {
+    Application->counter->save();
+
+    Application->s->runAction(
+      Sequence::create(
+        FadeIn::create(0.2),
+        CallFunc::create([=] () {
+        Application->changeState(Game::MENU);
+        }),
+        FadeOut::create(0.2),
+        nullptr
+      )
+    );
+  }), true);
 
   this->buttons.play->setPosition(0, -700);
   this->buttons.lock->setPosition(0, -700);
+  this->buttons.back->setPosition(-Application->getWidth() / 2 + this->buttons.back->getWidth() / 2 + 15, 245);
 
   this->buttons.play->setCameraMask(4);
   this->buttons.lock->setCameraMask(4);
+  this->buttons.back->setCameraMask(4);
 
   this->buttons.play->setVisible(false);
   this->buttons.lock->setVisible(false);

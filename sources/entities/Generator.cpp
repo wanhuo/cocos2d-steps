@@ -495,7 +495,7 @@ void Generator::createGeneralElement()
            * Try to change generator height;
            *
            */
-          if(Application->environment->parameters.stage > 1)
+          if(Application->environment->parameters.stage > 1 && Application->environment->character->state != Character::STATE_INSANE)
           {
             this->height.up.counter--;
             this->height.down.counter--;

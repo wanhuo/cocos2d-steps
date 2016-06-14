@@ -262,10 +262,20 @@ void Counter::onLose()
   this->texts.stage->setText("stage");
   this->texts.stage->data(Application->environment->parameters.stage);
 
- this->texts.stage->setPosition(Application->getCenter().x, Application->getHeight() - 370);
+  this->texts.stage->setPosition(Application->getCenter().x, Application->getHeight() - 370);
 
   this->texts.stage->runAction(
     FadeTo::create(0.2, 255)
+  );
+
+  this->texts.stage->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        TintTo::create(0.5, 165.0, 196.0, 255.0),
+        TintTo::create(0.5, 255, 255, 255),
+        nullptr
+      )
+    )
   );
 
   this->texts.best->stopAllActions();

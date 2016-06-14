@@ -39,7 +39,7 @@ class Character : public Cube
    *
    */
   private:
-  const static int STATE_COPTER_TURNS = 5;
+  const static int STATE_COPTER_TURNS = 6;
 
   /**
    *
@@ -98,7 +98,8 @@ class Character : public Cube
     SPIKES,
     DOWN,
     GATE,
-    COPTER
+    COPTER,
+    TRAP
   };
 
   enum Turn {

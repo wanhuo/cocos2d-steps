@@ -132,6 +132,8 @@ Game::Game()
   this->counter = new Counter(this);
   this->capture = new Capture(this);
 
+  this->rampage = new Rampage(this);
+
   this->s = new BackgroundColor(this, Color4B(255, 255, 255, 0));
   this->d = new BackgroundColor(this, Color4B(0, 0, 0, 0));
   this->i = new Entity("insane-background.png", this);

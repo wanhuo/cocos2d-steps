@@ -43,7 +43,7 @@ class Enemy : public Character
     float turnTime = 0.0;
     float turnTimeElapsed = 0.0;
 
-    float turnMinTime = 0.0;
+    float turnMinTime = 0.1;
     float turnMaxTime = 0.6;
   };
 

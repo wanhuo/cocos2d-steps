@@ -90,28 +90,27 @@ void Spikes::start()
    *
    *
    */
-  this->runAction(
-    Sequence::create(
-      DelayTime::create(0.5),
-      CallFunc::create([=] () {
-        this->runAction(
-          RepeatForever::create(
-            Sequence::create(
-              MoveBy::create(0.2, Vec3(0, 0.4, 0)),
-              DelayTime::create(this->pause),
-              MoveBy::create(0.2, Vec3(0, -0.4, 0)),
-              DelayTime::create(this->pause * 2),
-              nullptr
-            )
-          )
-        );
-      }),
-      nullptr
-    )
-  );
-
   if(this->getScaleY() == 1.0)
   {
+    this->runAction(
+      Sequence::create(
+        DelayTime::create(0.5),
+        CallFunc::create([=] () {
+          this->runAction(
+            RepeatForever::create(
+              Sequence::create(
+                MoveBy::create(0.2, Vec3(0, 0.8, 0)),
+                DelayTime::create(this->pause),
+                MoveBy::create(0.2, Vec3(0, -0.8, 0)),
+                DelayTime::create(this->pause * 2),
+                nullptr
+              )
+            )
+          );
+        }),
+        nullptr
+      )
+    );
   }
   else
   {
@@ -122,7 +121,7 @@ void Spikes::start()
           this->runAction(
             RepeatForever::create(
               Sequence::create(
-                ScaleTo::create(0.2, 1.0, 4.0, 1.0),
+                ScaleTo::create(0.2, 1.0, 6.0, 1.0),
                 DelayTime::create(this->pause),
                 ScaleTo::create(0.2, 1.0, 0.0, 1.0),
                 DelayTime::create(this->pause * 2),
@@ -150,11 +149,11 @@ void Spikes::start()
                 }, Game::SOUND_DISTANCE);
                 this->enable = true;
               }),
-              DelayTime::create(0.4 + this->pause / 2),
+              DelayTime::create(0.4),
               CallFunc::create([=] () {
                 this->enable = false;
               }),
-              DelayTime::create(this->pause * 2),
+              DelayTime::create(this->pause * 2 + 0.1),
               nullptr
             )
           )

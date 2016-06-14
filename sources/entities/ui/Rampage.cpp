@@ -27,78 +27,71 @@
  *
  */
 
-#ifndef _ENVIRONMENTMISSIONSBAR_H_
-#define _ENVIRONMENTMISSIONSBAR_H_
-
 #include "Game.h"
 
-/**
- *
- *
- *
- */
-class EnvironmentMissionsPopup;
-
-/**
- *
- *
- *
- */
-class EnvironmentMissionsBar : public Background
+Rampage::Rampage(Node* parent)
+: Spine("insane.json", "insane.atlas", 1.0, parent)
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  struct Buttons {
-    Button* play;
-    Button* lock;
-    Button* back;
-  };
+  this->animations.animation = {1, "animation", false};
 
-  struct Popups {
-    EnvironmentMissionsPopup* general;
-    EnvironmentMissionsDailyPopup* daily;
-    EnvironmentMissionsKetchappPopup* ketchapp;
-  };
+  this->setCameraMask(4);
+}
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Buttons buttons;
-  Popups popups;
+Rampage::~Rampage()
+{
+}
+
+/**
+ *
+ *
+ *
+ */
+void Rampage::onCreate()
+{
+  Spine::onCreate();
 
   /**
    *
    *
    *
    */
-  public:
-  EnvironmentMissionsBar();
- ~EnvironmentMissionsBar();
+  this->setOpacity(0);
+  this->setPosition(Application->getCenter().x, Application->getHeight() - 380);
 
-  struct Element {
-    int type;
-    int index;
-  };
+  this->runAction(
+    FadeIn::create(2.0)
+  );
 
-  EnvironmentMissionsItem* selectedMission;
-  EnvironmentMissionsNotify* notify;
+  this->setAnimation(this->animations.animation);
+  this->setTimeScale(2.0);
+}
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+void Rampage::onDestroy(bool action)
+{
+  Spine::onDestroy(action);
+}
 
-  virtual void onCreateMissions();
+/**
+ *
+ *
+ *
+ */
+void Rampage::onAnimationFinish(int index)
+{
+  Spine::onAnimationFinish(index);
 
-  virtual void onSelect(EnvironmentMissionsItem* element);
-  virtual void onSelectMission(int index);
-
-  virtual void update(float time);
-};
-
-#endif
+  /**
+   *
+   *
+   *
+   */
+  this->runAction(
+    Sequence::create(
+      FadeOut::create(0.5),
+      CallFunc::create([=] () {
+      this->_destroy();
+      }),
+      nullptr
+    )
+  );
+}

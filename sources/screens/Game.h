@@ -44,6 +44,7 @@
 #include "Gift.h"
 #include "Video.h"
 #include "Unlock.h"
+#include "Rampage.h"
 
 #include "Generator.h"
 #include "Letters.h"
@@ -277,6 +278,8 @@ class Game : public Screen
 
   Sprite* generate;
   Entity* i;
+
+  Rampage* rampage;
 
   Environment* environment;
   Capturing capturing;
