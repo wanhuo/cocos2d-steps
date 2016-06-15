@@ -56,8 +56,15 @@ class Capture : public Entity
    *
    */
   protected:
+  bool complete;
+  bool earn;
+
   Entity* element;
   Entity* element2;
+
+  Entity* diamond;
+
+  Text* text;
 
   /**
    *

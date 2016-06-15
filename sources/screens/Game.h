@@ -309,7 +309,7 @@ class Game : public Screen
   virtual void onAchievements();
   virtual void onRate();
   virtual void onLike();
-  virtual void onShare(const std::function<void(bool)>& callback, const std::function<void(int)>& update);
+  virtual void onShare(bool complete, const std::function<void(bool)>& callback, const std::function<void(int, int)>& update);
   virtual void onTwitter();
   virtual void onFacebook();
   virtual void onMail();

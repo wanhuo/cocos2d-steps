@@ -54,7 +54,7 @@ class Captures : public Sprite
    *
    *
    */
-  protected:
+  public:
   Texts texts;
 
   /**

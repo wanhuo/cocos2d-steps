@@ -36,12 +36,9 @@
  */
 Captures::Captures()
 {
-  this->texts.score = new Text("counter-score");
-
+  this->texts.score = new Text("counter-score", Application, TextHAlignment::LEFT);
   this->texts.score->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
-
   this->texts.score->setScale(0.35);
-
   this->texts.score->_create();
 
   this->texts.score->retain();
@@ -63,7 +60,7 @@ void Captures::update()
 
   this->texts.score->data(Application->counter->values.current);
 
-  this->texts.score->setPosition(x - 130, y + 50);
+  this->texts.score->setPosition(x - 165, y + 70);
 }
 
 /**

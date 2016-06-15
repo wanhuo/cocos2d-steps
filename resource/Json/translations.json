@@ -333,6 +333,78 @@
         "size": 48
       }
     ],
+    "capture-share": [
+      {
+        "title": "SHARE GIF",
+        "font": "square",
+        "size": 48,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      }
+    ],
+    "capture-share-and-earn": [
+      {
+        "title": "SHARE & EARN 50",
+        "font": "square",
+        "size": 40,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      }
+    ],
+    "capture-1": [
+      {
+        "title": "GENERATING $1%",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      }
+    ],
+    "capture-2": [
+      {
+        "title": "UPLOADING $1%",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      }
+    ],
+    "capture-successful": [
+      {
+        "title": "SHARE SUCCESSFUL",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      }
+    ],
+    "capture-failed": [
+      {
+        "title": "SHARE FAILED",
+        "font": "square",
+        "size": 36,
+        "color": [
+          255,
+          0,
+          0
+        ]
+      }
+    ],
     "vote-title": [
       {
         "title": "Please rate us",

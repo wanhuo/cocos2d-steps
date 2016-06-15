@@ -153,7 +153,7 @@ void Events::onLike()
  *
  *
  */
-void Events::onShare(const std::function<void(bool)>& callback, const std::function<void(int)>& update, bool animated)
+void Events::onShare(bool complete, const std::function<void(bool)>& callback, const std::function<void(int, int)>& update, bool animated)
 {
   Analytics::sendEvent("Application", "application.events.onShare", "Application onShare event");
 
@@ -162,11 +162,11 @@ void Events::onShare(const std::function<void(bool)>& callback, const std::funct
 
   if(animated)
   {
-    Social::share(callback, update, text->data(Application->counter->values.current), Config::link);
+    Social::share(complete, callback, update, text->data(Application->counter->values.current), Config::link);
   }
   else
   {
-    Social::share(callback, update, size.width, size.width, 0, 0, text->data(Application->counter->values.current), Config::link);
+    Social::share(complete, callback, update, size.width, size.width, 0, 0, text->data(Application->counter->values.current), Config::link);
   }
 }
 

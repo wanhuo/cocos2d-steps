@@ -1526,6 +1526,20 @@ void Character::onCrash(Crash crash)
       case TRAP:
       if(Application->capturing.supported)
       {
+        /**
+         *
+         *
+         * @Capture
+         *
+         */
+        Application->captures->texts.score->runAction(
+          Sequence::create(
+            ScaleTo::create(0.1, 0.45),
+            ScaleTo::create(0.5, 0.35),
+            nullptr
+          )
+        );
+
         Application->runAction(
           Sequence::create(
           DelayTime::create(1.5),
