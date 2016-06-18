@@ -142,7 +142,7 @@ string EnvironmentMissionsDailyPopup::getTask()
 void EnvironmentMissionsDailyPopup::reset()
 {
   string time = Storage::get("missions.daily.time", true);
-  this->task.time = time.length() > 0 ? stoll(time.c_str()) : 0;
+  this->task.time = time.length() > 0 ? std::stoll(time.c_str()) : 0;
   this->task.active = this->task.time < Times::now();
   this->task.word = Storage::get("missions.daily.word", true);
   this->task.collected = Storage::get("missions.daily.collected", true);
@@ -257,7 +257,7 @@ void EnvironmentMissionsDailyPopup::update(char letter)
     this->task.active = false;
     this->task.time = Times::now() + Times::minute() * 60 * 24;
 
-    Storage::set("missions.daily.time", to_string(this->task.time));
+    Storage::set("missions.daily.time", patch::to_string(this->task.time));
     Storage::set("missions.daily.reset", 0);
   }
 
@@ -276,11 +276,11 @@ void EnvironmentMissionsDailyPopup::update(float time)
 {
   if(!this->task.active)
   {
-    int t = this->task.time - Times::now();
+    long long t = this->task.time - Times::now();
 
-    string h = "" + to_string(Times::hours(t));
-    string m = "" + to_string(Times::minutes(t));
-    string s = "" + to_string(Times::seconds(t));
+    string h = "" + patch::to_string(Times::hours(t));
+    string m = "" + patch::to_string(Times::minutes(t));
+    string s = "" + patch::to_string(Times::seconds(t));
 
     if(Times::hours(t) < 10) h = "0" + h;
     if(Times::minutes(t) < 10) m = "0" + m;

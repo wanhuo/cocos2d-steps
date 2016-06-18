@@ -38,6 +38,8 @@ EnvironmentMissionsBar::EnvironmentMissionsBar()
 : Background(Application)
 {
   this->buttons.play = new Button("play-button.png", 2, 1, this, std::bind([=] () {
+    if(Application->getActionManager()->getNumberOfRunningActionsInTarget(Application->s)) return;
+
     Application->counter->save();
 
     Application->s->runAction(
@@ -54,6 +56,8 @@ EnvironmentMissionsBar::EnvironmentMissionsBar()
   this->buttons.lock = new Button("lock-button.png", 2, 1, this, std::bind([=] () {
   }), true);
   this->buttons.back = new Button("back-button.png", 2, 1, this, std::bind([=] () {
+    if(Application->getActionManager()->getNumberOfRunningActionsInTarget(Application->s)) return;
+
     Application->counter->save();
 
     Application->s->runAction(
@@ -99,7 +103,7 @@ EnvironmentMissionsBar::EnvironmentMissionsBar()
      *
      *
      */
-    this->onSelectMission(index);
+    this->onSelectMission((int) index);
   });
   Application->environment->missions.missions.plane->_destroy();
   Application->environment->plane->addChild(Application->environment->missions.missions.plane);

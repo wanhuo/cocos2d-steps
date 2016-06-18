@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.ketchapp.onemorestep"
+  package="com.ketchapp.steps"
   android:installLocation="auto"
   android:versionCode="1"
   android:versionName="1.0.0">
 
-  <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="24" />
+  <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19" />
 
   <uses-feature android:glEsVersion="0x00020000" />
 
@@ -27,8 +27,8 @@
   <uses-permission android:name="android.permission.READ_PHONE_STATE" />
   <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
   <uses-permission android:name="com.android.vending.BILLING" />
-  <uses-permission android:name="com.ketchapp.onemorestep.permission.C2D_MESSAGE" />
-  <permission android:name="com.ketchapp.onemorestep.permission.C2D_MESSAGE" android:protectionLevel="signature"/> 
+  <uses-permission android:name="com.ketchapp.steps.permission.C2D_MESSAGE" />
+  <permission android:name="com.ketchapp.steps.permission.C2D_MESSAGE" android:protectionLevel="signature"/> 
 
   <application android:allowBackup="true" android:icon="@drawable/icon" android:label="@string/name" android:allowClearUserData="false" android:hardwareAccelerated="true">
     <meta-data android:name="android.app.lib_name" android:value="core" />
@@ -36,7 +36,7 @@
     <meta-data android:name="com.google.android.gms.games.APP_ID" android:value="@string/google" />
 
     <activity
-      android:name="com.ketchapp.onemorestep.Game"
+      android:name="com.ketchapp.steps.Game"
       android:configChanges="orientation|screenLayout|screenSize"
       android:label="@string/name"
       android:screenOrientation="portrait"
@@ -77,7 +77,7 @@
     <receiver android:name="com.batch.android.BatchPushReceiver" android:permission="com.google.android.c2dm.permission.SEND"> 
       <intent-filter> 
         <action android:name="com.google.android.c2dm.intent.RECEIVE" /> 
-        <category android:name="com.ketchapp.onemorestep" /> 
+        <category android:name="com.ketchapp.steps" /> 
       </intent-filter>  
     </receiver>
   </application>

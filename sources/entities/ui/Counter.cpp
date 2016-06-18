@@ -551,7 +551,7 @@ void Counter::save()
 {
   if(Application->environment->generator->bonus)
   {
-    Storage::set("generator.bonus.skip." + to_string(Application->environment->parameters.stage), max(Storage::get("generator.bonus.skip." + to_string(Application->environment->parameters.stage)), Application->environment->character->plates.current->getIndex()));
+    Storage::set("generator.bonus.skip." + patch::to_string(Application->environment->parameters.stage), max(Storage::get("generator.bonus.skip." + patch::to_string(Application->environment->parameters.stage)), Application->environment->character->plates.current->getIndex()));
   }
 
   if(this->values.b.best)
@@ -657,7 +657,7 @@ void Counter::update()
   this->texts.coins->data(this->values.coins - this->count.add + this->count.remove);
   this->texts.coins->setPosition(Application->getWidth() - this->texts.coins->getWidth() / 2 - 50, Application->getHeight() - 50);
 
-  Application->captures->update();
+  //Application->captures->update();
 }
 
 /**

@@ -67,13 +67,13 @@ Game::Game()
   this->frameBuffer->attachRenderTarget(rt);
   this->frameBuffer->attachDepthStencilTarget(rtDS);
 
-  this->generate = Sprite::createWithTexture(this->getFrameBuffer()->getRenderTarget()->getTexture());
+ /* this->generate = Sprite::createWithTexture(this->getFrameBuffer()->getRenderTarget()->getTexture());
   this->generate->setScaleX(1 * FRAME_BUFFER_FACTOR);
   this->generate->setScaleY(-1 * FRAME_BUFFER_FACTOR);
   this->generate->setPosition(size.width / 2, size.height / 2);
   this->generate->setCameraMask(2);
   this->generate->setGlobalZOrder(1);
-  this->addChild(this->generate);
+  this->addChild(this->generate);*/
 
   this->cameras.d = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
   this->cameras.c = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
@@ -93,7 +93,7 @@ Game::Game()
   this->cameras.e->setDepth(4);
   this->cameras.c->setDepth(8);
 
-  this->cameras.d->setFrameBufferObject(this->getFrameBuffer());
+  //this->cameras.d->setFrameBufferObject(this->getFrameBuffer());
   //this->cameras.s->setFrameBufferObject(this->getFrameBuffer());
   //this->cameras.e->setFrameBufferObject(this->getFrameBuffer());
   //this->cameras.c->setFrameBufferObject(this->getFrameBuffer());
@@ -148,7 +148,7 @@ Game::Game()
    * @Capture
    *
    */
-  if(this->capturing.supported)
+  /*if(this->capturing.supported)
   {
     for(int i = 0; i < CAPTURE_FPS * CAPTURE_TIME; i++)
     {
@@ -164,7 +164,7 @@ Game::Game()
   this->captures->setScaleX(1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
   this->captures->setScaleY(-1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
   this->captures->setPosition(this->getWidth() / CAPTURE_SCALE / 2, this->getHeight() / CAPTURE_SCALE / 2 - CAPTURE_POSITION / CAPTURE_SCALE);
-}
+*/}
 
 Game::~Game()
 {
@@ -307,9 +307,14 @@ void Game::onRate()
   Events::onRate();
 }
 
-void Game::onLike()
+void Game::onFacebookLike()
 {
-  Events::onLike();
+  Events::onFacebookLike();
+}
+
+void Game::onTwitterLike()
+{
+  Events::onTwitterLike();
 }
 
 void Game::onShare(bool complete, const std::function<void(bool)>& callback, const std::function<void(int, int)>& update)
@@ -463,6 +468,12 @@ void Game::onLose()
     this->changeState(FINISH);
   }
 
+  if(Heyzap::available(Config::AD_TYPE_VIDEO) && this->parameters.elapsed.video >= this->parameters.video)
+  {
+    this->parameters.elapsed.ad--;
+    this->parameters.elapsed.video--;
+  }
+
   if(this->parameters.elapsed.ad >= this->parameters.ad)
   {
     this->parameters.elapsed.ad = -1;
@@ -470,7 +481,7 @@ void Game::onLose()
     Heyzap::show(Config::AD_TYPE_INTERSTITIAL);
   }
 
-  Analytics::sendEvent("Application", "onLose", ("Lose: " + to_string(this->counter->values.current) + " points with " + to_string(this->counter->values.best) + " best points").c_str());
+  Analytics::sendEvent("Application", "onLose", ("Lose: " + patch::to_string(this->counter->values.current) + " points with " + patch::to_string(this->counter->values.best) + " best points").c_str());
 }
 
 void Game::onStore()
@@ -655,10 +666,10 @@ void Game::updateCapture(float time)
         auto render = this->capturing.textures.at(0);
 
         render->beginWithClear(1, 1, 1, 1);
-        this->captures->visit();
+        this->captures->Sprite::visit();
         render->end();
 
-        this->capturing.frames = min<unsigned long>(CAPTURE_FPS * CAPTURE_TIME - 1, this->capturing.frames + 1);
+        this->capturing.frames = min<int>(CAPTURE_FPS * CAPTURE_TIME - 1, this->capturing.frames + 1);
       }
     }
     break;
@@ -672,7 +683,7 @@ void Game::updateCapture(float time)
  */
 void Game::updateStates(float time)
 {
-  this->updateCapture(time);
+  //this->updateCapture(time);
 
   switch(this->state)
   {

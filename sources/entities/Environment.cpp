@@ -343,12 +343,12 @@ Entity3D* Environment::createParticle(int type, float x, float y, float z)
  */
 string Environment::getTextureState1()
 {
-  return "textures/" + to_string(this->parameters.texture) + "/textures-state-1.png";
+  return "textures/" + patch::to_string(this->parameters.texture) + "/textures-state-1.png";
 }
 
 string Environment::getTextureState2()
 {
-  return "textures/" + to_string(this->parameters.texture) + "/textures-state-2.png";
+  return "textures/" + patch::to_string(this->parameters.texture) + "/textures-state-2.png";
 }
 
 /**
@@ -449,6 +449,7 @@ void Environment::onMenu()
     this->enemy = nullptr;
   }
 
+  this->character->_destroy();
   this->character->removeFromParent();
   //this->character->release();
   this->character = new Character;

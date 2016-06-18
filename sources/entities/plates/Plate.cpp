@@ -29,7 +29,7 @@
  *
  */
 Plate::Plate()
-: Cube("plate.obj")
+: Cube("plate.c3b")
 {
   this->decorations = *new vector<Decoration*>();
 
@@ -38,7 +38,7 @@ Plate::Plate()
   this->shadow->setMaxScale(Vec3(0.995, 1.0, 0.995));
   this->shadow->setOffset(Vec3(0.4, 0.0, 0.4));
 
-  this->setScheduleUpdate(true);
+  this->setScheduleUpdate(true);this->setLightMask(0);
 }
 
 Plate::~Plate()
@@ -1120,7 +1120,7 @@ bool Plate::conditions(int type)
     result = count > 0 && conditions->s1 < 1 && conditions->s2 < 1 && conditions->s7 < 1 && (size - index) > 2;
     break;
     case COPTER:
-    result = conditions->s2 < 1 && conditions->s5 < 1;
+    result = conditions->s2 < 1 && conditions->s5 < 1 && index > 20;
     break;
     case TRAP:
     result = conditions->s2 < 1;

@@ -67,7 +67,7 @@ class Captures : public Sprite
  ~Captures();
 
   virtual void update();
-  virtual void visit() override;
+  virtual void visit(Renderer *renderer, const Mat4& parentTransform, uint32_t parentFlags) override;
 };
 
 #endif

@@ -56,7 +56,7 @@ Ground::~Ground()
  */
 void Ground::reset()
 {
-  this->texture->setTexture("textures/" + (!Application->environment->generator->bonus ? (to_string(Application->environment->parameters.texture) + "/ground-texture.png") : "ground-bonus-texture.png"));
+  this->texture->setTexture("textures/" + (!Application->environment->generator->bonus ? (patch::to_string(Application->environment->parameters.texture) + "/ground-texture.png") : "ground-bonus-texture.png"));
   this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
   this->texture->getTexture()->setAliasTexParameters();
 

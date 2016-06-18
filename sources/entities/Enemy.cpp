@@ -46,6 +46,13 @@ Enemy::~Enemy()
 void Enemy::onCreate()
 {
   Character::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  this->setColor(this->color);
 }
 
 void Enemy::onDestroy(bool action)

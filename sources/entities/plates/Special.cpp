@@ -31,13 +31,13 @@
 Special::Special(string file, Node* parent)
 : Cube(file, parent)
 {
-  this->decorations = *new vector<Decoration*>();
+  this->decorations = *new vector<Decoration*>();this->setLightMask(0);
 }
 
 Special::Special()
 : Cube()
 {
-  this->decorations = *new vector<Decoration*>();
+  this->decorations = *new vector<Decoration*>();this->setLightMask(0);
 }
 
 Special::~Special()

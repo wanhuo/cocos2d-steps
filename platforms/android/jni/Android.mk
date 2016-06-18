@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-$(call import-add-path,$(LOCAL_PATH)/../../cocos2d/cocos/prebuilt/android)
+$(call import-add-path,$(LOCAL_PATH)/../../../../cocos2d/cocos/prebuilt-mk)
 
 LOCAL_MODULE := core_shared
 
@@ -21,6 +21,7 @@ LOCAL_SRC_FILES := application.cpp \
                    ../../../../cocos2d-tooflya-sdk/entities/Entity.cpp \
                    ../../../../cocos2d-tooflya-sdk/entities/TiledEntity.cpp \
                    ../../../../cocos2d-tooflya-sdk/entities/Entity3D.cpp \
+                   ../../../../cocos2d-tooflya-sdk/entities/CameraEntity3D.cpp \
                    ../../../../cocos2d-tooflya-sdk/entities/AnimatedEntity.cpp \
                    ../../../../cocos2d-tooflya-sdk/entities/BatchEntity.cpp \
                    ../../../../cocos2d-tooflya-sdk/entities/Button.cpp \
@@ -49,36 +50,89 @@ LOCAL_SRC_FILES := application.cpp \
                    ../../../../cocos2d-tooflya-sdk/platform/android/social/Social.cpp \
                    ../../../../cocos2d-tooflya-sdk/platform/include/vote/Vote.cpp \
                    ../../../../cocos2d-tooflya-sdk/platform/android/vote/Vote.cpp \
-                   ../../../sources/entities/Item.cpp \
-                   ../../../sources/entities/Color.cpp \
-                   ../../../sources/entities/Dust.cpp \
+                   ../../../sources/entities/decorations/Decoration.cpp \
+                   ../../../sources/entities/decorations/Start.cpp \
+                   ../../../sources/entities/decorations/Down.cpp \
+                   ../../../sources/entities/decorations/Cub.cpp \
+                   ../../../sources/entities/decorations/Copter.cpp \
+                   ../../../sources/entities/decorations/Spikes.cpp \
+                   ../../../sources/entities/decorations/Trap.cpp \
+                   ../../../sources/entities/decorations/Saw.cpp \
+                   ../../../sources/entities/decorations/Door.cpp \
+                   ../../../sources/entities/decorations/Portal.cpp \
+                   ../../../sources/entities/decorations/Trampoline.cpp \
+                   ../../../sources/entities/pickups/Pickup.cpp \
+                   ../../../sources/entities/pickups/Diamond.cpp \
+                   ../../../sources/entities/pickups/Crystal.cpp \
+                   ../../../sources/entities/pickups/Energy.cpp \
+                   ../../../sources/entities/pickups/Heart.cpp \
+                   ../../../sources/entities/pickups/Star.cpp \
+                   ../../../sources/entities/pickups/Color.cpp \
+                   ../../../sources/entities/pickups/Presention.cpp \
+                   ../../../sources/entities/pickups/Insane.cpp \
+                   ../../../sources/entities/pickups/Let.cpp \
+                   ../../../sources/entities/plates/Plate.cpp \
+                   ../../../sources/entities/plates/Special.cpp \
+                   ../../../sources/entities/plates/TypeSimple.cpp \
+                   ../../../sources/entities/plates/TypeDuel.cpp \
+                   ../../../sources/entities/plates/TypeBest.cpp \
+                   ../../../sources/entities/plates/TypeBonus.cpp \
+                   ../../../sources/entities/plates/TypeFinish.cpp \
+                   ../../../sources/entities/plates/TypeSaw.cpp \
+                   ../../../sources/entities/plates/TypeGate.cpp \
+                   ../../../sources/entities/plates/TypeCopter.cpp \
+                   ../../../sources/entities/plates/TypeSpikes.cpp \
+                   ../../../sources/entities/plates/TypeTrap.cpp \
+                   ../../../sources/entities/plates/TypePortal.cpp \
+                   ../../../sources/entities/plates/TypeTrampoline.cpp \
+                   ../../../sources/entities/plates/TypeMoveUp.cpp \
+                   ../../../sources/entities/plates/TypeMoved.cpp \
+                   ../../../sources/entities/plates/TypeMoved1.cpp \
+                   ../../../sources/entities/plates/TypeMoved2.cpp \
+                   ../../../sources/entities/plates/TypeMoved3.cpp \
+                   ../../../sources/entities/plates/TypeMoved4.cpp \
+                   ../../../sources/entities/plates/TypeMoved5.cpp \
+                   ../../../sources/entities/ui/Counter.cpp \
+                   ../../../sources/entities/ui/Button3D.cpp \
+                   ../../../sources/entities/ui/Gift.cpp \
+                   ../../../sources/entities/ui/Unlock.cpp \
+                   ../../../sources/entities/ui/Video.cpp \
+                   ../../../sources/entities/ui/Capture.cpp \
+                   ../../../sources/entities/ui/Captures.cpp \
+                   ../../../sources/entities/ui/Rampage.cpp \
+                   ../../../sources/entities/store/EnvironmentStoreItem.cpp \
+                   ../../../sources/entities/store/EnvironmentStoreCharacter.cpp \
+                   ../../../sources/entities/store/EnvironmentStoreTexture.cpp \
+                   ../../../sources/entities/store/EnvironmentStoreBar.cpp \
+                   ../../../sources/entities/missions/EnvironmentMissionsItem.cpp \
+                   ../../../sources/entities/missions/EnvironmentMissionsPopup.cpp \
+                   ../../../sources/entities/missions/EnvironmentMissionsKetchappPopup.cpp \
+                   ../../../sources/entities/missions/EnvironmentMissionsDailyPopup.cpp \
+                   ../../../sources/entities/missions/EnvironmentMissionsNotify.cpp \
+                   ../../../sources/entities/missions/EnvironmentMissionsBar.cpp \
+                   ../../../sources/entities/missions/EnvironmentMissionsFinish.cpp \
+                   ../../../sources/entities/missions/EnvironmentMissionsFinishGeneral.cpp \
+                   ../../../sources/entities/missions/EnvironmentMissionsFinishKetchapp.cpp \
+                   ../../../sources/entities/missions/EnvironmentMissionsFinishDaily.cpp \
                    ../../../sources/entities/Environment.cpp \
-                   ../../../sources/entities/Generator.cpp \
-                   ../../../sources/entities/Cube.cpp \
-                   ../../../sources/entities/Replace.cpp \
+                   ../../../sources/entities/Ground.cpp \
                    ../../../sources/entities/Character.cpp \
-                   ../../../sources/entities/Plate.cpp \
-                   ../../../sources/entities/Cannon.cpp \
-                   ../../../sources/entities/Crystal.cpp \
-                   ../../../sources/entities/Up.cpp \
-                   ../../../sources/entities/Down.cpp \
+                   ../../../sources/entities/Enemy.cpp \
+                   ../../../sources/entities/Generator.cpp \
+                   ../../../sources/entities/Episodes.cpp \
+                   ../../../sources/entities/Cube.cpp \
+                   ../../../sources/entities/Shadow.cpp \
                    ../../../sources/entities/Particle.cpp \
-                   ../../../sources/entities/Counter.cpp \
-                   ../../../sources/entities/Decoration.cpp \
-                   ../../../sources/entities/Diamond.cpp \
-                   ../../../sources/entities/Spike.cpp \
-                   ../../../sources/entities/Fish.cpp \
-                   ../../../sources/entities/Ripple.cpp \
-                   ../../../sources/entities/Pickup.cpp \
-                   ../../../sources/entities/Star.cpp \
-                   ../../../sources/entities/Heart.cpp \
-                   ../../../sources/entities/Energy.cpp \
-                   ../../../sources/support/Events.cpp \
-                   ../../../sources/screens/Game.cpp \
+                   ../../../sources/entities/Letter.cpp \
+                   ../../../sources/entities/Letters.cpp \
                    ../../../sources/popups/Popup.cpp \
                    ../../../sources/popups/Menu.cpp \
                    ../../../sources/popups/Finish.cpp \
-                   ../../../sources/popups/Store.cpp \
+                   ../../../sources/popups/Present.cpp \
+                   ../../../sources/popups/Open.cpp \
+                   ../../../sources/popups/Watch.cpp \
+                   ../../../sources/screens/Game.cpp \
+                   ../../../sources/support/Events.cpp \
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../cocos2d/cocos/audio/include \
                     $(LOCAL_PATH)/../../../../cocos2d-tooflya-sdk \
@@ -105,6 +159,12 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../cocos2d/cocos/audio/include \
                     $(LOCAL_PATH)/../../../../cocos2d-tooflya-sdk/platform/include/social \
                     $(LOCAL_PATH)/../../../../cocos2d-tooflya-sdk/platform/include/vote \
                     $(LOCAL_PATH)/../../../sources/entities \
+                    $(LOCAL_PATH)/../../../sources/entities/decorations \
+                    $(LOCAL_PATH)/../../../sources/entities/pickups \
+                    $(LOCAL_PATH)/../../../sources/entities/plates \
+                    $(LOCAL_PATH)/../../../sources/entities/ui \
+                    $(LOCAL_PATH)/../../../sources/entities/store \
+                    $(LOCAL_PATH)/../../../sources/entities/missions \
                     $(LOCAL_PATH)/../../../sources/popups \
                     $(LOCAL_PATH)/../../../sources/screens \
                     $(LOCAL_PATH)/../../../sources/support \
@@ -112,3 +172,6 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../../cocos2d/cocos/audio/include \
 LOCAL_STATIC_LIBRARIES := cocos2dx_static
 
 include $(BUILD_SHARED_LIBRARY)
+
+$(call import-module,.)
+

@@ -32,6 +32,8 @@
  */
 void Events::onStart()
 {
+  Director::getInstance()->setDisplayStats(true);
+
   new Game;    
   new Menu;
   new Finish;
@@ -140,12 +142,20 @@ void Events::onRate()
  *
  *
  */
-void Events::onLike()
+void Events::onFacebookLike()
 {
-  Analytics::sendEvent("Application", "application.events.onLike", "Application onLike event");
-  Analytics::sendSocial("Twitter", "Open publisher view from application", "503287153144438");
+  Analytics::sendEvent("Application", "application.events.onFacebookLike", "Application onFacebookLike event");
+  Analytics::sendSocial("Facebook", "Open publisher view from application", "503287153144438");
 
   Media::openFacebook("503287153144438");
+}
+
+void Events::onTwitterLike()
+{
+  Analytics::sendEvent("Application", "application.events.onTwitterLike", "Application onTwitterLike event");
+  Analytics::sendSocial("Twitter", "Open publisher view from application", "2869168750");
+
+  Media::openTwitter("2869168750");
 }
 
 /**

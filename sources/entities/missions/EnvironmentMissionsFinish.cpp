@@ -89,6 +89,7 @@ void EnvironmentMissionsFinish::onCreate()
    *
    *
    */
+  this->stopAllActions();
   this->setPosition3D(Vec3(Application->getFrustumWidth() / 2, Application->getFrustumHeight() / 2 - 3.5, 0));
 
   this->setOpacity(255);

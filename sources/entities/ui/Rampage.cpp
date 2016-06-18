@@ -62,6 +62,7 @@ void Rampage::onCreate()
     FadeIn::create(2.0)
   );
 
+  this->clearTracks();
   this->setAnimation(this->animations.animation);
   this->setTimeScale(2.0);
 }

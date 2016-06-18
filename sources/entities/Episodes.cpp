@@ -172,6 +172,8 @@ bool Generator::updateEpisode(int episode)
         this->plate->setType(Plate::TRAMPOLINE);
 
         this->plate->conditions(Plate::TRAMPOLINE);
+
+        Application->environment->generator->conditions.s8 = 10;
       }
 
       this->episode.trampolines.next = !this->episode.trampolines.next;

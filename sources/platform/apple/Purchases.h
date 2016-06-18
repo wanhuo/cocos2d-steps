@@ -28,6 +28,6 @@
 @implementation Purchases
 
 + (NSSet<NSString *> *) getIdentifiers {
-  return [NSSet setWithObjects: nil];
+  return [NSSet setWithObjects: @"", nil];
 }
 @end

@@ -38,6 +38,8 @@ EnvironmentStoreBar::EnvironmentStoreBar()
 : Background(Application)
 {
   this->buttons.play = new Button("play-button.png", 2, 1, this, std::bind([=] () {
+    if(Application->getActionManager()->getNumberOfRunningActionsInTarget(Application->s)) return;
+
     Application->counter->save();
 
     Application->s->runAction(
@@ -52,7 +54,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
     );
   }), true);
   this->buttons.facebook = new Button("lock-facebook-button.png", 2, 1, this, std::bind([=] () {
-    Application->onLike();
+    Application->onFacebookLike();
 
     Application->runAction(
       Sequence::create(
@@ -68,7 +70,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
     );
   }), true);
   this->buttons.twitter = new Button("lock-twitter-button.png", 2, 1, this, std::bind([=] () {
-    Application->onTwitter();
+    Application->onTwitterLike();
 
     Application->runAction(
       Sequence::create(
@@ -86,6 +88,8 @@ EnvironmentStoreBar::EnvironmentStoreBar()
   this->buttons.lock = new Button("lock-button.png", 2, 1, this, std::bind([=] () {
   }), true);
   this->buttons.back = new Button("back-button.png", 2, 1, this, std::bind([=] () {
+    if(Application->getActionManager()->getNumberOfRunningActionsInTarget(Application->s)) return;
+
     Application->counter->save();
 
     Application->s->runAction(
@@ -180,14 +184,14 @@ EnvironmentStoreBar::EnvironmentStoreBar()
   Application->environment->store.characters.plane->setContentSize(Size(21, 42));
   Application->environment->store.characters.plane->setMagneticType(cocos2d::ui::ListView::MagneticType::CENTER);
   Application->environment->store.characters.plane->ScrollView::addEventListener([this](Ref* ref, cocos2d::ui::ScrollView::EventType eventType) {
-    int index = Application->environment->store.characters.plane->getIndex(Application->environment->store.characters.plane->getCenterItemInCurrentView());
+    long index = Application->environment->store.characters.plane->getIndex(Application->environment->store.characters.plane->getCenterItemInCurrentView());
 
     /**
      *
      *
      *
      */
-    this->onSelectCharacter(index);
+    this->onSelectCharacter((int) index);
   });
   Application->environment->store.characters.plane->_destroy();
   Application->environment->plane->addChild(Application->environment->store.characters.plane);
@@ -199,14 +203,14 @@ EnvironmentStoreBar::EnvironmentStoreBar()
   Application->environment->store.textures.plane->setContentSize(Size(21, 42));
   Application->environment->store.textures.plane->setMagneticType(cocos2d::ui::ListView::MagneticType::CENTER);
   Application->environment->store.textures.plane->ScrollView::addEventListener([this](Ref* ref, cocos2d::ui::ScrollView::EventType eventType) {
-    int index = Application->environment->store.textures.plane->getIndex(Application->environment->store.textures.plane->getCenterItemInCurrentView());
+    long index = Application->environment->store.textures.plane->getIndex(Application->environment->store.textures.plane->getCenterItemInCurrentView());
 
     /**
      *
      *
      *
      */
-    this->onSelectTexture(index);
+    this->onSelectTexture((int) index);
   });
   Application->environment->store.textures.plane->_destroy();
   Application->environment->plane->addChild(Application->environment->store.textures.plane);
@@ -258,6 +262,13 @@ void EnvironmentStoreBar::onDestroy(bool action)
    */
   Application->environment->store.characters.plane->_destroy(action);
   Application->environment->store.textures.plane->_destroy(action);
+
+  this->diamond->setVisible(false);
+
+  this->backgrounds.missions->setVisible(false);
+  this->backgrounds.diamonds->setVisible(false);
+  this->backgrounds.facebook->setVisible(false);
+  this->backgrounds.random->setVisible(false);
 }
 
 /**

@@ -40,7 +40,7 @@ EnvironmentStoreTexture::EnvironmentStoreTexture(Json* parameters)
   switch(this->parameters.index)
   {
     default:
-    this->setTexture("textures/" + to_string(this->parameters.index) + "/textures-plate.png");
+    this->setTexture("textures/" + patch::to_string(this->parameters.index) + "/textures-plate.png");
     break;
     case 1:
     this->setTexture("textures/random.png");

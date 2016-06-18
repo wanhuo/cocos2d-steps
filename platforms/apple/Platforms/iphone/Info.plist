@@ -44,7 +44,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1396</string>
+	<string>1514</string>
 	<key>FacebookAppID</key>
 	<string>0</string>
 	<key>FacebookDisplayName</key>
@@ -87,7 +87,8 @@
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
-		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>apple-store-id</key>
 	<string>0</string>

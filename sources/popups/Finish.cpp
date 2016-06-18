@@ -50,10 +50,11 @@ Finish::Finish()
 {
   if(!instance) instance = this;
 
-  this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onLike, Application));
+  this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onFacebookLike, Application));
   this->buttons.rate = new Button("rate-button.png", 2, 1, this, std::bind(&Game::onRate, Application));
   this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application));
   this->buttons.restart = new Button("restart-button.png", 2, 1, this, std::bind([=] () {
+    Application->capture->bind(false);
     this->hide([=] () {
       Application->changeState(Game::MENU);
     });

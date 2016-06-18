@@ -447,21 +447,6 @@ void Generator::createGeneralElement()
 
       this->plate->setType(Plate::PORTAL);
     }
-    else if(this->general == Application->counter->values.best + 1)
-    {
-      if(Application->counter->values.best > 1)
-      {
-        action = false;
-
-        this->height.up.length += 5;
-        this->height.down.length += 5;
-
-        this->height.up.counter = -2;
-        this->height.down.counter = -2;
-
-        this->plate->setType(Plate::BEST);
-      }
-    }
 
     /**
      *
@@ -489,6 +474,21 @@ void Generator::createGeneralElement()
         }
         else if(action)
         {
+          if(this->general == Application->counter->values.best + 1)
+          {
+            if(Application->counter->values.best > 1)
+            {
+              this->height.up.length += 5;
+              this->height.down.length += 5;
+
+              this->height.up.counter = -2;
+              this->height.down.counter = -2;
+
+              this->plate->setType(Plate::BEST);
+
+              return;
+            }
+          }
 
           /**
            *
@@ -588,7 +588,7 @@ void Generator::createGeneralElement()
            */
           if(this->parameters.current.plates.elements.size()) if(probably(this->parameters.current.plates.probability))
           {
-            auto element = this->parameters.current.plates.elements.at(random<int>(0, this->parameters.current.plates.elements.size() - 1));
+            auto element = this->parameters.current.plates.elements.at(random<int>(0, (int) this->parameters.current.plates.elements.size() - 1));
 
             if(probably(element.probability) && this->plate->conditions(element.type))
             {
@@ -605,7 +605,7 @@ void Generator::createGeneralElement()
            */
           if(this->parameters.current.pickups.elements.size()) if(probably(this->parameters.current.pickups.probability))
           {
-            auto element = this->parameters.current.pickups.elements.at(random<int>(0, this->parameters.current.pickups.elements.size() - 1));
+            auto element = this->parameters.current.pickups.elements.at(random<int>(0, (int) this->parameters.current.pickups.elements.size() - 1));
 
             if(probably(element.probability) && this->plate->conditions(element.type))
             {
@@ -767,7 +767,7 @@ void Generator::reset(bool complete)
     this->direction = true;
     this->bonus = true;
 
-    this->bonusSkip =  Storage::get("generator.bonus.skip." + to_string(Application->environment->parameters.stage));
+    this->bonusSkip =  Storage::get("generator.bonus.skip." + patch::to_string(Application->environment->parameters.stage));
   }
 
   /**

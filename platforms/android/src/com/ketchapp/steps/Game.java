@@ -21,7 +21,7 @@
  *
  */
 
-package com.ketchapp.onemorestep;
+package com.ketchapp.steps;
 
 import android.content.Intent;
 import android.os.Bundle;

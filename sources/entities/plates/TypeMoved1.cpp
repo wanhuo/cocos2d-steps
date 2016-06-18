@@ -57,7 +57,7 @@ void TypeMoved1::start()
 
           if(Application->environment->character->plates.current == this->plate && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->character) < 1 && Application->environment->character->state == Character::STATE_NORMAL)
           {
-            Application->environment->character->plane->runAction(action->clone());
+            Application->environment->character->plane->Node::runAction(action->clone(), 400);
           }
         }),
         DelayTime::create(0.6),
@@ -79,7 +79,7 @@ void TypeMoved1::start()
 
           if(Application->environment->character->plates.current == this->plate && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->character) < 1 && Application->environment->character->state == Character::STATE_NORMAL)
           {
-            Application->environment->character->plane->runAction(action->clone());
+            Application->environment->character->plane->Node::runAction(action->clone(), 400);
           }
 
         }),
@@ -94,7 +94,7 @@ void TypeMoved1::start()
 
           if(Application->environment->character->plates.current == this->plate && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->character) < 1 && Application->environment->character->state == Character::STATE_NORMAL)
           {
-            Application->environment->character->plane->runAction(action->clone());
+            Application->environment->character->plane->Node::runAction(action->clone(), 400);
           }
 
         }),
@@ -117,7 +117,7 @@ void TypeMoved1::start()
 
           if(Application->environment->character->plates.current == this->plate && Director::getInstance()->getActionManager()->getNumberOfRunningActionsInTarget(Application->environment->character) < 1 && Application->environment->character->state == Character::STATE_NORMAL)
           {
-            Application->environment->character->plane->runAction(action->clone());
+            Application->environment->character->plane->Node::runAction(action->clone(), 400);
           }
         }),
         DelayTime::create(0.6),

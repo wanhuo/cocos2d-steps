@@ -59,14 +59,12 @@ void Insane::onCreate()
 
   this->setScale(0);
   this->window->setScale(0);
-  this->shadow->setScale(0);
 
   this->glow->setOpacity(150);
   this->glow->setScale(0.011);
 
   this->runAction(action->clone());
   this->window->runAction(action->clone());
-  this->shadow->runAction(action->clone());
 
   this->setTexture(Application->environment->getTextureState1());
 

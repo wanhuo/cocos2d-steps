@@ -115,7 +115,15 @@ void Color::onCreate()
   g = floor(min(g, 255.0f));
   b = floor(min(b, 255.0f));
 
-if(r == Application->environment->character->getColor().r && g == Application->environment->character->getColor().g && b == Application->environment->character->getColor().b)
+  float pr = Application->environment->character->getColor().r;
+  float pg = Application->environment->character->getColor().g;
+  float pb = Application->environment->character->getColor().b;
+
+  float rr = abs(r - pr);
+  float rg = abs(g - pg);
+  float rb = abs(b - pb);
+
+if(rr > 50 && rg > 50 && rb > 50)
 {
 }
 else

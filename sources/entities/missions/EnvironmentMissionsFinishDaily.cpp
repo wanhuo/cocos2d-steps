@@ -226,11 +226,11 @@ void EnvironmentMissionsFinishDaily::update(float time)
 {
   if(!Application->environment->missions.controller->popups.daily->task.active)
   {
-    int t = Application->environment->missions.controller->popups.daily->task.time - Times::now();
+    long long t = Application->environment->missions.controller->popups.daily->task.time - Times::now();
 
-    string h = "" + to_string(Times::hours(t));
-    string m = "" + to_string(Times::minutes(t));
-    string s = "" + to_string(Times::seconds(t));
+    string h = "" + patch::to_string(Times::hours(t));
+    string m = "" + patch::to_string(Times::minutes(t));
+    string s = "" + patch::to_string(Times::seconds(t));
 
     if(Times::hours(t) < 10) h = "0" + h;
     if(Times::minutes(t) < 10) m = "0" + m;

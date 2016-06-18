@@ -84,6 +84,8 @@ void Capture::onCreate()
   this->complete = false;
   this->earn = probably(20);
 
+  this->bind(true);
+
   /**
    *
    *

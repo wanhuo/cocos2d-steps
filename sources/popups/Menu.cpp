@@ -55,13 +55,13 @@ Menu::Menu()
   this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application), true);
   this->buttons.sound = new Button("sound-button.png", 2, 2, this, std::bind(&Menu::onSound, this), true);
   this->buttons.store = new Button("store-button.png", 2, 1, this, std::bind([=] () {
+    Application->changeState(Game::STORE);
     this->hide([=] () {
-      Application->changeState(Game::STORE);
     });
   }), true);
   this->buttons.missions = new Button("missions-button.png", 2, 1, this, std::bind([=] () {
+    Application->changeState(Game::MISSIONS);
     this->hide([=] () {
-      Application->changeState(Game::MISSIONS);
     });
   }), true);
 
@@ -130,6 +130,12 @@ void Menu::show()
   Popup::show();
 
   this->setOpacity(255);
+
+  this->buttons.store->bind(true);
+  this->buttons.missions->bind(true);
+  this->buttons.sound->bind(true);
+  this->buttons.leaderboards->bind(true);
+
 
   this->buttons.store->runAction(
     Spawn::create(
@@ -235,6 +241,11 @@ void Menu::show()
 
 void Menu::hide(Callback callback)
 {
+  this->buttons.store->bind(false);
+  this->buttons.missions->bind(false);
+  this->buttons.sound->bind(false);
+  this->buttons.leaderboards->bind(false);
+
   this->buttons.store->runAction(
     Spawn::create(
       Sequence::create(

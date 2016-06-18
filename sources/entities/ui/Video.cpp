@@ -118,11 +118,19 @@ void Video::onTouch(cocos2d::Touch* touch, Event* e)
    *
    */
   Heyzap::show(Config::AD_TYPE_VIDEO, [=] (bool state) {
-    Application->parameters.elapsed.ad = -2;
-    Application->counter->add(75);
+    if(state)
+    {
+      Application->parameters.elapsed.ad = -2;
+      Application->counter->add(75);
 
-    this->_destroy();
-    Watch::getInstance()->background->setOpacity(0);
+      this->_destroy();
+      Watch::getInstance()->background->setOpacity(0);
+
+      Watch::getInstance()->hide([=] () {
+        Application->changeState(Game::MENU);
+        Menu::getInstance()->updateSoundState();
+      });
+    }
   });
 
   Analytics::sendEvent("Application", "application.events.onVideoButtonPressed", "Application onVideoButtonPressed event");

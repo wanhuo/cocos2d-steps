@@ -82,6 +82,7 @@ void Down::setPlate(Plate* plate, bool animated)
    *
    *
    */
+  this->setPositionY(this->getPositionY() + 2.4);
   this->shadow->setPosition(plate->getStage() * 0.8);
 }
 
@@ -103,7 +104,7 @@ void Down::start()
 
   this->runAction(
     Sequence::create(
-      MoveBy::create(0.5, Vec3(0, 2.4, 0)),
+      DelayTime::create(0.5),
       CallFunc::create([=] () {
         this->runAction(
           RepeatForever::create(
