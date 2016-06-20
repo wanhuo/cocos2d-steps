@@ -28,10 +28,21 @@
  *
  *
  */
-TypeGate::TypeGate()
-: Special("plate.obj")
+TypeGate::TypeGate(string file, bool direction)
+: Special(file)
 {
-  this->decorations = new Pool(new Door, this);
+  this->direction = direction;
+
+  if(this->direction)
+  {
+    this->decoration1 = new Door("decoration-door-right.obj", this);
+    this->decoration2 = new Door("decoration-door-right.obj", this);
+  }
+  else
+  {
+    this->decoration1 = new Door("decoration-door-left.obj", this);
+    this->decoration2 = new Door("decoration-door-right.obj", this);
+  }
 }
 
 TypeGate::~TypeGate()
@@ -51,13 +62,6 @@ void TypeGate::onCreate()
 void TypeGate::onDestroy(bool action)
 {
   Special::onDestroy(action);
-
-  /**
-   *
-   *
-   *
-   */
-  this->decorations->clear(true);
 }
 
 /**
@@ -74,20 +78,20 @@ void TypeGate::setPlate(Plate* plate)
    *
    *
    */
-  auto decoration1 = static_cast<Decoration*>(this->decorations->_create());
-  auto decoration2 = static_cast<Decoration*>(this->decorations->_create());
+  this->decoration1->_create();
+  this->decoration2->_create();
 
-  decoration1->setPlate(this->plate, false);
-  decoration2->setPlate(this->plate, false);
+  this->decoration1->setPlate(this->plate);
+  this->decoration2->setPlate(this->plate);
 
-  decoration1->setPosition3D(Vec3(0.0, 0, 0));
-  decoration2->setPosition3D(Vec3(0.0, 0, 0));
+  this->decoration1->setPosition3D(Vec3(0.0, 0, 0));
+  this->decoration2->setPosition3D(Vec3(0.0, 0, 0));
 
-  decoration1->setRotation3D(Vec3(0, 0, 0));
-  decoration2->setRotation3D(Vec3(0, 180, 0));
+  this->decoration1->setRotation3D(Vec3(0, 0, 0));
+  this->decoration2->setRotation3D(Vec3(0, 180, 0));
 
-  this->getDecorations().push_back(decoration1);
-  this->getDecorations().push_back(decoration2);
+  this->getDecorations().push_back(this->decoration1);
+  this->getDecorations().push_back(this->decoration2);
 }
 
 /**
@@ -104,7 +108,7 @@ void TypeGate::start()
    *
    *
    */
-  this->decorations->element(0)->runAction(
+  this->decoration1->runAction(
     RepeatForever::create(
       Sequence::create(
         EaseBounceOut::create(
@@ -120,7 +124,7 @@ void TypeGate::start()
     )
   );
 
-  this->decorations->element(1)->runAction(
+  this->decoration2->runAction(
     RepeatForever::create(
       Sequence::create(
         EaseBounceOut::create(
@@ -160,5 +164,5 @@ void TypeGate::start()
  */
 TypeGate* TypeGate::deepCopy()
 {
-  return new TypeGate;
+  return new TypeGate(this->textureFileName, this->direction);
 }

@@ -28,8 +28,8 @@
  *
  *
  */
-Door::Door()
-: Decoration("door.obj")
+Door::Door(string file, Node* parent)
+: Decoration(file, parent)
 {
   this->engine = new Entity3D("door-engine.obj", this);
   this->engine->setColor(Color3B(255.0, 60.0, 60.0));
@@ -37,6 +37,8 @@ Door::Door()
   this->removable = false;
   this->stopable = false;
   this->unremovable = true;
+
+  this->setLightMask(0);
 }
 
 Door::~Door()
@@ -130,14 +132,4 @@ void Door::start()
 Character::Crash Door::status()
 {
   return this->enable ? Character::Crash::GATE : Character::Crash::UNDEFINED;
-}
-
-/**
- *
- *
- *
- */
-Door* Door::deepCopy()
-{
-  return new Door;
 }

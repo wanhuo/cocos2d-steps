@@ -35,6 +35,8 @@ Down::Down()
   this->setScheduleUpdate(true);
 
   this->removable = false;
+
+  this->setLightMask(0);
 }
 
 Down::~Down()

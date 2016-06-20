@@ -53,7 +53,7 @@ class Door : public Decoration
    *
    */
   public:
-  Door();
+  Door(string file, Node* parent);
  ~Door();
 
   Entity3D* engine;
@@ -66,8 +66,6 @@ class Door : public Decoration
   virtual void start();
 
   virtual Character::Crash status();
-
-  Door* deepCopy();
 };
 
 #endif

@@ -39,6 +39,9 @@ TypeMoved5::TypeMoved5()
   this->l = new Decoration("plate-type-moved-l.obj", this->p);
   this->r = new Decoration("plate-type-moved-r.obj", this->p);
 
+  this->l->setLightMask(0);
+  this->r->setLightMask(0);
+
   this->l->shadow = new Shadow("plate-bottom-shadow.obj", this->p);
   this->l->shadow->setMinScale(Vec3(0.5, 1.0, 1.2));
   this->l->shadow->setMaxScale(Vec3(0.5, 1.0, 1.2));
@@ -95,8 +98,8 @@ void TypeMoved5::setPlate(Plate* plate)
 
   this->p->setPosition3D(Vec3(this->plate->getPositionX(), 0.4 + (plate->getStage() * 0.8), this->plate->getPositionZ()));
   this->p->setRotation3D(Vec3(0.0, (this->plate->getDirection() ? 270.0 : 0.0), 0.0));
-  this->l->setPosition3D(Vec3(+ 0.75 / 2, 0, 0));
-  this->r->setPosition3D(Vec3(- 0.75 / 2, 0, 0));
+  this->l->setPosition3D(Vec3(- 0.75 / 2, 0, 0));
+  this->r->setPosition3D(Vec3(+ 0.75 / 2, 0, 0));
 
   this->getDecorations().push_back(this->p);
   this->getDecorations().push_back(this->l);
@@ -105,7 +108,7 @@ void TypeMoved5::setPlate(Plate* plate)
 
 void TypeMoved5::start()
 {
-  this->l->runAction(
+  this->r->runAction(
     RepeatForever::create(
       Sequence::create(
         MoveBy::create(0.15, Vec3(0.75, 0.0, 0.0)),
@@ -117,7 +120,7 @@ void TypeMoved5::start()
     )
   );
 
-  this->r->runAction(
+  this->l->runAction(
     RepeatForever::create(
       Sequence::create(
         MoveBy::create(0.15, Vec3(-0.75, 0.0, 0.0)),

@@ -123,7 +123,6 @@ class Environment : public Background
     Pool* bonus;
     Pool* spikes;
     Pool* trampolines;
-    Pool* gates;
     Pool* traps;
     Pool* copters;
     Pool* portals;
@@ -135,6 +134,7 @@ class Environment : public Background
     Pool* moved5;
 
     DirectionPlate saws;
+    DirectionPlate gates;
   };
 
   struct Decorations {

@@ -46,6 +46,7 @@ class TypeGate : public Special
    *
    */
   protected:
+  bool direction;
 
   /**
    *
@@ -53,10 +54,11 @@ class TypeGate : public Special
    *
    */
   public:
-  TypeGate();
+  TypeGate(string file, bool direction);
  ~TypeGate();
 
-  Pool* decorations;
+  Door* decoration1;
+  Door* decoration2;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);

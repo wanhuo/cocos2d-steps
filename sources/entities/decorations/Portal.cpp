@@ -35,6 +35,8 @@ Portal::Portal(Node* parent)
 
   this->setScale(0.8);
   this->setScaleY(0.1);
+
+  this->setLightMask(0);
 }
 
 Portal::~Portal()

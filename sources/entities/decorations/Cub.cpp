@@ -38,6 +38,8 @@ Cub::Cub()
   this->setScheduleUpdate(true);
 
   this->removable = false;
+
+  this->setLightMask(0);
 }
 
 Cub::~Cub()

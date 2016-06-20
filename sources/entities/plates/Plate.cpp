@@ -549,7 +549,17 @@ void Plate::setType(int type, bool animated, char data)
     break;
     case GATE:
     {
-      this->special = static_cast<TypeGate*>(Application->environment->plates.gates->_create());
+      this->setVisible(false);
+
+      if(this->direction)
+      {
+        this->special = static_cast<TypeGate*>(Application->environment->plates.gates.right->_create());
+      }
+      else
+      {
+        this->special = static_cast<TypeGate*>(Application->environment->plates.gates.left->_create());
+      }
+
       this->special->setPlate(this);
     }
     break;

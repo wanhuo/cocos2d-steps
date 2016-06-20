@@ -34,6 +34,8 @@ Start::Start()
   this->removable = false;
   this->stopable = false;
   this->unremovable = true;
+
+  this->setLightMask(0);
 }
 
 Start::~Start()
