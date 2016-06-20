@@ -57,7 +57,7 @@ Capture::Capture(Node* parent)
   this->setGlobalZOrder(1000);
   this->setCameraMask(8);
 
-  this->setScheduleUpdate(true);
+  this->setScheduleUpdate(Screenshot::support());
   this->bind(true);
 }
 
@@ -82,7 +82,7 @@ void Capture::onCreate()
   this->state = STATE_NORMAL;
 
   this->complete = false;
-  this->earn = probably(20);
+  this->earn = Screenshot::support() && probably(20);
 
   this->bind(true);
 
@@ -220,75 +220,104 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
         MoveTo::create(0.2, Vec2(Application->getWidth() / 2, Application->getHeight() / 2)),
         Sequence::create(
           CallFunc::create([=] () {
-          if(!complete)
+          if(Screenshot::support())
           {
-            this->text->setText("capture-1");
-            this->text->setPosition(this->getWidth() / 2, 35);
-            this->text->data(0);
+            if(!this->complete)
+            {
+              this->text->setText("capture-1");
+              this->text->setPosition(this->getWidth() / 2, 35);
+              this->text->data(0);
 
-            this->diamond->_destroy();
+              this->diamond->_destroy();
+            }
+
+            this->element->runAction(
+              Sequence::create(
+                FadeTo::create(0.2, this->complete ? 255.0 : 0.0),
+                CallFunc::create([=] () {
+                  Application->onShare(this->complete,
+                    [=] (bool state) {
+                    if(this->state == STATE_ACTIVE) this->onTouch(NULL, NULL);
+
+                    if(state)
+                    {
+                      this->text->setText("capture-successful");
+
+                      if(this->earn)
+                      {
+                        this->earn = false;
+                        Application->counter->add(50);
+                      }
+                    }
+                    else
+                    {
+                      this->text->setText("capture-failed");
+                    }
+                    },
+                    [=] (int type, int state) {
+                      this->element->setOpacity(255);
+
+                      switch(type)
+                      {
+                        case 1:
+                        this->element->setTextureRect(
+                          Rect(
+                            0,
+                            0,
+                            this->element->getTextureRect().size.width,
+                            this->element2->getTextureRect().size.height * state / 100
+                          )
+                        );
+
+                        this->text->data(state);
+
+                        if(state >= 100)
+                        {
+                          this->complete = true;
+                        }
+                        break;
+                        case 2:
+                        this->text->setText("capture-2");
+                        this->text->data(state);
+
+                        if(state >= 100)
+                        {
+                          this->complete = true;
+                        }
+                        break;
+                      }
+                  });
+                }),
+                nullptr
+              )
+            );
           }
-
-          this->element->runAction(
-            Sequence::create(
-              FadeTo::create(0.2, this->complete ? 255.0 : 0.0),
-              CallFunc::create([=] () {
+          else
+          {
+            this->runAction(
+              Sequence::create(
+                DelayTime::create(0.5),
+                CallFunc::create([=] () {
                 Application->onShare(this->complete,
                   [=] (bool state) {
-                  if(this->state == STATE_ACTIVE) this->onTouch(NULL, NULL);
+                    if(this->state == STATE_ACTIVE) this->onTouch(NULL, NULL);
 
-                  if(state)
-                  {
-                    this->text->setText("capture-successful");
-
-                    if(this->earn)
+                    if(state)
                     {
-                      this->earn = false;
-                      Application->counter->add(50);
+                      this->text->setText("capture-successful");
                     }
-                  }
-                  else
-                  {
-                    this->text->setText("capture-failed");
-                  }
+                    else
+                    {
+                      this->text->setText("capture-failed");
+                    }
                   },
-                  [=] (int type, int state) {
-                    this->element->setOpacity(255);
-
-                    switch(type)
-                    {
-                      case 1:
-                      this->element->setTextureRect(
-                        Rect(
-                          0,
-                          0,
-                          this->element->getTextureRect().size.width,
-                          this->element2->getTextureRect().size.height * state / 100
-                        )
-                      );
-
-                      this->text->data(state);
-
-                      if(state >= 100)
-                      {
-                        this->complete = true;
-                      }
-                      break;
-                      case 2:
-                      this->text->setText("capture-2");
-                      this->text->data(state);
-
-                      if(state >= 100)
-                      {
-                        this->complete = true;
-                      }
-                      break;
-                    }
-                });
-              }),
-              nullptr
-            )
-          );
+                 [=] (int type, int state) {
+                 });
+                }),
+                nullptr
+              )
+            );
+          }
           }),
           nullptr
         ),
@@ -344,6 +373,13 @@ void Capture::screenshot(string texture)
    *
    *
    */
+  this->text->setText("capture");
+
+  /**
+   *
+   *
+   *
+   */
   Director::getInstance()->getTextureCache()->removeUnusedTextures();
   Director::getInstance()->getTextureCache()->removeTextureForKey(texture.c_str());
 
@@ -353,8 +389,9 @@ void Capture::screenshot(string texture)
    *
    */
   this->element->setTexture(texture.c_str());
-  this->element->setScale(this->getWidth() / this->element->getWidth());
-  this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2);
+  this->element->setScale(407/ this->element->getTextureRect().size.width);
+  this->element->setPosition(this->getWidth() / 2, 71);
+  this->element->setAnchorPoint(Vec2(0.5, 0.0));
 }
 
 /**

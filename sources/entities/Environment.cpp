@@ -165,15 +165,15 @@ void Environment::create()
   this->characterActionHolder->setCameraMask(4);
 
   this->characterActionBackground = new BackgroundColor(this->characterActionHolder, Color4B(255, 255, 255, 150));
-  this->characterActionBackground->setContentSize(Size(Application->getWidth() - 100, 40));
+  this->characterActionBackground->setContentSize(Size(min(Application->getWidth() - 100, 800.0f), 40));
   this->characterActionBackground->setAnchorPoint(Vec2(0, 0));
-  this->characterActionBackground->setPosition(Vec2(50, 10));
+  this->characterActionBackground->setPosition(Vec2(Application->getCenter().x - this->characterActionBackground->getContentSize().width / 2, 10));
   this->characterActionBackground->setCameraMask(4);
 
   this->characterAction = new BackgroundColor(this->characterActionHolder, Color4B(255, 0, 0, 150));
-  this->characterAction->setContentSize(Size(Application->getWidth() - 110, 30));
+  this->characterAction->setContentSize(Size(min(Application->getWidth() - 110, 790.0f), 30));
   this->characterAction->setAnchorPoint(Vec2(0, 0));
-  this->characterAction->setPosition(Vec2(55, 15));
+  this->characterAction->setPosition(Vec2(Application->getCenter().x - this->characterActionBackground->getContentSize().width / 2 + 5, 15));
   this->characterAction->setCameraMask(4);
 
   this->characterActionHolder->setScale(0);

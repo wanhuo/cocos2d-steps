@@ -364,7 +364,6 @@
 		78CA6D0B1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
 		78CA6D0D1C20645200BF8416 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D061C20645200BF8416 /* Environment.cpp */; };
-		78CEEA631D0B23D1000A85D4 /* NSSocial.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEA611D0B23CA000A85D4 /* NSSocial.mm */; };
 		78CEEB2C1D0B8FB0000A85D4 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CEEB2B1D0B8FB0000A85D4 /* AssetsLibrary.framework */; };
 		78CEEB2D1D0B8FCD000A85D4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CEEA5D1D0A2700000A85D4 /* ImageIO.framework */; };
 		78CEEB341D0C44CD000A85D4 /* UIImage+ImageScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB331D0C44CD000A85D4 /* UIImage+ImageScale.m */; };
@@ -684,8 +683,6 @@
 		78CA6D061C20645200BF8416 /* Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Environment.cpp; sourceTree = "<group>"; };
 		78CA6D071C20645200BF8416 /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		78CEEA5D1D0A2700000A85D4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
-		78CEEA601D0B23CA000A85D4 /* NSSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSSocial.h; sourceTree = "<group>"; };
-		78CEEA611D0B23CA000A85D4 /* NSSocial.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSSocial.mm; sourceTree = "<group>"; };
 		78CEEB2B1D0B8FB0000A85D4 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/AssetsLibrary.framework; sourceTree = DEVELOPER_DIR; };
 		78CEEB321D0C44CD000A85D4 /* UIImage+ImageScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageScale.h"; sourceTree = "<group>"; };
 		78CEEB331D0C44CD000A85D4 /* UIImage+ImageScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageScale.m"; sourceTree = "<group>"; };
@@ -1139,7 +1136,6 @@
 			isa = PBXGroup;
 			children = (
 				7891E8631CF2125F005C238E /* main.cpp */,
-				78CEEA5F1D0B23CA000A85D4 /* social */,
 			);
 			path = mac;
 			sourceTree = "<group>";
@@ -1240,8 +1236,8 @@
 		7891E8811CF21293005C238E /* services */ = {
 			isa = PBXGroup;
 			children = (
-				7891E8821CF21293005C238E /* NSServices.h */,
 				7891E8831CF21293005C238E /* NSServices.mm */,
+				7891E8821CF21293005C238E /* NSServices.h */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -1509,15 +1505,6 @@
 				7891E8C11CF3559D005C238E /* EnvironmentMissionsFinishDaily.h */,
 			);
 			path = missions;
-			sourceTree = "<group>";
-		};
-		78CEEA5F1D0B23CA000A85D4 /* social */ = {
-			isa = PBXGroup;
-			children = (
-				78CEEA611D0B23CA000A85D4 /* NSSocial.mm */,
-				78CEEA601D0B23CA000A85D4 /* NSSocial.h */,
-			);
-			path = social;
 			sourceTree = "<group>";
 		};
 		78CEEB311D0C44CD000A85D4 /* UIImage */ = {
@@ -1822,7 +1809,6 @@
 				78C72BBD1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp in Sources */,
 				78B4B6D71CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
 				78B4B6D91CBD751D00F2D8A7 /* Energy.cpp in Sources */,
-				78CEEA631D0B23D1000A85D4 /* NSSocial.mm in Sources */,
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
 				7891E8AF1CF30A74005C238E /* Letters.cpp in Sources */,

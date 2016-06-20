@@ -333,6 +333,18 @@
         "size": 48
       }
     ],
+    "capture": [
+      {
+        "title": "SHARE",
+        "font": "square",
+        "size": 48,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      }
+    ],
     "capture-share": [
       {
         "title": "SHARE GIF",

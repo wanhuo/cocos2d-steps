@@ -1550,7 +1550,7 @@ void Character::onCrash(Crash crash)
       case DOWN:
       case GATE:
       case TRAP:
-      if(Application->capturing.supported)
+      if(Screenshot::support())
       {
         /**
          *
@@ -1558,13 +1558,13 @@ void Character::onCrash(Crash crash)
          * @Capture
          *
          */
-        /*Application->captures->texts.score->runAction(
+        Application->captures->texts.score->runAction(
           Sequence::create(
             ScaleTo::create(0.1, 0.45),
             ScaleTo::create(0.5, 0.35),
             nullptr
           )
-        );*/
+        );
 
         Application->runAction(
           Sequence::create(
@@ -1874,11 +1874,12 @@ void Character::onInsaneStart()
 
   Application->i->_create();
   Application->i->setOpacity(0);
-  Application->i->setScale(1.5);
+  Application->i->setScaleX(Application->getWidth() / Application->i->getWidth() + 0.5);
+  Application->i->setScaleY(Application->getHeight() / Application->i->getHeight() + 0.5);
   Application->i->runAction(
     Spawn::create(
       FadeTo::create(2.5, 200),
-      ScaleTo::create(2.5, 1.0),
+      ScaleTo::create(2.5, Application->getWidth() / Application->i->getWidth(), Application->getHeight() / Application->i->getHeight()),
       nullptr
     )
   );

@@ -203,8 +203,6 @@ class Game : public Screen
   };
 
   struct Capturing {
-    bool supported = true;
-
     int index;
     int frame;
     int frames;
@@ -291,6 +289,8 @@ class Game : public Screen
   Captures* captures;
 
   State state = NONE;
+
+  virtual void generateFrameBuffer();
 
   virtual FrameBuffer* getFrameBuffer();
 

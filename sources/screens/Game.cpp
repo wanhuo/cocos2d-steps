@@ -59,22 +59,6 @@ Game::Game()
 
   SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ui/ui.plist");
 
-  auto size = Size(Director::getInstance()->getWinSizeInPixels().width, Director::getInstance()->getWinSizeInPixels().height);
-  this->frameBuffer = FrameBuffer::create(1, size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
-
-  auto rt = RenderTarget::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
-  auto rtDS = RenderTargetDepthStencil::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
-  this->frameBuffer->attachRenderTarget(rt);
-  this->frameBuffer->attachDepthStencilTarget(rtDS);
-
- /* this->generate = Sprite::createWithTexture(this->getFrameBuffer()->getRenderTarget()->getTexture());
-  this->generate->setScaleX(1 * FRAME_BUFFER_FACTOR);
-  this->generate->setScaleY(-1 * FRAME_BUFFER_FACTOR);
-  this->generate->setPosition(size.width / 2, size.height / 2);
-  this->generate->setCameraMask(2);
-  this->generate->setGlobalZOrder(1);
-  this->addChild(this->generate);*/
-
   this->cameras.d = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
   this->cameras.c = Camera::createOrthographic(this->getWidth() / SCALE_FACTOR, this->getHeight() / SCALE_FACTOR, NEAR, FAR);
   this->cameras.s = Camera::create();
@@ -93,13 +77,10 @@ Game::Game()
   this->cameras.e->setDepth(4);
   this->cameras.c->setDepth(8);
 
-  //this->cameras.d->setFrameBufferObject(this->getFrameBuffer());
-  //this->cameras.s->setFrameBufferObject(this->getFrameBuffer());
-  //this->cameras.e->setFrameBufferObject(this->getFrameBuffer());
-  //this->cameras.c->setFrameBufferObject(this->getFrameBuffer());
+  this->generateFrameBuffer();
 
-  float x = -(this->getWidth() / SCALE_FACTOR) / 2 - 39.35;
-  float y = -(this->getHeight() / SCALE_FACTOR) / 2 + 55;
+  float x = -this->getFrustumWidth() / 2 - (this->getWidth() > this->getHeight() ? 41.5 : 39.5);
+  float y = -this->getFrustumHeight() / 2 + (this->getWidth() > this->getHeight() ? 58.0 : 55.0);
   float z = 45;
 
   float rx = -40;
@@ -136,20 +117,45 @@ Game::Game()
 
   this->s = new BackgroundColor(this, Color4B(255, 255, 255, 0));
   this->d = new BackgroundColor(this, Color4B(0, 0, 0, 0));
+
   this->i = new Entity("insane-background.png", this);
   this->i->setPosition(this->getCenter().x, this->getCenter().y);
 
   this->s->setCameraMask(8);
   this->d->setCameraMask(8);
   this->i->setCameraMask(8);
+}
 
-  /**
-   *
-   * @Capture
-   *
-   */
-  /*if(this->capturing.supported)
+Game::~Game()
+{
+}
+
+/**
+ *
+ *
+ *
+ */
+void Game::generateFrameBuffer()
+{  if(Screenshot::support())
   {
+  auto size = Size(Director::getInstance()->getWinSizeInPixels().width, Director::getInstance()->getWinSizeInPixels().height);
+
+  this->frameBuffer = FrameBuffer::create(1, size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
+
+  auto rt = RenderTarget::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
+  auto rtDS = RenderTargetDepthStencil::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
+  this->frameBuffer->attachRenderTarget(rt);
+  this->frameBuffer->attachDepthStencilTarget(rtDS);
+
+  this->generate = Sprite::createWithTexture(this->getFrameBuffer()->getRenderTarget()->getTexture());
+  this->generate->setScaleX(1 * FRAME_BUFFER_FACTOR);
+  this->generate->setScaleY(-1 * FRAME_BUFFER_FACTOR);
+  this->generate->setPosition(size.width / 2, size.height / 2);
+  this->generate->setCameraMask(2);
+  this->generate->setGlobalZOrder(1);
+  this->addChild(this->generate);
+
+
     for(int i = 0; i < CAPTURE_FPS * CAPTURE_TIME; i++)
     {
       auto render = RenderTexture::create(size.width / FRAME_BUFFER_FACTOR / CAPTURE_SCALE, size.width / FRAME_BUFFER_FACTOR / CAPTURE_SCALE, Texture2D::PixelFormat::RGB565);
@@ -157,17 +163,15 @@ Game::Game()
 
       this->capturing.textures.push_back(render);
     }
-  }
 
   this->captures = new Captures();
   this->captures->initWithTexture(this->generate->getTexture());
   this->captures->setScaleX(1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
   this->captures->setScaleY(-1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
   this->captures->setPosition(this->getWidth() / CAPTURE_SCALE / 2, this->getHeight() / CAPTURE_SCALE / 2 - CAPTURE_POSITION / CAPTURE_SCALE);
-*/}
 
-Game::~Game()
-{
+  this->cameras.d->setFrameBufferObject(this->getFrameBuffer());
+  }
 }
 
 /**
@@ -319,7 +323,7 @@ void Game::onTwitterLike()
 
 void Game::onShare(bool complete, const std::function<void(bool)>& callback, const std::function<void(int, int)>& update)
 {
-  Events::onShare(complete, callback, update, this->capturing.supported);
+  Events::onShare(complete, callback, update);
 }
 
 void Game::onTwitter()
@@ -361,7 +365,7 @@ void Game::onMenu()
 
   this->cameras.d->setScale(0.6);
   this->cameras.d->setPosition3D(Vec3(this->startCameraX, this->startCameraY - 20, this->startCameraZ));
-  this->cameras.d->setRotation3D(Vec3(this->startCameraRotationX + 15, this->startCameraRotationY - 1.8, this->startCameraRotationZ));
+  this->cameras.d->setRotation3D(Vec3(this->startCameraRotationX + 15, this->startCameraRotationY - (this->getWidth() > this->getHeight() ? 4.0 : 1.8), this->startCameraRotationZ));
 }
 
 void Game::onGame()
@@ -643,36 +647,39 @@ void Game::updateMissionComplete(float time)
  */
 void Game::updateCapture(float time)
 {
-  switch(this->state)
+  if(Screenshot::support())
   {
-    default:
-    break;
-    case GAME:
-    case LOSE:
-    if(!this->capture->Node::state->create)
+    switch(this->state)
     {
-      this->capturing.timeElapsed += time;
-
-      if(this->capturing.timeElapsed >= this->capturing.time || CAPTURE_FPS == 60)
+      default:
+      break;
+      case GAME:
+      case LOSE:
+      if(!this->capture->Node::state->create)
       {
-        this->capturing.timeElapsed = 0;
+        this->capturing.timeElapsed += time;
 
-        auto lastRender = this->capturing.textures.at(this->capturing.textures.size() - 1);
-        this->capturing.textures.erase(this->capturing.textures.begin() + this->capturing.textures.size() - 1);
-        this->capturing.textures.insert(this->capturing.textures.begin(), lastRender);
+        if(this->capturing.timeElapsed >= this->capturing.time || CAPTURE_FPS == 60)
+        {
+          this->capturing.timeElapsed = 0;
 
-        this->captures->setTexture(this->generate->getTexture());
+          auto lastRender = this->capturing.textures.at(this->capturing.textures.size() - 1);
+          this->capturing.textures.erase(this->capturing.textures.begin() + this->capturing.textures.size() - 1);
+          this->capturing.textures.insert(this->capturing.textures.begin(), lastRender);
 
-        auto render = this->capturing.textures.at(0);
+          this->captures->setTexture(this->generate->getTexture());
 
-        render->beginWithClear(1, 1, 1, 1);
-        this->captures->Sprite::visit();
-        render->end();
+          auto render = this->capturing.textures.at(0);
 
-        this->capturing.frames = min<int>(CAPTURE_FPS * CAPTURE_TIME - 1, this->capturing.frames + 1);
+          render->beginWithClear(1, 1, 1, 1);
+          this->captures->Sprite::visit();
+          render->end();
+
+          this->capturing.frames = min<int>(CAPTURE_FPS * CAPTURE_TIME - 1, this->capturing.frames + 1);
+        }
       }
+      break;
     }
-    break;
   }
 }
 
@@ -683,7 +690,7 @@ void Game::updateCapture(float time)
  */
 void Game::updateStates(float time)
 {
-  //this->updateCapture(time);
+  this->updateCapture(time);
 
   switch(this->state)
   {

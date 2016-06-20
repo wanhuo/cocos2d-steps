@@ -29,7 +29,7 @@
  *
  */
 Plate::Plate()
-: Cube("plate.c3b")
+: Cube("plate.obj")
 {
   this->decorations = *new vector<Decoration*>();
 
@@ -38,7 +38,8 @@ Plate::Plate()
   this->shadow->setMaxScale(Vec3(0.995, 1.0, 0.995));
   this->shadow->setOffset(Vec3(0.4, 0.0, 0.4));
 
-  this->setScheduleUpdate(true);this->setLightMask(0);
+  this->setLightMask(0);
+  this->setScheduleUpdate(true);
 }
 
 Plate::~Plate()
@@ -495,7 +496,7 @@ void Plate::setType(int type, bool animated, char data)
       this->special = static_cast<Special*>(Application->environment->plates.bonus->_create());
       this->special->setPlate(this);
 
-      this->special->setRotation3D(Vec3(0, this->direction ? 180 : -90, 0));
+      this->special->setRotation3D(Vec3(0, this->direction ? 0 : -90, 0));
     }
     break;
     case PRESENTION:
@@ -735,7 +736,7 @@ void Plate::setType(int type, bool animated, char data)
 
       if(this->additional)
       {
-        this->additional->setRotation3D(Vec3(0.0, 180.0, -90.0));
+        this->additional->setRotation3D(Vec3(0.0, 0.0, -90.0));
         this->additional->setScaleY(0.25);
       }
     }

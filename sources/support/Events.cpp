@@ -163,14 +163,14 @@ void Events::onTwitterLike()
  *
  *
  */
-void Events::onShare(bool complete, const std::function<void(bool)>& callback, const std::function<void(int, int)>& update, bool animated)
+void Events::onShare(bool complete, const std::function<void(bool)>& callback, const std::function<void(int, int)>& update)
 {
   Analytics::sendEvent("Application", "application.events.onShare", "Application onShare event");
 
   auto text = new Text("share-message");
   auto size = Director::getInstance()->getOpenGLView()->getFrameSize();
 
-  if(animated)
+  if(Screenshot::support())
   {
     Social::share(complete, callback, update, text->data(Application->counter->values.current), Config::link);
   }
