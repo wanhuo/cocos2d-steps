@@ -535,7 +535,15 @@ void Plate::setType(int type, bool animated, char data)
     {
       this->setVisible(false);
 
-      this->special = static_cast<TypeSaw*>(Application->environment->plates.saws->_create());
+      if(this->direction)
+      {
+        this->special = static_cast<TypeSaw*>(Application->environment->plates.saws.right->_create());
+      }
+      else
+      {
+        this->special = static_cast<TypeSaw*>(Application->environment->plates.saws.left->_create());
+      }
+
       this->special->setPlate(this);
     }
     break;

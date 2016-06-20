@@ -53,7 +53,7 @@ class TypeSaw : public Special
    *
    */
   public:
-  TypeSaw();
+  TypeSaw(string file);
  ~TypeSaw();
 
   Pool* saws;

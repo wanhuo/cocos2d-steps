@@ -50,7 +50,7 @@ EnvironmentMissionsItem::EnvironmentMissionsItem(int index)
   this->shadow->setOffset(Vec3(0.15, 0.0, 0.15));
 
   this->elements.lock = new Entity3D("store-unlock.obj", false);
-  this->elements.lock->setTexture("ui/video-texture.png");
+  this->elements.lock->setTexture("textures/store-unlock-texture.png");
 
   this->elements.plane = cocos2d::ui::Layout::create();
   this->elements.plane->setContentSize(Size(3.0, 10.0));

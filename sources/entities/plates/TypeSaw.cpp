@@ -28,8 +28,8 @@
  *
  *
  */
-TypeSaw::TypeSaw()
-: Special("plate-type-saw.obj")
+TypeSaw::TypeSaw(string file)
+: Special(file)
 {
   this->saws = new Pool(new Saw, this);
 }
@@ -147,5 +147,5 @@ void TypeSaw::start()
  */
 TypeSaw* TypeSaw::deepCopy()
 {
-  return new TypeSaw;
+  return new TypeSaw(this->textureFileName);
 }

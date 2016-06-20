@@ -53,7 +53,7 @@ EnvironmentStoreItem::EnvironmentStoreItem(Json* parameters)
   this->elements.facebook = new Entity3D("store-plate.obj", false);
   this->elements.twitter = new Entity3D("store-plate.obj", false);
 
-  this->elements.lock->setTexture("ui/video-texture.png");
+  this->elements.lock->setTexture("textures/store-unlock-texture.png");
   this->elements.facebook->setTexture("ui/facebook-texture.png");
   this->elements.twitter->setTexture("ui/twitter-texture.png");
 

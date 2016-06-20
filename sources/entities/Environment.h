@@ -109,6 +109,11 @@ class Environment : public Background
     BaseLight* natural;
   };
 
+  struct DirectionPlate {
+    Pool* left;
+    Pool* right;
+  };
+
   struct Plates {
     Pool* normal;
     Pool* simple;
@@ -118,7 +123,6 @@ class Environment : public Background
     Pool* bonus;
     Pool* spikes;
     Pool* trampolines;
-    Pool* saws;
     Pool* gates;
     Pool* traps;
     Pool* copters;
@@ -129,6 +133,8 @@ class Environment : public Background
     Pool* moved3;
     Pool* moved4;
     Pool* moved5;
+
+    DirectionPlate saws;
   };
 
   struct Decorations {
