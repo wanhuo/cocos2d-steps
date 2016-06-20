@@ -277,12 +277,25 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
                         }
                         break;
                         case 2:
+                        Application->giphy->_create();
+                        Application->giphy->update(state);
+
                         this->text->setText("capture-2");
                         this->text->data(state);
 
                         if(state >= 100)
                         {
                           this->complete = true;
+
+                          Application->giphy->runAction(
+                            Sequence::create(
+                              MoveBy::create(0.2, Vec2(0, 100)),
+                              CallFunc::create([=] () {
+                              Application->giphy->_destroy();
+                              }),
+                              nullptr
+                            )
+                          );
                         }
                         break;
                       }
@@ -408,6 +421,7 @@ void Capture::animation()
    *
    *
    */
+  this->element->_create();
   this->element->initWithTexture(Application->capturing.textures.at(0)->getSprite()->getTexture());
   this->element->setScale(407 / this->element->getWidth());
   this->element->setScaleY(this->element->getScaleY() * -1);

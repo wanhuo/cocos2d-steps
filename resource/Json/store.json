@@ -36,49 +36,49 @@
 			"id": "items.characters.6",
 			"file": "character-6",
 			"index": 6,
-			"missions": 0,
+			"missions": 5,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.7",
 			"file": "character-7",
 			"index": 7,
-			"missions": 0,
+			"missions": 5,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.8",
 			"file": "character-8",
 			"index": 8,
-			"missions": 0,
+			"missions": 5,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.9",
 			"file": "character-9",
 			"index": 9,
-			"missions": 0,
+			"missions": 5,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.10",
 			"file": "character-10",
 			"index": 10,
-			"missions": 0,
+			"missions": 10,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.11",
 			"file": "character-11",
 			"index": 11,
-			"missions": 0,
+			"missions": 10,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.12",
 			"file": "character-12",
 			"index": 12,
-			"missions": 0,
+			"missions": 10,
 			"diamonds": 200
 		},
 		{
@@ -92,49 +92,49 @@
 			"id": "items.characters.14",
 			"file": "character-14",
 			"index": 14,
-			"missions": 10,
+			"missions": 20,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.15",
 			"file": "character-15",
 			"index": 15,
-			"missions": 10,
+			"missions": 20,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.16",
 			"file": "character-16",
 			"index": 16,
-			"missions": 10,
+			"missions": 20,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.17",
 			"file": "character-17",
 			"index": 17,
-			"missions": 10,
+			"missions": 30,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.18",
 			"file": "character-18",
 			"index": 18,
-			"missions": 10,
+			"missions": 30,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.19",
 			"file": "character-19",
 			"index": 19,
-			"missions": 10,
+			"missions": 30,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.20",
 			"file": "character-20",
 			"index": 20,
-			"missions": 10,
+			"missions": 30,
 			"diamonds": 200
 		}
 	],
@@ -175,98 +175,98 @@
 			"id": "items.textures.6",
 			"file": "store-plate",
 			"index": 6,
-			"missions": 0,
+			"missions": 5,
 			"diamonds": 200
 		},
 		{
 			"id": "items.textures.7",
 			"file": "store-plate",
 			"index": 7,
-			"missions": 0,
+			"missions": 5,
 			"diamonds": 200
 		},
 		{
 			"id": "items.textures.8",
 			"file": "store-plate",
 			"index": 8,
-			"missions": 0,
+			"missions": 5,
 			"diamonds": 200
 		},
 		{
 			"id": "items.textures.9",
 			"file": "store-plate",
 			"index": 9,
-			"missions": 0,
+			"missions": 5,
 			"diamonds": 200
 		},
 		{
 			"id": "items.textures.10",
 			"file": "store-plate",
 			"index": 10,
-			"missions": 0,
+			"missions": 10,
 			"diamonds": 200
 		},
 		{
 			"id": "items.textures.11",
 			"file": "store-plate",
 			"index": 11,
-			"missions": 0,
+			"missions": 10,
 			"diamonds": 200
 		},
 		{
 			"id": "items.textures.12",
 			"file": "store-plate",
 			"index": 12,
-			"missions": 0,
+			"missions": 10,
 			"diamonds": 200
 		},
 		{
 			"id": "items.textures.13",
 			"file": "store-plate",
 			"index": 13,
-			"missions": 0,
+			"missions": 10,
 			"diamonds": 200
 		},
 		{
 			"id": "items.textures.14",
 			"file": "store-plate",
 			"index": 14,
-			"missions": 0,
+			"missions": 20,
 			"diamonds": 200
 		},
 		{
 			"id": "items.textures.15",
 			"file": "store-plate",
 			"index": 15,
-			"missions": 0,
+			"missions": 20,
 			"diamonds": 200
 		},
 		{
 			"id": "items.textures.16",
 			"file": "store-plate",
 			"index": 16,
-			"missions": 0,
+			"missions": 20,
 			"diamonds": 200
 		},
 		{
 			"id": "items.textures.17",
 			"file": "store-plate",
 			"index": 17,
-			"missions": 0,
+			"missions": 30,
 			"diamonds": 200
 		},
 		{
 			"id": "items.textures.18",
 			"file": "store-plate",
 			"index": 18,
-			"missions": 0,
+			"missions": 30,
 			"diamonds": 200
 		},
 		{
 			"id": "items.textures.19",
 			"file": "store-plate",
 			"index": 19,
-			"missions": 0,
+			"missions": 30,
 			"diamonds": 200
 		}
 	]

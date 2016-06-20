@@ -45,6 +45,7 @@
 #include "Video.h"
 #include "Unlock.h"
 #include "Rampage.h"
+#include "Giphy.h"
 
 #include "Generator.h"
 #include "Letters.h"
@@ -282,6 +283,8 @@ class Game : public Screen
   Environment* environment;
   Capturing capturing;
   Cameras cameras;
+
+  Giphy* giphy;
 
   Counter* counter;
   Capture* capture;

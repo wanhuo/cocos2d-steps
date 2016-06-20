@@ -397,6 +397,9 @@
 		78F0C9051D03280D00BB0DC3 /* TypeDuel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C9031D03280D00BB0DC3 /* TypeDuel.cpp */; };
 		78F0C9061D03280D00BB0DC3 /* TypeDuel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C9031D03280D00BB0DC3 /* TypeDuel.cpp */; };
 		78F0C9071D03280D00BB0DC3 /* TypeDuel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C9031D03280D00BB0DC3 /* TypeDuel.cpp */; };
+		78F7BD471D1882D200FF8FDE /* Giphy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F7BD451D1882D200FF8FDE /* Giphy.cpp */; };
+		78F7BD481D1882D200FF8FDE /* Giphy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F7BD451D1882D200FF8FDE /* Giphy.cpp */; };
+		78F7BD491D1882D200FF8FDE /* Giphy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F7BD451D1882D200FF8FDE /* Giphy.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -716,6 +719,8 @@
 		78F0C8FF1D026C3400BB0DC3 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		78F0C9031D03280D00BB0DC3 /* TypeDuel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeDuel.cpp; sourceTree = "<group>"; };
 		78F0C9041D03280D00BB0DC3 /* TypeDuel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeDuel.h; sourceTree = "<group>"; };
+		78F7BD451D1882D200FF8FDE /* Giphy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Giphy.cpp; sourceTree = "<group>"; };
+		78F7BD461D1882D200FF8FDE /* Giphy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Giphy.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1119,6 +1124,8 @@
 				78C054AE1D0DCFD10084EDD4 /* Captures.h */,
 				7832A6781D1040700059BFE3 /* Rampage.cpp */,
 				7832A6791D1040700059BFE3 /* Rampage.h */,
+				78F7BD451D1882D200FF8FDE /* Giphy.cpp */,
+				78F7BD461D1882D200FF8FDE /* Giphy.h */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -1808,6 +1815,7 @@
 				7832A67B1D1040700059BFE3 /* Rampage.cpp in Sources */,
 				78C72BBD1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp in Sources */,
 				78B4B6D71CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
+				78F7BD481D1882D200FF8FDE /* Giphy.cpp in Sources */,
 				78B4B6D91CBD751D00F2D8A7 /* Energy.cpp in Sources */,
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
@@ -1942,6 +1950,7 @@
 				78C352F21CEE7DB000F10068 /* TypeMoved3.cpp in Sources */,
 				78F0C8FD1D02476500BB0DC3 /* Episodes.cpp in Sources */,
 				7832A8AB1D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */,
+				78F7BD491D1882D200FF8FDE /* Giphy.cpp in Sources */,
 				7891E8C91CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp in Sources */,
 				78C352F31CEE7DB000F10068 /* TypeTrampoline.cpp in Sources */,
 				78C352F41CEE7DB000F10068 /* TypeBonus.cpp in Sources */,
@@ -2060,6 +2069,7 @@
 				78B4B6F31CBF911800F2D8A7 /* Saw.cpp in Sources */,
 				7832A8BB1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */,
 				78B4B6E21CBD817900F2D8A7 /* Shadow.cpp in Sources */,
+				78F7BD471D1882D200FF8FDE /* Giphy.cpp in Sources */,
 				7891E8C71CF3591D005C238E /* EnvironmentMissionsFinishKetchapp.cpp in Sources */,
 				789E71761CD1086200BDCDC7 /* Ground.cpp in Sources */,
 				78B4B6FB1CBF91E000F2D8A7 /* Door.cpp in Sources */,

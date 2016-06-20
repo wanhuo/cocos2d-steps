@@ -110,6 +110,8 @@ Game::Game()
   this->environment = new Environment(this);
   this->environment->create();
 
+  this->giphy = new Giphy(this);
+
   this->counter = new Counter(this);
   this->capture = new Capture(this);
 

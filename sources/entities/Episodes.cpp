@@ -302,7 +302,7 @@ void Generator::onEpisodeStart(int episode)
       Spawn::create(
         ScaleTo::create(0.5, 0.8),
         MoveTo::create(0.5, Vec3(px, py - 22, pz)),
-        RotateTo::create(0.5, Vec3(x + 15, y - 0.0, z)),
+        RotateTo::create(0.5, Vec3(x + 15, y, z)),
         nullptr
       )
     );
@@ -315,10 +315,9 @@ void Generator::onEpisodeStart(int episode)
     Application->cameras.d->stopAllActions();
     Application->cameras.d->runAction(
       Spawn::create(
-        EaseSineIn::create(
-          ScaleTo::create(5.0, 1.3)
-        ),
+        ScaleTo::create(5.0, 1.3),
         MoveTo::create(5.0, Vec3(px - 1.0, py, pz)),
+        RotateTo::create(5.0, Vec3(x, y, z)),
         nullptr
       )
     );
@@ -378,12 +377,9 @@ void Generator::onEpisodeFinish(int episode)
     Application->cameras.d->stopAllActions();
     Application->cameras.d->runAction(
       Spawn::create(
-        EaseSineIn::create(
-          ScaleTo::create(0.2, 1.0)
-        ),
-        EaseSineIn::create(
-          MoveTo::create(0.2, Vec3(Application->startCameraX, Application->startCameraY, Application->startCameraZ))
-        ),
+        ScaleTo::create(0.2, 1.0),
+        MoveTo::create(0.2, Vec3(Application->startCameraX, Application->startCameraY, Application->startCameraZ)),
+        RotateTo::create(0.2, Vec3(Application->startCameraRotationX, Application->startCameraRotationY, Application->startCameraRotationZ)),
         nullptr
       )
     );

@@ -230,6 +230,7 @@
             <filename>../Graphics/ui/missions-points.png</filename>
             <filename>../Graphics/ui/ketchapp.png</filename>
             <filename>../Graphics/ui/lock-twitter-button.png</filename>
+            <filename>../Graphics/ui/giphy.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
