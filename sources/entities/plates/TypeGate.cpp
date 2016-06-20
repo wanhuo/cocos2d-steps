@@ -35,7 +35,7 @@ TypeGate::TypeGate(string file, bool direction)
 
   if(this->direction)
   {
-    this->decoration1 = new Door("decoration-door-right.obj", this);
+    this->decoration1 = new Door("decoration-door-left.obj", this);
     this->decoration2 = new Door("decoration-door-right.obj", this);
   }
   else

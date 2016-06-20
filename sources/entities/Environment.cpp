@@ -112,7 +112,7 @@ void Environment::create()
   this->plates.moved5 = new Pool(new TypeMoved5, this->plane);
   this->plates.saws.left = new Pool(new TypeSaw("plate-type-saw-left.obj"), this->plane);
   this->plates.saws.right = new Pool(new TypeSaw("plate-type-saw-right.obj"), this->plane);
-  this->plates.gates.left = new Pool(new TypeGate("plate.obj", true), this->plane);
+  this->plates.gates.left = new Pool(new TypeGate("plate-left.obj", true), this->plane);
   this->plates.gates.right = new Pool(new TypeGate("plate.obj", false), this->plane);
 
   this->pickups.diamonds = new Pool(new Diamond, this->plane);
