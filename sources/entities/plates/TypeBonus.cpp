@@ -28,8 +28,8 @@
  *
  *
  */
-TypeBonus::TypeBonus()
-: Special("plate-type-bonus.obj")
+TypeBonus::TypeBonus(string file)
+: Special(file)
 {
 }
 
@@ -44,5 +44,5 @@ TypeBonus::~TypeBonus()
  */
 TypeBonus* TypeBonus::deepCopy()
 {
-  return new TypeBonus;
+  return new TypeBonus(this->textureFileName);
 }

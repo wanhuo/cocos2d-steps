@@ -53,7 +53,7 @@ class TypeBonus : public Special
    *
    */
   public:
-  TypeBonus();
+  TypeBonus(string file);
  ~TypeBonus();
 
   TypeBonus* deepCopy();

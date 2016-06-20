@@ -493,10 +493,16 @@ void Plate::setType(int type, bool animated, char data)
     {
       this->setVisible(false);
 
-      this->special = static_cast<Special*>(Application->environment->plates.bonus->_create());
-      this->special->setPlate(this);
+      if(this->direction)
+      {
+        this->special = static_cast<TypeBonus*>(Application->environment->plates.bonus.right->_create());
+      }
+      else
+      {
+        this->special = static_cast<TypeBonus*>(Application->environment->plates.bonus.left->_create());
+      }
 
-      this->special->setRotation3D(Vec3(0, this->direction ? 0 : -90, 0));
+      this->special->setPlate(this);
     }
     break;
     case PRESENTION:

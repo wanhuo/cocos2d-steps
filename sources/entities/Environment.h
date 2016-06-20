@@ -120,7 +120,6 @@ class Environment : public Background
     Pool* duel;
     Pool* finish;
     Pool* best;
-    Pool* bonus;
     Pool* spikes;
     Pool* trampolines;
     Pool* traps;
@@ -135,6 +134,7 @@ class Environment : public Background
 
     DirectionPlate saws;
     DirectionPlate gates;
+    DirectionPlate bonus;
   };
 
   struct Decorations {

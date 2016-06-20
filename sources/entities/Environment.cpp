@@ -98,7 +98,6 @@ void Environment::create()
   this->plates.duel = new Pool(new TypeDuel, this->plane);
   this->plates.finish = new Pool(new TypeFinish, this->plane);
   this->plates.best = new Pool(new TypeBest, this->plane);
-  this->plates.bonus = new Pool(new TypeBonus, this->plane);
   this->plates.spikes = new Pool(new TypeSpikes, this->plane);
   this->plates.trampolines = new Pool(new TypeTrampoline, this->plane);
   this->plates.copters = new Pool(new TypeCopter, this->plane);
@@ -114,6 +113,8 @@ void Environment::create()
   this->plates.saws.right = new Pool(new TypeSaw("plate-type-saw-right.obj"), this->plane);
   this->plates.gates.left = new Pool(new TypeGate("plate-left.obj", true), this->plane);
   this->plates.gates.right = new Pool(new TypeGate("plate.obj", false), this->plane);
+  this->plates.bonus.left = new Pool(new TypeBonus("plate-type-bonus-left.obj"), this->plane);
+  this->plates.bonus.right = new Pool(new TypeBonus("plate-type-bonus-right.obj"), this->plane);
 
   this->pickups.diamonds = new Pool(new Diamond, this->plane);
   this->pickups.crystals = new Pool(new Crystal, this->plane);
