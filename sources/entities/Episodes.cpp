@@ -64,6 +64,14 @@ bool Generator::checkEpisodes(Plate* plate)
   {
     this->onEpisodeFinish(Generator::EPISODE_DUEL);
   }
+  else if(plate->isEpisodeStart(Generator::EPISODE_TRAMPOLINES))
+  {
+    this->onEpisodeStart(Generator::EPISODE_TRAMPOLINES);
+  }
+  else if(plate->isEpisodeFinish(Generator::EPISODE_TRAMPOLINES))
+  {
+    this->onEpisodeFinish(Generator::EPISODE_TRAMPOLINES);
+  }
 
   return false;
 }
@@ -84,7 +92,7 @@ bool Generator::updateEpisode(int episode)
      *
      */
     case EPISODE_WIPE:
-    if(--this->episode.wipe.length < 0 && !this->isEpisodes() && this->portal < -10 && this->direction && this->count == 0 && Application->environment->character->state != Character::STATE_INSANE && (this->size - this->index) > 20 && probably(4.0))
+    if(--this->episode.wipe.length < 0 && !this->isEpisodes() && this->portal < -10 && this->direction && this->count == 0 && Application->environment->character->state != Character::STATE_INSANE && (this->size - this->index) > 20 && probably(1.0))
     {
       this->episode.wipe.length = random(10, 20);
       this->episode.wipe.index = 0;
@@ -119,7 +127,7 @@ bool Generator::updateEpisode(int episode)
      *
      */
     case EPISODE_DUEL:
-    if(--this->episode.duel.length < 0 && !this->isEpisodes() && this->portal < -10 && !this->direction && this->count == 0 && (this->size - this->index) > this->start * 2 && Application->environment->character->state != Character::STATE_INSANE && probably(4.0))
+    if(--this->episode.duel.length < 0 && !this->isEpisodes() && this->portal < -10 && !this->direction && this->count == 0 && (this->size - this->index) > this->start * 2 && Application->environment->character->state != Character::STATE_INSANE && probably(1.0))
     {
       this->episode.duel.length = this->start * 2;
       this->episode.duel.index = 0;
@@ -257,13 +265,13 @@ bool Generator::isEpisodes()
  */
 void Generator::onEpisodeStart(int episode)
 {
-  auto x = Application->cameras.d->getRotation3D().x;
-  auto y = Application->cameras.d->getRotation3D().y;
-  auto z = Application->cameras.d->getRotation3D().z;
+  auto x = Application->startCameraRotationX;
+  auto y = Application->startCameraRotationY;
+  auto z = Application->startCameraRotationZ;
 
-  auto px = Application->cameras.d->getPosition3D().x;
-  auto py = Application->cameras.d->getPosition3D().y;
-  auto pz = Application->cameras.d->getPosition3D().z;
+  auto px = Application->startCameraX;
+  auto py = Application->startCameraY;
+  auto pz = Application->startCameraZ;
 
   switch(episode)
   {
@@ -304,6 +312,16 @@ void Generator::onEpisodeStart(int episode)
 
     this->episode.trampolines.start = true;
 
+    Application->cameras.d->stopAllActions();
+    Application->cameras.d->runAction(
+      Spawn::create(
+        EaseSineIn::create(
+          ScaleTo::create(5.0, 1.3)
+        ),
+        MoveTo::create(5.0, Vec3(px - 1.0, py, pz)),
+        nullptr
+      )
+    );
     break;
   }
 }
@@ -313,6 +331,7 @@ void Generator::onEpisodeFinish(int episode)
   switch(episode)
   {
     case EPISODE_WIPE:
+    if(!this->episode.wipe.start) return;
     if(this->episode.wipe.finish) return;
 
     this->episode.wipe.finish = true;
@@ -330,6 +349,7 @@ void Generator::onEpisodeFinish(int episode)
     );
     break;
     case EPISODE_DUEL:
+    if(!this->episode.duel.start) return;
     if(this->episode.duel.finish) return;
 
     this->episode.duel.finish = true;
@@ -349,10 +369,24 @@ void Generator::onEpisodeFinish(int episode)
     Music->speed(1.0);
     break;
     case EPISODE_TRAMPOLINES:
+    if(!this->episode.trampolines.start) return;
     if(this->episode.trampolines.finish) return;
 
     this->episode.trampolines.finish = true;
     this->episode.trampolines.start = false;
+
+    Application->cameras.d->stopAllActions();
+    Application->cameras.d->runAction(
+      Spawn::create(
+        EaseSineIn::create(
+          ScaleTo::create(0.2, 1.0)
+        ),
+        EaseSineIn::create(
+          MoveTo::create(0.2, Vec3(Application->startCameraX, Application->startCameraY, Application->startCameraZ))
+        ),
+        nullptr
+      )
+    );
     break;
   }
 }

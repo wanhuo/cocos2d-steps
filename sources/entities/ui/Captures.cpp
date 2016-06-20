@@ -36,7 +36,7 @@
  */
 Captures::Captures()
 {
-  this->texts.score = new Text("counter-score", nullptr, TextHAlignment::LEFT);
+  this->texts.score = new Text("counter-score", Application, TextHAlignment::LEFT);
   this->texts.score->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
   this->texts.score->setScale(0.35);
   this->texts.score->_create();

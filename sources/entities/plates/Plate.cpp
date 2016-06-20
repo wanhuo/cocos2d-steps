@@ -355,7 +355,7 @@ bool Plate::isEpisodeFinish(int episode)
     return this->episode.duel.index == Generators->episode.duel.index - 2 && this->episode.duel.index > 0;
     break;
     case Generator::EPISODE_TRAMPOLINES:
-    return this->episode.trampolines.index == Generators->episode.trampolines.index && this->episode.trampolines.index > 0;
+    return this->episode.trampolines.index == 0;
     break;
   }
 

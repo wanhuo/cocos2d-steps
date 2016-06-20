@@ -176,7 +176,7 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
     Analytics::sendEvent("Application", "onCharacterUnlock", "Application onCharacterUnlock event");
     break;
     case 2:
-    this->element = new Entity3D("plate.obj", this, true);
+    this->element = new Entity3D("store-plate.obj", this, true);
     this->element->setTexture("textures/" + patch::to_string(next.index + 1) + "/textures-state-1.png");
     this->element->setScale(0.25);
     this->element->setPosition3D(Vec3(0.0, 0.5, 0.0));

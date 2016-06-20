@@ -32,8 +32,6 @@
  */
 void Events::onStart()
 {
-  Director::getInstance()->setDisplayStats(true);
-
   new Game;    
   new Menu;
   new Finish;
