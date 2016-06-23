@@ -40,6 +40,14 @@ Laser::Laser(Node* parent)
   this->unremovable = true;
 
   this->setLightMask(0);
+
+  this->element->setLightMask(0);
+  this->state1->setLightMask(0);
+  this->state2->setLightMask(0);
+
+  this->element->_destroy();
+  this->state1->_destroy();
+  this->state2->_destroy();
 }
 
 Laser::~Laser()
@@ -89,14 +97,40 @@ void Laser::setPlate(Plate* plate)
  */
 void Laser::start()
 {
-  /*this->runAction(
+  this->runAction(
     RepeatForever::create(
       Sequence::create(
-        CallFunc::create()
+        CallFunc::create([=] () {
+        this->runAction(
+          Sequence::create(
+            Repeat::create(
+              Sequence::create(
+                CallFunc::create([=] () {
+                this->state1->_create();
+                this->state2->_destroy();
+                }),
+                DelayTime::create(1.0 / 60.0),
+                CallFunc::create([=] () {
+                this->state1->_destroy();
+                this->state2->_create();
+                }),
+                DelayTime::create(1.0 / 60.0),
+                nullptr
+              ), 1.0 / (1.0 / 60.0) / 2
+            ),
+            CallFunc::create([=] () {
+            this->state1->_destroy();
+            this->state2->_destroy();
+            }),
+            nullptr
+          )
+        );
+        }),
+        DelayTime::create(2.0),
         nullptr
       )
     )
-  );*/
+  );
 }
 
 /**

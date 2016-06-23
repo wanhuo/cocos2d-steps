@@ -1162,7 +1162,7 @@ bool Plate::conditions(int type)
     result = (size - index) > 20 && conditions->s10 < 1 && conditions->s8 < 1 && Application->environment->generator->portal <= -10 && Application->environment->character->state != Character::STATE_INSANE;
     break;
     case LASER:
-    result = true;
+    result = (length - count) > 1 && count > 0 && conditions->s1 < 1 && conditions->s2 < 1 && conditions->s7 < 1 && (size - index) > 5;
     break;
 
     case MOVE_UP:
@@ -1252,6 +1252,8 @@ bool Plate::conditions(int type)
       Application->environment->generator->portal = 10;
       break;
       case LASER:
+      conditions->s1 = 2;
+      conditions->s2 = 2;
       break;
 
       case MOVE_UP:
