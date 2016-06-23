@@ -54,6 +54,14 @@ class EnvironmentMissionsFinish : public BackgroundColor
    *
    *
    */
+  private:
+  long index = 1;
+
+  /**
+   *
+   *
+   *
+   */
   protected:
   BackgroundColor* background;
 

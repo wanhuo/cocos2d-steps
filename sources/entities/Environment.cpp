@@ -103,6 +103,7 @@ void Environment::create()
   this->plates.copters = new Pool(new TypeCopter, this->plane);
   this->plates.traps = new Pool(new TypeTrap, this->plane);
   this->plates.portals = new Pool(new TypePortal, this->plane);
+  this->plates.lasers = new Pool(new TypeLaser, this->plane);
   this->plates.moveups = new Pool(new TypeMoveUp, this->plane);
   this->plates.moved1 = new Pool(new TypeMoved1, this->plane);
   this->plates.moved2 = new Pool(new TypeMoved2, this->plane);

@@ -51,6 +51,19 @@ EnvironmentMissionsFinish::EnvironmentMissionsFinish(Node* parent)
   this->plane->setScrollBarEnabled(false);
   this->plane->setContentSize(Size(Application->getWidth(), 300));
   this->plane->setPosition(Vec2(0, -5));
+  this->plane->ScrollView::addEventListener([this] (Ref* ref, cocos2d::ui::ScrollView::EventType eventType) {
+    if(this->index !=  this->plane->getIndex(this->plane->getCenterItemInCurrentView()))
+    {
+      this->index = this->plane->getIndex(this->plane->getCenterItemInCurrentView());
+
+      /**
+       *
+       *
+       *
+       */
+      Sound->play("select");
+    }
+  });
 
   this->general = new EnvironmentMissionsFinishGeneral;
 

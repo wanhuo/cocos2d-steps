@@ -529,6 +529,14 @@ void Plate::setType(int type, bool animated, char data)
       this->special->setPlate(this);
     }
     break;
+    case LASER:
+    {
+      this->setVisible(false);
+
+      this->special = static_cast<Special*>(Application->environment->plates.lasers->_create());
+      this->special->setPlate(this);
+    }
+    break;
     case TRAMPOLINE:
     {
       this->setVisible(false);
@@ -1153,6 +1161,9 @@ bool Plate::conditions(int type)
     case PORTAL:
     result = (size - index) > 20 && conditions->s10 < 1 && conditions->s8 < 1 && Application->environment->generator->portal <= -10 && Application->environment->character->state != Character::STATE_INSANE;
     break;
+    case LASER:
+    result = true;
+    break;
 
     case MOVE_UP:
     result = (count < length) && count > 0 && direction && conditions->s1 < 1 && conditions->s2 < 0 && conditions->s7 < 1 && (size - index) > 2;
@@ -1239,6 +1250,8 @@ bool Plate::conditions(int type)
       case PORTAL:
       conditions->s8 = 5;
       Application->environment->generator->portal = 10;
+      break;
+      case LASER:
       break;
 
       case MOVE_UP:

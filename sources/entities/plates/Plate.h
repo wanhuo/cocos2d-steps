@@ -100,7 +100,9 @@ class Plate : public Cube
     MOVED5, // 27
 
     WIPE, // 28
-    DUEL // 29
+    DUEL, // 29
+
+    LASER // 30
   };
 
   enum Side {

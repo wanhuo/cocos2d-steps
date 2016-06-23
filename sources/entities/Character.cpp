@@ -1493,6 +1493,21 @@ void Character::onCrash(Crash crash)
       )
     );
     break;
+    case LASER:
+    this->plane->runAction(
+      Sequence::create(
+        ScaleTo::create(0.1, this->plates.current->getDirection() ? 1.0 : 0.1, 1.0, this->plates.current->getDirection() ? 0.1 : 1.0),
+        DelayTime::create(1.0),
+        CallFunc::create([=] () {
+          if(!this->getAutomatecally())
+          {
+            Application->changeState(Game::LOSE);
+          }
+        }),
+        nullptr
+      )
+    );
+    break;
     case COPTER:
     if(!this->getAutomatecally())
     {
@@ -1550,6 +1565,7 @@ void Character::onCrash(Crash crash)
       case DOWN:
       case GATE:
       case TRAP:
+      case LASER:
       if(Screenshot::support())
       {
         /**

@@ -83,6 +83,7 @@
 #include "Door.h"
 #include "Copter.h"
 #include "Cub.h"
+#include "Laser.h"
 
 #include "Plate.h"
 #include "TypeSimple.h"
@@ -97,6 +98,7 @@
 #include "TypeTrap.h"
 #include "TypePortal.h"
 #include "TypeTrampoline.h"
+#include "TypeLaser.h"
 #include "TypeMoveUp.h"
 #include "TypeMoved.h"
 #include "TypeMoved1.h"

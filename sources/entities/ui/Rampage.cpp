@@ -58,13 +58,15 @@ void Rampage::onCreate()
   this->setOpacity(0);
   this->setPosition(Application->getCenter().x, Application->getHeight() - 380);
 
-  this->runAction(
-    FadeIn::create(2.0)
-  );
-
   this->clearTracks();
   this->setAnimation(this->animations.animation);
   this->setTimeScale(2.0);
+
+  this->stopAllActions();
+
+  this->runAction(
+    FadeIn::create(2.0)
+  );
 }
 
 void Rampage::onDestroy(bool action)

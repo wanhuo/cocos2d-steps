@@ -53,6 +53,14 @@
 		7838FCE81CF7381300195856 /* framework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7838FCE71CF7381300195856 /* framework.a */; };
 		7838FCEA1CF7382D00195856 /* framework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7838FCE91CF7382D00195856 /* framework.a */; };
 		7838FCEC1CF7383900195856 /* framework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7838FCEB1CF7383900195856 /* framework.a */; };
+		783DE9561D1BE473009706B7 /* libAppLovinSdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 783DE9551D1BE473009706B7 /* libAppLovinSdk.a */; };
+		783DE9581D1C096B009706B7 /* Events.mm in Sources */ = {isa = PBXBuildFile; fileRef = 783DE9571D1C096B009706B7 /* Events.mm */; };
+		783DE95B1D1C2834009706B7 /* TypeLaser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783DE9591D1C2834009706B7 /* TypeLaser.cpp */; };
+		783DE95C1D1C2834009706B7 /* TypeLaser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783DE9591D1C2834009706B7 /* TypeLaser.cpp */; };
+		783DE95D1D1C2834009706B7 /* TypeLaser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783DE9591D1C2834009706B7 /* TypeLaser.cpp */; };
+		783DE9601D1C2C13009706B7 /* Laser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783DE95E1D1C2C13009706B7 /* Laser.cpp */; };
+		783DE9611D1C2C13009706B7 /* Laser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783DE95E1D1C2C13009706B7 /* Laser.cpp */; };
+		783DE9621D1C2C13009706B7 /* Laser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783DE95E1D1C2C13009706B7 /* Laser.cpp */; };
 		7843AC481C22401B0011F47C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC471C22401B0011F47C /* AudioToolbox.framework */; };
 		7843AC4A1C2240360011F47C /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC491C2240360011F47C /* libz.1.dylib */; };
 		7843AC4C1C22404F0011F47C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC4B1C22404F0011F47C /* libsqlite3.dylib */; };
@@ -448,6 +456,38 @@
 		7838FCE71CF7381300195856 /* framework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = framework.a; path = Platforms/iphone/framework.a; sourceTree = SOURCE_ROOT; };
 		7838FCE91CF7382D00195856 /* framework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = framework.a; sourceTree = "<group>"; };
 		7838FCEB1CF7383900195856 /* framework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = framework.a; path = Platforms/mac/framework.a; sourceTree = SOURCE_ROOT; };
+		783DE93B1D1BE473009706B7 /* ALAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAd.h; sourceTree = "<group>"; };
+		783DE93C1D1BE473009706B7 /* ALAdDisplayDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAdDisplayDelegate.h; sourceTree = "<group>"; };
+		783DE93D1D1BE473009706B7 /* ALAdLoadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAdLoadDelegate.h; sourceTree = "<group>"; };
+		783DE93E1D1BE473009706B7 /* ALAdRewardDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAdRewardDelegate.h; sourceTree = "<group>"; };
+		783DE93F1D1BE473009706B7 /* ALAdService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAdService.h; sourceTree = "<group>"; };
+		783DE9401D1BE473009706B7 /* ALAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAdSize.h; sourceTree = "<group>"; };
+		783DE9411D1BE473009706B7 /* ALAdType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAdType.h; sourceTree = "<group>"; };
+		783DE9421D1BE473009706B7 /* ALAdUpdateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAdUpdateDelegate.h; sourceTree = "<group>"; };
+		783DE9431D1BE473009706B7 /* ALAdVideoPlaybackDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAdVideoPlaybackDelegate.h; sourceTree = "<group>"; };
+		783DE9441D1BE473009706B7 /* ALAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAdView.h; sourceTree = "<group>"; };
+		783DE9451D1BE473009706B7 /* ALAnnotations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALAnnotations.h; sourceTree = "<group>"; };
+		783DE9461D1BE473009706B7 /* ALErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALErrorCodes.h; sourceTree = "<group>"; };
+		783DE9471D1BE473009706B7 /* ALEventService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALEventService.h; sourceTree = "<group>"; };
+		783DE9481D1BE473009706B7 /* ALEventTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALEventTypes.h; sourceTree = "<group>"; };
+		783DE9491D1BE473009706B7 /* ALIncentivizedInterstitialAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALIncentivizedInterstitialAd.h; sourceTree = "<group>"; };
+		783DE94A1D1BE473009706B7 /* ALInterstitialAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALInterstitialAd.h; sourceTree = "<group>"; };
+		783DE94B1D1BE473009706B7 /* ALNativeAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALNativeAd.h; sourceTree = "<group>"; };
+		783DE94C1D1BE473009706B7 /* ALNativeAdLoadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALNativeAdLoadDelegate.h; sourceTree = "<group>"; };
+		783DE94D1D1BE473009706B7 /* ALNativeAdPrecacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALNativeAdPrecacheDelegate.h; sourceTree = "<group>"; };
+		783DE94E1D1BE473009706B7 /* ALNativeAdService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALNativeAdService.h; sourceTree = "<group>"; };
+		783DE94F1D1BE473009706B7 /* ALPostbackDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALPostbackDelegate.h; sourceTree = "<group>"; };
+		783DE9501D1BE473009706B7 /* ALPostbackService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALPostbackService.h; sourceTree = "<group>"; };
+		783DE9511D1BE473009706B7 /* ALSdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSdk.h; sourceTree = "<group>"; };
+		783DE9521D1BE473009706B7 /* ALSdkSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSdkSettings.h; sourceTree = "<group>"; };
+		783DE9531D1BE473009706B7 /* ALSwiftHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSwiftHeaders.h; sourceTree = "<group>"; };
+		783DE9541D1BE473009706B7 /* ALTargetingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALTargetingData.h; sourceTree = "<group>"; };
+		783DE9551D1BE473009706B7 /* libAppLovinSdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppLovinSdk.a; sourceTree = "<group>"; };
+		783DE9571D1C096B009706B7 /* Events.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Events.mm; path = ../../sources/support/Events.mm; sourceTree = "<group>"; };
+		783DE9591D1C2834009706B7 /* TypeLaser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeLaser.cpp; sourceTree = "<group>"; };
+		783DE95A1D1C2834009706B7 /* TypeLaser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeLaser.h; sourceTree = "<group>"; };
+		783DE95E1D1C2C13009706B7 /* Laser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Laser.cpp; sourceTree = "<group>"; };
+		783DE95F1D1C2C13009706B7 /* Laser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Laser.h; sourceTree = "<group>"; };
 		7843AC471C22401B0011F47C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		7843AC491C2240360011F47C /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = /usr/lib/libz.1.dylib; sourceTree = "<absolute>"; };
 		7843AC4B1C22404F0011F47C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = /usr/lib/libsqlite3.dylib; sourceTree = "<absolute>"; };
@@ -785,6 +825,7 @@
 				7843AC971C2242AA0011F47C /* AdColony.framework in Frameworks */,
 				7843ACB11C2242AA0011F47C /* VungleSDK.framework in Frameworks */,
 				7843AC9E1C2242AA0011F47C /* HeyzapAds.framework in Frameworks */,
+				783DE9561D1BE473009706B7 /* libAppLovinSdk.a in Frameworks */,
 				7843AC591C2241B00011F47C /* AVFoundation.framework in Frameworks */,
 				7843AC571C22416F0011F47C /* CoreData.framework in Frameworks */,
 				7843AC551C2241410011F47C /* SystemConfiguration.framework in Frameworks */,
@@ -921,9 +962,52 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		783DE9391D1BE473009706B7 /* AppLovin */ = {
+			isa = PBXGroup;
+			children = (
+				783DE93A1D1BE473009706B7 /* headers */,
+				783DE9551D1BE473009706B7 /* libAppLovinSdk.a */,
+			);
+			path = AppLovin;
+			sourceTree = "<group>";
+		};
+		783DE93A1D1BE473009706B7 /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				783DE93B1D1BE473009706B7 /* ALAd.h */,
+				783DE93C1D1BE473009706B7 /* ALAdDisplayDelegate.h */,
+				783DE93D1D1BE473009706B7 /* ALAdLoadDelegate.h */,
+				783DE93E1D1BE473009706B7 /* ALAdRewardDelegate.h */,
+				783DE93F1D1BE473009706B7 /* ALAdService.h */,
+				783DE9401D1BE473009706B7 /* ALAdSize.h */,
+				783DE9411D1BE473009706B7 /* ALAdType.h */,
+				783DE9421D1BE473009706B7 /* ALAdUpdateDelegate.h */,
+				783DE9431D1BE473009706B7 /* ALAdVideoPlaybackDelegate.h */,
+				783DE9441D1BE473009706B7 /* ALAdView.h */,
+				783DE9451D1BE473009706B7 /* ALAnnotations.h */,
+				783DE9461D1BE473009706B7 /* ALErrorCodes.h */,
+				783DE9471D1BE473009706B7 /* ALEventService.h */,
+				783DE9481D1BE473009706B7 /* ALEventTypes.h */,
+				783DE9491D1BE473009706B7 /* ALIncentivizedInterstitialAd.h */,
+				783DE94A1D1BE473009706B7 /* ALInterstitialAd.h */,
+				783DE94B1D1BE473009706B7 /* ALNativeAd.h */,
+				783DE94C1D1BE473009706B7 /* ALNativeAdLoadDelegate.h */,
+				783DE94D1D1BE473009706B7 /* ALNativeAdPrecacheDelegate.h */,
+				783DE94E1D1BE473009706B7 /* ALNativeAdService.h */,
+				783DE94F1D1BE473009706B7 /* ALPostbackDelegate.h */,
+				783DE9501D1BE473009706B7 /* ALPostbackService.h */,
+				783DE9511D1BE473009706B7 /* ALSdk.h */,
+				783DE9521D1BE473009706B7 /* ALSdkSettings.h */,
+				783DE9531D1BE473009706B7 /* ALSwiftHeaders.h */,
+				783DE9541D1BE473009706B7 /* ALTargetingData.h */,
+			);
+			path = headers;
+			sourceTree = "<group>";
+		};
 		7843AC621C2242AA0011F47C /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				783DE9391D1BE473009706B7 /* AppLovin */,
 				7832A88F1D10B5370059BFE3 /* AFNetworking */,
 				78CEEB511D0C93D6000A85D4 /* UIActivityViewController */,
 				78CEEB351D0C44D5000A85D4 /* YYImage */,
@@ -1283,6 +1367,7 @@
 			isa = PBXGroup;
 			children = (
 				7894C0191BC9245800363FC9 /* Events.cpp */,
+				783DE9571D1C096B009706B7 /* Events.mm */,
 			);
 			name = support;
 			path = ../../Sources/support;
@@ -1385,6 +1470,8 @@
 				78B4B6F81CBF91E000F2D8A7 /* Door.h */,
 				784784451D004FB3002C3D23 /* Portal.cpp */,
 				784784461D004FB3002C3D23 /* Portal.h */,
+				783DE95E1D1C2C13009706B7 /* Laser.cpp */,
+				783DE95F1D1C2C13009706B7 /* Laser.h */,
 				789E71881CD34AFB00BDCDC7 /* Trampoline.cpp */,
 				789E71891CD34AFB00BDCDC7 /* Trampoline.h */,
 			);
@@ -1447,6 +1534,8 @@
 				789E71AE1CD3D23200BDCDC7 /* TypeTrap.h */,
 				784784401D004F9A002C3D23 /* TypePortal.cpp */,
 				784784411D004F9A002C3D23 /* TypePortal.h */,
+				783DE9591D1C2834009706B7 /* TypeLaser.cpp */,
+				783DE95A1D1C2834009706B7 /* TypeLaser.h */,
 				789E71821CD343FC00BDCDC7 /* TypeTrampoline.cpp */,
 				789E71831CD343FC00BDCDC7 /* TypeTrampoline.h */,
 				789E71901CD3653E00BDCDC7 /* TypeMoveUp.cpp */,
@@ -1820,6 +1909,7 @@
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
 				7891E8AF1CF30A74005C238E /* Letters.cpp in Sources */,
+				783DE9611D1C2C13009706B7 /* Laser.cpp in Sources */,
 				78283FBF1CE21DF00010CAB7 /* EnvironmentStoreItem.cpp in Sources */,
 				785545F61CD8D61E00B58ED0 /* TypeBest.cpp in Sources */,
 				78F0C9011D026C3400BB0DC3 /* Enemy.cpp in Sources */,
@@ -1834,6 +1924,7 @@
 				784784431D004F9A002C3D23 /* TypePortal.cpp in Sources */,
 				78BADD6F1CEB57800077B673 /* EnvironmentMissionsNotify.cpp in Sources */,
 				789E71A91CD39D0D00BDCDC7 /* TypeMoved3.cpp in Sources */,
+				783DE95C1D1C2834009706B7 /* TypeLaser.cpp in Sources */,
 				78B4B7071CBFB40700F2D8A7 /* TypeCopter.cpp in Sources */,
 				78B4B6F61CBF911800F2D8A7 /* Spikes.cpp in Sources */,
 				789E71871CD343FC00BDCDC7 /* TypeTrampoline.cpp in Sources */,
@@ -1965,6 +2056,7 @@
 				78C352FC1CEE7DB000F10068 /* TypeMoved2.cpp in Sources */,
 				78C352FD1CEE7DB000F10068 /* Heart.cpp in Sources */,
 				7832A8A51D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */,
+				783DE95D1D1C2834009706B7 /* TypeLaser.cpp in Sources */,
 				78C352FE1CEE7DB000F10068 /* EnvironmentMissionsBar.cpp in Sources */,
 				7891E8BF1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp in Sources */,
 				78C352FF1CEE7DB000F10068 /* EnvironmentStoreCharacter.cpp in Sources */,
@@ -1977,6 +2069,7 @@
 				784784441D004F9A002C3D23 /* TypePortal.cpp in Sources */,
 				78C353081CEE7DB000F10068 /* Environment.cpp in Sources */,
 				78C353091CEE7DB000F10068 /* TypeTrap.cpp in Sources */,
+				783DE9621D1C2C13009706B7 /* Laser.cpp in Sources */,
 				78C3530A1CEE7DB000F10068 /* EnvironmentStoreTexture.cpp in Sources */,
 				7832A8AE1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */,
 				78C3530B1CEE7DB000F10068 /* TypeMoveUp.cpp in Sources */,
@@ -2006,6 +2099,7 @@
 				7891E88A1CF21293005C238E /* NSAnalytics.mm in Sources */,
 				78283FC41CE248DB0010CAB7 /* EnvironmentStoreBar.cpp in Sources */,
 				78CEEB341D0C44CD000A85D4 /* UIImage+ImageScale.m in Sources */,
+				783DE9581D1C096B009706B7 /* Events.mm in Sources */,
 				7891E8C21CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp in Sources */,
 				7891E8BD1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp in Sources */,
 				789E717A1CD2621500BDCDC7 /* Color.cpp in Sources */,
@@ -2014,6 +2108,7 @@
 				785546031CD91D8B00B58ED0 /* Gift.cpp in Sources */,
 				784784511D018ED5002C3D23 /* TypeMoved5.cpp in Sources */,
 				789E71AA1CD39D0D00BDCDC7 /* TypeMoved4.cpp in Sources */,
+				783DE9601D1C2C13009706B7 /* Laser.cpp in Sources */,
 				7891E8951CF21293005C238E /* NSSocial.mm in Sources */,
 				788F17C81CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78CA6D0A1C20645200BF8416 /* Character.cpp in Sources */,
@@ -2106,6 +2201,7 @@
 				78B4B6DE1CBD751D00F2D8A7 /* Star.cpp in Sources */,
 				78B4B6D81CBD751D00F2D8A7 /* Energy.cpp in Sources */,
 				785546071CD91D8B00B58ED0 /* Video.cpp in Sources */,
+				783DE95B1D1C2834009706B7 /* TypeLaser.cpp in Sources */,
 				7825DD431C5484CC00708016 /* Popup.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2330,6 +2426,8 @@
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/FacebookAudienceNetwork",
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/UnityAds",
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/Vungle/VungleSDK.embeddedframework",
+					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/AppLovin",
+					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/AppLovin/headers",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -2346,6 +2444,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/GoogleAnalytics",
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/Ketchapp",
+					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/AppLovin",
 					"$(PROJECT_DIR)/Platforms/iphone",
 				);
 				OTHER_CFLAGS = "";
@@ -2382,6 +2481,8 @@
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/FacebookAudienceNetwork",
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/UnityAds",
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/Vungle/VungleSDK.embeddedframework",
+					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/AppLovin",
+					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/AppLovin/headers",
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2397,6 +2498,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/GoogleAnalytics",
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/Ketchapp",
+					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/AppLovin",
 					"$(PROJECT_DIR)/Platforms/iphone",
 				);
 				OTHER_CFLAGS = "";

@@ -22,7 +22,6 @@
  */
 
 #include "Events.h"
-
 #include "Game.h"
 
 /**
@@ -32,6 +31,8 @@
  */
 void Events::onStart()
 {
+  Storage::clear();
+
   new Game;    
   new Menu;
   new Finish;

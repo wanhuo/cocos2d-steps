@@ -125,6 +125,7 @@ class Environment : public Background
     Pool* traps;
     Pool* copters;
     Pool* portals;
+    Pool* lasers;
     Pool* moveups;
     Pool* moved1;
     Pool* moved2;

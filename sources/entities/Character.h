@@ -122,7 +122,8 @@ class Character : public Cube
     DOWN,
     GATE,
     COPTER,
-    TRAP
+    TRAP,
+    LASER
   };
 
   enum Turn {
