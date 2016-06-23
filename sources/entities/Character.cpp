@@ -1496,13 +1496,62 @@ void Character::onCrash(Crash crash)
     case LASER:
     this->plane->runAction(
       Sequence::create(
-        ScaleTo::create(0.1, this->plates.current->getDirection() ? 1.0 : 0.1, 1.0, this->plates.current->getDirection() ? 0.1 : 1.0),
-        DelayTime::create(1.0),
+        MoveBy::create(0.1, Vec3(0.0, 0.4, 0.0)),
         CallFunc::create([=] () {
-          if(!this->getAutomatecally())
-          {
-            Application->changeState(Game::LOSE);
-          }
+        this->plane->runAction(
+          Repeat::create(
+            Sequence::create(
+              CallFunc::create([=] () {
+              this->plane->setRotation3D(Vec3(random(-10.0, 10.0), random(-10.0, 10.0), random(-10.0, 10.0)));
+              this->plane->setScale(random(1.0, 1.1));
+              }),
+              DelayTime::create(0.02),
+              nullptr
+            ),
+            50
+          ));
+        }),
+        nullptr
+      )
+    );
+    this->runAction(
+      Sequence::create(
+        Repeat::create(
+          Sequence::create(
+            TintTo::create(2.0 / 60.0, Color3B::WHITE),
+            TintTo::create(2.0 / 60.0, this->color),
+            nullptr
+          ), 14
+        ),
+        CallFunc::create([=] () {
+          this->plane->stopAllActions();
+          this->plane->runAction(
+            Spawn::create(
+              MoveBy::create(0.5, Vec3(0.0, -0.4, 0.0)),
+              RotateTo::create(0.5, Vec3(0.0, 0.0, 0.0)),
+              nullptr
+            )
+          );
+          this->runAction(
+            Spawn::create(
+              Sequence::create(
+                DelayTime::create(0.4),
+                CallFunc::create([=] () {
+                if(!this->getAutomatecally())
+                {
+                  Application->changeState(Game::LOSE);
+                }
+                }),
+                nullptr
+              ),
+              Sequence::create(
+                DelayTime::create(0.4),
+                MoveBy::create(2.0, Vec3(0, -0.8, 0)),
+                nullptr
+              ),
+              nullptr
+            )
+          );
         }),
         nullptr
       )

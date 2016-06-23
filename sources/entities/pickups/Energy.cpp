@@ -117,7 +117,7 @@ void Energy::onPickup()
 
                 if(++this->count >= COUNT)
                 {
-                  if(next->type == Plate::SPIKES || next->type == Plate::GATE || next->type == Plate::SAW || next->type == Plate::DOWN || next->type == Plate::TRAP)
+                  if(next->type == Plate::SPIKES || next->type == Plate::GATE || next->type == Plate::SAW || next->type == Plate::DOWN || next->type == Plate::TRAP || next->type == Plate::LASER)
                   {
                     action = true;
                   }

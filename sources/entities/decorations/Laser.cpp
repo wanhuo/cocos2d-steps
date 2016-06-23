@@ -39,9 +39,9 @@ Laser::Laser(Node* parent)
   this->stopable = false;
   this->unremovable = true;
 
-  this->setLightMask(0);
+  this->setLightMask(1);
 
-  this->element->setLightMask(0);
+  this->element->setLightMask(1);
   this->state1->setLightMask(0);
   this->state2->setLightMask(0);
 
@@ -70,9 +70,9 @@ void Laser::onCreate()
    */
   this->element->_create();
 
-  this->element->setTexture("textures/decoration-laser-texture.png");
-  this->state1->setTexture("textures/decoration-laser-texture.png");
-  this->state2->setTexture("textures/decoration-laser-texture.png");
+  this->element->setTexture("ui/laser-texture.png");
+  this->state1->setTexture("ui/laser-texture.png");
+  this->state2->setTexture("ui/laser-texture.png");
 }
 
 void Laser::onDestroy(bool action)
@@ -103,24 +103,29 @@ void Laser::start()
         CallFunc::create([=] () {
         this->runAction(
           Sequence::create(
+            CallFunc::create([=] () {
+            this->enable = true;
+            }),
             Repeat::create(
               Sequence::create(
                 CallFunc::create([=] () {
                 this->state1->_create();
                 this->state2->_destroy();
                 }),
-                DelayTime::create(1.0 / 60.0),
+                DelayTime::create(2.0 / 60.0),
                 CallFunc::create([=] () {
                 this->state1->_destroy();
                 this->state2->_create();
                 }),
-                DelayTime::create(1.0 / 60.0),
+                DelayTime::create(2.0 / 60.0),
                 nullptr
-              ), 1.0 / (1.0 / 60.0) / 2
+              ), 1.0 / (2.0 / 60.0) / 2
             ),
             CallFunc::create([=] () {
             this->state1->_destroy();
             this->state2->_destroy();
+
+            this->enable = false;
             }),
             nullptr
           )

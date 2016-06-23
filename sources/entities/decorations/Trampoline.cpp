@@ -87,7 +87,7 @@ void Trampoline::onPickup()
       }
     }
 
-    if(!element || element == NULL || element->behavior == Plate::DYNAMIC || element->type == Plate::SPIKES || element->type == Plate::GATE || element->type == Plate::SAW || element->type == Plate::DOWN || element->type == Plate::TRAP)
+    if(!element || element == NULL || element->behavior == Plate::DYNAMIC || element->type == Plate::SPIKES || element->type == Plate::GATE || element->type == Plate::SAW || element->type == Plate::DOWN || element->type == Plate::TRAP || element->type == Plate::LASER)
     {
       if(i >= count - 1)
       {
