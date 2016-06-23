@@ -29,12 +29,17 @@
  *
  */
 Laser::Laser(Node* parent)
-: Decoration("", parent)
+: Decoration("decoration-laser.obj", parent)
 {
+  this->element = static_cast<Sprite3D*>(this->getChildByName("trap"));
+  this->state1 = static_cast<Sprite3D*>(this->getChildByName("state1"));
+  this->state1 = static_cast<Sprite3D*>(this->getChildByName("state2"));
+
   this->removable = false;
   this->stopable = false;
   this->unremovable = true;
 
+  this->setTexture("textures/decoration-laser-texture.png");
   this->setLightMask(0);
 }
 
@@ -56,6 +61,7 @@ void Laser::onCreate()
    *
    *
    */
+  this->element->_create();
 }
 
 void Laser::onDestroy(bool action)
@@ -86,6 +92,14 @@ void Laser::setPlate(Plate* plate)
  */
 void Laser::start()
 {
+  /*this->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        CallFunc::create()
+        nullptr
+      )
+    )
+  );*/
 }
 
 /**

@@ -61,6 +61,16 @@ void TypeLaser::onDestroy(bool action)
 void TypeLaser::setPlate(Plate* plate)
 {
   Special::setPlate(plate);
+
+  /**
+   *
+   *
+   *
+   */
+  this->decoration->_create();
+  this->decoration->setPlate(this->plate);
+
+  this->getDecorations().push_back(this->decoration);
 }
 
 /**

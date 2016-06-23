@@ -46,6 +46,9 @@ class Laser : public Decoration
    *
    */
   protected:
+  Sprite3D* element;
+  Sprite3D* state1;
+  Sprite3D* state2;
 
   /**
    *
