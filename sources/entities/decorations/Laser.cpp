@@ -33,13 +33,12 @@ Laser::Laser(Node* parent)
 {
   this->element = static_cast<Sprite3D*>(this->getChildByName("trap"));
   this->state1 = static_cast<Sprite3D*>(this->getChildByName("state1"));
-  this->state1 = static_cast<Sprite3D*>(this->getChildByName("state2"));
+  this->state2 = static_cast<Sprite3D*>(this->getChildByName("state2"));
 
   this->removable = false;
   this->stopable = false;
   this->unremovable = true;
 
-  this->setTexture("textures/decoration-laser-texture.png");
   this->setLightMask(0);
 }
 
@@ -62,17 +61,15 @@ void Laser::onCreate()
    *
    */
   this->element->_create();
+
+  this->element->setTexture("textures/decoration-laser-texture.png");
+  this->state1->setTexture("textures/decoration-laser-texture.png");
+  this->state2->setTexture("textures/decoration-laser-texture.png");
 }
 
 void Laser::onDestroy(bool action)
 {
   Decoration::onDestroy(action);
-
-  /**
-   *
-   *
-   *
-   */
 }
 
 /**
