@@ -106,7 +106,7 @@ void Let::setPlate(Plate* plate, bool animated)
    *
    *
    */
-  this->setPositionY(this->getPositionY() - 0.2f);
+  this->setPositionY(this->getPositionY() - 0.4f);
 }
 
 /**
