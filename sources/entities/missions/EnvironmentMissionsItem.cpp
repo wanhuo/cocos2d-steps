@@ -227,7 +227,7 @@ void EnvironmentMissionsItem::changePosition(Position position)
     switch(this->position)
     {
       case POSITION_NORMAL:
-      Sound->play("touch");
+      Sound->play("select");
 
       this->runAction(MoveTo::create(0.2, this->positions + Vec3(0.0, 1.0, 0.0)));
       this->elements.lock->runAction(MoveTo::create(0.2, Vec3(-2.0, 1.0, 2.75)));
