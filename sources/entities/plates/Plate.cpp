@@ -113,6 +113,7 @@ void Plate::onRemove(bool complete)
     {
       if(character->plates.current->getIndex() == this->getIndex())
       {
+        character->stopAllActions();
         character->changeState(Character::STATE_CRASH, Character::Crash::CATCH);
       }
     }
@@ -1163,7 +1164,7 @@ bool Plate::conditions(int type)
     result = (size - index) > 20 && conditions->s10 < 1 && conditions->s8 < 1 && Application->environment->generator->portal <= -10 && Application->environment->character->state != Character::STATE_INSANE;
     break;
     case LASER:
-    result = !stage && (length - count) > 1 && count > 0 && conditions->s1 < 1 && conditions->s2 < 1 && conditions->s7 < 1 && (size - index) > 5;
+    result = !stage && (length - count) > 1 && count > 0 && conditions->s1 < 1 && conditions->s2 < 1 && conditions->s7 < 1;
     break;
 
     case MOVE_UP:

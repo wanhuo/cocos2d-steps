@@ -142,6 +142,7 @@ void Finish::onShow()
         EaseSineOut::create(
           MoveBy::create(0.2, Vec2(0, 200))
         ),
+        DelayTime::create(0.3),
         CallFunc::create([=] () {
         this->buttons.leaderboards->bind(true);
         }),
@@ -154,6 +155,7 @@ void Finish::onShow()
         EaseSineOut::create(
           MoveBy::create(0.2, Vec2(0, 200))
         ),
+        DelayTime::create(0.3),
         CallFunc::create([=] () {
         this->buttons.restart->bind(true);
         }),
@@ -166,6 +168,7 @@ void Finish::onShow()
         EaseSineOut::create(
           MoveBy::create(0.2, Vec2(0, 200))
         ),
+        DelayTime::create(0.3),
         CallFunc::create([=] () {
         this->buttons.rate->bind(true);
         }),
@@ -179,6 +182,7 @@ void Finish::onShow()
         EaseSineOut::create(
           MoveBy::create(0.2, Vec2(0, -200))
         ),
+        DelayTime::create(0.3),
         CallFunc::create([=] () {
         this->buttons.like->bind(true);
         }),

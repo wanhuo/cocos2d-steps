@@ -78,6 +78,13 @@ void Laser::onCreate()
 void Laser::onDestroy(bool action)
 {
   Decoration::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  Sound->stop(this->sound);
 }
 
 /**
@@ -104,6 +111,9 @@ void Laser::start()
         this->runAction(
           Sequence::create(
             CallFunc::create([=] () {
+            this->sound = Sound->play("decoration-laser", this, [=] () -> float {
+              return this->getParent()->getPosition3D().distance(Application->environment->character->getPosition3D());
+            }, Game::SOUND_DISTANCE);
             this->enable = true;
             }),
             Repeat::create(
@@ -126,6 +136,8 @@ void Laser::start()
             this->state2->_destroy();
 
             this->enable = false;
+
+            Sound->stop(this->sound);
             }),
             nullptr
           )

@@ -39,6 +39,7 @@ class Laser : public Decoration
    *
    */
   private:
+  int sound;
 
   /**
    *
