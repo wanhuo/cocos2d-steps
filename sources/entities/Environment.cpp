@@ -152,6 +152,8 @@ void Environment::create()
   this->pickups.letters.y = new Pool(new Let('y'), this->plane);
   this->pickups.letters.z = new Pool(new Let('z'), this->plane);
 
+  this->r = new Pool(new R, this);
+
   this->decorations.downs = new Pool(new Down, this->plane);
   this->decorations.starts = new Pool(new Start, this->plane);
   this->decorations.cubs = new Pool(new Cub, this->plane);

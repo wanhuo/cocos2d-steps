@@ -121,15 +121,19 @@ void Video::onTouch(cocos2d::Touch* touch, Event* e)
     if(state)
     {
       Application->parameters.elapsed.ad = -2;
-      Application->counter->add(75);
 
       this->_destroy();
+
       Watch::getInstance()->background->setOpacity(0);
 
-      Watch::getInstance()->hide([=] () {
-        Application->changeState(Game::MENU);
-        Menu::getInstance()->updateSoundState();
-      });
+      for(int i = 0; i < 15; i++)
+      {
+        auto element = (R*) Application->environment->r->_create();
+
+        element->setCameraMask(Application->counter->icon->getCameraMask());
+        element->setLightMask(Application->counter->icon->getLightMask());
+        element->animation2();
+      }
     }
   });
 

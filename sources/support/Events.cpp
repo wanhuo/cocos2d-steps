@@ -160,7 +160,7 @@ void Events::onTwitterLike()
  *
  *
  */
-void Events::onShare(bool complete, const std::function<void(bool)>& callback, const std::function<void(int, int)>& update)
+void Events::onShare(bool action, bool complete, const std::function<void(int)>& callback, const std::function<void(int, int)>& update)
 {
   Analytics::sendEvent("Application", "application.events.onShare", "Application onShare event");
 
@@ -169,11 +169,11 @@ void Events::onShare(bool complete, const std::function<void(bool)>& callback, c
 
   if(Screenshot::support())
   {
-    Social::share(complete, callback, update, text->data(Application->counter->values.current), Config::link);
+    Social::share(action, complete, callback, update, text->data(Application->counter->values.current), Config::link);
   }
   else
   {
-    Social::share(complete, callback, update, size.width, size.width, 0, 0, text->data(Application->counter->values.current), Config::link);
+    Social::share(action, complete, callback, update, size.width, size.width, 0, 0, text->data(Application->counter->values.current), Config::link);
   }
 }
 

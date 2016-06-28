@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		780073731D22803C00A6719A /* R.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 780073711D22803C00A6719A /* R.cpp */; };
+		780073741D22803C00A6719A /* R.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 780073711D22803C00A6719A /* R.cpp */; };
+		780073751D22803C00A6719A /* R.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 780073711D22803C00A6719A /* R.cpp */; };
 		781B06801BD26FC70072FB24 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 781B067F1BD26FC70072FB24 /* config.json */; };
 		781B06811BD26FC70072FB24 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 781B067F1BD26FC70072FB24 /* config.json */; };
 		781DA8801CDB3B95005BEB98 /* Watch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 781DA87E1CDB3B95005BEB98 /* Watch.cpp */; };
@@ -411,6 +414,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		780073711D22803C00A6719A /* R.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = R.cpp; sourceTree = "<group>"; };
+		780073721D22803C00A6719A /* R.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R.h; sourceTree = "<group>"; };
 		781B067F1BD26FC70072FB24 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = config.json; path = ../../resource/Config/apple/config.json; sourceTree = "<group>"; };
 		781DA87E1CDB3B95005BEB98 /* Watch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Watch.cpp; sourceTree = "<group>"; };
 		781DA87F1CDB3B95005BEB98 /* Watch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Watch.h; sourceTree = "<group>"; };
@@ -1210,6 +1215,8 @@
 				7832A6791D1040700059BFE3 /* Rampage.h */,
 				78F7BD451D1882D200FF8FDE /* Giphy.cpp */,
 				78F7BD461D1882D200FF8FDE /* Giphy.h */,
+				780073711D22803C00A6719A /* R.cpp */,
+				780073721D22803C00A6719A /* R.h */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -1888,6 +1895,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				780073741D22803C00A6719A /* R.cpp in Sources */,
 				78B4B7021CBF93C500F2D8A7 /* TypeGate.cpp in Sources */,
 				7857E2BA1C6573F70020AAEA /* Menu.cpp in Sources */,
 				789E71A71CD39D0D00BDCDC7 /* TypeMoved2.cpp in Sources */,
@@ -1982,6 +1990,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				780073751D22803C00A6719A /* R.cpp in Sources */,
 				7832A8B71D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */,
 				78C352C31CEE7DB000F10068 /* Trap.cpp in Sources */,
 				78C352C41CEE7DB000F10068 /* Plate.cpp in Sources */,
@@ -2195,6 +2204,7 @@
 				789E71AF1CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */,
 				7832A8B21D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
 				78283FC01CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp in Sources */,
+				780073731D22803C00A6719A /* R.cpp in Sources */,
 				7891E8931CF21293005C238E /* RootViewController.mm in Sources */,
 				789E71921CD3653E00BDCDC7 /* TypeMoveUp.cpp in Sources */,
 				789E718A1CD34AFB00BDCDC7 /* Trampoline.cpp in Sources */,

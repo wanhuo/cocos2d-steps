@@ -64,11 +64,13 @@ Game::Game()
   this->cameras.s = Camera::create();
   this->cameras.e = Camera::create();
   this->cameras.f = Camera::create();
+  this->cameras.g = Camera::create();
 
   this->cameras.d->setCameraFlag(1);
   this->cameras.f->setCameraFlag(2);
   this->cameras.s->setCameraFlag(4);
   this->cameras.e->setCameraFlag(8);
+  this->cameras.g->setCameraFlag(9);
   this->cameras.c->setCameraFlag(16);
 
   this->cameras.d->setDepth(1);
@@ -76,6 +78,7 @@ Game::Game()
   this->cameras.s->setDepth(2);
   this->cameras.e->setDepth(4);
   this->cameras.c->setDepth(8);
+  this->cameras.g->setDepth(9);
 
   this->generateFrameBuffer();
 
@@ -106,6 +109,7 @@ Game::Game()
   this->addChild(this->cameras.e);
   this->addChild(this->cameras.c);
   this->addChild(this->cameras.f);
+  this->addChild(this->cameras.g);
 
   this->environment = new Environment(this);
   this->environment->create();
@@ -323,9 +327,9 @@ void Game::onTwitterLike()
   Events::onTwitterLike();
 }
 
-void Game::onShare(bool complete, const std::function<void(bool)>& callback, const std::function<void(int, int)>& update)
+void Game::onShare(bool action, bool complete, const std::function<void(int)>& callback, const std::function<void(int, int)>& update)
 {
-  Events::onShare(complete, callback, update);
+  Events::onShare(action, complete, callback, update);
 }
 
 void Game::onTwitter()

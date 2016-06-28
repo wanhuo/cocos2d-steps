@@ -61,8 +61,6 @@ class Counter : public Background
   protected:
   Count count;
 
-  CameraEntity3D* icon;
-
   ProgressTimer* starAction;
 
   struct BoolValues {
@@ -101,6 +99,8 @@ class Counter : public Background
 
   Entity* starBackground;
   Entity* bonusBackground;
+
+  CameraEntity3D* icon;
 
   virtual void onMenu();
   virtual void onGame();

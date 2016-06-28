@@ -369,6 +369,18 @@
         ]
       }
     ],
+    "capture-ready": [
+      {
+        "title": "READY FOR SHARE",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      }
+    ],
     "capture-1": [
       {
         "title": "GENERATING $1%",
@@ -408,6 +420,18 @@
     "capture-failed": [
       {
         "title": "SHARE FAILED",
+        "font": "square",
+        "size": 36,
+        "color": [
+          255,
+          0,
+          0
+        ]
+      }
+    ],
+    "capture-canceled": [
+      {
+        "title": "SHARE CANCELED",
         "font": "square",
         "size": 36,
         "color": [

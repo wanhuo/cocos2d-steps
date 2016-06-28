@@ -509,6 +509,8 @@ int EnvironmentStoreBar::randomCharacter(bool locked)
     {
       if(locked)
       {
+        element->updateState();
+
         if(element->state == EnvironmentStoreItem::STATE_DIAMONDS && Application->counter->values.coins >= element->parameters.diamonds)
         {
           candidates.push_back(element);
@@ -542,6 +544,8 @@ int EnvironmentStoreBar::randomTexture(bool locked)
     {
       if(locked)
       {
+        element->updateState();
+
         if(element->state == EnvironmentStoreItem::STATE_DIAMONDS && Application->counter->values.coins >= element->parameters.diamonds)
         {
           candidates.push_back(element);

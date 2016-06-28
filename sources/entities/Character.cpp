@@ -1510,6 +1510,17 @@ void Character::onCrash(Crash crash)
             ),
             50
           ));
+        this->plane->runAction(
+          Repeat::create(
+            Sequence::create(
+              CallFunc::create([=] () {
+              Sound->play("character-destroy-smash");
+              }),
+              DelayTime::create(0.1),
+              nullptr
+            ),
+            10
+          ));
         }),
         nullptr
       )
@@ -1519,7 +1530,7 @@ void Character::onCrash(Crash crash)
         Repeat::create(
           Sequence::create(
             TintTo::create(2.0 / 60.0, Color3B::WHITE),
-            TintTo::create(2.0 / 60.0, this->color),
+            TintTo::create(2.0 / 60.0, Application->environment->parameters.character == 3 ? Color3B::WHITE : this->color),
             nullptr
           ), 14
         ),

@@ -154,6 +154,8 @@ void EnvironmentMissionsFinish::onCreate()
     }
   }
 
+  this->index = this->plane->getIndex(this->plane->getCenterItemInCurrentView());
+
   Finish::getInstance()->missions->notificationKetchapp = false;
   Finish::getInstance()->missions->notificationDaily = false;
 }

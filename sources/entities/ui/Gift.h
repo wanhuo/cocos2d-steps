@@ -45,40 +45,6 @@ class Gift : public Button3D
    *
    */
   public:
-  class Diamond : public Entity3D
-  {
-    /**
-     *
-     *
-     *
-     */
-    protected:
-    Vec3 direction;
-    Vec3 speed;
-
-    /**
-     *
-     *
-     *
-     */
-    public:
-    Diamond();
-  ~Diamond();
-
-   virtual void onCreate();
-   virtual void onDestroy(bool action = false);
-
-   virtual void update(float time);
-
-   virtual Diamond* deepCopy();
-  };
-
-  /**
-   *
-   *
-   *
-   */
-  public:
   class Element : public Entity3D
   {
     /**
@@ -144,7 +110,6 @@ class Gift : public Button3D
   Gift(Node* parent);
  ~Gift();
 
-  Pool* elements;
   Element* element;
 
   virtual void onCreate();

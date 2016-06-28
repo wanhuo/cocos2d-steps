@@ -337,6 +337,16 @@ void EnvironmentStoreItem::updateState()
 {
   switch(this->state)
   {
+    case STATE_MISSIONS:
+    if(this->parameters.missions <= MissionsFactory::getInstance()->getCompletedMissionsCount())
+    {
+      this->changeState(STATE_DIAMONDS);
+    }
+    break;
+  }
+
+  switch(this->state)
+  {
     case STATE_DIAMONDS:
     case STATE_MISSIONS:
     this->setVisible(false);

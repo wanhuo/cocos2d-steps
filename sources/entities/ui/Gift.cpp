@@ -38,7 +38,6 @@ Gift::Gift(Node* parent)
 : Button3D("gift.obj", parent)
 {
   this->element = new Gift::Element(this);
-  this->elements = new Pool(new Gift::Diamond, this);
 }
 
 Gift::~Gift()
@@ -123,7 +122,6 @@ void Gift::onDestroy(bool action)
    *
    */
   this->element->_destroy();
-  this->elements->clear();
 }
 
 /**
@@ -236,10 +234,12 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
 
         for(int i = 0; i < 40; i++)
         {
-          auto element = (Entity3D*) this->elements->_create();
+          auto element = (R*) Application->environment->r->_create();
 
           element->setCameraMask(this->index);
           element->setLightMask(this->index);
+          element->setPosition3D(this->getPosition3D());
+          element->animation1();
         }
         }),
         DelayTime::create(0.4),
@@ -289,113 +289,6 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
   );
 
   Sound->play("open");
-}
-
-/**
- * Tooflya Inc. Development
- *
- * @author Igor Mats from Tooflya Inc.
- * @copyright (c) 2015 by Igor Mats
- * http://www.tooflya.com/development/
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
-
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
-
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @version of cocos2d is 3.5
- *
- */
-
-Gift::Diamond::Diamond()
-: Entity3D("diamond.obj", false)
-{
-  this->setScheduleUpdate(true);
-}
-
-Gift::Diamond::~Diamond()
-{
-}
-
-/**
- *
- *
- *
- */
-void Gift::Diamond::onCreate()
-{
-  Entity3D::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setTexture(Application->environment->getTextureState1());
-
-  this->setColor(Color3B(0.0, 243.0, 120.0));
-
-  this->setPosition3D(Vec3(0.0, 0.0, 0.0));
-  this->setRotation3D(Vec3(0.0, 0.0, 0.0));
-
-  this->setScale(0.2);
-
-  this->direction = Vec3(random(0.2, 0.5) * (probably(50) ? 1 : -1), 1.0, random(0.2, 0.5) * (probably(50) ? 1 : -1));
-  this->speed = Vec3(random(0.02, 0.1), random(0.1, 0.2), random(0.02, 0.1));
-
-  this->runAction(
-    RepeatForever::create(
-      RotateBy::create(random(1.0, 2.0), Vec3(360.0, 360.0, 360.0))
-    )
-  );
-}
-
-void Gift::Diamond::onDestroy(bool action)
-{
-  Entity3D::onDestroy(action);
-}
-
-/**
- *
- *
- *
- */
-void Gift::Diamond::update(float time)
-{
-  auto x = this->getPositionX();
-  auto y = this->getPositionY();
-  auto z = this->getPositionZ();
-
-  x += this->direction.x * this->speed.x * Present::getInstance()->time;
-  y += this->direction.y * this->speed.y * Present::getInstance()->time;
-  z += this->direction.z * this->speed.z * Present::getInstance()->time;
-
-  this->setPosition3D(Vec3(x, y, z));
-
-  this->speed.y -= 0.008 * Present::getInstance()->time;
-}
-
-/**
- *
- *
- *
- */
-Gift::Diamond* Gift::Diamond::deepCopy()
-{
-  return new Gift::Diamond;
 }
 
 /**

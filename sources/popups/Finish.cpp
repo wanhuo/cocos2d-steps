@@ -50,7 +50,7 @@ Finish::Finish()
 {
   if(!instance) instance = this;
 
-  this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onFacebookLike, Application));
+  //this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onFacebookLike, Application));
   this->buttons.rate = new Button("rate-button.png", 2, 1, this, std::bind(&Game::onRate, Application));
   this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application));
   this->buttons.restart = new Button("restart-button.png", 2, 1, this, std::bind([=] () {
@@ -121,17 +121,17 @@ void Finish::onShow()
      *
      *
      */
-    this->buttons.like->_create()->setCameraMask(4);
+    //this->buttons.like->_create()->setCameraMask(4);
     this->buttons.rate->_create()->setCameraMask(4);
     this->buttons.restart->_create()->setCameraMask(4);
     this->buttons.leaderboards->_create()->setCameraMask(4);
 
-    this->buttons.like->bind(false);
+    //this->buttons.like->bind(false);
     this->buttons.rate->bind(false);
     this->buttons.restart->bind(false);
     this->buttons.leaderboards->bind(false);
 
-    this->buttons.like->setPosition(80, Application->getHeight() + 120);
+    //this->buttons.like->setPosition(80, Application->getHeight() + 120);
     this->buttons.rate->setPosition(Application->getCenter().x - 200, 0);
     this->buttons.restart->setPosition(Application->getCenter().x, 0);
     this->buttons.leaderboards->setPosition(Application->getCenter().x + 200, 0);
@@ -176,7 +176,7 @@ void Finish::onShow()
       )
     );
 
-    this->buttons.like->runAction(
+    /*this->buttons.like->runAction(
       Sequence::create(
         DelayTime::create(0.3),
         EaseSineOut::create(
@@ -188,7 +188,7 @@ void Finish::onShow()
         }),
         nullptr
       )
-    );
+    );*/
   }
 }
 
@@ -201,7 +201,7 @@ void Finish::onHide(Callback callback)
    *
    *
    */
-  this->buttons.like->_destroy();
+  //this->buttons.like->_destroy();
   this->buttons.rate->_destroy();
   this->buttons.restart->_destroy();
   this->buttons.leaderboards->_destroy();

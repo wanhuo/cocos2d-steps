@@ -61,7 +61,7 @@ Counter::Counter(Node* parent)
     Vec3(0, 0, 2),
     Vec3(0, 0, 0),
     Application,
-    3
+    4
   },
   {
     {DirectionLight::create(Vec3(1.0, -1.0, -1.0), Color3B(200, 200, 200)), Application},
@@ -109,8 +109,9 @@ Counter::Counter(Node* parent)
   this->icon->setGlobalZOrder(100);
   this->texts.score->setGlobalZOrder(100);
   this->texts.best->setGlobalZOrder(100);
-  this->texts.coins->setGlobalZOrder(100);
   this->texts.stage->setGlobalZOrder(100);
+  this->texts.coins->setGlobalZOrder(3000);
+  this->texts.coins->setCameraMask(8);
 }
 
 Counter::~Counter()
@@ -621,6 +622,8 @@ void Counter::add(int count)
       count
     )
   );
+
+  Storage::set("application.coins", this->values.coins + count);
 }
 
 void Counter::remove(int count)
@@ -642,6 +645,8 @@ void Counter::remove(int count)
       count
     )
   );
+
+  Storage::set("application.coins", this->values.coins - count);
 }
 
 /**

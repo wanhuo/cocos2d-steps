@@ -46,6 +46,7 @@
 #include "Unlock.h"
 #include "Rampage.h"
 #include "Giphy.h"
+#include "R.h"
 
 #include "Generator.h"
 #include "Letters.h"
@@ -184,6 +185,7 @@ class Game : public Screen
     Camera* c;
     Camera* u;
     Camera* f;
+    Camera* g;
   };
   
   struct Elapsed {
@@ -315,7 +317,7 @@ class Game : public Screen
   virtual void onRate();
   virtual void onFacebookLike();
   virtual void onTwitterLike();
-  virtual void onShare(bool complete, const std::function<void(bool)>& callback, const std::function<void(int, int)>& update);
+  virtual void onShare(bool action, bool complete, const std::function<void(int)>& callback, const std::function<void(int, int)>& update);
   virtual void onTwitter();
   virtual void onFacebook();
   virtual void onMail();

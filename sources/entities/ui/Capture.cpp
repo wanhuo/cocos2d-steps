@@ -37,6 +37,58 @@
 Capture::Capture(Node* parent)
 : Entity("capture.png", parent)
 {
+  this->buttons.back = new Button("back-button.png", 2, 1, Application, std::bind([=] () {
+    this->state = STATE_NORMAL;
+
+    this->buttons.back->runAction(
+      Sequence::create(
+        MoveTo::create(0.2, Vec2(110, Application->getHeight() + 100)),
+        CallFunc::create([=] () {
+        this->buttons.back->_destroy();
+        }),
+        nullptr
+      )
+    );
+
+    this->buttons.share->runAction(
+      Sequence::create(
+        MoveTo::create(0.2, Vec2(Application->getCenter().x, -100)),
+        CallFunc::create([=] () {
+        this->buttons.share->_destroy();
+        }),
+        nullptr
+      )
+    );
+
+    this->stopAllActions();
+    this->runAction(
+      Spawn::create(
+        ScaleTo::create(0.2, 0.63),
+        MoveTo::create(0.2, Vec2(Application->getWidth() / 2, Application->getHeight() / 2 + 70)),
+        Sequence::create(
+          DelayTime::create(0.2),
+          CallFunc::create([=] () {
+          }),
+          nullptr
+        ),
+        nullptr
+      ), 1
+    );
+    Application->d->runAction(
+      FadeTo::create(0.2, 0)
+    );
+  }));
+  this->buttons.back->setGlobalZOrder(2000);
+  this->buttons.back->setLocalZOrder(2000);
+  this->buttons.back->setCameraMask(8);
+
+  this->buttons.share = new Button("share-button.png", 3, 1, Application, std::bind([=] () {
+  this->onShare(true);
+  }));
+  this->buttons.share->setGlobalZOrder(2000);
+  this->buttons.share->setLocalZOrder(2000);
+  this->buttons.share->setCameraMask(8);
+
   this->element = new Entity(this, true);
   this->element->setGlobalZOrder(1000);
   this->element->setLocalZOrder(-1);
@@ -81,10 +133,10 @@ void Capture::onCreate()
    */
   this->state = STATE_NORMAL;
 
+  this->bind(true);
+
   this->complete = false;
   this->earn = Screenshot::support() && probably(20);
-
-  this->bind(true);
 
   /**
    *
@@ -133,6 +185,7 @@ void Capture::onDestroy(bool action)
  */
 void Capture::onTouchStart(cocos2d::Touch* touch, Event* e)
 {
+  if(this->state == STATE_ACTIVE) return;
   if(this->getActionByTag(1)) return;
 
   this->stopActionByTag(101);
@@ -152,6 +205,7 @@ void Capture::onTouchStart(cocos2d::Touch* touch, Event* e)
 
 void Capture::onTouchFinish(cocos2d::Touch* touch, Event* e)
 {
+  if(this->state == STATE_ACTIVE) return;
   if(this->getActionByTag(1)) return;
 
   this->stopActionByTag(101);
@@ -171,6 +225,8 @@ void Capture::onTouchFinish(cocos2d::Touch* touch, Event* e)
 
 void Capture::onTouchCancelled(cocos2d::Touch* touch, Event* e)
 {
+  if(this->state == STATE_ACTIVE) return;
+
   this->stopActionByTag(101);
   this->Node::runAction(
     EaseSineIn::create(
@@ -193,6 +249,13 @@ void Capture::onTouchCancelled(cocos2d::Touch* touch, Event* e)
  */
 void Capture::onTouch(cocos2d::Touch* touch, Event* e)
 {
+  if(this->state == STATE_ACTIVE) return;
+
+  /**
+   *
+   *
+   *
+   */
   Entity::onTouch(touch, e);
 
   /**
@@ -212,12 +275,28 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
     case STATE_NORMAL:
     this->state = STATE_ACTIVE;
 
+    this->buttons.share->_create();
+    this->buttons.share->bind(false);
+    this->buttons.share->setCurrentFrameIndex(0);
+    this->buttons.share->setPosition(Application->getCenter().x, -100);
+    this->buttons.share->runAction(
+      MoveTo::create(0.2, Vec2(Application->getCenter().x, 220))
+    );
+
+    this->buttons.back->_create();
+    this->buttons.back->bind(true);
+    this->buttons.back->setCurrentFrameIndex(0);
+    this->buttons.back->setPosition(110, Application->getHeight() + 100);
+    this->buttons.back->runAction(
+      MoveTo::create(0.2, Vec2(110, Application->getHeight() - 50))
+    );
+
     this->stopAllActions();
     this->runAction(
       Spawn::create(
         ScaleTo::create(0.2, 1.3),
         RotateTo::create(0.2, 0),
-        MoveTo::create(0.2, Vec2(Application->getWidth() / 2, Application->getHeight() / 2)),
+        MoveTo::create(0.2, Vec2(Application->getWidth() / 2, Application->getHeight() / 2 + 50)),
         Sequence::create(
           CallFunc::create([=] () {
           if(Screenshot::support())
@@ -230,76 +309,17 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
 
               this->diamond->_destroy();
             }
+            else
+            {
+              this->buttons.share->bind(true);
+              this->buttons.share->setCurrentFrameIndex(1);
+            }
 
             this->element->runAction(
               Sequence::create(
                 FadeTo::create(0.2, this->complete ? 255.0 : 0.0),
                 CallFunc::create([=] () {
-                  Application->onShare(this->complete,
-                    [=] (bool state) {
-                    if(this->state == STATE_ACTIVE) this->onTouch(NULL, NULL);
-
-                    if(state)
-                    {
-                      this->text->setText("capture-successful");
-
-                      if(this->earn)
-                      {
-                        this->earn = false;
-                        Application->counter->add(50);
-                      }
-                    }
-                    else
-                    {
-                      this->text->setText("capture-failed");
-                    }
-                    },
-                    [=] (int type, int state) {
-                      this->element->setOpacity(255);
-
-                      switch(type)
-                      {
-                        case 1:
-                        this->element->setTextureRect(
-                          Rect(
-                            0,
-                            0,
-                            this->element->getTextureRect().size.width,
-                            this->element2->getTextureRect().size.height * state / 100
-                          )
-                        );
-
-                        this->text->data(state);
-
-                        if(state >= 100)
-                        {
-                          this->complete = true;
-                        }
-                        break;
-                        case 2:
-                        Application->giphy->_create();
-                        Application->giphy->update(state);
-
-                        this->text->setText("capture-2");
-                        this->text->data(state);
-
-                        if(state >= 100)
-                        {
-                          this->complete = true;
-
-                          Application->giphy->runAction(
-                            Sequence::create(
-                              MoveBy::create(0.2, Vec2(0, 100)),
-                              CallFunc::create([=] () {
-                              Application->giphy->_destroy();
-                              }),
-                              nullptr
-                            )
-                          );
-                        }
-                        break;
-                      }
-                  });
+                this->onShare();
                 }),
                 nullptr
               )
@@ -307,21 +327,25 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
           }
           else
           {
+            this->buttons.share->bind(true);
+            this->buttons.share->setCurrentFrameIndex(1);
+
             this->runAction(
               Sequence::create(
                 DelayTime::create(0.5),
                 CallFunc::create([=] () {
-                Application->onShare(this->complete,
-                  [=] (bool state) {
+                Application->onShare(true, this->complete,
+                  [=] (int state) {
                     if(this->state == STATE_ACTIVE) this->onTouch(NULL, NULL);
 
-                    if(state)
+                    switch(state)
                     {
-                      this->text->setText("capture-successful");
-                    }
-                    else
-                    {
+                      case 0:
                       this->text->setText("capture-failed");
+                      break;
+                      case 1:
+                      this->text->setText("capture-successful");
+                      break;
                     }
                   },
                  [=] (int type, int state) {
@@ -338,29 +362,10 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
       ), 1
     );
     Application->d->runAction(
-      FadeTo::create(0.2, 200)
+      FadeTo::create(0.2, 230)
     );
     break;
     case STATE_ACTIVE:
-    this->state = STATE_NORMAL;
-
-    this->stopAllActions();
-    this->runAction(
-      Spawn::create(
-        ScaleTo::create(0.2, 0.63),
-        MoveTo::create(0.2, Vec2(Application->getWidth() / 2, Application->getHeight() / 2 + 70)),
-        Sequence::create(
-          DelayTime::create(0.2),
-          CallFunc::create([=] () {
-          }),
-          nullptr
-        ),
-        nullptr
-      ), 1
-    );
-    Application->d->runAction(
-      FadeTo::create(0.2, 0)
-    );
     break;
   }
 
@@ -370,6 +375,97 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
    *
    */
   Sound->play("touch");
+}
+
+/**
+ *
+ *
+ *
+ */
+void Capture::onShare(bool action)
+{
+  Application->onShare(action, this->complete,
+    [=] (int state) {
+    if(this->state == STATE_ACTIVE) this->onTouch(NULL, NULL);
+
+    switch(state)
+    {
+      case 0:
+      this->text->setText("capture-failed");
+      break;
+      case 1:
+      this->text->setText("capture-successful");
+
+      if(this->earn)
+      {
+        this->earn = false;
+
+        for(int i = 0; i < 25; i++)
+        {
+          auto element = (R*) Application->environment->r->_create();
+
+          element->setCameraMask(Application->counter->icon->getCameraMask());
+          element->setLightMask(Application->counter->icon->getLightMask());
+          element->animation2();
+        }
+      }
+      break;
+      case 2:
+      this->text->setText("capture-canceled");
+      break;
+    }
+    },
+    [=] (int type, int state) {
+      this->element->setOpacity(255);
+
+      switch(type)
+      {
+        case 1:
+        this->element->setTextureRect(
+          Rect(
+            0,
+            0,
+            this->element->getTextureRect().size.width,
+            this->element2->getTextureRect().size.height * state / 100
+          )
+        );
+
+        this->text->data(state);
+
+        if(state >= 100)
+        {
+          this->complete = true;
+
+          this->buttons.share->bind(true);
+          this->buttons.share->setCurrentFrameIndex(1);
+
+          this->text->setText("capture-ready");
+        }
+        break;
+        case 2:
+        Application->giphy->_create();
+        Application->giphy->update(state);
+
+        this->text->setText("capture-2");
+        this->text->data(state);
+
+        if(state >= 100)
+        {
+          this->complete = true;
+
+          Application->giphy->runAction(
+            Sequence::create(
+              MoveBy::create(0.2, Vec2(0, 100)),
+              CallFunc::create([=] () {
+              Application->giphy->_destroy();
+              }),
+              nullptr
+            )
+          );
+        }
+        break;
+      }
+  });
 }
 
 /**

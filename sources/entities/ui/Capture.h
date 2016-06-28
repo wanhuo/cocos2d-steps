@@ -50,6 +50,11 @@ class Capture : public Entity
     STATE_ACTIVE
   };
 
+  struct Buttons {
+    Button* back;
+    Button* share;
+  };
+
   /**
    *
    *
@@ -58,6 +63,8 @@ class Capture : public Entity
   protected:
   bool complete;
   bool earn;
+
+  Buttons buttons;
 
   Entity* element;
   Entity* element2;
@@ -85,6 +92,7 @@ class Capture : public Entity
   virtual void onTouchCancelled(cocos2d::Touch* touch, Event* e);
 
   virtual void onTouch(cocos2d::Touch* touch, Event* e);
+  virtual void onShare(bool action = false);
 
   virtual void screenshot(string texture);
   virtual void animation();

@@ -51,15 +51,16 @@ Giphy::Giphy(Node* parent)
   this->element = new Entity("giphy.png", this, true);
   this->element->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
 
-  this->setGlobalZOrder(1000);
+  this->setGlobalZOrder(4000);
   this->setCameraMask(8);
 
-  this->element->setGlobalZOrder(1000);
-  this->element->setCameraMask(8);
+  this->element->setGlobalZOrder(4000);
+  this->element->setCameraMask(9);
 
-  this->action->setGlobalZOrder(1000);
-  this->action->setCameraMask(8);
+  this->action->setGlobalZOrder(4000);
+  this->action->setCameraMask(9);
 
+  this->bind(true);
   this->_destroy();
 }
 

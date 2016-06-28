@@ -226,6 +226,8 @@ class Environment : public Background
 
   Light light;
 
+  Pool* r;
+
   int nextCharacter = 0;
   int nextTexture = 0;
 
