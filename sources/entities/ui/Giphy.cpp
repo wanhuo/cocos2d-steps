@@ -52,13 +52,13 @@ Giphy::Giphy(Node* parent)
   this->element->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
 
   this->setGlobalZOrder(4000);
-  this->setCameraMask(8);
+  this->setCameraMask(32);
 
   this->element->setGlobalZOrder(4000);
-  this->element->setCameraMask(9);
+  this->element->setCameraMask(32);
 
   this->action->setGlobalZOrder(4000);
-  this->action->setCameraMask(9);
+  this->action->setCameraMask(32);
 
   this->bind(true);
   this->_destroy();

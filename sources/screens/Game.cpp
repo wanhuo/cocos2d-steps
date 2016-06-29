@@ -70,8 +70,8 @@ Game::Game()
   this->cameras.f->setCameraFlag(2);
   this->cameras.s->setCameraFlag(4);
   this->cameras.e->setCameraFlag(8);
-  this->cameras.g->setCameraFlag(9);
   this->cameras.c->setCameraFlag(16);
+  this->cameras.g->setCameraFlag(32);
 
   this->cameras.d->setDepth(1);
   this->cameras.f->setDepth(1);

@@ -27,7 +27,7 @@
 
 @implementation Purchases
 
-+ (NSSet<NSString *> *) getIdentifiers {
++ (NSSet*) getIdentifiers {
   return [NSSet setWithObjects: @"", nil];
 }
 @end
