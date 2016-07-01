@@ -199,8 +199,10 @@ EnvironmentMissionsPopup::MissionTask::MissionTask(Node* parent)
   this->text = new Text("missions-data", this, true);
   this->text->setPosition(this->getWidth() / 2, 20);
 
-  this->action = new Text("missions-action", this, true);
-  this->action->setPosition(this->getWidth() / 2, this->getHeight() / 2);
+  this->action = new Text("missions-action", this);
+  this->action->setPosition(this->getWidth() / 2, this->getHeight() / 2 + 10);
+  this->action->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
+  this->action->setLocalZOrder(10);
 
   this->element = new TiledEntity("missions-1.png", 4, 1, this, true);
   this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2 + 11.5);
@@ -270,6 +272,23 @@ void EnvironmentMissionsPopup::MissionTask::updateData(int mission, MissionStruc
   switch(m->state)
   {
     case MissionStruct::STATE_CURRENT:
+    this->action->_create();
+
+    if(c.best > 0) this->action->setText("missions-action-best");
+    if(c.games > 0) this->action->setText("missions-action-games");
+    if(c.points > 0) this->action->setText("missions-action-points");
+    if(c.special_progress_14 > 0 || c.special_once_14 > 0) this->action->setText("missions-action-14");
+    break;
+    case MissionStruct::STATE_CLAIM:
+    case MissionStruct::STATE_FINISHED:
+    case MissionStruct::STATE_LOCKED:
+    this->action->_destroy();
+    break;
+  }
+
+  switch(m->state)
+  {
+    case MissionStruct::STATE_CURRENT:
     case MissionStruct::STATE_CLAIM:
     case MissionStruct::STATE_FINISHED:
     this->text->setVisible(true);
@@ -278,7 +297,7 @@ void EnvironmentMissionsPopup::MissionTask::updateData(int mission, MissionStruc
     {
       this->element->setCurrentFrameIndex(2);
     }
-    else if(c.elapsed > 0)
+    else if(c.elapsed > 0 || c.games > 0 || c.points > 0 || c.best > 0 || c.special_progress_14 > 0 || c.special_once_14 > 0)
     {
       this->element->setCurrentFrameIndex(1);
     }
@@ -320,7 +339,7 @@ void EnvironmentMissionsPopup::MissionTask::updateData(int mission, MissionStruc
             Sequence::create(
               DelayTime::create(time),
               CallFunc::create([=] () {
-              this->element2->setTextureRect(Rect(
+                this->element2->setTextureRect(Rect(
                 this->element2->getFramesCoordinatesX()[1],
                 this->element2->getFramesCoordinatesY()[1] - (this->element2->getTextureRect().size.height - constant),
                 this->element2->getWidth(),

@@ -21,6 +21,166 @@
     0
   ],
   "languages": {
+    "missions-action": [
+      {
+        "title": "",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "",
+        "font": "arialuni",
+        "size": 32
+      },
+      {
+        "title": "",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "missions-action-14": [
+      {
+        "title": "CLEAR\nSTAGE",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "COMPLETA\nLA MISIÓN",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "ETAPA\nCOMPLETA",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "COMPLÉTEZ\nNIVEAU",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "通关",
+        "font": "arialuni",
+        "size": 32
+      },
+      {
+        "title": "ПРОЙТИ\nУРОВЕНЬ",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "missions-action-best": [
+      {
+        "title": "BEAT\nYOUR\nBEST",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "BATIR\nSU\nMEJOR",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "BATER\nO SEU\nMELHOR",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "BATTRE\nVOTRE\nMEILLEUR",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "打败你的最好的",
+        "font": "arialuni",
+        "size": 32
+      },
+      {
+        "title": "ПОБИТЬ\nРЕКОРД",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "missions-action-games": [
+      {
+        "title": "PLAY\nGAMES",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "JUGAR\nJUEGOS",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "JOGAR\nJOGOS",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "JOUER\nÀ DES\nJEUX",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "玩游戏",
+        "font": "arialuni",
+        "size": 32
+      },
+      {
+        "title": "СЫГРАТЬ\nИГР",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "missions-action-points": [
+      {
+        "title": "REACH\nSCORE",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "PUNTOS\nREACH",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "PONTOS\nREACH",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "POINTS\nREACH",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "获得积分",
+        "font": "arialuni",
+        "size": 32
+      },
+      {
+        "title": "НАБРАТЬ\nОЧКОВ",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
     "back": [
       {
         "title": "BACK",
