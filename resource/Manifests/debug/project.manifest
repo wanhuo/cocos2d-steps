@@ -1,8 +1,8 @@
 {
-  "packageUrl": "http://www.tooflya.com/games/wrong-way/updates/debug/",
-  "remoteManifestUrl": "http://www.tooflya.com/games/wrong-way/updates/debug/project.manifest",
-  "remoteVersionUrl": "http://www.tooflya.com/games/wrong-way/updates/debug/version.manifest",
-  "version": "1.0.0",
+  "packageUrl": "http://www.tooflya.com/games/steps/updates/debug/",
+  "remoteManifestUrl": "http://www.tooflya.com/games/steps/updates/debug/project.manifest",
+  "remoteVersionUrl": "http://www.tooflya.com/games/steps/updates/debug/version.manifest",
+  "version": "1.0",
   "engineVersion": "3.9",
   "assets": {
   },

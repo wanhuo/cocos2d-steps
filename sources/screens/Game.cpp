@@ -142,25 +142,25 @@ Game::~Game()
  *
  */
 void Game::generateFrameBuffer()
-{  if(Screenshot::support())
+{
+  if(Screenshot::support())
   {
-  auto size = Size(Director::getInstance()->getWinSizeInPixels().width, Director::getInstance()->getWinSizeInPixels().height);
+    auto size = Size(Director::getInstance()->getWinSizeInPixels().width, Director::getInstance()->getWinSizeInPixels().height);
 
-  this->frameBuffer = FrameBuffer::create(1, size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
+    this->frameBuffer = FrameBuffer::create(1, size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
 
-  auto rt = RenderTarget::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
-  auto rtDS = RenderTargetDepthStencil::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
-  this->frameBuffer->attachRenderTarget(rt);
-  this->frameBuffer->attachDepthStencilTarget(rtDS);
+    auto rt = RenderTarget::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
+    auto rtDS = RenderTargetDepthStencil::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
+    this->frameBuffer->attachRenderTarget(rt);
+    this->frameBuffer->attachDepthStencilTarget(rtDS);
 
-  this->generate = Sprite::createWithTexture(this->getFrameBuffer()->getRenderTarget()->getTexture());
-  this->generate->setScaleX(1 * FRAME_BUFFER_FACTOR);
-  this->generate->setScaleY(-1 * FRAME_BUFFER_FACTOR);
-  this->generate->setPosition(size.width / 2, size.height / 2);
-  this->generate->setCameraMask(2);
-  this->generate->setGlobalZOrder(1);
-  this->addChild(this->generate);
-
+    this->generate = Sprite::createWithTexture(this->getFrameBuffer()->getRenderTarget()->getTexture());
+    this->generate->setScaleX(1 * FRAME_BUFFER_FACTOR);
+    this->generate->setScaleY(-1 * FRAME_BUFFER_FACTOR);
+    this->generate->setPosition(size.width / 2, size.height / 2);
+    this->generate->setCameraMask(2);
+    this->generate->setGlobalZOrder(1);
+    this->addChild(this->generate);
 
     for(int i = 0; i < CAPTURE_FPS * CAPTURE_TIME; i++)
     {
@@ -170,13 +170,13 @@ void Game::generateFrameBuffer()
       this->capturing.textures.push_back(render);
     }
 
-  this->captures = new Captures();
-  this->captures->initWithTexture(this->generate->getTexture());
-  this->captures->setScaleX(1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
-  this->captures->setScaleY(-1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
-  this->captures->setPosition(this->getWidth() / CAPTURE_SCALE / 2, this->getHeight() / CAPTURE_SCALE / 2 - CAPTURE_POSITION / CAPTURE_SCALE);
+    this->captures = new Captures();
+    this->captures->initWithTexture(this->generate->getTexture());
+    this->captures->setScaleX(1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
+    this->captures->setScaleY(-1.0 * Game::FRAME_BUFFER_FACTOR / CAPTURE_SCALE);
+    this->captures->setPosition(this->getWidth() / CAPTURE_SCALE / 2, this->getHeight() / CAPTURE_SCALE / 2 - CAPTURE_POSITION / CAPTURE_SCALE);
 
-  this->cameras.d->setFrameBufferObject(this->getFrameBuffer());
+    this->cameras.d->setFrameBufferObject(this->getFrameBuffer());
   }
 }
 

@@ -1,17 +1,17 @@
 {
   "support": [
     1,
+    5,
+    4,
+    0,
+    0,
+    2,
+    0,
+    6,
     0,
     0,
     0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
+    3,
     0,
     0,
     0,
@@ -21,10 +21,67 @@
     0
   ],
   "languages": {
+    "missions-mission": [
+      {
+        "title": "",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "",
+        "font": "Impact",
+        "size": 24
+      }
+    ],
     "name": [
       {
         "title": "STEPS",
         "font": "square",
+        "size": 180
+      },
+      {
+        "title": "STEPS",
+        "font": "square",
+        "size": 180
+      },
+      {
+        "title": "STEPS",
+        "font": "square",
+        "size": 180
+      },
+      {
+        "title": "STEPS",
+        "font": "square",
+        "size": 180
+      },
+      {
+        "title": "STEPS",
+        "font": "square",
+        "size": 180
+      },
+      {
+        "title": "STEPS",
+        "font": "Impact",
         "size": 180
       }
     ],
@@ -33,12 +90,62 @@
         "title": "STAGE $1",
         "font": "square",
         "size": 50
+      },
+      {
+        "title": "PASO $1",
+        "font": "square",
+        "size": 50
+      },
+      {
+        "title": "ETAPA $1",
+        "font": "square",
+        "size": 50
+      },
+      {
+        "title": "NIVEAU $1",
+        "font": "square",
+        "size": 50
+      },
+      {
+        "title": "关卡 $1",
+        "font": "arialuni",
+        "size": 50
+      },
+      {
+        "title": "УРОВЕНЬ $1",
+        "font": "Impact",
+        "size": 50
       }
     ],
     "stage-bonus": [
       {
         "title": "BONUS STAGE",
         "font": "square",
+        "size": 50
+      },
+      {
+        "title": "MISIÓN DE BONIFICACIÓN",
+        "font": "square",
+        "size": 50
+      },
+      {
+        "title": "ETAPA DE BONUS",
+        "font": "square",
+        "size": 50
+      },
+      {
+        "title": "NIVEAU BONUS",
+        "font": "square",
+        "size": 50
+      },
+      {
+        "title": "奖励关卡",
+        "font": "arialuni",
+        "size": 50
+      },
+      {
+        "title": "БОНУСНЫЙ УРОВЕНЬ",
+        "font": "Impact",
         "size": 50
       }
     ],
@@ -47,12 +154,62 @@
         "title": "$1",
         "font": "square",
         "size": 110
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 110
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 110
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 110
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 110
+      },
+      {
+        "title": "$1",
+        "font": "Impact",
+        "size": 110
       }
     ],
     "counter-coins": [
       {
         "title": "$1",
         "font": "square",
+        "size": 60
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 60
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 60
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 60
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 60
+      },
+      {
+        "title": "$1",
+        "font": "Impact",
         "size": 60
       }
     ],
@@ -61,12 +218,62 @@
         "title": "BEST $1",
         "font": "square",
         "size": 80
+      },
+      {
+        "title": "MEJOR $1",
+        "font": "square",
+        "size": 80
+      },
+      {
+        "title": "RECORDE $1",
+        "font": "square",
+        "size": 80
+      },
+      {
+        "title": "RECORD $1",
+        "font": "square",
+        "size": 80
+      },
+      {
+        "title": "纪录 $1",
+        "font": "arialuni",
+        "size": 80
+      },
+      {
+        "title": "РЕКОРД $1",
+        "font": "Impact",
+        "size": 80
       }
     ],
     "counter-bonus": [
       {
         "title": "$1",
         "font": "square",
+        "size": 20
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "$1",
+        "font": "Impact",
         "size": 20
       }
     ],
@@ -75,12 +282,30 @@
         "title": "TAP TO PLAY",
         "font": "square",
         "size": 40
-      }
-    ],
-    "finish-tap": [
+      },
       {
-        "title": "TAP TO RESTART",
+        "title": "TOCA PARA JUGAR",
         "font": "square",
+        "size": 40
+      },
+      {
+        "title": "TOCA PARA JOGAR",
+        "font": "square",
+        "size": 40
+      },
+      {
+        "title": "APPUYEZ POUR JOUER",
+        "font": "square",
+        "size": 40
+      },
+      {
+        "title": "点击开始",
+        "font": "arialuni",
+        "size": 40
+      },
+      {
+        "title": "НАЖМИ ДЛЯ СТАРТА",
+        "font": "Impact",
         "size": 40
       }
     ],
@@ -89,12 +314,62 @@
         "title": "+$1",
         "font": "square",
         "size": 42
+      },
+      {
+        "title": "+$1",
+        "font": "square",
+        "size": 42
+      },
+      {
+        "title": "+$1",
+        "font": "square",
+        "size": 42
+      },
+      {
+        "title": "+$1",
+        "font": "square",
+        "size": 42
+      },
+      {
+        "title": "+$1",
+        "font": "square",
+        "size": 42
+      },
+      {
+        "title": "+$1",
+        "font": "Impact",
+        "size": 42
       }
     ],
     "store-random": [
       {
         "title": "RANDOM",
         "font": "square",
+        "size": 46
+      },
+      {
+        "title": "ALEATORIO",
+        "font": "square",
+        "size": 46
+      },
+      {
+        "title": "ALEATÓRIO",
+        "font": "square",
+        "size": 46
+      },
+      {
+        "title": "ALÉATOIRE",
+        "font": "square",
+        "size": 46
+      },
+      {
+        "title": "随机",
+        "font": "arialuni",
+        "size": 46
+      },
+      {
+        "title": "СЛУЧАЙНО",
+        "font": "Impact",
         "size": 46
       }
     ],
@@ -103,12 +378,62 @@
         "title": "$1 MISSIONS",
         "font": "square",
         "size": 46
+      },
+      {
+        "title": "$1 MISIONES",
+        "font": "square",
+        "size": 46
+      },
+      {
+        "title": "$1 MISSÕES",
+        "font": "square",
+        "size": 46
+      },
+      {
+        "title": "$1 MISSIONS",
+        "font": "square",
+        "size": 46
+      },
+      {
+        "title": "$1个任务",
+        "font": "arialuni",
+        "size": 46
+      },
+      {
+        "title": "$1 МИССИЙ",
+        "font": "Impact",
+        "size": 46
       }
     ],
     "store-state-2": [
       {
         "title": "$1",
         "font": "square",
+        "size": 46
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 46
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 46
+      },
+      {
+        "title": "$1",
+        "font": "square",
+        "size": 46
+      },
+      {
+        "title": "$1",
+        "font": "arialuni",
+        "size": 46
+      },
+      {
+        "title": "$1",
+        "font": "Impact",
         "size": 46
       }
     ],
@@ -117,6 +442,31 @@
         "title": "FOLLOW KETCHAPP ON FACEBOOK",
         "font": "square",
         "size": 32
+      },
+      {
+        "title": "SIGA KETCHAPP EN FACEBOOK",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "SEGUE A KETCHAPP NO FACEBOOK",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "SUIVEZ KETCHAPP SUR FACEBOOK",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "在FACEBOOK上关注KETCHAPP",
+        "font": "arialuni",
+        "size": 32
+      },
+      {
+        "title": "ПОДПИШИТЕСЬ НА KETCHAPP В FACEBOOK",
+        "font": "Impact",
+        "size": 32
       }
     ],
     "store-characters": [
@@ -124,6 +474,31 @@
         "title": "CHARACTERS",
         "font": "square",
         "size": 32
+      },
+      {
+        "title": "CARACTERES",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "PERSONAGENS",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "PERSONNAGES",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "角色",
+        "font": "arialuni",
+        "size": 46
+      },
+      {
+        "title": "ПЕРСОНАЖИ",
+        "font": "Impact",
+        "size": 46
       }
     ],
     "store-textures": [
@@ -131,12 +506,62 @@
         "title": "TEXTURES",
         "font": "square",
         "size": 32
+      },
+      {
+        "title": "DECORACIONES",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "TEXTURAS",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "TEXTURES",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "材质",
+        "font": "arialuni",
+        "size": 46
+      },
+      {
+        "title": "ТЕКСТУРЫ",
+        "font": "Impact",
+        "size": 46
       }
     ],
     "price": [
       {
         "title": "200",
         "font": "square",
+        "size": 46
+      },
+      {
+        "title": "200",
+        "font": "square",
+        "size": 46
+      },
+      {
+        "title": "200",
+        "font": "square",
+        "size": 46
+      },
+      {
+        "title": "200",
+        "font": "square",
+        "size": 46
+      },
+      {
+        "title": "200",
+        "font": "square",
+        "size": 46
+      },
+      {
+        "title": "200",
+        "font": "Impact",
         "size": 46
       }
     ],
@@ -145,19 +570,62 @@
         "title": "MISSION $1/$2",
         "font": "square",
         "size": 42
-      }
-    ],
-    "missions-mission": [
+      },
       {
-        "title": "",
+        "title": "MISIONE $1/$2",
         "font": "square",
-        "size": 24
+        "size": 42
+      },
+      {
+        "title": "MISSÃO $1/$2",
+        "font": "square",
+        "size": 42
+      },
+      {
+        "title": "MISSION $1/$2",
+        "font": "square",
+        "size": 42
+      },
+      {
+        "title": "任务 $1/$2",
+        "font": "square",
+        "size": 42
+      },
+      {
+        "title": "МИССИЯ $1/$2",
+        "font": "Impact",
+        "size": 42
       }
     ],
     "missions-mission-1": [
       {
         "title": "COMPLETE IN ONE GAME",
         "font": "square",
+        "size": 36
+      },
+      {
+        "title": "LLENAR PARCIALMENTE",
+        "font": "square",
+        "size": 36
+      },
+      {
+        "title": "COMPLETA NUM ÚNICO JOGO",
+        "font": "square",
+        "size": 36
+      },
+      {
+        "title": "COMPLÉTEZ EN UNE PARTIE",
+        "font": "square",
+        "size": 36
+      },
+      {
+        "title": "通过一次游戏完成",
+        "font": "arialuni",
+        "size": 36
+      },
+      {
+        "title": "ЗАВЕРШИТЕ ЗА ОДНУ ИГРУ",
+        "font": "Impact",
         "size": 36
       }
     ],
@@ -166,12 +634,67 @@
         "title": "COMPLETE THROUGH\nMULTIPLE GAMES",
         "font": "square",
         "size": 36
+      },
+      {
+        "title": "RELLENAR DIFERENTES JUEGOS",
+        "font": "square",
+        "size": 36
+      },
+      {
+        "title": "COMPLETA ATRAVÉS\nDE DIVERSOS JOGOS",
+        "font": "square",
+        "size": 36
+      },
+      {
+        "title": "COMPLÉTEZ SUR\nPLUSIEURS PARTIES",
+        "font": "square",
+        "size": 36
+      },
+      {
+        "title": "通过多次游戏完成",
+        "font": "arialuni",
+        "size": 36
+      },
+      {
+        "title": "ЗАВЕРШИТЕ ЗА НЕСКОЛЬКО ИГР",
+        "font": "Impact",
+        "size": 36
       }
     ],
     "missions-data": [
       {
         "title": "$1/$2",
         "font": "square",
+        "size": 22,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "$1/$2",
+        "font": "square",
+        "size": 22,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "$1/$2",
+        "font": "square",
+        "size": 22,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "$1/$2",
+        "font": "square",
+        "size": 22,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "$1/$2",
+        "font": "arialuni",
+        "size": 22,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "$1/$2",
+        "font": "Impact",
         "size": 22,
         "color": [71.0, 132.0, 164.0]
       }
@@ -182,12 +705,72 @@
         "font": "square",
         "size": 42,
         "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "MISIONE $1 LLENADO",
+        "font": "square",
+        "size": 42,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "MISSÃO $1 CONCLUÍDO",
+        "font": "square",
+        "size": 42,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "MISSION $1 COMPLETED",
+        "font": "square",
+        "size": 42,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "任务$1完成",
+        "font": "arialuni",
+        "size": 42,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "МИССИЯ $1 ЗАВЕРШЕНА",
+        "font": "Impact",
+        "size": 42,
+        "color": [71.0, 132.0, 164.0]
       }
     ],
     "missions-complete-ketchapp": [
       {
         "title": "KETCHAPP MISSION COMPLETED",
         "font": "square",
+        "size": 34,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "KETCHAPP MISSION COMPLETADA",
+        "font": "square",
+        "size": 34,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "KETCHAPP MISSÃO CONCLUÍDA",
+        "font": "square",
+        "size": 34,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "KETCHAPP MISSION REMPLIE",
+        "font": "square",
+        "size": 34,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "KETCHAPP 任务完成",
+        "font": "arialuni",
+        "size": 34,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "МИССИЯ KETCHAPP ЗАВЕРШЕНА",
+        "font": "Impact",
         "size": 34,
         "color": [71.0, 132.0, 164.0]
       }
@@ -198,12 +781,67 @@
         "font": "square",
         "size": 40,
         "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "DIARIAS DE MISIÓN LLENADO",
+        "font": "square",
+        "size": 40,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "MISSÃO DIÁRIO PREENCHIDO",
+        "font": "square",
+        "size": 40,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "MISSION QUOTIDIENNE COMPLETED",
+        "font": "square",
+        "size": 40,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "每日任务完成",
+        "font": "arialuni",
+        "size": 40,
+        "color": [71.0, 132.0, 164.0]
+      },
+      {
+        "title": "ДНЕВНАЯ МИССИЯ ЗАВЕРШЕНА",
+        "font": "Impact",
+        "size": 40,
+        "color": [71.0, 132.0, 164.0]
       }
     ],
     "missions-finish": [
       {
         "title": "MISSION $1 PROGRESS",
         "font": "square",
+        "size": 26
+      },
+      {
+        "title": "MISIÓN $1 PROGRESO",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "PROGRESSO DA MISSÃO $1",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "PROGRESSION DE LA MISSION $1",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "任务$1进展",
+        "font": "arialuni",
+        "size": 26
+      },
+      {
+        "title": "ПРОГРЕСС МИССИИ $1",
+        "font": "Impact",
         "size": 26
       }
     ],
@@ -212,6 +850,31 @@
         "title": "COMPLETE IN ONE GAME",
         "font": "square",
         "size": 24
+      },
+      {
+        "title": "LLENAR PARCIALMENTE",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "COMPLETA NUM ÚNICO JOGO",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "COMPLÉTEZ EN UNE PARTIE",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "通过一次游戏完成",
+        "font": "arialuni",
+        "size": 24
+      },
+      {
+        "title": "ЗАВЕРШИТЕ ЗА ОДНУ ИГРУ",
+        "font": "Impact",
+        "size": 24
       }
     ],
     "missions-ketchapp-progress-1": [
@@ -219,6 +882,31 @@
         "title": "KETCHAPP MISSION PROGRESS",
         "font": "square",
         "size": 26
+      },
+      {
+        "title": "PROGRESAR MISIONES KETCHAPP",
+        "font": "square",
+        "size": 22
+      },
+      {
+        "title": "PROGRESSO DA MISSÃO KETCHAPP",
+        "font": "square",
+        "size": 22
+      },
+      {
+        "title": "PROGRESSION MISSION KETCHAPP",
+        "font": "square",
+        "size": 22
+      },
+      {
+        "title": "KETCHAPP 任务进程",
+        "font": "arialuni",
+        "size": 22
+      },
+      {
+        "title": "ПРОГРЕСС KETCHAPP МИССИИ",
+        "font": "Impact",
+        "size": 22
       }
     ],
     "missions-ketchapp-progress-2": [
@@ -226,12 +914,62 @@
         "title": "CLEAR 8 STAGES",
         "font": "square",
         "size": 26
+      },
+      {
+        "title": "8 NIVELES COMPLETOS",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "TERMINA 8 ETAPAS PARA COMPLETAR",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "TERMINEZ 8 NIVEAUX POUR COMPLÉTER",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "打过8关来完成",
+        "font": "arialuni",
+        "size": 20
+      },
+      {
+        "title": "ПРОЙДИТЕ 8 УРОВНЕЙ",
+        "font": "Impact",
+        "size": 20
       }
     ],
     "missions-ketchapp-complete": [
       {
         "title": "KETCHAPP MISSION COMPLETED",
         "font": "square",
+        "size": 26
+      },
+      {
+        "title": "KETCHAPP MISSION COMPLETED",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "KETCHAPP MISSION COMPLETED",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "KETCHAPP MISSION COMPLETED",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "KETCHAPP 任务完成",
+        "font": "arialuni",
+        "size": 26
+      },
+      {
+        "title": "KETCHAPP МИССИЯ ЗАВЕРШЕНА",
+        "font": "Impact",
         "size": 26
       }
     ],
@@ -240,6 +978,31 @@
         "title": "DAILY MISSION PROGRESS",
         "font": "square",
         "size": 26
+      },
+      {
+        "title": "PROGRESAR MISIONES COTIDIANOS",
+        "font": "square",
+        "size": 22
+      },
+      {
+        "title": "PROGRESSO DA MISSÃO DIÁRIA",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "PROGRESSION MISSION QUOTIDIENNE",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "每日任务进程",
+        "font": "arialuni",
+        "size": 20
+      },
+      {
+        "title": "ПРОГРЕСС ЕЖЕДНЕВНОЙ МИССИИ",
+        "font": "Impact",
+        "size": 20
       }
     ],
     "missions-daily-progress-2": [
@@ -247,12 +1010,62 @@
         "title": "COLLECT ALL LETTERS",
         "font": "square",
         "size": 26
+      },
+      {
+        "title": "RECOGE TODAS LAS LETRAS",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "APANHA TODAS AS LETRAS",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "COLLECTEZ TOUTES LES LETTRES",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "积攒所有字母来完成",
+        "font": "arialuni",
+        "size": 24
+      },
+      {
+        "title": "СОБЕРИТЕ ВСЕ БУКВЫ",
+        "font": "Impact",
+        "size": 24
       }
     ],
     "missions-daily-complete": [
       {
         "title": "DAILY MISSION COMPLETED",
         "font": "square",
+        "size": 26
+      },
+      {
+        "title": "DIARIAS DE MISIÓN LLENADO",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "MISSÃO DIÁRIO PREENCHIDO",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "MISSION QUOTIDIENNE COMPLETED",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "每日任务完成",
+        "font": "arialuni",
+        "size": 26
+      },
+      {
+        "title": "ЕЖЕДНЕВНАЯ МИССИЯ ЗАВЕРШЕНА",
+        "font": "Impact",
         "size": 26
       }
     ],
@@ -261,12 +1074,62 @@
         "title": "COMPLETE THROUGH MULTIPLE GAMES",
         "font": "square",
         "size": 24
+      },
+      {
+        "title": "RELLENAR DIFERENTES JUEGOS",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "COMPLETA ATRAVÉS DE DIVERSOS JOGOS",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "COMPLÉTEZ SUR PLUSIEURS PARTIES",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "通过多次游戏完成",
+        "font": "arialuni",
+        "size": 24
+      },
+      {
+        "title": "ЗАВЕРШИТЕ ЗА НЕСКОЛЬКО ИГР",
+        "font": "Impact",
+        "size": 24
       }
     ],
     "missions-finish-complete": [
       {
         "title": "MISSION $1 COMPLETED",
         "font": "square",
+        "size": 26
+      },
+      {
+        "title": "MISIONE $1 LLENADO",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "MISSÃO $1 CONCLUÍDO",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "MISSION $1 COMPLETED",
+        "font": "square",
+        "size": 26
+      },
+      {
+        "title": "任务$1完成",
+        "font": "arialuni",
+        "size": 26
+      },
+      {
+        "title": "МИССИЯ $1 ЗАВЕРШЕНА",
+        "font": "Impact",
         "size": 26
       }
     ],
@@ -275,6 +1138,31 @@
         "title": "SPECIAL MISSION",
         "font": "square",
         "size": 36
+      },
+      {
+        "title": "MISIONES ESPECIAL",
+        "font": "square",
+        "size": 36
+      },
+      {
+        "title": "MISSÃO ESPECIAL",
+        "font": "square",
+        "size": 36
+      },
+      {
+        "title": "MISSION SPÉCIALE",
+        "font": "square",
+        "size": 36
+      },
+      {
+        "title": "特殊任务",
+        "font": "arialuni",
+        "size": 36
+      },
+      {
+        "title": "СПЕЦИАЛЬНАЯ МИССИЯ",
+        "font": "Impact",
+        "size": 36
       }
     ],
     "missions-ketchapp-2": [
@@ -282,6 +1170,31 @@
         "title": "CLEAR 8 STAGES TO COMPLETE",
         "font": "square",
         "size": 30
+      },
+      {
+        "title": "8 NIVELES COMPLETOS",
+        "font": "square",
+        "size": 30
+      },
+      {
+        "title": "TERMINA 8 ETAPAS PARA COMPLETAR",
+        "font": "square",
+        "size": 30
+      },
+      {
+        "title": "TERMINEZ 8 NIVEAUX POUR COMPLÉTER",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "打过8关来完成",
+        "font": "arialuni",
+        "size": 24
+      },
+      {
+        "title": "ПРОЙДИТЕ 8 УРОВНЕЙ ДЛЯ ЗАВЕРШЕНИЯ",
+        "font": "Impact",
+        "size": 24
       }
     ],
     "missions-daily-1": [
@@ -289,12 +1202,62 @@
         "title": "COLLECT ALL LETTERS",
         "font": "square",
         "size": 36
+      },
+      {
+        "title": "RECOGE TODAS LAS LETRAS",
+        "font": "square",
+        "size": 36
+      },
+      {
+        "title": "COLETE TODAS AS LETRAS",
+        "font": "square",
+        "size": 36
+      },
+      {
+        "title": "COLLECTEZ TOUTES LES LETTRES",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "积攒所有字母来完成",
+        "font": "arialuni",
+        "size": 32
+      },
+      {
+        "title": "СОБЕРИТЕ ВСЕ БУКВЫ",
+        "font": "Impact",
+        "size": 32
       }
     ],
     "missions-daily-2": [
       {
         "title": "TO COMPLETE",
         "font": "square",
+        "size": 30
+      },
+      {
+        "title": "COMPLETOS",
+        "font": "square",
+        "size": 30
+      },
+      {
+        "title": "PARA COMPLETAR",
+        "font": "square",
+        "size": 30
+      },
+      {
+        "title": "POUR COMPLÉTER",
+        "font": "square",
+        "size": 30
+      },
+      {
+        "title": "以完成",
+        "font": "arialuni",
+        "size": 30
+      },
+      {
+        "title": "ДЛЯ ЗАВЕРШЕНИЯ",
+        "font": "Impact",
         "size": 30
       }
     ],
@@ -303,12 +1266,62 @@
         "title": "NEXT MISSION IN",
         "font": "square",
         "size": 30
+      },
+      {
+        "title": "SIGUIENTE EN MISIÓN",
+        "font": "square",
+        "size": 30
+      },
+      {
+        "title": "PRÓXIMA MISSÃO NA",
+        "font": "square",
+        "size": 30
+      },
+      {
+        "title": "PROCHAINE MISSION EN",
+        "font": "square",
+        "size": 30
+      },
+      {
+        "title": "下一个任务将在",
+        "font": "arialuni",
+        "size": 30
+      },
+      {
+        "title": "СЛЕДУЮЩАЯ МИССИЯ ЧЕРЕЗ",
+        "font": "Impact",
+        "size": 30
       }
     ],
     "missions-daily-4": [
       {
         "title": "$1:$2:$3",
         "font": "square",
+        "size": 72
+      },
+      {
+        "title": "$1:$2:$3",
+        "font": "square",
+        "size": 72
+      },
+      {
+        "title": "$1:$2:$3",
+        "font": "square",
+        "size": 72
+      },
+      {
+        "title": "$1:$2:$3",
+        "font": "square",
+        "size": 72
+      },
+      {
+        "title": "$1:$2:$3",
+        "font": "arialuni",
+        "size": 72
+      },
+      {
+        "title": "$1:$2:$3",
+        "font": "Impact",
         "size": 72
       }
     ],
@@ -317,26 +1330,87 @@
         "title": "DAILY MISSION",
         "font": "square",
         "size": 42
-      }
-    ],
-    "best-word-a": [
+      },
       {
-        "title": "NEW",
+        "title": "MISIONES COTIDIANOS",
         "font": "square",
-        "size": 48
-      }
-    ],
-    "best-word-b": [
+        "size": 28
+      },
       {
-        "title": "BEST",
+        "title": "MISSÃO DIÁRIA",
         "font": "square",
-        "size": 48
+        "size": 42
+      },
+      {
+        "title": "MISSION QUOTIDIENNE",
+        "font": "square",
+        "size": 28
+      },
+      {
+        "title": "每日任务",
+        "font": "arialuni",
+        "size": 28
+      },
+      {
+        "title": "ЕЖЕДНЕВНАЯ МИССИЯ",
+        "font": "Impact",
+        "size": 28
       }
     ],
     "capture": [
       {
         "title": "SHARE",
         "font": "square",
+        "size": 48,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "COMPARTIR",
+        "font": "square",
+        "size": 48,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "PARTILHA",
+        "font": "square",
+        "size": 48,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "PARTAGER",
+        "font": "square",
+        "size": 48,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "分享",
+        "font": "arialuni",
+        "size": 48,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "ОПУБЛИКОВАТЬ",
+        "font": "Impact",
         "size": 48,
         "color": [
           71,
@@ -355,6 +1429,56 @@
           132,
           164
         ]
+      },
+      {
+        "title": "COMPARTIR UN GIF",
+        "font": "square",
+        "size": 38,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "PARTILHA GIF",
+        "font": "square",
+        "size": 48,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "PARTAGER GIF",
+        "font": "square",
+        "size": 48,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "分享 GIF",
+        "font": "arialuni",
+        "size": 48,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "ОПУБЛИКОВАТЬ GIF",
+        "font": "Impact",
+        "size": 48,
+        "color": [
+          71,
+          132,
+          164
+        ]
       }
     ],
     "capture-share-and-earn": [
@@ -362,6 +1486,56 @@
         "title": "SHARE & EARN 50",
         "font": "square",
         "size": 40,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "COMPARTIR & RECIBE 50",
+        "font": "square",
+        "size": 34,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "PARTILHA E GANHA 50",
+        "font": "square",
+        "size": 34,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "PARTAGEZ & GAGNEZ 50",
+        "font": "square",
+        "size": 32,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "分享获得50",
+        "font": "arialuni",
+        "size": 32,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "ОПУБЛИКУЙТЕ И ПОЛУЧИТЕ 50",
+        "font": "Impact",
+        "size": 32,
         "color": [
           71,
           132,
@@ -379,12 +1553,112 @@
           132,
           164
         ]
+      },
+      {
+        "title": "LISTO PARA COMPARTIR",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "PRONTO A PARTILHAR",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "PRET POUR PARTAGER",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "准备好分享",
+        "font": "arialuni",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "ГОТОВО К ПУБЛИКАЦИИ",
+        "font": "Impact",
+        "size": 40,
+        "color": [
+          71,
+          132,
+          164
+        ]
       }
     ],
     "capture-1": [
       {
         "title": "GENERATING $1%",
         "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "GENERAR $1%",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "CARREGANDO $1%",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "CHARGEMENT $1%",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "生成中 $1%",
+        "font": "arialuni",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "ГЕНЕРАЦИЯ $1%",
+        "font": "Impact",
         "size": 36,
         "color": [
           71,
@@ -403,12 +1677,112 @@
           132,
           164
         ]
+      },
+      {
+        "title": "CARGA $1%",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "UPLOADING $1%",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "UPLOADING $1%",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "上载中 $1%",
+        "font": "arialuni",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "ЗАГРУЗКА $1%",
+        "font": "Impact",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
       }
     ],
     "capture-successful": [
       {
         "title": "SHARE SUCCESSFUL",
         "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "ACCIÓN ACTIVADA",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "PARTILHA COMPLETA",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "PARTAGE REUSSI",
+        "font": "square",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "分享成功",
+        "font": "arialuni",
+        "size": 36,
+        "color": [
+          71,
+          132,
+          164
+        ]
+      },
+      {
+        "title": "ПУБЛИКАЦИЯ УСПЕШНА",
+        "font": "Impact",
         "size": 36,
         "color": [
           71,
@@ -427,12 +1801,112 @@
           0,
           0
         ]
+      },
+      {
+        "title": "ACCIÓN FRACASÓ",
+        "font": "square",
+        "size": 36,
+        "color": [
+          255,
+          0,
+          0
+        ]
+      },
+      {
+        "title": "PARTILHA FALHADA",
+        "font": "square",
+        "size": 36,
+        "color": [
+          255,
+          0,
+          0
+        ]
+      },
+      {
+        "title": "PARTAGE RATÉ",
+        "font": "square",
+        "size": 36,
+        "color": [
+          255,
+          0,
+          0
+        ]
+      },
+      {
+        "title": "分享失败",
+        "font": "arialuni",
+        "size": 36,
+        "color": [
+          255,
+          0,
+          0
+        ]
+      },
+      {
+        "title": "ПУБЛИКАЦИЯ НЕУДАЧНА",
+        "font": "Impact",
+        "size": 36,
+        "color": [
+          255,
+          0,
+          0
+        ]
       }
     ],
     "capture-canceled": [
       {
         "title": "SHARE CANCELED",
         "font": "square",
+        "size": 36,
+        "color": [
+          255,
+          0,
+          0
+        ]
+      },
+      {
+        "title": "ACCIÓN CANCELADA",
+        "font": "square",
+        "size": 36,
+        "color": [
+          255,
+          0,
+          0
+        ]
+      },
+      {
+        "title": "PARTILHA CANCELADA",
+        "font": "square",
+        "size": 36,
+        "color": [
+          255,
+          0,
+          0
+        ]
+      },
+      {
+        "title": "PARTAGE ANNULÉ",
+        "font": "square",
+        "size": 36,
+        "color": [
+          255,
+          0,
+          0
+        ]
+      },
+      {
+        "title": "取消分享",
+        "font": "arialuni",
+        "size": 36,
+        "color": [
+          255,
+          0,
+          0
+        ]
+      },
+      {
+        "title": "ПУБЛИКАЦИЯ ОТМЕНЕНА",
+        "font": "Impact",
         "size": 36,
         "color": [
           255,
@@ -448,7 +1922,7 @@
         "size": 0
       },
       {
-        "title": "Пожалуйста проголосуйте за нас",
+        "title": "Por favor, juez la juego",
         "font": "square",
         "size": 0
       },
@@ -461,6 +1935,16 @@
         "title": "Veuillez nous noter",
         "font": "square",
         "size": 0
+      },
+      {
+        "title": "请给我们评价",
+        "font": "arialuni",
+        "size": 0
+      },
+      {
+        "title": "Пожалуйста проголосуйте за нас",
+        "font": "Impact",
+        "size": 0
       }
     ],
     "vote-description": [
@@ -470,7 +1954,7 @@
         "size": 0
       },
       {
-        "title": "Если вам понравилась эта игра, пожалуйста проголосуйте за нас! Это не займет больше минуты.\nБольшое спасибо за поддержку!",
+        "title": "Si te gusta el juego, escribirlo en la App Store!",
         "font": "square",
         "size": 0
       },
@@ -480,8 +1964,18 @@
         "size": 0
       },
       {
-        "title": "Si vous aimez ce jeu, pourriez-vous prendre un moment pour le noter? Cela ne prendra pas plus d'une minute. Merci de votre aide!",
+        "title": "Si vous aimez ce jeu, pourriez-vous prendre un moment pour le noter ? Cela ne prendra pas plus d'une minute. Merci de votre soutien !",
         "font": "square",
+        "size": 0
+      },
+      {
+        "title": "如果你玩得很爽，可否耽误片刻时间给偶们一个好评？感谢亲支持了！",
+        "font": "arialuni",
+        "size": 0
+      },
+      {
+        "title": "Если вам понравилась эта игра, пожалуйста проголосуйте за нас! Это не займет больше минуты.\nБольшое спасибо за поддержку!",
+        "font": "Impact",
         "size": 0
       }
     ],
@@ -492,7 +1986,7 @@
         "size": 0
       },
       {
-        "title": "Проголосовать сейчас",
+        "title": "De su nota!",
         "font": "square",
         "size": 0
       },
@@ -505,6 +1999,16 @@
         "title": "Notez-le maintenant",
         "font": "square",
         "size": 0
+      },
+      {
+        "title": "现在评价",
+        "font": "arialuni",
+        "size": 0
+      },
+      {
+        "title": "Проголосвать сейчас",
+        "font": "Impact",
+        "size": 0
       }
     ],
     "vote-2": [
@@ -514,7 +2018,7 @@
         "size": 0
       },
       {
-        "title": "Напомнить позже",
+        "title": "Más tarde",
         "font": "square",
         "size": 0
       },
@@ -527,6 +2031,16 @@
         "title": "Me le rappeler plus tard",
         "font": "square",
         "size": 0
+      },
+      {
+        "title": "稍后提醒我",
+        "font": "arialuni",
+        "size": 0
+      },
+      {
+        "title": "Напомнить позже",
+        "font": "Impact",
+        "size": 0
       }
     ],
     "vote-3": [
@@ -536,7 +2050,7 @@
         "size": 0
       },
       {
-        "title": "Нет, спасибо",
+        "title": "No gracias",
         "font": "square",
         "size": 0
       },
@@ -549,6 +2063,16 @@
         "title": "Non merci",
         "font": "square",
         "size": 0
+      },
+      {
+        "title": "不，谢谢",
+        "font": "arialuni",
+        "size": 0
+      },
+      {
+        "title": "Нет, спасибо",
+        "font": "Impact",
+        "size": 0
       }
     ],
     "purchases-error-title": [
@@ -558,18 +2082,28 @@
         "size": 0
       },
       {
+        "title": "In-App Purchases",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "In-App Purchases",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "In-App Purchases",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "In-App Purchases",
+        "font": "arialuni",
+        "size": 0
+      },
+      {
         "title": "Внутриигровые покупки",
-        "font": "square",
-        "size": 0
-      },
-      {
-        "title": "Compras de In-App",
-        "font": "square",
-        "size": 0
-      },
-      {
-        "title": "Achats intégrés dans l'appli",
-        "font": "square",
+        "font": "Impact",
         "size": 0
       }
     ],
@@ -580,18 +2114,28 @@
         "size": 0
       },
       {
+        "title": "Sorry, but no in-app purchases available now. Please try again later.",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "Sorry, but no in-app purchases available now. Please try again later.",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "Sorry, but no in-app purchases available now. Please try again later.",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "抱歉，目前无可用的游戏内支付，请稍后再试。",
+        "font": "arialuni",
+        "size": 0
+      },
+      {
         "title": "Извините, но в данный момент невозможно выполнить внутриигровую покупку. Пожалуйста, попробуйте позже.",
-        "font": "square",
-        "size": 0
-      },
-      {
-        "title": "Pedimos desculpa, mas não existem comrpas de In-App disponíveis de momento. Tente mais tarde.",
-        "font": "square",
-        "size": 0
-      },
-      {
-        "title": "Désolé, mais il n'y a pas d'achats intégrés dans l'appli disponibles maintenant. Veuillez réessayer plus tard.",
-        "font": "square",
+        "font": "Impact",
         "size": 0
       }
     ],
@@ -602,18 +2146,28 @@
         "size": 0
       },
       {
+        "title": "Your previous purchases was successful restored!",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "Your previous purchases was successful restored!",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "Your previous purchases was successful restored!",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "你之前的购买已成功恢复！",
+        "font": "arialuni",
+        "size": 0
+      },
+      {
         "title": "Ваши предыдущие внутриигровые покупки были успешно восстановлены!",
-        "font": "square",
-        "size": 0
-      },
-      {
-        "title": "As suas compras foram recuperadas com sucesso!",
-        "font": "square",
-        "size": 0
-      },
-      {
-        "title": "Vos achats précédents ont été restaurés avec succès!",
-        "font": "square",
+        "font": "Impact",
         "size": 0
       }
     ],
@@ -624,40 +2178,60 @@
         "size": 0
       },
       {
+        "title": "Sorry, no previous purchases could be restored.",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "Sorry, no previous purchases could be restored.",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "Sorry, no previous purchases could be restored.",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "抱歉，没有可以恢复的早前购买。",
+        "font": "arialuni",
+        "size": 0
+      },
+      {
         "title": "Извините, но предыдущие внутриигровые покупки не могут быть восстановлены.",
-        "font": "square",
-        "size": 0
-      },
-      {
-        "title": "Pedimos desculpa, não foi possível recuperar as compras.",
-        "font": "square",
-        "size": 0
-      },
-      {
-        "title": "Désolé, les achats précédents n'ont pas pu être restaurés.",
-        "font": "square",
+        "font": "Impact",
         "size": 0
       }
     ],
     "share-message": [
       {
-        "title": "OMG! I scored $1 points in #Steps! Can you beat my score? ",
+        "title": "OMG! I scored $1 points in #Steps! Can you beat my score?",
         "font": "square",
         "size": 0
       },
       {
-        "title": "ОГО! Я набрал $1 очков в игре #Steps! Можешь побить мой рекорд? ",
+        "title": "OMG! I scored $1 points in #Steps! Can you beat my score?",
         "font": "square",
         "size": 0
       },
       {
-        "title": "OMG! I consegui $1 pontos no #Steps! Consegues bater o meu recorde? ",
+        "title": "OMG! I scored $1 points in #Steps! Can you beat my score?",
         "font": "square",
         "size": 0
       },
       {
-        "title": "OMG! J'ai obtenu $1 points pour avoir joué #Steps! ",
+        "title": "OMG! I scored $1 points in #Steps! Can you beat my score?",
         "font": "square",
+        "size": 0
+      },
+      {
+        "title": "棒呆了! 我在 #Steps 里得了$1 分! 你敢挑战我吗?",
+        "font": "arialuni",
+        "size": 0
+      },
+      {
+        "title": "ОГО! Я набрал $1 очков в игре #Steps! Можешь побить мой рекорд?",
+        "font": "Impact",
         "size": 0
       }
     ]
