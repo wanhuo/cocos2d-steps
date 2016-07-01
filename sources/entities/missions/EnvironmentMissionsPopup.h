@@ -57,6 +57,8 @@ class EnvironmentMissionsPopup : public BackgroundColor
    ~MissionTask();
 
     Text* text;
+    Text* action;
+
     TiledEntity* element;
     TiledEntity* element2;
 

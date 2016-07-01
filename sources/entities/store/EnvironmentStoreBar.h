@@ -148,6 +148,7 @@ class EnvironmentStoreBar : public Background
   };
 
   struct Texts {
+    Text* back;
     Text* missions;
     Text* diamonds;
     Text* random;

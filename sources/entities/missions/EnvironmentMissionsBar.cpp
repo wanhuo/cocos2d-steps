@@ -72,6 +72,8 @@ EnvironmentMissionsBar::EnvironmentMissionsBar()
     );
   }), true);
 
+  this->texts.back = new Text("back", this->buttons.back, TextHAlignment::LEFT, true);
+
   this->buttons.play->setPosition(0, -700);
   this->buttons.lock->setPosition(0, -700);
   this->buttons.back->setPosition(-Application->getWidth() / 2 + this->buttons.back->getWidth() / 2 + 15, 245);
@@ -107,6 +109,9 @@ EnvironmentMissionsBar::EnvironmentMissionsBar()
   });
   Application->environment->missions.missions.plane->_destroy();
   Application->environment->plane->addChild(Application->environment->missions.missions.plane);
+
+  
+  this->texts.back->setPosition(55, this->buttons.back->getHeight() / 2);
 
   this->setPosition(Application->getWidth() / 2, Application->getHeight() - 300);
 

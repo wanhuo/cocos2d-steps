@@ -106,6 +106,12 @@ Capture::Capture(Node* parent)
   this->text->setGlobalZOrder(1000);
   this->text->setLocalZOrder(1);
 
+  this->texts.back = new Text("back", this->buttons.back, TextHAlignment::LEFT, true);
+  this->texts.back->setPosition(55, this->buttons.back->getHeight() / 2);
+  this->texts.back->setGlobalZOrder(2000);
+  this->texts.back->setLocalZOrder(2000);
+  this->texts.back->setCameraMask(8);
+
   this->setGlobalZOrder(1000);
   this->setCameraMask(8);
 

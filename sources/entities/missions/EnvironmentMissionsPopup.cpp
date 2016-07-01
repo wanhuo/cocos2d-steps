@@ -199,6 +199,9 @@ EnvironmentMissionsPopup::MissionTask::MissionTask(Node* parent)
   this->text = new Text("missions-data", this, true);
   this->text->setPosition(this->getWidth() / 2, 20);
 
+  this->action = new Text("missions-action", this, true);
+  this->action->setPosition(this->getWidth() / 2, this->getHeight() / 2);
+
   this->element = new TiledEntity("missions-1.png", 4, 1, this, true);
   this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2 + 11.5);
   this->element->setLocalZOrder(-2);

@@ -58,6 +58,10 @@ class EnvironmentMissionsBar : public Background
     Button* back;
   };
 
+  struct Texts {
+    Text* back;
+  };
+
   struct Popups {
     EnvironmentMissionsPopup* general;
     EnvironmentMissionsDailyPopup* daily;
@@ -71,6 +75,7 @@ class EnvironmentMissionsBar : public Background
    */
   public:
   Buttons buttons;
+  Texts texts;
   Popups popups;
 
   /**

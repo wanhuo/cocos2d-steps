@@ -21,6 +21,38 @@
     0
   ],
   "languages": {
+    "back": [
+      {
+        "title": "BACK",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "RETORNO",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "VOLTAR",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "RETOUR",
+        "font": "square",
+        "size": 24
+      },
+      {
+        "title": "返回",
+        "font": "arialuni",
+        "size": 24
+      },
+      {
+        "title": "НАЗАД",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
     "missions-mission": [
       {
         "title": "",
@@ -842,7 +874,7 @@
       {
         "title": "ПРОГРЕСС МИССИИ $1",
         "font": "Impact",
-        "size": 26
+        "size": 32
       }
     ],
     "missions-finish-1": [
@@ -874,7 +906,7 @@
       {
         "title": "ЗАВЕРШИТЕ ЗА ОДНУ ИГРУ",
         "font": "Impact",
-        "size": 24
+        "size": 28
       }
     ],
     "missions-ketchapp-progress-1": [
@@ -906,7 +938,7 @@
       {
         "title": "ПРОГРЕСС KETCHAPP МИССИИ",
         "font": "Impact",
-        "size": 22
+        "size": 32
       }
     ],
     "missions-ketchapp-progress-2": [
@@ -938,7 +970,7 @@
       {
         "title": "ПРОЙДИТЕ 8 УРОВНЕЙ",
         "font": "Impact",
-        "size": 20
+        "size": 32
       }
     ],
     "missions-ketchapp-complete": [
@@ -1002,7 +1034,7 @@
       {
         "title": "ПРОГРЕСС ЕЖЕДНЕВНОЙ МИССИИ",
         "font": "Impact",
-        "size": 20
+        "size": 32
       }
     ],
     "missions-daily-progress-2": [
@@ -1034,7 +1066,7 @@
       {
         "title": "СОБЕРИТЕ ВСЕ БУКВЫ",
         "font": "Impact",
-        "size": 24
+        "size": 32
       }
     ],
     "missions-daily-complete": [
@@ -1098,7 +1130,7 @@
       {
         "title": "ЗАВЕРШИТЕ ЗА НЕСКОЛЬКО ИГР",
         "font": "Impact",
-        "size": 24
+        "size": 28
       }
     ],
     "missions-finish-complete": [
@@ -1194,7 +1226,7 @@
       {
         "title": "ПРОЙДИТЕ 8 УРОВНЕЙ ДЛЯ ЗАВЕРШЕНИЯ",
         "font": "Impact",
-        "size": 24
+        "size": 30
       }
     ],
     "missions-daily-1": [
@@ -1354,7 +1386,7 @@
       {
         "title": "ЕЖЕДНЕВНАЯ МИССИЯ",
         "font": "Impact",
-        "size": 28
+        "size": 36
       }
     ],
     "capture": [
@@ -1535,7 +1567,7 @@
       {
         "title": "ОПУБЛИКУЙТЕ И ПОЛУЧИТЕ 50",
         "font": "Impact",
-        "size": 32,
+        "size": 34,
         "color": [
           71,
           132,

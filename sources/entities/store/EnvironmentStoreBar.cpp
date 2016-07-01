@@ -126,6 +126,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
   this->backgrounds.random = new Background(this);
   this->backgrounds.facebook = new Background(this);
 
+  this->texts.back = new Text("back", this->buttons.back, TextHAlignment::LEFT, true);
   this->texts.missions = new Text("store-state-1", this->backgrounds.missions, true);
   this->texts.diamonds = new Text("store-state-2", this->backgrounds.diamonds, true);
   this->texts.facebook = new Text("store-state-3", this->backgrounds.facebook, true);
@@ -151,6 +152,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
   this->backgrounds.facebook->setVisible(false);
   this->backgrounds.random->setVisible(false);
 
+  this->texts.back->setPosition(55, this->buttons.back->getHeight() / 2);
   this->texts.diamonds->setPosition(-20, 0);
 
   this->diamond = new CameraEntity3D("diamond.obj", Application, true,

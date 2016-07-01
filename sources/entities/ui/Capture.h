@@ -55,6 +55,10 @@ class Capture : public Entity
     Button* share;
   };
 
+  struct Texts {
+    Text* back;
+  };
+
   /**
    *
    *
@@ -65,6 +69,7 @@ class Capture : public Entity
   bool earn;
 
   Buttons buttons;
+  Texts texts;
 
   Entity* element;
   Entity* element2;
