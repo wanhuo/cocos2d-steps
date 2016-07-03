@@ -440,10 +440,18 @@ void Capture::onShare(bool action)
 
         if(state >= 100)
         {
-          this->complete = true;
+          Application->runAction(
+            Sequence::create(
+              DelayTime::create(1.0),
+              CallFunc::create([=] () {
+              this->complete = true;
 
-          this->buttons.share->bind(true);
-          this->buttons.share->setCurrentFrameIndex(1);
+              this->buttons.share->bind(true);
+              this->buttons.share->setCurrentFrameIndex(1);
+              }),
+              nullptr
+            )
+          );
 
           this->text->setText("capture-ready");
         }
@@ -457,8 +465,6 @@ void Capture::onShare(bool action)
 
         if(state >= 100)
         {
-          this->complete = true;
-
           Application->giphy->runAction(
             Sequence::create(
               MoveBy::create(0.2, Vec2(0, 100)),
