@@ -40,9 +40,11 @@ void Events::onProceedNotifications()
 {
   if(!Application->environment->missions.controller->popups.daily->task.active)
   {
+    auto text = new Text("notification-message");
+
     UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.fireDate = [NSDate dateWithTimeIntervalSince1970: Application->environment->missions.controller->popups.daily->task.time];
-    notification.alertBody = @"Daily mission is available again.";
+    notification.fireDate = [NSDate dateWithTimeIntervalSince1970: Application->environment->missions.controller->popups.daily->task.time / 1000];
+    notification.alertBody = [NSString stringWithUTF8String: text->getString().c_str()];
     notification.soundName = UILocalNotificationDefaultSoundName;
 
     [[UIApplication sharedApplication] scheduleLocalNotification: notification];

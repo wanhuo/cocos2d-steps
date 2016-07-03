@@ -145,6 +145,7 @@ class EnvironmentStoreBar : public Background
     Background* diamonds;
     Background* random;
     Background* facebook;
+    Background* twitter;
   };
 
   struct Texts {
@@ -153,6 +154,7 @@ class EnvironmentStoreBar : public Background
     Text* diamonds;
     Text* random;
     Text* facebook;
+    Text* twitter;
   };
 
   EnvironmentStoreItem* selectedCharacter;

@@ -171,11 +171,11 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
     case Game::MISSION_COMPLETE:
     if(Application->counter->values.b.special)
     {
-      count = 99;
+      count = 100;
     }
     else if(Application->counter->values.b.daily)
     {
-      count = 99;
+      count = 100;
     }
     else
     {
@@ -326,10 +326,10 @@ Gift::Element::Element(Node* parent)
   this->window = BillBoard::create();
   this->addChild(this->window);
 
-  this->text = new Text("present", this->window, true);
+  this->text = new Text("present", this->window, TextHAlignment::RIGHT, true);
   this->text->setScale(0.008);
   this->text->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(-10, 0.0), 0);
-  this->text->setPosition(-this->text->getWidthScaled() / 2 + 0.2, 0);
+  this->text->setPosition(0.1, 0);
 
   this->diamond = new Entity3D("diamond.obj", this->window, true);
   this->diamond->setTexture(Application->environment->getTextureState1());

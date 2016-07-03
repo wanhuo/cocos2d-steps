@@ -623,7 +623,7 @@ void Counter::add(int count)
     )
   );
 
-  Storage::set("application.coins", this->values.coins + count);
+  Storage::set("application.coins", this->values.coins);
 }
 
 void Counter::remove(int count)
@@ -646,7 +646,7 @@ void Counter::remove(int count)
     )
   );
 
-  Storage::set("application.coins", this->values.coins - count);
+  Storage::set("application.coins", this->values.coins);
 }
 
 /**
@@ -693,7 +693,7 @@ void Counter::resetOnceMissionsUpdate()
 {
   this->missionUpdateOnce.coins = 0;
   this->missionUpdateOnce.points = 0;
-  this->missionUpdateOnce.points_best = this->values.best;
+  this->missionUpdateOnce.points_best = 0;
 
   this->missionUpdateOnce.special_once_1 = 0;
   this->missionUpdateOnce.special_once_2 = 0;

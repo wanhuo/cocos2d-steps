@@ -125,35 +125,41 @@ EnvironmentStoreBar::EnvironmentStoreBar()
   this->backgrounds.diamonds = new Background(this);
   this->backgrounds.random = new Background(this);
   this->backgrounds.facebook = new Background(this);
+  this->backgrounds.twitter = new Background(this);
 
   this->texts.back = new Text("back", this->buttons.back, TextHAlignment::LEFT, true);
   this->texts.missions = new Text("store-state-1", this->backgrounds.missions, true);
-  this->texts.diamonds = new Text("store-state-2", this->backgrounds.diamonds, true);
+  this->texts.diamonds = new Text("store-state-2", this->backgrounds.diamonds, TextHAlignment::RIGHT, true);
   this->texts.facebook = new Text("store-state-3", this->backgrounds.facebook, true);
+  this->texts.twitter = new Text("store-state-4", this->backgrounds.twitter, true);
   this->texts.random = new Text("store-random", this->backgrounds.random, true);
 
   this->texts.missions->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
   this->texts.diamonds->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
   this->texts.facebook->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
+  this->texts.twitter->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
   this->texts.random->enableShadow(Color4B(71.0, 132.0, 164.0, 255.0), Size(0, -3), 0);
 
   this->backgrounds.missions->setPosition(0, -100);
   this->backgrounds.diamonds->setPosition(0, -100);
   this->backgrounds.facebook->setPosition(0, -100);
+  this->backgrounds.twitter->setPosition(0, -100);
   this->backgrounds.random->setPosition(0, -100);
 
   this->backgrounds.missions->setCameraMask(4);
   this->backgrounds.diamonds->setCameraMask(4);
   this->backgrounds.facebook->setCameraMask(4);
+  this->backgrounds.twitter->setCameraMask(4);
   this->backgrounds.random->setCameraMask(4);
 
   this->backgrounds.missions->setVisible(false);
   this->backgrounds.diamonds->setVisible(false);
   this->backgrounds.facebook->setVisible(false);
+  this->backgrounds.twitter->setVisible(false);
   this->backgrounds.random->setVisible(false);
 
   this->texts.back->setPosition(55, this->buttons.back->getHeight() / 2);
-  this->texts.diamonds->setPosition(-20, 0);
+  this->texts.diamonds->setPosition(20, 0);
 
   this->diamond = new CameraEntity3D("diamond.obj", Application, true,
   {
@@ -168,7 +174,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
     {AmbientLight::create(Color3B(120, 120, 120)), Application}
   });
   this->diamond->setTexture(Application->environment->getTextureState1());
-  this->diamond->setPosition3D(Vec3(Application->getFrustumWidth() / 2 + 0.7, Application->getFrustumHeight() / 2 + 3.4, 0));
+  this->diamond->setPosition3D(Vec3(Application->getFrustumWidth() / 2 + 0.6, Application->getFrustumHeight() / 2 + 3.4, 0));
   this->diamond->setRotation3D(Vec3(0, 0, 0));
   this->diamond->setColor(Color3B(0.0, 243.0, 120.0));
   this->diamond->setScale(0.7);
@@ -270,6 +276,7 @@ void EnvironmentStoreBar::onDestroy(bool action)
   this->backgrounds.missions->setVisible(false);
   this->backgrounds.diamonds->setVisible(false);
   this->backgrounds.facebook->setVisible(false);
+  this->backgrounds.twitter->setVisible(false);
   this->backgrounds.random->setVisible(false);
 }
 
@@ -387,6 +394,7 @@ void EnvironmentStoreBar::onSelect(EnvironmentStoreItem* element)
   this->buttons.lock->setVisible(false);
   this->buttons.facebook->setVisible(false);
   this->buttons.twitter->setVisible(false);
+  this->buttons.twitter->setVisible(false);
 
   switch(element->state)
   {
@@ -410,6 +418,7 @@ void EnvironmentStoreBar::onSelect(EnvironmentStoreItem* element)
   this->backgrounds.missions->setVisible(false);
   this->backgrounds.diamonds->setVisible(false);
   this->backgrounds.facebook->setVisible(false);
+  this->backgrounds.twitter->setVisible(false);
   this->backgrounds.random->setVisible(false);
 
   this->diamond->setVisible(false);
@@ -430,6 +439,9 @@ void EnvironmentStoreBar::onSelect(EnvironmentStoreItem* element)
     break;
     case EnvironmentStoreItem::STATE_FACEBOOK:
     this->backgrounds.facebook->setVisible(true);
+    break;
+    case EnvironmentStoreItem::STATE_TWITTER:
+    this->backgrounds.twitter->setVisible(true);
     break;
   }
 
@@ -583,7 +595,7 @@ EnvironmentStoreBar::Element EnvironmentStoreBar::nextElement()
 
   if(character && texture)
   {
-    if(probably(20))
+    if(probably(50))
     {
       return {1, character - 1};
     }

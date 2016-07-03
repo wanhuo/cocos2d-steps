@@ -44,7 +44,7 @@
       },
       {
         "title": "",
-        "font": "arialuni",
+        "font": "square",
         "size": 32
       },
       {
@@ -62,21 +62,21 @@
       {
         "title": "COMPLETA\nLA MISIÓN",
         "font": "square",
-        "size": 32
+        "size": 22
       },
       {
         "title": "ETAPA\nCOMPLETA",
         "font": "square",
-        "size": 32
+        "size": 22
       },
       {
         "title": "COMPLÉTEZ\nNIVEAU",
         "font": "square",
-        "size": 32
+        "size": 22
       },
       {
         "title": "通关",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 32
       },
       {
@@ -94,21 +94,21 @@
       {
         "title": "BATIR\nSU\nMEJOR",
         "font": "square",
-        "size": 32
+        "size": 22
       },
       {
         "title": "BATER\nO SEU\nMELHOR",
         "font": "square",
-        "size": 32
+        "size": 2
       },
       {
         "title": "BATTRE\nVOTRE\nMEILLEUR",
         "font": "square",
-        "size": 32
+        "size": 22
       },
       {
         "title": "打败你的最好的",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 32
       },
       {
@@ -126,21 +126,21 @@
       {
         "title": "JUGAR\nJUEGOS",
         "font": "square",
-        "size": 32
+        "size": 22
       },
       {
         "title": "JOGAR\nJOGOS",
         "font": "square",
-        "size": 32
+        "size": 22
       },
       {
         "title": "JOUER\nÀ DES\nJEUX",
         "font": "square",
-        "size": 32
+        "size": 22
       },
       {
         "title": "玩游戏",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 32
       },
       {
@@ -158,21 +158,21 @@
       {
         "title": "PUNTOS\nREACH",
         "font": "square",
-        "size": 32
+        "size": 22
       },
       {
         "title": "PONTOS\nREACH",
         "font": "square",
-        "size": 32
+        "size": 22
       },
       {
         "title": "POINTS\nREACH",
         "font": "square",
-        "size": 32
+        "size": 22
       },
       {
         "title": "获得积分",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 32
       },
       {
@@ -185,7 +185,7 @@
       {
         "title": "BACK",
         "font": "square",
-        "size": 24
+        "size": 32
       },
       {
         "title": "RETORNO",
@@ -200,12 +200,12 @@
       {
         "title": "RETOUR",
         "font": "square",
-        "size": 24
+        "size": 20
       },
       {
         "title": "返回",
-        "font": "arialuni",
-        "size": 24
+        "font": "YuppySC-Regular",
+        "size": 38
       },
       {
         "title": "НАЗАД",
@@ -300,7 +300,7 @@
       },
       {
         "title": "关卡 $1",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 50
       },
       {
@@ -332,7 +332,7 @@
       },
       {
         "title": "奖励关卡",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 50
       },
       {
@@ -428,7 +428,7 @@
       },
       {
         "title": "纪录 $1",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 80
       },
       {
@@ -492,8 +492,8 @@
       },
       {
         "title": "点击开始",
-        "font": "arialuni",
-        "size": 40
+        "font": "YuppySC-Regular",
+        "size": 52
       },
       {
         "title": "НАЖМИ ДЛЯ СТАРТА",
@@ -504,27 +504,27 @@
     "present": [
       {
         "title": "+$1",
-        "font": "square",
+        "font": "Impact",
         "size": 42
       },
       {
         "title": "+$1",
-        "font": "square",
+        "font": "Impact",
         "size": 42
       },
       {
         "title": "+$1",
-        "font": "square",
+        "font": "Impact",
         "size": 42
       },
       {
         "title": "+$1",
-        "font": "square",
+        "font": "Impact",
         "size": 42
       },
       {
         "title": "+$1",
-        "font": "square",
+        "font": "Impact",
         "size": 42
       },
       {
@@ -556,8 +556,8 @@
       },
       {
         "title": "随机",
-        "font": "arialuni",
-        "size": 46
+        "font": "YuppySC-Regular",
+        "size": 58
       },
       {
         "title": "СЛУЧАЙНО",
@@ -588,7 +588,7 @@
       },
       {
         "title": "$1个任务",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 46
       },
       {
@@ -620,7 +620,7 @@
       },
       {
         "title": "$1",
-        "font": "arialuni",
+        "font": "square",
         "size": 46
       },
       {
@@ -652,11 +652,43 @@
       },
       {
         "title": "在FACEBOOK上关注KETCHAPP",
-        "font": "arialuni",
-        "size": 32
+        "font": "YuppySC-Regular",
+        "size": 46
       },
       {
         "title": "ПОДПИШИТЕСЬ НА KETCHAPP В FACEBOOK",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
+    "store-state-4": [
+      {
+        "title": "FOLLOW KETCHAPP ON TWITTER",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "SIGA KETCHAPP EN TWITTER",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "SEGUE A KETCHAPP NO TWITTER",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "SUIVEZ KETCHAPP SUR TWITTER",
+        "font": "square",
+        "size": 32
+      },
+      {
+        "title": "在TWITTER上关注KETCHAPP",
+        "font": "YuppySC-Regular",
+        "size": 46
+      },
+      {
+        "title": "ПОДПИШИТЕСЬ НА KETCHAPP В TWITTER",
         "font": "Impact",
         "size": 32
       }
@@ -684,8 +716,8 @@
       },
       {
         "title": "角色",
-        "font": "arialuni",
-        "size": 46
+        "font": "YuppySC-Regular",
+        "size": 68
       },
       {
         "title": "ПЕРСОНАЖИ",
@@ -716,8 +748,8 @@
       },
       {
         "title": "材质",
-        "font": "arialuni",
-        "size": 46
+        "font": "YuppySC-Regular",
+        "size": 68
       },
       {
         "title": "ТЕКСТУРЫ",
@@ -780,8 +812,8 @@
       },
       {
         "title": "任务 $1/$2",
-        "font": "square",
-        "size": 42
+        "font": "YuppySC-Regular",
+        "size": 52
       },
       {
         "title": "МИССИЯ $1/$2",
@@ -812,8 +844,8 @@
       },
       {
         "title": "通过一次游戏完成",
-        "font": "arialuni",
-        "size": 36
+        "font": "YuppySC-Regular",
+        "size": 78
       },
       {
         "title": "ЗАВЕРШИТЕ ЗА ОДНУ ИГРУ",
@@ -844,8 +876,8 @@
       },
       {
         "title": "通过多次游戏完成",
-        "font": "arialuni",
-        "size": 36
+        "font": "YuppySC-Regular",
+        "size": 78
       },
       {
         "title": "ЗАВЕРШИТЕ ЗА НЕСКОЛЬКО ИГР",
@@ -880,7 +912,7 @@
       },
       {
         "title": "$1/$2",
-        "font": "arialuni",
+        "font": "square",
         "size": 22,
         "color": [71.0, 132.0, 164.0]
       },
@@ -918,7 +950,7 @@
       },
       {
         "title": "任务$1完成",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 42,
         "color": [71.0, 132.0, 164.0]
       },
@@ -956,7 +988,7 @@
       },
       {
         "title": "KETCHAPP 任务完成",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 34,
         "color": [71.0, 132.0, 164.0]
       },
@@ -994,7 +1026,7 @@
       },
       {
         "title": "每日任务完成",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 40,
         "color": [71.0, 132.0, 164.0]
       },
@@ -1028,8 +1060,8 @@
       },
       {
         "title": "任务$1进展",
-        "font": "arialuni",
-        "size": 26
+        "font": "YuppySC-Regular",
+        "size": 42
       },
       {
         "title": "ПРОГРЕСС МИССИИ $1",
@@ -1060,8 +1092,8 @@
       },
       {
         "title": "通过一次游戏完成",
-        "font": "arialuni",
-        "size": 24
+        "font": "YuppySC-Regular",
+        "size": 42
       },
       {
         "title": "ЗАВЕРШИТЕ ЗА ОДНУ ИГРУ",
@@ -1092,8 +1124,8 @@
       },
       {
         "title": "KETCHAPP 任务进程",
-        "font": "arialuni",
-        "size": 22
+        "font": "YuppySC-Regular",
+        "size": 42
       },
       {
         "title": "ПРОГРЕСС KETCHAPP МИССИИ",
@@ -1124,8 +1156,8 @@
       },
       {
         "title": "打过8关来完成",
-        "font": "arialuni",
-        "size": 20
+        "font": "YuppySC-Regular",
+        "size": 42
       },
       {
         "title": "ПРОЙДИТЕ 8 УРОВНЕЙ",
@@ -1156,7 +1188,7 @@
       },
       {
         "title": "KETCHAPP 任务完成",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 26
       },
       {
@@ -1188,8 +1220,8 @@
       },
       {
         "title": "每日任务进程",
-        "font": "arialuni",
-        "size": 20
+        "font": "YuppySC-Regular",
+        "size": 42
       },
       {
         "title": "ПРОГРЕСС ЕЖЕДНЕВНОЙ МИССИИ",
@@ -1220,8 +1252,8 @@
       },
       {
         "title": "积攒所有字母来完成",
-        "font": "arialuni",
-        "size": 24
+        "font": "YuppySC-Regular",
+        "size": 42
       },
       {
         "title": "СОБЕРИТЕ ВСЕ БУКВЫ",
@@ -1252,7 +1284,7 @@
       },
       {
         "title": "每日任务完成",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 26
       },
       {
@@ -1284,8 +1316,8 @@
       },
       {
         "title": "通过多次游戏完成",
-        "font": "arialuni",
-        "size": 24
+        "font": "YuppySC-Regular",
+        "size": 42
       },
       {
         "title": "ЗАВЕРШИТЕ ЗА НЕСКОЛЬКО ИГР",
@@ -1316,7 +1348,7 @@
       },
       {
         "title": "任务$1完成",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 26
       },
       {
@@ -1348,8 +1380,8 @@
       },
       {
         "title": "特殊任务",
-        "font": "arialuni",
-        "size": 36
+        "font": "YuppySC-Regular",
+        "size": 78
       },
       {
         "title": "СПЕЦИАЛЬНАЯ МИССИЯ",
@@ -1379,9 +1411,9 @@
         "size": 24
       },
       {
-        "title": "打过8关来完成",
-        "font": "arialuni",
-        "size": 24
+        "title": "\n打过8关来完成",
+        "font": "YuppySC-Regular",
+        "size": 58
       },
       {
         "title": "ПРОЙДИТЕ 8 УРОВНЕЙ ДЛЯ ЗАВЕРШЕНИЯ",
@@ -1412,7 +1444,7 @@
       },
       {
         "title": "积攒所有字母来完成",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 32
       },
       {
@@ -1444,7 +1476,7 @@
       },
       {
         "title": "以完成",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 30
       },
       {
@@ -1476,8 +1508,8 @@
       },
       {
         "title": "下一个任务将在",
-        "font": "arialuni",
-        "size": 30
+        "font": "YuppySC-Regular",
+        "size": 78
       },
       {
         "title": "СЛЕДУЮЩАЯ МИССИЯ ЧЕРЕЗ",
@@ -1508,7 +1540,7 @@
       },
       {
         "title": "$1:$2:$3",
-        "font": "arialuni",
+        "font": "square",
         "size": 72
       },
       {
@@ -1540,8 +1572,8 @@
       },
       {
         "title": "每日任务",
-        "font": "arialuni",
-        "size": 28
+        "font": "YuppySC-Regular",
+        "size": 52
       },
       {
         "title": "ЕЖЕДНЕВНАЯ МИССИЯ",
@@ -1592,7 +1624,7 @@
       },
       {
         "title": "分享",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 48,
         "color": [
           71,
@@ -1654,7 +1686,7 @@
       },
       {
         "title": "分享 GIF",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 48,
         "color": [
           71,
@@ -1716,8 +1748,8 @@
       },
       {
         "title": "分享获得50",
-        "font": "arialuni",
-        "size": 32,
+        "font": "YuppySC-Regular",
+        "size": 48,
         "color": [
           71,
           132,
@@ -1778,7 +1810,7 @@
       },
       {
         "title": "准备好分享",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 36,
         "color": [
           71,
@@ -1840,7 +1872,7 @@
       },
       {
         "title": "生成中 $1%",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 36,
         "color": [
           71,
@@ -1902,7 +1934,7 @@
       },
       {
         "title": "上载中 $1%",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 36,
         "color": [
           71,
@@ -1964,7 +1996,7 @@
       },
       {
         "title": "分享成功",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 36,
         "color": [
           71,
@@ -2026,7 +2058,7 @@
       },
       {
         "title": "分享失败",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 36,
         "color": [
           255,
@@ -2088,7 +2120,7 @@
       },
       {
         "title": "取消分享",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 36,
         "color": [
           255,
@@ -2130,7 +2162,7 @@
       },
       {
         "title": "请给我们评价",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 0
       },
       {
@@ -2162,7 +2194,7 @@
       },
       {
         "title": "如果你玩得很爽，可否耽误片刻时间给偶们一个好评？感谢亲支持了！",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 0
       },
       {
@@ -2194,7 +2226,7 @@
       },
       {
         "title": "现在评价",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 0
       },
       {
@@ -2226,7 +2258,7 @@
       },
       {
         "title": "稍后提醒我",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 0
       },
       {
@@ -2258,7 +2290,7 @@
       },
       {
         "title": "不，谢谢",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 0
       },
       {
@@ -2290,7 +2322,7 @@
       },
       {
         "title": "In-App Purchases",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 0
       },
       {
@@ -2322,7 +2354,7 @@
       },
       {
         "title": "抱歉，目前无可用的游戏内支付，请稍后再试。",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 0
       },
       {
@@ -2354,7 +2386,7 @@
       },
       {
         "title": "你之前的购买已成功恢复！",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 0
       },
       {
@@ -2386,7 +2418,7 @@
       },
       {
         "title": "抱歉，没有可以恢复的早前购买。",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 0
       },
       {
@@ -2418,11 +2450,43 @@
       },
       {
         "title": "棒呆了! 我在 #Steps 里得了$1 分! 你敢挑战我吗?",
-        "font": "arialuni",
+        "font": "YuppySC-Regular",
         "size": 0
       },
       {
         "title": "ОГО! Я набрал $1 очков в игре #Steps! Можешь побить мой рекорд?",
+        "font": "Impact",
+        "size": 0
+      }
+    ],
+    "notification-message": [
+      {
+        "title": "Daily mission is available again.",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "Misiones diarias están disponibles.",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "Missão diária está novamente disponível.",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "Mission quotidienne disponible à nouveau.",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "每日任务再次可用",
+        "font": "YuppySC-Regular",
+        "size": 0
+      },
+      {
+        "title": "Ежедневная миссия снова доступна!",
         "font": "Impact",
         "size": 0
       }

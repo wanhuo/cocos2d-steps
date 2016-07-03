@@ -275,9 +275,10 @@ void EnvironmentMissionsPopup::MissionTask::updateData(int mission, MissionStruc
     this->action->_create();
 
     if(c.best > 0) this->action->setText("missions-action-best");
-    if(c.games > 0) this->action->setText("missions-action-games");
-    if(c.points > 0) this->action->setText("missions-action-points");
-    if(c.special_progress_14 > 0 || c.special_once_14 > 0) this->action->setText("missions-action-14");
+    else if(c.games > 0) this->action->setText("missions-action-games");
+    else if(c.points > 0) this->action->setText("missions-action-points");
+    else if(c.special_progress_14 > 0 || c.special_once_14 > 0) this->action->setText("missions-action-14");
+    else this->action->_destroy();
     break;
     case MissionStruct::STATE_CLAIM:
     case MissionStruct::STATE_FINISHED:
@@ -295,6 +296,13 @@ void EnvironmentMissionsPopup::MissionTask::updateData(int mission, MissionStruc
 
     if(c.elapsed >= c.target)
     {
+      switch(m->type)
+      {
+        case MissionStruct::TYPE_PROGRESS:
+        this->action->_destroy();
+        break;
+      }
+
       this->element->setCurrentFrameIndex(2);
     }
     else if(c.elapsed > 0 || c.games > 0 || c.points > 0 || c.best > 0 || c.special_progress_14 > 0 || c.special_once_14 > 0)

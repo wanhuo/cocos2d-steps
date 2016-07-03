@@ -55,7 +55,7 @@ Open::Open()
 
   this->element = new Unlock(this);
 
-  this->text = new Text("price", this);
+  this->text = new Text("price", this, TextHAlignment::RIGHT);
   this->diamond = new CameraEntity3D("diamond.obj", Application, false,
   {
     Camera::createOrthographic(Application->getFrustumWidth(), Application->getFrustumHeight(), 1, 100),
@@ -79,7 +79,7 @@ Open::Open()
     )
   );
 
-  this->text->setPosition(Application->getWidth() / 2 - 20, 300);
+  this->text->setPosition(Application->getWidth() / 2 + 25, 300);
 }
 
 Open::~Open()
