@@ -102,7 +102,7 @@
         "size": 2
       },
       {
-        "title": "BATTRE\nVOTRE\nMEILLEUR",
+        "title": "BATTEZ\nVOTRE\nRECORD",
         "font": "square",
         "size": 22
       },
@@ -134,7 +134,7 @@
         "size": 22
       },
       {
-        "title": "JOUER\nÀ DES\nJEUX",
+        "title": "JOUEZ\nDES\nPARTIES",
         "font": "square",
         "size": 22
       },
@@ -166,7 +166,7 @@
         "size": 22
       },
       {
-        "title": "POINTS\nREACH",
+        "title": "OBTENEZ\nSCORE",
         "font": "square",
         "size": 22
       },
@@ -1246,7 +1246,7 @@
         "size": 26
       },
       {
-        "title": "COLLECTEZ TOUTES LES LETTRES",
+        "title": "RASSEMBLEZ LES LETTRES",
         "font": "square",
         "size": 24
       },
@@ -1438,7 +1438,7 @@
         "size": 36
       },
       {
-        "title": "COLLECTEZ TOUTES LES LETTRES",
+        "title": "RASSEMBLEZ LES LETTRES",
         "font": "square",
         "size": 32
       },
@@ -1502,7 +1502,7 @@
         "size": 30
       },
       {
-        "title": "PROCHAINE MISSION EN",
+        "title": "PROCHAINE MISSION DANS",
         "font": "square",
         "size": 30
       },
@@ -2444,7 +2444,7 @@
         "size": 0
       },
       {
-        "title": "OMG! J'ai fait $1 points sur #Steps! Essaie de me battre!",
+        "title": "OMG! J'ai fait $1 points à #Steps! Essaie de me battre!",
         "font": "square",
         "size": 0
       },
