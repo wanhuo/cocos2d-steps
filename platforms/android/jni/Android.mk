@@ -2,13 +2,16 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-$(call import-add-path,$(LOCAL_PATH)/../../../../cocos2d/cocos/prebuilt-mk)
+$(call import-add-path,$(LOCAL_PATH)/../../../../cocos2d/prebuilt/android)
 
 LOCAL_MODULE := core_shared
 
 LOCAL_MODULE_FILENAME := libcore
 
 LOCAL_SRC_FILES := application.cpp \
+                   ../../../../cocos2d-android-library/native/vote/Vote.cpp \
+                   ../../../../cocos2d-android-library/native/heyzap/Heyzap.cpp \
+                   ../../../../cocos2d-android-library/native/purchase/Purchase.cpp \
                    ../../../../cocos2d-tooflya-sdk/AppDelegate.cpp \
                    ../../../../cocos2d-tooflya-sdk/actions/Shake.cpp \
                    ../../../../cocos2d-tooflya-sdk/actions/RotateGlobalBy.cpp \
@@ -61,6 +64,7 @@ LOCAL_SRC_FILES := application.cpp \
                    ../../../sources/entities/decorations/Door.cpp \
                    ../../../sources/entities/decorations/Portal.cpp \
                    ../../../sources/entities/decorations/Trampoline.cpp \
+                   ../../../sources/entities/decorations/Laser.cpp \
                    ../../../sources/entities/pickups/Pickup.cpp \
                    ../../../sources/entities/pickups/Diamond.cpp \
                    ../../../sources/entities/pickups/Crystal.cpp \
@@ -92,6 +96,7 @@ LOCAL_SRC_FILES := application.cpp \
                    ../../../sources/entities/plates/TypeMoved3.cpp \
                    ../../../sources/entities/plates/TypeMoved4.cpp \
                    ../../../sources/entities/plates/TypeMoved5.cpp \
+                   ../../../sources/entities/plates/TypeLaser.cpp \
                    ../../../sources/entities/ui/Counter.cpp \
                    ../../../sources/entities/ui/Button3D.cpp \
                    ../../../sources/entities/ui/Gift.cpp \
@@ -100,6 +105,8 @@ LOCAL_SRC_FILES := application.cpp \
                    ../../../sources/entities/ui/Capture.cpp \
                    ../../../sources/entities/ui/Captures.cpp \
                    ../../../sources/entities/ui/Rampage.cpp \
+                   ../../../sources/entities/ui/Giphy.cpp \
+                   ../../../sources/entities/ui/R.cpp \
                    ../../../sources/entities/store/EnvironmentStoreItem.cpp \
                    ../../../sources/entities/store/EnvironmentStoreCharacter.cpp \
                    ../../../sources/entities/store/EnvironmentStoreTexture.cpp \
@@ -173,5 +180,5 @@ LOCAL_STATIC_LIBRARIES := cocos2dx_static
 
 include $(BUILD_SHARED_LIBRARY)
 
-$(call import-module,.)
+$(call import-module,cocos)
 

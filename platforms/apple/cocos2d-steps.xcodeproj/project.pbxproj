@@ -37,21 +37,21 @@
 		7832A8A31D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8911D10B5370059BFE3 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
 		7832A8A51D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8911D10B5370059BFE3 /* AFHTTPRequestOperation.m */; };
 		7832A8A61D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8931D10B5370059BFE3 /* AFHTTPRequestOperationManager.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
-		7832A8A81D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8931D10B5370059BFE3 /* AFHTTPRequestOperationManager.m */; };
+		7832A8A81D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8931D10B5370059BFE3 /* AFHTTPRequestOperationManager.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
 		7832A8A91D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8951D10B5370059BFE3 /* AFHTTPSessionManager.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
-		7832A8AB1D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8951D10B5370059BFE3 /* AFHTTPSessionManager.m */; };
+		7832A8AB1D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8951D10B5370059BFE3 /* AFHTTPSessionManager.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
 		7832A8AC1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8981D10B5370059BFE3 /* AFNetworkReachabilityManager.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
-		7832A8AE1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8981D10B5370059BFE3 /* AFNetworkReachabilityManager.m */; };
+		7832A8AE1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8981D10B5370059BFE3 /* AFNetworkReachabilityManager.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
 		7832A8AF1D10B5380059BFE3 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A89A1D10B5370059BFE3 /* AFSecurityPolicy.m */; };
-		7832A8B11D10B5380059BFE3 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A89A1D10B5370059BFE3 /* AFSecurityPolicy.m */; };
+		7832A8B11D10B5380059BFE3 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A89A1D10B5370059BFE3 /* AFSecurityPolicy.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
 		7832A8B21D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A89C1D10B5380059BFE3 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
-		7832A8B41D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A89C1D10B5380059BFE3 /* AFURLConnectionOperation.m */; };
+		7832A8B41D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A89C1D10B5380059BFE3 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
 		7832A8B51D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A89E1D10B5380059BFE3 /* AFURLRequestSerialization.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
-		7832A8B71D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A89E1D10B5380059BFE3 /* AFURLRequestSerialization.m */; };
+		7832A8B71D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A89E1D10B5380059BFE3 /* AFURLRequestSerialization.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
 		7832A8B81D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8A01D10B5380059BFE3 /* AFURLResponseSerialization.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
-		7832A8BA1D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8A01D10B5380059BFE3 /* AFURLResponseSerialization.m */; };
+		7832A8BA1D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8A01D10B5380059BFE3 /* AFURLResponseSerialization.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
 		7832A8BB1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8A21D10B5380059BFE3 /* AFURLSessionManager.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
-		7832A8BD1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8A21D10B5380059BFE3 /* AFURLSessionManager.m */; };
+		7832A8BD1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8A21D10B5380059BFE3 /* AFURLSessionManager.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
 		7834F2151D22BB7C00A7C3EA /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7834F2141D22BB7C00A7C3EA /* MediaPlayer.framework */; };
 		7834F2191D22C32000A7C3EA /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7834F2171D22C32000A7C3EA /* GameController.framework */; };
 		7834F21A1D22C32000A7C3EA /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7834F2181D22C32000A7C3EA /* GameKit.framework */; };
@@ -66,7 +66,7 @@
 		783DE9581D1C096B009706B7 /* Events.mm in Sources */ = {isa = PBXBuildFile; fileRef = 783DE9571D1C096B009706B7 /* Events.mm */; };
 		783DE95B1D1C2834009706B7 /* TypeLaser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783DE9591D1C2834009706B7 /* TypeLaser.cpp */; };
 		783DE95C1D1C2834009706B7 /* TypeLaser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783DE9591D1C2834009706B7 /* TypeLaser.cpp */; };
-		783DE95D1D1C2834009706B7 /* TypeLaser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783DE9591D1C2834009706B7 /* TypeLaser.cpp */; };
+		783DE95D1D1C2834009706B7 /* TypeLaser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783DE9591D1C2834009706B7 /* TypeLaser.cpp */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
 		783DE9601D1C2C13009706B7 /* Laser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783DE95E1D1C2C13009706B7 /* Laser.cpp */; };
 		783DE9611D1C2C13009706B7 /* Laser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783DE95E1D1C2C13009706B7 /* Laser.cpp */; };
 		783DE9621D1C2C13009706B7 /* Laser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783DE95E1D1C2C13009706B7 /* Laser.cpp */; };
@@ -215,6 +215,8 @@
 		789809621CC51C0A00E3CF28 /* Start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7898095F1CC51C0A00E3CF28 /* Start.cpp */; };
 		789809651CC53A8B00E3CF28 /* Cub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789809631CC53A8B00E3CF28 /* Cub.cpp */; };
 		789809661CC53A8B00E3CF28 /* Cub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789809631CC53A8B00E3CF28 /* Cub.cpp */; };
+		789959B21D2C489400C525C1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 789959B11D2C489400C525C1 /* MobileCoreServices.framework */; };
+		789959B41D2C489B00C525C1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 789959B31D2C489B00C525C1 /* SystemConfiguration.framework */; };
 		7899D44E1BF48194008080B5 /* services.json in Resources */ = {isa = PBXBuildFile; fileRef = 7899D44D1BF48194008080B5 /* services.json */; };
 		7899D44F1BF48194008080B5 /* services.json in Resources */ = {isa = PBXBuildFile; fileRef = 7899D44D1BF48194008080B5 /* services.json */; };
 		789E71761CD1086200BDCDC7 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71741CD1086200BDCDC7 /* Ground.cpp */; };
@@ -653,6 +655,8 @@
 		789809601CC51C0A00E3CF28 /* Start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Start.h; sourceTree = "<group>"; };
 		789809631CC53A8B00E3CF28 /* Cub.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cub.cpp; sourceTree = "<group>"; };
 		789809641CC53A8B00E3CF28 /* Cub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cub.h; sourceTree = "<group>"; };
+		789959B11D2C489400C525C1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		789959B31D2C489B00C525C1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		7899D44D1BF48194008080B5 /* services.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = services.json; path = apple/services.json; sourceTree = "<group>"; };
 		789E71741CD1086200BDCDC7 /* Ground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ground.cpp; sourceTree = "<group>"; };
 		789E71751CD1086200BDCDC7 /* Ground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ground.h; sourceTree = "<group>"; };
@@ -806,6 +810,8 @@
 				78BF8F791CF139DC00DBBF62 /* libz.1.dylib in Frameworks */,
 				78E24E071CF782F8008B0821 /* StoreKit.framework in Frameworks */,
 				78E24E051CF782F3008B0821 /* GameKit.framework in Frameworks */,
+				789959B21D2C489400C525C1 /* MobileCoreServices.framework in Frameworks */,
+				789959B41D2C489B00C525C1 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1158,6 +1164,8 @@
 		7843ACC31C2246D10011F47C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				789959B31D2C489B00C525C1 /* SystemConfiguration.framework */,
+				789959B11D2C489400C525C1 /* MobileCoreServices.framework */,
 				7843AC621C2242AA0011F47C /* Libraries */,
 				7834F21E1D22C35500A7C3EA /* iAd.framework */,
 				7834F21C1D22C34A00A7C3EA /* AdSupport.framework */,

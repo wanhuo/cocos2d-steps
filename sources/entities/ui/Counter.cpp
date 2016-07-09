@@ -575,7 +575,7 @@ void Counter::save()
 
   Storage::set("values.missions.progress.coins",  this->missionUpdateProgress.coins);
   Storage::set("values.missions.progress.points", this->missionUpdateProgress.points);
-  Storage::set("values.missions.progress.games", this->missionUpdateProgress.points);
+  Storage::set("values.missions.progress.games", this->missionUpdateProgress.games);
   Storage::set("values.missions.progress.gifts", this->missionUpdateProgress.points);
 
   Storage::set("values.missions.progress.special_progress_1", this->missionUpdateProgress.special_progress_1);
@@ -752,6 +752,6 @@ void Counter::onMissionComplete()
   this->resetMissionsUpdate();
 
   Application->environment->missions.controller->notify->notify(EnvironmentMissionsNotify::NONE);
-  Application->environment->missions.missions.elements.erase(Application->environment->missions.missions.elements.begin() + 2);
-  Application->environment->missions.missions.plane->removeItem(2);
+  Application->environment->missions.missions.elements.erase(Application->environment->missions.missions.elements.begin() + (Application->environment->missions.special ? 2 : 1));
+  Application->environment->missions.missions.plane->removeItem((Application->environment->missions.special ? 2 : 1));
 }

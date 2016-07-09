@@ -1,6 +1,6 @@
 APP_STL := c++_static
 NDK_TOOLCHAIN_VERSION = clang
-APP_PLATFORM := android-19
+APP_PLATFORM := android-14
 APP_ABI := armeabi armeabi-v7a
 
 APP_CPPFLAGS += -frtti -std=c++11 -fsigned-char -ffunction-sections -fdata-sections -fvisibility=hidden
