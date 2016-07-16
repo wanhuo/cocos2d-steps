@@ -251,6 +251,8 @@
 		789E71B01CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71AD1CD3D23200BDCDC7 /* TypeTrap.cpp */; };
 		789E71B31CD3DAF800BDCDC7 /* Trap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71B11CD3DAF800BDCDC7 /* Trap.cpp */; };
 		789E71B41CD3DAF800BDCDC7 /* Trap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71B11CD3DAF800BDCDC7 /* Trap.cpp */; };
+		78ABEE681D3ADBE6005A4EB7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78ABEE671D3ADBE6005A4EB7 /* Fabric.framework */; };
+		78ABEE6C1D3AE234005A4EB7 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78ABEE6A1D3AE234005A4EB7 /* Crashlytics.framework */; };
 		78B4B6D41CBD751D00F2D8A7 /* Crystal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */; };
 		78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */; };
 		78B4B6D61CBD751D00F2D8A7 /* Diamond.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C91CBD751D00F2D8A7 /* Diamond.cpp */; };
@@ -690,6 +692,8 @@
 		789E71AE1CD3D23200BDCDC7 /* TypeTrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeTrap.h; sourceTree = "<group>"; };
 		789E71B11CD3DAF800BDCDC7 /* Trap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Trap.cpp; sourceTree = "<group>"; };
 		789E71B21CD3DAF800BDCDC7 /* Trap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trap.h; sourceTree = "<group>"; };
+		78ABEE671D3ADBE6005A4EB7 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		78ABEE6A1D3AE234005A4EB7 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "../../../cocos2d-apple-library/Sources/Libraries/Fabric/Crashlytics.framework"; sourceTree = "<group>"; };
 		78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Crystal.cpp; sourceTree = "<group>"; };
 		78B4B6C81CBD751D00F2D8A7 /* Crystal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crystal.h; sourceTree = "<group>"; };
 		78B4B6C91CBD751D00F2D8A7 /* Diamond.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Diamond.cpp; sourceTree = "<group>"; };
@@ -823,6 +827,7 @@
 				7834F21F1D22C35500A7C3EA /* iAd.framework in Frameworks */,
 				7834F2221D22C72700A7C3EA /* GoogleMobileAds.framework in Frameworks */,
 				7834F21D1D22C34A00A7C3EA /* AdSupport.framework in Frameworks */,
+				78ABEE681D3ADBE6005A4EB7 /* Fabric.framework in Frameworks */,
 				7834F21B1D22C33600A7C3EA /* SafariServices.framework in Frameworks */,
 				7834F2191D22C32000A7C3EA /* GameController.framework in Frameworks */,
 				7834F21A1D22C32000A7C3EA /* GameKit.framework in Frameworks */,
@@ -859,6 +864,7 @@
 				7843AC4C1C22404F0011F47C /* libsqlite3.dylib in Frameworks */,
 				7843ACB51C22440D0011F47C /* libxml2.2.dylib in Frameworks */,
 				7843AC4A1C2240360011F47C /* libz.1.dylib in Frameworks */,
+				78ABEE6C1D3AE234005A4EB7 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1034,6 +1040,7 @@
 		7843AC621C2242AA0011F47C /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				78ABEE661D3ADBE6005A4EB7 /* Fabric */,
 				7834F2201D22C72700A7C3EA /* GoogleAdmob */,
 				783DE9391D1BE473009706B7 /* AppLovin */,
 				7832A88F1D10B5370059BFE3 /* AFNetworking */,
@@ -1164,9 +1171,9 @@
 		7843ACC31C2246D10011F47C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7843AC621C2242AA0011F47C /* Libraries */,
 				789959B31D2C489B00C525C1 /* SystemConfiguration.framework */,
 				789959B11D2C489400C525C1 /* MobileCoreServices.framework */,
-				7843AC621C2242AA0011F47C /* Libraries */,
 				7834F21E1D22C35500A7C3EA /* iAd.framework */,
 				7834F21C1D22C34A00A7C3EA /* AdSupport.framework */,
 				7834F2171D22C32000A7C3EA /* GameController.framework */,
@@ -1192,6 +1199,7 @@
 				7843ACCB1C224A830011F47C /* IOKit.framework */,
 				7843ACC91C224A7A0011F47C /* Security.framework */,
 				7843AC471C22401B0011F47C /* AudioToolbox.framework */,
+				78ABEE6A1D3AE234005A4EB7 /* Crashlytics.framework */,
 				7843ACC41C2248250011F47C /* WebKit.framework */,
 				7843ACBE1C2244E90011F47C /* AdSupport.framework */,
 				7843ACBF1C2244E90011F47C /* iAd.framework */,
@@ -1474,6 +1482,14 @@
 			);
 			name = Services;
 			path = ../../resource/Services;
+			sourceTree = "<group>";
+		};
+		78ABEE661D3ADBE6005A4EB7 /* Fabric */ = {
+			isa = PBXGroup;
+			children = (
+				78ABEE671D3ADBE6005A4EB7 /* Fabric.framework */,
+			);
+			path = Fabric;
 			sourceTree = "<group>";
 		};
 		78B4B6C51CBD751D00F2D8A7 /* decorations */ = {
@@ -1908,7 +1924,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PROJECT_DIR}/../../../cocos2d-apple-library/Tools/build.sh \"${INFOPLIST_FILE}\"";
+			shellScript = "${PROJECT_DIR}/../../../cocos2d-apple-library/Tools/build.sh \"${INFOPLIST_FILE}\"\n${PROJECT_DIR}/../../../cocos2d-apple-library/Sources/Libraries/Fabric/Fabric.framework/run afcf7acf389ceb659bf257208b4870e5746f0670 b9241b640891d20027053f0d59e6dbb3b6fea5f896665b55cb4583d8c85ccd06";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2449,6 +2465,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/Fabric",
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/GoogleAdmob",
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/Ketchapp",
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/ChartBoost",
@@ -2506,6 +2523,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/Fabric",
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/GoogleAdmob",
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/Ketchapp",
 					"$(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/ChartBoost",
