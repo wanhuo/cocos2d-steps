@@ -139,6 +139,8 @@ void Capture::onCreate()
    */
   this->state = STATE_NORMAL;
 
+  this->setGlobalZOrder(1000);
+  this->setCameraMask(8);
   this->bind(true);
 
   this->complete = false;
@@ -282,6 +284,9 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
     this->state = STATE_ACTIVE;
 
     this->buttons.share->_create();
+    this->buttons.share->setGlobalZOrder(2000);
+    this->buttons.share->setLocalZOrder(2000);
+    this->buttons.share->setCameraMask(8);
     this->buttons.share->bind(false);
     this->buttons.share->setCurrentFrameIndex(0);
     this->buttons.share->setPosition(Application->getCenter().x, -100);
@@ -290,6 +295,9 @@ void Capture::onTouch(cocos2d::Touch* touch, Event* e)
     );
 
     this->buttons.back->_create();
+    this->buttons.back->setGlobalZOrder(2000);
+    this->buttons.back->setLocalZOrder(2000);
+    this->buttons.back->setCameraMask(8);
     this->buttons.back->bind(true);
     this->buttons.back->setCurrentFrameIndex(0);
     this->buttons.back->setPosition(110, Application->getHeight() + 100);

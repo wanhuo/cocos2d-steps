@@ -397,8 +397,11 @@ void Character::onTurnLeft(bool action, bool set, bool rotation, float time)
         Director::getInstance()->getActionManager()->pauseTarget(next);
         Director::getInstance()->getScheduler()->pauseTarget(next);
 
-        Director::getInstance()->getActionManager()->pauseTarget(next->special);
-        Director::getInstance()->getScheduler()->pauseTarget(next->special);
+        if(next->special)
+        {
+          Director::getInstance()->getActionManager()->pauseTarget(next->special);
+          Director::getInstance()->getScheduler()->pauseTarget(next->special);
+        }
       }
 
       int stage = next ? next->getStage() : 1;
@@ -418,8 +421,11 @@ void Character::onTurnLeft(bool action, bool set, bool rotation, float time)
                 Director::getInstance()->getActionManager()->resumeTarget(next);
                 Director::getInstance()->getScheduler()->resumeTarget(next);
 
-                Director::getInstance()->getActionManager()->resumeTarget(next->special);
-                Director::getInstance()->getScheduler()->resumeTarget(next->special);
+                if(next->special)
+                {
+                  Director::getInstance()->getActionManager()->resumeTarget(next->special);
+                  Director::getInstance()->getScheduler()->resumeTarget(next->special);
+                }
               }
             }),
 
@@ -581,8 +587,11 @@ void Character::onTurnRight(bool action, bool set, bool rotation, float time)
         Director::getInstance()->getActionManager()->pauseTarget(next);
         Director::getInstance()->getScheduler()->pauseTarget(next);
 
-        Director::getInstance()->getActionManager()->pauseTarget(next->special);
-        Director::getInstance()->getScheduler()->pauseTarget(next->special);
+        if(next->special)
+        {
+          Director::getInstance()->getActionManager()->pauseTarget(next->special);
+          Director::getInstance()->getScheduler()->pauseTarget(next->special);
+        }
       }
 
       int stage = next ? next->getStage() : 1;
@@ -602,8 +611,11 @@ void Character::onTurnRight(bool action, bool set, bool rotation, float time)
                 Director::getInstance()->getActionManager()->resumeTarget(next);
                 Director::getInstance()->getScheduler()->resumeTarget(next);
 
-                Director::getInstance()->getActionManager()->resumeTarget(next->special);
-                Director::getInstance()->getScheduler()->resumeTarget(next->special);
+                if(next->special)
+                {
+                  Director::getInstance()->getActionManager()->resumeTarget(next->special);
+                  Director::getInstance()->getScheduler()->resumeTarget(next->special);
+                }
               }
             }),
 
@@ -793,8 +805,11 @@ void Character::onTurnBackLeft(bool action, bool set, bool rotation, float time)
         Director::getInstance()->getActionManager()->pauseTarget(next);
         Director::getInstance()->getScheduler()->pauseTarget(next);
 
-        Director::getInstance()->getActionManager()->pauseTarget(next->special);
-        Director::getInstance()->getScheduler()->pauseTarget(next->special);
+        if(next->special)
+        {
+          Director::getInstance()->getActionManager()->pauseTarget(next->special);
+          Director::getInstance()->getScheduler()->pauseTarget(next->special);
+        }
       }
 
       int stage = next ? next->getStage() : 1;
@@ -814,8 +829,11 @@ void Character::onTurnBackLeft(bool action, bool set, bool rotation, float time)
                 Director::getInstance()->getActionManager()->resumeTarget(next);
                 Director::getInstance()->getScheduler()->resumeTarget(next);
 
-                Director::getInstance()->getActionManager()->resumeTarget(next->special);
-                Director::getInstance()->getScheduler()->resumeTarget(next->special);
+                if(next->special)
+                {
+                  Director::getInstance()->getActionManager()->resumeTarget(next->special);
+                  Director::getInstance()->getScheduler()->resumeTarget(next->special);
+                }
               }
             }),
             nullptr
@@ -915,8 +933,11 @@ void Character::onTurnBackRight(bool action, bool set, bool rotation, float time
         Director::getInstance()->getActionManager()->pauseTarget(next);
         Director::getInstance()->getScheduler()->pauseTarget(next);
 
-        Director::getInstance()->getActionManager()->pauseTarget(next->special);
-        Director::getInstance()->getScheduler()->pauseTarget(next->special);
+        if(next->special)
+        {
+          Director::getInstance()->getActionManager()->pauseTarget(next->special);
+          Director::getInstance()->getScheduler()->pauseTarget(next->special);
+        }
       }
 
       int stage = next ? next->getStage() : 1;
@@ -936,8 +957,11 @@ void Character::onTurnBackRight(bool action, bool set, bool rotation, float time
                 Director::getInstance()->getActionManager()->resumeTarget(next);
                 Director::getInstance()->getScheduler()->resumeTarget(next);
 
-                Director::getInstance()->getActionManager()->resumeTarget(next->special);
-                Director::getInstance()->getScheduler()->resumeTarget(next->special);
+                if(next->special)
+                {
+                  Director::getInstance()->getActionManager()->resumeTarget(next->special);
+                  Director::getInstance()->getScheduler()->resumeTarget(next->special);
+                }
               }
             }),
             nullptr

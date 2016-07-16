@@ -279,7 +279,7 @@ class Game : public Screen
   BackgroundColor* s;
   BackgroundColor* d;
 
-  Sprite* generate;
+  Entity* generate;
   Entity* i;
 
   Rampage* rampage;

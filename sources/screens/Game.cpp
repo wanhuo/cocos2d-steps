@@ -154,13 +154,12 @@ void Game::generateFrameBuffer()
     this->frameBuffer->attachRenderTarget(rt);
     this->frameBuffer->attachDepthStencilTarget(rtDS);
 
-    this->generate = Sprite::createWithTexture(this->getFrameBuffer()->getRenderTarget()->getTexture());
+    this->generate = new Entity(this->getFrameBuffer()->getRenderTarget()->getTexture(), this, true);
     this->generate->setScaleX(1 * FRAME_BUFFER_FACTOR);
     this->generate->setScaleY(-1 * FRAME_BUFFER_FACTOR);
     this->generate->setPosition(size.width / 2, size.height / 2);
     this->generate->setCameraMask(2);
     this->generate->setGlobalZOrder(1);
-    this->addChild(this->generate);
 
     for(int i = 0; i < CAPTURE_FPS * CAPTURE_TIME; i++)
     {

@@ -37,7 +37,7 @@
  *
  *
  */
-class Captures : public Sprite
+class Captures : public Entity
 {
   /**
    *

@@ -189,6 +189,16 @@ void Finish::onShow()
         nullptr
       )
     );*/
+
+    this->runAction(
+      Sequence::create(
+        DelayTime::create(0.5),
+        CallFunc::create([=] () {
+        Vote::update();
+        }),
+        nullptr
+      )
+    );
   }
 }
 
