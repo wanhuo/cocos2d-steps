@@ -96,17 +96,17 @@ void TypeMoveUp::start()
             CallFunc::create([=] () {
             this->plate->setStage(this->plate->getStage() + 2);
 
-          if(Application->environment->character->plates.current == this->plate && Application->environment->character->state == Character::STATE_NORMAL)
-          {
-            Application->environment->character->plane->runAction(
-            Sequence::create(
-            EaseSineInOut::create(
-              MoveBy::create(0.15, Vec3(0, 0.8, 0))
-            ),
-            nullptr
-          )
-            );
-          }
+            if(Application->environment->character->plates.current == this->plate && Application->environment->character->state == Character::STATE_NORMAL)
+            {
+              Application->environment->character->plane->runAction(
+                Sequence::create(
+                  EaseSineInOut::create(
+                    MoveBy::create(0.15, Vec3(0, 0.8, 0))
+                  ),
+                  nullptr
+                )
+              );
+            }
             }),
             EaseSineInOut::create(
               MoveBy::create(0.15, Vec3(0, 0.8, 0))
@@ -118,9 +118,6 @@ void TypeMoveUp::start()
           );
 
           this->runAction(action->clone());
-          //this->plate->moved = true;
-          //this->plate->blocked = true;
-
 
           this->decoration->runAction(
             EaseSineInOut::create(
@@ -129,48 +126,33 @@ void TypeMoveUp::start()
           );
         }),
         DelayTime::create(0.2),
-        CallFunc::create([=] () {
-          //this->plate->moved = false;
-        }),
         DelayTime::create(0.3),
         CallFunc::create([=] () {
           auto action = Sequence::create(
             EaseSineInOut::create(
               MoveBy::create(0.15, Vec3(0, -0.8, 0))
             ),
-              CallFunc::create([=] () {
+            CallFunc::create([=] () {
             this->plate->setStage(this->plate->getStage() + 1);
-              }),
+            }),
             nullptr
           );
 
-            this->plate->setStage(this->plate->getStage() - 2);
-          //this->plate->moved = true;
+          this->plate->setStage(this->plate->getStage() - 2);
 
           this->runAction(action->clone());
-          this->runAction(
-            Sequence::create(
-              DelayTime::create(0.15),
-              CallFunc::create([=] () {
-                //this->plate->moved = false;
-                //this->plate->blocked = false;
-              }),
-              nullptr
-            )
-          );
 
           if(Application->environment->character->plates.current == this->plate && Application->environment->character->getManual() && Application->environment->character->state == Character::STATE_NORMAL)
           {
             Application->environment->character->plane->runAction(
-            Sequence::create(
-            EaseSineInOut::create(
-              MoveBy::create(0.15, Vec3(0, -0.8, 0))
-            ),
-            nullptr
-          )
+              Sequence::create(
+              EaseSineInOut::create(
+                MoveBy::create(0.15, Vec3(0, -0.8, 0))
+              ),
+              nullptr
+              )
             );
           }
-
 
           this->decoration->runAction(
             EaseSineInOut::create(

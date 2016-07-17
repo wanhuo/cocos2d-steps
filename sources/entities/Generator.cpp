@@ -396,12 +396,14 @@ void Generator::createBonusElement()
       this->plate->setType(Plate::DIAMOND);
     }
 
-    this->plate->setType(Plate::BONUS);
-
     if(this->plate->conditions(Plate::CUB))
     {
+      this->plate->getDecorations().at(0)->shadow->_destroy();
+
       this->plate->setType(Plate::CUB);
     }
+
+    this->plate->setType(Plate::BONUS);
   }
 }
 

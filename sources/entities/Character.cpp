@@ -1442,6 +1442,11 @@ void Character::onCrash(Crash crash)
     break;
     case SPIKES:
     case TRAP:
+    if(this->getAutomatecally())
+    {
+      this->plates.current->getDecorations().at(0)->_destroy();
+    }
+
     this->runAction(
       Spawn::create(
         Sequence::create(
@@ -1460,7 +1465,7 @@ void Character::onCrash(Crash crash)
         ),
         Sequence::create(
           DelayTime::create(0.4),
-          MoveBy::create(2.0, Vec3(0, -0.8, 0)),
+          MoveBy::create(this->getAutomatecally() ? 0.5 : 2.0, Vec3(0, -0.8, 0)),
           nullptr
         ),
         nullptr

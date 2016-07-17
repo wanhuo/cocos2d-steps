@@ -126,6 +126,8 @@ void EnvironmentMissionsFinish::onCreate()
     );
   }
 
+  this->index = 1;
+
   if(Application->counter->values.b.special)
   {
     this->plane->getInnerContainer()->setPosition(Vec2(-Application->getWidth() * ((MissionsFactory::getInstance()->getCurrentMission() || Application->counter->values.b.mission) ? 2 : 1), 0));
@@ -142,10 +144,12 @@ void EnvironmentMissionsFinish::onCreate()
   {
     if(Finish::getInstance()->missions->notificationKetchapp)
     {
+      this->index = 2;
       this->plane->getInnerContainer()->setPosition(Vec2(-Application->getWidth() * ((MissionsFactory::getInstance()->getCurrentMission() || Application->counter->values.b.mission) ? 2 : 1), 0));
     }
     else if(Finish::getInstance()->missions->notificationDaily)
     {
+      this->index = 0;
       this->plane->getInnerContainer()->setPosition(Vec2(0, 0));
     }
     else
@@ -153,8 +157,6 @@ void EnvironmentMissionsFinish::onCreate()
       this->plane->getInnerContainer()->setPosition(Vec2(-Application->getWidth() * ((MissionsFactory::getInstance()->getCurrentMission() || Application->counter->values.b.mission) ? 1 : 0), 0));
     }
   }
-
-  this->index = this->plane->getIndex(this->plane->getCenterItemInCurrentView());
 
   Finish::getInstance()->missions->notificationKetchapp = false;
   Finish::getInstance()->missions->notificationDaily = false;

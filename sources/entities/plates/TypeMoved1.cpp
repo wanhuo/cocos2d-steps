@@ -69,7 +69,7 @@ void TypeMoved1::start()
           this->runAction(action->clone());
           this->runAction(
             Sequence::create(
-              DelayTime::create(0.15),
+              //DelayTime::create(0.15),
               CallFunc::create([=] () {
                 this->plate->moved = false;
               }),
@@ -107,7 +107,7 @@ void TypeMoved1::start()
           this->runAction(action->clone());
           this->runAction(
             Sequence::create(
-              DelayTime::create(0.15),
+              //DelayTime::create(0.15),
               CallFunc::create([=] () {
                 this->plate->moved = false;
               }),

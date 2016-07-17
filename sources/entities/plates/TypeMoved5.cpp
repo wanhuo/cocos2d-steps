@@ -143,13 +143,11 @@ void TypeMoved5::start()
           Application->environment->character->onLandFail(Character::NONE, this->plate);
         }
         }),
-        DelayTime::create(0.15),
-        DelayTime::create(0.5),
-        DelayTime::create(0.15),
+        DelayTime::create(0.6),
         CallFunc::create([=] () {
         this->plate->moved = false;
         }),
-        DelayTime::create(0.5),
+        DelayTime::create(0.7),
         nullptr
       )
     )
