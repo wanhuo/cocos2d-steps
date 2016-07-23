@@ -1902,8 +1902,6 @@ void Character::onInsane()
  */
 void Character::onInsaneStart()
 {
-  Application->rampage->_create();
-
   auto x = Application->cameras.d->getRotation3D().x;
   auto y = Application->cameras.d->getRotation3D().y;
   auto z = Application->cameras.d->getRotation3D().z;
@@ -1994,8 +1992,6 @@ void Character::onInsaneStart()
 
 void Character::onInsaneFinish()
 {
-  Application->rampage->_destroy();
-
   this->stopAllActions();
 
   auto element = this->getPlatesNear(this->insanePlate).next();

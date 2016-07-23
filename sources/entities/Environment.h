@@ -139,7 +139,6 @@ class Environment : public Background
   };
 
   struct Decorations {
-    Pool* starts;
     Pool* downs;
     Pool* cubs;
   };

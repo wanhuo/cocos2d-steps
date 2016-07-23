@@ -127,7 +127,7 @@ bool Generator::updateEpisode(int episode)
      *
      */
     case EPISODE_DUEL:
-    if(--this->episode.duel.length < 0 && !this->isEpisodes() && this->portal < -10 && !this->direction && this->count == 0 && (this->size - this->index) > this->start * 2 && Application->environment->character->state != Character::STATE_INSANE && probably(1000.0))
+    if(--this->episode.duel.length < 0 && !this->isEpisodes() && this->portal < -10 && !this->direction && this->count == 0 && (this->size - this->index) > this->start * 2 && Application->environment->character->state != Character::STATE_INSANE && probably(1.0))
     {
       this->episode.duel.length = this->start * 2;
       this->episode.duel.index = 0;

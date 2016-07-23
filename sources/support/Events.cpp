@@ -75,6 +75,18 @@ void Events::onPause()
  */
 void Events::onResume()
 {
+  {
+    string s = Storage::get("present.next.time", true);
+    long long time = s.length() > 0 ? std::stoll(s.c_str()) : 0;
+
+    if(Times::now() > time)
+    {
+      Storage::set("present.next.time", 0);
+
+      Application->parameters.elapsed.present = 100;
+    }
+  }
+
   Analytics::sendEvent("Application", "application.events.onResume", "Application onResume event");
 }
 

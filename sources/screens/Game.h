@@ -44,7 +44,6 @@
 #include "Gift.h"
 #include "Video.h"
 #include "Unlock.h"
-#include "Rampage.h"
 #include "Giphy.h"
 #include "R.h"
 
@@ -77,7 +76,6 @@
 #include "Insane.h"
 #include "Let.h"
 
-#include "Start.h"
 #include "Spikes.h"
 #include "Trap.h"
 #include "Saw.h"
@@ -148,6 +146,7 @@ using namespace cocos2d::experimental;
  */
 #define SERVICES_LEADERBOARD_BEST_SCORE 0
 #define SERVICES_LEADERBOARD_STAGES_COUNT 1
+#define SERVICES_LEADERBOARD_MISSIONS_COUNT 2
 
 /**
  *
@@ -281,8 +280,6 @@ class Game : public Screen
 
   Entity* generate;
   Entity* i;
-
-  Rampage* rampage;
 
   Environment* environment;
   Capturing capturing;

@@ -466,14 +466,6 @@ void Plate::setType(int type, bool animated, char data)
   {
     default:
     break;
-    case START:
-    {
-      auto decoration = static_cast<Decoration*>(Application->environment->decorations.starts->_create());
-      decoration->setPlate(this, animated);
-      decoration->setRotation3D(Vec3(0, 0, 0));
-
-      this->getDecorations().push_back(decoration);
-    }
     break;
     case FINISH:
     {

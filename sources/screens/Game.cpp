@@ -119,8 +119,6 @@ Game::Game()
   this->counter = new Counter(this);
   this->capture = new Capture(this);
 
-  this->rampage = new Rampage(this);
-
   this->s = new BackgroundColor(this, Color4B(255, 255, 255, 0));
   this->d = new BackgroundColor(this, Color4B(0, 0, 0, 0));
 
@@ -269,17 +267,34 @@ void Game::onEnter()
    */
   Internal::onStart();
 
-  this->changeState(MENU);
-
   this->runAction(
     Sequence::create(
       DelayTime::create(2.0),
       CallFunc::create([=] () {
       Music->play("music-1");
+
+      /**
+       *
+       *
+       *
+       */
+      Facebook::connect([=] (bool state) {
+        if(state)
+        {
+          Facebook::score->get([] (vector<FacebookFriend*> elements) {
+            for(auto element : elements)
+            {
+              log("%s", element->name);
+            }
+          });
+        }
+      });
       }),
       nullptr
     )
   );
+
+  this->changeState(MENU);
 }
 
 void Game::onExit()

@@ -155,7 +155,6 @@ void Environment::create()
   this->r = new Pool(new R, Application);
 
   this->decorations.downs = new Pool(new Down, this->plane);
-  this->decorations.starts = new Pool(new Start, this->plane);
   this->decorations.cubs = new Pool(new Cub, this->plane);
 
   this->particles.s = new Pool(new Particle, this->plane);

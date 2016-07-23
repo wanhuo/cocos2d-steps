@@ -596,6 +596,12 @@ void Counter::save()
 
   Services::leaderboards->update(SERVICES_LEADERBOARD_BEST_SCORE, this->values.best);
   Services::leaderboards->update(SERVICES_LEADERBOARD_STAGES_COUNT, Application->environment->parameters.stage - 1);
+  Services::leaderboards->update(SERVICES_LEADERBOARD_MISSIONS_COUNT, MissionsFactory::getInstance()->getCompletedMissionsCount());
+
+  if(Facebook::status())
+  {
+    Facebook::score->update(this->values.best);
+  }
 }
 
 /**

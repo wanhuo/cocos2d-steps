@@ -38,10 +38,18 @@
  */
 void Events::onProceedNotifications()
 {
+  [[UIApplication sharedApplication] cancelAllLocalNotifications];
+
+  /**
+   *
+   * @LocalNotification
+   * @Fired
+   *
+   */
   if(!Application->environment->missions.controller->popups.daily->task.active)
   {
     {
-      auto text = new Text("notification-message");
+      auto text = new Text("notification-message-1");
 
       UILocalNotification *notification = [[UILocalNotification alloc] init];
       notification.fireDate = [NSDate dateWithTimeIntervalSince1970: Application->environment->missions.controller->popups.daily->task.time / 1000];
@@ -50,5 +58,24 @@ void Events::onProceedNotifications()
 
       [[UIApplication sharedApplication] scheduleLocalNotification: notification];
     }
+  }
+
+  /**
+   *
+   * @LocalNotification
+   * @Fired
+   *
+   */
+  {
+    Storage::set("present.next.time", s(Times::now() + Times::minute()));
+
+    auto text = new Text("notification-message-2");
+
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = [NSDate dateWithTimeIntervalSince1970: (Times::now() + Times::minute()) / 1000];
+    notification.alertBody = [NSString stringWithUTF8String: text->getString().c_str()];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+
+    [[UIApplication sharedApplication] scheduleLocalNotification: notification];
   }
 }

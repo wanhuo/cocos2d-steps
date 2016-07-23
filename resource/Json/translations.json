@@ -2459,7 +2459,7 @@
         "size": 0
       }
     ],
-    "notification-message": [
+    "notification-message-1": [
       {
         "title": "Daily mission is available again.",
         "font": "square",
@@ -2487,6 +2487,38 @@
       },
       {
         "title": "Ежедневная миссия снова доступна!",
+        "font": "Impact",
+        "size": 0
+      }
+    ],
+    "notification-message-2": [
+      {
+        "title": "?",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "?",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "?",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "?",
+        "font": "square",
+        "size": 0
+      },
+      {
+        "title": "?",
+        "font": "YuppySC-Regular",
+        "size": 0
+      },
+      {
+        "title": "Вам доступен бесплатный подарок! Заберите его прямо сейчас :)",
         "font": "Impact",
         "size": 0
       }
