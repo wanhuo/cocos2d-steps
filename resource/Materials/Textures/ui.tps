@@ -204,7 +204,6 @@
             <filename>../Graphics/ui/counter-bonus.png</filename>
             <filename>../Graphics/ui/play-button.png</filename>
             <filename>../Graphics/ui/lock-button.png</filename>
-            <filename>../Graphics/ui/lock-facebook-button.png</filename>
             <filename>../Graphics/ui/capture.png</filename>
             <filename>../Graphics/ui/missions-background.png</filename>
             <filename>../Graphics/ui/restart-button.png</filename>
@@ -223,14 +222,13 @@
             <filename>../Graphics/ui/missions-13.png</filename>
             <filename>../Graphics/ui/missions-14.png</filename>
             <filename>../Graphics/ui/missions-15.png</filename>
-            <filename>../Graphics/ui/missions-best.png</filename>
             <filename>../Graphics/ui/missions-coins.png</filename>
             <filename>../Graphics/ui/missions-games.png</filename>
             <filename>../Graphics/ui/missions-gifts.png</filename>
             <filename>../Graphics/ui/missions-points.png</filename>
             <filename>../Graphics/ui/ketchapp.png</filename>
-            <filename>../Graphics/ui/lock-twitter-button.png</filename>
             <filename>../Graphics/ui/giphy.png</filename>
+            <filename>../Graphics/ui/unlock-button.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

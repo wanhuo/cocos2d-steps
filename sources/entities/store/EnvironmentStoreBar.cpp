@@ -53,7 +53,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
       )
     );
   }), true);
-  this->buttons.facebook = new Button("lock-facebook-button.png", 2, 1, this, std::bind([=] () {
+  this->buttons.facebook = new Button("unlock-button.png", 2, 1, this, std::bind([=] () {
     Application->onFacebookLike();
 
     Application->runAction(
@@ -69,7 +69,7 @@ EnvironmentStoreBar::EnvironmentStoreBar()
       )
     );
   }), true);
-  this->buttons.twitter = new Button("lock-twitter-button.png", 2, 1, this, std::bind([=] () {
+  this->buttons.twitter = new Button("unlock-button.png", 2, 1, this, std::bind([=] () {
     Application->onTwitterLike();
 
     Application->runAction(
