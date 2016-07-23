@@ -60,7 +60,6 @@ Menu::Menu()
     });
   }), true);
   this->buttons.missions = new Button("missions-button.png", 2, 1, this, std::bind([=] () {
-    Application->changeState(Game::MISSIONS);
     this->hide([=] () {
     });
   }), true);

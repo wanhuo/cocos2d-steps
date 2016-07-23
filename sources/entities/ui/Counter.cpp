@@ -758,6 +758,4 @@ void Counter::onMissionComplete()
   this->resetMissionsUpdate();
 
   Application->environment->missions.controller->notify->notify(EnvironmentMissionsNotify::NONE);
-  Application->environment->missions.missions.elements.erase(Application->environment->missions.missions.elements.begin() + (Application->environment->missions.special ? 2 : 1));
-  Application->environment->missions.missions.plane->removeItem((Application->environment->missions.special ? 2 : 1));
 }

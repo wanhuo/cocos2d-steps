@@ -165,11 +165,6 @@ class Environment : public Background
     vector<EnvironmentStoreItem*> elements;
   };
 
-  struct MissionsElement {
-    cocos2d::ui::ListView* plane;
-    vector<EnvironmentMissionsItem*> elements;
-  };
-
   struct Store {
     EnvironmentStoreBar* controller = nullptr;
     StoreElement characters;
@@ -178,7 +173,6 @@ class Environment : public Background
 
   struct Missions {
     EnvironmentMissionsBar* controller = nullptr;
-    MissionsElement missions;
 
     bool special;
   };

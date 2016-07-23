@@ -324,7 +324,6 @@
 		78C352EC1CEE7DB000F10068 /* Diamond.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C91CBD751D00F2D8A7 /* Diamond.cpp */; };
 		78C352ED1CEE7DB000F10068 /* Pickup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6CF1CBD751D00F2D8A7 /* Pickup.cpp */; };
 		78C352EE1CEE7DB000F10068 /* Decoration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283F8F1CE0A8A10010CAB7 /* Decoration.cpp */; };
-		78C352EF1CEE7DB000F10068 /* EnvironmentMissionsItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB41CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp */; };
 		78C352F01CEE7DB000F10068 /* EnvironmentMissionsFinish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78BADD711CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp */; };
 		78C352F21CEE7DB000F10068 /* TypeMoved3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71A21CD39D0D00BDCDC7 /* TypeMoved3.cpp */; };
 		78C352F31CEE7DB000F10068 /* TypeTrampoline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71821CD343FC00BDCDC7 /* TypeTrampoline.cpp */; };
@@ -370,8 +369,6 @@
 		78C35A571CEE84E200F10068 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78C35A441CEE84E200F10068 /* RootViewController.mm */; };
 		78C72BB61CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */; };
 		78C72BB71CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */; };
-		78C72BB81CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB41CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp */; };
-		78C72BB91CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB41CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp */; };
 		78C72BBC1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BBA1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp */; };
 		78C72BBD1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BBA1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp */; };
 		78CA6D0A1C20645200BF8416 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
@@ -735,8 +732,6 @@
 		78C35A441CEE84E200F10068 /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = "<group>"; };
 		78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsBar.cpp; sourceTree = "<group>"; };
 		78C72BB31CE9D2E700D8EB11 /* EnvironmentMissionsBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsBar.h; sourceTree = "<group>"; };
-		78C72BB41CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsItem.cpp; sourceTree = "<group>"; };
-		78C72BB51CE9D2E700D8EB11 /* EnvironmentMissionsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsItem.h; sourceTree = "<group>"; };
 		78C72BBA1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvironmentMissionsPopup.cpp; sourceTree = "<group>"; };
 		78C72BBB1CE9F49600D8EB11 /* EnvironmentMissionsPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentMissionsPopup.h; sourceTree = "<group>"; };
 		78CA6D031C202CAB00BF8416 /* Purchases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchases.h; sourceTree = "<group>"; };
@@ -1643,8 +1638,6 @@
 		78C72BB11CE9D2E700D8EB11 /* missions */ = {
 			isa = PBXGroup;
 			children = (
-				78C72BB41CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp */,
-				78C72BB51CE9D2E700D8EB11 /* EnvironmentMissionsItem.h */,
 				78C72BBA1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp */,
 				78C72BBB1CE9F49600D8EB11 /* EnvironmentMissionsPopup.h */,
 				786F79651CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.cpp */,
@@ -2001,7 +1994,6 @@
 				786696CB1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				789E71B41CD3DAF800BDCDC7 /* Trap.cpp in Sources */,
 				78B4B6ED1CBDBD8800F2D8A7 /* TypeSaw.cpp in Sources */,
-				78C72BB91CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */,
 				7891E8C31CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp in Sources */,
 				78283F961CE0AAE00010CAB7 /* Counter.cpp in Sources */,
 				789E718B1CD34AFB00BDCDC7 /* Trampoline.cpp in Sources */,
@@ -2097,7 +2089,6 @@
 				78C352EC1CEE7DB000F10068 /* Diamond.cpp in Sources */,
 				78C352ED1CEE7DB000F10068 /* Pickup.cpp in Sources */,
 				78C352EE1CEE7DB000F10068 /* Decoration.cpp in Sources */,
-				78C352EF1CEE7DB000F10068 /* EnvironmentMissionsItem.cpp in Sources */,
 				78C352F01CEE7DB000F10068 /* EnvironmentMissionsFinish.cpp in Sources */,
 				7891E8BA1CF32FF6005C238E /* Let.cpp in Sources */,
 				78C352F21CEE7DB000F10068 /* TypeMoved3.cpp in Sources */,
@@ -2209,7 +2200,6 @@
 				78B4B6D61CBD751D00F2D8A7 /* Diamond.cpp in Sources */,
 				78B4B6DC1CBD751D00F2D8A7 /* Pickup.cpp in Sources */,
 				78283F911CE0A8A10010CAB7 /* Decoration.cpp in Sources */,
-				78C72BB81CE9D2E700D8EB11 /* EnvironmentMissionsItem.cpp in Sources */,
 				78C054AF1D0DCFD10084EDD4 /* Captures.cpp in Sources */,
 				78BADD731CEBA6C20077B673 /* EnvironmentMissionsFinish.cpp in Sources */,
 				78CEEB411D0C44D5000A85D4 /* YYFrameImage.m in Sources */,

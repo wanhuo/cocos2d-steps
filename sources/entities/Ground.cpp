@@ -87,8 +87,5 @@ void Ground::update(float time)
   x += Application->environment->store.controller->state->create? 0.9 : 0.0;
   z -= Application->environment->store.controller->state->create ? 0.1 : 0.0;
 
-  x += Application->environment->missions.controller->state->create ? 0.95 : 0.0;
-  z += Application->environment->missions.controller->state->create ? 1.25 : 0.0;
-
   this->texture->setTextureRect(Rect(x, z, this->size.x, this->size.y));
 }

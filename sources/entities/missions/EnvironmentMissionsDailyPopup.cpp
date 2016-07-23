@@ -37,41 +37,6 @@
 EnvironmentMissionsDailyPopup::EnvironmentMissionsDailyPopup(Node* parent)
 : BackgroundColor(parent, Color4B(71.0, 132.0, 164.0, 255.0))
 {
-  this->setIgnoreAnchorPointForPosition(false);
-  this->setScheduleUpdate(true);
-
-  this->setAnchorPoint(Vec2(0.5, 1.0));
-  this->setContentSize(Size(650, 400));
-  this->setPosition(0, Application->getHeight() - 120 - 1000);
-
-  this->background = new BackgroundColor(this, Color4B(255.0, 170.0, 0.0, 255.0));
-  this->background->setIgnoreAnchorPointForPosition(false);
-  this->background->setContentSize(Size(400, 80));
-  this->background->setAnchorPoint(Vec2(0.5, 0.5));
-  this->background->setPosition(this->getContentSize().width / 2, this->getContentSize().height);
-
-  this->texts.background = new Text("missions-daily", this->background, true);
-  this->texts.background->setPosition(this->background->getContentSize().width / 2, this->background->getContentSize().height / 2);
-
-  this->texts.text1 = new Text("missions-daily-1", this);
-  this->texts.text1->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 100);
-
-  this->texts.text2 = new Text("missions-daily-2", this);
-  this->texts.text2->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 150);
-
-  this->texts.text3 = new Text("missions-daily-3", this);
-  this->texts.text3->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 100);
-
-  this->texts.text4 = new Text("missions-daily-4", this);
-  this->texts.text4->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 220);
-
-  this->_create();
-
-  /**
-   *
-   *
-   *
-   */
   auto rootJsonData = Json_create(FileUtils::getInstance()->getStringFromFile("words.json").c_str());
   auto wordsJsonData = Json_getItem(rootJsonData, "words");
 
@@ -167,83 +132,6 @@ void EnvironmentMissionsDailyPopup::reset()
  *
  *
  */
-void EnvironmentMissionsDailyPopup::setVisible(bool visible)
-{
-  BackgroundColor::setVisible(visible);
-
-  /**
-   *
-   *
-   *
-   */
-  if(visible)
-  {
-    if(this->task.active && Application->environment->missions.controller)
-    {
-      if(Application->environment->missions.controller->isVisible()) Application->environment->letters->create(this->task.word);
-      
-      this->texts.text1->_create();
-      this->texts.text2->_create();
-
-      auto counter = 0;
-      auto s = this->task.collected;
-
-      for(auto letter : Application->environment->letters->getChildren())
-      {
-        auto l = static_cast<Letter*>(letter)->letter;
-
-        if(s.find(l) != string::npos)
-        {
-          s.erase(s.find(l), 1);
-
-          static_cast<Letter*>(letter)->setOpacity(255);
-          static_cast<Letter*>(letter)->setColor(Color3B(255, 170, 0));
-          static_cast<Letter*>(letter)->action();
-          static_cast<Letter*>(letter)->none->_destroy();
-        }
-        else
-        {
-          static_cast<Letter*>(letter)->setOpacity(0);
-          static_cast<Letter*>(letter)->none->_create();
-        }
-
-        counter++;
-      }
-    }
-    else
-    {
-      this->texts.text3->_create();
-      this->texts.text4->_create();
-      this->texts.text4->setScale(1.0);
-      this->texts.text4->runAction(
-        RepeatForever::create(
-          Sequence::create(
-            ScaleTo::create(1.0, 1.1),
-            ScaleTo::create(1.0, 1.0),
-            nullptr
-          )
-        )
-      );
-    }
-  }
-  else
-  {
-    this->texts.text1->_destroy();
-    this->texts.text2->_destroy();
-    this->texts.text3->_destroy();
-    this->texts.text4->_destroy();
-
-    Application->environment->letters->destroy();
-  }
-
-  this->setCameraMask(4);
-}
-
-/**
- *
- *
- *
- */
 void EnvironmentMissionsDailyPopup::update(char letter)
 {
   this->task.collected += letter;
@@ -265,32 +153,4 @@ void EnvironmentMissionsDailyPopup::update(char letter)
   Storage::set("missions.daily.collected", this->task.collected);
 
   Finish::getInstance()->missions->notificationDaily = true;
-}
-
-/**
- *
- *
- *
- */
-void EnvironmentMissionsDailyPopup::update(float time)
-{
-  if(!this->task.active)
-  {
-    long long t = this->task.time - Times::now();
-
-    string h = "" + patch::to_string(Times::hours(t));
-    string m = "" + patch::to_string(Times::minutes(t));
-    string s = "" + patch::to_string(Times::seconds(t));
-
-    if(Times::hours(t) < 10) h = "0" + h;
-    if(Times::minutes(t) < 10) m = "0" + m;
-    if(Times::seconds(t) < 10) s = "0" + s;
-
-    this->texts.text4->data(h, m, s);
-
-    if(t <= 0)
-    {
-      this->reset();
-    }
-  }
 }

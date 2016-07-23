@@ -54,23 +54,12 @@ class EnvironmentMissionsDailyPopup : public BackgroundColor
     vector<string> words;
   };
 
-  struct Texts {
-    Text* background;
-    Text* text1;
-    Text* text2;
-    Text* text3;
-    Text* text4;
-  };
-
   /**
    *
    *
    *
    */
   protected:
-  BackgroundColor* background;
-
-  Texts texts;
 
   /**
    *
@@ -91,12 +80,9 @@ class EnvironmentMissionsDailyPopup : public BackgroundColor
 
   virtual string getTask();
 
-  virtual void setVisible(bool visible);
-
   virtual void reset();
 
   virtual void update(char letter);
-  virtual void update(float time);
 };
 
 #endif

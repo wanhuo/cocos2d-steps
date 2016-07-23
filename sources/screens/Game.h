@@ -117,7 +117,6 @@
 #include "EnvironmentStoreTexture.h"
 #include "EnvironmentStoreBar.h"
 
-#include "EnvironmentMissionsItem.h"
 #include "EnvironmentMissionsPopup.h"
 #include "EnvironmentMissionsDailyPopup.h"
 #include "EnvironmentMissionsKetchappPopup.h"
@@ -239,7 +238,6 @@ class Game : public Screen
     FINISH,
     LOSE,
     STORE,
-    MISSIONS,
     PRESENT,
     OPEN,
     WATCH,
@@ -325,7 +323,6 @@ class Game : public Screen
   virtual void onFinish();
   virtual void onLose();
   virtual void onStore();
-  virtual void onMissions();
   virtual void onPresent();
   virtual void onOpen();
   virtual void onWatch();
@@ -342,7 +339,6 @@ class Game : public Screen
   virtual void updateGame(float time);
   virtual void updateLose(float time);
   virtual void updateStore(float time);
-  virtual void updateMissions(float time);
   virtual void updatePresent(float time);
   virtual void updateFinish(float time);
   virtual void updateOpen(float time);

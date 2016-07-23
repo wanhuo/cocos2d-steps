@@ -516,14 +516,6 @@ void Game::onStore()
   Analytics::sendEvent("Application", "onStore", "Application onStore event");
 }
 
-void Game::onMissions()
-{
-  this->counter->onMissions();
-  this->environment->onMissions();
-
-  Analytics::sendEvent("Application", "onMissions", "Application onMissions event");
-}
-
 void Game::onPresent()
 {
   this->counter->onPresent();
@@ -596,9 +588,6 @@ void Game::changeState(State state)
       case STORE:
       this->onStore();
       break;
-      case MISSIONS:
-      this->onMissions();
-      break;
       case PRESENT:
       this->onPresent();
       break;
@@ -637,10 +626,6 @@ void Game::updateLose(float time)
 }
 
 void Game::updateStore(float time)
-{
-}
-
-void Game::updateMissions(float time)
 {
 }
 
@@ -730,9 +715,6 @@ void Game::updateStates(float time)
     break;
     case STORE:
     this->updateStore(time);
-    break;
-    case MISSIONS:
-    this->updateMissions(time);
     break;
     case PRESENT:
     this->updatePresent(time);

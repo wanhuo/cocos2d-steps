@@ -244,5 +244,4 @@ void EnvironmentMissionsFinishDaily::update(float time)
       this->onEnter();
     }
   }
-  Application->environment->missions.controller->popups.daily->update(time);
 }

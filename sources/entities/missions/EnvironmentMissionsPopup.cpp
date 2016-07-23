@@ -37,27 +37,6 @@
 EnvironmentMissionsPopup::EnvironmentMissionsPopup(Node* parent)
 : BackgroundColor(parent, Color4B(71.0, 132.0, 164.0, 255.0))
 {
-  this->setIgnoreAnchorPointForPosition(false);
-
-  this->setAnchorPoint(Vec2(0.5, 1.0));
-  this->setContentSize(Size(650, 400));
-  this->setPosition(0, Application->getHeight() - 120 - 1000);
-
-  this->background = new BackgroundColor(this, Color4B(95.0, 165.0, 196.0, 255.0));
-  this->background->setIgnoreAnchorPointForPosition(false);
-  this->background->setContentSize(Size(400, 80));
-  this->background->setAnchorPoint(Vec2(0.5, 0.5));
-  this->background->setPosition(this->getContentSize().width / 2, this->getContentSize().height);
-
-  this->texts.background = new Text("missions-title", this->background, true);
-  this->texts.mission = new Text("missions-mission", this, true);
-
-  this->texts.background->setPosition(this->background->getContentSize().width / 2, this->background->getContentSize().height / 2);
-  this->texts.mission->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 100);
-
-  for(int i = 0; i < 3; i++) this->missions.push_back(new MissionTask(this));
-
-  this->setVisible(false);
 }
 
 EnvironmentMissionsPopup::~EnvironmentMissionsPopup()
@@ -92,75 +71,6 @@ void EnvironmentMissionsPopup::onEnter()
 void EnvironmentMissionsPopup::onExit()
 {
   BackgroundColor::onExit();
-}
-
-/**
- *
- *
- *
- */
-void EnvironmentMissionsPopup::updateData(int index)
-{
-  this->setVisible(true);
-
-  /**
-   *
-   *
-   *
-   */
-  this->texts.background->data(index, MissionsFactory::getInstance()->getMissionsCount());
-
-  /**
-   *
-   *
-   *
-   */
-  if(Application->environment->missions.controller->selectedMission->mission)
-  {
-    switch(Application->environment->missions.controller->selectedMission->mission->type)
-    {
-      case framework::MissionStruct::TYPE_ONCE:
-      this->texts.mission->setText("missions-mission-1");
-      break;
-      case framework::MissionStruct::TYPE_PROGRESS:
-      this->texts.mission->setText("missions-mission-2");
-      break;
-    }
-
-    /**
-     *
-     *
-     *
-     */
-    auto counter = 0;
-
-    for(int i = 0; i < 3; i++) this->missions.at(i)->_destroy();
-    for(int i = 0; i < Application->environment->missions.controller->selectedMission->mission->complete.size(); i++)
-    {
-      this->missions.at(counter)->_create();
-      this->missions.at(counter)->updateData(counter);
-
-      counter++;
-    }
-
-    switch(Application->environment->missions.controller->selectedMission->mission->complete.size())
-    {
-      case 1:
-      this->missions.at(0)->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 50);
-      break;
-      case 2:
-      this->missions.at(0)->setPosition(this->getContentSize().width / 2 - 100, this->getContentSize().height / 2 - 50);
-      this->missions.at(1)->setPosition(this->getContentSize().width / 2 + 100, this->getContentSize().height / 2 - 50);
-      break;
-      case 3:
-      this->missions.at(0)->setPosition(this->getContentSize().width / 2 - 200, this->getContentSize().height / 2 - 50);
-      this->missions.at(1)->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2 - 50);
-      this->missions.at(2)->setPosition(this->getContentSize().width / 2 + 200, this->getContentSize().height / 2 - 50);
-      break;
-    }
-  }
-
-  this->setCameraMask(4);
 }
 
 /**
@@ -262,7 +172,7 @@ void EnvironmentMissionsPopup::MissionTask::onExit()
  */
 void EnvironmentMissionsPopup::MissionTask::updateData(int mission, MissionStruct* structure)
 {
-  auto m = structure ? structure : Application->environment->missions.controller->selectedMission->mission;
+  auto m = structure;
   auto c = m->complete.at(mission);
 
   this->element->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(c.preview));

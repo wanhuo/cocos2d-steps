@@ -37,30 +37,7 @@
 EnvironmentMissionsKetchappPopup::EnvironmentMissionsKetchappPopup(Node* parent)
 : BackgroundColor(parent, Color4B(71.0, 132.0, 164.0, 255.0))
 {
-  this->setIgnoreAnchorPointForPosition(false);
-
-  this->setAnchorPoint(Vec2(0.5, 1.0));
-  this->setContentSize(Size(650, 400));
-  this->setPosition(0, Application->getHeight() - 120 - 1000);
-
-  this->background = new BackgroundColor(this, Color4B(255.0, 0.0, 0.0, 255.0));
-  this->background->setIgnoreAnchorPointForPosition(false);
-  this->background->setContentSize(Size(400, 80));
-  this->background->setAnchorPoint(Vec2(0.5, 0.5));
-  this->background->setPosition(this->getContentSize().width / 2, this->getContentSize().height);
-
-  this->text = new Entity("ketchapp.png", this->background, true);
-  this->text->setPosition(this->background->getContentSize().width / 2, this->background->getContentSize().height / 2);
-
-  this->texts.text1 = new Text("missions-ketchapp-1", this, true);
-  this->texts.text1->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 100);
-
-  this->texts.text2 = new Text("missions-ketchapp-2", this, true);
-  this->texts.text2->setPosition(this->getContentSize().width / 2, this->getContentSize().height - 150);
-
   this->complete = Storage::get("missions.ketchapp.complete");
-
-  this->setVisible(false);
 }
 
 EnvironmentMissionsKetchappPopup::~EnvironmentMissionsKetchappPopup()
@@ -102,54 +79,6 @@ void EnvironmentMissionsKetchappPopup::onExit()
  *
  *
  */
-void EnvironmentMissionsKetchappPopup::setVisible(bool visible)
-{
-  BackgroundColor::setVisible(visible);
-
-  /**
-   *
-   *
-   *
-   */
-  if(visible)
-  {
-    Application->environment->letters->create("ketchapp");
-
-    /**
-     *
-     *
-     *
-     */
-    int counter = 0;
-
-    for(auto letter : Application->environment->letters->getChildren())
-    {
-      if(this->complete > counter++)
-      {
-        static_cast<Letter*>(letter)->setOpacity(255);
-        static_cast<Letter*>(letter)->setColor(Color3B(255, 255, 255));
-        static_cast<Letter*>(letter)->action();
-        static_cast<Letter*>(letter)->none->_destroy();
-      }
-      else
-      {
-        static_cast<Letter*>(letter)->setOpacity(255);
-        static_cast<Letter*>(letter)->setColor(Color3B(95, 165, 200));
-        static_cast<Letter*>(letter)->none->_destroy();
-      }
-    }
-  }
-  else
-  {
-    Application->environment->letters->destroy();
-  }
-}
-
-/**
- *
- *
- *
- */
 void EnvironmentMissionsKetchappPopup::update(char letter)
 {
   Storage::set("missions.ketchapp.complete", ++this->complete);
@@ -159,8 +88,6 @@ void EnvironmentMissionsKetchappPopup::update(char letter)
     Application->counter->values.b.special = true;
 
     Application->environment->missions.controller->notify->notify(EnvironmentMissionsNotify::SPECIAL);
-    Application->environment->missions.missions.elements.erase(Application->environment->missions.missions.elements.begin());
-    Application->environment->missions.missions.plane->removeItem(0);
 
     Finish::getInstance()->missions->plane->removeItem(MissionsFactory::getInstance()->getCurrentMission() ? 2 : 1);
 

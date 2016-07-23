@@ -45,10 +45,6 @@ class EnvironmentMissionsKetchappPopup : public BackgroundColor
    *
    */
   private:
-  struct Texts {
-    Text* text1;
-    Text* text2;
-  };
 
   /**
    *
@@ -56,10 +52,6 @@ class EnvironmentMissionsKetchappPopup : public BackgroundColor
    *
    */
   protected:
-  Entity* text;
-  BackgroundColor* background;
-
-  Texts texts;
 
   /**
    *
@@ -77,8 +69,6 @@ class EnvironmentMissionsKetchappPopup : public BackgroundColor
 
   virtual void onEnter();
   virtual void onExit();
-
-  virtual void setVisible(bool visible);
 
   virtual void update(char letter);
 };

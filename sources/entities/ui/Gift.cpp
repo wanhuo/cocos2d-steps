@@ -155,8 +155,6 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
     break;
     case Game::STORE:
     break;
-    case Game::MISSIONS:
-    break;
     case Game::FINISH:
     break;
     case Game::LOSE:

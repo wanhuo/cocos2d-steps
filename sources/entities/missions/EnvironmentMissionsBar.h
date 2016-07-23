@@ -52,16 +52,6 @@ class EnvironmentMissionsBar : public Background
    *
    */
   private:
-  struct Buttons {
-    Button* play;
-    Button* lock;
-    Button* back;
-  };
-
-  struct Texts {
-    Text* back;
-  };
-
   struct Popups {
     EnvironmentMissionsPopup* general;
     EnvironmentMissionsDailyPopup* daily;
@@ -74,8 +64,6 @@ class EnvironmentMissionsBar : public Background
    *
    */
   public:
-  Buttons buttons;
-  Texts texts;
   Popups popups;
 
   /**
@@ -87,23 +75,11 @@ class EnvironmentMissionsBar : public Background
   EnvironmentMissionsBar();
  ~EnvironmentMissionsBar();
 
-  struct Element {
-    int type;
-    int index;
-  };
-
   EnvironmentMissionsItem* selectedMission;
   EnvironmentMissionsNotify* notify;
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
-
-  virtual void onCreateMissions();
-
-  virtual void onSelect(EnvironmentMissionsItem* element);
-  virtual void onSelectMission(int index);
-
-  virtual void update(float time);
 };
 
 #endif

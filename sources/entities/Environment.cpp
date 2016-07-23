@@ -220,31 +220,6 @@ void Environment::create()
 
   for(auto characterJsonData = charactersJsonData->child; characterJsonData; characterJsonData = characterJsonData->next) this->store.characters.elements.push_back(new EnvironmentStoreCharacter(characterJsonData));
   for(auto textureJsonData = texturesJsonData->child; textureJsonData; textureJsonData = textureJsonData->next) this->store.textures.elements.push_back(new EnvironmentStoreTexture(textureJsonData));
-
-  /**
-   *
-   *
-   *
-   */
-  if(Application->environment->missions.special) this->missions.missions.elements.push_back(new EnvironmentMissionsItem(-2));
-  this->missions.missions.elements.push_back(new EnvironmentMissionsItem(-1));
-
-  int counter = 0;
-
-  for(auto m : MissionsFactory::getInstance()->getMissions())
-  {
-    switch(m->state)
-    {
-      case MissionStruct::STATE_CURRENT:
-      case MissionStruct::STATE_LOCKED:
-      this->missions.missions.elements.push_back(new EnvironmentMissionsItem(counter));
-      break;
-    }
-
-    counter++;
-  }
-
-  //this->missions.missions.elements.push_back(new EnvironmentMissionsItem(0));
 }
 
 void Environment::reset()

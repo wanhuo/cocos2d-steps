@@ -77,11 +77,6 @@ class EnvironmentMissionsPopup : public BackgroundColor
    *
    */
   private:
-  struct Texts {
-    Text* background;
-    Text* mission;
-  };
-
   vector<MissionTask*> missions;
 
   /**
@@ -90,9 +85,6 @@ class EnvironmentMissionsPopup : public BackgroundColor
    *
    */
   protected:
-  Texts texts;
-
-  BackgroundColor* background;
 
   /**
    *
@@ -101,15 +93,13 @@ class EnvironmentMissionsPopup : public BackgroundColor
    */
   public:
   EnvironmentMissionsPopup(Node* parent);
- ~EnvironmentMissionsPopup();
+~EnvironmentMissionsPopup();
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
 
   virtual void onEnter();
   virtual void onExit();
-
-  virtual void updateData(int index);
 };
 
 #endif
