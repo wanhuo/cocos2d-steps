@@ -2139,6 +2139,102 @@
         ]
       }
     ],
+    "store-type-1": [
+      {
+        "title": "RARE",
+        "font": "square",
+        "size": 100
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 100
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 100
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 100
+      },
+      {
+        "title": "",
+        "font": "YuppySC-Regular",
+        "size": 100
+      },
+      {
+        "title": "РЕДКИЕ",
+        "font": "Impact",
+        "size": 100
+      }
+    ],
+    "store-type-2": [
+      {
+        "title": "MYTHICAL",
+        "font": "square",
+        "size": 100
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 100
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 100
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 100
+      },
+      {
+        "title": "",
+        "font": "YuppySC-Regular",
+        "size": 100
+      },
+      {
+        "title": "МИФИЧЕСКИЕ",
+        "font": "Impact",
+        "size": 100
+      }
+    ],
+    "store-type-3": [
+      {
+        "title": "LEGENDARY",
+        "font": "square",
+        "size": 100
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 100
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 100
+      },
+      {
+        "title": "",
+        "font": "square",
+        "size": 100
+      },
+      {
+        "title": "",
+        "font": "YuppySC-Regular",
+        "size": 100
+      },
+      {
+        "title": "ЛЕГЕНДАРНЫЙ",
+        "font": "Impact",
+        "size": 100
+      }
+    ],
     "vote-title": [
       {
         "title": "Please rate us",

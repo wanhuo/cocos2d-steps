@@ -185,6 +185,11 @@ EnvironmentStoreBar::EnvironmentStoreBar()
     )
   );
 
+  /**
+   *
+   * @Characters
+   *
+   */
   Application->environment->store.characters.plane = cocos2d::ui::ListView::create();
   Application->environment->store.characters.plane->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
   Application->environment->store.characters.plane->setBounceEnabled(true);
@@ -204,6 +209,11 @@ EnvironmentStoreBar::EnvironmentStoreBar()
   Application->environment->store.characters.plane->_destroy();
   Application->environment->plane->addChild(Application->environment->store.characters.plane);
 
+  /**
+   *
+   * @Textures
+   *
+   */
   Application->environment->store.textures.plane = cocos2d::ui::ListView::create();
   Application->environment->store.textures.plane->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
   Application->environment->store.textures.plane->setBounceEnabled(true);

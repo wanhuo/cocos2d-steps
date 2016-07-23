@@ -64,6 +64,71 @@ EnvironmentStoreCharacter::EnvironmentStoreCharacter(Json* parameters)
   this->setScale(1.5);
 
   Application->environment->store.characters.plane->pushBackCustomItem(this->elements.plane);
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->parameters.index == 4)
+  {
+    auto test = new Entity3D("character-2.obj", this->elements.plane);
+    test->setPosition3D(Vec3(0.0+10.5, 0.75-0.7, 0.75+0.75));
+    test->setScaleX(22.5);
+    test->setScaleY(0.1);
+    test->setScaleZ(3.0);
+    test->setColor(Color3B(67, 150, 255));
+    test->setTexture(Application->environment->getTextureState1());
+    test->_create();
+
+    auto th = new Entity3D(this->elements.plane);
+    th->setRotation3D(Vec3(-90, 0, 0));
+    th->setPosition3D(Vec3(-0.5, 0.2, 2.4));
+    th->_create();
+
+    auto text = new Text("store-type-1", th, TextHAlignment::LEFT, true);
+    text->setScale(0.008);
+  }
+
+  else if(this->parameters.index == 12)
+  {
+    auto test = new Entity3D("character-2.obj", this->elements.plane);
+    test->setPosition3D(Vec3(0.0+7.5, 0.75-0.7, 0.75+0.75));
+    test->setScaleX(16.5);
+    test->setScaleY(0.1);
+    test->setScaleZ(3.0);
+    test->setColor(Color3B(180, 0, 255));
+    test->setTexture(Application->environment->getTextureState1());
+    test->_create();
+
+    auto th = new Entity3D(this->elements.plane);
+    th->setRotation3D(Vec3(-90, 0, 0));
+    th->setPosition3D(Vec3(-0.5, 0.2, 2.4));
+    th->_create();
+
+    auto text = new Text("store-type-2", th, TextHAlignment::LEFT, true);
+    text->setScale(0.008);
+  }
+
+  else if(this->parameters.index == 18)
+  {
+    auto test = new Entity3D("character-2.obj", this->elements.plane);
+    test->setPosition3D(Vec3(0.0+4.5, 0.75-0.7, 0.75+0.75));
+    test->setScaleX(10.5);
+    test->setScaleY(0.1);
+    test->setScaleZ(3.0);
+    test->setColor(Color3B(255, 150, 0));
+    test->setTexture(Application->environment->getTextureState1());
+    test->_create();
+
+    auto th = new Entity3D(this->elements.plane);
+    th->setRotation3D(Vec3(-90, 0, 0));
+    th->setPosition3D(Vec3(-0.5, 0.2, 2.4));
+    th->_create();
+
+    auto text = new Text("store-type-3", th, TextHAlignment::LEFT, true);
+    text->setScale(0.008);
+  }
 }
 
 EnvironmentStoreCharacter::~EnvironmentStoreCharacter()

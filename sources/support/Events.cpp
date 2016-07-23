@@ -31,6 +31,7 @@
  */
 void Events::onStart()
 {
+  Storage::clear();
   Director::getInstance()->setDisplayStats(true);
 
   new Game;    
@@ -282,7 +283,7 @@ void Events::onPurchaseSuccess(const char* id, const char* name, float revenue)
  */
 void Events::onPurchaseRestored(const char* id)
 {
-  if(strncmp(id, "com.ketchapp.exodus.remove.ads", 100) == 0)
+  if(strncmp(id, "com.ketchapp.steps.remove.ads", 100) == 0)
   {
     //Application->onNoadAction();
   }
@@ -308,7 +309,7 @@ void Events::updateMissions()
 
 void Events::onMissionComplete(int id)
 {
-  Analytics::sendEvent("Missions", "missions.events.onMissionComplete", "Mission has been completed", id);
+  Analytics::sendEvent("Missions", "missions.events.onMissionComplete", ("Mission " + s(id) + " has been completed").c_str());
 
   Application->counter->onMissionComplete();
 }

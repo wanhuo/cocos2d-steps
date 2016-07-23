@@ -22,14 +22,14 @@
 			"id": "items.characters.4",
 			"file": "character-4",
 			"index": 4,
-			"missions": 0,
+			"missions": 5,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.5",
 			"file": "character-5",
 			"index": 5,
-			"missions": 0,
+			"missions": 5,
 			"diamonds": 200
 		},
 		{
@@ -64,28 +64,28 @@
 			"id": "items.characters.10",
 			"file": "character-10",
 			"index": 10,
-			"missions": 10,
+			"missions": 5,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.11",
 			"file": "character-11",
 			"index": 11,
-			"missions": 10,
+			"missions": 5,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.12",
 			"file": "character-12",
 			"index": 12,
-			"missions": 10,
+			"missions": 20,
 			"diamonds": 200
 		},
 		{
 			"id": "items.characters.13",
 			"file": "character-13",
 			"index": 13,
-			"missions": 10,
+			"missions": 20,
 			"diamonds": 200
 		},
 		{
@@ -113,7 +113,7 @@
 			"id": "items.characters.17",
 			"file": "character-17",
 			"index": 17,
-			"missions": 30,
+			"missions": 20,
 			"diamonds": 200
 		},
 		{
@@ -134,6 +134,13 @@
 			"id": "items.characters.20",
 			"file": "character-20",
 			"index": 20,
+			"missions": 30,
+			"diamonds": 200
+		},
+		{
+			"id": "items.characters.21",
+			"file": "character-20",
+			"index": 21,
 			"missions": 30,
 			"diamonds": 200
 		}

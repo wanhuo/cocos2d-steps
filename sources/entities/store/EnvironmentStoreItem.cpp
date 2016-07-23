@@ -47,7 +47,7 @@ EnvironmentStoreItem::EnvironmentStoreItem(Json* parameters)
   this->shadow = new Shadow("plate-bottom-shadow.obj", nullptr);
   this->shadow->setMinScale(Vec3(1.2, 1.0, 1.2));
   this->shadow->setMaxScale(Vec3(1.2, 1.0, 1.2));
-  this->shadow->setOffset(Vec3(0.15, 0.0, 0.15));
+  this->shadow->setOffset(Vec3(0.15, 0.1, 0.15));
 
   this->elements.lock = new Entity3D("store-unlock.obj", false);
   this->elements.facebook = new Entity3D("store-plate.obj", false);

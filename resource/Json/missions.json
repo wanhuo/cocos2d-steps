@@ -183,10 +183,6 @@
                 {
                     "coins": 45,
                     "preview": "missions-coins.png"
-                },
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
                 }
             ]
         },
@@ -248,10 +244,6 @@
             "coins": 60,
             "complete": [
                 {
-                    "best": 1,
-                    "preview": "missions-best.png"
-                },
-                {
                     "points": 130,
                     "preview": "missions-points.png"
                 },
@@ -299,10 +291,6 @@
                 {
                     "special_once_2": 10,
                     "preview": "missions-2.png"
-                },
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
                 },
                 {
                     "points": 125,
@@ -389,10 +377,6 @@
                 {
                     "special_once_9": 5,
                     "preview": "missions-9.png"
-                },
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
                 },
                 {
                     "coins": 35,
@@ -492,8 +476,8 @@
             "coins": 140,
             "complete": [
                 {
-                    "best": 1,
-                    "preview": "missions-best.png"
+                    "special_once_2": 15,
+                    "preview": "missions-2.png"
                 }
             ]
         },
@@ -656,10 +640,6 @@
             "index": 43,
             "coins": 195,
             "complete": [
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
-                },
                 {
                     "points": 180,
                     "preview": "missions-points.png"
@@ -829,10 +809,6 @@
                 {
                     "coins": 20,
                     "preview": "missions-coins.png"
-                },
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
                 }
             ]
         },
@@ -883,8 +859,8 @@
             "coins": 265,
             "complete": [
                 {
-                    "best": 1,
-                    "preview": "missions-best.png"
+                    "special_once_6": 15,
+                    "preview": "missions-6.png"
                 }
             ]
         },
@@ -980,10 +956,6 @@
             "coins": 300,
             "complete": [
                 {
-                    "best": 1,
-                    "preview": "missions-best.png"
-                },
-                {
                     "points": 20,
                     "preview": "missions-points.png"
                 },
@@ -1038,10 +1010,6 @@
                 {
                     "points": 180,
                     "preview": "missions-points.png"
-                },
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
                 }
             ]
         },
@@ -1053,10 +1021,6 @@
                 {
                     "special_once_13": 10,
                     "preview": "missions-13.png"
-                },
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
                 }
             ]
         },
@@ -1098,10 +1062,6 @@
                 {
                     "points": 10,
                     "preview": "missions-points.png"
-                },
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
                 }
             ]
         },
@@ -1113,10 +1073,6 @@
                 {
                     "points": 155,
                     "preview": "missions-points.png"
-                },
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
                 },
                 {
                     "special_once_7": 15,
@@ -1232,10 +1188,6 @@
             "coins": 380,
             "complete": [
                 {
-                    "best": 1,
-                    "preview": "missions-best.png"
-                },
-                {
                     "special_once_6": 15,
                     "preview": "missions-6.png"
                 }
@@ -1246,10 +1198,6 @@
             "index": 81,
             "coins": 385,
             "complete": [
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
-                },
                 {
                     "coins": 80,
                     "preview": "missions-coins.png"
@@ -1336,10 +1284,6 @@
                 {
                     "special_once_11": 10,
                     "preview": "missions-11.png"
-                },
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
                 }
             ]
         },
@@ -1368,10 +1312,6 @@
             "coins": 420,
             "complete": [
                 {
-                    "best": 1,
-                    "preview": "missions-best.png"
-                },
-                {
                     "points": 135,
                     "preview": "missions-points.png"
                 }
@@ -1385,10 +1325,6 @@
                 {
                     "special_once_2": 20,
                     "preview": "missions-2.png"
-                },
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
                 }
             ]
         },
@@ -1400,10 +1336,6 @@
                 {
                     "coins": 25,
                     "preview": "missions-coins.png"
-                },
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
                 },
                 {
                     "special_once_7": 10,
@@ -1445,10 +1377,6 @@
                 {
                     "special_once_10": 5,
                     "preview": "missions-10.png"
-                },
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
                 }
             ]
         },
@@ -1494,10 +1422,6 @@
                 {
                     "points": 205,
                     "preview": "missions-points.png"
-                },
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
                 }
             ]
         },
@@ -1507,8 +1431,8 @@
             "coins": 465,
             "complete": [
                 {
-                    "best": 1,
-                    "preview": "missions-best.png"
+                    "special_once_4": 5,
+                    "preview": "missions-4.png"
                 }
             ]
         },
@@ -1528,10 +1452,6 @@
             "index": 99,
             "coins": 475,
             "complete": [
-                {
-                    "best": 1,
-                    "preview": "missions-best.png"
-                },
                 {
                     "special_once_3": 20,
                     "preview": "missions-3.png"
