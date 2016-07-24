@@ -164,6 +164,7 @@ void Character::reset()
     this->setColor(Color3B(255.0, 255.0, 255.0));
     break;
   }
+    this->setColor(Color3B(255.0, 255.0, 255.0));
 }
 
 /**
