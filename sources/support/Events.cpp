@@ -31,13 +31,11 @@
  */
 void Events::onStart()
 {
-  new Game;    
+  Storage::clear();
+
+  new Game;
   new Menu;
   new Finish;
-
-  new Present;
-  new Watch;
-  new Open;
 
   Events::updateMissions();
 

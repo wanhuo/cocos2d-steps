@@ -55,17 +55,17 @@ Counter::Counter(Node* parent)
   this->starAction->getSprite()->setScale(0.8);
   this->starAction->setPosition(this->starBackground->getWidth() / 2, this->starBackground->getHeight() / 2);
 
-  this->icon = new CameraEntity3D("diamond.obj", Application, true,
+  this->icon = new CameraEntity3D("diamond.obj", parent, true,
   {
     Camera::createOrthographic(Application->getFrustumWidth(), Application->getFrustumHeight(), 1, 100),
     Vec3(0, 0, 2),
     Vec3(0, 0, 0),
-    Application,
+    parent,
     4
   },
   {
-    {DirectionLight::create(Vec3(1.0, -1.0, -1.0), Color3B(200, 200, 200)), Application},
-    {AmbientLight::create(Color3B(120, 120, 120)), Application}
+    {DirectionLight::create(Vec3(1.0, -1.0, -1.0), Color3B(200, 200, 200)), parent},
+    {AmbientLight::create(Color3B(120, 120, 120)), parent}
   });
   this->icon->setTexture(Application->environment->getTextureState1());
   this->icon->setPosition3D(Vec3(Application->getFrustumWidth() - 0.4, Application->getFrustumHeight() - 0.7, 0));

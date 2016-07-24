@@ -230,7 +230,7 @@
             <filename>../Graphics/ui/giphy.png</filename>
             <filename>../Graphics/ui/unlock-button.png</filename>
             <filename>../Graphics/ui/video-button.png</filename>
-            <filename>../Graphics/ui/gift-button.png</filename>
+            <filename>../Graphics/ui/present-button.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -37,50 +37,16 @@
  *
  *
  */
-class Video : public Button3D
+class Video : public Button
 {
   /**
    *
    *
    *
    */
-  public:
-  class Element : public Spine
-  {
-    /**
-     *
-     *
-     *
-     */
-    private:
-    struct Animations
-    {
-      SpineAnimation animation;
-    };
-
-    /**
-     *
-     *
-     *
-     */
-    public:
-    Animations animations;
-
-    Element(Node* parent);
-   ~Element();
-
-    Entity3D* plane;
-
-    virtual void onCreate();
-    virtual void onDestroy(bool action = false);
-  };
-
-  /**
-   *
-   *
-   *
-   */
   private:
+  const char* id = "timers.time.2";
+  long long time;
 
   /**
    *
@@ -88,6 +54,18 @@ class Video : public Button3D
    *
    */
   protected:
+  enum State {
+    NONE,
+    NORMAL,
+    WAIT
+  };
+
+  struct Texts {
+    Text* time;
+    Text* action;
+  };
+
+  Texts texts;
 
   /**
    *
@@ -98,12 +76,26 @@ class Video : public Button3D
   Video(Node* parent);
  ~Video();
 
-  Element* element;
+  State state = NONE;
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+  virtual void onEnter();
+  virtual void onExit();
 
-  virtual void onTouch(cocos2d::Touch* touch, Event* e);
+  virtual void onAction();
+
+  virtual void onNormal();
+  virtual void onWait();
+
+  virtual void changeState(State state);
+
+  virtual void updateNormal(float time);
+  virtual void updateWait(float time);
+
+  virtual void updateText(float time);
+
+  virtual void updateStates(float time);
+
+  virtual void update(float time);
 };
 
 #endif

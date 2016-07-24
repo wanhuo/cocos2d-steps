@@ -272,7 +272,6 @@ class Environment : public Background
   virtual void onOpen();
   virtual void onWatch();
   virtual void onCopter();
-  virtual void onMissionComplete();
 
   virtual void startStar();
   virtual void finishStar();

@@ -414,14 +414,14 @@ void Capture::onShare(bool action)
       {
         this->earn = false;
 
-        for(int i = 0; i < 25; i++)
+        /*for(int i = 0; i < 25; i++)
         {
           auto element = (R*) Application->environment->r->_create();
 
           element->setCameraMask(Application->counter->icon->getCameraMask());
           element->setLightMask(Application->counter->icon->getLightMask());
           element->animation2();
-        }
+        }*/
       }
       break;
       case 2:

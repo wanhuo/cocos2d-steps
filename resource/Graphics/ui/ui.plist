@@ -69,19 +69,6 @@
                 <key>sourceSize</key>
                 <string>{15,20}</string>
             </dict>
-            <key>gift-button.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{518,1485},{560,140}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{560,140}}</string>
-                <key>sourceSize</key>
-                <string>{560,140}</string>
-            </dict>
             <key>giphy.png</key>
             <dict>
                 <key>frame</key>
@@ -446,6 +433,19 @@
                 <key>sourceSize</key>
                 <string>{280,140}</string>
             </dict>
+            <key>present-button.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{518,1485},{560,140}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{560,140}}</string>
+                <key>sourceSize</key>
+                <string>{560,140}</string>
+            </dict>
             <key>rate-button.png</key>
             <dict>
                 <key>frame</key>
@@ -573,7 +573,7 @@
             <key>size</key>
             <string>{1502,2014}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:136a2c83a6cbb383439f732446908e3a:3309299290aadac1ac2d5b4d631b3b24:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
+            <string>$TexturePacker:SmartUpdate:c6b403c205f52fa76f2364a76b5cb686:0c3a4b9a6dabe6c840c05d8a03460579:e489eb72a1dac3e9a97caaf8aad1ac42$</string>
             <key>textureFileName</key>
             <string>ui.png</string>
         </dict>

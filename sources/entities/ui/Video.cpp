@@ -35,11 +35,17 @@
  *
  */
 Video::Video(Node* parent)
-: Button3D("video.obj", parent)
+: Button("video-button.png", 4, 1, parent, std::bind(&Video::onAction, this))
 {
-  this->element = new Element(this);
+  this->texts.time = new Text("time", this, true);
+  this->texts.action = new Text("action", this, true);
 
-  this->setTexture("ui/video-texture.png");
+  this->texts.time->setPosition(this->getWidth() / 2 + 4.5, 32);
+  this->texts.action->setPosition(this->getWidth() / 2, 32);
+
+  this->setCameraMask(4);
+
+  this->setScheduleUpdate(true);
 }
 
 Video::~Video()
@@ -51,56 +57,21 @@ Video::~Video()
  *
  *
  */
-void Video::onCreate()
+void Video::onEnter()
 {
-  Button3D::onCreate();
+  Button::onEnter();
 
   /**
    *
    *
    *
    */
-  this->setScale(0);
-
-  this->setPosition3D(Vec3(0, -0.7, -3.0));
-  this->setRotation3D(Vec3(0.0, -15.0, 0.0));
-
-  this->camera->setPosition3D(Vec3(0.0, 0.0, 0.0));
-  this->camera->setRotation3D(Vec3(0.0, 0.0, 0.0));
-
-  this->runAction(
-    Sequence::create(
-      ScaleTo::create(0.4, 1.0),
-      nullptr
-    )
-  );
-
-  this->runAction(
-    Sequence::create(
-      DelayTime::create(0.4),
-      CallFunc::create([=] () {
-      this->runAction(
-        RepeatForever::create(
-          Sequence::create(
-            RotateBy::create(2.0, Vec3(0.0, 30.0, 0.0)),
-            RotateBy::create(2.0, Vec3(0.0, -30.0, 0.0)),
-            nullptr
-          )
-        )
-      );
-      }),
-      nullptr
-    )
-  );
-
-  this->element->_create();
-
-  this->setCameraMask(this->index);
+  this->changeState(NONE);
 }
 
-void Video::onDestroy(bool action)
+void Video::onExit()
 {
-  Button3D::onDestroy(action);
+  Button::onExit();
 }
 
 /**
@@ -108,80 +79,183 @@ void Video::onDestroy(bool action)
  *
  *
  */
-void Video::onTouch(cocos2d::Touch* touch, Event* e)
+void Video::onAction()
 {
-  Button3D::onTouch(touch, e);
-
-  /**
-   *
-   *
-   *
-   */
-  Heyzap::show(Config::AD_TYPE_VIDEO, [=] (bool state) {
+  switch(this->state)
+  {
+    default:
+    break;
+    case NORMAL:
+    Heyzap::show(Config::AD_TYPE_VIDEO, [=] (bool state) {
     if(state)
     {
       Application->parameters.elapsed.ad = -2;
 
-      this->_destroy();
+      this->setCurrentFrameIndex(2);
+      this->stopAllActions();
+      this->setScale(1.0);
+      this->bind(false);
 
-      //Watch::getInstance()->background->setOpacity(0);
+      this->texts.action->data("100");
+      this->texts.action->_create();
+      this->texts.action->setOpacity(0);
+      this->texts.action->runAction(
+        Sequence::create(
+          FadeIn::create(0.1),
+          CallFunc::create([=] () {
+          for(int i = 0; i < 20; i++)
+          {
+            auto time1 = random(0.75, 1.75);
+            auto time2 = random(0.0, 0.5);
 
-      for(int i = 0; i < 15; i++)
+            auto element = static_cast<R*>(Application->environment->r->_create());
+            element->setScale(0.3);
+            element->setPosition3D(Vec3(Application->getFrustumWidth() / 2 - 3.1, Application->getFrustumHeight() / 2 + 1.6, 0));
+
+            ccBezierConfig conf;
+            conf.controlPoint_1 = Vec2(element->getPosition3D().x + random(-5.0, 0.0), element->getPosition3D().y + random(-5.0, 5.0));
+            conf.controlPoint_2 = Vec2(element->getPosition3D().x + random(1.0, 5.0), element->getPosition3D().y + random(-5.0, 5.0));
+            conf.endPosition = Vec2(Application->getFrustumWidth() - 0.4, Application->getFrustumHeight() - 0.7);
+
+            element->runAction(
+              Spawn::create(
+                Sequence::create(
+                  DelayTime::create(time2),
+                  CallFunc::create([=] () {
+                  Sound->play("pickup-diamond");
+                  }),
+                  ScaleTo::create(time1 - time2, 1.0),
+                  nullptr
+                ),
+                Sequence::create(
+                  EaseQuarticActionIn::create(
+                    BezierTo::create(time1, conf)
+                  ),
+                  CallFunc::create([=] () {
+                  element->_destroy();
+
+                  Application->counter->icon->setScale(1.0);
+                  Application->counter->icon->runAction(
+                    Sequence::create(
+                      ScaleTo::create(0.1, 0.9),
+                      ScaleTo::create(0.5, 0.8),
+                      nullptr
+                    )
+                  );
+                  Application->counter->add(5);
+                  }),
+                  CallFunc::create([=] () {
+                  Sound->play("pickup-diamond");
+                  }),
+                  nullptr
+                ),
+                nullptr
+              )
+            );
+          }
+          }),
+          DelayTime::create(2.0),
+          FadeOut::create(0.5),
+          CallFunc::create([=] () {
+          this->changeState(WAIT);
+          }),
+          nullptr
+        )
+      );
+    }
+    });
+    break;
+    case WAIT:
+    break;
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Video::onNormal()
+{
+  this->setCurrentFrameIndex(0);
+  this->stopAllActions();
+  this->bind(true);
+  this->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        Repeat::create(
+          Sequence::create(
+            ScaleTo::create(0.07, 1.05),
+            ScaleTo::create(0.07, 0.97),
+            nullptr
+          ),
+          3
+        ),
+        DelayTime::create(0.5),
+        nullptr
+      )
+    )
+  );
+
+  this->texts.time->_destroy();
+  this->texts.action->_destroy();
+}
+
+void Video::onWait()
+{
+  if(this->time - Times::now() < 0)
+  {
+    this->time = Times::now() + Times::minute() * 15;
+    Storage::set(this->id, s(this->time));
+  }
+
+  this->setCurrentFrameIndex(2);
+  this->stopAllActions();
+  this->bind(false);
+
+  this->texts.time->_create();
+  this->texts.action->_destroy();
+}
+
+/**
+ *
+ *
+ *
+ */
+void Video::changeState(State state)
+{
+  if(state == NONE)
+  {
+    this->time = Times::parse(Storage::get(this->id, true));
+
+    if(this->time - Times::now() < 0)
+    {
+      this->changeState(NORMAL);
+    }
+    else
+    {
+      this->changeState(WAIT);
+    }
+  }
+  else
+  {
+    if(this->state != state)
+    {
+      this->state = state;
+
+      switch(this->state)
       {
-        auto element = (R*) Application->environment->r->_create();
-
-        element->setCameraMask(Application->counter->icon->getCameraMask());
-        element->setLightMask(Application->counter->icon->getLightMask());
-        element->animation2();
+        default:
+        break;
+        case NORMAL:
+        this->onNormal();
+        break;
+        case WAIT:
+        this->onWait();
+        break;
       }
     }
-  });
-
-  Analytics::sendEvent("Application", "application.events.onVideoButtonPressed", "Application onVideoButtonPressed event");
-}
-
-/**
- * Tooflya Inc. Development
- *
- * @author Igor Mats from Tooflya Inc.
- * @copyright (c) 2015 by Igor Mats
- * http://www.tooflya.com/development/
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
-
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
-
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @version of cocos2d is 3.5
- *
- */
-
-Video::Element::Element(Node* parent)
-: Spine("video.json", "video.atlas", 1.0)
-{
-  this->plane = new Entity3D(parent, true);
-  this->plane->setPosition3D(Vec3(0.0, 0.0, 0.25));
-
-  this->animations.animation = {1, "animation", true};
-
-  this->plane->addChild(this);
-}
-
-Video::Element::~Element()
-{
+  }
 }
 
 /**
@@ -189,22 +263,59 @@ Video::Element::~Element()
  *
  *
  */
-void Video::Element::onCreate()
+void Video::updateNormal(float time)
 {
-  Spine::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setScale(0.0025);
-  this->setPosition(0, 0.643567);
-
-  this->setAnimation(this->animations.animation);
 }
 
-void Video::Element::onDestroy(bool action)
+void Video::updateWait(float time)
 {
-  Spine::onDestroy(action);
+  if(this->time - Times::now() > 0)
+  {
+    this->updateText(time);
+  }
+  else
+  {
+    this->changeState(NORMAL);
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Video::updateText(float time)
+{
+  auto data = Times::format(this->time - Times::now());
+  this->texts.time->data(data.h, data.m, data.s);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Video::updateStates(float time)
+{
+  switch(this->state)
+  {
+    default:
+    break;
+    case NORMAL:
+    this->updateNormal(time);
+    break;
+    case WAIT:
+    this->updateWait(time);
+    break;
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Video::update(float time)
+{
+  this->updateStates(time);
 }

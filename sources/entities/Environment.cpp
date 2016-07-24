@@ -511,10 +511,6 @@ void Environment::onCopter()
 {
 }
 
-void Environment::onMissionComplete()
-{
-}
-
 /**
  *
  *

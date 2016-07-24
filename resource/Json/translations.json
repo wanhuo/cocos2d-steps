@@ -2267,6 +2267,38 @@
         "size": 20
       }
     ],
+    "action": [
+      {
+        "title": "+$1",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "+$1",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "+$1",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "+$1",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "+$1",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "+$1",
+        "font": "Impact",
+        "size": 20
+      }
+    ],
     "vote-title": [
       {
         "title": "Please rate us",

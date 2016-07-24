@@ -52,15 +52,6 @@ class R : public Entity3D
    *
    */
   protected:
-  Vec3 direction;
-  Vec3 speed;
-
-  enum Animation {
-    ANIMATION_1,
-    ANIMATION_2
-  };
-
-  Animation animation;
 
   /**
    *
@@ -69,15 +60,10 @@ class R : public Entity3D
    */
   public:
   R();
-~R();
+ ~R();
 
   virtual void onCreate();
   virtual void onDestroy(bool action = false);
-
-  void animation1();
-  void animation2();
-
-  virtual void update(float time);
 
   virtual R* deepCopy();
 };

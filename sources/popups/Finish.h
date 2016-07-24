@@ -49,11 +49,10 @@ class Finish : public Popup
   static Finish* instance;
 
   struct Buttons {
-    Button* like;
     Button* rate;
     Button* restart;
     Button* leaderboards;
-    Button* gift;
+    Button* present;
     Button* video;
     Button* store;
   };
@@ -93,8 +92,6 @@ class Finish : public Popup
 
   virtual void show();
   virtual void hide(Callback callback = NULL);
-
-  virtual void update(float time);
 };
 
 #endif

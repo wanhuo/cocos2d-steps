@@ -494,37 +494,6 @@ void Game::onStore()
   Analytics::sendEvent("Application", "onStore", "Application onStore event");
 }
 
-void Game::onPresent()
-{
-  this->counter->onPresent();
-  this->environment->onPresent();
-
-  Present::getInstance()->show();
-}
-
-void Game::onOpen()
-{
-  this->counter->onOpen();
-  this->environment->onOpen();
-
-  Open::getInstance()->show();
-}
-
-void Game::onWatch()
-{
-  this->counter->onWatch();
-  this->environment->onWatch();
-
-  Watch::getInstance()->show();
-}
-
-void Game::onMissionComplete()
-{
-  this->environment->onMissionComplete();
-
-  Present::getInstance()->show();
-}
-
 /**
  *
  *
@@ -564,18 +533,6 @@ void Game::changeState(State state)
       case STORE:
       this->onStore();
       break;
-      case PRESENT:
-      this->onPresent();
-      break;
-      case OPEN:
-      this->onOpen();
-      break;
-      case WATCH:
-      this->onWatch();
-      break;
-      case MISSION_COMPLETE:
-      this->onMissionComplete();
-      break;
     }
   }
 }
@@ -602,22 +559,6 @@ void Game::updateLose(float time)
 }
 
 void Game::updateStore(float time)
-{
-}
-
-void Game::updatePresent(float time)
-{
-}
-
-void Game::updateOpen(float time)
-{
-}
-
-void Game::updateWatch(float time)
-{
-}
-
-void Game::updateMissionComplete(float time)
 {
 }
 
@@ -691,18 +632,6 @@ void Game::updateStates(float time)
     break;
     case STORE:
     this->updateStore(time);
-    break;
-    case PRESENT:
-    this->updatePresent(time);
-    break;
-    case OPEN:
-    this->updateOpen(time);
-    break;
-    case WATCH:
-    this->updateWatch(time);
-    break;
-    case MISSION_COMPLETE:
-    this->updateMissionComplete(time);
     break;
   }
 

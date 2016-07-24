@@ -37,13 +37,11 @@
 #include "Pool.h"
 #include "Spine.h"
 
+#include "Present.h"
+#include "Video.h"
 #include "Counter.h"
 #include "Capture.h"
 #include "Captures.h"
-#include "Button3D.h"
-#include "Gift.h"
-#include "Video.h"
-#include "Unlock.h"
 #include "Giphy.h"
 #include "R.h"
 
@@ -107,9 +105,6 @@
 
 #include "Menu.h"
 #include "Finish.h"
-#include "Open.h"
-#include "Present.h"
-#include "Watch.h"
 
 #include "EnvironmentStoreItem.h"
 #include "EnvironmentStoreCharacter.h"
@@ -170,11 +165,6 @@ class Game : public Screen
   private:
   static Game* instance;
 
-  const static int SCALE_FACTOR = 70;
-
-  const static int NEAR = 1;
-  const static int FAR = 10000;
-
   struct Cameras {
     Camera* d;
     Camera* s;
@@ -212,6 +202,11 @@ class Game : public Screen
    *
    */
   public:
+  const static int SCALE_FACTOR = 70;
+
+  const static int NEAR = 1;
+  const static int FAR = 10000;
+
   const static int SOUND_DISTANCE = 5;
 
   const static int FRAME_BUFFER_FACTOR = 1;
@@ -227,11 +222,7 @@ class Game : public Screen
     GAME,
     FINISH,
     LOSE,
-    STORE,
-    PRESENT,
-    OPEN,
-    WATCH,
-    MISSION_COMPLETE
+    STORE
   };
 
   /**
@@ -313,10 +304,6 @@ class Game : public Screen
   virtual void onFinish();
   virtual void onLose();
   virtual void onStore();
-  virtual void onPresent();
-  virtual void onOpen();
-  virtual void onWatch();
-  virtual void onMissionComplete();
 
   virtual void onNoad();
 
@@ -329,12 +316,8 @@ class Game : public Screen
   virtual void updateGame(float time);
   virtual void updateLose(float time);
   virtual void updateStore(float time);
-  virtual void updatePresent(float time);
   virtual void updateFinish(float time);
-  virtual void updateOpen(float time);
-  virtual void updateWatch(float time);
   virtual void updateCapture(float time);
-  virtual void updateMissionComplete(float time);
 
   virtual void updateStates(float time);
 

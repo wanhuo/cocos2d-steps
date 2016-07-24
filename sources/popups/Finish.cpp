@@ -50,7 +50,6 @@ Finish::Finish()
 {
   if(!instance) instance = this;
 
-  this->buttons.like = new Button("like-button.png", 2, 1, this, std::bind(&Game::onFacebookLike, Application));
   this->buttons.rate = new Button("rate-button.png", 2, 1, this, std::bind(&Game::onRate, Application));
   this->buttons.leaderboards = new Button("leaderboard-button.png", 2, 1, this, std::bind(&Game::onLeaderboards, Application));
   this->buttons.restart = new Button("restart-button.png", 2, 1, this, std::bind([=] () {
@@ -66,47 +65,12 @@ Finish::Finish()
     }
     else
     {
-      Application->changeState(Game::OPEN);
     }
   }));
-  this->buttons.gift = new Button("gift-button.png", 4, 1, this, std::bind([=] () {
-    if(this->buttonsTime1 - Times::now() < 0)
-    {
-      this->buttonsTime1 = Times::now() + Times::minute() * 45;
-      Storage::set("timers.gift.time", s(this->buttonsTime1));
-
-      this->buttons.gift->stopAllActions();
-      this->buttons.gift->setCurrentFrameIndex(2);
-
-      this->texts.gift->setVisible(true);
-
-      Application->changeState(Game::PRESENT);
-    }
-  }));
-  this->buttons.video = new Button("video-button.png", 4, 1, this, std::bind([=] () {
-    if(this->buttonsTime2 - Times::now() < 0)
-    {
-      this->buttonsTime2 = Times::now() + Times::minute() * 5;
-      Storage::set("timers.video.time", s(this->buttonsTime2));
-
-      this->buttons.video->stopAllActions();
-      this->buttons.video->setCurrentFrameIndex(2);
-
-      this->texts.video->setVisible(true);
-
-      Application->changeState(Game::WATCH);
-    }
-  }));
-
-  this->texts.gift = new Text("time", this->buttons.gift, true);
-  this->texts.video = new Text("time", this->buttons.video, true);
-
-  this->texts.gift->setPosition(this->buttons.gift->getWidth() / 2, 30);
-  this->texts.video->setPosition(this->buttons.video->getWidth() / 2, 30);
+  this->buttons.present = new Present(this);
+  this->buttons.video = new Video(this);
 
   this->missions = new EnvironmentMissionsFinish(this);
-
-  this->setScheduleUpdate(true);
 }
 
 Finish::~Finish()
@@ -167,29 +131,24 @@ void Finish::onShow()
      *
      *
      */
-    this->buttons.like->_create()->setCameraMask(4);
     this->buttons.rate->_create()->setCameraMask(4);
     this->buttons.restart->_create()->setCameraMask(4);
     this->buttons.leaderboards->_create()->setCameraMask(4);
-    this->buttons.gift->_create()->setCameraMask(4);
+    this->buttons.present->_create()->setCameraMask(4);
     this->buttons.video->_create()->setCameraMask(4);
     this->buttons.store->_create()->setCameraMask(4);
 
-    this->buttons.like->bind(false);
     this->buttons.rate->bind(false);
     this->buttons.restart->bind(false);
     this->buttons.leaderboards->bind(false);
-    this->buttons.gift->bind(false);
-    this->buttons.video->bind(false);
     this->buttons.store->bind(false);
 
-    this->buttons.like->setPosition(80, Application->getHeight() + 120);
     this->buttons.rate->setPosition(Application->getCenter().x - 200, 0);
     this->buttons.restart->setPosition(Application->getCenter().x, 0);
     this->buttons.leaderboards->setPosition(Application->getCenter().x + 200, 0);
-    this->buttons.gift->setPosition(Application->getCenter().x + 260, Application->getCenter().y - 10);
-    this->buttons.video->setPosition(Application->getCenter().x + 260, Application->getCenter().y - 10 + 164);
-    this->buttons.store->setPosition(Application->getCenter().x - 260, Application->getCenter().y - 10);
+    this->buttons.present->setPosition(Application->getCenter().x - 260, Application->getCenter().y - 10);
+    this->buttons.video->setPosition(Application->getCenter().x - 260, Application->getCenter().y - 10 + 164);
+    this->buttons.store->setPosition(Application->getCenter().x + 260, Application->getCenter().y - 10);
 
     this->buttons.leaderboards->runAction(
       Sequence::create(
@@ -231,20 +190,6 @@ void Finish::onShow()
       )
     );
 
-    this->buttons.like->runAction(
-      Sequence::create(
-        DelayTime::create(0.3),
-        EaseSineOut::create(
-          MoveBy::create(0.2, Vec2(0, -200))
-        ),
-        DelayTime::create(0.3),
-        CallFunc::create([=] () {
-        this->buttons.like->bind(true);
-        }),
-        nullptr
-      )
-    );
-
     this->buttons.store->stopAllActions();
     this->buttons.store->runAction(
       Sequence::create(
@@ -256,24 +201,16 @@ void Finish::onShow()
       )
     );
 
-    this->buttons.gift->stopAllActions();
-    this->buttons.gift->runAction(
+    this->buttons.present->runAction(
       Sequence::create(
         DelayTime::create(0.0),
-        CallFunc::create([=] () {
-        this->buttons.gift->bind(true);
-        }),
         nullptr
       )
     );
 
-    this->buttons.video->stopAllActions();
     this->buttons.video->runAction(
       Sequence::create(
         DelayTime::create(0.0),
-        CallFunc::create([=] () {
-        this->buttons.video->bind(true);
-        }),
         nullptr
       )
     );
@@ -294,55 +231,6 @@ void Finish::onShow()
    *
    *
    */
-  {
-    string time = Storage::get("timers.gift.time", true);
-    this->buttonsTime1 = time.length() > 0 ? std::stoll(time.c_str()) : 0;
-
-    if(this->buttonsTime1 - Times::now() < 0)
-    {
-      this->buttons.gift->runAction(
-        RepeatForever::create(
-          Sequence::create(
-            ScaleTo::create(0.25, 1.05),
-            ScaleTo::create(0.25, 0.95),
-            nullptr
-          )
-        )
-      );
-      this->buttons.gift->setCurrentFrameIndex(0);
-      this->texts.gift->setVisible(false);
-    }
-    else
-    {
-      this->buttons.gift->setCurrentFrameIndex(2);
-      this->texts.gift->setVisible(true);
-    }
-  }
-
-  {
-    string time = Storage::get("timers.video.time", true);
-    this->buttonsTime2 = time.length() > 0 ? std::stoll(time.c_str()) : 0;
-
-    if(this->buttonsTime2 - Times::now() < 0)
-    {
-      this->buttons.video->runAction(
-        RepeatForever::create(
-          Sequence::create(
-            ScaleTo::create(0.25, 1.05),
-            ScaleTo::create(0.25, 0.95),
-            nullptr
-          )
-        )
-      );
-      this->buttons.video->setCurrentFrameIndex(0);
-      this->texts.video->setVisible(false);
-    }
-    else
-    {
-      this->buttons.video->setCurrentFrameIndex(2);
-      this->texts.video->setVisible(true);
-    }
-  }
 
   {
     if(Application->environment->store.controller->nextElement().type)
@@ -370,11 +258,10 @@ void Finish::onHide(Callback callback)
    *
    *
    */
-  this->buttons.like->_destroy();
   this->buttons.rate->_destroy();
   this->buttons.restart->_destroy();
   this->buttons.leaderboards->_destroy();
-  this->buttons.gift->_destroy();
+  this->buttons.present->_destroy();
   this->buttons.video->_destroy();
 }
 
@@ -409,88 +296,4 @@ void Finish::hide(Callback callback)
       nullptr
     )
   );
-}
-
-/**
- *
- *
- *
- */
-void Finish::update(float time)
-{
-  Popup::update(time);
-
-  /**
-   *
-   *
-   *
-   */
-  {
-    long long t = this->buttonsTime1 - Times::now();
-
-    if(t >= 0)
-    {
-      string h = "" + patch::to_string(Times::hours(t));
-      string m = "" + patch::to_string(Times::minutes(t));
-      string s = "" + patch::to_string(Times::seconds(t));
-
-      if(Times::hours(t) < 10) h = "0" + h;
-      if(Times::minutes(t) < 10) m = "0" + m;
-      if(Times::seconds(t) < 10) s = "0" + s;
-
-      this->texts.gift->data(h, m, s);
-
-      if(t <= 0)
-      {
-        this->buttons.gift->runAction(
-          RepeatForever::create(
-            Sequence::create(
-              ScaleTo::create(0.25, 1.05),
-              ScaleTo::create(0.25, 0.95),
-              nullptr
-            )
-          )
-        );
-        this->buttons.gift->setCurrentFrameIndex(0);
-        this->texts.gift->setVisible(false);
-      }
-    }
-  }
-
-  /**
-   *
-   *
-   *
-   */
-  {
-    long long t = this->buttonsTime2 - Times::now();
-
-    if(t >= 0)
-    {
-      string h = "" + patch::to_string(Times::hours(t));
-      string m = "" + patch::to_string(Times::minutes(t));
-      string s = "" + patch::to_string(Times::seconds(t));
-
-      if(Times::hours(t) < 10) h = "0" + h;
-      if(Times::minutes(t) < 10) m = "0" + m;
-      if(Times::seconds(t) < 10) s = "0" + s;
-
-      this->texts.video->data(h, m, s);
-
-      if(t <= 0)
-      {
-        this->buttons.video->runAction(
-          RepeatForever::create(
-            Sequence::create(
-              ScaleTo::create(0.25, 1.05),
-              ScaleTo::create(0.25, 0.95),
-              nullptr
-            )
-          )
-        );
-        this->buttons.video->setCurrentFrameIndex(0);
-        this->texts.video->setVisible(false);
-      }
-    }
-  }
 }
