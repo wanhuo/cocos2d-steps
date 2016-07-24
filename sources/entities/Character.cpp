@@ -43,8 +43,6 @@ Character::Character(int index)
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->addChild(this);
 
-  //this->soul = new Soul;
-
   if(Storage::get("character.color"))
   {
     auto r = Storage::get("character.color.r");
@@ -58,7 +56,36 @@ Character::Character(int index)
     this->color = Color3B(224.0, 95.0, 171.0);
   }
 
-  this->setTexture(Application->environment->getTextureState1());
+  switch(index)
+  {
+    default:
+    this->setTexture(Application->environment->getTextureState1());
+    break;
+    case 21:
+    this->setTexture("characters/21/character-texture.png");
+    break;
+    case 22:
+    this->setTexture("characters/22/character-texture.png");
+    break;
+    case 23:
+    this->setTexture("characters/23/character-texture.png");
+    break;
+    case 24:
+    this->setTexture("characters/24/character-texture.png");
+    break;
+    case 25:
+    this->setTexture("characters/25/character-texture.png");
+    break;
+    case 26:
+    this->setTexture("characters/26/character-texture.png");
+    break;
+    case 27:
+    this->setTexture("characters/27/character-texture.png");
+    break;
+    case 28:
+    this->setTexture("characters/28/character-texture.png");
+    break;
+  }
 
   this->setScheduleUpdate(true);
 }
@@ -2889,64 +2916,4 @@ float Character::getPositionY()
 float Character::getPositionZ()
 {
   return this->plane->getPositionZ();
-}
-
-/**
- * Tooflya Inc. Development
- *
- * @author Igor Mats from Tooflya Inc.
- * @copyright (c) 2015 by Igor Mats
- * http://www.tooflya.com/development/
- *
- *
- * License: Tooflya Inc. Software License v1.
- *
- * Licensee may not use this software for commercial purposes. For the purpose of this license,
- * commercial purposes means that a 3rd party has to pay in order to access Software or that
- * the Website that runs Software is behind a paywall. In consideration of the License granted
- * under clause 2, Licensee shall pay Licensor a fee, via Credit-Card, PayPal or any other
- * mean which Licensor may deem adequate. Failure to perform payment shall construe as material
- * breach of this Agreement. This software is provided under an AS-IS basis and without any support,
- * updates or maintenance. Nothing in this Agreement shall require Licensor to provide Licensee with
- * support or fixes to any bug, failure, mis-performance or other defect in The Software.
- *
- * @cocos2d
- *
- */
-Character::Soul::Soul()
-: Cube("angel.obj", Application->environment->plane)
-{
-  this->setTexture(Application->environment->getTextureState1());
-}
-
-Character::Soul::~Soul()
-{
-}
-
-/**
- *
- *
- *
- */
-void Character::Soul::onCreate()
-{
-  Cube::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setPosition3D(Application->environment->character->getPosition3D());
-
-  this->runAction(
-    EaseSineIn::create(
-      MoveBy::create(2.0, Vec3(0.0, 20.0, 0.0))
-    )
-  );
-}
-
-void Character::Soul::onDestroy(bool action)
-{
-  Cube::onDestroy(action);
 }

@@ -139,10 +139,67 @@
 		},
 		{
 			"id": "items.characters.21",
-			"file": "character-20",
+			"file": "character-21",
 			"index": 21,
 			"missions": 30,
-			"diamonds": 200
+			"diamonds": 200,
+			"facebook": 1
+		},
+		{
+			"id": "items.characters.22",
+			"file": "character-22",
+			"index": 22,
+			"missions": 30,
+			"diamonds": 200,
+			"facebook": 1
+		},
+		{
+			"id": "items.characters.23",
+			"file": "character-23",
+			"index": 23,
+			"missions": 30,
+			"diamonds": 200,
+			"facebook": 1
+		},
+		{
+			"id": "items.characters.24",
+			"file": "character-24",
+			"index": 24,
+			"missions": 30,
+			"diamonds": 200,
+			"facebook": 1
+		},
+		{
+			"id": "items.characters.25",
+			"file": "character-25",
+			"index": 25,
+			"missions": 30,
+			"diamonds": 200,
+			"facebook": 1
+		},
+		{
+			"id": "items.characters.26",
+			"file": "character-26",
+			"index": 26,
+			"missions": 30,
+			"diamonds": 200,
+			"facebook": 1
+		},
+		{
+			"id": "items.characters.27",
+			"file": "character-27",
+			"index": 27,
+			"missions": 30,
+			"diamonds": 200,
+			"facebook": 1
+		},
+		{
+			"id": "items.characters.28",
+			"file": "character-28",
+			"index": 28,
+			"missions": 30,
+			"diamonds": 200,
+			"facebook": 1
 		}
 	],
 	"textures": [

@@ -38,27 +38,6 @@ class Character : public Cube
    *
    *
    */
-  public:
-  class Soul : public Cube
-  {
-    /**
-     *
-     *
-     *
-     */
-    public:
-    Soul();
-   ~Soul();
-
-    virtual void onCreate() override;
-    virtual void onDestroy(bool action = false) override;
-  };
-
-  /**
-   *
-   *
-   *
-   */
   private:
   const static int STATE_COPTER_TURNS = 6;
 
@@ -92,8 +71,6 @@ class Character : public Cube
   float insaneSpeed;
 
   Plate* insanePlate;
-
-  Soul* soul;
 
   /**
    *
