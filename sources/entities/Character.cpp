@@ -87,6 +87,24 @@ Character::Character(int index)
     break;
   }
 
+  switch(index)
+  {
+    default:
+    this->setColor(this->color);
+    break;
+    case 3:
+    case 21:
+    case 22:
+    case 23:
+    case 24:
+    case 25:
+    case 26:
+    case 27:
+    case 28:
+    this->setColor(Color3B(255.0, 255.0, 255.0));
+    break;
+  }
+
   this->setScheduleUpdate(true);
 }
 
@@ -154,17 +172,6 @@ void Character::reset()
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
   this->stopAllActions();
-
-  switch(Application->environment->parameters.character)
-  {
-    default:
-    this->setColor(this->color);
-    break;
-    case 3:
-    this->setColor(Color3B(255.0, 255.0, 255.0));
-    break;
-  }
-    this->setColor(Color3B(255.0, 255.0, 255.0));
 }
 
 /**

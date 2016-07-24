@@ -1118,7 +1118,27 @@ bool Plate::conditions(int type)
     result = false;
     break;
     case COLOR:
-    result = conditions->s11 < 1 && Application->environment->parameters.character != 3;
+    result = conditions->s11 < 1;
+
+    if(result)
+    {
+      switch(Application->environment->parameters.character)
+      {
+        default:
+        break;
+        case 3:
+        case 21:
+        case 22:
+        case 23:
+        case 24:
+        case 25:
+        case 26:
+        case 27:
+        case 28:
+        result = false;
+        break;
+      }
+    }
     break;
 
     case SPIKES:
