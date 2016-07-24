@@ -149,6 +149,9 @@
 		787E21D91D446A1900327407 /* Video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787E21D71D446A1900327407 /* Video.cpp */; };
 		787E21DA1D446A1900327407 /* Video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787E21D71D446A1900327407 /* Video.cpp */; };
 		787E21DB1D446A1900327407 /* Video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787E21D71D446A1900327407 /* Video.cpp */; };
+		788EE5F61D44BFF8004B964F /* MissionTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788EE5F41D44BFF8004B964F /* MissionTask.cpp */; };
+		788EE5F71D44BFF8004B964F /* MissionTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788EE5F41D44BFF8004B964F /* MissionTask.cpp */; };
+		788EE5F81D44BFF8004B964F /* MissionTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788EE5F41D44BFF8004B964F /* MissionTask.cpp */; };
 		788F17C81CA308B000F4E5D6 /* Finish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17C61CA308B000F4E5D6 /* Finish.cpp */; };
 		788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F17C61CA308B000F4E5D6 /* Finish.cpp */; };
 		7891E8641CF2125F005C238E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8631CF2125F005C238E /* main.cpp */; };
@@ -569,6 +572,8 @@
 		787E21D31D4469BA00327407 /* Present.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Present.h; sourceTree = "<group>"; };
 		787E21D71D446A1900327407 /* Video.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Video.cpp; sourceTree = "<group>"; };
 		787E21D81D446A1900327407 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		788EE5F41D44BFF8004B964F /* MissionTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionTask.cpp; sourceTree = "<group>"; };
+		788EE5F51D44BFF8004B964F /* MissionTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionTask.h; sourceTree = "<group>"; };
 		788F17C61CA308B000F4E5D6 /* Finish.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Finish.cpp; sourceTree = "<group>"; };
 		788F17C71CA308B000F4E5D6 /* Finish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Finish.h; sourceTree = "<group>"; };
 		7891E8631CF2125F005C238E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -1596,6 +1601,8 @@
 		78C72BB11CE9D2E700D8EB11 /* missions */ = {
 			isa = PBXGroup;
 			children = (
+				788EE5F41D44BFF8004B964F /* MissionTask.cpp */,
+				788EE5F51D44BFF8004B964F /* MissionTask.h */,
 				78C72BBA1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp */,
 				78C72BBB1CE9F49600D8EB11 /* EnvironmentMissionsPopup.h */,
 				786F79651CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.cpp */,
@@ -1960,6 +1967,7 @@
 				789E71B01CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */,
 				78F0C8FC1D02476500BB0DC3 /* Episodes.cpp in Sources */,
 				78B4B6E31CBD817900F2D8A7 /* Shadow.cpp in Sources */,
+				788EE5F71D44BFF8004B964F /* MissionTask.cpp in Sources */,
 				789E719F1CD39A4A00BDCDC7 /* TypeMoved1.cpp in Sources */,
 				789E718F1CD3646C00BDCDC7 /* Down.cpp in Sources */,
 				789E719D1CD39A4A00BDCDC7 /* TypeMoved.cpp in Sources */,
@@ -2074,6 +2082,7 @@
 				78C3530B1CEE7DB000F10068 /* TypeMoveUp.cpp in Sources */,
 				787E21DB1D446A1900327407 /* Video.cpp in Sources */,
 				78C3530C1CEE7DB000F10068 /* Trampoline.cpp in Sources */,
+				788EE5F81D44BFF8004B964F /* MissionTask.cpp in Sources */,
 				78C3530D1CEE7DB000F10068 /* Star.cpp in Sources */,
 				78C3530F1CEE7DB000F10068 /* Energy.cpp in Sources */,
 				78C353111CEE7DB000F10068 /* Popup.cpp in Sources */,
@@ -2173,6 +2182,7 @@
 				78283FBC1CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp in Sources */,
 				786696CA1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				7891E88C1CF21293005C238E /* NSInternal.mm in Sources */,
+				788EE5F61D44BFF8004B964F /* MissionTask.cpp in Sources */,
 				78B4B6F51CBF911800F2D8A7 /* Spikes.cpp in Sources */,
 				78F0C9001D026C3400BB0DC3 /* Enemy.cpp in Sources */,
 				78CEEB441D0C44D5000A85D4 /* YYSpriteSheetImage.m in Sources */,

@@ -41,10 +41,33 @@ EnvironmentStoreCharacter::EnvironmentStoreCharacter(Json* parameters)
   {
     default:
     this->setTexture(Application->environment->getTextureState1());
-    this->setColor(Color3B(0.0, 207.0, 255.0));
     break;
     case 1:
     this->setTexture("textures/random.png");
+    break;
+    case 21:
+    this->setTexture("characters/21/character-texture.png");
+    break;
+    case 22:
+    this->setTexture("characters/22/character-texture.png");
+    break;
+    case 23:
+    this->setTexture("characters/23/character-texture.png");
+    break;
+    case 24:
+    this->setTexture("characters/24/character-texture.png");
+    break;
+    case 25:
+    this->setTexture("characters/25/character-texture.png");
+    break;
+    case 26:
+    this->setTexture("characters/26/character-texture.png");
+    break;
+    case 27:
+    this->setTexture("characters/27/character-texture.png");
+    break;
+    case 28:
+    this->setTexture("characters/28/character-texture.png");
     break;
   }
 
@@ -55,6 +78,14 @@ EnvironmentStoreCharacter::EnvironmentStoreCharacter(Json* parameters)
     break;
     case 1:
     case 3:
+    case 21:
+    case 22:
+    case 23:
+    case 24:
+    case 25:
+    case 26:
+    case 27:
+    case 28:
     this->setColor(Color3B(255.0, 255.0, 255.0));
     break;
   }

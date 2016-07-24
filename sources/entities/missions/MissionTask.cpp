@@ -34,28 +34,22 @@
  *
  *
  */
-EnvironmentMissionsPopup::EnvironmentMissionsPopup(Node* parent)
-: BackgroundColor(parent, Color4B(71.0, 132.0, 164.0, 255.0))
+EnvironmentMissionsBar::EnvironmentMissionsBar()
+: Background(Application)
 {
+  this->notify = new EnvironmentMissionsNotify();
+
+  this->popups.general = new EnvironmentMissionsPopup(this);
+  this->popups.daily = new EnvironmentMissionsDailyPopup(this);
+  this->popups.ketchapp = new EnvironmentMissionsKetchappPopup(this);
+
+  this->setPosition(Application->getWidth() / 2, Application->getHeight() - 300);
+
+  this->_destroy();
 }
 
-EnvironmentMissionsPopup::~EnvironmentMissionsPopup()
+EnvironmentMissionsBar::~EnvironmentMissionsBar()
 {
-}
-
-/**
- *
- *
- *
- */
-void EnvironmentMissionsPopup::onCreate()
-{
-  BackgroundColor::onCreate();
-}
-
-void EnvironmentMissionsPopup::onDestroy(bool action)
-{
-  BackgroundColor::onDestroy(action);
 }
 
 /**
@@ -63,12 +57,20 @@ void EnvironmentMissionsPopup::onDestroy(bool action)
  *
  *
  */
-void EnvironmentMissionsPopup::onEnter()
+void EnvironmentMissionsBar::onCreate()
 {
-  BackgroundColor::onEnter();
+  Background::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  Application->environment->character->_destroy();
+  Application->environment->plates.normal->clear();
 }
 
-void EnvironmentMissionsPopup::onExit()
+void EnvironmentMissionsBar::onDestroy(bool action)
 {
-  BackgroundColor::onExit();
+  Background::onDestroy(action);
 }

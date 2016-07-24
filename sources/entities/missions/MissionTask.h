@@ -27,6 +27,9 @@
  *
  */
 
+#ifndef _ENVIRONMENTMISSIONSTASK_H_
+#define _ENVIRONMENTMISSIONSTASK_H_
+
 #include "Game.h"
 
 /**
@@ -34,41 +37,30 @@
  *
  *
  */
-EnvironmentMissionsPopup::EnvironmentMissionsPopup(Node* parent)
-: BackgroundColor(parent, Color4B(71.0, 132.0, 164.0, 255.0))
+class MissionTask : public Entity
 {
-}
+  /**
+   *
+   *
+   *
+   */
+  public:
+  MissionTask(Node* parent);
+ ~MissionTask();
 
-EnvironmentMissionsPopup::~EnvironmentMissionsPopup()
-{
-}
+  Text* text;
+  Text* action;
 
-/**
- *
- *
- *
- */
-void EnvironmentMissionsPopup::onCreate()
-{
-  BackgroundColor::onCreate();
-}
+  TiledEntity* element;
+  TiledEntity* element2;
 
-void EnvironmentMissionsPopup::onDestroy(bool action)
-{
-  BackgroundColor::onDestroy(action);
-}
+  virtual void onCreate();
+  virtual void onDestroy(bool action = false);
 
-/**
- *
- *
- *
- */
-void EnvironmentMissionsPopup::onEnter()
-{
-  BackgroundColor::onEnter();
-}
+  virtual void onEnter();
+  virtual void onExit();
 
-void EnvironmentMissionsPopup::onExit()
-{
-  BackgroundColor::onExit();
-}
+  virtual void updateData(int mission, MissionStruct* structure = nullptr);
+};
+
+#endif

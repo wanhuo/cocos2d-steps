@@ -228,15 +228,8 @@ void EnvironmentMissionsFinishDaily::update(float time)
   {
     long long t = Application->environment->missions.controller->popups.daily->task.time - Times::now();
 
-    string h = "" + patch::to_string(Times::hours(t));
-    string m = "" + patch::to_string(Times::minutes(t));
-    string s = "" + patch::to_string(Times::seconds(t));
-
-    if(Times::hours(t) < 10) h = "0" + h;
-    if(Times::minutes(t) < 10) m = "0" + m;
-    if(Times::seconds(t) < 10) s = "0" + s;
-
-    this->texts.text4->data(h, m, s);
+    auto data = Times::format(t);
+    this->texts.text4->data(data.h, data.m, data.s);
 
     if(t <= 0)
     {

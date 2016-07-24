@@ -44,38 +44,6 @@ class EnvironmentMissionsPopup : public BackgroundColor
    *
    *
    */
-  public:
-  class MissionTask : public Entity
-  {
-    /**
-     *
-     *
-     *
-     */
-    public:
-    MissionTask(Node* parent);
-   ~MissionTask();
-
-    Text* text;
-    Text* action;
-
-    TiledEntity* element;
-    TiledEntity* element2;
-
-    virtual void onCreate();
-    virtual void onDestroy(bool action = false);
-
-    virtual void onEnter();
-    virtual void onExit();
-
-    virtual void updateData(int mission, MissionStruct* structure = nullptr);
-  };
-
-  /**
-   *
-   *
-   *
-   */
   private:
   vector<MissionTask*> missions;
 
