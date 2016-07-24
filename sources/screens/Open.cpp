@@ -21,57 +21,46 @@
  *
  */
 
-#ifndef _OPEN_H_
-#define _OPEN_H_
-
-#include "Popup.h"
+#include "Game.h"
 
 /**
  *
  *
  *
  */
-class Open : public Finish
+Open* Open::instance;
+
+/**
+ *
+ *
+ *
+ */
+Open* Open::getInstance()
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  static Open* instance;
+  return instance;
+}
 
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  BackgroundColor* background;
+/**
+ *
+ *
+ *
+ */
+Open::Open()
+: Sample("")
+{
+  instance = this;
+}
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  static Open* getInstance();
+Open::~Open()
+{
+}
 
-  Open();
- ~Open();
-
-  Unlock* element;
-
-  Text* text;
-  CameraEntity3D* diamond;
-
-  virtual void onShow();
-  virtual void onHide(Callback callback = NULL);
-
-  virtual void onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e);
-
-  virtual void show();
-  virtual void hide(Callback callback = NULL);
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+void Open::update(float time)
+{
+  Sample::update(time);
+}

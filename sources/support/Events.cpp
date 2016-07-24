@@ -31,9 +31,6 @@
  */
 void Events::onStart()
 {
-  Storage::clear();
-  Director::getInstance()->setDisplayStats(true);
-
   new Game;    
   new Menu;
   new Finish;
@@ -83,8 +80,6 @@ void Events::onResume()
     if(Times::now() > time)
     {
       Storage::set("present.next.time", 0);
-
-      Application->parameters.elapsed.present = 100;
     }
   }
 

@@ -21,24 +21,17 @@
  *
  */
 
-#ifndef _FINISH_H_
-#define _FINISH_H_
+#ifndef _OPEN_H_
+#define _OPEN_H_
 
-#include "Popup.h"
-
-/**
- *
- *
- *
- */
-class EnvironmentMissionsFinish;
+#include "Sample.h"
 
 /**
  *
  *
  *
  */
-class Finish : public Popup
+class Open : public Sample
 {
   /**
    *
@@ -46,34 +39,7 @@ class Finish : public Popup
    *
    */
   private:
-  static Finish* instance;
-
-  struct Buttons {
-    Button* like;
-    Button* rate;
-    Button* restart;
-    Button* leaderboards;
-    Button* gift;
-    Button* video;
-    Button* store;
-  };
-
-  struct Texts {
-    Text* gift;
-    Text* video;
-  };
-
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  Buttons buttons;
-  Texts texts;
-
-  long long buttonsTime1;
-  long long buttonsTime2;
+  static Open* instance;
 
   /**
    *
@@ -81,18 +47,17 @@ class Finish : public Popup
    *
    */
   public:
-  static Finish* getInstance();
 
-  Finish();
- ~Finish();
+  /**
+   *
+   *
+   *
+   */
+  public:
+  static Open* getInstance();
 
-  EnvironmentMissionsFinish* missions;
-
-  virtual void onShow();
-  virtual void onHide(Callback callback = NULL);
-
-  virtual void show();
-  virtual void hide(Callback callback = NULL);
+  Open();
+ ~Open();
 
   virtual void update(float time);
 };

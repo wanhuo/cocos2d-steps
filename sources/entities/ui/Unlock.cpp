@@ -139,8 +139,8 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
    *
    *
    */
-  Open::getInstance()->text->_destroy();
-  Open::getInstance()->diamond->_destroy();
+  //Open::getInstance()->text->_destroy();
+  //Open::getInstance()->diamond->_destroy();
 
   /**
    *
@@ -209,7 +209,7 @@ void Unlock::onTouch(cocos2d::Touch* touch, Event* e)
         }),
         DelayTime::create(0.5),
         CallFunc::create([=] () {
-        Open::getInstance()->Finish::onShow();
+        //Open::getInstance()->Finish::onShow();
 
         this->getChildByName("door")->runAction(
           Sequence::create(

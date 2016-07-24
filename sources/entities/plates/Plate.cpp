@@ -499,14 +499,6 @@ void Plate::setType(int type, bool animated, char data)
       this->special->setPlate(this);
     }
     break;
-    case PRESENTION:
-    {
-      auto decoration = static_cast<Decoration*>(Application->environment->pickups.presentions->_create());
-      decoration->setPlate(this, animated);
-
-      this->getDecorations().push_back(decoration);
-    }
-    break;
     case SPIKES:
     {
       this->setVisible(false);

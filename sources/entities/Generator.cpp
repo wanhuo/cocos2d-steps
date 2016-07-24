@@ -420,10 +420,6 @@ void Generator::createGeneralElement()
   {
     this->plate->setType(Plate::START);
   }
-  else if(this->index == 3 && !Application->parameters.showPresent && Application->parameters.elapsed.present >= Application->parameters.present)
-  {
-    this->plate->setType(Plate::PRESENTION);
-  }
   else
   {
     bool action = true;

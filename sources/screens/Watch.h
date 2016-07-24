@@ -21,17 +21,17 @@
  *
  */
 
-#ifndef _PRESENTION_H_
-#define _PRESENTION_H_
+#ifndef _WATCH_H_
+#define _WATCH_H_
 
-#include "Game.h"
+#include "Sample.h"
 
 /**
  *
  *
  *
  */
-class Presention : public Pickup
+class Watch : public Sample
 {
   /**
    *
@@ -39,30 +39,7 @@ class Presention : public Pickup
    *
    */
   private:
-
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  string texture;
-  vector<string> textures = {
-    "ui/gift-texture-1.png",
-    "ui/gift-texture-2.png",
-    "ui/gift-texture-3.png",
-    "ui/gift-texture-4.png",
-    "ui/gift-texture-5.png",
-    "ui/gift-texture-6.png",
-    "ui/gift-texture-7.png",
-    "ui/gift-texture-8.png",
-    "ui/gift-texture-9.png",
-    "ui/gift-texture-10.png",
-    "ui/gift-texture-11.png",
-    "ui/gift-texture-12.png",
-    "ui/gift-texture-13.png",
-    "ui/gift-texture-14.png"
-  };
+  static Watch* instance;
 
   /**
    *
@@ -70,19 +47,19 @@ class Presention : public Pickup
    *
    */
   public:
-  Presention();
- ~Presention();
 
-  virtual void onCreate() override;
-  virtual void onDestroy(bool action = false) override;
+  /**
+   *
+   *
+   *
+   */
+  public:
+  static Watch* getInstance();
 
-  virtual void onPickup() override;
+  Watch();
+ ~Watch();
 
-  virtual void setPlate(Plate* plate, bool animated = true) override;
-
-  virtual const Color3B& getColor(void) const override;
-
-  Presention* deepCopy() override;
+  virtual void update(float time);
 };
 
 #endif

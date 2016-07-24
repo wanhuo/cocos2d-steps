@@ -21,80 +21,91 @@
  *
  */
 
-#ifndef _FINISH_H_
-#define _FINISH_H_
-
-#include "Popup.h"
+#include "Game.h"
 
 /**
  *
  *
  *
  */
-class EnvironmentMissionsFinish;
-
-/**
- *
- *
- *
- */
-class Finish : public Popup
+Sample::Sample(const char* file)
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  static Finish* instance;
+  this->texture = new Entity(file, this, true);
+  this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
+  this->texture->getTexture()->setAliasTexParameters();
+}
 
-  struct Buttons {
-    Button* like;
-    Button* rate;
-    Button* restart;
-    Button* leaderboards;
-    Button* gift;
-    Button* video;
-    Button* store;
-  };
+Sample::~Sample()
+{
+}
 
-  struct Texts {
-    Text* gift;
-    Text* video;
-  };
+/**
+ *
+ *
+ *
+ */
+void Sample::onEnter()
+{
+  Screen::onEnter();
 
   /**
    *
    *
    *
    */
-  protected:
-  Buttons buttons;
-  Texts texts;
+  this->texturePosition = 0;
+}
 
-  long long buttonsTime1;
-  long long buttonsTime2;
+void Sample::onExit()
+{
+  Screen::onExit();
+}
+
+/**
+ *
+ *
+ *
+ */
+void Sample::onBack()
+{
+  this->hide();
+}
+
+/**
+ *
+ *
+ *
+ */
+void Sample::show()
+{
+  Director::getInstance()->pushScene(TransitionFade::create(0.2, this, Color3B::WHITE));
+}
+
+void Sample::hide()
+{
+  Director::getInstance()->popScene(TransitionFade::create(0.2, Director::getInstance()->getPreviousScene(), Color3B::WHITE));
+}
+
+/**
+ *
+ *
+ *
+ */
+void Sample::update(float time)
+{
+  Screen::update(time);
 
   /**
    *
    *
    *
    */
-  public:
-  static Finish* getInstance();
+  this->texturePosition -= 0.015;
 
-  Finish();
- ~Finish();
-
-  EnvironmentMissionsFinish* missions;
-
-  virtual void onShow();
-  virtual void onHide(Callback callback = NULL);
-
-  virtual void show();
-  virtual void hide(Callback callback = NULL);
-
-  virtual void update(float time);
-};
-
-#endif
+  /**
+   *
+   *
+   *
+   */
+  this->texture->setTextureRect(Rect(this->texturePosition, this->texturePosition, this->getWidth(), this->getHeight()));
+}

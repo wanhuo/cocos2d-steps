@@ -72,7 +72,6 @@
 #include "Heart.h"
 #include "Star.h"
 #include "Color.h"
-#include "Presention.h"
 #include "Insane.h"
 #include "Let.h"
 
@@ -188,19 +187,10 @@ class Game : public Screen
   
   struct Elapsed {
     int ad = -1;
-    int video = 0;
-    int present = random(0, 15);
   };
 
   struct Parameters {
-    bool showPresent = false;
-    bool showVideo = false;
-
-    string presentTexture = "ui/gift-texture-1.png";
-
     int ad = 4;
-    int video = 4;
-    int present = 15;
 
     Elapsed elapsed;
   };

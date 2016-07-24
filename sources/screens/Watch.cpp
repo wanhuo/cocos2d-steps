@@ -28,7 +28,7 @@
  *
  *
  */
-Watch* Watch::instance = nullptr;
+Watch* Watch::instance;
 
 /**
  *
@@ -46,14 +46,9 @@ Watch* Watch::getInstance()
  *
  */
 Watch::Watch()
-: Finish()
+: Sample("")
 {
-  if(!instance) instance = this;
-
-  this->background = new BackgroundColor(this, Color4B(0.0, 0.0, 0.0, 200.0));
-  this->background->setLocalZOrder(-1);
-
-  this->element = new Video(this);
+  instance = this;
 }
 
 Watch::~Watch()
@@ -65,58 +60,7 @@ Watch::~Watch()
  *
  *
  */
-void Watch::onShow()
+void Watch::update(float time)
 {
-  Finish::onShow();
-
-  /**
-   *
-   *
-   *
-   */
-  this->element->_create();
-}
-
-void Watch::onHide(Callback callback)
-{
-  Finish::onHide(callback);
-
-  /**
-   *
-   *
-   *
-   */
-  this->element->_destroy();
-}
-
-/**
- *
- *
- *
- */
-void Watch::onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e)
-{
-  Finish::onTouchStart(touch, e);
-}
-
-/**
- *
- *
- *
- */
-void Watch::show()
-{
-  Popup::show();
-
-  /**
-   *
-   *
-   *
-   */
-  this->background->setOpacity(200);
-}
-
-void Watch::hide(Callback callback)
-{
-  Popup::hide(callback);
+  Sample::update(time);
 }

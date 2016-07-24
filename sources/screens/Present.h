@@ -21,17 +21,17 @@
  *
  */
 
-#ifndef _WATCH_H_
-#define _WATCH_H_
+#ifndef _PRESENT_H_
+#define _PRESENT_H_
 
-#include "Popup.h"
+#include "Sample.h"
 
 /**
  *
  *
  *
  */
-class Watch : public Finish
+class Present : public Sample
 {
   /**
    *
@@ -39,7 +39,15 @@ class Watch : public Finish
    *
    */
   private:
-  static Watch* instance;
+  static Present* instance;
+
+  /**
+   *
+   *
+   *
+   */
+  protected:
+  Gift* element;
 
   /**
    *
@@ -47,28 +55,15 @@ class Watch : public Finish
    *
    */
   public:
-  BackgroundColor* background;
+  static Present* getInstance();
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  static Watch* getInstance();
+  Present();
+ ~Present();
 
-  Watch();
- ~Watch();
+  virtual void onEnter();
+  virtual void onExit();
 
-  Video* element;
-
-  virtual void onShow();
-  virtual void onHide(Callback callback = NULL);
-
-  virtual void onTouchStart(cocos2d::Touch* touch, cocos2d::Event* e);
-
-  virtual void show();
-  virtual void hide(Callback callback = NULL);
+  virtual void update(float time);
 };
 
 #endif

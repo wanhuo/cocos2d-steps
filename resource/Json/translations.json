@@ -2230,9 +2230,41 @@
         "size": 100
       },
       {
-        "title": "ЛЕГЕНДАРНЫЙ",
+        "title": "ЛЕГЕНДАРНЫЕ",
         "font": "Impact",
         "size": 100
+      }
+    ],
+    "time": [
+      {
+        "title": "$1:$2:$3",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "$1:$2:$3",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "$1:$2:$3",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "$1:$2:$3",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "$1:$2:$3",
+        "font": "square",
+        "size": 20
+      },
+      {
+        "title": "$1:$2:$3",
+        "font": "Impact",
+        "size": 20
       }
     ],
     "vote-title": [

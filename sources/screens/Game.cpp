@@ -265,36 +265,43 @@ void Game::onEnter()
    *
    *
    */
-  Internal::onStart();
+  switch(this->state)
+  {
+    default:
+    break;
+    case NONE:
+    Internal::onStart();
 
-  this->runAction(
-    Sequence::create(
-      DelayTime::create(2.0),
-      CallFunc::create([=] () {
-      Music->play("music-1");
+    this->runAction(
+      Sequence::create(
+        DelayTime::create(2.0),
+        CallFunc::create([=] () {
+        Music->play("music-1");
 
-      /**
-       *
-       *
-       *
-       */
-      Facebook::connect([=] (bool state) {
-        if(state)
-        {
-          Facebook::score->get([] (vector<FacebookFriend*> elements) {
-            for(auto element : elements)
-            {
-              log("%s", element->name);
-            }
-          });
-        }
-      });
-      }),
-      nullptr
-    )
-  );
+        /**
+         *
+         *
+         *
+         */
+        Facebook::connect([=] (bool state) {
+          if(state)
+          {
+            Facebook::score->get([] (vector<FacebookFriend*> elements) {
+              for(auto element : elements)
+              {
+                log("%s", element->name);
+              }
+            });
+          }
+        });
+        }),
+        nullptr
+      )
+    );
 
-  this->changeState(MENU);
+    this->changeState(MENU);
+    break;
+  }
 }
 
 void Game::onExit()
@@ -466,38 +473,9 @@ void Game::onLose()
    *
    *
    */
+  this->changeState(FINISH);
+
   this->parameters.elapsed.ad++;
-  this->parameters.elapsed.present++;
-  this->parameters.elapsed.video++;
-
-  if(this->counter->values.b.mission || this->counter->values.b.special || this->counter->values.b.daily)
-  {
-    this->changeState(MISSION_COMPLETE);
-  }
-  else if(Application->parameters.showPresent)
-  {
-    this->changeState(PRESENT);
-  }
-  else if(this->environment->store.controller->nextElement().type)
-  {
-    this->changeState(OPEN);
-  }
-  else if(Heyzap::available(Config::AD_TYPE_VIDEO) && this->parameters.elapsed.video >= this->parameters.video)
-  {
-    this->parameters.elapsed.video = -1;
-    this->changeState(WATCH);
-  }
-  else
-  {
-    this->changeState(FINISH);
-  }
-
-  if(Heyzap::available(Config::AD_TYPE_VIDEO) && this->parameters.elapsed.video >= this->parameters.video)
-  {
-    this->parameters.elapsed.ad--;
-    this->parameters.elapsed.video--;
-  }
-
   if(this->parameters.elapsed.ad >= this->parameters.ad)
   {
     this->parameters.elapsed.ad = -1;
@@ -520,8 +498,6 @@ void Game::onPresent()
 {
   this->counter->onPresent();
   this->environment->onPresent();
-
-  Application->parameters.showPresent = false;
 
   Present::getInstance()->show();
 }

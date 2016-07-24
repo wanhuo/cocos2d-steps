@@ -21,80 +21,74 @@
  *
  */
 
-#ifndef _FINISH_H_
-#define _FINISH_H_
-
-#include "Popup.h"
+#include "Game.h"
 
 /**
  *
  *
  *
  */
-class EnvironmentMissionsFinish;
+Present* Present::instance;
 
 /**
  *
  *
  *
  */
-class Finish : public Popup
+Present* Present::getInstance()
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  static Finish* instance;
+  return instance;
+}
 
-  struct Buttons {
-    Button* like;
-    Button* rate;
-    Button* restart;
-    Button* leaderboards;
-    Button* gift;
-    Button* video;
-    Button* store;
-  };
-
-  struct Texts {
-    Text* gift;
-    Text* video;
-  };
+/**
+ *
+ *
+ *
+ */
+Present::Present()
+: Sample("")
+{
+  instance = this;
 
   /**
    *
    *
    *
    */
-  protected:
-  Buttons buttons;
-  Texts texts;
+  this->element = new Gift(this);
+}
 
-  long long buttonsTime1;
-  long long buttonsTime2;
+Present::~Present()
+{
+}
+
+/**
+ *
+ *
+ *
+ */
+void Present::onEnter()
+{
+  Sample::onEnter();
 
   /**
    *
    *
    *
    */
-  public:
-  static Finish* getInstance();
+}
 
-  Finish();
- ~Finish();
+void Present::onExit()
+{
+  Sample::onExit();
+}
 
-  EnvironmentMissionsFinish* missions;
-
-  virtual void onShow();
-  virtual void onHide(Callback callback = NULL);
-
-  virtual void show();
-  virtual void hide(Callback callback = NULL);
-
-  virtual void update(float time);
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+void Present::update(float time)
+{
+  Sample::update(time);
+}

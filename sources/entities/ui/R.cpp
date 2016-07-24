@@ -157,13 +157,13 @@ void R::update(float time)
     auto y = this->getPositionY();
     auto z = this->getPositionZ();
 
-    x += this->direction.x * this->speed.x * Present::getInstance()->time;
+   /* x += this->direction.x * this->speed.x * Present::getInstance()->time;
     y += this->direction.y * this->speed.y * Present::getInstance()->time;
     z += this->direction.z * this->speed.z * Present::getInstance()->time;
 
     this->setPosition3D(Vec3(x, y, z));
 
-    this->speed.y -= 0.008 * Present::getInstance()->time;
+    this->speed.y -= 0.008 * Present::getInstance()->time;*/
   }
 }
 

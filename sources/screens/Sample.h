@@ -21,17 +21,17 @@
  *
  */
 
-#ifndef _PRESENT_H_
-#define _PRESENT_H_
+#ifndef _SAMPLE_H_
+#define _SAMPLE_H_
 
-#include "Popup.h"
+#include "Game.h"
 
 /**
  *
  *
  *
  */
-class Present : public Finish
+class Sample : public Screen
 {
   /**
    *
@@ -39,7 +39,7 @@ class Present : public Finish
    *
    */
   private:
-  static Present* instance;
+  float texturePosition;
 
   /**
    *
@@ -47,7 +47,7 @@ class Present : public Finish
    *
    */
   protected:
-  BackgroundColor* background;
+  Entity* texture;
 
   /**
    *
@@ -55,20 +55,18 @@ class Present : public Finish
    *
    */
   public:
-  static Present* getInstance();
+  Sample(const char* file);
+ ~Sample();
 
-  Present();
- ~Present();
+  virtual void onEnter();
+  virtual void onExit();
 
-  float time;
-
-  Gift* element;
-
-  virtual void onShow();
-  virtual void onHide(Callback callback = NULL);
+  virtual void onBack();
 
   virtual void show();
-  virtual void hide(Callback callback = NULL);
+  virtual void hide();
+
+  virtual void update(float time);
 };
 
 #endif

@@ -12,8 +12,6 @@
 		780073751D22803C00A6719A /* R.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 780073711D22803C00A6719A /* R.cpp */; };
 		781B06801BD26FC70072FB24 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 781B067F1BD26FC70072FB24 /* config.json */; };
 		781B06811BD26FC70072FB24 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 781B067F1BD26FC70072FB24 /* config.json */; };
-		781DA8801CDB3B95005BEB98 /* Watch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 781DA87E1CDB3B95005BEB98 /* Watch.cpp */; };
-		781DA8811CDB3B95005BEB98 /* Watch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 781DA87E1CDB3B95005BEB98 /* Watch.cpp */; };
 		7825DD431C5484CC00708016 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7825DD421C5484CC00708016 /* Popup.cpp */; };
 		7825DD441C5484CC00708016 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7825DD421C5484CC00708016 /* Popup.cpp */; };
 		78283F911CE0A8A10010CAB7 /* Decoration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283F8F1CE0A8A10010CAB7 /* Decoration.cpp */; };
@@ -141,12 +139,6 @@
 		785546081CD91D8B00B58ED0 /* Video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546011CD91D8B00B58ED0 /* Video.cpp */; };
 		7855460B1CD91F7E00B58ED0 /* Button3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546091CD91F7E00B58ED0 /* Button3D.cpp */; };
 		7855460C1CD91F7E00B58ED0 /* Button3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546091CD91F7E00B58ED0 /* Button3D.cpp */; };
-		785546101CD9CDC900B58ED0 /* Present.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7855460E1CD9CDC900B58ED0 /* Present.cpp */; };
-		785546111CD9CDC900B58ED0 /* Present.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7855460E1CD9CDC900B58ED0 /* Present.cpp */; };
-		785546151CD9F97700B58ED0 /* Presention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546131CD9F97700B58ED0 /* Presention.cpp */; };
-		785546161CD9F97700B58ED0 /* Presention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546131CD9F97700B58ED0 /* Presention.cpp */; };
-		7855461A1CDA13B600B58ED0 /* Open.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546181CDA13B600B58ED0 /* Open.cpp */; };
-		7855461B1CDA13B600B58ED0 /* Open.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546181CDA13B600B58ED0 /* Open.cpp */; };
 		7857E2B91C65733F0020AAEA /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2B61C65733F0020AAEA /* Menu.cpp */; };
 		7857E2BA1C6573F70020AAEA /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7857E2B61C65733F0020AAEA /* Menu.cpp */; };
 		786696CA1C4A47FF00A256FC /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786696C91C4A47FF00A256FC /* Cube.cpp */; };
@@ -294,7 +286,6 @@
 		78C352C51CEE7DB000F10068 /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FD61C4AA4440021272D /* Generator.cpp */; };
 		78C352C61CEE7DB000F10068 /* EnvironmentStoreBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FC21CE248DB0010CAB7 /* EnvironmentStoreBar.cpp */; };
 		78C352C71CEE7DB000F10068 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71781CD2621500BDCDC7 /* Color.cpp */; };
-		78C352C91CEE7DB000F10068 /* Present.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7855460E1CD9CDC900B58ED0 /* Present.cpp */; };
 		78C352CB1CEE7DB000F10068 /* Crystal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6C71CBD751D00F2D8A7 /* Crystal.cpp */; };
 		78C352CC1CEE7DB000F10068 /* Gift.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785545FD1CD91D8B00B58ED0 /* Gift.cpp */; };
 		78C352CD1CEE7DB000F10068 /* TypeMoved4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71A41CD39D0D00BDCDC7 /* TypeMoved4.cpp */; };
@@ -302,7 +293,6 @@
 		78C352CF1CEE7DB000F10068 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78CA6D041C20645200BF8416 /* Character.cpp */; };
 		78C352D01CEE7DB000F10068 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0311BC9282F00363FC9 /* Game.cpp */; };
 		78C352D11CEE7DB000F10068 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FCE1C4A84080021272D /* Particle.cpp */; };
-		78C352D21CEE7DB000F10068 /* Watch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 781DA87E1CDB3B95005BEB98 /* Watch.cpp */; };
 		78C352D31CEE7DB000F10068 /* EnvironmentMissionsNotify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78BADD6C1CEB57800077B673 /* EnvironmentMissionsNotify.cpp */; };
 		78C352D41CEE7DB000F10068 /* TypeMoved1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E719A1CD39A4A00BDCDC7 /* TypeMoved1.cpp */; };
 		78C352D51CEE7DB000F10068 /* EnvironmentMissionsKetchappPopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786F79651CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.cpp */; };
@@ -312,7 +302,6 @@
 		78C352DA1CEE7DB000F10068 /* TypeGate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6FF1CBF93C500F2D8A7 /* TypeGate.cpp */; };
 		78C352DC1CEE7DB000F10068 /* EnvironmentMissionsDailyPopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786F796A1CEDF3900003D926 /* EnvironmentMissionsDailyPopup.cpp */; };
 		78C352DF1CEE7DB000F10068 /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78D21BC01CE624B0007B0682 /* Capture.cpp */; };
-		78C352E01CEE7DB000F10068 /* Open.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546181CDA13B600B58ED0 /* Open.cpp */; };
 		78C352E11CEE7DB000F10068 /* Cub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789809631CC53A8B00E3CF28 /* Cub.cpp */; };
 		78C352E21CEE7DB000F10068 /* Unlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785545FF1CD91D8B00B58ED0 /* Unlock.cpp */; };
 		78C352E31CEE7DB000F10068 /* TypeSpikes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 789E71801CD343FC00BDCDC7 /* TypeSpikes.cpp */; };
@@ -340,7 +329,6 @@
 		78C352FE1CEE7DB000F10068 /* EnvironmentMissionsBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BB21CE9D2E700D8EB11 /* EnvironmentMissionsBar.cpp */; };
 		78C352FF1CEE7DB000F10068 /* EnvironmentStoreCharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283FB61CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp */; };
 		78C353001CEE7DB000F10068 /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 786696C91C4A47FF00A256FC /* Cube.cpp */; };
-		78C353021CEE7DB000F10068 /* Presention.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 785546131CD9F97700B58ED0 /* Presention.cpp */; };
 		78C353031CEE7DB000F10068 /* Spikes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B6F11CBF911800F2D8A7 /* Spikes.cpp */; };
 		78C353051CEE7DB000F10068 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78283F931CE0AAE00010CAB7 /* Counter.cpp */; };
 		78C353061CEE7DB000F10068 /* EnvironmentMissionsPopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C72BBA1CE9F49600D8EB11 /* EnvironmentMissionsPopup.cpp */; };
@@ -396,6 +384,18 @@
 		78E33FD21C4A84080021272D /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FCE1C4A84080021272D /* Particle.cpp */; };
 		78E33FD91C4AA4440021272D /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FD61C4AA4440021272D /* Generator.cpp */; };
 		78E33FDA1C4AA4440021272D /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E33FD61C4AA4440021272D /* Generator.cpp */; };
+		78E6B7EE1D442CAC00533E9E /* Open.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E6B7E61D442CAC00533E9E /* Open.cpp */; };
+		78E6B7EF1D442CAC00533E9E /* Open.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E6B7E61D442CAC00533E9E /* Open.cpp */; };
+		78E6B7F01D442CAC00533E9E /* Open.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E6B7E61D442CAC00533E9E /* Open.cpp */; };
+		78E6B7F11D442CAC00533E9E /* Present.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E6B7E81D442CAC00533E9E /* Present.cpp */; };
+		78E6B7F21D442CAC00533E9E /* Present.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E6B7E81D442CAC00533E9E /* Present.cpp */; };
+		78E6B7F31D442CAC00533E9E /* Present.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E6B7E81D442CAC00533E9E /* Present.cpp */; };
+		78E6B7F41D442CAC00533E9E /* Sample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E6B7EA1D442CAC00533E9E /* Sample.cpp */; };
+		78E6B7F51D442CAC00533E9E /* Sample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E6B7EA1D442CAC00533E9E /* Sample.cpp */; };
+		78E6B7F61D442CAC00533E9E /* Sample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E6B7EA1D442CAC00533E9E /* Sample.cpp */; };
+		78E6B7F71D442CAC00533E9E /* Watch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E6B7EC1D442CAC00533E9E /* Watch.cpp */; };
+		78E6B7F81D442CAC00533E9E /* Watch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E6B7EC1D442CAC00533E9E /* Watch.cpp */; };
+		78E6B7F91D442CAC00533E9E /* Watch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E6B7EC1D442CAC00533E9E /* Watch.cpp */; };
 		78F0C8F71D01EFA500BB0DC3 /* TypeSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C8F51D01EFA500BB0DC3 /* TypeSimple.cpp */; };
 		78F0C8F81D01EFA500BB0DC3 /* TypeSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C8F51D01EFA500BB0DC3 /* TypeSimple.cpp */; };
 		78F0C8F91D01EFA500BB0DC3 /* TypeSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78F0C8F51D01EFA500BB0DC3 /* TypeSimple.cpp */; };
@@ -417,8 +417,6 @@
 		780073711D22803C00A6719A /* R.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = R.cpp; sourceTree = "<group>"; };
 		780073721D22803C00A6719A /* R.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R.h; sourceTree = "<group>"; };
 		781B067F1BD26FC70072FB24 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = config.json; path = ../../resource/Config/apple/config.json; sourceTree = "<group>"; };
-		781DA87E1CDB3B95005BEB98 /* Watch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Watch.cpp; sourceTree = "<group>"; };
-		781DA87F1CDB3B95005BEB98 /* Watch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Watch.h; sourceTree = "<group>"; };
 		7825DD411C5484CC00708016 /* Popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Popup.h; sourceTree = "<group>"; };
 		7825DD421C5484CC00708016 /* Popup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Popup.cpp; sourceTree = "<group>"; };
 		78283F8F1CE0A8A10010CAB7 /* Decoration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Decoration.cpp; sourceTree = "<group>"; };
@@ -580,12 +578,6 @@
 		785546021CD91D8B00B58ED0 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
 		785546091CD91F7E00B58ED0 /* Button3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Button3D.cpp; sourceTree = "<group>"; };
 		7855460A1CD91F7E00B58ED0 /* Button3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Button3D.h; sourceTree = "<group>"; };
-		7855460E1CD9CDC900B58ED0 /* Present.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Present.cpp; sourceTree = "<group>"; };
-		7855460F1CD9CDC900B58ED0 /* Present.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Present.h; sourceTree = "<group>"; };
-		785546131CD9F97700B58ED0 /* Presention.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Presention.cpp; sourceTree = "<group>"; };
-		785546141CD9F97700B58ED0 /* Presention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Presention.h; sourceTree = "<group>"; };
-		785546181CDA13B600B58ED0 /* Open.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Open.cpp; sourceTree = "<group>"; };
-		785546191CDA13B600B58ED0 /* Open.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Open.h; sourceTree = "<group>"; };
 		7857E2B61C65733F0020AAEA /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
 		7857E2B71C65733F0020AAEA /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		786696C81C4A47FF00A256FC /* Cube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cube.h; sourceTree = "<group>"; };
@@ -766,6 +758,14 @@
 		78E33FCE1C4A84080021272D /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
 		78E33FD51C4AA4440021272D /* Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Generator.h; sourceTree = "<group>"; };
 		78E33FD61C4AA4440021272D /* Generator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Generator.cpp; sourceTree = "<group>"; };
+		78E6B7E61D442CAC00533E9E /* Open.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Open.cpp; sourceTree = "<group>"; };
+		78E6B7E71D442CAC00533E9E /* Open.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Open.h; sourceTree = "<group>"; };
+		78E6B7E81D442CAC00533E9E /* Present.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Present.cpp; sourceTree = "<group>"; };
+		78E6B7E91D442CAC00533E9E /* Present.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Present.h; sourceTree = "<group>"; };
+		78E6B7EA1D442CAC00533E9E /* Sample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sample.cpp; sourceTree = "<group>"; };
+		78E6B7EB1D442CAC00533E9E /* Sample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sample.h; sourceTree = "<group>"; };
+		78E6B7EC1D442CAC00533E9E /* Watch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Watch.cpp; sourceTree = "<group>"; };
+		78E6B7ED1D442CAC00533E9E /* Watch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Watch.h; sourceTree = "<group>"; };
 		78F0C8F51D01EFA500BB0DC3 /* TypeSimple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeSimple.cpp; sourceTree = "<group>"; };
 		78F0C8F61D01EFA500BB0DC3 /* TypeSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeSimple.h; sourceTree = "<group>"; };
 		78F0C8FA1D02476500BB0DC3 /* Episodes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Episodes.cpp; sourceTree = "<group>"; };
@@ -1470,12 +1470,6 @@
 				7857E2B71C65733F0020AAEA /* Menu.h */,
 				788F17C61CA308B000F4E5D6 /* Finish.cpp */,
 				788F17C71CA308B000F4E5D6 /* Finish.h */,
-				7855460E1CD9CDC900B58ED0 /* Present.cpp */,
-				7855460F1CD9CDC900B58ED0 /* Present.h */,
-				785546181CDA13B600B58ED0 /* Open.cpp */,
-				785546191CDA13B600B58ED0 /* Open.h */,
-				781DA87E1CDB3B95005BEB98 /* Watch.cpp */,
-				781DA87F1CDB3B95005BEB98 /* Watch.h */,
 			);
 			name = popups;
 			path = ../../sources/popups;
@@ -1486,6 +1480,14 @@
 			children = (
 				7894C0311BC9282F00363FC9 /* Game.cpp */,
 				7894C0321BC9282F00363FC9 /* Game.h */,
+				78E6B7EA1D442CAC00533E9E /* Sample.cpp */,
+				78E6B7EB1D442CAC00533E9E /* Sample.h */,
+				78E6B7E81D442CAC00533E9E /* Present.cpp */,
+				78E6B7E91D442CAC00533E9E /* Present.h */,
+				78E6B7E61D442CAC00533E9E /* Open.cpp */,
+				78E6B7E71D442CAC00533E9E /* Open.h */,
+				78E6B7EC1D442CAC00533E9E /* Watch.cpp */,
+				78E6B7ED1D442CAC00533E9E /* Watch.h */,
 			);
 			name = screens;
 			path = ../../sources/screens;
@@ -1554,8 +1556,6 @@
 				78B4B6D21CBD751D00F2D8A7 /* Star.h */,
 				789E71781CD2621500BDCDC7 /* Color.cpp */,
 				789E71791CD2621500BDCDC7 /* Color.h */,
-				785546131CD9F97700B58ED0 /* Presention.cpp */,
-				785546141CD9F97700B58ED0 /* Presention.h */,
 				7847844A1D00FA16002C3D23 /* Insane.cpp */,
 				7847844B1D00FA16002C3D23 /* Insane.h */,
 				7891E8B61CF32FF6005C238E /* Let.cpp */,
@@ -1966,17 +1966,19 @@
 				788F17C91CA308B000F4E5D6 /* Finish.cpp in Sources */,
 				78B4B6D51CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
 				7891E8AF1CF30A74005C238E /* Letters.cpp in Sources */,
+				78E6B7F51D442CAC00533E9E /* Sample.cpp in Sources */,
+				78E6B7F81D442CAC00533E9E /* Watch.cpp in Sources */,
 				783DE9611D1C2C13009706B7 /* Laser.cpp in Sources */,
 				78283FBF1CE21DF00010CAB7 /* EnvironmentStoreItem.cpp in Sources */,
 				785545F61CD8D61E00B58ED0 /* TypeBest.cpp in Sources */,
 				78F0C9011D026C3400BB0DC3 /* Enemy.cpp in Sources */,
 				78283FBD1CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp in Sources */,
+				78E6B7F21D442CAC00533E9E /* Present.cpp in Sources */,
 				78E33FD21C4A84080021272D /* Particle.cpp in Sources */,
 				789E71931CD3653E00BDCDC7 /* TypeMoveUp.cpp in Sources */,
 				7891E8641CF2125F005C238E /* main.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
 				78B4B6DD1CBD751D00F2D8A7 /* Pickup.cpp in Sources */,
-				785546161CD9F97700B58ED0 /* Presention.cpp in Sources */,
 				784784431D004F9A002C3D23 /* TypePortal.cpp in Sources */,
 				78BADD6F1CEB57800077B673 /* EnvironmentMissionsNotify.cpp in Sources */,
 				789E71A91CD39D0D00BDCDC7 /* TypeMoved3.cpp in Sources */,
@@ -1988,7 +1990,6 @@
 				78D21BC31CE624B0007B0682 /* Capture.cpp in Sources */,
 				78B4B6DF1CBD751D00F2D8A7 /* Star.cpp in Sources */,
 				78B4B6DB1CBD751D00F2D8A7 /* Heart.cpp in Sources */,
-				7855461B1CDA13B600B58ED0 /* Open.cpp in Sources */,
 				78283F921CE0A8A10010CAB7 /* Decoration.cpp in Sources */,
 				785546061CD91D8B00B58ED0 /* Unlock.cpp in Sources */,
 				786696CB1C4A47FF00A256FC /* Cube.cpp in Sources */,
@@ -2014,13 +2015,12 @@
 				7847844D1D00FA16002C3D23 /* Insane.cpp in Sources */,
 				78F0C9061D03280D00BB0DC3 /* TypeDuel.cpp in Sources */,
 				785545F81CD8D61E00B58ED0 /* TypeBonus.cpp in Sources */,
+				78E6B7EF1D442CAC00533E9E /* Open.cpp in Sources */,
 				78B4B70B1CBFB51F00F2D8A7 /* Copter.cpp in Sources */,
 				785545FA1CD8D61E00B58ED0 /* TypeFinish.cpp in Sources */,
 				7891E8B41CF30C0F005C238E /* Letter.cpp in Sources */,
 				78283FC11CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp in Sources */,
-				785546111CD9CDC900B58ED0 /* Present.cpp in Sources */,
 				78CA6D0D1C20645200BF8416 /* Environment.cpp in Sources */,
-				781DA8811CDB3B95005BEB98 /* Watch.cpp in Sources */,
 				784784481D004FB3002C3D23 /* Portal.cpp in Sources */,
 				786F796D1CEDF3900003D926 /* EnvironmentMissionsDailyPopup.cpp in Sources */,
 				78B4B6FC1CBF91E000F2D8A7 /* Door.cpp in Sources */,
@@ -2046,7 +2046,6 @@
 				78C352C71CEE7DB000F10068 /* Color.cpp in Sources */,
 				78F0C8F91D01EFA500BB0DC3 /* TypeSimple.cpp in Sources */,
 				784784491D004FB3002C3D23 /* Portal.cpp in Sources */,
-				78C352C91CEE7DB000F10068 /* Present.cpp in Sources */,
 				7891E8C41CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp in Sources */,
 				7832A8BD1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */,
 				78F0C9071D03280D00BB0DC3 /* TypeDuel.cpp in Sources */,
@@ -2057,9 +2056,9 @@
 				78C352CF1CEE7DB000F10068 /* Character.cpp in Sources */,
 				78C352D01CEE7DB000F10068 /* Game.cpp in Sources */,
 				78C352D11CEE7DB000F10068 /* Particle.cpp in Sources */,
-				78C352D21CEE7DB000F10068 /* Watch.cpp in Sources */,
 				78C352D31CEE7DB000F10068 /* EnvironmentMissionsNotify.cpp in Sources */,
 				78C352D41CEE7DB000F10068 /* TypeMoved1.cpp in Sources */,
+				78E6B7F01D442CAC00533E9E /* Open.cpp in Sources */,
 				7847844E1D00FA16002C3D23 /* Insane.cpp in Sources */,
 				78C352D51CEE7DB000F10068 /* EnvironmentMissionsKetchappPopup.cpp in Sources */,
 				78C352D61CEE7DB000F10068 /* EnvironmentStoreItem.cpp in Sources */,
@@ -2068,7 +2067,6 @@
 				78C352DA1CEE7DB000F10068 /* TypeGate.cpp in Sources */,
 				78C352DC1CEE7DB000F10068 /* EnvironmentMissionsDailyPopup.cpp in Sources */,
 				78C352DF1CEE7DB000F10068 /* Capture.cpp in Sources */,
-				78C352E01CEE7DB000F10068 /* Open.cpp in Sources */,
 				78C352E11CEE7DB000F10068 /* Cub.cpp in Sources */,
 				78C352E21CEE7DB000F10068 /* Unlock.cpp in Sources */,
 				78C352E31CEE7DB000F10068 /* TypeSpikes.cpp in Sources */,
@@ -2085,11 +2083,13 @@
 				78C352EA1CEE7DB000F10068 /* Button3D.cpp in Sources */,
 				78C35A571CEE84E200F10068 /* RootViewController.mm in Sources */,
 				7891E8B51CF30C0F005C238E /* Letter.cpp in Sources */,
+				78E6B7F91D442CAC00533E9E /* Watch.cpp in Sources */,
 				78C35A4F1CEE84E200F10068 /* AppController.mm in Sources */,
 				78C352EC1CEE7DB000F10068 /* Diamond.cpp in Sources */,
 				78C352ED1CEE7DB000F10068 /* Pickup.cpp in Sources */,
 				78C352EE1CEE7DB000F10068 /* Decoration.cpp in Sources */,
 				78C352F01CEE7DB000F10068 /* EnvironmentMissionsFinish.cpp in Sources */,
+				78E6B7F61D442CAC00533E9E /* Sample.cpp in Sources */,
 				7891E8BA1CF32FF6005C238E /* Let.cpp in Sources */,
 				78C352F21CEE7DB000F10068 /* TypeMoved3.cpp in Sources */,
 				78F0C8FD1D02476500BB0DC3 /* Episodes.cpp in Sources */,
@@ -2111,10 +2111,10 @@
 				7832A8A51D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */,
 				783DE95D1D1C2834009706B7 /* TypeLaser.cpp in Sources */,
 				78C352FE1CEE7DB000F10068 /* EnvironmentMissionsBar.cpp in Sources */,
+				78E6B7F31D442CAC00533E9E /* Present.cpp in Sources */,
 				7891E8BF1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp in Sources */,
 				78C352FF1CEE7DB000F10068 /* EnvironmentStoreCharacter.cpp in Sources */,
 				78C353001CEE7DB000F10068 /* Cube.cpp in Sources */,
-				78C353021CEE7DB000F10068 /* Presention.cpp in Sources */,
 				78C353031CEE7DB000F10068 /* Spikes.cpp in Sources */,
 				78C353051CEE7DB000F10068 /* Counter.cpp in Sources */,
 				78C353061CEE7DB000F10068 /* EnvironmentMissionsPopup.cpp in Sources */,
@@ -2146,6 +2146,7 @@
 				78CEEB401D0C44D5000A85D4 /* YYAnimatedImageView.m in Sources */,
 				78E33FD91C4AA4440021272D /* Generator.cpp in Sources */,
 				7847844C1D00FA16002C3D23 /* Insane.cpp in Sources */,
+				78E6B7F71D442CAC00533E9E /* Watch.cpp in Sources */,
 				7832A8AC1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */,
 				7832A8B51D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */,
 				7891E88D1CF21293005C238E /* main.m in Sources */,
@@ -2156,7 +2157,6 @@
 				7891E8C21CF3559D005C238E /* EnvironmentMissionsFinishDaily.cpp in Sources */,
 				7891E8BD1CF35009005C238E /* EnvironmentMissionsFinishGeneral.cpp in Sources */,
 				789E717A1CD2621500BDCDC7 /* Color.cpp in Sources */,
-				785546101CD9CDC900B58ED0 /* Present.cpp in Sources */,
 				78B4B6D41CBD751D00F2D8A7 /* Crystal.cpp in Sources */,
 				785546031CD91D8B00B58ED0 /* Gift.cpp in Sources */,
 				784784511D018ED5002C3D23 /* TypeMoved5.cpp in Sources */,
@@ -2169,7 +2169,6 @@
 				7891E8B31CF30C0F005C238E /* Letter.cpp in Sources */,
 				78E33FD11C4A84080021272D /* Particle.cpp in Sources */,
 				7891E8961CF21293005C238E /* NSVote.mm in Sources */,
-				781DA8801CDB3B95005BEB98 /* Watch.cpp in Sources */,
 				78BADD6E1CEB57800077B673 /* EnvironmentMissionsNotify.cpp in Sources */,
 				789E719E1CD39A4A00BDCDC7 /* TypeMoved1.cpp in Sources */,
 				786F79671CEDDD6B0003D926 /* EnvironmentMissionsKetchappPopup.cpp in Sources */,
@@ -2178,13 +2177,14 @@
 				78B4B70A1CBFB51F00F2D8A7 /* Copter.cpp in Sources */,
 				7832A8A61D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
 				7891E8911CF21293005C238E /* NSHeyzap.mm in Sources */,
+				78E6B7F11D442CAC00533E9E /* Present.cpp in Sources */,
 				7894C01A1BC9245800363FC9 /* Events.cpp in Sources */,
 				7891E88B1CF21293005C238E /* AppController.mm in Sources */,
+				78E6B7F41D442CAC00533E9E /* Sample.cpp in Sources */,
 				78B4B7011CBF93C500F2D8A7 /* TypeGate.cpp in Sources */,
 				786F796C1CEDF3900003D926 /* EnvironmentMissionsDailyPopup.cpp in Sources */,
 				784784421D004F9A002C3D23 /* TypePortal.cpp in Sources */,
 				78D21BC21CE624B0007B0682 /* Capture.cpp in Sources */,
-				7855461A1CDA13B600B58ED0 /* Open.cpp in Sources */,
 				7891E88F1CF21293005C238E /* NSModal.mm in Sources */,
 				789809651CC53A8B00E3CF28 /* Cub.cpp in Sources */,
 				785546051CD91D8B00B58ED0 /* Unlock.cpp in Sources */,
@@ -2232,7 +2232,6 @@
 				78283FBC1CE21DF00010CAB7 /* EnvironmentStoreCharacter.cpp in Sources */,
 				786696CA1C4A47FF00A256FC /* Cube.cpp in Sources */,
 				7891E88C1CF21293005C238E /* NSInternal.mm in Sources */,
-				785546151CD9F97700B58ED0 /* Presention.cpp in Sources */,
 				78B4B6F51CBF911800F2D8A7 /* Spikes.cpp in Sources */,
 				78F0C9001D026C3400BB0DC3 /* Enemy.cpp in Sources */,
 				78CEEB441D0C44D5000A85D4 /* YYSpriteSheetImage.m in Sources */,
@@ -2243,6 +2242,7 @@
 				78CEEB431D0C44D5000A85D4 /* YYImageCoder.m in Sources */,
 				78CA6D0C1C20645200BF8416 /* Environment.cpp in Sources */,
 				7891E8941CF21293005C238E /* NSServices.mm in Sources */,
+				78E6B7EE1D442CAC00533E9E /* Open.cpp in Sources */,
 				789E71AF1CD3D23200BDCDC7 /* TypeTrap.cpp in Sources */,
 				7832A8B21D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
 				78283FC01CE21DF00010CAB7 /* EnvironmentStoreTexture.cpp in Sources */,

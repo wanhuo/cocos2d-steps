@@ -150,7 +150,6 @@ class Environment : public Background
     Pool* stars;
     Pool* hearts;
     Pool* colors;
-    Pool* presentions;
 
     Lets letters;
   };

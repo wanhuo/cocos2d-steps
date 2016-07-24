@@ -53,7 +53,7 @@ void Gift::onCreate()
 {
   Button3D::onCreate();
 
-  this->texture = Application->parameters.presentTexture;
+  //this->texture = Application->parameters.presentTexture;
 
   static_cast<Sprite3D*>(this->getChildByName("box"))->setTexture(this->texture);
   static_cast<Sprite3D*>(this->getChildByName("box"))->setLightMask(this->index);
@@ -228,7 +228,7 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
         CallFunc::create([=] () {
         Application->counter->add(count);
 
-        Present::getInstance()->time = 1.0;
+        //Present::getInstance()->time = 1.0;
 
         for(int i = 0; i < 40; i++)
         {
@@ -242,7 +242,7 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
         }),
         DelayTime::create(0.4),
         CallFunc::create([=] () {
-        Present::getInstance()->time = 0.4;
+        //Present::getInstance()->time = 0.4;
         }),
         DelayTime::create(0.5),
         CallFunc::create([=] () {
@@ -251,11 +251,11 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
           default:
           break;
           case Game::PRESENT:
-          Present::getInstance()->time = 1.0;
-          Present::getInstance()->Finish::onShow();
+          //Present::getInstance()->time = 1.0;
+          //Present::getInstance()->Finish::onShow();
           break;
           case Game::MISSION_COMPLETE:
-          Present::getInstance()->missions->runAction(
+          /*Present::getInstance()->missions->runAction(
             Sequence::create(
               EaseSineOut::create(
                 MoveBy::create(0.5, Vec2(0, -15))
@@ -266,7 +266,7 @@ void Gift::onTouch(cocos2d::Touch* touch, Event* e)
               }),
               nullptr
             )
-          );
+          );*/
           break;
         }
         }),

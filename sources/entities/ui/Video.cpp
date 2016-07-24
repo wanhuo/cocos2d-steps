@@ -124,7 +124,7 @@ void Video::onTouch(cocos2d::Touch* touch, Event* e)
 
       this->_destroy();
 
-      Watch::getInstance()->background->setOpacity(0);
+      //Watch::getInstance()->background->setOpacity(0);
 
       for(int i = 0; i < 15; i++)
       {

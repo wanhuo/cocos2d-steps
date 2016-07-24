@@ -123,7 +123,6 @@ void Environment::create()
   this->pickups.stars = new Pool(new Star, this->plane);
   this->pickups.hearts = new Pool(new Heart, this->plane);
   this->pickups.colors = new Pool(new Color, this->plane);
-  this->pickups.presentions = new Pool(new Presention, this->plane);
 
   this->pickups.letters.a = new Pool(new Let('a'), this->plane);
   this->pickups.letters.b = new Pool(new Let('b'), this->plane);
