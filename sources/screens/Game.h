@@ -111,6 +111,7 @@
 #include "EnvironmentStoreTexture.h"
 #include "EnvironmentStoreBar.h"
 
+#include "MissionTask.h"
 #include "EnvironmentMissionsPopup.h"
 #include "EnvironmentMissionsDailyPopup.h"
 #include "EnvironmentMissionsKetchappPopup.h"

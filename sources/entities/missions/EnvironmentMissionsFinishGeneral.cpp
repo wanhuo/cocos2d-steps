@@ -54,7 +54,7 @@ EnvironmentMissionsFinishGeneral::EnvironmentMissionsFinishGeneral()
 
   for(int i = 0; i < 3; i++)
   {
-    this->missions.push_back(new EnvironmentMissionsPopup::MissionTask(this));
+    this->missions.push_back(new MissionTask(this));
   }
 
   this->_create();
@@ -94,7 +94,7 @@ void EnvironmentMissionsFinishGeneral::onEnter()
       mission->_create();
       mission->setScale(0.8);
 
-      static_cast<EnvironmentMissionsPopup::MissionTask*>(mission)->updateData(i, structure);
+      static_cast<MissionTask*>(mission)->updateData(i, structure);
     }
 
     /**
